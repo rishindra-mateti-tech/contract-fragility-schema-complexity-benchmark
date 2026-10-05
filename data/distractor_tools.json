@@ -1,0 +1,78 @@
+[
+  {
+    "name": "get_account_balance",
+    "description": "Retrieve the current cash and credit balance for a specified user or merchant account.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "account_id": {
+          "type": "STRING",
+          "description": "The account identifier."
+        }
+      },
+      "required": [
+        "account_id"
+      ]
+    }
+  },
+  {
+    "name": "list_audit_logs",
+    "description": "Fetch chronological audit logs and security events matching specified filter dates.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "start_date": {
+          "type": "STRING",
+          "description": "ISO-8601 start date."
+        },
+        "limit": {
+          "type": "INTEGER",
+          "description": "Number of log records."
+        }
+      },
+      "required": [
+        "start_date"
+      ]
+    }
+  },
+  {
+    "name": "export_csv_report",
+    "description": "Generate an asynchronous data export job and return an S3 signed download URL.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "report_type": {
+          "type": "STRING",
+          "description": "Financial or telemetry report type."
+        },
+        "format": {
+          "type": "STRING",
+          "enum": [
+            "csv",
+            "xlsx",
+            "parquet"
+          ]
+        }
+      },
+      "required": [
+        "report_type"
+      ]
+    }
+  },
+  {
+    "name": "revoke_api_key",
+    "description": "Immediately terminate and revoke an active developer API token.",
+    "parameters": {
+      "type": "OBJECT",
+      "properties": {
+        "key_id": {
+          "type": "STRING",
+          "description": "The unique token key identifier."
+        }
+      },
+      "required": [
+        "key_id"
+      ]
+    }
+  }
+]

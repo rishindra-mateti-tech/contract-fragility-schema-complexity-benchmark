@@ -1,0 +1,4250 @@
+[
+  {
+    "base_id": "stripe_create_refund",
+    "domain": "Fintech / Billing",
+    "query": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_payment_refund",
+          "description": "Issue a full or partial refund for a processed Stripe payment charge.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "charge_id": {
+                "type": "STRING",
+                "description": "The unique identifier of the payment charge to refund (e.g., ch_1Mkj23)."
+              },
+              "amount_cents": {
+                "type": "INTEGER",
+                "description": "The amount to refund in cents (e.g., 2500 for $25.00)."
+              },
+              "reason": {
+                "type": "STRING",
+                "enum": [
+                  "duplicate",
+                  "fraudulent",
+                  "requested_by_customer"
+                ],
+                "description": "The reason for the refund."
+              },
+              "refund_application_fee": {
+                "type": "BOOLEAN",
+                "description": "Whether to refund the application fee."
+              }
+            },
+            "required": [
+              "charge_id",
+              "amount_cents",
+              "reason"
+            ]
+          }
+        },
+        "expected_args": {
+          "charge_id": "ch_99281a",
+          "amount_cents": 4500,
+          "reason": "requested_by_customer"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_payment_refund",
+          "description": "Issue a full or partial refund for a processed Stripe payment charge.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "charge_id": {
+                    "type": "STRING",
+                    "description": "The unique identifier of the payment charge to refund (e.g., ch_1Mkj23)."
+                  },
+                  "amount_cents": {
+                    "type": "INTEGER",
+                    "description": "The amount to refund in cents (e.g., 2500 for $25.00)."
+                  },
+                  "reason": {
+                    "type": "STRING",
+                    "enum": [
+                      "duplicate",
+                      "fraudulent",
+                      "requested_by_customer"
+                    ],
+                    "description": "The reason for the refund."
+                  },
+                  "refund_application_fee": {
+                    "type": "BOOLEAN",
+                    "description": "Whether to refund the application fee."
+                  }
+                },
+                "required": [
+                  "charge_id",
+                  "amount_cents",
+                  "reason"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "charge_id": "ch_99281a",
+            "amount_cents": 4500,
+            "reason": "requested_by_customer"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_payment_refund",
+          "description": "Issue a full or partial refund for a processed Stripe payment charge.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "charge_id": {
+                "type": "STRING",
+                "description": "The unique identifier of the payment charge to refund (e.g., ch_1Mkj23)."
+              },
+              "amount_cents": {
+                "type": "INTEGER",
+                "description": "The amount to refund in cents (e.g., 2500 for $25.00)."
+              },
+              "reason": {
+                "type": "STRING",
+                "enum": [
+                  "duplicate",
+                  "fraudulent",
+                  "requested_by_customer"
+                ],
+                "description": "The reason for the refund."
+              },
+              "refund_application_fee": {
+                "type": "BOOLEAN",
+                "description": "Whether to refund the application fee."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "charge_id",
+              "amount_cents",
+              "reason"
+            ]
+          }
+        },
+        "expected_args": {
+          "charge_id": "ch_99281a",
+          "amount_cents": 4500,
+          "reason": "requested_by_customer"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_payment_refund",
+          "description": "Issue a full or partial refund for a processed Stripe payment charge.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "target_id": {
+                "type": "STRING",
+                "description": "The unique identifier of the payment charge to refund (e.g., ch_1Mkj23)."
+              },
+              "qty": {
+                "type": "INTEGER",
+                "description": "The amount to refund in cents (e.g., 2500 for $25.00)."
+              },
+              "spec": {
+                "type": "STRING",
+                "enum": [
+                  "duplicate",
+                  "fraudulent",
+                  "requested_by_customer"
+                ],
+                "description": "The reason for the refund."
+              },
+              "param_refu": {
+                "type": "BOOLEAN",
+                "description": "Whether to refund the application fee."
+              }
+            },
+            "required": [
+              "target_id",
+              "qty",
+              "spec"
+            ]
+          }
+        },
+        "expected_args": {
+          "target_id": "ch_99281a",
+          "qty": 4500,
+          "spec": "requested_by_customer"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "github_create_issue",
+    "domain": "Developer Tools",
+    "query": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_repository_issue",
+          "description": "Create a new tracking issue in a specified GitHub repository.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "owner": {
+                "type": "STRING",
+                "description": "The GitHub account or organization owner of the repository."
+              },
+              "repo": {
+                "type": "STRING",
+                "description": "The name of the repository without the owner prefix."
+              },
+              "title": {
+                "type": "STRING",
+                "description": "A short, descriptive title for the issue."
+              },
+              "body": {
+                "type": "STRING",
+                "description": "The detailed markdown contents explaining the issue."
+              },
+              "severity": {
+                "type": "STRING",
+                "enum": [
+                  "low",
+                  "medium",
+                  "critical"
+                ],
+                "description": "Severity priority level."
+              }
+            },
+            "required": [
+              "owner",
+              "repo",
+              "title",
+              "body"
+            ]
+          }
+        },
+        "expected_args": {
+          "owner": "facebook",
+          "repo": "react",
+          "title": "Fix synthetic event leak",
+          "body": "memory leak on unmount"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_repository_issue",
+          "description": "Create a new tracking issue in a specified GitHub repository.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "owner": {
+                    "type": "STRING",
+                    "description": "The GitHub account or organization owner of the repository."
+                  },
+                  "repo": {
+                    "type": "STRING",
+                    "description": "The name of the repository without the owner prefix."
+                  },
+                  "title": {
+                    "type": "STRING",
+                    "description": "A short, descriptive title for the issue."
+                  },
+                  "body": {
+                    "type": "STRING",
+                    "description": "The detailed markdown contents explaining the issue."
+                  },
+                  "severity": {
+                    "type": "STRING",
+                    "enum": [
+                      "low",
+                      "medium",
+                      "critical"
+                    ],
+                    "description": "Severity priority level."
+                  }
+                },
+                "required": [
+                  "owner",
+                  "repo",
+                  "title",
+                  "body"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "owner": "facebook",
+            "repo": "react",
+            "title": "Fix synthetic event leak",
+            "body": "memory leak on unmount"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_repository_issue",
+          "description": "Create a new tracking issue in a specified GitHub repository.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "owner": {
+                "type": "STRING",
+                "description": "The GitHub account or organization owner of the repository."
+              },
+              "repo": {
+                "type": "STRING",
+                "description": "The name of the repository without the owner prefix."
+              },
+              "title": {
+                "type": "STRING",
+                "description": "A short, descriptive title for the issue."
+              },
+              "body": {
+                "type": "STRING",
+                "description": "The detailed markdown contents explaining the issue."
+              },
+              "severity": {
+                "type": "STRING",
+                "enum": [
+                  "low",
+                  "medium",
+                  "critical"
+                ],
+                "description": "Severity priority level."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "owner",
+              "repo",
+              "title",
+              "body"
+            ]
+          }
+        },
+        "expected_args": {
+          "owner": "facebook",
+          "repo": "react",
+          "title": "Fix synthetic event leak",
+          "body": "memory leak on unmount"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_repository_issue",
+          "description": "Create a new tracking issue in a specified GitHub repository.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "ns": {
+                "type": "STRING",
+                "description": "The GitHub account or organization owner of the repository."
+              },
+              "entity": {
+                "type": "STRING",
+                "description": "The name of the repository without the owner prefix."
+              },
+              "item_heading": {
+                "type": "STRING",
+                "description": "A short, descriptive title for the issue."
+              },
+              "text_data": {
+                "type": "STRING",
+                "description": "The detailed markdown contents explaining the issue."
+              },
+              "param_seve": {
+                "type": "STRING",
+                "enum": [
+                  "low",
+                  "medium",
+                  "critical"
+                ],
+                "description": "Severity priority level."
+              }
+            },
+            "required": [
+              "ns",
+              "entity",
+              "item_heading",
+              "text_data"
+            ]
+          }
+        },
+        "expected_args": {
+          "ns": "facebook",
+          "entity": "react",
+          "item_heading": "Fix synthetic event leak",
+          "text_data": "memory leak on unmount"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "slack_post_message",
+    "domain": "Collaboration",
+    "query": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "send_slack_channel_message",
+          "description": "Post a formatted text message to a public or private Slack channel.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "channel_id": {
+                "type": "STRING",
+                "description": "The Slack channel ID (e.g. C0123456789) to post the message to."
+              },
+              "message_text": {
+                "type": "STRING",
+                "description": "The content of the message to send."
+              },
+              "as_user": {
+                "type": "BOOLEAN",
+                "description": "Pass true to post the message as the authenticated user instead of as a bot."
+              },
+              "thread_ts": {
+                "type": "STRING",
+                "description": "Provide another message's ts value to make this message a reply."
+              }
+            },
+            "required": [
+              "channel_id",
+              "message_text"
+            ]
+          }
+        },
+        "expected_args": {
+          "channel_id": "C08219941",
+          "message_text": "Deployment pipeline failed on step 4",
+          "as_user": false
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "send_slack_channel_message",
+          "description": "Post a formatted text message to a public or private Slack channel.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "channel_id": {
+                    "type": "STRING",
+                    "description": "The Slack channel ID (e.g. C0123456789) to post the message to."
+                  },
+                  "message_text": {
+                    "type": "STRING",
+                    "description": "The content of the message to send."
+                  },
+                  "as_user": {
+                    "type": "BOOLEAN",
+                    "description": "Pass true to post the message as the authenticated user instead of as a bot."
+                  },
+                  "thread_ts": {
+                    "type": "STRING",
+                    "description": "Provide another message's ts value to make this message a reply."
+                  }
+                },
+                "required": [
+                  "channel_id",
+                  "message_text"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "channel_id": "C08219941",
+            "message_text": "Deployment pipeline failed on step 4",
+            "as_user": false
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "send_slack_channel_message",
+          "description": "Post a formatted text message to a public or private Slack channel.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "channel_id": {
+                "type": "STRING",
+                "description": "The Slack channel ID (e.g. C0123456789) to post the message to."
+              },
+              "message_text": {
+                "type": "STRING",
+                "description": "The content of the message to send."
+              },
+              "as_user": {
+                "type": "BOOLEAN",
+                "description": "Pass true to post the message as the authenticated user instead of as a bot."
+              },
+              "thread_ts": {
+                "type": "STRING",
+                "description": "Provide another message's ts value to make this message a reply."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "channel_id",
+              "message_text"
+            ]
+          }
+        },
+        "expected_args": {
+          "channel_id": "C08219941",
+          "message_text": "Deployment pipeline failed on step 4",
+          "as_user": false
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "send_slack_channel_message",
+          "description": "Post a formatted text message to a public or private Slack channel.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "dest": {
+                "type": "STRING",
+                "description": "The Slack channel ID (e.g. C0123456789) to post the message to."
+              },
+              "payload_str": {
+                "type": "STRING",
+                "description": "The content of the message to send."
+              },
+              "param_as_u": {
+                "type": "BOOLEAN",
+                "description": "Pass true to post the message as the authenticated user instead of as a bot."
+              },
+              "param_thre": {
+                "type": "STRING",
+                "description": "Provide another message's ts value to make this message a reply."
+              }
+            },
+            "required": [
+              "dest",
+              "payload_str"
+            ]
+          }
+        },
+        "expected_args": {
+          "dest": "C08219941",
+          "payload_str": "Deployment pipeline failed on step 4",
+          "param_as_u": false
+        }
+      }
+    }
+  },
+  {
+    "base_id": "k8s_scale_deployment",
+    "domain": "Cloud Infrastructure",
+    "query": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "scale_kubernetes_deployment",
+          "description": "Scale the replica count of a named Kubernetes deployment in a target namespace.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "namespace": {
+                "type": "STRING",
+                "description": "The target Kubernetes namespace (e.g., prod, staging, default)."
+              },
+              "deployment_name": {
+                "type": "STRING",
+                "description": "The exact name of the deployment workload to scale."
+              },
+              "replicas": {
+                "type": "INTEGER",
+                "description": "The desired number of pod replicas."
+              },
+              "dry_run": {
+                "type": "BOOLEAN",
+                "description": "If true, simulates the scale operation without applying changes."
+              }
+            },
+            "required": [
+              "namespace",
+              "deployment_name",
+              "replicas"
+            ]
+          }
+        },
+        "expected_args": {
+          "namespace": "production",
+          "deployment_name": "api-gateway",
+          "replicas": 8
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "scale_kubernetes_deployment",
+          "description": "Scale the replica count of a named Kubernetes deployment in a target namespace.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "namespace": {
+                    "type": "STRING",
+                    "description": "The target Kubernetes namespace (e.g., prod, staging, default)."
+                  },
+                  "deployment_name": {
+                    "type": "STRING",
+                    "description": "The exact name of the deployment workload to scale."
+                  },
+                  "replicas": {
+                    "type": "INTEGER",
+                    "description": "The desired number of pod replicas."
+                  },
+                  "dry_run": {
+                    "type": "BOOLEAN",
+                    "description": "If true, simulates the scale operation without applying changes."
+                  }
+                },
+                "required": [
+                  "namespace",
+                  "deployment_name",
+                  "replicas"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "namespace": "production",
+            "deployment_name": "api-gateway",
+            "replicas": 8
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "scale_kubernetes_deployment",
+          "description": "Scale the replica count of a named Kubernetes deployment in a target namespace.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "namespace": {
+                "type": "STRING",
+                "description": "The target Kubernetes namespace (e.g., prod, staging, default)."
+              },
+              "deployment_name": {
+                "type": "STRING",
+                "description": "The exact name of the deployment workload to scale."
+              },
+              "replicas": {
+                "type": "INTEGER",
+                "description": "The desired number of pod replicas."
+              },
+              "dry_run": {
+                "type": "BOOLEAN",
+                "description": "If true, simulates the scale operation without applying changes."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "namespace",
+              "deployment_name",
+              "replicas"
+            ]
+          }
+        },
+        "expected_args": {
+          "namespace": "production",
+          "deployment_name": "api-gateway",
+          "replicas": 8
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "scale_kubernetes_deployment",
+          "description": "Scale the replica count of a named Kubernetes deployment in a target namespace.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "env_scope": {
+                "type": "STRING",
+                "description": "The target Kubernetes namespace (e.g., prod, staging, default)."
+              },
+              "target_name": {
+                "type": "STRING",
+                "description": "The exact name of the deployment workload to scale."
+              },
+              "count_val": {
+                "type": "INTEGER",
+                "description": "The desired number of pod replicas."
+              },
+              "param_dry_": {
+                "type": "BOOLEAN",
+                "description": "If true, simulates the scale operation without applying changes."
+              }
+            },
+            "required": [
+              "env_scope",
+              "target_name",
+              "count_val"
+            ]
+          }
+        },
+        "expected_args": {
+          "env_scope": "production",
+          "target_name": "api-gateway",
+          "count_val": 8
+        }
+      }
+    }
+  },
+  {
+    "base_id": "aws_create_s3_bucket",
+    "domain": "Cloud Storage",
+    "query": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_s3_storage_bucket",
+          "description": "Provision a new Amazon Simple Storage Service (S3) bucket in a target AWS region.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "bucket_name": {
+                "type": "STRING",
+                "description": "Globally unique DNS-compliant name for the new S3 bucket."
+              },
+              "region": {
+                "type": "STRING",
+                "enum": [
+                  "us-east-1",
+                  "us-west-2",
+                  "eu-central-1",
+                  "ap-south-1"
+                ],
+                "description": "The AWS geographic region where the bucket will be hosted."
+              },
+              "enable_versioning": {
+                "type": "BOOLEAN",
+                "description": "Whether to turn on object versioning."
+              }
+            },
+            "required": [
+              "bucket_name",
+              "region"
+            ]
+          }
+        },
+        "expected_args": {
+          "bucket_name": "analytics-warehouse-2026",
+          "region": "us-east-1",
+          "enable_versioning": true
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_s3_storage_bucket",
+          "description": "Provision a new Amazon Simple Storage Service (S3) bucket in a target AWS region.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "bucket_name": {
+                    "type": "STRING",
+                    "description": "Globally unique DNS-compliant name for the new S3 bucket."
+                  },
+                  "region": {
+                    "type": "STRING",
+                    "enum": [
+                      "us-east-1",
+                      "us-west-2",
+                      "eu-central-1",
+                      "ap-south-1"
+                    ],
+                    "description": "The AWS geographic region where the bucket will be hosted."
+                  },
+                  "enable_versioning": {
+                    "type": "BOOLEAN",
+                    "description": "Whether to turn on object versioning."
+                  }
+                },
+                "required": [
+                  "bucket_name",
+                  "region"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "bucket_name": "analytics-warehouse-2026",
+            "region": "us-east-1",
+            "enable_versioning": true
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_s3_storage_bucket",
+          "description": "Provision a new Amazon Simple Storage Service (S3) bucket in a target AWS region.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "bucket_name": {
+                "type": "STRING",
+                "description": "Globally unique DNS-compliant name for the new S3 bucket."
+              },
+              "region": {
+                "type": "STRING",
+                "enum": [
+                  "us-east-1",
+                  "us-west-2",
+                  "eu-central-1",
+                  "ap-south-1"
+                ],
+                "description": "The AWS geographic region where the bucket will be hosted."
+              },
+              "enable_versioning": {
+                "type": "BOOLEAN",
+                "description": "Whether to turn on object versioning."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "bucket_name",
+              "region"
+            ]
+          }
+        },
+        "expected_args": {
+          "bucket_name": "analytics-warehouse-2026",
+          "region": "us-east-1",
+          "enable_versioning": true
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_s3_storage_bucket",
+          "description": "Provision a new Amazon Simple Storage Service (S3) bucket in a target AWS region.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "resource_id": {
+                "type": "STRING",
+                "description": "Globally unique DNS-compliant name for the new S3 bucket."
+              },
+              "loc": {
+                "type": "STRING",
+                "enum": [
+                  "us-east-1",
+                  "us-west-2",
+                  "eu-central-1",
+                  "ap-south-1"
+                ],
+                "description": "The AWS geographic region where the bucket will be hosted."
+              },
+              "param_enab": {
+                "type": "BOOLEAN",
+                "description": "Whether to turn on object versioning."
+              }
+            },
+            "required": [
+              "resource_id",
+              "loc"
+            ]
+          }
+        },
+        "expected_args": {
+          "resource_id": "analytics-warehouse-2026",
+          "loc": "us-east-1",
+          "param_enab": true
+        }
+      }
+    }
+  },
+  {
+    "base_id": "database_execute_query",
+    "domain": "Data Systems",
+    "query": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "execute_database_sql_query",
+          "description": "Execute a safe read or write SQL query against a PostgreSQL database cluster.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "database_name": {
+                "type": "STRING",
+                "description": "Name of the target database."
+              },
+              "sql_query": {
+                "type": "STRING",
+                "description": "The raw SQL statement to execute."
+              },
+              "timeout_seconds": {
+                "type": "INTEGER",
+                "description": "Maximum execution time before aborting in seconds."
+              },
+              "read_only": {
+                "type": "BOOLEAN",
+                "description": "Enforces read-only transaction mode when true."
+              }
+            },
+            "required": [
+              "database_name",
+              "sql_query"
+            ]
+          }
+        },
+        "expected_args": {
+          "database_name": "analytics_db",
+          "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+          "timeout_seconds": 30,
+          "read_only": true
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "execute_database_sql_query",
+          "description": "Execute a safe read or write SQL query against a PostgreSQL database cluster.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "database_name": {
+                    "type": "STRING",
+                    "description": "Name of the target database."
+                  },
+                  "sql_query": {
+                    "type": "STRING",
+                    "description": "The raw SQL statement to execute."
+                  },
+                  "timeout_seconds": {
+                    "type": "INTEGER",
+                    "description": "Maximum execution time before aborting in seconds."
+                  },
+                  "read_only": {
+                    "type": "BOOLEAN",
+                    "description": "Enforces read-only transaction mode when true."
+                  }
+                },
+                "required": [
+                  "database_name",
+                  "sql_query"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "database_name": "analytics_db",
+            "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+            "timeout_seconds": 30,
+            "read_only": true
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "execute_database_sql_query",
+          "description": "Execute a safe read or write SQL query against a PostgreSQL database cluster.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "database_name": {
+                "type": "STRING",
+                "description": "Name of the target database."
+              },
+              "sql_query": {
+                "type": "STRING",
+                "description": "The raw SQL statement to execute."
+              },
+              "timeout_seconds": {
+                "type": "INTEGER",
+                "description": "Maximum execution time before aborting in seconds."
+              },
+              "read_only": {
+                "type": "BOOLEAN",
+                "description": "Enforces read-only transaction mode when true."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "database_name",
+              "sql_query"
+            ]
+          }
+        },
+        "expected_args": {
+          "database_name": "analytics_db",
+          "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+          "timeout_seconds": 30,
+          "read_only": true
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "execute_database_sql_query",
+          "description": "Execute a safe read or write SQL query against a PostgreSQL database cluster.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "db": {
+                "type": "STRING",
+                "description": "Name of the target database."
+              },
+              "raw_stmt": {
+                "type": "STRING",
+                "description": "The raw SQL statement to execute."
+              },
+              "param_time": {
+                "type": "INTEGER",
+                "description": "Maximum execution time before aborting in seconds."
+              },
+              "param_read": {
+                "type": "BOOLEAN",
+                "description": "Enforces read-only transaction mode when true."
+              }
+            },
+            "required": [
+              "db",
+              "raw_stmt"
+            ]
+          }
+        },
+        "expected_args": {
+          "db": "analytics_db",
+          "raw_stmt": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+          "param_time": 30,
+          "param_read": true
+        }
+      }
+    }
+  },
+  {
+    "base_id": "crm_update_lead",
+    "domain": "Enterprise CRM",
+    "query": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "update_crm_customer_lead",
+          "description": "Update the pipeline status and deal estimate for a sales lead.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "lead_id": {
+                "type": "STRING",
+                "description": "The alphanumeric CRM lead identifier (e.g., LEAD-8812)."
+              },
+              "pipeline_stage": {
+                "type": "STRING",
+                "enum": [
+                  "prospecting",
+                  "qualified",
+                  "proposal_sent",
+                  "closed_won",
+                  "closed_lost"
+                ],
+                "description": "The new pipeline stage."
+              },
+              "deal_value_usd": {
+                "type": "NUMBER",
+                "description": "Estimated total contract value in USD."
+              },
+              "internal_notes": {
+                "type": "STRING",
+                "description": "Internal notes documenting interaction history."
+              }
+            },
+            "required": [
+              "lead_id",
+              "pipeline_stage",
+              "deal_value_usd"
+            ]
+          }
+        },
+        "expected_args": {
+          "lead_id": "LEAD-401",
+          "pipeline_stage": "qualified",
+          "deal_value_usd": 120000.0
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "update_crm_customer_lead",
+          "description": "Update the pipeline status and deal estimate for a sales lead.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "lead_id": {
+                    "type": "STRING",
+                    "description": "The alphanumeric CRM lead identifier (e.g., LEAD-8812)."
+                  },
+                  "pipeline_stage": {
+                    "type": "STRING",
+                    "enum": [
+                      "prospecting",
+                      "qualified",
+                      "proposal_sent",
+                      "closed_won",
+                      "closed_lost"
+                    ],
+                    "description": "The new pipeline stage."
+                  },
+                  "deal_value_usd": {
+                    "type": "NUMBER",
+                    "description": "Estimated total contract value in USD."
+                  },
+                  "internal_notes": {
+                    "type": "STRING",
+                    "description": "Internal notes documenting interaction history."
+                  }
+                },
+                "required": [
+                  "lead_id",
+                  "pipeline_stage",
+                  "deal_value_usd"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "lead_id": "LEAD-401",
+            "pipeline_stage": "qualified",
+            "deal_value_usd": 120000.0
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "update_crm_customer_lead",
+          "description": "Update the pipeline status and deal estimate for a sales lead.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "lead_id": {
+                "type": "STRING",
+                "description": "The alphanumeric CRM lead identifier (e.g., LEAD-8812)."
+              },
+              "pipeline_stage": {
+                "type": "STRING",
+                "enum": [
+                  "prospecting",
+                  "qualified",
+                  "proposal_sent",
+                  "closed_won",
+                  "closed_lost"
+                ],
+                "description": "The new pipeline stage."
+              },
+              "deal_value_usd": {
+                "type": "NUMBER",
+                "description": "Estimated total contract value in USD."
+              },
+              "internal_notes": {
+                "type": "STRING",
+                "description": "Internal notes documenting interaction history."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "lead_id",
+              "pipeline_stage",
+              "deal_value_usd"
+            ]
+          }
+        },
+        "expected_args": {
+          "lead_id": "LEAD-401",
+          "pipeline_stage": "qualified",
+          "deal_value_usd": 120000.0
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "update_crm_customer_lead",
+          "description": "Update the pipeline status and deal estimate for a sales lead.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "ref_num": {
+                "type": "STRING",
+                "description": "The alphanumeric CRM lead identifier (e.g., LEAD-8812)."
+              },
+              "state_step": {
+                "type": "STRING",
+                "enum": [
+                  "prospecting",
+                  "qualified",
+                  "proposal_sent",
+                  "closed_won",
+                  "closed_lost"
+                ],
+                "description": "The new pipeline stage."
+              },
+              "val": {
+                "type": "NUMBER",
+                "description": "Estimated total contract value in USD."
+              },
+              "param_inte": {
+                "type": "STRING",
+                "description": "Internal notes documenting interaction history."
+              }
+            },
+            "required": [
+              "ref_num",
+              "state_step",
+              "val"
+            ]
+          }
+        },
+        "expected_args": {
+          "ref_num": "LEAD-401",
+          "state_step": "qualified",
+          "val": 120000.0
+        }
+      }
+    }
+  },
+  {
+    "base_id": "shipping_create_label",
+    "domain": "Logistics",
+    "query": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "generate_shipping_label",
+          "description": "Create a freight or parcel shipping label with an integrated carrier.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "carrier": {
+                "type": "STRING",
+                "enum": [
+                  "fedex",
+                  "ups",
+                  "usps",
+                  "dhl"
+                ],
+                "description": "Designated freight carrier."
+              },
+              "weight_lbs": {
+                "type": "NUMBER",
+                "description": "Total package weight in pounds."
+              },
+              "recipient_zip": {
+                "type": "STRING",
+                "description": "5-digit recipient US postal zip code."
+              },
+              "service_tier": {
+                "type": "STRING",
+                "enum": [
+                  "standard_ground",
+                  "express_2day",
+                  "priority_overnight"
+                ],
+                "description": "Delivery velocity tier."
+              }
+            },
+            "required": [
+              "carrier",
+              "weight_lbs",
+              "recipient_zip",
+              "service_tier"
+            ]
+          }
+        },
+        "expected_args": {
+          "carrier": "fedex",
+          "weight_lbs": 4.5,
+          "recipient_zip": "75001",
+          "service_tier": "priority_overnight"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "generate_shipping_label",
+          "description": "Create a freight or parcel shipping label with an integrated carrier.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "carrier": {
+                    "type": "STRING",
+                    "enum": [
+                      "fedex",
+                      "ups",
+                      "usps",
+                      "dhl"
+                    ],
+                    "description": "Designated freight carrier."
+                  },
+                  "weight_lbs": {
+                    "type": "NUMBER",
+                    "description": "Total package weight in pounds."
+                  },
+                  "recipient_zip": {
+                    "type": "STRING",
+                    "description": "5-digit recipient US postal zip code."
+                  },
+                  "service_tier": {
+                    "type": "STRING",
+                    "enum": [
+                      "standard_ground",
+                      "express_2day",
+                      "priority_overnight"
+                    ],
+                    "description": "Delivery velocity tier."
+                  }
+                },
+                "required": [
+                  "carrier",
+                  "weight_lbs",
+                  "recipient_zip",
+                  "service_tier"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "carrier": "fedex",
+            "weight_lbs": 4.5,
+            "recipient_zip": "75001",
+            "service_tier": "priority_overnight"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "generate_shipping_label",
+          "description": "Create a freight or parcel shipping label with an integrated carrier.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "carrier": {
+                "type": "STRING",
+                "enum": [
+                  "fedex",
+                  "ups",
+                  "usps",
+                  "dhl"
+                ],
+                "description": "Designated freight carrier."
+              },
+              "weight_lbs": {
+                "type": "NUMBER",
+                "description": "Total package weight in pounds."
+              },
+              "recipient_zip": {
+                "type": "STRING",
+                "description": "5-digit recipient US postal zip code."
+              },
+              "service_tier": {
+                "type": "STRING",
+                "enum": [
+                  "standard_ground",
+                  "express_2day",
+                  "priority_overnight"
+                ],
+                "description": "Delivery velocity tier."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "carrier",
+              "weight_lbs",
+              "recipient_zip",
+              "service_tier"
+            ]
+          }
+        },
+        "expected_args": {
+          "carrier": "fedex",
+          "weight_lbs": 4.5,
+          "recipient_zip": "75001",
+          "service_tier": "priority_overnight"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "generate_shipping_label",
+          "description": "Create a freight or parcel shipping label with an integrated carrier.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "provider_code": {
+                "type": "STRING",
+                "enum": [
+                  "fedex",
+                  "ups",
+                  "usps",
+                  "dhl"
+                ],
+                "description": "Designated freight carrier."
+              },
+              "mass": {
+                "type": "NUMBER",
+                "description": "Total package weight in pounds."
+              },
+              "postal": {
+                "type": "STRING",
+                "description": "5-digit recipient US postal zip code."
+              },
+              "speed": {
+                "type": "STRING",
+                "enum": [
+                  "standard_ground",
+                  "express_2day",
+                  "priority_overnight"
+                ],
+                "description": "Delivery velocity tier."
+              }
+            },
+            "required": [
+              "provider_code",
+              "mass",
+              "postal",
+              "speed"
+            ]
+          }
+        },
+        "expected_args": {
+          "provider_code": "fedex",
+          "mass": 4.5,
+          "postal": "75001",
+          "speed": "priority_overnight"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "jira_transition_issue",
+    "domain": "Project Management",
+    "query": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "transition_jira_ticket",
+          "description": "Advance a Jira software ticket through the active sprint workflow.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "ticket_key": {
+                "type": "STRING",
+                "description": "The project key and issue number (e.g., ENG-4921)."
+              },
+              "target_status": {
+                "type": "STRING",
+                "enum": [
+                  "in_progress",
+                  "code_review",
+                  "in_qa",
+                  "done"
+                ],
+                "description": "Target workflow status."
+              },
+              "resolution_notes": {
+                "type": "STRING",
+                "description": "Comment documenting the transition rationale."
+              }
+            },
+            "required": [
+              "ticket_key",
+              "target_status"
+            ]
+          }
+        },
+        "expected_args": {
+          "ticket_key": "ENG-1049",
+          "target_status": "code_review",
+          "resolution_notes": "PR #42 is ready"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "transition_jira_ticket",
+          "description": "Advance a Jira software ticket through the active sprint workflow.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "ticket_key": {
+                    "type": "STRING",
+                    "description": "The project key and issue number (e.g., ENG-4921)."
+                  },
+                  "target_status": {
+                    "type": "STRING",
+                    "enum": [
+                      "in_progress",
+                      "code_review",
+                      "in_qa",
+                      "done"
+                    ],
+                    "description": "Target workflow status."
+                  },
+                  "resolution_notes": {
+                    "type": "STRING",
+                    "description": "Comment documenting the transition rationale."
+                  }
+                },
+                "required": [
+                  "ticket_key",
+                  "target_status"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "ticket_key": "ENG-1049",
+            "target_status": "code_review",
+            "resolution_notes": "PR #42 is ready"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "transition_jira_ticket",
+          "description": "Advance a Jira software ticket through the active sprint workflow.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "ticket_key": {
+                "type": "STRING",
+                "description": "The project key and issue number (e.g., ENG-4921)."
+              },
+              "target_status": {
+                "type": "STRING",
+                "enum": [
+                  "in_progress",
+                  "code_review",
+                  "in_qa",
+                  "done"
+                ],
+                "description": "Target workflow status."
+              },
+              "resolution_notes": {
+                "type": "STRING",
+                "description": "Comment documenting the transition rationale."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "ticket_key",
+              "target_status"
+            ]
+          }
+        },
+        "expected_args": {
+          "ticket_key": "ENG-1049",
+          "target_status": "code_review",
+          "resolution_notes": "PR #42 is ready"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "transition_jira_ticket",
+          "description": "Advance a Jira software ticket through the active sprint workflow.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "id_code": {
+                "type": "STRING",
+                "description": "The project key and issue number (e.g., ENG-4921)."
+              },
+              "next_state": {
+                "type": "STRING",
+                "enum": [
+                  "in_progress",
+                  "code_review",
+                  "in_qa",
+                  "done"
+                ],
+                "description": "Target workflow status."
+              },
+              "param_reso": {
+                "type": "STRING",
+                "description": "Comment documenting the transition rationale."
+              }
+            },
+            "required": [
+              "id_code",
+              "next_state"
+            ]
+          }
+        },
+        "expected_args": {
+          "id_code": "ENG-1049",
+          "next_state": "code_review",
+          "param_reso": "PR #42 is ready"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "datadog_create_alert",
+    "domain": "Observability",
+    "query": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_datadog_monitor_alert",
+          "description": "Configure an automated monitoring rule and threshold alert in Datadog.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "metric_name": {
+                "type": "STRING",
+                "description": "The exact telemetry metric time series to monitor."
+              },
+              "critical_threshold": {
+                "type": "NUMBER",
+                "description": "The numeric threshold boundary triggering a critical page."
+              },
+              "evaluation_window_minutes": {
+                "type": "INTEGER",
+                "description": "Rolling evaluation window in minutes."
+              },
+              "notify_channel": {
+                "type": "STRING",
+                "description": "Target Slack or PagerDuty channel hook."
+              }
+            },
+            "required": [
+              "metric_name",
+              "critical_threshold",
+              "evaluation_window_minutes"
+            ]
+          }
+        },
+        "expected_args": {
+          "metric_name": "system.cpu.utilization",
+          "critical_threshold": 85.0,
+          "evaluation_window_minutes": 15
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_datadog_monitor_alert",
+          "description": "Configure an automated monitoring rule and threshold alert in Datadog.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "metric_name": {
+                    "type": "STRING",
+                    "description": "The exact telemetry metric time series to monitor."
+                  },
+                  "critical_threshold": {
+                    "type": "NUMBER",
+                    "description": "The numeric threshold boundary triggering a critical page."
+                  },
+                  "evaluation_window_minutes": {
+                    "type": "INTEGER",
+                    "description": "Rolling evaluation window in minutes."
+                  },
+                  "notify_channel": {
+                    "type": "STRING",
+                    "description": "Target Slack or PagerDuty channel hook."
+                  }
+                },
+                "required": [
+                  "metric_name",
+                  "critical_threshold",
+                  "evaluation_window_minutes"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "metric_name": "system.cpu.utilization",
+            "critical_threshold": 85.0,
+            "evaluation_window_minutes": 15
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_datadog_monitor_alert",
+          "description": "Configure an automated monitoring rule and threshold alert in Datadog.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "metric_name": {
+                "type": "STRING",
+                "description": "The exact telemetry metric time series to monitor."
+              },
+              "critical_threshold": {
+                "type": "NUMBER",
+                "description": "The numeric threshold boundary triggering a critical page."
+              },
+              "evaluation_window_minutes": {
+                "type": "INTEGER",
+                "description": "Rolling evaluation window in minutes."
+              },
+              "notify_channel": {
+                "type": "STRING",
+                "description": "Target Slack or PagerDuty channel hook."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "metric_name",
+              "critical_threshold",
+              "evaluation_window_minutes"
+            ]
+          }
+        },
+        "expected_args": {
+          "metric_name": "system.cpu.utilization",
+          "critical_threshold": 85.0,
+          "evaluation_window_minutes": 15
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_datadog_monitor_alert",
+          "description": "Configure an automated monitoring rule and threshold alert in Datadog.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "key_str": {
+                "type": "STRING",
+                "description": "The exact telemetry metric time series to monitor."
+              },
+              "cutoff": {
+                "type": "NUMBER",
+                "description": "The numeric threshold boundary triggering a critical page."
+              },
+              "window_dur": {
+                "type": "INTEGER",
+                "description": "Rolling evaluation window in minutes."
+              },
+              "param_noti": {
+                "type": "STRING",
+                "description": "Target Slack or PagerDuty channel hook."
+              }
+            },
+            "required": [
+              "key_str",
+              "cutoff",
+              "window_dur"
+            ]
+          }
+        },
+        "expected_args": {
+          "key_str": "system.cpu.utilization",
+          "cutoff": 85.0,
+          "window_dur": 15
+        }
+      }
+    }
+  },
+  {
+    "base_id": "twilio_send_sms",
+    "domain": "Communications",
+    "query": "Send an SMS to +14693636353 saying 'Your verification code is 492011'.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "send_twilio_sms_message",
+          "description": "Dispatch an outbound SMS message via the Twilio Messaging API.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "recipient_number": {
+                "type": "STRING",
+                "description": "E.164 formatted target phone number (e.g. +14155552671)."
+              },
+              "message_body": {
+                "type": "STRING",
+                "description": "Plain text message content up to 1600 characters."
+              },
+              "sender_id": {
+                "type": "STRING",
+                "description": "Twilio assigned shortcode or registered phone number."
+              }
+            },
+            "required": [
+              "recipient_number",
+              "message_body"
+            ]
+          }
+        },
+        "expected_args": {
+          "recipient_number": "+14693636353",
+          "message_body": "Your verification code is 492011"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "send_twilio_sms_message",
+          "description": "Dispatch an outbound SMS message via the Twilio Messaging API.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "recipient_number": {
+                    "type": "STRING",
+                    "description": "E.164 formatted target phone number (e.g. +14155552671)."
+                  },
+                  "message_body": {
+                    "type": "STRING",
+                    "description": "Plain text message content up to 1600 characters."
+                  },
+                  "sender_id": {
+                    "type": "STRING",
+                    "description": "Twilio assigned shortcode or registered phone number."
+                  }
+                },
+                "required": [
+                  "recipient_number",
+                  "message_body"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "recipient_number": "+14693636353",
+            "message_body": "Your verification code is 492011"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "send_twilio_sms_message",
+          "description": "Dispatch an outbound SMS message via the Twilio Messaging API.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "recipient_number": {
+                "type": "STRING",
+                "description": "E.164 formatted target phone number (e.g. +14155552671)."
+              },
+              "message_body": {
+                "type": "STRING",
+                "description": "Plain text message content up to 1600 characters."
+              },
+              "sender_id": {
+                "type": "STRING",
+                "description": "Twilio assigned shortcode or registered phone number."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "recipient_number",
+              "message_body"
+            ]
+          }
+        },
+        "expected_args": {
+          "recipient_number": "+14693636353",
+          "message_body": "Your verification code is 492011"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "send_twilio_sms_message",
+          "description": "Dispatch an outbound SMS message via the Twilio Messaging API.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "target_addr": {
+                "type": "STRING",
+                "description": "E.164 formatted target phone number (e.g. +14155552671)."
+              },
+              "msg_content": {
+                "type": "STRING",
+                "description": "Plain text message content up to 1600 characters."
+              },
+              "param_send": {
+                "type": "STRING",
+                "description": "Twilio assigned shortcode or registered phone number."
+              }
+            },
+            "required": [
+              "target_addr",
+              "msg_content"
+            ]
+          }
+        },
+        "expected_args": {
+          "target_addr": "+14693636353",
+          "msg_content": "Your verification code is 492011"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "zendesk_create_ticket",
+    "domain": "Customer Support",
+    "query": "Create an urgent Zendesk ticket for alice@example.com with subject 'Cannot login to account' describing 500 error on sign-in.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_zendesk_support_ticket",
+          "description": "Submit a customer support helpdesk ticket to Zendesk.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "subject": {
+                "type": "STRING",
+                "description": "Summary line describing the issue."
+              },
+              "requester_email": {
+                "type": "STRING",
+                "description": "Customer email address."
+              },
+              "priority": {
+                "type": "STRING",
+                "enum": [
+                  "low",
+                  "normal",
+                  "high",
+                  "urgent"
+                ],
+                "description": "Ticket urgency rating."
+              },
+              "description": {
+                "type": "STRING",
+                "description": "Detailed problem description."
+              }
+            },
+            "required": [
+              "subject",
+              "requester_email",
+              "priority",
+              "description"
+            ]
+          }
+        },
+        "expected_args": {
+          "subject": "Cannot login to account",
+          "requester_email": "alice@example.com",
+          "priority": "urgent",
+          "description": "500 error on sign-in"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_zendesk_support_ticket",
+          "description": "Submit a customer support helpdesk ticket to Zendesk.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "subject": {
+                    "type": "STRING",
+                    "description": "Summary line describing the issue."
+                  },
+                  "requester_email": {
+                    "type": "STRING",
+                    "description": "Customer email address."
+                  },
+                  "priority": {
+                    "type": "STRING",
+                    "enum": [
+                      "low",
+                      "normal",
+                      "high",
+                      "urgent"
+                    ],
+                    "description": "Ticket urgency rating."
+                  },
+                  "description": {
+                    "type": "STRING",
+                    "description": "Detailed problem description."
+                  }
+                },
+                "required": [
+                  "subject",
+                  "requester_email",
+                  "priority",
+                  "description"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "subject": "Cannot login to account",
+            "requester_email": "alice@example.com",
+            "priority": "urgent",
+            "description": "500 error on sign-in"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_zendesk_support_ticket",
+          "description": "Submit a customer support helpdesk ticket to Zendesk.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "subject": {
+                "type": "STRING",
+                "description": "Summary line describing the issue."
+              },
+              "requester_email": {
+                "type": "STRING",
+                "description": "Customer email address."
+              },
+              "priority": {
+                "type": "STRING",
+                "enum": [
+                  "low",
+                  "normal",
+                  "high",
+                  "urgent"
+                ],
+                "description": "Ticket urgency rating."
+              },
+              "description": {
+                "type": "STRING",
+                "description": "Detailed problem description."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "subject",
+              "requester_email",
+              "priority",
+              "description"
+            ]
+          }
+        },
+        "expected_args": {
+          "subject": "Cannot login to account",
+          "requester_email": "alice@example.com",
+          "priority": "urgent",
+          "description": "500 error on sign-in"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_zendesk_support_ticket",
+          "description": "Submit a customer support helpdesk ticket to Zendesk.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "headline": {
+                "type": "STRING",
+                "description": "Summary line describing the issue."
+              },
+              "user_contact": {
+                "type": "STRING",
+                "description": "Customer email address."
+              },
+              "urgency_flag": {
+                "type": "STRING",
+                "enum": [
+                  "low",
+                  "normal",
+                  "high",
+                  "urgent"
+                ],
+                "description": "Ticket urgency rating."
+              },
+              "details_text": {
+                "type": "STRING",
+                "description": "Detailed problem description."
+              }
+            },
+            "required": [
+              "headline",
+              "user_contact",
+              "urgency_flag",
+              "details_text"
+            ]
+          }
+        },
+        "expected_args": {
+          "headline": "Cannot login to account",
+          "user_contact": "alice@example.com",
+          "urgency_flag": "urgent",
+          "details_text": "500 error on sign-in"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "mailchimp_add_subscriber",
+    "domain": "Marketing",
+    "query": "Subscribe bob@acme.org to audience list LIST-994 as subscribed with first name Bob.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "add_mailchimp_newsletter_subscriber",
+          "description": "Subscribe an email contact to an audience marketing list in Mailchimp.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "list_id": {
+                "type": "STRING",
+                "description": "Unique alphanumeric audience list ID."
+              },
+              "email_address": {
+                "type": "STRING",
+                "description": "Subscriber email address."
+              },
+              "subscription_status": {
+                "type": "STRING",
+                "enum": [
+                  "subscribed",
+                  "unsubscribed",
+                  "pending"
+                ],
+                "description": "Subscriber opt-in status."
+              },
+              "first_name": {
+                "type": "STRING",
+                "description": "Optional contact first name."
+              }
+            },
+            "required": [
+              "list_id",
+              "email_address",
+              "subscription_status"
+            ]
+          }
+        },
+        "expected_args": {
+          "list_id": "LIST-994",
+          "email_address": "bob@acme.org",
+          "subscription_status": "subscribed",
+          "first_name": "Bob"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "add_mailchimp_newsletter_subscriber",
+          "description": "Subscribe an email contact to an audience marketing list in Mailchimp.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "list_id": {
+                    "type": "STRING",
+                    "description": "Unique alphanumeric audience list ID."
+                  },
+                  "email_address": {
+                    "type": "STRING",
+                    "description": "Subscriber email address."
+                  },
+                  "subscription_status": {
+                    "type": "STRING",
+                    "enum": [
+                      "subscribed",
+                      "unsubscribed",
+                      "pending"
+                    ],
+                    "description": "Subscriber opt-in status."
+                  },
+                  "first_name": {
+                    "type": "STRING",
+                    "description": "Optional contact first name."
+                  }
+                },
+                "required": [
+                  "list_id",
+                  "email_address",
+                  "subscription_status"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "list_id": "LIST-994",
+            "email_address": "bob@acme.org",
+            "subscription_status": "subscribed",
+            "first_name": "Bob"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "add_mailchimp_newsletter_subscriber",
+          "description": "Subscribe an email contact to an audience marketing list in Mailchimp.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "list_id": {
+                "type": "STRING",
+                "description": "Unique alphanumeric audience list ID."
+              },
+              "email_address": {
+                "type": "STRING",
+                "description": "Subscriber email address."
+              },
+              "subscription_status": {
+                "type": "STRING",
+                "enum": [
+                  "subscribed",
+                  "unsubscribed",
+                  "pending"
+                ],
+                "description": "Subscriber opt-in status."
+              },
+              "first_name": {
+                "type": "STRING",
+                "description": "Optional contact first name."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "list_id",
+              "email_address",
+              "subscription_status"
+            ]
+          }
+        },
+        "expected_args": {
+          "list_id": "LIST-994",
+          "email_address": "bob@acme.org",
+          "subscription_status": "subscribed",
+          "first_name": "Bob"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "add_mailchimp_newsletter_subscriber",
+          "description": "Subscribe an email contact to an audience marketing list in Mailchimp.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "group_id": {
+                "type": "STRING",
+                "description": "Unique alphanumeric audience list ID."
+              },
+              "contact_addr": {
+                "type": "STRING",
+                "description": "Subscriber email address."
+              },
+              "member_state": {
+                "type": "STRING",
+                "enum": [
+                  "subscribed",
+                  "unsubscribed",
+                  "pending"
+                ],
+                "description": "Subscriber opt-in status."
+              },
+              "param_firs": {
+                "type": "STRING",
+                "description": "Optional contact first name."
+              }
+            },
+            "required": [
+              "group_id",
+              "contact_addr",
+              "member_state"
+            ]
+          }
+        },
+        "expected_args": {
+          "group_id": "LIST-994",
+          "contact_addr": "bob@acme.org",
+          "member_state": "subscribed",
+          "param_firs": "Bob"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "cloudflare_purge_cache",
+    "domain": "Edge / CDN",
+    "query": "Purge the entire CDN cache for Cloudflare zone zone_abc123.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "purge_cloudflare_cdn_cache",
+          "description": "Invalidate cached assets across Cloudflare edge data centers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "zone_id": {
+                "type": "STRING",
+                "description": "Cloudflare Zone ID identifier."
+              },
+              "purge_everything": {
+                "type": "BOOLEAN",
+                "description": "When true, clears the entire edge cache for the zone."
+              },
+              "target_urls": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "List of specific URL assets to purge."
+              }
+            },
+            "required": [
+              "zone_id",
+              "purge_everything"
+            ]
+          }
+        },
+        "expected_args": {
+          "zone_id": "zone_abc123",
+          "purge_everything": true
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "purge_cloudflare_cdn_cache",
+          "description": "Invalidate cached assets across Cloudflare edge data centers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "zone_id": {
+                    "type": "STRING",
+                    "description": "Cloudflare Zone ID identifier."
+                  },
+                  "purge_everything": {
+                    "type": "BOOLEAN",
+                    "description": "When true, clears the entire edge cache for the zone."
+                  },
+                  "target_urls": {
+                    "type": "ARRAY",
+                    "items": {
+                      "type": "STRING"
+                    },
+                    "description": "List of specific URL assets to purge."
+                  }
+                },
+                "required": [
+                  "zone_id",
+                  "purge_everything"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "zone_id": "zone_abc123",
+            "purge_everything": true
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "purge_cloudflare_cdn_cache",
+          "description": "Invalidate cached assets across Cloudflare edge data centers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "zone_id": {
+                "type": "STRING",
+                "description": "Cloudflare Zone ID identifier."
+              },
+              "purge_everything": {
+                "type": "BOOLEAN",
+                "description": "When true, clears the entire edge cache for the zone."
+              },
+              "target_urls": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "List of specific URL assets to purge."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "zone_id",
+              "purge_everything"
+            ]
+          }
+        },
+        "expected_args": {
+          "zone_id": "zone_abc123",
+          "purge_everything": true
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "purge_cloudflare_cdn_cache",
+          "description": "Invalidate cached assets across Cloudflare edge data centers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "domain_id": {
+                "type": "STRING",
+                "description": "Cloudflare Zone ID identifier."
+              },
+              "clear_all_flag": {
+                "type": "BOOLEAN",
+                "description": "When true, clears the entire edge cache for the zone."
+              },
+              "param_targ": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "List of specific URL assets to purge."
+              }
+            },
+            "required": [
+              "domain_id",
+              "clear_all_flag"
+            ]
+          }
+        },
+        "expected_args": {
+          "domain_id": "zone_abc123",
+          "clear_all_flag": true
+        }
+      }
+    }
+  },
+  {
+    "base_id": "pagerduty_trigger_incident",
+    "domain": "Site Reliability",
+    "query": "Trigger a high urgency PagerDuty incident on service SVC-881 titled 'Database connection pool exhausted'.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "trigger_pagerduty_incident",
+          "description": "Fire a high-priority incident alert to on-call engineering engineers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "service_id": {
+                "type": "STRING",
+                "description": "PagerDuty integration service ID."
+              },
+              "incident_title": {
+                "type": "STRING",
+                "description": "Concise headline describing the service interruption."
+              },
+              "urgency": {
+                "type": "STRING",
+                "enum": [
+                  "high",
+                  "low"
+                ],
+                "description": "Alert escalation urgency."
+              },
+              "details": {
+                "type": "STRING",
+                "description": "Stack trace, metrics snapshot, or contextual error message."
+              }
+            },
+            "required": [
+              "service_id",
+              "incident_title",
+              "urgency"
+            ]
+          }
+        },
+        "expected_args": {
+          "service_id": "SVC-881",
+          "incident_title": "Database connection pool exhausted",
+          "urgency": "high"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "trigger_pagerduty_incident",
+          "description": "Fire a high-priority incident alert to on-call engineering engineers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "service_id": {
+                    "type": "STRING",
+                    "description": "PagerDuty integration service ID."
+                  },
+                  "incident_title": {
+                    "type": "STRING",
+                    "description": "Concise headline describing the service interruption."
+                  },
+                  "urgency": {
+                    "type": "STRING",
+                    "enum": [
+                      "high",
+                      "low"
+                    ],
+                    "description": "Alert escalation urgency."
+                  },
+                  "details": {
+                    "type": "STRING",
+                    "description": "Stack trace, metrics snapshot, or contextual error message."
+                  }
+                },
+                "required": [
+                  "service_id",
+                  "incident_title",
+                  "urgency"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "service_id": "SVC-881",
+            "incident_title": "Database connection pool exhausted",
+            "urgency": "high"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "trigger_pagerduty_incident",
+          "description": "Fire a high-priority incident alert to on-call engineering engineers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "service_id": {
+                "type": "STRING",
+                "description": "PagerDuty integration service ID."
+              },
+              "incident_title": {
+                "type": "STRING",
+                "description": "Concise headline describing the service interruption."
+              },
+              "urgency": {
+                "type": "STRING",
+                "enum": [
+                  "high",
+                  "low"
+                ],
+                "description": "Alert escalation urgency."
+              },
+              "details": {
+                "type": "STRING",
+                "description": "Stack trace, metrics snapshot, or contextual error message."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "service_id",
+              "incident_title",
+              "urgency"
+            ]
+          }
+        },
+        "expected_args": {
+          "service_id": "SVC-881",
+          "incident_title": "Database connection pool exhausted",
+          "urgency": "high"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "trigger_pagerduty_incident",
+          "description": "Fire a high-priority incident alert to on-call engineering engineers.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "component_id": {
+                "type": "STRING",
+                "description": "PagerDuty integration service ID."
+              },
+              "alert_name": {
+                "type": "STRING",
+                "description": "Concise headline describing the service interruption."
+              },
+              "sev_level": {
+                "type": "STRING",
+                "enum": [
+                  "high",
+                  "low"
+                ],
+                "description": "Alert escalation urgency."
+              },
+              "param_deta": {
+                "type": "STRING",
+                "description": "Stack trace, metrics snapshot, or contextual error message."
+              }
+            },
+            "required": [
+              "component_id",
+              "alert_name",
+              "sev_level"
+            ]
+          }
+        },
+        "expected_args": {
+          "component_id": "SVC-881",
+          "alert_name": "Database connection pool exhausted",
+          "sev_level": "high"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "auth0_create_user",
+    "domain": "Identity & Security",
+    "query": "Create an Auth0 user with email charlie@corp.io in 'Username-Password-Authentication' connection with email_verified set to false.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_auth0_directory_user",
+          "description": "Provision a new user identity record in an Auth0 database connection.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "connection": {
+                "type": "STRING",
+                "description": "Target database realm connection (e.g. Username-Password-Authentication)."
+              },
+              "email": {
+                "type": "STRING",
+                "description": "User email address."
+              },
+              "email_verified": {
+                "type": "BOOLEAN",
+                "description": "Sets whether the email has already been verified."
+              },
+              "given_name": {
+                "type": "STRING",
+                "description": "User first name."
+              }
+            },
+            "required": [
+              "connection",
+              "email",
+              "email_verified"
+            ]
+          }
+        },
+        "expected_args": {
+          "connection": "Username-Password-Authentication",
+          "email": "charlie@corp.io",
+          "email_verified": false
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_auth0_directory_user",
+          "description": "Provision a new user identity record in an Auth0 database connection.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "connection": {
+                    "type": "STRING",
+                    "description": "Target database realm connection (e.g. Username-Password-Authentication)."
+                  },
+                  "email": {
+                    "type": "STRING",
+                    "description": "User email address."
+                  },
+                  "email_verified": {
+                    "type": "BOOLEAN",
+                    "description": "Sets whether the email has already been verified."
+                  },
+                  "given_name": {
+                    "type": "STRING",
+                    "description": "User first name."
+                  }
+                },
+                "required": [
+                  "connection",
+                  "email",
+                  "email_verified"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "connection": "Username-Password-Authentication",
+            "email": "charlie@corp.io",
+            "email_verified": false
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_auth0_directory_user",
+          "description": "Provision a new user identity record in an Auth0 database connection.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "connection": {
+                "type": "STRING",
+                "description": "Target database realm connection (e.g. Username-Password-Authentication)."
+              },
+              "email": {
+                "type": "STRING",
+                "description": "User email address."
+              },
+              "email_verified": {
+                "type": "BOOLEAN",
+                "description": "Sets whether the email has already been verified."
+              },
+              "given_name": {
+                "type": "STRING",
+                "description": "User first name."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "connection",
+              "email",
+              "email_verified"
+            ]
+          }
+        },
+        "expected_args": {
+          "connection": "Username-Password-Authentication",
+          "email": "charlie@corp.io",
+          "email_verified": false
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_auth0_directory_user",
+          "description": "Provision a new user identity record in an Auth0 database connection.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "auth_realm": {
+                "type": "STRING",
+                "description": "Target database realm connection (e.g. Username-Password-Authentication)."
+              },
+              "user_id_email": {
+                "type": "STRING",
+                "description": "User email address."
+              },
+              "is_confirmed": {
+                "type": "BOOLEAN",
+                "description": "Sets whether the email has already been verified."
+              },
+              "param_give": {
+                "type": "STRING",
+                "description": "User first name."
+              }
+            },
+            "required": [
+              "auth_realm",
+              "user_id_email",
+              "is_confirmed"
+            ]
+          }
+        },
+        "expected_args": {
+          "auth_realm": "Username-Password-Authentication",
+          "user_id_email": "charlie@corp.io",
+          "is_confirmed": false
+        }
+      }
+    }
+  },
+  {
+    "base_id": "elasticsearch_index_doc",
+    "domain": "Search Engines",
+    "query": "Index a document with id 'doc_4492' into the 'products_v2' Elasticsearch index with refresh enabled.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "index_elasticsearch_document",
+          "description": "Insert or replace a JSON document into an Elasticsearch cluster index.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "index_name": {
+                "type": "STRING",
+                "description": "The destination index name."
+              },
+              "doc_id": {
+                "type": "STRING",
+                "description": "Unique document key identifier."
+              },
+              "routing_key": {
+                "type": "STRING",
+                "description": "Shard routing partition key."
+              },
+              "refresh": {
+                "type": "BOOLEAN",
+                "description": "Whether to force immediate shard refresh."
+              }
+            },
+            "required": [
+              "index_name",
+              "doc_id"
+            ]
+          }
+        },
+        "expected_args": {
+          "index_name": "products_v2",
+          "doc_id": "doc_4492",
+          "refresh": true
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "index_elasticsearch_document",
+          "description": "Insert or replace a JSON document into an Elasticsearch cluster index.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "index_name": {
+                    "type": "STRING",
+                    "description": "The destination index name."
+                  },
+                  "doc_id": {
+                    "type": "STRING",
+                    "description": "Unique document key identifier."
+                  },
+                  "routing_key": {
+                    "type": "STRING",
+                    "description": "Shard routing partition key."
+                  },
+                  "refresh": {
+                    "type": "BOOLEAN",
+                    "description": "Whether to force immediate shard refresh."
+                  }
+                },
+                "required": [
+                  "index_name",
+                  "doc_id"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "index_name": "products_v2",
+            "doc_id": "doc_4492",
+            "refresh": true
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "index_elasticsearch_document",
+          "description": "Insert or replace a JSON document into an Elasticsearch cluster index.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "index_name": {
+                "type": "STRING",
+                "description": "The destination index name."
+              },
+              "doc_id": {
+                "type": "STRING",
+                "description": "Unique document key identifier."
+              },
+              "routing_key": {
+                "type": "STRING",
+                "description": "Shard routing partition key."
+              },
+              "refresh": {
+                "type": "BOOLEAN",
+                "description": "Whether to force immediate shard refresh."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "index_name",
+              "doc_id"
+            ]
+          }
+        },
+        "expected_args": {
+          "index_name": "products_v2",
+          "doc_id": "doc_4492",
+          "refresh": true
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "index_elasticsearch_document",
+          "description": "Insert or replace a JSON document into an Elasticsearch cluster index.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "collection_name": {
+                "type": "STRING",
+                "description": "The destination index name."
+              },
+              "entry_id": {
+                "type": "STRING",
+                "description": "Unique document key identifier."
+              },
+              "param_rout": {
+                "type": "STRING",
+                "description": "Shard routing partition key."
+              },
+              "param_refr": {
+                "type": "BOOLEAN",
+                "description": "Whether to force immediate shard refresh."
+              }
+            },
+            "required": [
+              "collection_name",
+              "entry_id"
+            ]
+          }
+        },
+        "expected_args": {
+          "collection_name": "products_v2",
+          "entry_id": "doc_4492",
+          "param_refr": true
+        }
+      }
+    }
+  },
+  {
+    "base_id": "notion_create_page",
+    "domain": "Knowledge Base",
+    "query": "Create a Notion page titled 'Q4 System Architecture Review' in database db_38192a with status in_progress.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_notion_database_page",
+          "description": "Create a new row or sub-page in a Notion relational workspace database.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "database_id": {
+                "type": "STRING",
+                "description": "UUID of the parent Notion database."
+              },
+              "title": {
+                "type": "STRING",
+                "description": "Page title text."
+              },
+              "status": {
+                "type": "STRING",
+                "enum": [
+                  "backlog",
+                  "in_progress",
+                  "done"
+                ],
+                "description": "Task workflow status."
+              },
+              "archived": {
+                "type": "BOOLEAN",
+                "description": "Whether the new page should be archived."
+              }
+            },
+            "required": [
+              "database_id",
+              "title",
+              "status"
+            ]
+          }
+        },
+        "expected_args": {
+          "database_id": "db_38192a",
+          "title": "Q4 System Architecture Review",
+          "status": "in_progress"
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_notion_database_page",
+          "description": "Create a new row or sub-page in a Notion relational workspace database.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "database_id": {
+                    "type": "STRING",
+                    "description": "UUID of the parent Notion database."
+                  },
+                  "title": {
+                    "type": "STRING",
+                    "description": "Page title text."
+                  },
+                  "status": {
+                    "type": "STRING",
+                    "enum": [
+                      "backlog",
+                      "in_progress",
+                      "done"
+                    ],
+                    "description": "Task workflow status."
+                  },
+                  "archived": {
+                    "type": "BOOLEAN",
+                    "description": "Whether the new page should be archived."
+                  }
+                },
+                "required": [
+                  "database_id",
+                  "title",
+                  "status"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "database_id": "db_38192a",
+            "title": "Q4 System Architecture Review",
+            "status": "in_progress"
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_notion_database_page",
+          "description": "Create a new row or sub-page in a Notion relational workspace database.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "database_id": {
+                "type": "STRING",
+                "description": "UUID of the parent Notion database."
+              },
+              "title": {
+                "type": "STRING",
+                "description": "Page title text."
+              },
+              "status": {
+                "type": "STRING",
+                "enum": [
+                  "backlog",
+                  "in_progress",
+                  "done"
+                ],
+                "description": "Task workflow status."
+              },
+              "archived": {
+                "type": "BOOLEAN",
+                "description": "Whether the new page should be archived."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "database_id",
+              "title",
+              "status"
+            ]
+          }
+        },
+        "expected_args": {
+          "database_id": "db_38192a",
+          "title": "Q4 System Architecture Review",
+          "status": "in_progress"
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_notion_database_page",
+          "description": "Create a new row or sub-page in a Notion relational workspace database.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "parent_uuid": {
+                "type": "STRING",
+                "description": "UUID of the parent Notion database."
+              },
+              "item_heading": {
+                "type": "STRING",
+                "description": "Page title text."
+              },
+              "workflow_phase": {
+                "type": "STRING",
+                "enum": [
+                  "backlog",
+                  "in_progress",
+                  "done"
+                ],
+                "description": "Task workflow status."
+              },
+              "param_arch": {
+                "type": "BOOLEAN",
+                "description": "Whether the new page should be archived."
+              }
+            },
+            "required": [
+              "parent_uuid",
+              "item_heading",
+              "workflow_phase"
+            ]
+          }
+        },
+        "expected_args": {
+          "parent_uuid": "db_38192a",
+          "item_heading": "Q4 System Architecture Review",
+          "workflow_phase": "in_progress"
+        }
+      }
+    }
+  },
+  {
+    "base_id": "docker_run_container",
+    "domain": "Container Runtimes",
+    "query": "Run a container named 'cache-redis' from image 'redis:7.2' with restart policy set to always in detached mode.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "run_docker_container",
+          "description": "Instantiate and run a software container from an OCI Docker image.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "image_name": {
+                "type": "STRING",
+                "description": "Docker registry image name with tag (e.g., redis:7-alpine)."
+              },
+              "container_name": {
+                "type": "STRING",
+                "description": "Assigned unique container runtime name."
+              },
+              "restart_policy": {
+                "type": "STRING",
+                "enum": [
+                  "no",
+                  "always",
+                  "on-failure",
+                  "unless-stopped"
+                ],
+                "description": "Container restart policy."
+              },
+              "detached": {
+                "type": "BOOLEAN",
+                "description": "Run container in background daemon mode."
+              }
+            },
+            "required": [
+              "image_name",
+              "container_name",
+              "restart_policy"
+            ]
+          }
+        },
+        "expected_args": {
+          "image_name": "redis:7.2",
+          "container_name": "cache-redis",
+          "restart_policy": "always",
+          "detached": true
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "run_docker_container",
+          "description": "Instantiate and run a software container from an OCI Docker image.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "image_name": {
+                    "type": "STRING",
+                    "description": "Docker registry image name with tag (e.g., redis:7-alpine)."
+                  },
+                  "container_name": {
+                    "type": "STRING",
+                    "description": "Assigned unique container runtime name."
+                  },
+                  "restart_policy": {
+                    "type": "STRING",
+                    "enum": [
+                      "no",
+                      "always",
+                      "on-failure",
+                      "unless-stopped"
+                    ],
+                    "description": "Container restart policy."
+                  },
+                  "detached": {
+                    "type": "BOOLEAN",
+                    "description": "Run container in background daemon mode."
+                  }
+                },
+                "required": [
+                  "image_name",
+                  "container_name",
+                  "restart_policy"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "image_name": "redis:7.2",
+            "container_name": "cache-redis",
+            "restart_policy": "always",
+            "detached": true
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "run_docker_container",
+          "description": "Instantiate and run a software container from an OCI Docker image.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "image_name": {
+                "type": "STRING",
+                "description": "Docker registry image name with tag (e.g., redis:7-alpine)."
+              },
+              "container_name": {
+                "type": "STRING",
+                "description": "Assigned unique container runtime name."
+              },
+              "restart_policy": {
+                "type": "STRING",
+                "enum": [
+                  "no",
+                  "always",
+                  "on-failure",
+                  "unless-stopped"
+                ],
+                "description": "Container restart policy."
+              },
+              "detached": {
+                "type": "BOOLEAN",
+                "description": "Run container in background daemon mode."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "image_name",
+              "container_name",
+              "restart_policy"
+            ]
+          }
+        },
+        "expected_args": {
+          "image_name": "redis:7.2",
+          "container_name": "cache-redis",
+          "restart_policy": "always",
+          "detached": true
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "run_docker_container",
+          "description": "Instantiate and run a software container from an OCI Docker image.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "package_uri": {
+                "type": "STRING",
+                "description": "Docker registry image name with tag (e.g., redis:7-alpine)."
+              },
+              "instance_label": {
+                "type": "STRING",
+                "description": "Assigned unique container runtime name."
+              },
+              "recovery_mode": {
+                "type": "STRING",
+                "enum": [
+                  "no",
+                  "always",
+                  "on-failure",
+                  "unless-stopped"
+                ],
+                "description": "Container restart policy."
+              },
+              "param_deta": {
+                "type": "BOOLEAN",
+                "description": "Run container in background daemon mode."
+              }
+            },
+            "required": [
+              "package_uri",
+              "instance_label",
+              "recovery_mode"
+            ]
+          }
+        },
+        "expected_args": {
+          "package_uri": "redis:7.2",
+          "instance_label": "cache-redis",
+          "recovery_mode": "always",
+          "param_deta": true
+        }
+      }
+    }
+  },
+  {
+    "base_id": "shopify_create_discount",
+    "domain": "E-Commerce",
+    "query": "Create a percentage discount code 'FLASH25' for 25.0 percent off with a usage limit of 500 redemptions.",
+    "variants": {
+      "canonical": {
+        "mutation_type": "canonical",
+        "description": "Baseline canonical clean schema with flat properties.",
+        "tool": {
+          "name": "create_shopify_discount_code",
+          "description": "Generate an automated coupon discount code for a Shopify merchant storefront.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "discount_code": {
+                "type": "STRING",
+                "description": "The customer-facing promo code string (e.g. SUMMER20)."
+              },
+              "discount_type": {
+                "type": "STRING",
+                "enum": [
+                  "percentage",
+                  "fixed_amount"
+                ],
+                "description": "Type of discount rule."
+              },
+              "discount_value": {
+                "type": "NUMBER",
+                "description": "Percentage (e.g. 20.0) or dollar amount (e.g. 15.00)."
+              },
+              "usage_limit": {
+                "type": "INTEGER",
+                "description": "Total allowable redemptions across all customers."
+              }
+            },
+            "required": [
+              "discount_code",
+              "discount_type",
+              "discount_value"
+            ]
+          }
+        },
+        "expected_args": {
+          "discount_code": "FLASH25",
+          "discount_type": "percentage",
+          "discount_value": 25.0,
+          "usage_limit": 500
+        }
+      },
+      "nested_hierarchy": {
+        "mutation_type": "nested_hierarchy",
+        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "tool": {
+          "name": "create_shopify_discount_code",
+          "description": "Generate an automated coupon discount code for a Shopify merchant storefront.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "request_payload": {
+                "type": "OBJECT",
+                "properties": {
+                  "discount_code": {
+                    "type": "STRING",
+                    "description": "The customer-facing promo code string (e.g. SUMMER20)."
+                  },
+                  "discount_type": {
+                    "type": "STRING",
+                    "enum": [
+                      "percentage",
+                      "fixed_amount"
+                    ],
+                    "description": "Type of discount rule."
+                  },
+                  "discount_value": {
+                    "type": "NUMBER",
+                    "description": "Percentage (e.g. 20.0) or dollar amount (e.g. 15.00)."
+                  },
+                  "usage_limit": {
+                    "type": "INTEGER",
+                    "description": "Total allowable redemptions across all customers."
+                  }
+                },
+                "required": [
+                  "discount_code",
+                  "discount_type",
+                  "discount_value"
+                ]
+              }
+            },
+            "required": [
+              "request_payload"
+            ]
+          }
+        },
+        "expected_args": {
+          "request_payload": {
+            "discount_code": "FLASH25",
+            "discount_type": "percentage",
+            "discount_value": 25.0,
+            "usage_limit": 500
+          }
+        }
+      },
+      "optionality_bloat": {
+        "mutation_type": "optionality_bloat",
+        "description": "Schema density mutation injecting 6 optional enterprise metadata fields.",
+        "tool": {
+          "name": "create_shopify_discount_code",
+          "description": "Generate an automated coupon discount code for a Shopify merchant storefront.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "discount_code": {
+                "type": "STRING",
+                "description": "The customer-facing promo code string (e.g. SUMMER20)."
+              },
+              "discount_type": {
+                "type": "STRING",
+                "enum": [
+                  "percentage",
+                  "fixed_amount"
+                ],
+                "description": "Type of discount rule."
+              },
+              "discount_value": {
+                "type": "NUMBER",
+                "description": "Percentage (e.g. 20.0) or dollar amount (e.g. 15.00)."
+              },
+              "usage_limit": {
+                "type": "INTEGER",
+                "description": "Total allowable redemptions across all customers."
+              },
+              "tags": {
+                "type": "ARRAY",
+                "items": {
+                  "type": "STRING"
+                },
+                "description": "Optional arbitrary metadata labels."
+              },
+              "correlation_id": {
+                "type": "STRING",
+                "description": "Unique tracing span identifier for distributed telemetry."
+              },
+              "notify_on_completion": {
+                "type": "BOOLEAN",
+                "description": "Whether to publish an event hook upon completion."
+              },
+              "idempotency_key": {
+                "type": "STRING",
+                "description": "Header token preventing duplicate mutations."
+              },
+              "priority_level": {
+                "type": "INTEGER",
+                "description": "Execution queue priority ranking from 1 to 10."
+              },
+              "audit_comment": {
+                "type": "STRING",
+                "description": "Human-readable justification for security audit logs."
+              }
+            },
+            "required": [
+              "discount_code",
+              "discount_type",
+              "discount_value"
+            ]
+          }
+        },
+        "expected_args": {
+          "discount_code": "FLASH25",
+          "discount_type": "percentage",
+          "discount_value": 25.0,
+          "usage_limit": 500
+        }
+      },
+      "ambiguous_identifiers": {
+        "mutation_type": "ambiguous_identifiers",
+        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "tool": {
+          "name": "create_shopify_discount_code",
+          "description": "Generate an automated coupon discount code for a Shopify merchant storefront.",
+          "parameters": {
+            "type": "OBJECT",
+            "properties": {
+              "voucher_token": {
+                "type": "STRING",
+                "description": "The customer-facing promo code string (e.g. SUMMER20)."
+              },
+              "promo_kind": {
+                "type": "STRING",
+                "enum": [
+                  "percentage",
+                  "fixed_amount"
+                ],
+                "description": "Type of discount rule."
+              },
+              "reduction_num": {
+                "type": "NUMBER",
+                "description": "Percentage (e.g. 20.0) or dollar amount (e.g. 15.00)."
+              },
+              "param_usag": {
+                "type": "INTEGER",
+                "description": "Total allowable redemptions across all customers."
+              }
+            },
+            "required": [
+              "voucher_token",
+              "promo_kind",
+              "reduction_num"
+            ]
+          }
+        },
+        "expected_args": {
+          "voucher_token": "FLASH25",
+          "promo_kind": "percentage",
+          "reduction_num": 25.0,
+          "param_usag": 500
+        }
+      }
+    }
+  }
+]
