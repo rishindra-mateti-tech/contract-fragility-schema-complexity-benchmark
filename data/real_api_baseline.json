@@ -1,0 +1,38 @@
+[
+  {
+    "base_id": "stripe_real_create_charge",
+    "source": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.json",
+    "tool": {
+      "name": "create_charge",
+      "description": "To charge a credit card or other payment source, you create a Charge object.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "description": "Amount intended to be collected by this payment. A positive integer representing how much to charge in the smallest currency unit (e.g., 100 cents to charge $1.00)."
+          },
+          "currency": {
+            "type": "string",
+            "description": "Three-letter ISO currency code, in lowercase. Must be a supported currency."
+          },
+          "source": {
+            "type": "string",
+            "description": "A payment source to be charged. This can be the ID of a card, a bank account, or a source."
+          },
+          "description": {
+            "type": "string",
+            "description": "An arbitrary string which you can attach to a Charge object."
+          }
+        },
+        "required": ["amount", "currency"]
+      }
+    },
+    "query": "Charge 50 USD to the card src_18eYalAHEMiOZZp1l972T.",
+    "expected_args": {
+      "amount": 5000,
+      "currency": "usd",
+      "source": "src_18eYalAHEMiOZZp1l972T"
+    }
+  }
+]
