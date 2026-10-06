@@ -1,54 +1,63 @@
 {
   "metadata": {
-    "timestamp": "2026-10-05 19:05:27",
+    "timestamp": "2026-10-05 22:11:55",
     "models": [
-      "gemini-3.1-flash-lite-preview"
+      "gemini-3.1-flash-lite-preview",
+      "gemini-3-flash-preview"
     ],
-    "total_suites": 3,
-    "num_repeats": 1
+    "total_suites": 10,
+    "num_repeats": 1,
+    "raw_mode": false
   },
   "task_1_argument_construction": [
     {
+      "timestamp": "2026-10-05 22:12:05",
       "model": "gemini-3.1-flash-lite-preview",
       "base_id": "stripe_create_refund",
       "mutation_type": "canonical",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
       "infrastructure_error": false,
       "tool_called": true,
       "syntax_valid": true,
       "error_category": null,
       "error_message": null,
-      "latency": 16.422911405563354,
+      "latency": 9.689072608947754,
       "prompt_tokens": 221,
+      "completion_tokens": 46,
+      "raw_text": null,
       "generated_args": {
+        "charge_id": "ch_99281a",
         "amount_cents": 4500,
-        "reason": "requested_by_customer",
-        "charge_id": "ch_99281a"
+        "reason": "requested_by_customer"
       },
       "expected_args": {
         "charge_id": "ch_99281a",
         "amount_cents": 4500,
         "reason": "requested_by_customer"
-      },
-      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
-      "retry_count": 0,
-      "timestamp": "2026-10-05 19:05:27"
+      }
     },
     {
+      "timestamp": "2026-10-05 22:12:21",
       "model": "gemini-3.1-flash-lite-preview",
       "base_id": "stripe_create_refund",
       "mutation_type": "nested_hierarchy",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
       "infrastructure_error": false,
       "tool_called": true,
       "syntax_valid": true,
       "error_category": null,
       "error_message": null,
-      "latency": 4.203967332839966,
+      "latency": 12.226461172103882,
       "prompt_tokens": 241,
+      "completion_tokens": 50,
+      "raw_text": null,
       "generated_args": {
         "request_payload": {
-          "reason": "requested_by_customer",
           "amount_cents": 4500,
-          "charge_id": "ch_99281a"
+          "charge_id": "ch_99281a",
+          "reason": "requested_by_customer"
         }
       },
       "expected_args": {
@@ -57,47 +66,51 @@
           "amount_cents": 4500,
           "reason": "requested_by_customer"
         }
-      },
-      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
-      "retry_count": 0,
-      "timestamp": "2026-10-05 19:05:27"
+      }
     },
     {
+      "timestamp": "2026-10-05 22:12:26",
       "model": "gemini-3.1-flash-lite-preview",
       "base_id": "stripe_create_refund",
       "mutation_type": "optionality_bloat",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
       "infrastructure_error": false,
       "tool_called": true,
       "syntax_valid": true,
       "error_category": null,
       "error_message": null,
-      "latency": 11.15954041481018,
+      "latency": 0.9255335330963135,
       "prompt_tokens": 371,
+      "completion_tokens": 46,
+      "raw_text": null,
       "generated_args": {
-        "amount_cents": 4500,
         "charge_id": "ch_99281a",
+        "amount_cents": 4500,
         "reason": "requested_by_customer"
       },
       "expected_args": {
         "charge_id": "ch_99281a",
         "amount_cents": 4500,
         "reason": "requested_by_customer"
-      },
-      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
-      "retry_count": 0,
-      "timestamp": "2026-10-05 19:05:27"
+      }
     },
     {
+      "timestamp": "2026-10-05 22:12:32",
       "model": "gemini-3.1-flash-lite-preview",
       "base_id": "stripe_create_refund",
       "mutation_type": "ambiguous_identifiers",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
       "infrastructure_error": false,
       "tool_called": true,
       "syntax_valid": true,
       "error_category": null,
       "error_message": null,
-      "latency": 9.544485092163086,
+      "latency": 2.4904227256774902,
       "prompt_tokens": 214,
+      "completion_tokens": 42,
+      "raw_text": null,
       "generated_args": {
         "target_id": "ch_99281a",
         "spec": "requested_by_customer",
@@ -107,42 +120,2748 @@
         "target_id": "ch_99281a",
         "qty": 4500,
         "spec": "requested_by_customer"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:12:48",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "canonical",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.1886439323425293,
+      "prompt_tokens": 197,
+      "completion_tokens": 94,
+      "raw_text": null,
+      "generated_args": {
+        "body": "It has been observed that synthetic events are not being properly cleared or released when components unmount, leading to a memory leak in certain scenarios. \n\nThis issue tracks the investigation and fix for ensuring synthetic events are correctly garbage collected after component unmount.",
+        "severity": "medium",
+        "title": "Fix synthetic event leak",
+        "owner": "facebook",
+        "repo": "react"
       },
+      "expected_args": {
+        "owner": "facebook",
+        "repo": "react",
+        "title": "Fix synthetic event leak",
+        "body": "memory leak on unmount"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:12:53",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.2467241287231445,
+      "prompt_tokens": 217,
+      "completion_tokens": 95,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "owner": "facebook",
+          "repo": "react",
+          "title": "Fix synthetic event leak",
+          "body": "It has been observed that synthetic events are not being properly cleared when a component unmounts, leading to a memory leak in certain scenarios. This issue needs investigation to ensure that event references are correctly nullified to allow for garbage collection.",
+          "severity": "medium"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "owner": "facebook",
+          "repo": "react",
+          "title": "Fix synthetic event leak",
+          "body": "memory leak on unmount"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:13:00",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 3.144685745239258,
+      "prompt_tokens": 347,
+      "completion_tokens": 189,
+      "raw_text": null,
+      "generated_args": {
+        "owner": "facebook",
+        "repo": "react",
+        "body": "### Description\nThere appears to be a memory leak related to SyntheticEvents when components are unmounted. It seems that references to these events are not being properly cleared, leading to retained memory in long-running applications.\n\n### Steps to Reproduce\n1. Render a component that attaches event listeners.\n2. Trigger events.\n3. Unmount the component.\n4. Observe that the SyntheticEvent objects are not being garbage collected.\n\n### Expected Behavior\nSyntheticEvent objects should be nullified or released immediately upon component unmount to prevent memory leaks.\n\n### Environment\n- React version: [e.g., 18.x]\n- Browser: [e.g., Chrome, Firefox]",
+        "severity": "medium",
+        "title": "Fix synthetic event leak"
+      },
+      "expected_args": {
+        "owner": "facebook",
+        "repo": "react",
+        "title": "Fix synthetic event leak",
+        "body": "memory leak on unmount"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:13:05",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.203932523727417,
+      "prompt_tokens": 208,
+      "completion_tokens": 131,
+      "raw_text": null,
+      "generated_args": {
+        "item_heading": "Fix synthetic event leak",
+        "entity": "react",
+        "ns": "facebook",
+        "text_data": "### Description\nThere is a memory leak occurring with synthetic events when components are unmounted. It appears that references to these events are not being properly cleared, leading to retained memory after the component lifecycle has ended.\n\n### Expected Behavior\nSynthetic events should be properly cleaned up and garbage collected when the associated component unmounts.\n\n### Actual Behavior\nMemory usage increases over time as components unmount, suggesting that synthetic event objects are being held in memory."
+      },
+      "expected_args": {
+        "ns": "facebook",
+        "entity": "react",
+        "item_heading": "Fix synthetic event leak",
+        "text_data": "memory leak on unmount"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:13:24",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "canonical",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.9555816650390625,
+      "prompt_tokens": 208,
+      "completion_tokens": 44,
+      "raw_text": null,
+      "generated_args": {
+        "channel_id": "C08219941",
+        "message_text": "Deployment pipeline failed on step 4"
+      },
+      "expected_args": {
+        "channel_id": "C08219941",
+        "message_text": "Deployment pipeline failed on step 4",
+        "as_user": false
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:13:30",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.6477701663970947,
+      "prompt_tokens": 228,
+      "completion_tokens": 48,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "message_text": "Deployment pipeline failed on step 4",
+          "channel_id": "C08219941"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "channel_id": "C08219941",
+          "message_text": "Deployment pipeline failed on step 4",
+          "as_user": false
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:14:40",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 66.12037229537964,
+      "prompt_tokens": 358,
+      "completion_tokens": 44,
+      "raw_text": null,
+      "generated_args": {
+        "channel_id": "C08219941",
+        "message_text": "Deployment pipeline failed on step 4"
+      },
+      "expected_args": {
+        "channel_id": "C08219941",
+        "message_text": "Deployment pipeline failed on step 4",
+        "as_user": false
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:14:45",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.3846750259399414,
+      "prompt_tokens": 202,
+      "completion_tokens": 38,
+      "raw_text": null,
+      "generated_args": {
+        "payload_str": "Deployment pipeline failed on step 4",
+        "dest": "C08219941"
+      },
+      "expected_args": {
+        "dest": "C08219941",
+        "payload_str": "Deployment pipeline failed on step 4",
+        "param_as_u": false
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:15:11",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "canonical",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 10.394461631774902,
+      "prompt_tokens": 173,
+      "completion_tokens": 33,
+      "raw_text": null,
+      "generated_args": {
+        "deployment_name": "api-gateway",
+        "namespace": "production",
+        "replicas": 8
+      },
+      "expected_args": {
+        "namespace": "production",
+        "deployment_name": "api-gateway",
+        "replicas": 8
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:15:16",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 0.8410952091217041,
+      "prompt_tokens": 193,
+      "completion_tokens": 37,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "replicas": 8,
+          "deployment_name": "api-gateway",
+          "namespace": "production"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "namespace": "production",
+          "deployment_name": "api-gateway",
+          "replicas": 8
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:15:22",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.853107213973999,
+      "prompt_tokens": 323,
+      "completion_tokens": 33,
+      "raw_text": null,
+      "generated_args": {
+        "namespace": "production",
+        "deployment_name": "api-gateway",
+        "replicas": 8
+      },
+      "expected_args": {
+        "namespace": "production",
+        "deployment_name": "api-gateway",
+        "replicas": 8
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:15:30",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 4.598276138305664,
+      "prompt_tokens": 177,
+      "completion_tokens": 34,
+      "raw_text": null,
+      "generated_args": {
+        "count_val": 8,
+        "target_name": "api-gateway",
+        "env_scope": "production"
+      },
+      "expected_args": {
+        "env_scope": "production",
+        "target_name": "api-gateway",
+        "count_val": 8
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:15:46",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "canonical",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 0.8905787467956543,
+      "prompt_tokens": 198,
+      "completion_tokens": 47,
+      "raw_text": null,
+      "generated_args": {
+        "region": "us-east-1",
+        "enable_versioning": true,
+        "bucket_name": "analytics-warehouse-2026"
+      },
+      "expected_args": {
+        "bucket_name": "analytics-warehouse-2026",
+        "region": "us-east-1",
+        "enable_versioning": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:15:57",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 6.71579647064209,
+      "prompt_tokens": 218,
+      "completion_tokens": 51,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "enable_versioning": true,
+          "bucket_name": "analytics-warehouse-2026",
+          "region": "us-east-1"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "bucket_name": "analytics-warehouse-2026",
+          "region": "us-east-1",
+          "enable_versioning": true
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:16:02",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.4537899494171143,
+      "prompt_tokens": 348,
+      "completion_tokens": 47,
+      "raw_text": null,
+      "generated_args": {
+        "bucket_name": "analytics-warehouse-2026",
+        "enable_versioning": true,
+        "region": "us-east-1"
+      },
+      "expected_args": {
+        "bucket_name": "analytics-warehouse-2026",
+        "region": "us-east-1",
+        "enable_versioning": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:16:07",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 0.6602287292480469,
+      "prompt_tokens": 188,
+      "completion_tokens": 42,
+      "raw_text": null,
+      "generated_args": {
+        "loc": "us-east-1",
+        "param_enab": true,
+        "resource_id": "analytics-warehouse-2026"
+      },
+      "expected_args": {
+        "resource_id": "analytics-warehouse-2026",
+        "loc": "us-east-1",
+        "param_enab": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:16:32",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "canonical",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 4.6744232177734375,
+      "prompt_tokens": 182,
+      "completion_tokens": 58,
+      "raw_text": null,
+      "generated_args": {
+        "database_name": "analytics_db",
+        "timeout_seconds": 30,
+        "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "read_only": true
+      },
+      "expected_args": {
+        "database_name": "analytics_db",
+        "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "timeout_seconds": 30,
+        "read_only": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:16:59",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 1,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 2.5440547466278076,
+      "prompt_tokens": 202,
+      "completion_tokens": 62,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+          "read_only": true,
+          "database_name": "analytics_db",
+          "timeout_seconds": 30
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "database_name": "analytics_db",
+          "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+          "timeout_seconds": 30,
+          "read_only": true
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:17:18",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 14.682514667510986,
+      "prompt_tokens": 332,
+      "completion_tokens": 58,
+      "raw_text": null,
+      "generated_args": {
+        "timeout_seconds": 30,
+        "read_only": true,
+        "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "database_name": "analytics_db"
+      },
+      "expected_args": {
+        "database_name": "analytics_db",
+        "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "timeout_seconds": 30,
+        "read_only": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:17:29",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 6.861778259277344,
+      "prompt_tokens": 173,
+      "completion_tokens": 52,
+      "raw_text": null,
+      "generated_args": {
+        "raw_stmt": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "db": "analytics_db",
+        "param_time": 30,
+        "param_read": true
+      },
+      "expected_args": {
+        "db": "analytics_db",
+        "raw_stmt": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "param_time": 30,
+        "param_read": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:18:09",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "canonical",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 12.975354194641113,
+      "prompt_tokens": 214,
+      "completion_tokens": 48,
+      "raw_text": null,
+      "generated_args": {
+        "deal_value_usd": 120000,
+        "pipeline_stage": "qualified",
+        "lead_id": "LEAD-401"
+      },
+      "expected_args": {
+        "lead_id": "LEAD-401",
+        "pipeline_stage": "qualified",
+        "deal_value_usd": 120000.0
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:19:22",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 3,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 9.171199083328247,
+      "prompt_tokens": 234,
+      "completion_tokens": 52,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "deal_value_usd": 120000,
+          "pipeline_stage": "qualified",
+          "lead_id": "LEAD-401"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "lead_id": "LEAD-401",
+          "pipeline_stage": "qualified",
+          "deal_value_usd": 120000.0
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:19:39",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 1,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 6.520557641983032,
+      "prompt_tokens": 364,
+      "completion_tokens": 48,
+      "raw_text": null,
+      "generated_args": {
+        "pipeline_stage": "qualified",
+        "lead_id": "LEAD-401",
+        "deal_value_usd": 120000
+      },
+      "expected_args": {
+        "lead_id": "LEAD-401",
+        "pipeline_stage": "qualified",
+        "deal_value_usd": 120000.0
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:19:48",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 5.333187103271484,
+      "prompt_tokens": 203,
+      "completion_tokens": 40,
+      "raw_text": null,
+      "generated_args": {
+        "ref_num": "LEAD-401",
+        "val": 120000,
+        "state_step": "qualified"
+      },
+      "expected_args": {
+        "ref_num": "LEAD-401",
+        "state_step": "qualified",
+        "val": 120000.0
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:20:27",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "canonical",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 16.025780200958252,
+      "prompt_tokens": 217,
+      "completion_tokens": 50,
+      "raw_text": null,
+      "generated_args": {
+        "weight_lbs": 4.5,
+        "service_tier": "priority_overnight",
+        "carrier": "fedex",
+        "recipient_zip": "75001"
+      },
+      "expected_args": {
+        "carrier": "fedex",
+        "weight_lbs": 4.5,
+        "recipient_zip": "75001",
+        "service_tier": "priority_overnight"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:20:42",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 10.236303806304932,
+      "prompt_tokens": 237,
+      "completion_tokens": 54,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "service_tier": "priority_overnight",
+          "weight_lbs": 4.5,
+          "recipient_zip": "75001",
+          "carrier": "fedex"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "carrier": "fedex",
+          "weight_lbs": 4.5,
+          "recipient_zip": "75001",
+          "service_tier": "priority_overnight"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:20:50",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 4.817976713180542,
+      "prompt_tokens": 367,
+      "completion_tokens": 50,
+      "raw_text": null,
+      "generated_args": {
+        "recipient_zip": "75001",
+        "carrier": "fedex",
+        "service_tier": "priority_overnight",
+        "weight_lbs": 4.5
+      },
+      "expected_args": {
+        "carrier": "fedex",
+        "weight_lbs": 4.5,
+        "recipient_zip": "75001",
+        "service_tier": "priority_overnight"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:21:00",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 5.448343515396118,
+      "prompt_tokens": 208,
+      "completion_tokens": 44,
+      "raw_text": null,
+      "generated_args": {
+        "speed": "priority_overnight",
+        "postal": "75001",
+        "mass": 4.5,
+        "provider_code": "fedex"
+      },
+      "expected_args": {
+        "provider_code": "fedex",
+        "mass": 4.5,
+        "postal": "75001",
+        "speed": "priority_overnight"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:21:37",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "canonical",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 7.8950276374816895,
+      "prompt_tokens": 170,
+      "completion_tokens": 49,
+      "raw_text": null,
+      "generated_args": {
+        "ticket_key": "ENG-1049",
+        "resolution_notes": "PR #42 is ready.",
+        "target_status": "code_review"
+      },
+      "expected_args": {
+        "ticket_key": "ENG-1049",
+        "target_status": "code_review",
+        "resolution_notes": "PR #42 is ready"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:21:46",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 5.47066330909729,
+      "prompt_tokens": 190,
+      "completion_tokens": 53,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "resolution_notes": "PR #42 is ready.",
+          "ticket_key": "ENG-1049",
+          "target_status": "code_review"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "ticket_key": "ENG-1049",
+          "target_status": "code_review",
+          "resolution_notes": "PR #42 is ready"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:21:57",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 6.503857135772705,
+      "prompt_tokens": 320,
+      "completion_tokens": 49,
+      "raw_text": null,
+      "generated_args": {
+        "target_status": "code_review",
+        "ticket_key": "ENG-1049",
+        "resolution_notes": "PR #42 is ready."
+      },
+      "expected_args": {
+        "ticket_key": "ENG-1049",
+        "target_status": "code_review",
+        "resolution_notes": "PR #42 is ready"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:22:16",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 1,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 8.085275650024414,
+      "prompt_tokens": 170,
+      "completion_tokens": 47,
+      "raw_text": null,
+      "generated_args": {
+        "id_code": "ENG-1049",
+        "next_state": "code_review",
+        "param_reso": "PR #42 is ready."
+      },
+      "expected_args": {
+        "id_code": "ENG-1049",
+        "next_state": "code_review",
+        "param_reso": "PR #42 is ready"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:23:08",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "canonical",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 16.276506662368774,
+      "prompt_tokens": 188,
+      "completion_tokens": 44,
+      "raw_text": null,
+      "generated_args": {
+        "metric_name": "system.cpu.utilization",
+        "evaluation_window_minutes": 15,
+        "critical_threshold": 85
+      },
+      "expected_args": {
+        "metric_name": "system.cpu.utilization",
+        "critical_threshold": 85.0,
+        "evaluation_window_minutes": 15
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:23:19",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 6.878199338912964,
+      "prompt_tokens": 208,
+      "completion_tokens": 48,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "evaluation_window_minutes": 15,
+          "metric_name": "system.cpu.utilization",
+          "critical_threshold": 85
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "metric_name": "system.cpu.utilization",
+          "critical_threshold": 85.0,
+          "evaluation_window_minutes": 15
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:23:36",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 1,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 6.032226324081421,
+      "prompt_tokens": 338,
+      "completion_tokens": 44,
+      "raw_text": null,
+      "generated_args": {
+        "evaluation_window_minutes": 15,
+        "critical_threshold": 85,
+        "metric_name": "system.cpu.utilization"
+      },
+      "expected_args": {
+        "metric_name": "system.cpu.utilization",
+        "critical_threshold": 85.0,
+        "evaluation_window_minutes": 15
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:23:52",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 11.360099792480469,
+      "prompt_tokens": 175,
+      "completion_tokens": 35,
+      "raw_text": null,
+      "generated_args": {
+        "key_str": "system.cpu.utilization",
+        "cutoff": 85,
+        "window_dur": 15
+      },
+      "expected_args": {
+        "key_str": "system.cpu.utilization",
+        "cutoff": 85.0,
+        "window_dur": 15
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:24:50",
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "canonical",
       "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
       "retry_count": 0,
-      "timestamp": "2026-10-05 19:05:27"
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 14.717891454696655,
+      "prompt_tokens": 221,
+      "completion_tokens": 46,
+      "raw_text": null,
+      "generated_args": {
+        "charge_id": "ch_99281a",
+        "amount_cents": 4500,
+        "reason": "requested_by_customer"
+      },
+      "expected_args": {
+        "charge_id": "ch_99281a",
+        "amount_cents": 4500,
+        "reason": "requested_by_customer"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:24:59",
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 4.527306795120239,
+      "prompt_tokens": 241,
+      "completion_tokens": 50,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "amount_cents": 4500,
+          "charge_id": "ch_99281a",
+          "reason": "requested_by_customer"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "charge_id": "ch_99281a",
+          "amount_cents": 4500,
+          "reason": "requested_by_customer"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:25:04",
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.6175727844238281,
+      "prompt_tokens": 371,
+      "completion_tokens": 46,
+      "raw_text": null,
+      "generated_args": {
+        "charge_id": "ch_99281a",
+        "reason": "requested_by_customer",
+        "amount_cents": 4500
+      },
+      "expected_args": {
+        "charge_id": "ch_99281a",
+        "amount_cents": 4500,
+        "reason": "requested_by_customer"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:25:11",
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 2.198841094970703,
+      "prompt_tokens": 214,
+      "completion_tokens": 42,
+      "raw_text": null,
+      "generated_args": {
+        "target_id": "ch_99281a",
+        "spec": "requested_by_customer",
+        "qty": 4500
+      },
+      "expected_args": {
+        "target_id": "ch_99281a",
+        "qty": 4500,
+        "spec": "requested_by_customer"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:26:14",
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "canonical",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 1.9033794403076172,
+      "prompt_tokens": 197,
+      "completion_tokens": 86,
+      "raw_text": null,
+      "generated_args": {
+        "repo": "react",
+        "title": "Fix synthetic event leak",
+        "owner": "facebook",
+        "body": "There is a potential memory leak involving synthetic events when a component is unmounted. Synthetic events are not being properly cleaned up or released, leading to increased memory usage over time in applications with frequent mounting/unmounting of components that handle events."
+      },
+      "expected_args": {
+        "owner": "facebook",
+        "repo": "react",
+        "title": "Fix synthetic event leak",
+        "body": "memory leak on unmount"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:26:54",
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 35.771129846572876,
+      "prompt_tokens": 217,
+      "completion_tokens": 162,
+      "raw_text": null,
+      "generated_args": {
+        "request_payload": {
+          "owner": "facebook",
+          "severity": "medium",
+          "body": "There is a memory leak occurring on component unmount related to synthetic events. When components are unmounted, some synthetic event objects or their associated data are not being properly garbage collected, leading to increased memory usage over time in long-running applications.\n\nSteps to reproduce:\n1. Create a component that attaches several event listeners.\n2. Mount and unmount the component repeatedly.\n3. Observe memory usage in DevTools.\n\nExpected behavior:\nMemory should be reclaimed after the component is unmounted.\n\nActual behavior:\nMemory usage continues to grow.",
+          "title": "Fix synthetic event leak",
+          "repo": "react"
+        }
+      },
+      "expected_args": {
+        "request_payload": {
+          "owner": "facebook",
+          "repo": "react",
+          "title": "Fix synthetic event leak",
+          "body": "memory leak on unmount"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:27:07",
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 1,
+      "infrastructure_error": false,
+      "tool_called": true,
+      "syntax_valid": true,
+      "error_category": null,
+      "error_message": null,
+      "latency": 2.7372653484344482,
+      "prompt_tokens": 347,
+      "completion_tokens": 109,
+      "raw_text": null,
+      "generated_args": {
+        "body": "There appears to be a memory leak involving synthetic events when a component is unmounted. Synthetic events are not being properly cleaned up or released, leading to increased memory usage over time in applications with frequent mounting and unmounting of components that use event listeners. This can be observed by profiling memory usage during repeated mount/unmount cycles of components with event handlers.",
+        "title": "Fix synthetic event leak",
+        "owner": "facebook",
+        "repo": "react"
+      },
+      "expected_args": {
+        "owner": "facebook",
+        "repo": "react",
+        "title": "Fix synthetic event leak",
+        "body": "memory leak on unmount"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:27:48",
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h32m10.970426839s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73930s'}]}}",
+      "latency": 0.4319741725921631,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "ns": "facebook",
+        "entity": "react",
+        "item_heading": "Fix synthetic event leak",
+        "text_data": "memory leak on unmount"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:29:53",
+      "model": "gemini-3-flash-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "canonical",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h30m6.540871011s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73806s'}]}}",
+      "latency": 0.3267698287963867,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "channel_id": "C08219941",
+        "message_text": "Deployment pipeline failed on step 4",
+        "as_user": false
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:30:34",
+      "model": "gemini-3-flash-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h29m25.268581023s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73765s'}]}}",
+      "latency": 0.280792236328125,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "channel_id": "C08219941",
+          "message_text": "Deployment pipeline failed on step 4",
+          "as_user": false
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:31:15",
+      "model": "gemini-3-flash-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h28m43.951969551s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73723s'}]}}",
+      "latency": 0.3585188388824463,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "channel_id": "C08219941",
+        "message_text": "Deployment pipeline failed on step 4",
+        "as_user": false
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:31:57",
+      "model": "gemini-3-flash-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h28m2.684767945s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73682s'}]}}",
+      "latency": 0.2849268913269043,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "dest": "C08219941",
+        "payload_str": "Deployment pipeline failed on step 4",
+        "param_as_u": false
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:34:00",
+      "model": "gemini-3-flash-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "canonical",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h25m58.981405657s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73558s'}]}}",
+      "latency": 0.3094799518585205,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "namespace": "production",
+        "deployment_name": "api-gateway",
+        "replicas": 8
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:34:42",
+      "model": "gemini-3-flash-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h25m17.647573442s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73517s'}]}}",
+      "latency": 0.34119606018066406,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "namespace": "production",
+          "deployment_name": "api-gateway",
+          "replicas": 8
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:35:23",
+      "model": "gemini-3-flash-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h24m36.33551778s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73476s'}]}}",
+      "latency": 0.30980920791625977,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "namespace": "production",
+        "deployment_name": "api-gateway",
+        "replicas": 8
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:36:04",
+      "model": "gemini-3-flash-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h23m54.962147743s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73434s'}]}}",
+      "latency": 0.47483372688293457,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "env_scope": "production",
+        "target_name": "api-gateway",
+        "count_val": 8
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:38:08",
+      "model": "gemini-3-flash-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "canonical",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h21m51.385420804s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73311s'}]}}",
+      "latency": 0.30835771560668945,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "bucket_name": "analytics-warehouse-2026",
+        "region": "us-east-1",
+        "enable_versioning": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:38:49",
+      "model": "gemini-3-flash-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h21m10.212739982s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73270s'}]}}",
+      "latency": 0.28839659690856934,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "bucket_name": "analytics-warehouse-2026",
+          "region": "us-east-1",
+          "enable_versioning": true
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:39:30",
+      "model": "gemini-3-flash-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h20m28.970791987s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73228s'}]}}",
+      "latency": 0.30539798736572266,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "bucket_name": "analytics-warehouse-2026",
+        "region": "us-east-1",
+        "enable_versioning": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:40:12",
+      "model": "gemini-3-flash-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h19m47.825437245s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73187s'}]}}",
+      "latency": 0.2849900722503662,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "resource_id": "analytics-warehouse-2026",
+        "loc": "us-east-1",
+        "param_enab": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:42:15",
+      "model": "gemini-3-flash-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "canonical",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h17m44.228616943s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73064s'}]}}",
+      "latency": 0.31350016593933105,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "database_name": "analytics_db",
+        "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "timeout_seconds": 30,
+        "read_only": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:42:56",
+      "model": "gemini-3-flash-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h17m3.073030182s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '73023s'}]}}",
+      "latency": 0.3000223636627197,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "database_name": "analytics_db",
+          "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+          "timeout_seconds": 30,
+          "read_only": true
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:43:37",
+      "model": "gemini-3-flash-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h16m21.910587198s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72981s'}]}}",
+      "latency": 0.3016676902770996,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "database_name": "analytics_db",
+        "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "timeout_seconds": 30,
+        "read_only": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:44:19",
+      "model": "gemini-3-flash-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h15m40.748411663s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72940s'}]}}",
+      "latency": 0.2846827507019043,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "db": "analytics_db",
+        "raw_stmt": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "param_time": 30,
+        "param_read": true
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:46:22",
+      "model": "gemini-3-flash-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "canonical",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h13m37.343856752s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72817s'}]}}",
+      "latency": 0.2598989009857178,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "lead_id": "LEAD-401",
+        "pipeline_stage": "qualified",
+        "deal_value_usd": 120000.0
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:47:03",
+      "model": "gemini-3-flash-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h12m56.209917714s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72776s'}]}}",
+      "latency": 0.29326677322387695,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "lead_id": "LEAD-401",
+          "pipeline_stage": "qualified",
+          "deal_value_usd": 120000.0
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:47:44",
+      "model": "gemini-3-flash-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h12m15.057123976s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72735s'}]}}",
+      "latency": 0.28653812408447266,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "lead_id": "LEAD-401",
+        "pipeline_stage": "qualified",
+        "deal_value_usd": 120000.0
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:48:25",
+      "model": "gemini-3-flash-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h11m33.91546754s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72693s'}]}}",
+      "latency": 0.2917656898498535,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "ref_num": "LEAD-401",
+        "state_step": "qualified",
+        "val": 120000.0
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:50:29",
+      "model": "gemini-3-flash-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "canonical",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h9m30.511826942s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72570s'}]}}",
+      "latency": 0.28849267959594727,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "carrier": "fedex",
+        "weight_lbs": 4.5,
+        "recipient_zip": "75001",
+        "service_tier": "priority_overnight"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:51:10",
+      "model": "gemini-3-flash-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h8m49.380608356s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72529s'}]}}",
+      "latency": 0.26204586029052734,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "carrier": "fedex",
+          "weight_lbs": 4.5,
+          "recipient_zip": "75001",
+          "service_tier": "priority_overnight"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:51:51",
+      "model": "gemini-3-flash-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h8m8.221941643s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72488s'}]}}",
+      "latency": 0.26310229301452637,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "carrier": "fedex",
+        "weight_lbs": 4.5,
+        "recipient_zip": "75001",
+        "service_tier": "priority_overnight"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:52:32",
+      "model": "gemini-3-flash-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h7m26.976240889s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72446s'}]}}",
+      "latency": 0.2871739864349365,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "provider_code": "fedex",
+        "mass": 4.5,
+        "postal": "75001",
+        "speed": "priority_overnight"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:54:36",
+      "model": "gemini-3-flash-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "canonical",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h5m23.437404374s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72323s'}]}}",
+      "latency": 0.2929825782775879,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "ticket_key": "ENG-1049",
+        "target_status": "code_review",
+        "resolution_notes": "PR #42 is ready"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:55:17",
+      "model": "gemini-3-flash-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h4m42.273723396s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72282s'}]}}",
+      "latency": 0.2825164794921875,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "ticket_key": "ENG-1049",
+          "target_status": "code_review",
+          "resolution_notes": "PR #42 is ready"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:55:58",
+      "model": "gemini-3-flash-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h4m1.025936773s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72241s'}]}}",
+      "latency": 0.2934234142303467,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "ticket_key": "ENG-1049",
+        "target_status": "code_review",
+        "resolution_notes": "PR #42 is ready"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:56:40",
+      "model": "gemini-3-flash-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h3m19.784148723s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72199s'}]}}",
+      "latency": 0.3376345634460449,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "id_code": "ENG-1049",
+        "next_state": "code_review",
+        "param_reso": "PR #42 is ready"
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:58:43",
+      "model": "gemini-3-flash-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "canonical",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h1m16.185504511s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-3-flash', 'location': 'global'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72076s'}]}}",
+      "latency": 0.29363322257995605,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "metric_name": "system.cpu.utilization",
+        "critical_threshold": 85.0,
+        "evaluation_window_minutes": 15
+      }
+    },
+    {
+      "timestamp": "2026-10-05 22:59:24",
+      "model": "gemini-3-flash-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "nested_hierarchy",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 20h35.011831525s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '72035s'}]}}",
+      "latency": 0.3029296398162842,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "request_payload": {
+          "metric_name": "system.cpu.utilization",
+          "critical_threshold": 85.0,
+          "evaluation_window_minutes": 15
+        }
+      }
+    },
+    {
+      "timestamp": "2026-10-05 23:00:05",
+      "model": "gemini-3-flash-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "optionality_bloat",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 19h59m53.871045581s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '71993s'}]}}",
+      "latency": 0.28367066383361816,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "metric_name": "system.cpu.utilization",
+        "critical_threshold": 85.0,
+        "evaluation_window_minutes": 15
+      }
+    },
+    {
+      "timestamp": "2026-10-05 23:00:47",
+      "model": "gemini-3-flash-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "ambiguous_identifiers",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 3,
+      "infrastructure_error": true,
+      "tool_called": false,
+      "syntax_valid": false,
+      "error_category": "INFRASTRUCTURE_UNAVAILABLE",
+      "error_message": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3-flash\\nPlease retry in 19h59m12.715487579s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-3-flash'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '71952s'}]}}",
+      "latency": 0.27509307861328125,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null,
+      "generated_args": {},
+      "expected_args": {
+        "key_str": "system.cpu.utilization",
+        "cutoff": 85.0,
+        "window_dur": 15
+      }
     }
   ],
   "task_2_tool_selection": [
     {
+      "timestamp": "2026-10-05 22:12:38",
       "model": "gemini-3.1-flash-lite-preview",
       "base_id": "stripe_create_refund",
       "variant": "canonical",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
       "target_position_in_menu": 3,
       "total_candidates_in_menu": 5,
       "infrastructure_error": false,
       "expected_tool": "create_payment_refund",
       "selected_tool": "create_payment_refund",
       "selection_correct": true,
-      "latency": 8.816888570785522,
-      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
-      "retry_count": 0,
-      "timestamp": "2026-10-05 19:05:27"
+      "latency": 1.5017778873443604,
+      "prompt_tokens": 460,
+      "completion_tokens": 46,
+      "raw_text": null
     },
     {
+      "timestamp": "2026-10-05 22:12:43",
       "model": "gemini-3.1-flash-lite-preview",
       "base_id": "stripe_create_refund",
       "variant": "ambiguous_identifiers",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
       "target_position_in_menu": 2,
       "total_candidates_in_menu": 5,
       "infrastructure_error": false,
       "expected_tool": "process_refund",
       "selected_tool": "process_refund",
       "selection_correct": true,
-      "latency": 14.167303323745728,
+      "latency": 0.9702105522155762,
+      "prompt_tokens": 453,
+      "completion_tokens": 42,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:13:12",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "variant": "canonical",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "create_repository_issue",
+      "selected_tool": "create_repository_issue",
+      "selection_correct": true,
+      "latency": 2.409614086151123,
+      "prompt_tokens": 502,
+      "completion_tokens": 143,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:13:18",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 0,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_issue",
+      "selected_tool": "process_issue",
+      "selection_correct": true,
+      "latency": 2.438075542449951,
+      "prompt_tokens": 513,
+      "completion_tokens": 95,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:14:51",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "variant": "canonical",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 0,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "send_slack_channel_message",
+      "selected_tool": "send_slack_channel_message",
+      "selection_correct": true,
+      "latency": 1.2135663032531738,
+      "prompt_tokens": 446,
+      "completion_tokens": 44,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:14:57",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 0,
+      "target_position_in_menu": 1,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_message",
+      "selected_tool": "process_message",
+      "selection_correct": true,
+      "latency": 1.9785332679748535,
+      "prompt_tokens": 440,
+      "completion_tokens": 38,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:15:37",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "variant": "canonical",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 0,
+      "target_position_in_menu": 1,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "scale_kubernetes_deployment",
+      "selected_tool": "scale_kubernetes_deployment",
+      "selection_correct": true,
+      "latency": 2.23508358001709,
+      "prompt_tokens": 365,
+      "completion_tokens": 33,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:15:41",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 0,
+      "target_position_in_menu": 4,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_deployment",
+      "selected_tool": "process_deployment",
+      "selection_correct": true,
+      "latency": 0.8576169013977051,
+      "prompt_tokens": 369,
+      "completion_tokens": 34,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:16:12",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "variant": "canonical",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 0,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "create_s3_storage_bucket",
+      "selected_tool": "create_s3_storage_bucket",
+      "selection_correct": true,
+      "latency": 1.0558631420135498,
+      "prompt_tokens": 390,
+      "completion_tokens": 47,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:16:23",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 0,
+      "target_position_in_menu": 4,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_bucket",
+      "selected_tool": "process_bucket",
+      "selection_correct": true,
+      "latency": 7.030128002166748,
+      "prompt_tokens": 380,
+      "completion_tokens": 42,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:17:42",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "variant": "canonical",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 0,
+      "target_position_in_menu": 2,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "execute_database_sql_query",
+      "selected_tool": "execute_database_sql_query",
+      "selection_correct": true,
+      "latency": 8.772802829742432,
+      "prompt_tokens": 374,
+      "completion_tokens": 58,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:17:52",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 0,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_query",
+      "selected_tool": "process_query",
+      "selection_correct": true,
+      "latency": 6.461463451385498,
+      "prompt_tokens": 365,
+      "completion_tokens": 52,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:19:57",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "variant": "canonical",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 0,
+      "target_position_in_menu": 2,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "update_crm_customer_lead",
+      "selected_tool": "update_crm_customer_lead",
+      "selection_correct": true,
+      "latency": 5.2729127407073975,
+      "prompt_tokens": 406,
+      "completion_tokens": 48,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:20:07",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 0,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_lead",
+      "selected_tool": "process_lead",
+      "selection_correct": true,
+      "latency": 6.077563047409058,
+      "prompt_tokens": 395,
+      "completion_tokens": 40,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:21:12",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "variant": "canonical",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 0,
+      "target_position_in_menu": 4,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "generate_shipping_label",
+      "selected_tool": "generate_shipping_label",
+      "selection_correct": true,
+      "latency": 7.90508508682251,
+      "prompt_tokens": 409,
+      "completion_tokens": 50,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:21:25",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 0,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_label",
+      "selected_tool": "process_label",
+      "selection_correct": true,
+      "latency": 9.304378986358643,
+      "prompt_tokens": 400,
+      "completion_tokens": 44,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:22:33",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "variant": "canonical",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 1,
+      "target_position_in_menu": 1,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "transition_jira_ticket",
+      "selected_tool": "transition_jira_ticket",
+      "selection_correct": true,
+      "latency": 5.872493028640747,
+      "prompt_tokens": 362,
+      "completion_tokens": 49,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:22:48",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 0,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_ticket",
+      "selected_tool": "process_ticket",
+      "selection_correct": true,
+      "latency": 10.338154315948486,
+      "prompt_tokens": 362,
+      "completion_tokens": 47,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:24:00",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "variant": "canonical",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 0,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "create_datadog_monitor_alert",
+      "selected_tool": "create_datadog_monitor_alert",
+      "selection_correct": true,
+      "latency": 4.698293924331665,
+      "prompt_tokens": 380,
+      "completion_tokens": 44,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:24:32",
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 0,
+      "target_position_in_menu": 2,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_alert",
+      "selected_tool": "process_alert",
+      "selection_correct": true,
+      "latency": 27.09183669090271,
+      "prompt_tokens": 367,
+      "completion_tokens": 35,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:25:16",
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "variant": "canonical",
       "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
       "retry_count": 0,
-      "timestamp": "2026-10-05 19:05:27"
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "create_payment_refund",
+      "selected_tool": "create_payment_refund",
+      "selection_correct": true,
+      "latency": 1.8598499298095703,
+      "prompt_tokens": 460,
+      "completion_tokens": 46,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:26:08",
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": false,
+      "expected_tool": "process_refund",
+      "selected_tool": "process_refund",
+      "selection_correct": true,
+      "latency": 47.70877003669739,
+      "prompt_tokens": 453,
+      "completion_tokens": 42,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:28:30",
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "variant": "canonical",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 3,
+      "target_position_in_menu": 4,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "create_repository_issue",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.38280558586120605,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:29:11",
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Open an issue in facebook/react titled 'Fix synthetic event leak' describing the memory leak on unmount.",
+      "retry_count": 3,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_issue",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.3769721984863281,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:32:38",
+      "model": "gemini-3-flash-preview",
+      "base_id": "slack_post_message",
+      "variant": "canonical",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 3,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "send_slack_channel_message",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.2871413230895996,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:33:19",
+      "model": "gemini-3-flash-preview",
+      "base_id": "slack_post_message",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Post 'Deployment pipeline failed on step 4' to the alerts channel C08219941 as a bot.",
+      "retry_count": 3,
+      "target_position_in_menu": 2,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_message",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.30584120750427246,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:36:46",
+      "model": "gemini-3-flash-preview",
+      "base_id": "k8s_scale_deployment",
+      "variant": "canonical",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 3,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "scale_kubernetes_deployment",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.2857818603515625,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:37:27",
+      "model": "gemini-3-flash-preview",
+      "base_id": "k8s_scale_deployment",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "retry_count": 3,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_deployment",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.3083939552307129,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:40:53",
+      "model": "gemini-3-flash-preview",
+      "base_id": "aws_create_s3_bucket",
+      "variant": "canonical",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 3,
+      "target_position_in_menu": 1,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "create_s3_storage_bucket",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.3979344367980957,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:41:34",
+      "model": "gemini-3-flash-preview",
+      "base_id": "aws_create_s3_bucket",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "retry_count": 3,
+      "target_position_in_menu": 1,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_bucket",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.279918909072876,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:45:00",
+      "model": "gemini-3-flash-preview",
+      "base_id": "database_execute_query",
+      "variant": "canonical",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 3,
+      "target_position_in_menu": 4,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "execute_database_sql_query",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.27870821952819824,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:45:41",
+      "model": "gemini-3-flash-preview",
+      "base_id": "database_execute_query",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "retry_count": 3,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_query",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.32506346702575684,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:49:07",
+      "model": "gemini-3-flash-preview",
+      "base_id": "crm_update_lead",
+      "variant": "canonical",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 3,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "update_crm_customer_lead",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.30893778800964355,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:49:48",
+      "model": "gemini-3-flash-preview",
+      "base_id": "crm_update_lead",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "retry_count": 3,
+      "target_position_in_menu": 3,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_lead",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.2880580425262451,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:53:14",
+      "model": "gemini-3-flash-preview",
+      "base_id": "shipping_create_label",
+      "variant": "canonical",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 3,
+      "target_position_in_menu": 4,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "generate_shipping_label",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.2789018154144287,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:53:55",
+      "model": "gemini-3-flash-preview",
+      "base_id": "shipping_create_label",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "retry_count": 3,
+      "target_position_in_menu": 2,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_label",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.26341891288757324,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:57:21",
+      "model": "gemini-3-flash-preview",
+      "base_id": "jira_transition_issue",
+      "variant": "canonical",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 3,
+      "target_position_in_menu": 0,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "transition_jira_ticket",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.29303479194641113,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 22:58:02",
+      "model": "gemini-3-flash-preview",
+      "base_id": "jira_transition_issue",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Move ticket ENG-1049 to code_review with notes stating PR #42 is ready.",
+      "retry_count": 3,
+      "target_position_in_menu": 1,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_ticket",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.31318068504333496,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 23:01:28",
+      "model": "gemini-3-flash-preview",
+      "base_id": "datadog_create_alert",
+      "variant": "canonical",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 3,
+      "target_position_in_menu": 1,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "create_datadog_monitor_alert",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.2936844825744629,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
+    },
+    {
+      "timestamp": "2026-10-05 23:02:09",
+      "model": "gemini-3-flash-preview",
+      "base_id": "datadog_create_alert",
+      "variant": "ambiguous_identifiers",
+      "prompt": "Set a Datadog alert on system.cpu.utilization when it exceeds 85.0 over a 15 minute window.",
+      "retry_count": 3,
+      "target_position_in_menu": 4,
+      "total_candidates_in_menu": 5,
+      "infrastructure_error": true,
+      "expected_tool": "process_alert",
+      "selected_tool": null,
+      "selection_correct": false,
+      "latency": 0.3330686092376709,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "raw_text": null
     }
   ],
   "task_3_execution_semantics": [
@@ -181,6 +2900,468 @@
       "field_precision": 1.0,
       "field_recall": 1.0,
       "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "canonical",
+      "exact_match": false,
+      "field_precision": 0.6,
+      "field_recall": 0.75,
+      "mismatches": {
+        "body": {
+          "expected": "memory leak on unmount",
+          "generated": "It has been observed that synthetic events are not being properly cleared or released when components unmount, leading to a memory leak in certain scenarios. \n\nThis issue tracks the investigation and fix for ensuring synthetic events are correctly garbage collected after component unmount."
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": false,
+      "field_precision": 0.6,
+      "field_recall": 0.75,
+      "mismatches": {
+        "request_payload.body": {
+          "expected": "memory leak on unmount",
+          "generated": "It has been observed that synthetic events are not being properly cleared when a component unmounts, leading to a memory leak in certain scenarios. This issue needs investigation to ensure that event references are correctly nullified to allow for garbage collection."
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "optionality_bloat",
+      "exact_match": false,
+      "field_precision": 0.6,
+      "field_recall": 0.75,
+      "mismatches": {
+        "body": {
+          "expected": "memory leak on unmount",
+          "generated": "### Description\nThere appears to be a memory leak related to SyntheticEvents when components are unmounted. It seems that references to these events are not being properly cleared, leading to retained memory in long-running applications.\n\n### Steps to Reproduce\n1. Render a component that attaches event listeners.\n2. Trigger events.\n3. Unmount the component.\n4. Observe that the SyntheticEvent objects are not being garbage collected.\n\n### Expected Behavior\nSyntheticEvent objects should be nullified or released immediately upon component unmount to prevent memory leaks.\n\n### Environment\n- React version: [e.g., 18.x]\n- Browser: [e.g., Chrome, Firefox]"
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": false,
+      "field_precision": 0.75,
+      "field_recall": 0.75,
+      "mismatches": {
+        "text_data": {
+          "expected": "memory leak on unmount",
+          "generated": "### Description\nThere is a memory leak occurring with synthetic events when components are unmounted. It appears that references to these events are not being properly cleared, leading to retained memory after the component lifecycle has ended.\n\n### Expected Behavior\nSynthetic events should be properly cleaned up and garbage collected when the associated component unmounts.\n\n### Actual Behavior\nMemory usage increases over time as components unmount, suggesting that synthetic event objects are being held in memory."
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "canonical",
+      "exact_match": false,
+      "field_precision": 1.0,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "as_user": {
+          "expected": false,
+          "generated": "<MISSING>"
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": false,
+      "field_precision": 1.0,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "request_payload.as_user": {
+          "expected": false,
+          "generated": "<MISSING>"
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "optionality_bloat",
+      "exact_match": false,
+      "field_precision": 1.0,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "as_user": {
+          "expected": false,
+          "generated": "<MISSING>"
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "slack_post_message",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": false,
+      "field_precision": 1.0,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "param_as_u": {
+          "expected": false,
+          "generated": "<MISSING>"
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "canonical",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "optionality_bloat",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "k8s_scale_deployment",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "canonical",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "optionality_bloat",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "aws_create_s3_bucket",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "canonical",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "optionality_bloat",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "database_execute_query",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "canonical",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "optionality_bloat",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "crm_update_lead",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "canonical",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "optionality_bloat",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "shipping_create_label",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "canonical",
+      "exact_match": false,
+      "field_precision": 0.6666666666666666,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "resolution_notes": {
+          "expected": "PR #42 is ready",
+          "generated": "PR #42 is ready."
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": false,
+      "field_precision": 0.6666666666666666,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "request_payload.resolution_notes": {
+          "expected": "PR #42 is ready",
+          "generated": "PR #42 is ready."
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "optionality_bloat",
+      "exact_match": false,
+      "field_precision": 0.6666666666666666,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "resolution_notes": {
+          "expected": "PR #42 is ready",
+          "generated": "PR #42 is ready."
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "jira_transition_issue",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": false,
+      "field_precision": 0.6666666666666666,
+      "field_recall": 0.6666666666666666,
+      "mismatches": {
+        "param_reso": {
+          "expected": "PR #42 is ready",
+          "generated": "PR #42 is ready."
+        }
+      }
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "canonical",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "optionality_bloat",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3.1-flash-lite-preview",
+      "base_id": "datadog_create_alert",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "canonical",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "optionality_bloat",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "base_id": "stripe_create_refund",
+      "mutation_type": "ambiguous_identifiers",
+      "exact_match": true,
+      "field_precision": 1.0,
+      "field_recall": 1.0,
+      "mismatches": {}
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "canonical",
+      "exact_match": false,
+      "field_precision": 0.75,
+      "field_recall": 0.75,
+      "mismatches": {
+        "body": {
+          "expected": "memory leak on unmount",
+          "generated": "There is a potential memory leak involving synthetic events when a component is unmounted. Synthetic events are not being properly cleaned up or released, leading to increased memory usage over time in applications with frequent mounting/unmounting of components that handle events."
+        }
+      }
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "nested_hierarchy",
+      "exact_match": false,
+      "field_precision": 0.6,
+      "field_recall": 0.75,
+      "mismatches": {
+        "request_payload.body": {
+          "expected": "memory leak on unmount",
+          "generated": "There is a memory leak occurring on component unmount related to synthetic events. When components are unmounted, some synthetic event objects or their associated data are not being properly garbage collected, leading to increased memory usage over time in long-running applications.\n\nSteps to reproduce:\n1. Create a component that attaches several event listeners.\n2. Mount and unmount the component repeatedly.\n3. Observe memory usage in DevTools.\n\nExpected behavior:\nMemory should be reclaimed after the component is unmounted.\n\nActual behavior:\nMemory usage continues to grow."
+        }
+      }
+    },
+    {
+      "model": "gemini-3-flash-preview",
+      "base_id": "github_create_issue",
+      "mutation_type": "optionality_bloat",
+      "exact_match": false,
+      "field_precision": 0.75,
+      "field_recall": 0.75,
+      "mismatches": {
+        "body": {
+          "expected": "memory leak on unmount",
+          "generated": "There appears to be a memory leak involving synthetic events when a component is unmounted. Synthetic events are not being properly cleaned up or released, leading to increased memory usage over time in applications with frequent mounting and unmounting of components that use event listeners. This can be observed by profiling memory usage during repeated mount/unmount cycles of components with event handlers."
+        }
+      }
     }
   ]
 }
