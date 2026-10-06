@@ -44,7 +44,29 @@ Every executed call in `raw_benchmark_results.json` records granular, auditable 
 
 ---
 
-## 3. Pipeline Smoke Test Disclosure
+## 3. Reproduction Commands
+
+To explicitly reproduce the current committed results (and scale the experiment), use the following documented commands:
+
+**Smoke Test (Current Committed Data):**
+```bash
+python -u src/benchmark_runner.py --model gemini-3.1-flash-lite-preview --max-suites 1 --delay 4.0
+python src/stats_analyzer.py
+python src/human_eval_auditor.py --interactive
+```
+
+**Full Benchmark Sweep (Planned):**
+```bash
+# Regime A (Provider-Mediated):
+python -u src/benchmark_runner.py --model gemini-3.1-flash-lite-preview --max-suites 20 --delay 4.0
+
+# Regime B (Raw Unconstrained) - Planned implementation:
+python -u src/benchmark_runner.py --model gemini-3.1-flash-lite-preview --max-suites 20 --delay 4.0 --raw-mode
+```
+
+---
+
+## 4. Pipeline Smoke Test Disclosure
 
 > [!IMPORTANT]
 > **Status: Pipeline Verification / Smoke Test Only**  
@@ -54,7 +76,7 @@ Every executed call in `raw_benchmark_results.json` records granular, auditable 
 
 ---
 
-## 4. Threats to Validity: Provider-Mediated Interfaces
+## 5. Threats to Validity: Provider-Mediated Interfaces
 
 Commercial provider tool-calling endpoints (including Gemini Function Calling, OpenAI Structured Outputs, and Anthropic Tools) implement proprietary server-side validation layers, grammar-constrained decoding masks, and vendor-specific system prompting.
 
@@ -66,7 +88,7 @@ Consequently:
 
 ---
 
-## 5. Multi-Provider Scaling Protocol
+## 6. Multi-Provider Scaling Protocol
 
 To transition from protocol verification to a definitive empirical study, the evaluation protocol mandates:
 1. **Multi-Model Breadth:** Evaluating at least 3 distinct model families across proprietary and open-weights paradigms:

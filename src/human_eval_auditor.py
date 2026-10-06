@@ -2,6 +2,14 @@
 src/human_eval_auditor.py - Audit utility for human validation of LLM tool calling fulfillability.
 Enables independent review of whether model-generated tool calls fulfill the user prompt intent,
 detecting argument hallucination, omission, or extraneous mutations.
+
+Human Evaluation Methodology & Rubric:
+- **Auditors:** Two independent domain-expert reviewers.
+- **Sample Size:** 20% random sample of all generated tool calls across conditions.
+- **Rubric (Score 0-1):** 
+    - 1 (Pass): All requested parameters are present, validly formatted, and no hallucinated IDs/values are included.
+    - 0 (Fail): Missing required parameters, invented constraints, or parameters matching distractor intent rather than target intent.
+- **Disagreement Adjudication:** Any discordant scores between the two reviewers are resolved by a third senior reviewer.
 """
 
 import argparse

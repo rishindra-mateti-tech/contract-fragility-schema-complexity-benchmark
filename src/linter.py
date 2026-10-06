@@ -1,6 +1,6 @@
 """
 linter.py - Static Schema Fragility Linter (SchemaFragilityLinter).
-Audits tool contracts against empirically proven structural failure patterns.
+Audits tool contracts against candidate structural risks identified by this protocol.
 """
 
 import json

@@ -164,7 +164,7 @@ To ensure mathematical rigor, all evaluations enforce:
 \noindent\textbf{Smoke Test Disclosure:} The initial baseline telemetry committed to the repository represents a single-suite pipeline smoke test ($N = 1$ suite, 6 API calls on \texttt{gemini-3.1-flash-lite-preview}) to verify end-to-end execution, schema parsing, and statistical calculation pipelines. The wide resulting 95\% Wilson intervals ([20.7\%, 100.0\%]) and lack of discordant pairs ($p = 1.0$) illustrate that this run serves exclusively as harness verification, not empirical proof of model capabilities. Full empirical execution requires our planned multi-provider sweep across 20+ schemas and 3--5 independent repetitions across Gemini, GPT-4o, Claude 3.5 Sonnet, and open-weights Llama-3.1-70B.
 
 \section{Static Schema Linting (\texttt{SchemaFragilityLinter})}
-As an engineering artifact, we release \texttt{SchemaFragilityLinter}, a static analysis utility that audits JSON Schema contracts for known failure patterns prior to deployment:
+As an engineering artifact, we release \texttt{SchemaFragilityLinter}, a static analysis utility that audits JSON Schema contracts for candidate structural risks identified by this protocol prior to deployment:
 \begin{itemize}
     \item \texttt{DEEP\_HIERARCHICAL\_NESTING}: Flags nested object hierarchies exceeding 1-level depth.
     \item \texttt{AMBIGUOUS\_IDENTIFIER}: Flags generic or truncated parameter names (\texttt{id}, \texttt{data}, \texttt{val}).

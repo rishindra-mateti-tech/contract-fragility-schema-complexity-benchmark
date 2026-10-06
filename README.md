@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
 [![Status](https://img.shields.io/badge/Status-Benchmark_Protocol_%26_Specification-orange.svg)]()
-[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen.svg)]()
+[![CI](https://github.com/rishindra-mateti-tech/contract-fragility-schema-complexity-benchmark/actions/workflows/ci.yml/badge.svg)](https://github.com/rishindra-mateti-tech/contract-fragility-schema-complexity-benchmark/actions)
 
 > **Author:** Rishindra Mateti  
 > **Affiliation:** Department of Computer Science, Wright State University, Dayton, OH, USA  
@@ -178,7 +178,7 @@ python src/linter.py data/base_schemas.json
 
 ## 8. Static Schema Fragility Linter (`SchemaFragilityLinter`)
 
-As an engineering contribution, this repository includes an open-source pre-deployment static analysis linter that audits JSON Schema definitions for known structural failure patterns:
+As an engineering contribution, this repository includes an open-source pre-deployment static analysis linter that audits JSON Schema definitions for candidate structural risks identified by this protocol:
 * `DEEP_HIERARCHICAL_NESTING`: Flags nested object hierarchies that cause models to flatten or omit parameters.
 * `AMBIGUOUS_IDENTIFIER`: Flags generic names (`id`, `data`, `val`) that induce tool selection confusion.
 * `EXCESSIVE_OPTIONALITY_BLOAT`: Flags schemas where optional fields outnumber required fields by more than 2:1.
