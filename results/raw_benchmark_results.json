@@ -28,7 +28,10 @@
         "charge_id": "ch_99281a",
         "amount_cents": 4500,
         "reason": "requested_by_customer"
-      }
+      },
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "timestamp": "2026-10-05 19:05:27"
     },
     {
       "model": "gemini-3.1-flash-lite-preview",
@@ -54,7 +57,10 @@
           "amount_cents": 4500,
           "reason": "requested_by_customer"
         }
-      }
+      },
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "timestamp": "2026-10-05 19:05:27"
     },
     {
       "model": "gemini-3.1-flash-lite-preview",
@@ -76,7 +82,10 @@
         "charge_id": "ch_99281a",
         "amount_cents": 4500,
         "reason": "requested_by_customer"
-      }
+      },
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "timestamp": "2026-10-05 19:05:27"
     },
     {
       "model": "gemini-3.1-flash-lite-preview",
@@ -98,7 +107,10 @@
         "target_id": "ch_99281a",
         "qty": 4500,
         "spec": "requested_by_customer"
-      }
+      },
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "timestamp": "2026-10-05 19:05:27"
     }
   ],
   "task_2_tool_selection": [
@@ -112,7 +124,10 @@
       "expected_tool": "create_payment_refund",
       "selected_tool": "create_payment_refund",
       "selection_correct": true,
-      "latency": 8.816888570785522
+      "latency": 8.816888570785522,
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "timestamp": "2026-10-05 19:05:27"
     },
     {
       "model": "gemini-3.1-flash-lite-preview",
@@ -124,7 +139,10 @@
       "expected_tool": "process_refund",
       "selected_tool": "process_refund",
       "selection_correct": true,
-      "latency": 14.167303323745728
+      "latency": 14.167303323745728,
+      "prompt": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+      "retry_count": 0,
+      "timestamp": "2026-10-05 19:05:27"
     }
   ],
   "task_3_execution_semantics": [

@@ -73,7 +73,8 @@ def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_ret
                 "prompt_tokens": prompt_tokens,
                 "completion_tokens": comp_tokens,
                 "infrastructure_error": False,
-                "error": None
+                "error": None,
+                "retry_count": attempt
             }
         except Exception as e:
             elapsed = time.time() - start_time
@@ -91,7 +92,8 @@ def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_ret
                 "prompt_tokens": 0,
                 "completion_tokens": 0,
                 "infrastructure_error": True,
-                "error": err_str
+                "error": err_str,
+                "retry_count": attempt
             }
 
 def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
@@ -164,9 +166,12 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
                     err_msg = resp["error"]
                     
                 record_t1 = {
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
                     "model": model_name,
                     "base_id": base_id,
                     "mutation_type": var_key,
+                    "prompt": query,
+                    "retry_count": resp.get("retry_count", 0),
                     "infrastructure_error": resp["infrastructure_error"],
                     "tool_called": tool_called,
                     "syntax_valid": syntax_valid,
@@ -174,6 +179,8 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
                     "error_message": err_msg,
                     "latency": resp["latency"],
                     "prompt_tokens": resp["prompt_tokens"],
+                    "completion_tokens": resp.get("completion_tokens", 0),
+                    "raw_text": resp.get("raw_text"),
                     "generated_args": generated_args,
                     "expected_args": expected_args
                 }
@@ -227,16 +234,22 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
                     selection_correct = (selected_tool == target_tool["name"])
                     
                 record_t2 = {
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
                     "model": model_name,
                     "base_id": base_id,
                     "variant": test_variant,
+                    "prompt": query,
+                    "retry_count": resp_t2.get("retry_count", 0),
                     "target_position_in_menu": target_position,
                     "total_candidates_in_menu": len(candidate_pool),
                     "infrastructure_error": resp_t2["infrastructure_error"],
                     "expected_tool": target_tool["name"],
                     "selected_tool": selected_tool,
                     "selection_correct": selection_correct,
-                    "latency": resp_t2["latency"]
+                    "latency": resp_t2["latency"],
+                    "prompt_tokens": resp_t2.get("prompt_tokens", 0),
+                    "completion_tokens": resp_t2.get("completion_tokens", 0),
+                    "raw_text": resp_t2.get("raw_text")
                 }
                 results["task_2_tool_selection"].append(record_t2)
                 time.sleep(delay)

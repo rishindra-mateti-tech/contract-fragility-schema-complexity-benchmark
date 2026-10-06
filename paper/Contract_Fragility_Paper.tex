@@ -128,6 +128,14 @@ For each base schema, we programmatically construct four controlled variants hol
     \item \textbf{Ambiguous Identifiers:} Explicit names are replaced with truncated abbreviations and generic tokens (\texttt{process\_action}, \texttt{target\_id}, \texttt{qty}, \texttt{val}) across both tool-level and parameter-level descriptors.
 \end{itemize}
 
+\subsection{Mutation Isolation Verification}
+To prevent confounding interactions between structural dimensions, we implement a formal property-based unit test suite (\texttt{tests/test\_mutations.py}). For every specification across the corpus, our test harness asserts that:
+\begin{itemize}
+    \item \textbf{Nesting Isolation:} The \texttt{nested\_hierarchy} transformation introduces strictly one root property (\texttt{request\_payload}) while maintaining exact invariance of sub-property types, descriptions, and enum sets.
+    \item \textbf{Optionality Isolation:} The \texttt{optionality\_bloat} transformation preserves all required parameters without modification, appending exclusively optional metadata properties.
+    \item \textbf{Ambiguity Isolation:} The \texttt{ambiguous\_identifiers} transformation alters parameter and tool names while strictly preserving underlying JSON types, required status, and enum domains.
+\end{itemize}
+
 \section{Experimental Protocol and Target Hypotheses}
 
 \subsection{Testable Research Hypotheses}
@@ -138,13 +146,22 @@ The benchmark protocol is designed to test three foundational hypotheses:
     \item \textbf{H3 (Optionality Clutter):} Appending high-density optional parameters inflates prompt token overhead without improving task success, inducing hallucination of default arguments.
 \end{itemize}
 
-\subsection{Statistical Methodology}
+\subsection{Threats to Validity: Provider-Mediated Interfaces}
+A fundamental methodological distinction in LLM tool-calling research is the difference between raw transformer attention and provider-mediated execution. Commercial endpoints (such as Google GenAI, OpenAI Function Calling, and Anthropic Tools) do not expose raw token logits; they apply server-side schema compilation, JSON grammar masks (e.g., Outlines-style finite state machines), and proprietary system prompts. Consequently:
+\begin{enumerate}
+    \item \textbf{Scoping of Claims:} Findings on commercial APIs must be reported as characteristics of the \emph{provider-mediated interface}, not general unconstrained LLM attention over schemas.
+    \item \textbf{Protocol Disentanglement:} Our protocol specifies two evaluation tracks: (Track A) vendor-native tool calling with provider-enforced schemas, and (Track B) unconstrained raw prompting with temperature sampling and standard JSON extraction, isolating raw generative competence from vendor-side schema repair.
+\end{enumerate}
+
+\subsection{Statistical Methodology \& Smoke Test Disclosure}
 To ensure mathematical rigor, all evaluations enforce:
 \begin{itemize}
     \item \textbf{Wilson Score Confidence Intervals:} 95\% confidence intervals computed for all binary proportions.
     \item \textbf{McNemar's Paired Exact Tests:} Evaluated on discordant pairs between baseline and mutated conditions to determine statistical significance ($p < 0.05$).
     \item \textbf{Infrastructure Separation:} HTTP availability failures (e.g., 429 throttling) are strictly isolated from model accuracy scoring.
 \end{itemize}
+
+\noindent\textbf{Smoke Test Disclosure:} The initial baseline telemetry committed to the repository represents a single-suite pipeline smoke test ($N = 1$ suite, 6 API calls on \texttt{gemini-3.1-flash-lite-preview}) to verify end-to-end execution, schema parsing, and statistical calculation pipelines. The wide resulting 95\% Wilson intervals ([20.7\%, 100.0\%]) and lack of discordant pairs ($p = 1.0$) illustrate that this run serves exclusively as harness verification, not empirical proof of model capabilities. Full empirical execution requires our planned multi-provider sweep across 20+ schemas and 3--5 independent repetitions across Gemini, GPT-4o, Claude 3.5 Sonnet, and open-weights Llama-3.1-70B.
 
 \section{Static Schema Linting (\texttt{SchemaFragilityLinter})}
 As an engineering artifact, we release \texttt{SchemaFragilityLinter}, a static analysis utility that audits JSON Schema contracts for known failure patterns prior to deployment:
@@ -156,7 +173,7 @@ As an engineering artifact, we release \texttt{SchemaFragilityLinter}, a static 
 \end{itemize}
 
 \section{Conclusion and Next Steps}
-This paper establishes the formal specification and evaluation protocol for contract fragility in LLM function calling. By decoupling evaluation into argument construction, tool selection, and execution semantics, this framework provides a standardized testbed to assess how schema design choices govern reliability. The full benchmark testbed, dataset, and static linter are open-sourced to facilitate reproducible agent engineering.
+This paper establishes the formal specification and evaluation protocol for contract fragility in LLM function calling. By decoupling evaluation into argument construction, tool selection, and execution semantics, this framework provides a standardized testbed to assess how schema design choices govern reliability. The full benchmark testbed, dataset, mutation isolation tests, and static linter are open-sourced to facilitate reproducible agent engineering.
 
 \bibliographystyle{IEEEtran}
 \bibliography{references}

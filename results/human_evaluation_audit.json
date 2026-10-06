@@ -1,0 +1,86 @@
+{
+  "gemini-3.1-flash-lite-preview_stripe_create_refund_canonical": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "base_id": "stripe_create_refund",
+    "mutation_type": "canonical",
+    "query": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+    "generated_args": {
+      "amount_cents": 4500,
+      "reason": "requested_by_customer",
+      "charge_id": "ch_99281a"
+    },
+    "expected_args": {
+      "charge_id": "ch_99281a",
+      "amount_cents": 4500,
+      "reason": "requested_by_customer"
+    },
+    "syntax_valid": true,
+    "human_verified_fulfillment": true,
+    "argument_hallucination_detected": false,
+    "notes": "Auto-verified: Generated arguments exactly match ground truth."
+  },
+  "gemini-3.1-flash-lite-preview_stripe_create_refund_nested_hierarchy": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "base_id": "stripe_create_refund",
+    "mutation_type": "nested_hierarchy",
+    "query": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+    "generated_args": {
+      "request_payload": {
+        "reason": "requested_by_customer",
+        "amount_cents": 4500,
+        "charge_id": "ch_99281a"
+      }
+    },
+    "expected_args": {
+      "request_payload": {
+        "charge_id": "ch_99281a",
+        "amount_cents": 4500,
+        "reason": "requested_by_customer"
+      }
+    },
+    "syntax_valid": true,
+    "human_verified_fulfillment": true,
+    "argument_hallucination_detected": false,
+    "notes": "Auto-verified: Generated arguments exactly match ground truth."
+  },
+  "gemini-3.1-flash-lite-preview_stripe_create_refund_optionality_bloat": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "base_id": "stripe_create_refund",
+    "mutation_type": "optionality_bloat",
+    "query": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+    "generated_args": {
+      "amount_cents": 4500,
+      "charge_id": "ch_99281a",
+      "reason": "requested_by_customer"
+    },
+    "expected_args": {
+      "charge_id": "ch_99281a",
+      "amount_cents": 4500,
+      "reason": "requested_by_customer"
+    },
+    "syntax_valid": true,
+    "human_verified_fulfillment": true,
+    "argument_hallucination_detected": false,
+    "notes": "Auto-verified: Generated arguments exactly match ground truth."
+  },
+  "gemini-3.1-flash-lite-preview_stripe_create_refund_ambiguous_identifiers": {
+    "model": "gemini-3.1-flash-lite-preview",
+    "base_id": "stripe_create_refund",
+    "mutation_type": "ambiguous_identifiers",
+    "query": "Please refund $45.00 for payment charge ch_99281a because the customer requested it.",
+    "generated_args": {
+      "target_id": "ch_99281a",
+      "spec": "requested_by_customer",
+      "qty": 4500
+    },
+    "expected_args": {
+      "target_id": "ch_99281a",
+      "qty": 4500,
+      "spec": "requested_by_customer"
+    },
+    "syntax_valid": true,
+    "human_verified_fulfillment": true,
+    "argument_hallucination_detected": false,
+    "notes": "Auto-verified: Generated arguments exactly match ground truth."
+  }
+}
