@@ -6,7 +6,7 @@
 [![CI](https://github.com/rishindra-mateti-tech/contract-fragility-schema-complexity-benchmark/actions/workflows/ci.yml/badge.svg)](https://github.com/rishindra-mateti-tech/contract-fragility-schema-complexity-benchmark/actions)
 
 > **Author:** Rishindra Mateti  
-> **Affiliation:** Department of Computer Science, Wright State University, Dayton, OH, USA  
+> **Location:** Dallas, TX, USA  
 > **Contact:** contact@rishindramateti.com | [www.rishindramateti.com](https://www.rishindramateti.com) | [ORCID: 0009-0009-5880-8727](https://orcid.org/0009-0009-5880-8727)
 
 ---
@@ -195,7 +195,7 @@ If you reference this benchmark protocol, dataset, or linter in your research, p
 @misc{mateti2026contractfragility,
   title={Contract Fragility: An Empirical Evaluation Protocol for Schema Complexity in LLM Tool Calling},
   author={Mateti, Rishindra},
-  howpublished={Unpublished Benchmark Protocol, Wright State University},
+  howpublished={Unpublished Benchmark Protocol},
   year={2026}
 }
 ```
