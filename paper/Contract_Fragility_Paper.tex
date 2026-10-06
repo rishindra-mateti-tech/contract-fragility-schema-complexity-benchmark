@@ -10,6 +10,8 @@
 \usepackage{microtype}
 \usepackage{url}
 \usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc}
 
 \hypersetup{
     colorlinks=true,
@@ -76,18 +78,31 @@ Recent natural language processing research highlights the sensitivity of LLMs t
 
 \begin{figure*}[t]
 \centering
-\fbox{\parbox{0.96\textwidth}{
-\textbf{Task 1: Argument Construction (Zero Distractors)} \\
-Input: User Query + Exactly One Target Schema (Canonical, Nested, Bloated, or Ambiguous). \\
-Evaluation: Strict JSON Schema Draft-07 validation via \texttt{Draft7Validator}. Metric: Syntactic Validation Pass Rate ($\text{SIR} = 1 - \text{Pass Rate}$). \\[4pt]
-\textbf{Task 2: Tool Selection (Competing Distractor Suites)} \\
-Input: User Query + Target Schema + Domain-Matched Distractor Tools (Randomized Menu Order). \\
-Evaluation: Top-1 Tool Selection Accuracy ($\%$) comparing Canonical vs. Ambiguous names, controlling for positional bias. \\[4pt]
-\textbf{Task 3: Execution Semantics (Recursive Field-Level Value Grounding)} \\
-Input: Syntactically Valid Outputs from Task 1. \\
-Evaluation: Recursive field-by-field Exact Match ($\text{EM}$), Precision, and Recall against ground-truth values.
-}}
-\caption{The Three-Task Decoupled Evaluation Framework for Contract Fragility.}
+\begin{tikzpicture}[
+    node distance=1.5cm and 2.5cm,
+    box/.style={rectangle, draw=black, thick, fill=blue!5, text width=5cm, align=center, rounded corners, minimum height=1.5cm},
+    arrow/.style={-{Stealth[scale=1.2]}, thick},
+    label/.style={font=\small\bfseries}
+]
+    % Nodes
+    \node[box] (query) {User Query + \\ Target Schema + \\ (Optional Distractors)};
+    
+    \node[box, right=of query] (llm) {LLM Generation \\ (Provider-Mediated \\ or Raw Unconstrained)};
+    
+    \node[box, right=of llm] (validation) {Task 1: Syntax Validation \\ (JSON Schema Draft-07)};
+    
+    \node[box, below=of llm] (selection) {Task 2: Tool Selection \\ (Top-1 Accuracy vs Distractors)};
+    
+    \node[box, below=of validation] (semantics) {Task 3: Semantics \\ (Recursive Exact Match \\ against Ground Truth)};
+
+    % Arrows
+    \draw[arrow] (query) -- (llm);
+    \draw[arrow] (llm) -- node[above, label] {Parses JSON} (validation);
+    \draw[arrow] (llm) -- node[right, label] {Extracts Name} (selection);
+    \draw[arrow] (validation) -- node[right, label] {If Valid} (semantics);
+
+\end{tikzpicture}
+\caption{The Three-Task Decoupled Evaluation Pipeline isolating Selection, Syntax, and Semantics.}
 \label{fig:framework}
 \end{figure*}
 

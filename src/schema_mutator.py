@@ -8,31 +8,21 @@ import json
 import os
 
 OPTIONAL_BLOAT_PROPERTIES = {
-    "tags": {
-        "type": "ARRAY",
-        "items": {"type": "STRING"},
-        "description": "Optional arbitrary metadata labels."
-    },
-    "correlation_id": {
-        "type": "STRING",
-        "description": "Unique tracing span identifier for distributed telemetry."
-    },
-    "notify_on_completion": {
-        "type": "BOOLEAN",
-        "description": "Whether to publish an event hook upon completion."
-    },
-    "idempotency_key": {
-        "type": "STRING",
-        "description": "Header token preventing duplicate mutations."
-    },
-    "priority_level": {
-        "type": "INTEGER",
-        "description": "Execution queue priority ranking from 1 to 10."
-    },
-    "audit_comment": {
-        "type": "STRING",
-        "description": "Human-readable justification for security audit logs."
-    }
+    "tags": {"type": "ARRAY", "items": {"type": "STRING"}, "description": "Optional arbitrary metadata labels."},
+    "correlation_id": {"type": "STRING", "description": "Unique tracing span identifier for distributed telemetry."},
+    "notify_on_completion": {"type": "BOOLEAN", "description": "Whether to publish an event hook upon completion."},
+    "idempotency_key": {"type": "STRING", "description": "Header token preventing duplicate mutations."},
+    "priority_level": {"type": "INTEGER", "description": "Execution queue priority ranking from 1 to 10."},
+    "audit_comment": {"type": "STRING", "description": "Human-readable justification for security audit logs."},
+    "dry_run": {"type": "BOOLEAN", "description": "If true, simulates the request without persisting changes."},
+    "tenant_id": {"type": "STRING", "description": "UUID of the multi-tenant partition."},
+    "api_version": {"type": "STRING", "description": "Override for the default API version (e.g., '2026-10-06')."},
+    "strict_mode": {"type": "BOOLEAN", "description": "Fail immediately on warnings if true."},
+    "callback_url": {"type": "STRING", "description": "Webhook URL for async status updates."},
+    "timeout_ms": {"type": "INTEGER", "description": "Maximum execution time in milliseconds before aborting."},
+    "metadata": {"type": "OBJECT", "description": "Key-value pairs for arbitrary extensions."},
+    "session_token": {"type": "STRING", "description": "Ephemeral JWT for cross-service authorization."},
+    "bypass_cache": {"type": "BOOLEAN", "description": "Force a fresh read/write bypassing Redis."}
 }
 
 AMBIGUOUS_NAME_MAPPINGS = {
@@ -111,24 +101,40 @@ def create_nested_variant(base):
     nested_schema = {
         "type": "OBJECT",
         "properties": {
-            "request_payload": {
+            "transaction_context": {
                 "type": "OBJECT",
-                "properties": copy.deepcopy(orig_params["properties"]),
-                "required": copy.deepcopy(orig_params.get("required", []))
+                "properties": {
+                    "data": {
+                        "type": "OBJECT",
+                        "properties": {
+                            "attributes": {
+                                "type": "OBJECT",
+                                "properties": copy.deepcopy(orig_params["properties"]),
+                                "required": copy.deepcopy(orig_params.get("required", []))
+                            }
+                        },
+                        "required": ["attributes"]
+                    }
+                },
+                "required": ["data"]
             }
         },
-        "required": ["request_payload"]
+        "required": ["transaction_context"]
     }
     return {
         "mutation_type": "nested_hierarchy",
-        "description": "Structural depth mutation wrapping properties into request_payload sub-object.",
+        "description": "Structural depth mutation wrapping properties 3 levels deep.",
         "tool": {
             "name": base["name"],
             "description": base["description"],
             "parameters": nested_schema
         },
         "expected_args": {
-            "request_payload": copy.deepcopy(base["ground_truth"])
+            "transaction_context": {
+                "data": {
+                    "attributes": copy.deepcopy(base["ground_truth"])
+                }
+            }
         }
     }
 
@@ -155,8 +161,13 @@ def create_ambiguous_identifiers_variant(base):
     new_expected = {}
     
     for old_name, old_prop in params["properties"].items():
-        new_name = AMBIGUOUS_NAME_MAPPINGS.get(old_name, f"param_{old_name[:4]}")
-        new_props[new_name] = copy.deepcopy(old_prop)
+        new_name = AMBIGUOUS_NAME_MAPPINGS.get(old_name, f"param_{old_name[:3]}_v2")
+        # Strip the description entirely to make it harder
+        new_prop = copy.deepcopy(old_prop)
+        if "description" in new_prop:
+            del new_prop["description"]
+        new_props[new_name] = new_prop
+        
         if old_name in params.get("required", []):
             new_required.append(new_name)
         if old_name in base["ground_truth"]:
@@ -165,14 +176,14 @@ def create_ambiguous_identifiers_variant(base):
     params["properties"] = new_props
     params["required"] = new_required
     
-    # Mutate tool name and docstring to test identifier ambiguity
+    # Mutate tool name and docstring to test extreme identifier ambiguity
     verb_parts = base["name"].split("_")
-    ambiguous_tool_name = f"process_{verb_parts[-1]}" if len(verb_parts) > 1 else f"handle_{base['name']}"
-    ambiguous_description = "Execute the requested operation on the target resource using the provided payload."
+    ambiguous_tool_name = f"system_op_0x{hash(base['name']) % 10000:04x}"
+    ambiguous_description = "Internal operation endpoint."
     
     return {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
+        "description": "Extreme semantic friction mutation removing all docstrings and using obfuscated names.",
         "tool": {
             "name": ambiguous_tool_name,
             "description": ambiguous_description,
