@@ -175,10 +175,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_payment_refund",
-          "description": "Issue a full or partial refund for a processed Stripe payment charge.",
+          "name": "process_refund",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -413,10 +413,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_repository_issue",
-          "description": "Create a new tracking issue in a specified GitHub repository.",
+          "name": "process_issue",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -621,10 +621,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "send_slack_channel_message",
-          "description": "Post a formatted text message to a public or private Slack channel.",
+          "name": "process_message",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -820,10 +820,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "scale_kubernetes_deployment",
-          "description": "Scale the replica count of a named Kubernetes deployment in a target namespace.",
+          "name": "process_deployment",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -1023,10 +1023,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_s3_storage_bucket",
-          "description": "Provision a new Amazon Simple Storage Service (S3) bucket in a target AWS region.",
+          "name": "process_bucket",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -1224,10 +1224,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "execute_database_sql_query",
-          "description": "Execute a safe read or write SQL query against a PostgreSQL database cluster.",
+          "name": "process_query",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -1445,10 +1445,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "update_crm_customer_lead",
-          "description": "Update the pipeline status and deal estimate for a sales lead.",
+          "name": "process_lead",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -1691,10 +1691,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "generate_shipping_label",
-          "description": "Create a freight or parcel shipping label with an integrated carrier.",
+          "name": "process_label",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -1907,10 +1907,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "transition_jira_ticket",
-          "description": "Advance a Jira software ticket through the active sprint workflow.",
+          "name": "process_ticket",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -2108,10 +2108,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_datadog_monitor_alert",
-          "description": "Configure an automated monitoring rule and threshold alert in Datadog.",
+          "name": "process_alert",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -2290,10 +2290,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "send_twilio_sms_message",
-          "description": "Dispatch an outbound SMS message via the Twilio Messaging API.",
+          "name": "process_message",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -2508,10 +2508,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_zendesk_support_ticket",
-          "description": "Submit a customer support helpdesk ticket to Zendesk.",
+          "name": "process_ticket",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -2734,10 +2734,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "add_mailchimp_newsletter_subscriber",
-          "description": "Subscribe an email contact to an audience marketing list in Mailchimp.",
+          "name": "process_subscriber",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -2931,10 +2931,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "purge_cloudflare_cdn_cache",
-          "description": "Invalidate cached assets across Cloudflare edge data centers.",
+          "name": "process_cache",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -3140,10 +3140,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "trigger_pagerduty_incident",
-          "description": "Fire a high-priority incident alert to on-call engineering engineers.",
+          "name": "process_incident",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -3344,10 +3344,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_auth0_directory_user",
-          "description": "Provision a new user identity record in an Auth0 database connection.",
+          "name": "process_user",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -3541,10 +3541,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "index_elasticsearch_document",
-          "description": "Insert or replace a JSON document into an Elasticsearch cluster index.",
+          "name": "process_document",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -3755,10 +3755,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_notion_database_page",
-          "description": "Create a new row or sub-page in a Notion relational workspace database.",
+          "name": "process_page",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -3981,10 +3981,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "run_docker_container",
-          "description": "Instantiate and run a software container from an OCI Docker image.",
+          "name": "process_container",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {
@@ -4203,10 +4203,10 @@
       },
       "ambiguous_identifiers": {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-          "name": "create_shopify_discount_code",
-          "description": "Generate an automated coupon discount code for a Shopify merchant storefront.",
+          "name": "process_code",
+          "description": "Execute the requested operation on the target resource using the provided payload.",
           "parameters": {
             "type": "OBJECT",
             "properties": {

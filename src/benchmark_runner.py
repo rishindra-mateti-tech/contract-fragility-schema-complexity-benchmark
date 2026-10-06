@@ -1,32 +1,31 @@
 """
 benchmark_runner.py - Orchestrates real API inference for Task 1, Task 2, and Task 3,
-capturing deterministic performance metrics and failure taxonomies.
+capturing deterministic performance metrics, availability telemetry, and failure taxonomies.
 """
 
 import json
 import os
+import random
 import sys
 import time
 
 # Ensure project root is in sys.path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
 from src.validator import validate_syntax, validate_semantics
 
 def load_gemini_client():
-    env_file = r"C:\Users\rishi\OneDrive\Desktop\zuzu\ZUZU_LightRag\Backend\.env"
-    key = os.environ.get("GEMINI_API_KEY")
-    if not key and os.path.exists(env_file):
-        with open(env_file, "r", encoding="utf-8") as f:
-            for line in f:
-                if line.startswith("GEMINI_API_KEY="):
-                    key = line.split("=", 1)[1].strip().strip('"').strip("'")
-                    break
+    load_dotenv()
+    key = os.getenv("GEMINI_API_KEY")
     if not key:
-        raise ValueError("GEMINI_API_KEY not found in environment or fallback .env")
+        raise ValueError(
+            "GEMINI_API_KEY environment variable is required. "
+            "Please create a .env file based on .env.example or set the environment variable."
+        )
     return genai.Client(api_key=key)
 
 def format_gemini_tool(tool_dict):
@@ -38,8 +37,8 @@ def format_gemini_tool(tool_dict):
     )
     return types.Tool(function_declarations=[func_decl])
 
-def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_retries=3):
-    """Executes a model call with exponential backoff and records timing and token telemetry."""
+def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_retries=4):
+    """Executes a model call with exponential backoff and records timing, token, and availability telemetry."""
     for attempt in range(max_retries):
         start_time = time.time()
         try:
@@ -73,14 +72,15 @@ def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_ret
                 "raw_text": response.text if not tool_calls else None,
                 "prompt_tokens": prompt_tokens,
                 "completion_tokens": comp_tokens,
+                "infrastructure_error": False,
                 "error": None
             }
         except Exception as e:
             elapsed = time.time() - start_time
             err_str = str(e)
-            if ("429" in err_str or "503" in err_str or "RESOURCE_EXHAUSTED" in err_str) and attempt < max_retries - 1:
-                wait_sec = (attempt + 1) * 3
-                print(f"[{model_name}] Transient error ({err_str[:40]}...). Retrying in {wait_sec}s...")
+            if ("429" in err_str or "503" in err_str or "RESOURCE_EXHAUSTED" in err_str or "UNAVAILABLE" in err_str) and attempt < max_retries - 1:
+                wait_sec = (attempt + 1) * 6
+                print(f"[{model_name}] Infrastructure throttle ({err_str[:40]}...). Retrying in {wait_sec}s...", flush=True)
                 time.sleep(wait_sec)
                 continue
             return {
@@ -90,12 +90,13 @@ def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_ret
                 "raw_text": None,
                 "prompt_tokens": 0,
                 "completion_tokens": 0,
+                "infrastructure_error": True,
                 "error": err_str
             }
 
-def run_benchmark(models=None, num_repeats=1):
+def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
     if models is None:
-        models = ["gemini-flash-latest", "gemini-3.5-flash-lite"]
+        models = ["gemini-3-flash-preview"]
         
     client = load_gemini_client()
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -103,9 +104,15 @@ def run_benchmark(models=None, num_repeats=1):
     with open(os.path.join(root_dir, "data", "mutated_schemas.json"), "r", encoding="utf-8") as f:
         schema_suites = json.load(f)
         
-    with open(os.path.join(root_dir, "data", "distractor_tools.json"), "r", encoding="utf-8") as f:
-        distractors = json.load(f)
+    if max_suites is not None:
+        schema_suites = schema_suites[:max_suites]
         
+    with open(os.path.join(root_dir, "data", "distractor_tools.json"), "r", encoding="utf-8") as f:
+        distractor_catalog = json.load(f)
+        
+    out_file = os.path.join(root_dir, "results", "raw_benchmark_results.json")
+    os.makedirs(os.path.dirname(out_file), exist_ok=True)
+    
     results = {
         "metadata": {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -119,7 +126,7 @@ def run_benchmark(models=None, num_repeats=1):
     }
     
     total_calls = len(models) * len(schema_suites) * (4 + 2) * num_repeats
-    print(f"Starting Benchmark Execution: {total_calls} total model calls across {len(models)} models...")
+    print(f"Starting Benchmark Protocol: {total_calls} planned calls across {len(models)} models...")
     call_idx = 0
     
     for model_name in models:
@@ -138,7 +145,6 @@ def run_benchmark(models=None, num_repeats=1):
                 
                 resp = execute_llm_call(client, model_name, query, [genai_tool], temperature=0.0)
                 
-                # Validation
                 tool_called = False
                 syntax_valid = False
                 err_category = None
@@ -154,13 +160,14 @@ def run_benchmark(models=None, num_repeats=1):
                     err_category = "NO_TOOL_INVOKED"
                     err_msg = "Model generated plain text instead of function call"
                 else:
-                    err_category = "API_ERROR"
+                    err_category = "INFRASTRUCTURE_UNAVAILABLE"
                     err_msg = resp["error"]
                     
                 record_t1 = {
                     "model": model_name,
                     "base_id": base_id,
                     "mutation_type": var_key,
+                    "infrastructure_error": resp["infrastructure_error"],
                     "tool_called": tool_called,
                     "syntax_valid": syntax_valid,
                     "error_category": err_category,
@@ -172,7 +179,7 @@ def run_benchmark(models=None, num_repeats=1):
                 }
                 results["task_1_argument_construction"].append(record_t1)
                 
-                # --- TASK 3: Execution Semantics (Factual / Grounding Accuracy) ---
+                # --- TASK 3: Execution Semantics (Factual Grounding Accuracy) ---
                 if syntax_valid:
                     sem_em, sem_p, sem_r, sem_det = validate_semantics(generated_args, expected_args)
                     record_t3 = {
@@ -186,22 +193,28 @@ def run_benchmark(models=None, num_repeats=1):
                     }
                     results["task_3_execution_semantics"].append(record_t3)
                     
-                time.sleep(0.6)  # Rate limiting hygiene
+                time.sleep(delay)
                 
-            # --- TASK 2: Tool Selection (Target Tool + 4 Distractors) ---
-            # Compare Canonical vs Ambiguous Identifiers in multi-tool setting
+            # --- TASK 2: Tool Selection (Target Tool + Randomized Distractors) ---
             for test_variant in ["canonical", "ambiguous_identifiers"]:
                 call_idx += 1
                 target_tool = variants[test_variant]["tool"]
                 
-                # Build tool suite with 4 distractors
-                all_tools_list = [target_tool] + distractors
+                # Retrieve domain-specific or randomized distractors
+                distractors = distractor_catalog.get(base_id, distractor_catalog.get("generic_fallback", []))
+                
+                # Assemble candidate suite and randomly shuffle to prevent position bias
+                candidate_pool = [target_tool] + distractors
+                rng = random.Random(42 + call_idx)
+                rng.shuffle(candidate_pool)
+                target_position = [i for i, t in enumerate(candidate_pool) if t["name"] == target_tool["name"]][0]
+                
                 genai_tools = types.Tool(function_declarations=[
                     types.FunctionDeclaration(
                         name=t["name"],
                         description=t["description"],
                         parameters=t["parameters"]
-                    ) for t in all_tools_list
+                    ) for t in candidate_pool
                 ])
                 
                 resp_t2 = execute_llm_call(client, model_name, query, [genai_tools], temperature=0.0)
@@ -217,22 +230,31 @@ def run_benchmark(models=None, num_repeats=1):
                     "model": model_name,
                     "base_id": base_id,
                     "variant": test_variant,
+                    "target_position_in_menu": target_position,
+                    "total_candidates_in_menu": len(candidate_pool),
+                    "infrastructure_error": resp_t2["infrastructure_error"],
                     "expected_tool": target_tool["name"],
                     "selected_tool": selected_tool,
                     "selection_correct": selection_correct,
                     "latency": resp_t2["latency"]
                 }
                 results["task_2_tool_selection"].append(record_t2)
-                time.sleep(0.6)
+                time.sleep(delay)
                 
-            print(f"[{model_name}] Completed suite: {base_id} ({call_idx}/{total_calls} calls)", flush=True)
+            # Progressive checkpointing after each suite
+            with open(out_file, "w", encoding="utf-8") as f:
+                json.dump(results, f, indent=2)
+            print(f"[{model_name}] Completed suite: {base_id} ({call_idx}/{total_calls}) - Checkpointed", flush=True)
 
-    # Save raw results
-    out_file = os.path.join(root_dir, "results", "raw_benchmark_results.json")
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2)
-    print(f"\nBenchmark completed successfully! Saved all raw logs to {out_file}")
+    print(f"\nExecution run finished. Final telemetry saved to {out_file}", flush=True)
     return results
 
 if __name__ == "__main__":
-    run_benchmark()
+    import argparse
+    parser = argparse.ArgumentParser(description="Contract Fragility Benchmark Runner")
+    parser.add_argument("--model", type=str, default="gemini-3-flash-preview", help="Target model identifier")
+    parser.add_argument("--max-suites", type=int, default=None, help="Maximum number of suites to evaluate")
+    parser.add_argument("--delay", type=float, default=3.0, help="Sleep duration between calls in seconds")
+    args = parser.parse_args()
+    
+    run_benchmark(models=[args.model], max_suites=args.max_suites, delay=args.delay)

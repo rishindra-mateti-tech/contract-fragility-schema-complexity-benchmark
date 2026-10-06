@@ -9,7 +9,7 @@ from jsonschema import Draft7Validator
 
 def convert_to_json_schema(schema_dict):
     """
-    Converts Gemini/OpenAPI parameter format to standard JSON Schema Draft-07.
+    Converts OpenAPI parameter format to standard JSON Schema Draft-07.
     Maps uppercase types (STRING, OBJECT, etc.) to lowercase (string, object, etc.).
     """
     if not isinstance(schema_dict, dict):
@@ -67,50 +67,73 @@ def validate_syntax(generated_args, parameters_schema):
         
     return False, category, first_error.message
 
+def _values_are_equivalent(val_gen, val_exp):
+    """Robust value comparison handling types, whitespace, case, and numbers."""
+    if val_gen is None and val_exp is None:
+        return True
+    if val_gen is None or val_exp is None:
+        return False
+        
+    # Numeric equivalence (e.g. 4500 == 4500.0 or '4500' vs 4500)
+    try:
+        num_gen = float(val_gen)
+        num_exp = float(val_exp)
+        if abs(num_gen - num_exp) < 1e-5:
+            return True
+    except (ValueError, TypeError):
+        pass
+        
+    # String equivalence with case and whitespace stripping
+    if isinstance(val_gen, str) and isinstance(val_exp, str):
+        return " ".join(val_gen.strip().lower().split()) == " ".join(val_exp.strip().lower().split())
+        
+    return val_gen == val_exp
+
+def flatten_dict(d, parent_key="", sep="."):
+    """Recursively flattens a nested dictionary into dot-separated paths."""
+    items = []
+    if isinstance(d, dict):
+        for k, v in d.items():
+            new_key = f"{parent_key}{sep}{k}" if parent_key else k
+            if isinstance(v, dict):
+                items.extend(flatten_dict(v, new_key, sep=sep).items())
+            else:
+                items.append((new_key, v))
+    return dict(items)
+
 def validate_semantics(generated_args, expected_args):
     """
-    Evaluates grounding and execution semantics against ground truth.
+    Evaluates grounding and execution semantics with recursive field-by-field scoring.
     Returns: (exact_match: bool, field_precision: float, field_recall: float, details: dict)
     """
     if not isinstance(generated_args, dict) or not isinstance(expected_args, dict):
         return False, 0.0, 0.0, {"error": "Invalid argument types"}
         
-    expected_keys = set(expected_args.keys())
-    generated_keys = set(generated_args.keys())
+    flat_exp = flatten_dict(expected_args)
+    flat_gen = flatten_dict(generated_args)
     
-    matched_keys = []
-    mismatched_values = {}
+    matched_paths = []
+    mismatched_paths = {}
     
-    for k, v_exp in expected_args.items():
-        if k in generated_args:
-            v_gen = generated_args[k]
-            # Handle nested dicts recursively
-            if isinstance(v_exp, dict) and isinstance(v_gen, dict):
-                sub_em, _, _, _ = validate_semantics(v_gen, v_exp)
-                if sub_em:
-                    matched_keys.append(k)
-                else:
-                    mismatched_values[k] = {"expected": v_exp, "generated": v_gen}
+    for path, exp_val in flat_exp.items():
+        if path in flat_gen:
+            gen_val = flat_gen[path]
+            if _values_are_equivalent(gen_val, exp_val):
+                matched_paths.append(path)
             else:
-                # String normalization
-                if isinstance(v_exp, str) and isinstance(v_gen, str):
-                    if v_exp.strip().lower() == v_gen.strip().lower():
-                        matched_keys.append(k)
-                    else:
-                        mismatched_values[k] = {"expected": v_exp, "generated": v_gen}
-                elif v_exp == v_gen:
-                    matched_keys.append(k)
-                else:
-                    mismatched_values[k] = {"expected": v_exp, "generated": v_gen}
+                mismatched_paths[path] = {"expected": exp_val, "generated": gen_val}
         else:
-            mismatched_values[k] = {"expected": v_exp, "generated": "<MISSING>"}
+            mismatched_paths[path] = {"expected": exp_val, "generated": "<MISSING>"}
             
-    recall = len(matched_keys) / len(expected_keys) if expected_keys else 1.0
-    precision = len(matched_keys) / len(generated_keys) if generated_keys else 1.0
-    exact_match = (len(matched_keys) == len(expected_keys) and len(mismatched_values) == 0)
+    total_expected = len(flat_exp)
+    total_generated = len(flat_gen)
+    
+    recall = len(matched_paths) / total_expected if total_expected > 0 else 1.0
+    precision = len(matched_paths) / total_generated if total_generated > 0 else 1.0
+    exact_match = (len(matched_paths) == total_expected and len(mismatched_paths) == 0)
     
     return exact_match, precision, recall, {
-        "matched_keys": matched_keys,
-        "mismatches": mismatched_values,
-        "unsolicited_keys": list(generated_keys - expected_keys)
+        "matched_fields": matched_paths,
+        "mismatches": mismatched_paths,
+        "unsolicited_fields": list(set(flat_gen.keys()) - set(flat_exp.keys()))
     }

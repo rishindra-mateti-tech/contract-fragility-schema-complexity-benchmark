@@ -165,12 +165,17 @@ def create_ambiguous_identifiers_variant(base):
     params["properties"] = new_props
     params["required"] = new_required
     
+    # Mutate tool name and docstring to test identifier ambiguity
+    verb_parts = base["name"].split("_")
+    ambiguous_tool_name = f"process_{verb_parts[-1]}" if len(verb_parts) > 1 else f"handle_{base['name']}"
+    ambiguous_description = "Execute the requested operation on the target resource using the provided payload."
+    
     return {
         "mutation_type": "ambiguous_identifiers",
-        "description": "Semantic friction mutation replacing descriptive parameter names with ambiguous abbreviations.",
+        "description": "Semantic friction mutation replacing descriptive tool/parameter names with generic tokens.",
         "tool": {
-            "name": base["name"],
-            "description": base["description"],
+            "name": ambiguous_tool_name,
+            "description": ambiguous_description,
             "parameters": params
         },
         "expected_args": new_expected

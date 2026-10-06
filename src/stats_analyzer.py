@@ -1,6 +1,6 @@
 """
 stats_analyzer.py - Computes statistical significance, confidence intervals (Wilson score),
-McNemar paired tests, and tabulates paper-ready results.
+McNemar paired tests, availability telemetry, and tabulates paper-ready results.
 """
 
 import json
@@ -49,12 +49,13 @@ def analyze_results():
     with open(raw_file, "r", encoding="utf-8") as f:
         data = json.load(f)
         
-    t1_records = data["task_1_argument_construction"]
-    t2_records = data["task_2_tool_selection"]
-    t3_records = data["task_3_execution_semantics"]
+    t1_records = data.get("task_1_argument_construction", [])
+    t2_records = data.get("task_2_tool_selection", [])
+    t3_records = data.get("task_3_execution_semantics", [])
     models = data["metadata"]["models"]
     
     summary = {
+        "infrastructure_availability": {},
         "task_1_summary": {},
         "task_1_errors": {},
         "task_2_summary": {},
@@ -62,8 +63,9 @@ def analyze_results():
         "significance_tests": {}
     }
     
-    # --- TASK 1 ANALYSIS ---
+    # --- INFRASTRUCTURE & TASK 1 ANALYSIS ---
     for model in models:
+        summary["infrastructure_availability"][model] = {}
         summary["task_1_summary"][model] = {}
         summary["task_1_errors"][model] = {}
         m_t1 = [r for r in t1_records if r["model"] == model]
@@ -71,41 +73,56 @@ def analyze_results():
         mutations = ["canonical", "nested_hierarchy", "optionality_bloat", "ambiguous_identifiers"]
         for mut in mutations:
             sub = [r for r in m_t1 if r["mutation_type"] == mut]
-            total = len(sub)
-            syntax_pass = sum(1 for r in sub if r["syntax_valid"])
-            p, low, high = wilson_score_interval(syntax_pass, total)
-            avg_lat = np.mean([r["latency"] for r in sub]) if sub else 0.0
-            avg_tokens = np.mean([r["prompt_tokens"] for r in sub]) if sub else 0.0
+            total_attempted = len(sub)
+            infra_errors = [r for r in sub if r.get("infrastructure_error", False)]
+            valid_responses = [r for r in sub if not r.get("infrastructure_error", False)]
+            
+            avail_rate = len(valid_responses) / total_attempted if total_attempted > 0 else 0.0
+            summary["infrastructure_availability"][model][mut] = {
+                "total_attempted": total_attempted,
+                "completed_http_200": len(valid_responses),
+                "infrastructure_throttle_count": len(infra_errors),
+                "availability_rate": round(avail_rate, 4)
+            }
+            
+            # Model performance scored strictly on completed valid HTTP 200 responses
+            n_eval = len(valid_responses)
+            syntax_pass = sum(1 for r in valid_responses if r["syntax_valid"])
+            p, low, high = wilson_score_interval(syntax_pass, n_eval) if n_eval > 0 else (0.0, 0.0, 0.0)
+            avg_lat = np.mean([r["latency"] for r in valid_responses]) if valid_responses else 0.0
+            avg_tokens = np.mean([r["prompt_tokens"] for r in valid_responses]) if valid_responses else 0.0
             
             summary["task_1_summary"][model][mut] = {
-                "total": total,
-                "passed": syntax_pass,
-                "pass_rate": round(p, 4),
-                "ci_lower": round(low, 4),
-                "ci_upper": round(high, 4),
+                "evaluated_samples": n_eval,
+                "syntax_passed": syntax_pass,
+                "syntax_pass_rate": round(p, 4) if n_eval > 0 else None,
+                "ci_lower": round(low, 4) if n_eval > 0 else None,
+                "ci_upper": round(high, 4) if n_eval > 0 else None,
                 "avg_latency": round(float(avg_lat), 3),
                 "avg_prompt_tokens": round(float(avg_tokens), 1)
             }
             
-            # Error categories
-            for r in sub:
+            # Error categories across valid evaluations
+            for r in valid_responses:
                 if not r["syntax_valid"]:
-                    cat = r["error_category"] or "UNKNOWN"
+                    cat = r.get("error_category") or "UNKNOWN"
                     summary["task_1_errors"][model][cat] = summary["task_1_errors"][model].get(cat, 0) + 1
                     
-        # Paired McNemar tests: Canonical vs Mutated
+        # Paired McNemar tests: Canonical vs Mutated on common evaluated suites
         summary["significance_tests"][model] = {}
-        can_dict = {r["base_id"]: r["syntax_valid"] for r in m_t1 if r["mutation_type"] == "canonical"}
+        can_dict = {r["base_id"]: r["syntax_valid"] for r in m_t1 if r["mutation_type"] == "canonical" and not r.get("infrastructure_error", False)}
         for mut in ["nested_hierarchy", "optionality_bloat", "ambiguous_identifiers"]:
-            mut_dict = {r["base_id"]: r["syntax_valid"] for r in m_t1 if r["mutation_type"] == mut}
-            b = sum(1 for bid in can_dict if can_dict[bid] and not mut_dict.get(bid, False))
-            c = sum(1 for bid in can_dict if not can_dict[bid] and mut_dict.get(bid, False))
-            p_val = mcnemar_test(b, c)
+            mut_dict = {r["base_id"]: r["syntax_valid"] for r in m_t1 if r["mutation_type"] == mut and not r.get("infrastructure_error", False)}
+            common_ids = set(can_dict.keys()) & set(mut_dict.keys())
+            b = sum(1 for bid in common_ids if can_dict[bid] and not mut_dict[bid])
+            c = sum(1 for bid in common_ids if not can_dict[bid] and mut_dict[bid])
+            p_val = mcnemar_test(b, c) if len(common_ids) > 0 else 1.0
             summary["significance_tests"][model][f"canonical_vs_{mut}"] = {
+                "common_evaluated_suites": len(common_ids),
                 "b_can_pass_mut_fail": b,
                 "c_can_fail_mut_pass": c,
                 "p_value": round(p_val, 5),
-                "significant_at_05": (p_val < 0.05)
+                "significant_at_05": (p_val < 0.05) if len(common_ids) >= 10 else False
             }
             
     # --- TASK 2 ANALYSIS ---
@@ -114,15 +131,16 @@ def analyze_results():
         m_t2 = [r for r in t2_records if r["model"] == model]
         for v in ["canonical", "ambiguous_identifiers"]:
             sub = [r for r in m_t2 if r["variant"] == v]
-            total = len(sub)
-            corr = sum(1 for r in sub if r["selection_correct"])
-            p, low, high = wilson_score_interval(corr, total)
+            valid_t2 = [r for r in sub if not r.get("infrastructure_error", False)]
+            n_eval = len(valid_t2)
+            corr = sum(1 for r in valid_t2 if r["selection_correct"])
+            p, low, high = wilson_score_interval(corr, n_eval) if n_eval > 0 else (0.0, 0.0, 0.0)
             summary["task_2_summary"][model][v] = {
-                "total": total,
-                "correct": corr,
-                "accuracy": round(p, 4),
-                "ci_lower": round(low, 4),
-                "ci_upper": round(high, 4)
+                "evaluated_samples": n_eval,
+                "correct_selections": corr,
+                "selection_accuracy": round(p, 4) if n_eval > 0 else None,
+                "ci_lower": round(low, 4) if n_eval > 0 else None,
+                "ci_upper": round(high, 4) if n_eval > 0 else None
             }
 
     # --- TASK 3 ANALYSIS ---
@@ -133,17 +151,17 @@ def analyze_results():
             sub = [r for r in m_t3 if r["mutation_type"] == mut]
             total = len(sub)
             em = sum(1 for r in sub if r["exact_match"])
-            p, low, high = wilson_score_interval(em, total)
+            p, low, high = wilson_score_interval(em, total) if total > 0 else (0.0, 0.0, 0.0)
             avg_prec = np.mean([r["field_precision"] for r in sub]) if sub else 0.0
             avg_rec = np.mean([r["field_recall"] for r in sub]) if sub else 0.0
             summary["task_3_summary"][model][mut] = {
                 "total_valid_evaluated": total,
                 "exact_match_count": em,
-                "exact_match_rate": round(p, 4),
-                "ci_lower": round(low, 4),
-                "ci_upper": round(high, 4),
-                "avg_field_precision": round(float(avg_prec), 4),
-                "avg_field_recall": round(float(avg_rec), 4)
+                "exact_match_rate": round(p, 4) if total > 0 else None,
+                "ci_lower": round(low, 4) if total > 0 else None,
+                "ci_upper": round(high, 4) if total > 0 else None,
+                "avg_field_precision": round(float(avg_prec), 4) if total > 0 else None,
+                "avg_field_recall": round(float(avg_rec), 4) if total > 0 else None
             }
 
     # Save summary metrics
@@ -163,7 +181,7 @@ def generate_latex_tables(summary, tables_dir):
         "\\begin{table*}[t]",
         "\\centering",
         "\\small",
-        "\\caption{Task 1: Syntactic Schema Validation Pass Rates (\\% [95\\% Wilson CI]) across Controlled Schema Mutations.}",
+        "\\caption{Task 1: Syntactic Schema Validation Pass Rates (\\% [95\\% Wilson CI]) Across Controlled Schema Mutations.}",
         "\\label{tab:task1_syntactic}",
         "\\begin{tabular}{lcccc}",
         "\\toprule",
@@ -174,10 +192,13 @@ def generate_latex_tables(summary, tables_dir):
         row = [f"\\texttt{{{model}}}"]
         for mut in ["canonical", "nested_hierarchy", "optionality_bloat", "ambiguous_identifiers"]:
             d = m_data[mut]
-            pct = d["pass_rate"] * 100
-            low = d["ci_lower"] * 100
-            high = d["ci_upper"] * 100
-            row.append(f"{pct:.1f}\\% [{low:.1f}, {high:.1f}]")
+            if d["syntax_pass_rate"] is not None:
+                pct = d["syntax_pass_rate"] * 100
+                low = d["ci_lower"] * 100
+                high = d["ci_upper"] * 100
+                row.append(f"{pct:.1f}\\% [{low:.1f}, {high:.1f}]")
+            else:
+                row.append("N/A")
         t1_tex.append(" & ".join(row) + " \\\\")
     t1_tex.extend(["\\bottomrule", "\\end{tabular}", "\\end{table*}"])
     
@@ -189,7 +210,7 @@ def generate_latex_tables(summary, tables_dir):
         "\\begin{table}[t]",
         "\\centering",
         "\\small",
-        "\\caption{Task 2: Tool Selection Accuracy (\\%) with 4 Distractor Tools Present.}",
+        "\\caption{Task 2: Tool Selection Accuracy (\\%) with Domain-Matched Distractor Suites.}",
         "\\label{tab:task2_selection}",
         "\\begin{tabular}{lcc}",
         "\\toprule",
@@ -200,14 +221,17 @@ def generate_latex_tables(summary, tables_dir):
         row = [f"\\texttt{{{model}}}"]
         for v in ["canonical", "ambiguous_identifiers"]:
             d = m_data[v]
-            row.append(f"{d['accuracy']*100:.1f}\\%")
+            if d["selection_accuracy"] is not None:
+                row.append(f"{d['selection_accuracy']*100:.1f}\\%")
+            else:
+                row.append("N/A")
         t2_tex.append(" & ".join(row) + " \\\\")
     t2_tex.extend(["\\bottomrule", "\\end{tabular}", "\\end{table}"])
 
     with open(os.path.join(tables_dir, "table2_tool_selection.tex"), "w", encoding="utf-8") as f:
         f.write("\n".join(t2_tex))
 
-    # Table 3: Task 3 Execution Semantics Exact Match
+    # Table 3: Task 3 Execution Semantics
     t3_tex = [
         "\\begin{table*}[t]",
         "\\centering",
@@ -223,13 +247,13 @@ def generate_latex_tables(summary, tables_dir):
         row = [f"\\texttt{{{model}}}"]
         for mut in ["canonical", "nested_hierarchy", "optionality_bloat", "ambiguous_identifiers"]:
             d = m_data.get(mut, {})
-            if d.get("total_valid_evaluated", 0) > 0:
+            if d.get("exact_match_rate") is not None:
                 pct = d["exact_match_rate"] * 100
                 low = d["ci_lower"] * 100
                 high = d["ci_upper"] * 100
                 row.append(f"{pct:.1f}\\% [{low:.1f}, {high:.1f}]")
             else:
-                row.append("N/A (0 valid)")
+                row.append("N/A")
         t3_tex.append(" & ".join(row) + " \\\\")
     t3_tex.extend(["\\bottomrule", "\\end{tabular}", "\\end{table*}"])
 

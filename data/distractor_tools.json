@@ -1,78 +1,1360 @@
-[
-  {
-    "name": "get_account_balance",
-    "description": "Retrieve the current cash and credit balance for a specified user or merchant account.",
-    "parameters": {
-      "type": "OBJECT",
-      "properties": {
-        "account_id": {
-          "type": "STRING",
-          "description": "The account identifier."
-        }
-      },
-      "required": [
-        "account_id"
-      ]
-    }
-  },
-  {
-    "name": "list_audit_logs",
-    "description": "Fetch chronological audit logs and security events matching specified filter dates.",
-    "parameters": {
-      "type": "OBJECT",
-      "properties": {
-        "start_date": {
-          "type": "STRING",
-          "description": "ISO-8601 start date."
+{
+  "stripe_create_refund": [
+    {
+      "name": "cancel_customer_subscription",
+      "description": "Cancel an active recurring Stripe subscription plan.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "subscription_id": {
+            "type": "STRING"
+          }
         },
-        "limit": {
-          "type": "INTEGER",
-          "description": "Number of log records."
-        }
-      },
-      "required": [
-        "start_date"
-      ]
-    }
-  },
-  {
-    "name": "export_csv_report",
-    "description": "Generate an asynchronous data export job and return an S3 signed download URL.",
-    "parameters": {
-      "type": "OBJECT",
-      "properties": {
-        "report_type": {
-          "type": "STRING",
-          "description": "Financial or telemetry report type."
+        "required": [
+          "subscription_id"
+        ]
+      }
+    },
+    {
+      "name": "create_customer_invoice",
+      "description": "Generate an itemized customer invoice for billing.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "customer_id": {
+            "type": "STRING"
+          },
+          "amount": {
+            "type": "INTEGER"
+          }
         },
-        "format": {
-          "type": "STRING",
-          "enum": [
-            "csv",
-            "xlsx",
-            "parquet"
-          ]
-        }
-      },
-      "required": [
-        "report_type"
-      ]
+        "required": [
+          "customer_id",
+          "amount"
+        ]
+      }
+    },
+    {
+      "name": "capture_payment_intent",
+      "description": "Capture an authorized payment intent hold.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "intent_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "intent_id"
+        ]
+      }
+    },
+    {
+      "name": "verify_bank_account",
+      "description": "Verify micro-deposit amounts for a merchant bank link.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          },
+          "amounts": {
+            "type": "ARRAY",
+            "items": {
+              "type": "INTEGER"
+            }
+          }
+        },
+        "required": [
+          "account_id",
+          "amounts"
+        ]
+      }
     }
-  },
-  {
-    "name": "revoke_api_key",
-    "description": "Immediately terminate and revoke an active developer API token.",
-    "parameters": {
-      "type": "OBJECT",
-      "properties": {
-        "key_id": {
-          "type": "STRING",
-          "description": "The unique token key identifier."
-        }
-      },
-      "required": [
-        "key_id"
-      ]
+  ],
+  "github_create_issue": [
+    {
+      "name": "create_pull_request",
+      "description": "Open a code review pull request merging head branch into base.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "owner": {
+            "type": "STRING"
+          },
+          "repo": {
+            "type": "STRING"
+          },
+          "title": {
+            "type": "STRING"
+          },
+          "head": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "owner",
+          "repo",
+          "title",
+          "head"
+        ]
+      }
+    },
+    {
+      "name": "list_repo_commits",
+      "description": "Retrieve chronological git commits for a branch.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "owner": {
+            "type": "STRING"
+          },
+          "repo": {
+            "type": "STRING"
+          },
+          "sha": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "owner",
+          "repo"
+        ]
+      }
+    },
+    {
+      "name": "add_issue_comment",
+      "description": "Post a markdown comment on an existing issue or pull request.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "owner": {
+            "type": "STRING"
+          },
+          "repo": {
+            "type": "STRING"
+          },
+          "issue_number": {
+            "type": "INTEGER"
+          },
+          "body": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "owner",
+          "repo",
+          "issue_number",
+          "body"
+        ]
+      }
+    },
+    {
+      "name": "fork_repository",
+      "description": "Fork a target GitHub repository to the authenticated user account.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "owner": {
+            "type": "STRING"
+          },
+          "repo": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "owner",
+          "repo"
+        ]
+      }
     }
-  }
-]
+  ],
+  "slack_post_message": [
+    {
+      "name": "create_slack_channel",
+      "description": "Provision a new public or private Slack team channel.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "name": {
+            "type": "STRING"
+          },
+          "is_private": {
+            "type": "BOOLEAN"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    {
+      "name": "set_user_status",
+      "description": "Update the custom emoji status text for a Slack team member.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "status_text": {
+            "type": "STRING"
+          },
+          "status_emoji": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "status_text"
+        ]
+      }
+    },
+    {
+      "name": "upload_slack_file",
+      "description": "Upload a binary file or log snippet to a Slack conversation.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "channels": {
+            "type": "STRING"
+          },
+          "filename": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "channels",
+          "filename"
+        ]
+      }
+    },
+    {
+      "name": "archive_slack_channel",
+      "description": "Archive an inactive Slack communication channel.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "channel_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "channel_id"
+        ]
+      }
+    }
+  ],
+  "generic_fallback": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "k8s_scale_deployment": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "aws_create_s3_bucket": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "database_execute_query": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "crm_update_lead": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "shipping_create_label": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "jira_transition_issue": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "datadog_create_alert": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "twilio_send_sms": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "zendesk_create_ticket": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "mailchimp_add_subscriber": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "cloudflare_purge_cache": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "pagerduty_trigger_incident": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "auth0_create_user": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "elasticsearch_index_doc": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "notion_create_page": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "docker_run_container": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ],
+  "shopify_create_discount": [
+    {
+      "name": "get_account_balance",
+      "description": "Retrieve financial balance.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "account_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "account_id"
+        ]
+      }
+    },
+    {
+      "name": "list_audit_logs",
+      "description": "Fetch chronological audit logs.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "start_date": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "start_date"
+        ]
+      }
+    },
+    {
+      "name": "export_csv_report",
+      "description": "Generate an export job.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "report_type": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "report_type"
+        ]
+      }
+    },
+    {
+      "name": "revoke_api_key",
+      "description": "Revoke an API token.",
+      "parameters": {
+        "type": "OBJECT",
+        "properties": {
+          "key_id": {
+            "type": "STRING"
+          }
+        },
+        "required": [
+          "key_id"
+        ]
+      }
+    }
+  ]
+}
