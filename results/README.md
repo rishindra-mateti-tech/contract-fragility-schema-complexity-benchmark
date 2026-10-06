@@ -66,13 +66,15 @@ python -u src/benchmark_runner.py --model gemini-3.1-flash-lite-preview --max-su
 
 ---
 
-## 4. Pipeline Smoke Test Disclosure
+## 4. Partial Execution & Initial Null Findings
 
 > [!IMPORTANT]
-> **Status: Pipeline Verification / Smoke Test Only**  
-> The baseline records currently committed in `raw_benchmark_results.json` and `summary_metrics.json` reflect an initial single-suite pipeline smoke test ($N = 1$ suite, 6 API calls on `gemini-3.1-flash-lite-preview`).
+> **Status: Partial Empirical Execution (240 Calls)**  
+> The baseline records currently committed in `raw_benchmark_results.json` and `summary_metrics.json` reflect a partial execution (240 API calls across 10 suites) profiling `gemini-3.1-flash-lite-preview` and `gemini-3-flash-preview` in both **Provider-Mediated** and **Raw Unconstrained** regimes.
 >
-> While all conditions in this smoke test passed syntactic and semantic validation, the resulting 95% Wilson score confidence intervals are wide ($[20.7\%, 100.0\%]$) and McNemar tests yield $p = 1.0$ due to lack of discordant pairs. **This run serves exclusively as verification of end-to-end harness execution, schema parsing, and statistical calculation pipelines, NOT as empirical proof of model capabilities.**
+> **Honest Assessment of Current Findings:**
+> 1. **Null Result on Syntax Degradation:** `gemini-3.1-flash-lite-preview` successfully passed all 10 schema variants identically across both syntax and tool selection tasks. The McNemar paired exact tests yield $p = 1.0$ (no statistical effect). This demonstrates that the model is robust to the tested structural stresses, or that the synthetic mutations must be made substantially harder. We do not claim structural degradation based on these partial results.
+> 2. **Availability vs. Capability:** The secondary model (`gemini-3-flash-preview`) experienced severe infrastructure throttling, completing only 10-20% of several conditions despite exponential backoff. This is explicitly reported as an **availability failure**, not a degradation in model tool-calling quality.
 
 ---
 

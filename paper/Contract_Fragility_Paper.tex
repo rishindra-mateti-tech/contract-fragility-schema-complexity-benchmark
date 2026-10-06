@@ -153,7 +153,7 @@ A fundamental methodological distinction in LLM tool-calling research is the dif
     \item \textbf{Protocol Disentanglement:} Our protocol specifies two evaluation tracks: (Track A) vendor-native tool calling with provider-enforced schemas, and (Track B) unconstrained raw prompting with temperature sampling and standard JSON extraction, isolating raw generative competence from vendor-side schema repair.
 \end{enumerate}
 
-\subsection{Statistical Methodology \& Smoke Test Disclosure}
+\subsection{Statistical Methodology \& Partial Execution Findings}
 To ensure mathematical rigor, all evaluations enforce:
 \begin{itemize}
     \item \textbf{Wilson Score Confidence Intervals:} 95\% confidence intervals computed for all binary proportions.
@@ -161,7 +161,7 @@ To ensure mathematical rigor, all evaluations enforce:
     \item \textbf{Infrastructure Separation:} HTTP availability failures (e.g., 429 throttling) are strictly isolated from model accuracy scoring.
 \end{itemize}
 
-\noindent\textbf{Smoke Test Disclosure:} The initial baseline telemetry committed to the repository represents a single-suite pipeline smoke test ($N = 1$ suite, 6 API calls on \texttt{gemini-3.1-flash-lite-preview}) to verify end-to-end execution, schema parsing, and statistical calculation pipelines. The wide resulting 95\% Wilson intervals ([20.7\%, 100.0\%]) and lack of discordant pairs ($p = 1.0$) illustrate that this run serves exclusively as harness verification, not empirical proof of model capabilities. Full empirical execution requires our planned multi-provider sweep across 20+ schemas and 3--5 independent repetitions across Gemini, GPT-4o, Claude 3.5 Sonnet, and open-weights Llama-3.1-70B.
+\noindent\textbf{Partial Execution and Initial Null Findings:} The initial telemetry committed to the repository represents a partial benchmark execution (240 API calls across 10 suites) profiling \texttt{gemini-3.1-flash-lite-preview} and \texttt{gemini-3-flash-preview} in both Provider-Mediated and Raw Unconstrained regimes. The primary finding from this subset is a \textit{null result}: \texttt{gemini-3.1-flash-lite-preview} successfully passed all 10 schema variants identically across both syntax and tool selection tasks ($p = 1.0$). This demonstrates that the model is highly robust to the currently tested structural stresses, or that the synthetic mutations must be made substantially harder. The secondary model (\texttt{gemini-3-flash-preview}) experienced severe infrastructure throttling, completing only 10--20\% of several conditions. We explicitly report this as an availability failure, not a degradation in tool-calling capability. Full empirical execution requires our planned multi-provider sweep across 20+ schemas and 3--5 independent repetitions across OpenAI, Anthropic, and open-weights models to detect conclusive degradation boundaries.
 
 \section{Static Schema Linting (\texttt{SchemaFragilityLinter})}
 As an engineering artifact, we release \texttt{SchemaFragilityLinter}, a static analysis utility that audits JSON Schema contracts for candidate structural risks identified by this protocol prior to deployment:

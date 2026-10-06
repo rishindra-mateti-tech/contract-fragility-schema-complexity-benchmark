@@ -21,13 +21,18 @@ This repository provides an open-source, reproducible **experimental benchmark p
 
 ---
 
-## 2. Current Status & Smoke Test Disclosure
+## 2. Current Status: Partial Execution & Initial Null Findings
 
 > [!IMPORTANT]
-> **Pipeline Verification / Smoke Test Disclosure:**  
-> The telemetry currently committed in `results/` reflects an initial single-suite pipeline smoke test (`gemini-3.1-flash-lite-preview`, $N=1$ suite, 6 API calls). While all smoke test conditions passed syntactic and semantic validation, the wide 95% Wilson confidence intervals ($[20.7\%, 100.0\%]$) and lack of discordant pairs ($p = 1.0$) demonstrate that **this run serves exclusively to verify end-to-end harness execution, schema parsing, and statistical calculation pipelines—not as empirical proof of model capabilities.**
+> **Status: Partial Empirical Execution (240 Calls)**  
+> The telemetry currently committed in `results/` reflects a partial benchmark execution (240 API calls across 10 suites) profiling `gemini-3.1-flash-lite-preview` and `gemini-3-flash-preview` in both **Provider-Mediated** and **Raw Unconstrained** regimes.
 >
-> A completed empirical study requires the multi-provider evaluation sweep outlined below: at least 3 model families (e.g., Google Gemini, OpenAI GPT-4o, Anthropic Claude 3.5 Sonnet, and Open-Weights Llama-3.1-70B), 20+ base specifications, and 3-5 independent repetitions per condition.
+> **Honest Assessment of Current Findings:**
+> 1. **Null Result on Syntax Degradation:** `gemini-3.1-flash-lite-preview` successfully passed all 10 schema variants identically across both syntax and tool selection tasks. The McNemar paired exact tests yield $p = 1.0$ (no statistical effect). This demonstrates that the model is currently robust to the tested structural stresses, or that the initial synthetic mutations must be made substantially harder (e.g., deeper nesting, adversarial distractor aliases). We do not claim structural degradation based on these partial results.
+> 2. **Availability vs. Capability:** The secondary model (`gemini-3-flash-preview`) experienced severe infrastructure throttling (429/503 errors), completing only 10-20% of several conditions despite exponential backoff. This is explicitly reported as an **availability failure**, not a degradation in model tool-calling quality.
+> 3. **Regime Contrast:** The dataset clearly isolates Provider-Mediated function calling from Raw JSON-schema-in-prompt generation, establishing a foundation to contrast vendor middleware against raw transformer attention.
+>
+> A completed empirical study requires the full 20-schema sweep, 3-5 independent repetitions, significantly harder mutations, and multi-provider integration (OpenAI, Anthropic, Open-Weights).
 
 ---
 
