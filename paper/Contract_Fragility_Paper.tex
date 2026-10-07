@@ -152,7 +152,66 @@ To ensure mathematical rigor, all evaluations enforce:
 \end{itemize}
 
 
-\noindent\textbf{Exploratory Pilot Execution:} The telemetry currently committed to the repository represents an exploratory pilot execution (30 API calls across 5 suites) profiling \texttt{gemini-3.1-flash-lite-preview}. This pilot specifically tests the benchmark's extremely difficult schema mutations (3-level deep object nesting, 15-field distractor bloat, and complete docstring removal). The preliminary finding ($N=5$) reveals an exploratory drop in semantic execution grounding (from 60\% on canonical schemas down to 20\% on ambiguous schemas) while maintaining 100\% syntactic validity. Because the sample size is small, this is reported strictly as an exploratory observation, not a statistically significant degradation. Full empirical execution requires our planned multi-provider sweep across 20 schemas and 3--5 independent repetitions across OpenAI, Anthropic, and open-weights models to detect conclusive failure boundaries.
+
+\section{Results and Discussion}
+
+The evaluation protocol was executed across 432 independent model inferences, utilizing three diverse models representing both provider-mediated and unconstrained raw JSON capabilities. To ensure rigorous comparability, all inferences were conducted at temperature 0.0 with deterministic seeds, and results are separated by execution track. Throughout the entire pilot, zero unrecoverable API failures were encountered.
+
+\subsection{Track A: Provider-Mediated Inference (Gemini)}
+Track A evaluates the Gemini Flash Lite Preview model using the provider's native, schema-enforced tool-calling interface. 
+
+\begin{table}[h]
+\centering
+\caption{Track A (Gemini 3.1 Flash Lite Preview) - Task 1 Semantics \& Task 2 Selection}
+\label{tab:track_a}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Mutation Variant} & \textbf{Semantics Rate} & \textbf{Semantics 95\% CI} & \textbf{Selection Rate} & \textbf{Selection 95\% CI} \\ \hline
+Canonical & 100.0\% & [0.86, 1.00] & 100.0\% & [0.86, 1.00] \\ \hline
+Nested Hierarchy & 100.0\% & [0.86, 1.00] & - & - \\ \hline
+Optionality Bloat & 100.0\% & [0.86, 1.00] & - & - \\ \hline
+Ambiguous Identifiers & 87.5\% & [0.69, 0.96] & 100.0\% & [0.86, 1.00] \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+As shown in Table~\ref{tab:track_a}, the provider-mediated pipeline effectively shields the model from severe schema fragility. Gemini maintained perfect semantic execution grounding across canonical, nested, and optionality-bloated schemas. Even under identifier ambiguity, it retained 87.5\% semantic precision ($p = 0.25$, not statistically significant drop). Furthermore, distractor presence in Task 2 failed to degrade selection accuracy.
+
+\subsection{Track B: Unconstrained Raw JSON (Cohere \& Groq)}
+Track B removes vendor-side schema compilation and tests raw prompt adherence using Cohere Command-R-Plus and Groq's hosting of Allam-2-7b.
+
+\begin{table}[h]
+\centering
+\caption{Track B - Task 1 Semantics Execution Rate by Model}
+\label{tab:track_b_t1}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Model} & \textbf{Canonical} & \textbf{Nested} & \textbf{Optionality} & \textbf{Ambiguous} \\ \hline
+Cohere Cmd-R+ & 100.0\% & 100.0\% & 95.8\% & 100.0\% \\ \hline
+Groq Allam-2 & 50.0\% & 0.0\% & 12.5\% & 25.0\% \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Track B - Task 2 Top-1 Selection Accuracy by Model}
+\label{tab:track_b_t2}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Model} & \textbf{Canonical} & \textbf{Ambiguous} \\ \hline
+Cohere Cmd-R+ & 91.7\% & 100.0\% \\ \hline
+Groq Allam-2 & 20.8\% & 4.2\% \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+Under the Track B unconstrained evaluation (Tables~\ref{tab:track_b_t1} and \ref{tab:track_b_t2}), the impact of schema mutations becomes highly model-dependent. Cohere's Command-R-Plus exhibited profound resilience, maintaining near-perfect syntax and semantic scores. 
+
+Conversely, the Allam-2-7b model evaluated via Groq exhibited severe structural fragility. While it achieved 50.0\% semantic accuracy on flat canonical schemas, encapsulating parameters into a nested hierarchy catastrophically degraded performance to 0.0\% ($p < 0.001$, McNemar Exact Test). Similarly, injecting optional parameters bloated the schema footprint and collapsed semantic accuracy to 12.5\% ($p = 0.004$). Finally, in Task 2, identifier ambiguity degraded its selection accuracy to a nominal 4.2\%. This isolates the profound difference between a model's linguistic intelligence and its formal schema constraint adherence.
 
 \section{Static Schema Linting (\texttt{SchemaFragilityLinter})}
 As an engineering artifact, we release \texttt{SchemaFragilityLinter}, a static analysis utility that audits JSON Schema contracts for candidate structural risks identified by this protocol prior to deployment:
