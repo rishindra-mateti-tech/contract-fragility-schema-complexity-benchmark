@@ -4,6 +4,7 @@ import pytest
 import subprocess
 from src.stage_a_runner import run_stage_a
 from src.validator import validate_syntax, validate_semantics
+from src.analyze_stage_a import analyze
 
 def test_selection_reproducibility():
     subprocess.run(["python", "scripts/generate_pilot_manifest.py"], check=True)
@@ -64,6 +65,23 @@ def test_dry_run_and_resume(tmp_path):
     with open(out_file, "r") as f:
         results2 = json.load(f)
     assert len(results2) == 48
+    
+    # Test analyze functionality
+    analysis = analyze(run_id, results_dir)
+    assert analysis["metadata"]["total_records"] == 48
+    assert len(analysis["results"]) == 1
+    summary = analysis["results"][0]
+    assert summary["provider"] == "Gemini"
+    assert summary["track"] == "Track A"
+    assert summary["task1"]["canonical"]["syntax_rate"] == 1.0
+    
+    # Verify no cross-track comparisons in McNemar
+    mcnemar = summary["mcnemar_tests"]
+    assert "canonical_vs_nested_hierarchy" in mcnemar["task1_semantics"]
+    assert mcnemar["task1_semantics"]["canonical_vs_nested_hierarchy"]["discordant_b"] == 0
+    assert mcnemar["task1_semantics"]["canonical_vs_nested_hierarchy"]["discordant_c"] == 0
+    assert mcnemar["task1_semantics"]["canonical_vs_nested_hierarchy"]["p_value"] == 1.0
+    
     if os.path.exists(out_file): os.remove(out_file)
 
 def test_scoring_logic_mutations():

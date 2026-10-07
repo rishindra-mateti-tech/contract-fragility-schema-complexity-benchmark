@@ -1,0 +1,33 @@
+{
+  "Gemini": {
+    "track": "Track A",
+    "status": "PASS",
+    "model": "gemini-3.1-flash-lite-preview",
+    "msg": "Provider-Mediated OK (Multi-tool tested)"
+  },
+  "Groq": {
+    "track": "Track B",
+    "status": "FAIL",
+    "model": "allam-2-7b",
+    "msg": "Valid JSON but wrong schema",
+    "available_models_snapshot": [
+      "canopylabs/orpheus-arabic-saudi",
+      "meta-llama/llama-prompt-guard-2-22m",
+      "openai/gpt-oss-120b",
+      "qwen/qwen3.8-27b",
+      "whisper-large-v3",
+      "meta-llama/llama-prompt-guard-2-86m",
+      "canopylabs/orpheus-v1-english",
+      "openai/gpt-oss-safeguard-20b",
+      "openai/gpt-oss-20b",
+      "whisper-large-v3-turbo",
+      "allam-2-7b"
+    ]
+  },
+  "Cohere": {
+    "track": "Track B",
+    "status": "PASS",
+    "model": "command-r-plus-08-2024",
+    "msg": "Native Raw JSON Support OK (Multi-tool tested)"
+  }
+}

@@ -12,11 +12,16 @@ from dotenv import load_dotenv
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from src.validator import validate_syntax, validate_semantics
 
-def get_git_sha():
+def get_git_sha(root_dir):
     try:
-        return subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root_dir).decode("utf-8").strip()
     except:
         return "unknown"
+
+def hash_file(path):
+    if not os.path.exists(path): return None
+    with open(path, 'rb') as f:
+        return hashlib.sha256(f.read()).hexdigest()
 
 def get_client(provider):
     load_dotenv()
@@ -32,11 +37,22 @@ def get_client(provider):
         return cohere.Client(api_key=os.getenv("COHERE_API_KEY"))
     return None
 
-def is_transient_error(e, provider):
-    err_str = str(e).lower()
-    if "429" in err_str or "503" in err_str or "too many requests" in err_str or "service unavailable" in err_str:
-        return True
-    return False
+def classify_api_error(e_str):
+    if not e_str: return None
+    e_str = e_str.lower()
+    if "429" in e_str or "too many requests" in e_str or "rate limit" in e_str or "quota" in e_str:
+        return "rate_limit"
+    if "503" in e_str or "500" in e_str or "502" in e_str or "service unavailable" in e_str:
+        return "service"
+    if "401" in e_str or "403" in e_str or "unauthorized" in e_str or "authentication" in e_str or "forbidden" in e_str:
+        return "authentication"
+    if "json" in e_str or "parse" in e_str or "malformed" in e_str:
+        return "malformed_response"
+    return "other"
+
+def is_transient_error(e_str):
+    cat = classify_api_error(e_str)
+    return cat in ["rate_limit", "service"]
 
 def execute_call(client, provider, model_name, prompt, tools, dry_run=False, max_retries=4, mock_target_name=None, mock_expected_args=None):
     if dry_run:
@@ -90,12 +106,13 @@ def execute_call(client, provider, model_name, prompt, tools, dry_run=False, max
                 
         except Exception as e:
             elapsed = time.time() - start_time
-            if is_transient_error(e, provider) and attempt < max_retries - 1:
+            e_str = str(e)
+            if is_transient_error(e_str) and attempt < max_retries - 1:
                 time.sleep((attempt + 1) * 6)
                 continue
-            return {"success": False, "latency": elapsed, "tool_calls": [], "error": str(e), "retries": attempt, "raw_text": None, "error_category": "API_ERROR"}
+            return {"success": False, "latency": elapsed, "tool_calls": [], "error": e_str, "retries": attempt, "raw_text": None, "error_category": classify_api_error(e_str)}
 
-def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3, record_limit=None):
+def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3, record_limit=None, max_calls=432):
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     with open(os.path.join(root_dir, "data", "pilot_manifest.json"), "r") as f:
         manifest = json.load(f)
@@ -104,9 +121,14 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
     with open(os.path.join(root_dir, "data", "mutated_schemas.json"), "r") as f:
         full_schemas = {d["base_id"]: d for d in json.load(f)}
 
+    total_planned_calls = len(providers_models) * len(manifest["schemas"]) * 6 * repeats
+    if total_planned_calls > max_calls:
+        raise ValueError(f"Safety guard: planned calls ({total_planned_calls}) exceeds max_calls ({max_calls})")
+
     out_file = os.path.join(root_dir, "results", f"{run_id}_results.json")
     results = []
     completed_keys = set()
+    start_time = datetime.now(timezone.utc).isoformat()
     
     if resume and os.path.exists(out_file):
         with open(out_file, "r") as f:
@@ -114,16 +136,29 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
             for r in results:
                 k = f"{r['provider']}_{r['model']}_{r['task']}_{r['base_id']}_{r['variant']}_{r['repeat']}"
                 completed_keys.add(k)
+        manifest_file = os.path.join(root_dir, "results", f"{run_id}_manifest.json")
+        if os.path.exists(manifest_file):
+            with open(manifest_file, "r") as f:
+                prev_manifest = json.load(f)
+                if "timestamp" in prev_manifest:
+                    start_time = prev_manifest["timestamp"]
 
-    git_sha = get_git_sha()
+    git_sha = get_git_sha(root_dir)
     run_manifest = {
-        "run_id": run_id, "git_sha": git_sha, "timestamp": datetime.now(timezone.utc).isoformat(),
-        "providers_models": providers_models, "dry_run": dry_run, "repeats": repeats
+        "run_id": run_id, "git_sha": git_sha, "timestamp": start_time,
+        "providers_models": providers_models, "dry_run": dry_run, "repeats": repeats,
+        "document_hashes": {
+            "PROTOCOL.md": hash_file(os.path.join(root_dir, "PROTOCOL.md")),
+            "PROTOCOL_AMENDMENT_001.md": hash_file(os.path.join(root_dir, "PROTOCOL_AMENDMENT_001.md")),
+            "PROTOCOL_AMENDMENT_002.md": hash_file(os.path.join(root_dir, "PROTOCOL_AMENDMENT_002.md")),
+            "pilot_manifest.json": hash_file(os.path.join(root_dir, "data", "pilot_manifest.json")),
+            "mutated_schemas.json": hash_file(os.path.join(root_dir, "data", "mutated_schemas.json")),
+            "distractor_tools.json": hash_file(os.path.join(root_dir, "data", "distractor_tools.json"))
+        }
     }
     with open(os.path.join(root_dir, "results", f"{run_id}_manifest.json"), "w") as f:
         json.dump(run_manifest, f, indent=2)
 
-    total_calls = len(providers_models) * len(manifest["schemas"]) * 6 * repeats
     current_call = 0
 
     for provider, model_name in providers_models:
@@ -179,6 +214,7 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                         "rendered_prompt_hash": rendered_prompt_hash, "schema_hash": schema_hash, 
                         "latency": resp["latency"], "retries": resp["retries"], 
                         "api_error": resp["error"],
+                        "api_error_category": resp["error_category"],
                         "raw_text": resp["raw_text"],
                         "generated_tool_name": generated_tool_name,
                         "tool_name_valid": tool_name_valid,
@@ -229,6 +265,7 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                         "target_position": target_position,
                         "latency": resp["latency"], "retries": resp["retries"], 
                         "api_error": resp["error"],
+                        "api_error_category": resp["error_category"],
                         "raw_text": resp["raw_text"],
                         "generated_tool_name": generated_tool_name,
                         "selection_valid": selection_ok
@@ -243,7 +280,8 @@ if __name__ == "__main__":
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--record-limit", type=int, default=None)
+    parser.add_argument("--max-calls", type=int, default=432)
     parser.add_argument("--providers", nargs="+", required=True, help="Format: Provider:Model")
     args = parser.parse_args()
     provs = [p.split(":") for p in args.providers]
-    run_stage_a(provs, args.run_id, args.resume, args.dry_run, record_limit=args.record_limit)
+    run_stage_a(provs, args.run_id, args.resume, args.dry_run, record_limit=args.record_limit, max_calls=args.max_calls)
