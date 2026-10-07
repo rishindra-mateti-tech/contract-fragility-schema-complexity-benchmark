@@ -1,0 +1,408 @@
+{
+  "metadata": {
+    "run_id": "official_stage_a",
+    "analyzed_at": "2026-10-07T19:30:21.615796+00:00",
+    "total_records": 432
+  },
+  "results": [
+    {
+      "provider": "Gemini",
+      "model": "gemini-3.1-flash-lite-preview",
+      "track": "Track A",
+      "total_calls": 144,
+      "error_categories": {},
+      "task1": {
+        "canonical": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 24,
+          "syntax_rate": 1.0,
+          "syntax_ci_95": [
+            0.8620194241710247,
+            1.0
+          ],
+          "semantic_pass": 24,
+          "semantic_rate": 1.0,
+          "semantic_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        },
+        "nested_hierarchy": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 24,
+          "syntax_rate": 1.0,
+          "syntax_ci_95": [
+            0.8620194241710247,
+            1.0
+          ],
+          "semantic_pass": 24,
+          "semantic_rate": 1.0,
+          "semantic_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        },
+        "optionality_bloat": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 24,
+          "syntax_rate": 1.0,
+          "syntax_ci_95": [
+            0.8620194241710247,
+            1.0
+          ],
+          "semantic_pass": 24,
+          "semantic_rate": 1.0,
+          "semantic_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        },
+        "ambiguous_identifiers": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 24,
+          "syntax_rate": 1.0,
+          "syntax_ci_95": [
+            0.8620194241710247,
+            1.0
+          ],
+          "semantic_pass": 21,
+          "semantic_rate": 0.875,
+          "semantic_ci_95": [
+            0.6899571185214243,
+            0.9565574496068442
+          ]
+        }
+      },
+      "task2": {
+        "canonical": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "selection_pass": 24,
+          "selection_rate": 1.0,
+          "selection_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        },
+        "ambiguous_identifiers": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "selection_pass": 24,
+          "selection_rate": 1.0,
+          "selection_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        }
+      },
+      "mcnemar_tests": {
+        "task1_semantics": {
+          "canonical_vs_optionality_bloat": {
+            "discordant_b": 0,
+            "discordant_c": 0,
+            "p_value": 1.0
+          },
+          "canonical_vs_ambiguous_identifiers": {
+            "discordant_b": 3,
+            "discordant_c": 0,
+            "p_value": 0.25
+          },
+          "canonical_vs_nested_hierarchy": {
+            "discordant_b": 0,
+            "discordant_c": 0,
+            "p_value": 1.0
+          }
+        },
+        "task2_selection": {
+          "canonical_vs_ambiguous_identifiers": {
+            "discordant_b": 0,
+            "discordant_c": 0,
+            "p_value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "provider": "Groq",
+      "model": "allam-2-7b",
+      "track": "Track B",
+      "total_calls": 144,
+      "error_categories": {},
+      "task1": {
+        "canonical": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 12,
+          "syntax_rate": 0.5,
+          "syntax_ci_95": [
+            0.31427131627763083,
+            0.6857286837223692
+          ],
+          "semantic_pass": 12,
+          "semantic_rate": 0.5,
+          "semantic_ci_95": [
+            0.31427131627763083,
+            0.6857286837223692
+          ]
+        },
+        "nested_hierarchy": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 0,
+          "syntax_rate": 0.0,
+          "syntax_ci_95": [
+            0.0,
+            0.13798057582897535
+          ],
+          "semantic_pass": 0,
+          "semantic_rate": 0.0,
+          "semantic_ci_95": [
+            0.0,
+            0.13798057582897535
+          ]
+        },
+        "optionality_bloat": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 6,
+          "syntax_rate": 0.25,
+          "syntax_ci_95": [
+            0.1199920347934233,
+            0.4489982531210644
+          ],
+          "semantic_pass": 3,
+          "semantic_rate": 0.125,
+          "semantic_ci_95": [
+            0.04344255039315584,
+            0.3100428814785757
+          ]
+        },
+        "ambiguous_identifiers": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 9,
+          "syntax_rate": 0.375,
+          "syntax_ci_95": [
+            0.21159133433631458,
+            0.5729038096209293
+          ],
+          "semantic_pass": 6,
+          "semantic_rate": 0.25,
+          "semantic_ci_95": [
+            0.1199920347934233,
+            0.4489982531210644
+          ]
+        }
+      },
+      "task2": {
+        "canonical": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "selection_pass": 5,
+          "selection_rate": 0.20833333333333334,
+          "selection_ci_95": [
+            0.0924468910478809,
+            0.40470844485235474
+          ]
+        },
+        "ambiguous_identifiers": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "selection_pass": 1,
+          "selection_rate": 0.041666666666666664,
+          "selection_ci_95": [
+            0.007393265354805126,
+            0.20242226248842232
+          ]
+        }
+      },
+      "mcnemar_tests": {
+        "task1_semantics": {
+          "canonical_vs_optionality_bloat": {
+            "discordant_b": 9,
+            "discordant_c": 0,
+            "p_value": 0.00390625
+          },
+          "canonical_vs_ambiguous_identifiers": {
+            "discordant_b": 9,
+            "discordant_c": 3,
+            "p_value": 0.14599609375
+          },
+          "canonical_vs_nested_hierarchy": {
+            "discordant_b": 12,
+            "discordant_c": 0,
+            "p_value": 0.00048828125
+          }
+        },
+        "task2_selection": {
+          "canonical_vs_ambiguous_identifiers": {
+            "discordant_b": 4,
+            "discordant_c": 0,
+            "p_value": 0.125
+          }
+        }
+      }
+    },
+    {
+      "provider": "Cohere",
+      "model": "command-r-plus-08-2024",
+      "track": "Track B",
+      "total_calls": 144,
+      "error_categories": {},
+      "task1": {
+        "canonical": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 24,
+          "syntax_rate": 1.0,
+          "syntax_ci_95": [
+            0.8620194241710247,
+            1.0
+          ],
+          "semantic_pass": 24,
+          "semantic_rate": 1.0,
+          "semantic_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        },
+        "nested_hierarchy": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 24,
+          "syntax_rate": 1.0,
+          "syntax_ci_95": [
+            0.8620194241710247,
+            1.0
+          ],
+          "semantic_pass": 24,
+          "semantic_rate": 1.0,
+          "semantic_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        },
+        "optionality_bloat": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 23,
+          "syntax_rate": 0.9583333333333334,
+          "syntax_ci_95": [
+            0.7975777375115778,
+            0.992606734645195
+          ],
+          "semantic_pass": 23,
+          "semantic_rate": 0.9583333333333334,
+          "semantic_ci_95": [
+            0.7975777375115778,
+            0.992606734645195
+          ]
+        },
+        "ambiguous_identifiers": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "syntax_pass": 23,
+          "syntax_rate": 0.9583333333333334,
+          "syntax_ci_95": [
+            0.7975777375115778,
+            0.992606734645195
+          ],
+          "semantic_pass": 24,
+          "semantic_rate": 1.0,
+          "semantic_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        }
+      },
+      "task2": {
+        "canonical": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "selection_pass": 22,
+          "selection_rate": 0.9166666666666666,
+          "selection_ci_95": [
+            0.741507847985494,
+            0.9768416721570266
+          ]
+        },
+        "ambiguous_identifiers": {
+          "attempted": 24,
+          "excluded_api_error": 0,
+          "evaluated": 24,
+          "n": 24,
+          "selection_pass": 24,
+          "selection_rate": 1.0,
+          "selection_ci_95": [
+            0.8620194241710247,
+            1.0
+          ]
+        }
+      },
+      "mcnemar_tests": {
+        "task1_semantics": {
+          "canonical_vs_optionality_bloat": {
+            "discordant_b": 1,
+            "discordant_c": 0,
+            "p_value": 1.0
+          },
+          "canonical_vs_ambiguous_identifiers": {
+            "discordant_b": 0,
+            "discordant_c": 0,
+            "p_value": 1.0
+          },
+          "canonical_vs_nested_hierarchy": {
+            "discordant_b": 0,
+            "discordant_c": 0,
+            "p_value": 1.0
+          }
+        },
+        "task2_selection": {
+          "canonical_vs_ambiguous_identifiers": {
+            "discordant_b": 0,
+            "discordant_c": 2,
+            "p_value": 0.5
+          }
+        }
+      }
+    }
+  ]
+}

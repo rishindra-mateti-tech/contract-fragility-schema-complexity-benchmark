@@ -1,0 +1,29 @@
+{
+  "run_id": "official_stage_a",
+  "git_sha": "4136bbb523547e51563bc4f18cff839fa1e5bfa1",
+  "timestamp": "2026-10-07T17:30:43.675400+00:00",
+  "providers_models": [
+    [
+      "Gemini",
+      "gemini-3.1-flash-lite-preview"
+    ],
+    [
+      "Groq",
+      "allam-2-7b"
+    ],
+    [
+      "Cohere",
+      "command-r-plus-08-2024"
+    ]
+  ],
+  "dry_run": false,
+  "repeats": 3,
+  "document_hashes": {
+    "PROTOCOL.md": "1d4c04b16ce07d4642256cdddfa98160bb6237aefe4b7617cc645b8aacaa5b53",
+    "PROTOCOL_AMENDMENT_001.md": "3b160c0488dd9527c5afe24460f219772c45df41fb6a6ac8f2e7d9ea69e11ca8",
+    "PROTOCOL_AMENDMENT_002.md": "5a0428c1428e5895a175cd75ad22a93f0d2ed889b018ed5fb376f332b7d9c36f",
+    "pilot_manifest.json": "1b6eed6b7286335bf18bf12366edfad8071e8efd8f7c73dd3def860d592ec7d4",
+    "mutated_schemas.json": "0ea443a22c2031eed02c2741233bb32ebe6d84ddd9da8aa9d64a6efe5eaeac6e",
+    "distractor_tools.json": "755a4d704e5190cbaf34cbf770126eac0f59d52793b28295d1a80aecd3c53cda"
+  }
+}
