@@ -40,7 +40,12 @@ def is_transient_error(e, provider):
 
 def execute_call(client, provider, model_name, prompt, tools, dry_run=False, max_retries=4):
     if dry_run:
-        return {"success": True, "latency": 0.1, "tool_calls": [], "error": None, "retries": 0, "raw_text": "DRY_RUN", "error_category": None}
+        # Mock a valid successful tool call for testing
+        mock_args = tools[0]["parameters"]["properties"].copy()
+        for k in mock_args.keys():
+            mock_args[k] = "mock_value"
+        mock_call = {"name": tools[0]["name"], "args": mock_args}
+        return {"success": True, "latency": 0.1, "tool_calls": [mock_call], "error": None, "retries": 0, "raw_text": json.dumps(mock_call), "error_category": None}
         
     for attempt in range(max_retries):
         start_time = time.time()
@@ -94,7 +99,7 @@ def execute_call(client, provider, model_name, prompt, tools, dry_run=False, max
                 continue
             return {"success": False, "latency": elapsed, "tool_calls": [], "error": str(e), "retries": attempt, "raw_text": None, "error_category": "API_ERROR"}
 
-def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3):
+def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3, record_limit=None):
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     with open(os.path.join(root_dir, "data", "pilot_manifest.json"), "r") as f:
         manifest = json.load(f)
@@ -111,20 +116,13 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
         with open(out_file, "r") as f:
             results = json.load(f)
             for r in results:
-                # Key: provider_model_task_baseid_variant_repeat
                 k = f"{r['provider']}_{r['model']}_{r['task']}_{r['base_id']}_{r['variant']}_{r['repeat']}"
                 completed_keys.add(k)
 
     git_sha = get_git_sha()
-    
-    # Save manifest
     run_manifest = {
-        "run_id": run_id,
-        "git_sha": git_sha,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "providers_models": providers_models,
-        "dry_run": dry_run,
-        "repeats": repeats
+        "run_id": run_id, "git_sha": git_sha, "timestamp": datetime.now(timezone.utc).isoformat(),
+        "providers_models": providers_models, "dry_run": dry_run, "repeats": repeats
     }
     with open(os.path.join(root_dir, "results", f"{run_id}_manifest.json"), "w") as f:
         json.dump(run_manifest, f, indent=2)
@@ -140,10 +138,10 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                 base_id = schema_meta["base_id"]
                 item = full_schemas[base_id]
                 query = item["query"]
-                expected_args = schema_meta["expected_args"]
                 
                 # Task 1
                 for var_key, var_data in item["variants"].items():
+                    if record_limit and current_call >= record_limit: return results
                     current_call += 1
                     k1 = f"{provider}_{model_name}_1_{base_id}_{var_key}_{r}"
                     if k1 in completed_keys: continue
@@ -154,9 +152,20 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                     
                     resp = execute_call(client, provider, model_name, query, [tool], dry_run)
                     
-                    # Validation
-                    syntax_ok, syn_err = validate_syntax(resp["tool_calls"], [tool]) if not dry_run else (True, None)
-                    semantics_ok, sem_err = validate_semantics(resp["tool_calls"], expected_args) if not dry_run else (True, None)
+                    generated_call = resp["tool_calls"][0] if len(resp["tool_calls"]) == 1 else None
+                    generated_args = generated_call["args"] if generated_call else None
+                    generated_tool_name = generated_call["name"] if generated_call else None
+                    
+                    expected_args = var_data["expected_args"]
+                    
+                    if generated_args is not None:
+                        syn_ok, syn_cat, syn_msg = validate_syntax(generated_args, tool["parameters"])
+                        sem_ok, prec, rec, sem_dets = validate_semantics(generated_args, expected_args)
+                    else:
+                        syn_ok, syn_cat, syn_msg = False, "MISSING_CALL", "No valid tool call returned"
+                        sem_ok, prec, rec, sem_dets = False, 0.0, 0.0, {}
+                    
+                    if resp["error"]: syn_cat = "API_ERROR"
                     
                     rec1 = {
                         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -165,25 +174,26 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                         "repeat": r, "task": 1, "base_id": base_id, "variant": var_key,
                         "prompt_hash": prompt_hash, "schema_hash": schema_hash, 
                         "latency": resp["latency"], "retries": resp["retries"], 
-                        "error_category": resp["error_category"] or (syn_err if not syntax_ok else None),
+                        "api_error": resp["error"],
                         "raw_text": resp["raw_text"],
-                        "tool_calls": resp["tool_calls"],
-                        "expected_args": expected_args,
-                        "syntax_valid": syntax_ok,
-                        "semantics_valid": semantics_ok
+                        "generated_tool_name": generated_tool_name,
+                        "generated_args": generated_args,
+                        "expected_args_hash": hashlib.sha256(json.dumps(expected_args, sort_keys=True).encode('utf-8')).hexdigest(),
+                        "syntax_valid": syn_ok, "syntax_category": syn_cat, "syntax_message": syn_msg,
+                        "semantics_valid": sem_ok, "semantic_precision": prec, "semantic_recall": rec, "semantic_details": sem_dets
                     }
                     results.append(rec1)
                     with open(out_file, "w") as f: json.dump(results, f, indent=2)
 
                 # Task 2
                 for var_key in ["canonical", "ambiguous_identifiers"]:
+                    if record_limit and current_call >= record_limit: return results
                     current_call += 1
                     k2 = f"{provider}_{model_name}_2_{base_id}_{var_key}_{r}"
                     if k2 in completed_keys: continue
                     
                     target_tool = item["variants"][var_key]["tool"]
                     pool = [target_tool] + distractor_catalog.get(base_id, [])
-                    # Deterministic shuffle
                     rng = random.Random(f"{base_id}_{var_key}_{r}")
                     rng.shuffle(pool)
                     
@@ -192,9 +202,9 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                     
                     resp = execute_call(client, provider, model_name, query, pool, dry_run)
                     
-                    # Validate Top-1 Tool Selection
-                    selected_tool = resp["tool_calls"][0]["name"] if resp["tool_calls"] else None
-                    selection_ok = (selected_tool == target_tool["name"]) if not dry_run else True
+                    generated_call = resp["tool_calls"][0] if len(resp["tool_calls"]) == 1 else None
+                    generated_tool_name = generated_call["name"] if generated_call else None
+                    selection_ok = (generated_tool_name == target_tool["name"])
                     
                     rec2 = {
                         "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -203,21 +213,22 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                         "repeat": r, "task": 2, "base_id": base_id, "variant": var_key,
                         "prompt_hash": prompt_hash, "schema_hash": schema_hash, 
                         "latency": resp["latency"], "retries": resp["retries"], 
-                        "error_category": resp["error_category"],
+                        "api_error": resp["error"],
                         "raw_text": resp["raw_text"],
-                        "tool_calls": resp["tool_calls"],
+                        "generated_tool_name": generated_tool_name,
                         "selection_valid": selection_ok
                     }
                     results.append(rec2)
                     with open(out_file, "w") as f: json.dump(results, f, indent=2)
+    return results
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument("--record-limit", type=int, default=None)
     parser.add_argument("--providers", nargs="+", required=True, help="Format: Provider:Model")
     args = parser.parse_args()
-    
     provs = [p.split(":") for p in args.providers]
-    run_stage_a(provs, args.run_id, args.resume, args.dry_run)
+    run_stage_a(provs, args.run_id, args.resume, args.dry_run, record_limit=args.record_limit)
