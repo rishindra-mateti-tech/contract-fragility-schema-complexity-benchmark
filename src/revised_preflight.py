@@ -29,14 +29,14 @@ You must respond with a raw JSON object containing exactly 'name' (string) and '
 def test_groq_raw():
     from openai import OpenAI
     key = os.getenv("GROQ_API_KEY")
-    if not key: return False, "No key", None
+    if not key: return False, "No key", None, []
     try:
         client = OpenAI(api_key=key, base_url="https://api.groq.com/openai/v1")
         models_resp = client.models.list()
         models = [m.id for m in models_resp.data]
         chat_models = [m for m in models if "qwen" in m.lower() or "allam" in m.lower() or "gpt-oss" in m.lower()]
         if not chat_models:
-            return False, "No accessible chat models found", None
+            return False, "No accessible chat models found", None, models
         selected_model = chat_models[-1]
         
         resp = client.chat.completions.create(
@@ -48,10 +48,10 @@ def test_groq_raw():
         content = resp.choices[0].message.content
         data = json.loads(content)
         if "name" in data and "args" in data:
-            return True, "Raw JSON Support OK (Multi-tool tested)", selected_model
-        return False, "Valid JSON but wrong schema", selected_model
+            return True, "Raw JSON Support OK (Multi-tool tested)", selected_model, models
+        return False, "Valid JSON but wrong schema", selected_model, models
     except Exception as e:
-        return False, str(e)[:150], getattr(selected_model, '', 'Unknown')
+        return False, str(e)[:150], getattr(selected_model, '', 'Unknown'), []
 
 def test_cohere_raw():
     try:
@@ -108,14 +108,24 @@ def main():
     load_dotenv()
     print("--- Realistic Provider Preflight Report ---")
     
+    results = {}
+    
     ok, msg, mod = test_gemini()
     print(f"[Gemini] Track A -> {'PASS' if ok else 'FAIL'} | Model: {mod} | Msg: {msg}")
+    results["Gemini"] = {"track": "Track A", "status": "PASS" if ok else "FAIL", "model": mod, "msg": msg}
     
-    ok, msg, mod = test_groq_raw()
+    ok, msg, mod, groq_models = test_groq_raw()
     print(f"[Groq] Track B -> {'PASS' if ok else 'FAIL'} | Model: {mod} | Msg: {msg}")
+    results["Groq"] = {"track": "Track B", "status": "PASS" if ok else "FAIL", "model": mod, "msg": msg, "available_models_snapshot": groq_models}
     
     ok, msg, mod = test_cohere_raw()
     print(f"[Cohere] Track B -> {'PASS' if ok else 'FAIL'} | Model: {mod} | Msg: {msg}")
+    results["Cohere"] = {"track": "Track B", "status": "PASS" if ok else "FAIL", "model": mod, "msg": msg}
+    
+    os.makedirs("results", exist_ok=True)
+    with open("results/preflight_snapshot.json", "w") as f:
+        json.dump(results, f, indent=2)
+    print("Saved to results/preflight_snapshot.json")
 
 if __name__ == "__main__":
     main()

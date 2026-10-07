@@ -1,4 +1,6 @@
-\documentclass[10pt,journal,compsoc]{IEEEtran}
+\documentclass[10pt,conference]{IEEEtran}
+\usepackage[left=0.625in,right=0.625in,top=0.75in,bottom=1in]{geometry}
+\setlength{\columnsep}{0.25in}
 
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
@@ -24,26 +26,23 @@
 
 \title{Contract Fragility: An Empirical Evaluation Protocol for Schema Complexity in LLM Tool Calling}
 
-\author{Rishindra~Mateti%
-\IEEEcompsocitemizethanks{\IEEEcompsocthanksitem R. Mateti is a Software Engineer based in Dallas, TX, USA.\protect\\
-E-mail: contact@rishindramateti.com | ORCID: 0009-0009-5880-8727}
+\author{
+\IEEEauthorblockN{Rishindra Mateti}
+\IEEEauthorblockA{\textit{Software Engineer} \\
+Dallas, TX, USA \\
+contact@rishindramateti.com \\
+ORCID: 0009-0009-5880-8727}
 }
 
-\markboth{Research Protocol and Benchmark Specification,~October~2026}%
-{Mateti: Contract Fragility: Empirical Evaluation Protocol for Schema Complexity in LLM Tool Calling}
+\maketitle
 
-\IEEEtitleabstractindextext{%
 \begin{abstract}
 Tool-augmented Large Language Models (LLMs) and autonomous agent architectures depend fundamentally on structured JSON Schema contracts to interface with external execution environments. While recent research has extensively addressed context-window exhaustion through tool retrieval and schema compression, the causal influence of tool contract design---specifically object nesting depth, optionality density, enum constraint specificity, and identifier ambiguity---remains an unstandardized empirical question. In current software engineering practice, developers author schemas through heuristic intuition, frequently introducing structural friction that induces parameter omission or schema validation rejection. This paper establishes a formal empirical benchmark protocol to evaluate contract fragility across 20 synthetic API-inspired tool specifications modeled after production REST and Model Context Protocol (MCP) standards. We propose a decoupled three-task evaluation architecture: (1) Argument Construction under isolated parameter complexity without distractors, (2) Tool Selection under domain-matched competing distractor suites with randomized presentation order, and (3) Execution Semantics evaluating recursive field-level grounding. We outline concrete structural failure hypotheses, formalize statistical evaluation metrics based on Wilson score confidence intervals and McNemar paired exact tests, and introduce an open-source static schema linter (\texttt{SchemaFragilityLinter}) to audit tool contracts prior to agentic deployment.
 \end{abstract}
 
 \begin{IEEEkeywords}
 Function Calling, Tool-Augmented LLMs, JSON Schema, Agentic Systems, Model Context Protocol, Empirical Software Engineering, Benchmark Protocol.
-\end{IEEEkeywords}}
-
-\maketitle
-\IEEEdisplaynontitleabstractindextext
-\IEEEpeerreviewmaketitle
+\end{IEEEkeywords}
 
 \section{Introduction}
 \IEEEPARstart{F}{unction} calling and autonomous agent architectures have transitioned into foundational building blocks of modern software engineering. Frameworks such as Anthropic's Model Context Protocol (MCP)~\cite{anthropic2024mcp}, Google Agent Development Kit, and OpenAI Function Calling enable Large Language Models (LLMs) to query databases, invoke APIs, and trigger mutations across enterprise environments. 
@@ -77,31 +76,7 @@ Recent natural language processing research highlights the sensitivity of LLMs t
 \section{The Three-Task Evaluation Taxonomy}
 
 \begin{figure*}[t]
-\centering
-\begin{tikzpicture}[
-    node distance=1.5cm and 2.5cm,
-    box/.style={rectangle, draw=black, thick, fill=blue!5, text width=5cm, align=center, rounded corners, minimum height=1.5cm},
-    arrow/.style={-{Stealth[scale=1.2]}, thick},
-    label/.style={font=\small\bfseries}
-]
-    % Nodes
-    \node[box] (query) {User Query + \\ Target Schema + \\ (Optional Distractors)};
-    
-    \node[box, right=of query] (llm) {LLM Generation \\ (Provider-Mediated \\ or Raw Unconstrained)};
-    
-    \node[box, right=of llm] (validation) {Task 1: Syntax Validation \\ (JSON Schema Draft-07)};
-    
-    \node[box, below=of llm] (selection) {Task 2: Tool Selection \\ (Top-1 Accuracy vs Distractors)};
-    
-    \node[box, below=of validation] (semantics) {Task 3: Semantics \\ (Recursive Exact Match \\ against Ground Truth)};
-
-    % Arrows
-    \draw[arrow] (query) -- (llm);
-    \draw[arrow] (llm) -- node[above, label] {Parses JSON} (validation);
-    \draw[arrow] (llm) -- node[right, label] {Extracts Name} (selection);
-    \draw[arrow] (validation) -- node[right, label] {If Valid} (semantics);
-
-\end{tikzpicture}
+\centerline{\includegraphics[width=0.85\textwidth]{figures/architecture.png}}
 \caption{The Three-Task Decoupled Evaluation Pipeline isolating Selection, Syntax, and Semantics.}
 \label{fig:framework}
 \end{figure*}

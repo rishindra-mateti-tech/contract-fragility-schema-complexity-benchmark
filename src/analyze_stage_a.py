@@ -52,67 +52,79 @@ def analyze(run_id, data_dir="results"):
             "mcnemar_tests": {}
         }
         
-        # Count API Errors
+        # Count overall API Errors
         for r in subset:
             cat = r.get("api_error_category")
             if cat:
                 summary["error_categories"][cat] = summary["error_categories"].get(cat, 0) + 1
                 
-        # Filter exclusions (API errors are excluded from capability denominator)
-        valid_records = [r for r in subset if not r.get("api_error_category")]
-        
-        # Task 1
-        t1 = [r for r in valid_records if r["task"] == 1]
+        # Group by Task and Variant directly
         t1_by_var = {}
-        for r in t1:
+        t2_by_var = {}
+        for r in subset:
+            task = r["task"]
             var = r["variant"]
-            if var not in t1_by_var: t1_by_var[var] = []
-            t1_by_var[var].append(r)
+            if task == 1:
+                if var not in t1_by_var: t1_by_var[var] = []
+                t1_by_var[var].append(r)
+            elif task == 2:
+                if var not in t2_by_var: t2_by_var[var] = []
+                t2_by_var[var].append(r)
             
         for var, recs in t1_by_var.items():
-            n = len(recs)
-            syn_pass = sum(1 for r in recs if r.get("syntax_valid"))
-            sem_pass = sum(1 for r in recs if r.get("semantics_valid"))
+            attempted = len(recs)
+            excluded = sum(1 for r in recs if r.get("api_error_category"))
+            evaluated_recs = [r for r in recs if not r.get("api_error_category")]
+            n = len(evaluated_recs)
+            
+            syn_pass = sum(1 for r in evaluated_recs if r.get("syntax_valid"))
+            sem_pass = sum(1 for r in evaluated_recs if r.get("semantics_valid"))
             
             p_syn, syn_low, syn_high = wilson_ci(syn_pass, n)
             p_sem, sem_low, sem_high = wilson_ci(sem_pass, n)
             
             summary["task1"][var] = {
-                "n": n,
+                "attempted": attempted,
+                "excluded_api_error": excluded,
+                "evaluated": n,
+                "n": n, # keeping n for backwards compatibility
                 "syntax_pass": syn_pass,
                 "syntax_rate": p_syn, "syntax_ci_95": [syn_low, syn_high],
                 "semantic_pass": sem_pass,
                 "semantic_rate": p_sem, "semantic_ci_95": [sem_low, sem_high]
             }
             
-        # Task 2
-        t2 = [r for r in valid_records if r["task"] == 2]
-        t2_by_var = {}
-        for r in t2:
-            var = r["variant"]
-            if var not in t2_by_var: t2_by_var[var] = []
-            t2_by_var[var].append(r)
-            
         for var, recs in t2_by_var.items():
-            n = len(recs)
-            sel_pass = sum(1 for r in recs if r.get("selection_valid"))
+            attempted = len(recs)
+            excluded = sum(1 for r in recs if r.get("api_error_category"))
+            evaluated_recs = [r for r in recs if not r.get("api_error_category")]
+            n = len(evaluated_recs)
+            
+            sel_pass = sum(1 for r in evaluated_recs if r.get("selection_valid"))
             p_sel, sel_low, sel_high = wilson_ci(sel_pass, n)
+            
             summary["task2"][var] = {
+                "attempted": attempted,
+                "excluded_api_error": excluded,
+                "evaluated": n,
                 "n": n,
                 "selection_pass": sel_pass,
                 "selection_rate": p_sel, "selection_ci_95": [sel_low, sel_high]
             }
             
         # McNemar Paired Tests
-        def run_mcnemar(task_records, metric):
+        def run_mcnemar(task_records_grouped, metric):
+            # Only use evaluated records for McNemar!
             pairs = {}
-            for r in task_records:
-                pk = f"{r['base_id']}_{r['repeat']}"
-                if pk not in pairs: pairs[pk] = {}
-                pairs[pk][r["variant"]] = r.get(metric, False)
+            for var, recs in task_records_grouped.items():
+                for r in recs:
+                    if r.get("api_error_category"): continue
+                    pk = f"{r['base_id']}_{r['repeat']}"
+                    if pk not in pairs: pairs[pk] = {}
+                    pairs[pk][var] = r.get(metric, False)
                 
             res = {}
-            variants = set(r["variant"] for r in task_records if r["variant"] != "canonical")
+            variants = set(task_records_grouped.keys()) - {"canonical"}
             for var in variants:
                 b = 0 # Canonical True, Variant False
                 c = 0 # Canonical False, Variant True
@@ -128,8 +140,8 @@ def analyze(run_id, data_dir="results"):
                 }
             return res
             
-        summary["mcnemar_tests"]["task1_semantics"] = run_mcnemar(t1, "semantics_valid")
-        summary["mcnemar_tests"]["task2_selection"] = run_mcnemar(t2, "selection_valid")
+        summary["mcnemar_tests"]["task1_semantics"] = run_mcnemar(t1_by_var, "semantics_valid")
+        summary["mcnemar_tests"]["task2_selection"] = run_mcnemar(t2_by_var, "selection_valid")
         
         analysis["results"].append(summary)
         
