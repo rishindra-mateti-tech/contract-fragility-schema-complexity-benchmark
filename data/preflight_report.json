@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-10-06T23:25:54-05:00",
+  "providers": {
+    "Gemini": {
+      "track": "Track A (Provider-Mediated)",
+      "status": "PASS",
+      "model": "gemini-3.1-flash-lite-preview",
+      "msg": "Provider-Mediated OK"
+    },
+    "Groq": {
+      "track": "Track B (Raw JSON)",
+      "status": "PASS",
+      "model": "allam-2-7b",
+      "msg": "Raw JSON Support OK"
+    },
+    "Cohere": {
+      "track": "Track B (Raw JSON)",
+      "status": "PASS",
+      "model": "command-r-plus-08-2024",
+      "msg": "Native Raw JSON Support OK"
+    },
+    "SambaNova": {
+      "track": "Unavailable",
+      "status": "FAIL",
+      "model": "null",
+      "msg": "Error 402: Zero Balance"
+    }
+  }
+}
