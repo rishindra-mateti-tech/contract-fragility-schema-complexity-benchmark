@@ -37,29 +37,66 @@ def format_gemini_tool(tool_dict):
     )
     return types.Tool(function_declarations=[func_decl])
 
-def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_retries=4):
+def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_retries=4, raw_mode=False):
     """Executes a model call with exponential backoff and records timing, token, and availability telemetry."""
     for attempt in range(max_retries):
         start_time = time.time()
         try:
-            response = client.models.generate_content(
-                model=model_name,
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    tools=tools,
-                    temperature=temperature
+            if raw_mode:
+                # Regime B: Raw Unconstrained JSON output (Provider mediation disabled)
+                tool_schemas = []
+                for t in tools:
+                    if isinstance(t, types.Tool):
+                        for f in t.function_declarations:
+                            # Convert GenAI type back to dict for prompt if needed, but it's easier if we pass raw dicts
+                            pass
+                
+                # We will handle the prompt building inside run_benchmark for raw mode
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        temperature=temperature,
+                        response_mime_type="application/json"
+                    )
                 )
-            )
+            else:
+                # Regime A: Provider-mediated tools
+                response = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        tools=tools,
+                        temperature=temperature
+                    )
+                )
+                
             elapsed = time.time() - start_time
             
             tool_calls = []
-            if response.function_calls:
+            if not raw_mode and response.function_calls:
                 for fc in response.function_calls:
                     args_dict = dict(fc.args) if fc.args else {}
                     tool_calls.append({
                         "name": fc.name,
                         "args": args_dict
                     })
+            elif raw_mode and response.text:
+                try:
+                    # Attempt to parse raw JSON output
+                    raw_data = json.loads(response.text)
+                    if isinstance(raw_data, dict) and "name" in raw_data and "args" in raw_data:
+                        tool_calls.append({
+                            "name": raw_data["name"],
+                            "args": raw_data["args"]
+                        })
+                    elif isinstance(raw_data, dict) and "name" in raw_data and "parameters" in raw_data:
+                        tool_calls.append({
+                            "name": raw_data["name"],
+                            "args": raw_data["parameters"]
+                        })
+                except json.JSONDecodeError:
+                    pass
                     
             usage = getattr(response, "usage_metadata", None)
             prompt_tokens = getattr(usage, "prompt_token_count", 0) if usage else 0
@@ -96,7 +133,7 @@ def execute_llm_call(client, model_name, prompt, tools, temperature=0.0, max_ret
                 "retry_count": attempt
             }
 
-def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
+def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0, raw_mode=False):
     if models is None:
         models = ["gemini-3-flash-preview"]
         
@@ -112,26 +149,39 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
     with open(os.path.join(root_dir, "data", "distractor_tools.json"), "r", encoding="utf-8") as f:
         distractor_catalog = json.load(f)
         
-    out_file = os.path.join(root_dir, "results", "raw_benchmark_results.json")
+    timestamp_str = time.strftime("%Y%m%d_%H%M%S")
+    out_file = os.path.join(root_dir, "results", f"raw_benchmark_results_{timestamp_str}.json")
     os.makedirs(os.path.dirname(out_file), exist_ok=True)
     
-    results = {
-        "metadata": {
-            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "models": models,
-            "total_suites": len(schema_suites),
-            "num_repeats": num_repeats
-        },
-        "task_1_argument_construction": [],
-        "task_2_tool_selection": [],
-        "task_3_execution_semantics": []
-    }
+    if os.path.exists(out_file):
+        with open(out_file, "r", encoding="utf-8") as f:
+            results = json.load(f)
+            # update metadata
+            for m in models:
+                if m not in results["metadata"]["models"]:
+                    results["metadata"]["models"].append(m)
+    else:
+        results = {
+            "metadata": {
+                "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "models": models.copy(),
+                "total_suites": len(schema_suites),
+                "num_repeats": num_repeats,
+                "raw_mode": raw_mode
+            },
+            "task_1_argument_construction": [],
+            "task_2_tool_selection": [],
+            "task_3_execution_semantics": []
+        }
     
     total_calls = len(models) * len(schema_suites) * (4 + 2) * num_repeats
-    print(f"Starting Benchmark Protocol: {total_calls} planned calls across {len(models)} models...")
+    regime = "Raw Unconstrained" if raw_mode else "Provider-Mediated"
+    print(f"Starting Benchmark Protocol ({regime}): {total_calls} planned calls across {len(models)} models...")
     call_idx = 0
     
-    for model_name in models:
+    for base_model_name in models:
+        # Differentiate model name for reporting
+        model_name = f"{base_model_name}-raw" if raw_mode else base_model_name
         print(f"\nEvaluating Model: {model_name}")
         for suite in schema_suites:
             base_id = suite["base_id"]
@@ -145,7 +195,12 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
                 expected_args = var_data["expected_args"]
                 genai_tool = format_gemini_tool(tool_dict)
                 
-                resp = execute_llm_call(client, model_name, query, [genai_tool], temperature=0.0)
+                if raw_mode:
+                    eval_prompt = f"{query}\n\nYou have access to the following tool. Respond with a valid JSON object containing exactly 'name' and 'args' keys:\n{json.dumps(tool_dict, indent=2)}"
+                    resp = execute_llm_call(client, base_model_name, eval_prompt, [genai_tool], temperature=0.0, raw_mode=True)
+                else:
+                    eval_prompt = query
+                    resp = execute_llm_call(client, base_model_name, eval_prompt, [genai_tool], temperature=0.0)
                 
                 tool_called = False
                 syntax_valid = False
@@ -170,7 +225,7 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
                     "model": model_name,
                     "base_id": base_id,
                     "mutation_type": var_key,
-                    "prompt": query,
+                    "prompt": eval_prompt,
                     "retry_count": resp.get("retry_count", 0),
                     "infrastructure_error": resp["infrastructure_error"],
                     "tool_called": tool_called,
@@ -224,7 +279,12 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
                     ) for t in candidate_pool
                 ])
                 
-                resp_t2 = execute_llm_call(client, model_name, query, [genai_tools], temperature=0.0)
+                if raw_mode:
+                    eval_prompt_t2 = f"{query}\n\nYou have access to the following tools. Respond with a valid JSON object containing exactly 'name' and 'args' keys:\n{json.dumps(candidate_pool, indent=2)}"
+                    resp_t2 = execute_llm_call(client, base_model_name, eval_prompt_t2, [genai_tools], temperature=0.0, raw_mode=True)
+                else:
+                    eval_prompt_t2 = query
+                    resp_t2 = execute_llm_call(client, base_model_name, eval_prompt_t2, [genai_tools], temperature=0.0)
                 
                 selected_tool = None
                 selection_correct = False
@@ -238,7 +298,7 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
                     "model": model_name,
                     "base_id": base_id,
                     "variant": test_variant,
-                    "prompt": query,
+                    "prompt": eval_prompt_t2,
                     "retry_count": resp_t2.get("retry_count", 0),
                     "target_position_in_menu": target_position,
                     "total_candidates_in_menu": len(candidate_pool),
@@ -265,9 +325,10 @@ def run_benchmark(models=None, num_repeats=1, max_suites=None, delay=3.0):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Contract Fragility Benchmark Runner")
-    parser.add_argument("--model", type=str, default="gemini-3-flash-preview", help="Target model identifier")
+    parser.add_argument("--models", type=str, nargs="+", default=["gemini-3-flash-preview"], help="Target model identifiers")
     parser.add_argument("--max-suites", type=int, default=None, help="Maximum number of suites to evaluate")
     parser.add_argument("--delay", type=float, default=3.0, help="Sleep duration between calls in seconds")
+    parser.add_argument("--raw-mode", action="store_true", help="Run in Regime B: Unconstrained raw JSON output instead of provider-mediated function calling.")
     args = parser.parse_args()
     
-    run_benchmark(models=[args.model], max_suites=args.max_suites, delay=args.delay)
+    run_benchmark(models=args.models, max_suites=args.max_suites, delay=args.delay, raw_mode=args.raw_mode)

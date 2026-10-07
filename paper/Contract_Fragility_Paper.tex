@@ -22,7 +22,7 @@
 
 \begin{document}
 
-\title{Contract Fragility: An Empirical Evaluation Protocol for Schema Complexity and Structural Degradation in LLM Tool Calling}
+\title{Contract Fragility: An Empirical Evaluation Protocol for Schema Complexity in LLM Tool Calling}
 
 \author{Rishindra~Mateti%
 \IEEEcompsocitemizethanks{\IEEEcompsocthanksitem R. Mateti is a Software Engineer based in Dallas, TX, USA.\protect\\
@@ -176,7 +176,8 @@ To ensure mathematical rigor, all evaluations enforce:
     \item \textbf{Infrastructure Separation:} HTTP availability failures (e.g., 429 throttling) are strictly isolated from model accuracy scoring.
 \end{itemize}
 
-\noindent\textbf{Partial Execution and Initial Null Findings:} The initial telemetry committed to the repository represents a partial benchmark execution (240 API calls across 10 suites) profiling \texttt{gemini-3.1-flash-lite-preview} and \texttt{gemini-3-flash-preview} in both Provider-Mediated and Raw Unconstrained regimes. The primary finding from this subset is a \textit{null result}: \texttt{gemini-3.1-flash-lite-preview} successfully passed all 10 schema variants identically across both syntax and tool selection tasks ($p = 1.0$). This demonstrates that the model is highly robust to the currently tested structural stresses, or that the synthetic mutations must be made substantially harder. The secondary model (\texttt{gemini-3-flash-preview}) experienced severe infrastructure throttling, completing only 10--20\% of several conditions. We explicitly report this as an availability failure, not a degradation in tool-calling capability. Full empirical execution requires our planned multi-provider sweep across 20+ schemas and 3--5 independent repetitions across OpenAI, Anthropic, and open-weights models to detect conclusive degradation boundaries.
+
+\noindent\textbf{Exploratory Pilot Execution:} The telemetry currently committed to the repository represents an exploratory pilot execution (30 API calls across 5 suites) profiling \texttt{gemini-3.1-flash-lite-preview}. This pilot specifically tests the benchmark's extremely difficult schema mutations (3-level deep object nesting, 15-field distractor bloat, and complete docstring removal). The preliminary finding ($N=5$) reveals an exploratory drop in semantic execution grounding (from 60\% on canonical schemas down to 20\% on ambiguous schemas) while maintaining 100\% syntactic validity. Because the sample size is small, this is reported strictly as an exploratory observation, not a statistically significant degradation. Full empirical execution requires our planned multi-provider sweep across 20 schemas and 3--5 independent repetitions across OpenAI, Anthropic, and open-weights models to detect conclusive failure boundaries.
 
 \section{Static Schema Linting (\texttt{SchemaFragilityLinter})}
 As an engineering artifact, we release \texttt{SchemaFragilityLinter}, a static analysis utility that audits JSON Schema contracts for candidate structural risks identified by this protocol prior to deployment:

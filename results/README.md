@@ -69,12 +69,13 @@ python -u src/benchmark_runner.py --model gemini-3.1-flash-lite-preview --max-su
 ## 4. Partial Execution & Initial Null Findings
 
 > [!IMPORTANT]
-> **Status: Partial Empirical Execution (240 Calls)**  
-> The baseline records currently committed in `raw_benchmark_results.json` and `summary_metrics.json` reflect a partial execution (240 API calls across 10 suites) profiling `gemini-3.1-flash-lite-preview` and `gemini-3-flash-preview` in both **Provider-Mediated** and **Raw Unconstrained** regimes.
+> **Status: Exploratory Pilot Execution (30 Calls)**  
+> The baseline records currently committed in `raw_benchmark_results.json` and `summary_metrics.json` reflect an exploratory pilot run of extreme schema mutations (30 API calls across 5 suites) profiling `gemini-3.1-flash-lite-preview`. 
 >
 > **Honest Assessment of Current Findings:**
-> 1. **Null Result on Syntax Degradation:** `gemini-3.1-flash-lite-preview` successfully passed all 10 schema variants identically across both syntax and tool selection tasks. The McNemar paired exact tests yield $p = 1.0$ (no statistical effect). This demonstrates that the model is robust to the tested structural stresses, or that the synthetic mutations must be made substantially harder. We do not claim structural degradation based on these partial results.
-> 2. **Availability vs. Capability:** The secondary model (`gemini-3-flash-preview`) experienced severe infrastructure throttling, completing only 10-20% of several conditions despite exponential backoff. This is explicitly reported as an **availability failure**, not a degradation in model tool-calling quality.
+> 1. **No Statistical Degradation Yet:** The current pilot ($N=5$) shows 100% syntax and selection accuracy. While semantic exact match dropped from 60% (canonical) to 20% (ambiguous), this sample size is too small for statistical significance. We do not claim proven model degradation yet.
+> 2. **Extreme Mutations Working:** The benchmark mutations were substantially hardened (3-level nesting, 15-field distractor bloat, docstring removal), successfully forcing the model to fail semantic extraction without breaking the pipeline.
+> 3. **Next Steps:** A full multi-provider execution (e.g., Mistral, Llama-3) across the complete dataset is required to test for statistically significant fragility.
 
 ---
 
