@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "purpose": "Stage A Pilot Selection",
+    "selection_method": "Stratified random sampling across 4 domains (Infra_DevOps, Enterprise_CRM_Sales, Data_Identity, Comms_Logistics)",
+    "random_seed": 42,
+    "total_selected": 8
+  },
+  "schemas": [
+    {
+      "base_id": "k8s_scale_deployment",
+      "domain": "Infra_DevOps",
+      "query": "Scale the api-gateway deployment in production namespace to 8 pods immediately.",
+      "expected_args": {
+        "namespace": "production",
+        "deployment_name": "api-gateway",
+        "replicas": 8
+      },
+      "canonical_hash": "c102d5d9996b62d1a8da74d9b55b6d7f68a9cb333a6271df43ff307b1e431f32",
+      "mutation_hashes": {
+        "canonical": "c102d5d9996b62d1a8da74d9b55b6d7f68a9cb333a6271df43ff307b1e431f32",
+        "nested_hierarchy": "c5d9f8b4e81269efa78d4b248a9d81a925c9721610152588a68e510c9241a05c",
+        "optionality_bloat": "898b609eb4200d5527b379864a65ab7ed26fd894b3044a0d974c84c491d83b48",
+        "ambiguous_identifiers": "368e029fa3639b4b779c058021a51af04a6a5a07ef3b7c324b9b3e16f2a61c46"
+      }
+    },
+    {
+      "base_id": "aws_create_s3_bucket",
+      "domain": "Infra_DevOps",
+      "query": "Create an S3 bucket named 'analytics-warehouse-2026' in us-east-1 with versioning enabled.",
+      "expected_args": {
+        "bucket_name": "analytics-warehouse-2026",
+        "region": "us-east-1",
+        "enable_versioning": true
+      },
+      "canonical_hash": "63f035baff37d4ba1c3a8e7f44ae47db5e3580577c33956fd982a6a934d714cb",
+      "mutation_hashes": {
+        "canonical": "63f035baff37d4ba1c3a8e7f44ae47db5e3580577c33956fd982a6a934d714cb",
+        "nested_hierarchy": "038ae83d0e3ea9bb4b09df467d17aedeccd074ea070ab981ffe4a1e5a82cb975",
+        "optionality_bloat": "2b2e11f59b8aeef23edd537b9fc73a29b945b8e9a26a456cf5907ec5b50b9c0a",
+        "ambiguous_identifiers": "f66dfc8a8db17b97951f77f88e75210934e9c7986a0328d5ce2985fdf8e5cd91"
+      }
+    },
+    {
+      "base_id": "crm_update_lead",
+      "domain": "Enterprise_CRM_Sales",
+      "query": "Move lead LEAD-401 to qualified stage with an estimated contract value of 120000 dollars.",
+      "expected_args": {
+        "lead_id": "LEAD-401",
+        "pipeline_stage": "qualified",
+        "deal_value_usd": 120000.0
+      },
+      "canonical_hash": "b760a84a54320887e7899068e5c02ee0a982acc58c8afea3726fad2d08d829e1",
+      "mutation_hashes": {
+        "canonical": "b760a84a54320887e7899068e5c02ee0a982acc58c8afea3726fad2d08d829e1",
+        "nested_hierarchy": "33d1865d1fa106091980c9fb248b777053b757a189e5f52fd47ef3dfebecc915",
+        "optionality_bloat": "e8cd78b3926eb5cf86ab382bbfadc8e26eeda16968d140d2a67bbb68c9b70fad",
+        "ambiguous_identifiers": "9e2222bf3702a6982022ef5a32d65d76848c13e175350d9f9a6233a5216eb4d8"
+      }
+    },
+    {
+      "base_id": "mailchimp_add_subscriber",
+      "domain": "Enterprise_CRM_Sales",
+      "query": "Subscribe bob@acme.org to audience list LIST-994 as subscribed with first name Bob.",
+      "expected_args": {
+        "list_id": "LIST-994",
+        "email_address": "bob@acme.org",
+        "subscription_status": "subscribed",
+        "first_name": "Bob"
+      },
+      "canonical_hash": "b61287031ee9eb7104155fa01515da2301702a1e392324fdf799d40c0bd318e5",
+      "mutation_hashes": {
+        "canonical": "b61287031ee9eb7104155fa01515da2301702a1e392324fdf799d40c0bd318e5",
+        "nested_hierarchy": "2feaeba912b000ab8ffa3c271b6e94de26a51fd97374c87680dac0a04575764f",
+        "optionality_bloat": "cc89fe2a5e1fdd4c6c84f29b7513edbc4307ea0b63ed6146c34acaf60e27073a",
+        "ambiguous_identifiers": "deff530bb6e19739246a16c84024426c9f8164ae5ef6806f81bf3e2d869716f0"
+      }
+    },
+    {
+      "base_id": "database_execute_query",
+      "domain": "Data_Identity",
+      "query": "Run 'SELECT id, email FROM users WHERE active = true LIMIT 50' on the analytics_db with a 30s timeout as read only.",
+      "expected_args": {
+        "database_name": "analytics_db",
+        "sql_query": "SELECT id, email FROM users WHERE active = true LIMIT 50",
+        "timeout_seconds": 30,
+        "read_only": true
+      },
+      "canonical_hash": "ce6d02838017ccdd317df81ca6a88640aca255d4abe0c30d559335b748dacb17",
+      "mutation_hashes": {
+        "canonical": "ce6d02838017ccdd317df81ca6a88640aca255d4abe0c30d559335b748dacb17",
+        "nested_hierarchy": "78d835377d7cb46de86f8cdbe105cfc598483af4cc320c52498f2539a106de84",
+        "optionality_bloat": "6e8866745337aef514df9b0fc272154c509e369e9c8bae95676166df63d48fe3",
+        "ambiguous_identifiers": "33b804a77c0eeddfa3f16ad21222d9c7473975deff4c03f135074c4d9e42c224"
+      }
+    },
+    {
+      "base_id": "auth0_create_user",
+      "domain": "Data_Identity",
+      "query": "Create an Auth0 user with email charlie@corp.io in 'Username-Password-Authentication' connection with email_verified set to false.",
+      "expected_args": {
+        "connection": "Username-Password-Authentication",
+        "email": "charlie@corp.io",
+        "email_verified": false
+      },
+      "canonical_hash": "6157dfc1954907c21689dd1e0ede7f62ecd367db8a981b56092a4d0ff2492c75",
+      "mutation_hashes": {
+        "canonical": "6157dfc1954907c21689dd1e0ede7f62ecd367db8a981b56092a4d0ff2492c75",
+        "nested_hierarchy": "91678c6a61cc364653911718e4760debf965be3a926f1c1ddcd6bd61df321cb2",
+        "optionality_bloat": "8ae3643e8cfd3f12e32622e16236dcd1a9a3f7d278b30fea5a2a107fbfcc7c04",
+        "ambiguous_identifiers": "1fb481aaa68b5f927f6837dc6a4f334540e145d04c39aae18eae3cac124dd30d"
+      }
+    },
+    {
+      "base_id": "shipping_create_label",
+      "domain": "Comms_Logistics",
+      "query": "Generate a FedEx shipping label for a 4.5 lb box going to zip code 75001 using priority_overnight delivery.",
+      "expected_args": {
+        "carrier": "fedex",
+        "weight_lbs": 4.5,
+        "recipient_zip": "75001",
+        "service_tier": "priority_overnight"
+      },
+      "canonical_hash": "8ea45209760c885dc77ed4e3052490f5de03d2ff87a2b26cec8ac709402bbd24",
+      "mutation_hashes": {
+        "canonical": "8ea45209760c885dc77ed4e3052490f5de03d2ff87a2b26cec8ac709402bbd24",
+        "nested_hierarchy": "7ef8eae53c254271da79d44631b44b05246702ae26e0dd8230e8823dac14d2bc",
+        "optionality_bloat": "9f5a8c26295dec8b42bd9b2f4ef54f5882579c1ebcb45b7fdfd1fd2c1d84b75a",
+        "ambiguous_identifiers": "c54fe838cd5ce718bba00ec98122231584c4313e980bda7fb5fddc9242dd894e"
+      }
+    },
+    {
+      "base_id": "twilio_send_sms",
+      "domain": "Comms_Logistics",
+      "query": "Send an SMS to +14693636353 saying 'Your verification code is 492011'.",
+      "expected_args": {
+        "recipient_number": "+14693636353",
+        "message_body": "Your verification code is 492011"
+      },
+      "canonical_hash": "3921ac2019bc105073fbab04fdbfca404a6e0980fee05e4a91d611aa35b785b9",
+      "mutation_hashes": {
+        "canonical": "3921ac2019bc105073fbab04fdbfca404a6e0980fee05e4a91d611aa35b785b9",
+        "nested_hierarchy": "6777f8f673c78fb7c6f695ee9a4c2a1097dc480d8ced582e1b3d27593b26398a",
+        "optionality_bloat": "9226f91d5553ec883f8b71122dcc4d8223b35849674ad2016b169e9afd285a70",
+        "ambiguous_identifiers": "e60224042f4fa360b3624e0b5857fb8736a8e699e15bbc9206e7bf0ee0aaa4c6"
+      }
+    }
+  ]
+}
