@@ -38,13 +38,9 @@ def is_transient_error(e, provider):
         return True
     return False
 
-def execute_call(client, provider, model_name, prompt, tools, dry_run=False, max_retries=4):
+def execute_call(client, provider, model_name, prompt, tools, dry_run=False, max_retries=4, mock_target_name=None, mock_expected_args=None):
     if dry_run:
-        # Mock a valid successful tool call for testing
-        mock_args = tools[0]["parameters"]["properties"].copy()
-        for k in mock_args.keys():
-            mock_args[k] = "mock_value"
-        mock_call = {"name": tools[0]["name"], "args": mock_args}
+        mock_call = {"name": mock_target_name or tools[0]["name"], "args": dict(mock_expected_args) if mock_expected_args else {}}
         return {"success": True, "latency": 0.1, "tool_calls": [mock_call], "error": None, "retries": 0, "raw_text": json.dumps(mock_call), "error_category": None}
         
     for attempt in range(max_retries):
@@ -133,11 +129,14 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
     for provider, model_name in providers_models:
         client = get_client(provider) if not dry_run else True
         if not client: continue
+        track_label = "Track A" if provider.lower() == "gemini" else "Track B"
+        
         for r in range(repeats):
             for schema_meta in manifest["schemas"]:
                 base_id = schema_meta["base_id"]
                 item = full_schemas[base_id]
                 query = item["query"]
+                query_hash = hashlib.sha256(query.encode('utf-8')).hexdigest()
                 
                 # Task 1
                 for var_key, var_data in item["variants"].items():
@@ -147,22 +146,26 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                     if k1 in completed_keys: continue
                     
                     tool = var_data["tool"]
-                    prompt_hash = hashlib.sha256(query.encode('utf-8')).hexdigest()
                     schema_hash = hashlib.sha256(json.dumps(tool, sort_keys=True).encode('utf-8')).hexdigest()
+                    rendered_prompt = query + "\nTOOLS:\n" + json.dumps([tool], sort_keys=True)
+                    rendered_prompt_hash = hashlib.sha256(rendered_prompt.encode('utf-8')).hexdigest()
                     
-                    resp = execute_call(client, provider, model_name, query, [tool], dry_run)
+                    expected_args = var_data["expected_args"]
+                    target_name = tool["name"]
+                    
+                    resp = execute_call(client, provider, model_name, query, [tool], dry_run, mock_target_name=target_name, mock_expected_args=expected_args)
                     
                     generated_call = resp["tool_calls"][0] if len(resp["tool_calls"]) == 1 else None
                     generated_args = generated_call["args"] if generated_call else None
                     generated_tool_name = generated_call["name"] if generated_call else None
                     
-                    expected_args = var_data["expected_args"]
+                    tool_name_valid = (generated_tool_name == target_name)
                     
-                    if generated_args is not None:
+                    if generated_args is not None and tool_name_valid:
                         syn_ok, syn_cat, syn_msg = validate_syntax(generated_args, tool["parameters"])
                         sem_ok, prec, rec, sem_dets = validate_semantics(generated_args, expected_args)
                     else:
-                        syn_ok, syn_cat, syn_msg = False, "MISSING_CALL", "No valid tool call returned"
+                        syn_ok, syn_cat, syn_msg = False, "WRONG_TOOL_OR_MISSING", "Tool name mismatch or no valid call"
                         sem_ok, prec, rec, sem_dets = False, 0.0, 0.0, {}
                     
                     if resp["error"]: syn_cat = "API_ERROR"
@@ -170,13 +173,15 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                     rec1 = {
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                         "git_sha": git_sha, "provider": provider, "model": model_name, 
-                        "track": "Track A" if provider=="gemini" else "Track B",
+                        "track": track_label,
                         "repeat": r, "task": 1, "base_id": base_id, "variant": var_key,
-                        "prompt_hash": prompt_hash, "schema_hash": schema_hash, 
+                        "query_hash": query_hash,
+                        "rendered_prompt_hash": rendered_prompt_hash, "schema_hash": schema_hash, 
                         "latency": resp["latency"], "retries": resp["retries"], 
                         "api_error": resp["error"],
                         "raw_text": resp["raw_text"],
                         "generated_tool_name": generated_tool_name,
+                        "tool_name_valid": tool_name_valid,
                         "generated_args": generated_args,
                         "expected_args_hash": hashlib.sha256(json.dumps(expected_args, sort_keys=True).encode('utf-8')).hexdigest(),
                         "syntax_valid": syn_ok, "syntax_category": syn_cat, "syntax_message": syn_msg,
@@ -194,13 +199,19 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                     
                     target_tool = item["variants"][var_key]["tool"]
                     pool = [target_tool] + distractor_catalog.get(base_id, [])
-                    rng = random.Random(f"{base_id}_{var_key}_{r}")
+                    
+                    shuffle_seed = f"{base_id}_{var_key}_{r}"
+                    rng = random.Random(shuffle_seed)
                     rng.shuffle(pool)
                     
-                    prompt_hash = hashlib.sha256(query.encode('utf-8')).hexdigest()
-                    schema_hash = hashlib.sha256(json.dumps(pool, sort_keys=True).encode('utf-8')).hexdigest()
+                    candidate_tool_names = [t["name"] for t in pool]
+                    target_position = candidate_tool_names.index(target_tool["name"])
                     
-                    resp = execute_call(client, provider, model_name, query, pool, dry_run)
+                    schema_hash = hashlib.sha256(json.dumps(pool, sort_keys=True).encode('utf-8')).hexdigest()
+                    rendered_prompt = query + "\nTOOLS:\n" + json.dumps(pool, sort_keys=True)
+                    rendered_prompt_hash = hashlib.sha256(rendered_prompt.encode('utf-8')).hexdigest()
+                    
+                    resp = execute_call(client, provider, model_name, query, pool, dry_run, mock_target_name=target_tool["name"], mock_expected_args={})
                     
                     generated_call = resp["tool_calls"][0] if len(resp["tool_calls"]) == 1 else None
                     generated_tool_name = generated_call["name"] if generated_call else None
@@ -209,9 +220,13 @@ def run_stage_a(providers_models, run_id, resume=False, dry_run=False, repeats=3
                     rec2 = {
                         "timestamp": datetime.now(timezone.utc).isoformat(),
                         "git_sha": git_sha, "provider": provider, "model": model_name, 
-                        "track": "Track A" if provider=="gemini" else "Track B",
+                        "track": track_label,
                         "repeat": r, "task": 2, "base_id": base_id, "variant": var_key,
-                        "prompt_hash": prompt_hash, "schema_hash": schema_hash, 
+                        "query_hash": query_hash,
+                        "rendered_prompt_hash": rendered_prompt_hash, "schema_hash": schema_hash, 
+                        "shuffle_seed": shuffle_seed,
+                        "candidate_tool_names": candidate_tool_names,
+                        "target_position": target_position,
                         "latency": resp["latency"], "retries": resp["retries"], 
                         "api_error": resp["error"],
                         "raw_text": resp["raw_text"],

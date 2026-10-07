@@ -1,53 +1,43 @@
 [
   {
-    "timestamp": "2026-10-07T04:46:39.763861+00:00",
-    "git_sha": "4c4e2281fcbee9b228352a737ade189a1ab67e7b",
+    "timestamp": "2026-10-07T04:51:01.673155+00:00",
+    "git_sha": "4130b41de734300acb0f83790596c5f55fa51b8c",
     "provider": "Gemini",
     "model": "gemini-3.1-flash-lite-preview",
-    "track": "Track B",
+    "track": "Track A",
     "repeat": 0,
     "task": 1,
     "base_id": "k8s_scale_deployment",
     "variant": "canonical",
-    "prompt_hash": "820318f17932947bf48bdac89f0067dd6700a1f32be8197e9915b3786b4588aa",
+    "query_hash": "820318f17932947bf48bdac89f0067dd6700a1f32be8197e9915b3786b4588aa",
+    "rendered_prompt_hash": "52e943f23c3b0d0a5c562573ceed62cc41649739596077992dcad616929ab107",
     "schema_hash": "c102d5d9996b62d1a8da74d9b55b6d7f68a9cb333a6271df43ff307b1e431f32",
     "latency": 0.1,
     "retries": 0,
     "api_error": null,
-    "raw_text": "{\"name\": \"scale_kubernetes_deployment\", \"args\": {\"namespace\": \"mock_value\", \"deployment_name\": \"mock_value\", \"replicas\": \"mock_value\", \"dry_run\": \"mock_value\"}}",
+    "raw_text": "{\"name\": \"scale_kubernetes_deployment\", \"args\": {\"namespace\": \"production\", \"deployment_name\": \"api-gateway\", \"replicas\": 8}}",
     "generated_tool_name": "scale_kubernetes_deployment",
+    "tool_name_valid": true,
     "generated_args": {
-      "namespace": "mock_value",
-      "deployment_name": "mock_value",
-      "replicas": "mock_value",
-      "dry_run": "mock_value"
+      "namespace": "production",
+      "deployment_name": "api-gateway",
+      "replicas": 8
     },
     "expected_args_hash": "4cbbda506872ef1dfc79011b26c78625548d232dfc8e79a94a66ddbdcb7ed9a1",
-    "syntax_valid": false,
-    "syntax_category": "TYPE_MISMATCH",
-    "syntax_message": "'mock_value' is not of type 'boolean'",
-    "semantics_valid": false,
-    "semantic_precision": 0.0,
-    "semantic_recall": 0.0,
+    "syntax_valid": true,
+    "syntax_category": null,
+    "syntax_message": null,
+    "semantics_valid": true,
+    "semantic_precision": 1.0,
+    "semantic_recall": 1.0,
     "semantic_details": {
-      "matched_fields": [],
-      "mismatches": {
-        "namespace": {
-          "expected": "production",
-          "generated": "mock_value"
-        },
-        "deployment_name": {
-          "expected": "api-gateway",
-          "generated": "mock_value"
-        },
-        "replicas": {
-          "expected": 8,
-          "generated": "mock_value"
-        }
-      },
-      "unsolicited_fields": [
-        "dry_run"
-      ]
+      "matched_fields": [
+        "namespace",
+        "deployment_name",
+        "replicas"
+      ],
+      "mismatches": {},
+      "unsolicited_fields": []
     }
   }
 ]

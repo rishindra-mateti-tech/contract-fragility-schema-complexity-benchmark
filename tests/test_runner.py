@@ -39,13 +39,26 @@ def test_dry_run_and_resume(tmp_path):
     out_file = os.path.join(results_dir, f"{run_id}_results.json")
     if os.path.exists(out_file): os.remove(out_file)
         
-    run_stage_a([("Gemini", "gemini-3.1-flash-lite-preview")], run_id=run_id, resume=False, dry_run=True, repeats=1)
-    
-    with open(out_file, "r") as f:
-        results1 = json.load(f)
+    results1 = run_stage_a([("Gemini", "gemini-3.1-flash-lite-preview")], run_id=run_id, resume=False, dry_run=True, repeats=1)
     
     assert len(results1) == 48 
-    assert all(r["raw_text"] != None for r in results1)
+    
+    task1_records = [r for r in results1 if r["task"] == 1]
+    assert len(task1_records) == 32 # 8 schemas * 4 variants
+    for r in task1_records:
+        assert r["syntax_valid"] is True
+        assert r["semantics_valid"] is True
+        assert r["tool_name_valid"] is True
+        assert "rendered_prompt_hash" in r
+        assert "query_hash" in r
+
+    task2_records = [r for r in results1 if r["task"] == 2]
+    assert len(task2_records) == 16 # 8 schemas * 2 variants
+    for r in task2_records:
+        assert r["selection_valid"] is True
+        assert "target_position" in r
+        assert "candidate_tool_names" in r
+        assert "shuffle_seed" in r
     
     run_stage_a([("Gemini", "gemini-3.1-flash-lite-preview")], run_id=run_id, resume=True, dry_run=True, repeats=1)
     with open(out_file, "r") as f:
