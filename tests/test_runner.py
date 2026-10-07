@@ -83,6 +83,10 @@ def test_dry_run_and_resume(tmp_path):
     assert mcnemar["task1_semantics"]["canonical_vs_nested_hierarchy"]["p_value"] == 1.0
     
     if os.path.exists(out_file): os.remove(out_file)
+    analysis_out = os.path.join(results_dir, f"{run_id}_analysis.json")
+    if os.path.exists(analysis_out): os.remove(analysis_out)
+    manifest_out = os.path.join(results_dir, f"{run_id}_manifest.json")
+    if os.path.exists(manifest_out): os.remove(manifest_out)
 
 def test_scoring_logic_mutations():
     # Test valid and invalid mocking logic for exact validator signatures
