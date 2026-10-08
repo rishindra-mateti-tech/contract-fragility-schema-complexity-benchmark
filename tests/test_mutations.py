@@ -62,17 +62,17 @@ class TestMutationIsolation(unittest.TestCase):
                             f"Canonical schema {base['name']} failed Draft-07 validation")
 
     def test_nested_hierarchy_isolation(self):
-        """Nested hierarchy must mutate ONLY depth: exactly one root property 'request_payload'."""
+        """Nested hierarchy must mutate depth: wrapping properties inside transaction_context -> data -> attributes."""
         for base in self.base_schemas:
             var = create_nested_variant(base)
             params = var["tool"]["parameters"]
 
             # 1. Exactly one root property
-            self.assertEqual(list(params["properties"].keys()), ["request_payload"])
-            self.assertEqual(params["required"], ["request_payload"])
+            self.assertEqual(list(params["properties"].keys()), ["transaction_context"])
+            self.assertEqual(params["required"], ["transaction_context"])
 
-            # 2. Sub-object properties match base properties exactly
-            sub_obj = params["properties"]["request_payload"]
+            # 2. Sub-object properties match base properties exactly (at the deepest level)
+            sub_obj = params["properties"]["transaction_context"]["properties"]["data"]["properties"]["attributes"]
             self.assertEqual(sub_obj["type"], "OBJECT")
             self.assertEqual(set(sub_obj["properties"].keys()), set(base["parameters"]["properties"].keys()))
 
@@ -86,8 +86,8 @@ class TestMutationIsolation(unittest.TestCase):
             # 3. Required fields within sub-object match base required fields
             self.assertEqual(set(sub_obj.get("required", [])), set(base["parameters"].get("required", [])))
 
-            # 4. Expected args wraps ground truth under request_payload
-            self.assertEqual(var["expected_args"], {"request_payload": base["ground_truth"]})
+            # 4. Expected args wraps ground truth under transaction_context -> data -> attributes
+            self.assertEqual(var["expected_args"], {"transaction_context": {"data": {"attributes": base["ground_truth"]}}})
 
             # 5. Draft-07 Validity
             draft7 = self._convert_to_draft7(params)
@@ -138,7 +138,7 @@ class TestMutationIsolation(unittest.TestCase):
 
             # 4. Parameter types and enums are preserved
             for old_name, old_prop in base["parameters"]["properties"].items():
-                new_name = AMBIGUOUS_NAME_MAPPINGS.get(old_name, f"param_{old_name[:4]}")
+                new_name = AMBIGUOUS_NAME_MAPPINGS.get(old_name, f"param_{old_name[:3]}_v2")
                 self.assertIn(new_name, params["properties"])
                 new_prop = params["properties"][new_name]
                 self.assertEqual(new_prop["type"], old_prop["type"],
@@ -148,7 +148,7 @@ class TestMutationIsolation(unittest.TestCase):
 
             # 5. Ground truth values are preserved under new keys
             for old_key, old_val in base["ground_truth"].items():
-                new_key = AMBIGUOUS_NAME_MAPPINGS.get(old_key, f"param_{old_key[:4]}")
+                new_key = AMBIGUOUS_NAME_MAPPINGS.get(old_key, f"param_{old_key[:3]}_v2")
                 self.assertIn(new_key, var["expected_args"])
                 self.assertEqual(var["expected_args"][new_key], old_val)
 
