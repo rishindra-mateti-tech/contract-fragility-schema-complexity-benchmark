@@ -1,0 +1,195 @@
+- Candidate ID: CAND-001
+  Organization / Project: GitHub (github/rest-api-description)
+  Source Repository URL: https://github.com/github/rest-api-description
+  Exact Commit / Tag URL: https://github.com/github/rest-api-description/tree/main
+  License File URL: https://github.com/github/rest-api-description/blob/main/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Developer Platforms
+  Estimated Usable Tool Operations: 100+
+  Reason for Inclusion: Extremely widespread developer API, high enum density, and complex request bodies ideal for testing identifier ambiguity and optionality bloat.
+  Inclusion Risks / Exclusion Reason: Very large spec; will require significant pruning to isolate 1-2 representative endpoints without exceeding token limits.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-002
+  Organization / Project: Stripe (stripe/openapi)
+  Source Repository URL: https://github.com/stripe/openapi
+  Exact Commit / Tag URL: https://github.com/stripe/openapi/tree/master
+  License File URL: https://github.com/stripe/openapi/blob/master/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Payments
+  Estimated Usable Tool Operations: 100+
+  Reason for Inclusion: Gold standard for payments. High density of nested object parameters (e.g., charge creation, refund processing).
+  Inclusion Risks / Exclusion Reason: Deep nesting could easily overflow context windows if not carefully isolated to single endpoints.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-003
+  Organization / Project: DigitalOcean (digitalocean/openapi)
+  Source Repository URL: https://github.com/digitalocean/openapi
+  Exact Commit / Tag URL: https://github.com/digitalocean/openapi/tree/main
+  License File URL: https://github.com/digitalocean/openapi/blob/main/LICENSE.txt
+  Verified License Name: Apache-2.0
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Cloud/Infra
+  Estimated Usable Tool Operations: 50+
+  Reason for Inclusion: Classical cloud provisioning API. Excellent test case for CRUD-heavy tools with strict string enums (region, size, image).
+  Inclusion Risks / Exclusion Reason: None identified.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-004
+  Organization / Project: Twilio (twilio/twilio-oai)
+  Source Repository URL: https://github.com/twilio/twilio-oai
+  Exact Commit / Tag URL: https://github.com/twilio/twilio-oai/tree/main
+  License File URL: https://github.com/twilio/twilio-oai/blob/main/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Logistics/Communications
+  Estimated Usable Tool Operations: 100+
+  Reason for Inclusion: Flat but extremely wide parameter lists (e.g., message dispatching with 20+ optional configuration flags).
+  Inclusion Risks / Exclusion Reason: Multi-file referenced schemas require robust resolution before flattening.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-005
+  Organization / Project: Box (box/box-openapi)
+  Source Repository URL: https://github.com/box/box-openapi
+  Exact Commit / Tag URL: https://github.com/box/box-openapi/tree/main
+  License File URL: https://github.com/box/box-openapi/blob/main/LICENSE
+  Verified License Name: Apache-2.0
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Data/Identity
+  Estimated Usable Tool Operations: 100+
+  Reason for Inclusion: Highly structured enterprise file storage API with intense metadata parameter requirements.
+  Inclusion Risks / Exclusion Reason: None identified.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-006
+  Organization / Project: Slack (slackapi/slack-api-specs)
+  Source Repository URL: https://github.com/slackapi/slack-api-specs
+  Exact Commit / Tag URL: https://github.com/slackapi/slack-api-specs/tree/master
+  License File URL: https://github.com/slackapi/slack-api-specs/blob/master/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: CRM/Support
+  Estimated Usable Tool Operations: 80+
+  Reason for Inclusion: ChatOps tool integration standard. Rich message payload structures are perfect for nested hierarchy tests.
+  Inclusion Risks / Exclusion Reason: High use of polymorphic/union types (blocks) which may require simplification for strict benchmarking.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-007
+  Organization / Project: DataDog (DataDog/datadog-api-spec)
+  Source Repository URL: https://github.com/DataDog/datadog-api-spec
+  Exact Commit / Tag URL: https://github.com/DataDog/datadog-api-spec/tree/master
+  License File URL: https://github.com/DataDog/datadog-api-spec/blob/master/LICENSE
+  Verified License Name: Apache-2.0
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Cloud/Infra
+  Estimated Usable Tool Operations: 200+
+  Reason for Inclusion: Time-series metrics and dashboard payloads involve extreme nesting and complex array structures.
+  Inclusion Risks / Exclusion Reason: Payload complexity might exceed the bounds of a single synthetic test without aggressive pruning.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-008
+  Organization / Project: PayPal (paypal/paypal-rest-api-specifications)
+  Source Repository URL: https://github.com/paypal/paypal-rest-api-specifications
+  Exact Commit / Tag URL: https://github.com/paypal/paypal-rest-api-specifications/tree/main
+  License File URL: https://github.com/paypal/paypal-rest-api-specifications/blob/main/LICENSE
+  Verified License Name: Apache-2.0
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Payments
+  Estimated Usable Tool Operations: 80+
+  Reason for Inclusion: Represents legacy-to-modern JSON structures with differing naming conventions compared to Stripe.
+  Inclusion Risks / Exclusion Reason: None identified.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-009
+  Organization / Project: Model Context Protocol (modelcontextprotocol/servers - SQLite)
+  Source Repository URL: https://github.com/modelcontextprotocol/servers
+  Exact Commit / Tag URL: https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite
+  License File URL: https://github.com/modelcontextprotocol/servers/blob/main/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: MCP Tool JSON
+  Domain: Data/Identity
+  Estimated Usable Tool Operations: 5
+  Reason for Inclusion: Official reference implementation of an MCP server providing database tools (read_query, list_tables). Tests modern non-OpenAPI formats.
+  Inclusion Risks / Exclusion Reason: Small parameter footprint; primarily useful as a low-friction control schema.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-010
+  Organization / Project: Model Context Protocol (modelcontextprotocol/servers - GitHub)
+  Source Repository URL: https://github.com/modelcontextprotocol/servers
+  Exact Commit / Tag URL: https://github.com/modelcontextprotocol/servers/tree/main/src/github
+  License File URL: https://github.com/modelcontextprotocol/servers/blob/main/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: MCP Tool JSON
+  Domain: Developer Platforms
+  Estimated Usable Tool Operations: 10
+  Reason for Inclusion: Modern direct-to-agent MCP tool definitions. Essential for contrasting against traditional heavy OpenAPI specs.
+  Inclusion Risks / Exclusion Reason: None identified.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-011
+  Organization / Project: Chatwoot (chatwoot/chatwoot)
+  Source Repository URL: https://github.com/chatwoot/chatwoot
+  Exact Commit / Tag URL: https://github.com/chatwoot/chatwoot/tree/develop/swagger
+  License File URL: https://github.com/chatwoot/chatwoot/blob/develop/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: CRM/Support
+  Estimated Usable Tool Operations: 40+
+  Reason for Inclusion: Fully open-source CRM and customer support platform; supplies representative ticketing/contact creation tools.
+  Inclusion Risks / Exclusion Reason: Spec might be fragmented across YAML files in the repository.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-012
+  Organization / Project: New York Times (nytimes/public_api_specs)
+  Source Repository URL: https://github.com/nytimes/public_api_specs
+  Exact Commit / Tag URL: https://github.com/nytimes/public_api_specs/tree/master
+  License File URL: https://github.com/nytimes/public_api_specs/blob/master/LICENSE
+  Verified License Name: Apache-2.0
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Data/Identity (Media)
+  Estimated Usable Tool Operations: 20+
+  Reason for Inclusion: Represents read-heavy search/filter query endpoints typical of data retrieval APIs.
+  Inclusion Risks / Exclusion Reason: Primarily GET endpoints; requires manual conversion to a tool-call "action" format.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-013
+  Organization / Project: LINE (line/line-openapi)
+  Source Repository URL: https://github.com/line/line-openapi
+  Exact Commit / Tag URL: https://github.com/line/line-openapi/tree/main
+  License File URL: https://github.com/line/line-openapi/blob/main/LICENSE
+  Verified License Name: Apache-2.0
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Logistics/Communications
+  Estimated Usable Tool Operations: 50+
+  Reason for Inclusion: High-traffic messaging API distinct from Slack, allowing tests of webhook configurations and message broadcasts.
+  Inclusion Risks / Exclusion Reason: None identified.
+  Review Status: CANDIDATE_ONLY
+
+- Candidate ID: CAND-014
+  Organization / Project: OpenAI (openai/openai-openapi)
+  Source Repository URL: https://github.com/openai/openai-openapi
+  Exact Commit / Tag URL: https://github.com/openai/openai-openapi/tree/master
+  License File URL: https://github.com/openai/openai-openapi/blob/master/LICENSE
+  Verified License Name: MIT
+  Redistribution Compatibility: Highly Compatible
+  Format: OpenAPI 3.0
+  Domain: Cloud/Infra (AI)
+  Estimated Usable Tool Operations: 30+
+  Reason for Inclusion: Widespread usage. Parameter lists contain heavy recursive logic and high enum density (models).
+  Inclusion Risks / Exclusion Reason: Recursion in schema definitions (e.g. JSON schema formats inside tool definitions) may break flat parsers.
+  Review Status: CANDIDATE_ONLY
