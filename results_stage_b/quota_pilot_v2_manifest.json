@@ -1,0 +1,9 @@
+{
+  "timestamp": 1791477095.224515,
+  "total_requests": 12,
+  "requested_max_tokens": 150,
+  "providers_tested": [
+    "Groq",
+    "Cohere"
+  ]
+}
