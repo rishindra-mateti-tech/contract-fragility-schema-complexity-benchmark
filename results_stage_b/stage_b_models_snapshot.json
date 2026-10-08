@@ -1,0 +1,42 @@
+[
+  {
+    "provider": "Groq",
+    "model_id": "meta-llama/llama-prompt-guard-2-22m",
+    "track": "Track B",
+    "native_tool_calling": false,
+    "raw_json_supported": true,
+    "quota_status": "OK",
+    "timestamp": 1791476277.97323,
+    "model_list_hash": "e43fdeccf4c58cc20885682b72529392537c2d3c2ab85433a0a718a32eba9b85",
+    "raw_models": [
+      "canopylabs/orpheus-arabic-saudi",
+      "meta-llama/llama-prompt-guard-2-86m",
+      "whisper-large-v3-turbo",
+      "whisper-large-v3",
+      "allam-2-7b",
+      "canopylabs/orpheus-v1-english",
+      "openai/gpt-oss-120b",
+      "qwen/qwen3.8-27b",
+      "openai/gpt-oss-safeguard-20b",
+      "openai/gpt-oss-20b",
+      "meta-llama/llama-prompt-guard-2-22m"
+    ]
+  },
+  {
+    "provider": "Cohere",
+    "model_id": "command-r-plus-08-2024",
+    "track": "Track B",
+    "native_tool_calling": false,
+    "raw_json_supported": true,
+    "quota_status": "OK",
+    "timestamp": 1791476279.5354996,
+    "model_list_hash": "5f962b4536bd0013ddbe0e301c6f9d17edfe8d6db98bcd21f314c517221041db",
+    "raw_models": [
+      "command-r-plus-08-2024"
+    ]
+  },
+  {
+    "provider": "Gemini",
+    "status": "API Error: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateConten"
+  }
+]
