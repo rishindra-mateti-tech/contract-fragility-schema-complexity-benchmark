@@ -1,0 +1,49 @@
+[
+  {
+    "provider": "Groq",
+    "model_id": "qwen/qwen3.8-27b",
+    "track": "Track B",
+    "native_tool_calling": false,
+    "raw_json_supported": true,
+    "availability": "Endpoint Reachable",
+    "quota_status": "Quota Unknown; pilot required",
+    "parse_outcome": "PASSED",
+    "raw_response": "{\n  \"name\": \"ping\",\n  \"args\": {}\n}",
+    "timestamp": 1791476560.3955579,
+    "model_list_hash": "931523d61fdb760cd5367f3b3f87d2c0b5775e79490997b93b80549b4af22cc5",
+    "raw_models": [
+      "openai/gpt-oss-safeguard-20b",
+      "allam-2-7b",
+      "qwen/qwen3.8-27b",
+      "meta-llama/llama-prompt-guard-2-86m",
+      "whisper-large-v3-turbo",
+      "canopylabs/orpheus-v1-english",
+      "whisper-large-v3",
+      "meta-llama/llama-prompt-guard-2-22m",
+      "openai/gpt-oss-20b",
+      "openai/gpt-oss-120b",
+      "canopylabs/orpheus-arabic-saudi"
+    ]
+  },
+  {
+    "provider": "Cohere",
+    "model_id": "command-r-plus-08-2024",
+    "track": "Track B",
+    "native_tool_calling": false,
+    "raw_json_supported": true,
+    "availability": "Endpoint Reachable",
+    "quota_status": "Quota Unknown; pilot required",
+    "parse_outcome": "PASSED",
+    "raw_response": "{\n    \"name\": \"ping\",\n    \"args\": {}\n}",
+    "timestamp": 1791476561.3433433,
+    "model_list_hash": "44d8f838303ec2cab5da6bddb6006d1c8734746b09376234b15dbe7c395321a9",
+    "raw_models": [
+      "command-r-plus-08-2024",
+      "command-r-08-2024"
+    ]
+  },
+  {
+    "provider": "Gemini",
+    "status": "No eligible conversational models found in API"
+  }
+]
