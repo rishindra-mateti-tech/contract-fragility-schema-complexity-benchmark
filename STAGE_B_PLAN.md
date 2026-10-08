@@ -15,14 +15,17 @@ The Stage B dataset will expand to 50-100 total schemas, strictly isolated into 
     *   **OpenAPI Specs:** Sampled from real REST APIs (e.g., GitHub, Stripe, Twilio).
     *   **MCP-Style Specs:** Modern Model Context Protocol (MCP) tool schemas.
 *   **Taxonomy & Metadata:** Every schema will be annotated with a rigorous taxonomy: `domain`, `parameter_count`, `nesting_depth`, `optional_field_ratio`, `enum_density`, `identifier_ambiguity_score`, `description_length`, and `token_length`.
-*   **Strict Source-Admission Policy:** We will not blindly ingest or assume public specifications are redistributable. Every real-world schema must strictly record:
-    1. Source URL
-    2. Repository commit or version tag
-    3. License file URL and License compatibility (e.g., MIT, Apache 2.0)
-    4. Source SHA-256
-    5. Provenance date
-    6. Exact transformation record (what was truncated/modified to fit the harness)
-    7. Exclusion reason (if a candidate schema is rejected)
+*   **Strict Source-Admission Policy:** We will not blindly ingest or assume public specifications are redistributable. Every candidate schema must be evaluated against the following **Source Admission Template**:
+    ```yaml
+    Source URL: <url_to_raw_schema>
+    Repository/Tag: <commit_hash_or_version_tag>
+    License File: <url_to_LICENSE>
+    License Compatibility: <e.g., MIT, Apache 2.0>
+    Source SHA-256: <hash_of_raw_file>
+    Provenance Date: <YYYY-MM-DD>
+    Transformation Record: <List of exact keys/paths truncated or modified to fit the benchmark harness>
+    Exclusion Reason: <If rejected, why? e.g., Non-commercial license, lacks parameters, etc.>
+    ```
 
 ## 3. Literature-Gap Matrix
 The Contract Fragility Benchmark differs fundamentally from existing tool-use benchmarks by focusing on **causal degradation** (ablation) due to schema design choices, rather than overall functional capacity.
@@ -33,9 +36,9 @@ The Contract Fragility Benchmark differs fundamentally from existing tool-use be
 | **ToolSandbox** | Stateful, multi-step execution | Evaluates agent traversal of complex environments | Too macroscopic; conflates planning failure with schema extraction failure. |
 | **API-Bank** | Conversational integration | Focuses on multi-turn API usage | Lacks specific schema mutation ablation (e.g., nesting vs. optionality). |
 | **ToolBench** | Massive scale OpenAPI | Tests generalization across thousands of real APIs | Focuses on breadth, lacking isolated causal controls on tool descriptions. |
-| **Contract Fragility** | **Causal Ablation** | **Controlled structural mutations on identical targets** | **Proves whether poor API contract design directly degrades a capable LLM.** |
+| **Contract Fragility** | **Causal Ablation** | **Controlled structural mutations on identical targets** | **Tests whether poor API contract design directly degrades a capable LLM.** |
 
-*Novelty Statement:* The Contract Fragility Benchmark is a controlled causal ablation of tool-contract properties. It is not a replacement for broad real-world tool-use capability benchmarks; rather, it is a specialized diagnostic instrument that proves how specific engineering choices (e.g., deep object nesting, identifier ambiguity) degrade LLM alignment, isolating structural friction from general intelligence.
+*Novelty Statement:* The Contract Fragility Benchmark is a controlled causal ablation of tool-contract properties. It is not a replacement for broad real-world tool-use capability benchmarks; rather, it is a specialized diagnostic instrument that estimates the effect of specific engineering choices (e.g., deep object nesting, identifier ambiguity) on LLM alignment, isolating structural friction from general intelligence. Causal conclusions derived from this protocol apply strictly to the frozen benchmark conditions. External generalization is explicitly tested through the real-schema corpus.
 
 ## 4. Provider Preflight and Track Plan
 To ensure fair and rigorous model evaluation, Track A (Provider-Mediated native tool-calling) and Track B (Raw JSON Unconstrained) will be strictly separated.
