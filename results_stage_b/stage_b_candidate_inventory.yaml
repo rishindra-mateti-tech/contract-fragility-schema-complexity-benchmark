@@ -1,195 +1,196 @@
 - Candidate ID: CAND-001
   Organization / Project: GitHub (github/rest-api-description)
   Source Repository URL: https://github.com/github/rest-api-description
-  Exact Commit / Tag URL: https://github.com/github/rest-api-description/tree/main
-  License File URL: https://github.com/github/rest-api-description/blob/main/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: 7dee0622aeecf9df3c5060ca28c7a57ee5007804
+  Immutable Commit URL: https://github.com/github/rest-api-description/tree/7dee0622aeecf9df3c5060ca28c7a57ee5007804
+  Pinned Schema Path URL: https://github.com/github/rest-api-description/blob/7dee0622aeecf9df3c5060ca28c7a57ee5007804/descriptions/api.github.com/api.github.com.json
+  License File URL: https://github.com/github/rest-api-description/blob/7dee0622aeecf9df3c5060ca28c7a57ee5007804/LICENSE.md
+  License Commit SHA: 7dee0622aeecf9df3c5060ca28c7a57ee5007804
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-03-01T12:00:00Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Developer Platforms
-  Estimated Usable Tool Operations: 100+
-  Reason for Inclusion: Extremely widespread developer API, high enum density, and complex request bodies ideal for testing identifier ambiguity and optionality bloat.
-  Inclusion Risks / Exclusion Reason: Very large spec; will require significant pruning to isolate 1-2 representative endpoints without exceeding token limits.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-002
   Organization / Project: Stripe (stripe/openapi)
   Source Repository URL: https://github.com/stripe/openapi
-  Exact Commit / Tag URL: https://github.com/stripe/openapi/tree/master
-  License File URL: https://github.com/stripe/openapi/blob/master/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: 7d487b5e5d8d28cf0613856cc63000b673bce7bc
+  Immutable Commit URL: https://github.com/stripe/openapi/tree/7d487b5e5d8d28cf0613856cc63000b673bce7bc
+  Pinned Schema Path URL: https://github.com/stripe/openapi/blob/7d487b5e5d8d28cf0613856cc63000b673bce7bc/openapi/spec3.json
+  License File URL: https://github.com/stripe/openapi/blob/7d487b5e5d8d28cf0613856cc63000b673bce7bc/LICENSE
+  License Commit SHA: 7d487b5e5d8d28cf0613856cc63000b673bce7bc
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-03-15T15:06:14Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Payments
-  Estimated Usable Tool Operations: 100+
-  Reason for Inclusion: Gold standard for payments. High density of nested object parameters (e.g., charge creation, refund processing).
-  Inclusion Risks / Exclusion Reason: Deep nesting could easily overflow context windows if not carefully isolated to single endpoints.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-003
   Organization / Project: DigitalOcean (digitalocean/openapi)
   Source Repository URL: https://github.com/digitalocean/openapi
-  Exact Commit / Tag URL: https://github.com/digitalocean/openapi/tree/main
-  License File URL: https://github.com/digitalocean/openapi/blob/main/LICENSE.txt
-  Verified License Name: Apache-2.0
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: e326f5060794769b6835084e48be7ce4db062d39
+  Immutable Commit URL: https://github.com/digitalocean/openapi/tree/e326f5060794769b6835084e48be7ce4db062d39
+  Pinned Schema Path URL: https://github.com/digitalocean/openapi/blob/e326f5060794769b6835084e48be7ce4db062d39/specification/DigitalOcean-public.v2.yaml
+  License File URL: https://github.com/digitalocean/openapi/blob/e326f5060794769b6835084e48be7ce4db062d39/LICENSE
+  License Commit SHA: e326f5060794769b6835084e48be7ce4db062d39
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-02-10T03:38:11Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Cloud/Infra
-  Estimated Usable Tool Operations: 50+
-  Reason for Inclusion: Classical cloud provisioning API. Excellent test case for CRUD-heavy tools with strict string enums (region, size, image).
-  Inclusion Risks / Exclusion Reason: None identified.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-004
   Organization / Project: Twilio (twilio/twilio-oai)
   Source Repository URL: https://github.com/twilio/twilio-oai
-  Exact Commit / Tag URL: https://github.com/twilio/twilio-oai/tree/main
-  License File URL: https://github.com/twilio/twilio-oai/blob/main/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: 141f1201b55abcc16b3aa8089e71c4a927326975
+  Immutable Commit URL: https://github.com/twilio/twilio-oai/tree/141f1201b55abcc16b3aa8089e71c4a927326975
+  Pinned Schema Path URL: https://github.com/twilio/twilio-oai/blob/141f1201b55abcc16b3aa8089e71c4a927326975/spec/yaml
+  License File URL: https://github.com/twilio/twilio-oai/blob/141f1201b55abcc16b3aa8089e71c4a927326975/LICENSE
+  License Commit SHA: 141f1201b55abcc16b3aa8089e71c4a927326975
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-03-20T11:27:19Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Logistics/Communications
-  Estimated Usable Tool Operations: 100+
-  Reason for Inclusion: Flat but extremely wide parameter lists (e.g., message dispatching with 20+ optional configuration flags).
-  Inclusion Risks / Exclusion Reason: Multi-file referenced schemas require robust resolution before flattening.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-005
   Organization / Project: Box (box/box-openapi)
   Source Repository URL: https://github.com/box/box-openapi
-  Exact Commit / Tag URL: https://github.com/box/box-openapi/tree/main
-  License File URL: https://github.com/box/box-openapi/blob/main/LICENSE
-  Verified License Name: Apache-2.0
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: 5b055e333a802b10b8ca90fcc513643836dd92b4
+  Immutable Commit URL: https://github.com/box/box-openapi/tree/5b055e333a802b10b8ca90fcc513643836dd92b4
+  Pinned Schema Path URL: https://github.com/box/box-openapi/blob/5b055e333a802b10b8ca90fcc513643836dd92b4/openapi.json
+  License File URL: https://github.com/box/box-openapi/blob/5b055e333a802b10b8ca90fcc513643836dd92b4/LICENSE
+  License Commit SHA: 5b055e333a802b10b8ca90fcc513643836dd92b4
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-01-28T09:39:27Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Data/Identity
-  Estimated Usable Tool Operations: 100+
-  Reason for Inclusion: Highly structured enterprise file storage API with intense metadata parameter requirements.
-  Inclusion Risks / Exclusion Reason: None identified.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-006
   Organization / Project: Slack (slackapi/slack-api-specs)
   Source Repository URL: https://github.com/slackapi/slack-api-specs
-  Exact Commit / Tag URL: https://github.com/slackapi/slack-api-specs/tree/master
-  License File URL: https://github.com/slackapi/slack-api-specs/blob/master/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: bc08db49625630e3585bf2f1322128ea04f2a7f3
+  Immutable Commit URL: https://github.com/slackapi/slack-api-specs/tree/bc08db49625630e3585bf2f1322128ea04f2a7f3
+  Pinned Schema Path URL: https://github.com/slackapi/slack-api-specs/blob/bc08db49625630e3585bf2f1322128ea04f2a7f3/web-api
+  License File URL: https://github.com/slackapi/slack-api-specs/blob/bc08db49625630e3585bf2f1322128ea04f2a7f3/LICENSE
+  License Commit SHA: bc08db49625630e3585bf2f1322128ea04f2a7f3
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-02-07T23:16:11Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: CRM/Support
-  Estimated Usable Tool Operations: 80+
-  Reason for Inclusion: ChatOps tool integration standard. Rich message payload structures are perfect for nested hierarchy tests.
-  Inclusion Risks / Exclusion Reason: High use of polymorphic/union types (blocks) which may require simplification for strict benchmarking.
-  Review Status: CANDIDATE_ONLY
-
-- Candidate ID: CAND-007
-  Organization / Project: DataDog (DataDog/datadog-api-spec)
-  Source Repository URL: https://github.com/DataDog/datadog-api-spec
-  Exact Commit / Tag URL: https://github.com/DataDog/datadog-api-spec/tree/master
-  License File URL: https://github.com/DataDog/datadog-api-spec/blob/master/LICENSE
-  Verified License Name: Apache-2.0
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
-  Domain: Cloud/Infra
-  Estimated Usable Tool Operations: 200+
-  Reason for Inclusion: Time-series metrics and dashboard payloads involve extreme nesting and complex array structures.
-  Inclusion Risks / Exclusion Reason: Payload complexity might exceed the bounds of a single synthetic test without aggressive pruning.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-008
   Organization / Project: PayPal (paypal/paypal-rest-api-specifications)
   Source Repository URL: https://github.com/paypal/paypal-rest-api-specifications
-  Exact Commit / Tag URL: https://github.com/paypal/paypal-rest-api-specifications/tree/main
-  License File URL: https://github.com/paypal/paypal-rest-api-specifications/blob/main/LICENSE
-  Verified License Name: Apache-2.0
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: 90e8041ffe02d80c452d2b476bedd59a8d219bdc
+  Immutable Commit URL: https://github.com/paypal/paypal-rest-api-specifications/tree/90e8041ffe02d80c452d2b476bedd59a8d219bdc
+  Pinned Schema Path URL: https://github.com/paypal/paypal-rest-api-specifications/blob/90e8041ffe02d80c452d2b476bedd59a8d219bdc/openapi
+  License File URL: https://github.com/paypal/paypal-rest-api-specifications/blob/90e8041ffe02d80c452d2b476bedd59a8d219bdc/LICENSE
+  License Commit SHA: 90e8041ffe02d80c452d2b476bedd59a8d219bdc
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-04-07T22:49:49Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Payments
-  Estimated Usable Tool Operations: 80+
-  Reason for Inclusion: Represents legacy-to-modern JSON structures with differing naming conventions compared to Stripe.
-  Inclusion Risks / Exclusion Reason: None identified.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-009
-  Organization / Project: Model Context Protocol (modelcontextprotocol/servers - SQLite)
+  Organization / Project: Model Context Protocol (modelcontextprotocol/servers)
   Source Repository URL: https://github.com/modelcontextprotocol/servers
-  Exact Commit / Tag URL: https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite
-  License File URL: https://github.com/modelcontextprotocol/servers/blob/main/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
+  Immutable Commit SHA: 5abed86c5317b833dd59907492d56c65981642aa
+  Immutable Commit URL: https://github.com/modelcontextprotocol/servers/tree/5abed86c5317b833dd59907492d56c65981642aa
+  Pinned Schema Path URL: https://github.com/modelcontextprotocol/servers/tree/5abed86c5317b833dd59907492d56c65981642aa/src/sqlite
+  License File URL: https://github.com/modelcontextprotocol/servers/blob/5abed86c5317b833dd59907492d56c65981642aa/LICENSE
+  License Commit SHA: 5abed86c5317b833dd59907492d56c65981642aa
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-03-24T04:01:54Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
   Format: MCP Tool JSON
   Domain: Data/Identity
-  Estimated Usable Tool Operations: 5
-  Reason for Inclusion: Official reference implementation of an MCP server providing database tools (read_query, list_tables). Tests modern non-OpenAPI formats.
-  Inclusion Risks / Exclusion Reason: Small parameter footprint; primarily useful as a low-friction control schema.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
+  Candidate Tool Group: SQLite
 
 - Candidate ID: CAND-010
-  Organization / Project: Model Context Protocol (modelcontextprotocol/servers - GitHub)
+  Organization / Project: Model Context Protocol (modelcontextprotocol/servers)
   Source Repository URL: https://github.com/modelcontextprotocol/servers
-  Exact Commit / Tag URL: https://github.com/modelcontextprotocol/servers/tree/main/src/github
-  License File URL: https://github.com/modelcontextprotocol/servers/blob/main/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
+  Immutable Commit SHA: 5abed86c5317b833dd59907492d56c65981642aa
+  Immutable Commit URL: https://github.com/modelcontextprotocol/servers/tree/5abed86c5317b833dd59907492d56c65981642aa
+  Pinned Schema Path URL: https://github.com/modelcontextprotocol/servers/tree/5abed86c5317b833dd59907492d56c65981642aa/src/github
+  License File URL: https://github.com/modelcontextprotocol/servers/blob/5abed86c5317b833dd59907492d56c65981642aa/LICENSE
+  License Commit SHA: 5abed86c5317b833dd59907492d56c65981642aa
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-03-24T04:01:54Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
   Format: MCP Tool JSON
   Domain: Developer Platforms
-  Estimated Usable Tool Operations: 10
-  Reason for Inclusion: Modern direct-to-agent MCP tool definitions. Essential for contrasting against traditional heavy OpenAPI specs.
-  Inclusion Risks / Exclusion Reason: None identified.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
+  Candidate Tool Group: GitHub
 
 - Candidate ID: CAND-011
   Organization / Project: Chatwoot (chatwoot/chatwoot)
   Source Repository URL: https://github.com/chatwoot/chatwoot
-  Exact Commit / Tag URL: https://github.com/chatwoot/chatwoot/tree/develop/swagger
-  License File URL: https://github.com/chatwoot/chatwoot/blob/develop/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: f4bc89957b5e49dab3cd1d1c074248e60ac43d2e
+  Immutable Commit URL: https://github.com/chatwoot/chatwoot/tree/f4bc89957b5e49dab3cd1d1c074248e60ac43d2e
+  Pinned Schema Path URL: https://github.com/chatwoot/chatwoot/tree/f4bc89957b5e49dab3cd1d1c074248e60ac43d2e/swagger
+  License File URL: https://github.com/chatwoot/chatwoot/blob/f4bc89957b5e49dab3cd1d1c074248e60ac43d2e/LICENSE
+  License Commit SHA: f4bc89957b5e49dab3cd1d1c074248e60ac43d2e
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-04-10T10:00:00Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: CRM/Support
-  Estimated Usable Tool Operations: 40+
-  Reason for Inclusion: Fully open-source CRM and customer support platform; supplies representative ticketing/contact creation tools.
-  Inclusion Risks / Exclusion Reason: Spec might be fragmented across YAML files in the repository.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-012
   Organization / Project: New York Times (nytimes/public_api_specs)
   Source Repository URL: https://github.com/nytimes/public_api_specs
-  Exact Commit / Tag URL: https://github.com/nytimes/public_api_specs/tree/master
-  License File URL: https://github.com/nytimes/public_api_specs/blob/master/LICENSE
-  Verified License Name: Apache-2.0
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: deaeeb8de6845cf9b352f51eb0935e80323f172d
+  Immutable Commit URL: https://github.com/nytimes/public_api_specs/tree/deaeeb8de6845cf9b352f51eb0935e80323f172d
+  Pinned Schema Path URL: https://github.com/nytimes/public_api_specs/tree/deaeeb8de6845cf9b352f51eb0935e80323f172d/article_search
+  License File URL: https://github.com/nytimes/public_api_specs/blob/deaeeb8de6845cf9b352f51eb0935e80323f172d/LICENSE
+  License Commit SHA: deaeeb8de6845cf9b352f51eb0935e80323f172d
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-01-15T08:00:00Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Data/Identity (Media)
-  Estimated Usable Tool Operations: 20+
-  Reason for Inclusion: Represents read-heavy search/filter query endpoints typical of data retrieval APIs.
-  Inclusion Risks / Exclusion Reason: Primarily GET endpoints; requires manual conversion to a tool-call "action" format.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-013
   Organization / Project: LINE (line/line-openapi)
   Source Repository URL: https://github.com/line/line-openapi
-  Exact Commit / Tag URL: https://github.com/line/line-openapi/tree/main
-  License File URL: https://github.com/line/line-openapi/blob/main/LICENSE
-  Verified License Name: Apache-2.0
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe
+  Immutable Commit URL: https://github.com/line/line-openapi/tree/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe
+  Pinned Schema Path URL: https://github.com/line/line-openapi/blob/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe/messaging-api.yml
+  License File URL: https://github.com/line/line-openapi/blob/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe/LICENSE
+  License Commit SHA: fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-03-05T09:00:00Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Logistics/Communications
-  Estimated Usable Tool Operations: 50+
-  Reason for Inclusion: High-traffic messaging API distinct from Slack, allowing tests of webhook configurations and message broadcasts.
-  Inclusion Risks / Exclusion Reason: None identified.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
 
 - Candidate ID: CAND-014
   Organization / Project: OpenAI (openai/openai-openapi)
   Source Repository URL: https://github.com/openai/openai-openapi
-  Exact Commit / Tag URL: https://github.com/openai/openai-openapi/tree/master
-  License File URL: https://github.com/openai/openai-openapi/blob/master/LICENSE
-  Verified License Name: MIT
-  Redistribution Compatibility: Highly Compatible
-  Format: OpenAPI 3.0
+  Immutable Commit SHA: 35b0d4ebb841f2706e1c0aa31c7d47ecdd43c71d
+  Immutable Commit URL: https://github.com/openai/openai-openapi/tree/35b0d4ebb841f2706e1c0aa31c7d47ecdd43c71d
+  Pinned Schema Path URL: https://github.com/openai/openai-openapi/blob/35b0d4ebb841f2706e1c0aa31c7d47ecdd43c71d/openapi.yaml
+  License File URL: https://github.com/openai/openai-openapi/blob/35b0d4ebb841f2706e1c0aa31c7d47ecdd43c71d/LICENSE
+  License Commit SHA: 35b0d4ebb841f2706e1c0aa31c7d47ecdd43c71d
+  Source License Verified At: 2026-10-08T16:56:28Z
+  Provenance Date: 2024-04-12T14:30:00Z
+  Redistribution Compatibility: Preliminary Assessment (Not Final until pinned commit, license file, and exact schema path are verified together)
+  Format: OpenAPI 3.x
   Domain: Cloud/Infra (AI)
-  Estimated Usable Tool Operations: 30+
-  Reason for Inclusion: Widespread usage. Parameter lists contain heavy recursive logic and high enum density (models).
-  Inclusion Risks / Exclusion Reason: Recursion in schema definitions (e.g. JSON schema formats inside tool definitions) may break flat parsers.
-  Review Status: CANDIDATE_ONLY
+  Admission Decision: PENDING_REVIEW
