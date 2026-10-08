@@ -1,0 +1,8 @@
+{
+  "timestamp": 1791476870.8637974,
+  "total_requests": 14,
+  "providers_tested": [
+    "Groq",
+    "Cohere"
+  ]
+}
