@@ -1,0 +1,20 @@
+{
+  "candidate_source_id": "CAND-005",
+  "source_project": "Box (box/box-openapi)",
+  "source_repository_url": "https://github.com/box/box-openapi",
+  "immutable_commit_sha": "5b055e333a802b10b8ca90fcc513643836dd92b4",
+  "source_file_path": "openapi.json",
+  "source_file_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+  "retrieved_file_size_bytes": 1781543,
+  "downloaded_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+  "retrieval_timestamp": "2026-10-09T18:36:51Z",
+  "raw_source_url": "https://raw.githubusercontent.com/box/box-openapi/5b055e333a802b10b8ca90fcc513643836dd92b4/openapi.json",
+  "license_file_url": "https://github.com/box/box-openapi/blob/5b055e333a802b10b8ca90fcc513643836dd92b4/LICENSE",
+  "license_file_blob_sha": "167ec4d66df8f9c0f49d9ba06eb284c8d5ab472d",
+  "associated_operation_ids": [
+    "post_folders",
+    "post_collaborations",
+    "post_users"
+  ],
+  "blob_sha_verified": true
+}

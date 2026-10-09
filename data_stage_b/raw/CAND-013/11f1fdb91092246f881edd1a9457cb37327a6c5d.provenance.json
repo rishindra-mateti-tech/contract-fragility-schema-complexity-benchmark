@@ -1,0 +1,20 @@
+{
+  "candidate_source_id": "CAND-013",
+  "source_project": "LINE (line/line-openapi)",
+  "source_repository_url": "https://github.com/line/line-openapi",
+  "immutable_commit_sha": "fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe",
+  "source_file_path": "messaging-api.yml",
+  "source_file_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+  "retrieved_file_size_bytes": 190228,
+  "downloaded_file_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+  "retrieval_timestamp": "2026-10-09T18:36:52Z",
+  "raw_source_url": "https://raw.githubusercontent.com/line/line-openapi/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe/messaging-api.yml",
+  "license_file_url": "https://github.com/line/line-openapi/blob/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe/LICENSE",
+  "license_file_blob_sha": "5c515ba9be1536b927961b6c9522d27b1b86a34f",
+  "associated_operation_ids": [
+    "setWebhookEndpoint",
+    "replyMessage",
+    "pushMessage"
+  ],
+  "blob_sha_verified": true
+}

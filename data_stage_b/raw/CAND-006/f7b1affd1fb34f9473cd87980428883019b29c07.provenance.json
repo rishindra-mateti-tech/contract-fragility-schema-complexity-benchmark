@@ -1,0 +1,20 @@
+{
+  "candidate_source_id": "CAND-006",
+  "source_project": "Slack (slackapi/slack-api-specs)",
+  "source_repository_url": "https://github.com/slackapi/slack-api-specs",
+  "immutable_commit_sha": "bc08db49625630e3585bf2f1322128ea04f2a7f3",
+  "source_file_path": "web-api/slack_web_openapi_v2_without_examples.json",
+  "source_file_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+  "retrieved_file_size_bytes": 1039581,
+  "downloaded_file_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
+  "retrieval_timestamp": "2026-10-09T18:36:52Z",
+  "raw_source_url": "https://raw.githubusercontent.com/slackapi/slack-api-specs/bc08db49625630e3585bf2f1322128ea04f2a7f3/web-api/slack_web_openapi_v2_without_examples.json",
+  "license_file_url": "https://github.com/slackapi/slack-api-specs/blob/bc08db49625630e3585bf2f1322128ea04f2a7f3/LICENSE",
+  "license_file_blob_sha": "4c4907b159ed25001dc9a217cd709dfdafd7e08b",
+  "associated_operation_ids": [
+    "conversations.create",
+    "users.profile.set",
+    "chat.postMessage"
+  ],
+  "blob_sha_verified": true
+}

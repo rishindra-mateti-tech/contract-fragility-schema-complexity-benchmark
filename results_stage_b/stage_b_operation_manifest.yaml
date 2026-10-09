@@ -514,8 +514,8 @@ operations:
   candidate_source_id: CAND-006
   source_cluster_id: CLUSTER_SLACK
   source_project: Slack (slackapi/slack-api-specs)
-  source_file_path: web-api/slack_web_openapi_v2.json
-  source_file_blob_sha: 72c5dfb431e05f5d6fa2aa28ebcd60d503a67886
+  source_file_path: web-api/slack_web_openapi_v2_without_examples.json
+  source_file_blob_sha: f7b1affd1fb34f9473cd87980428883019b29c07
   http_method: POST
   endpoint_path: /conversations.create
   source_spec_pointer: '#/paths/~1conversations.create/post'
@@ -545,8 +545,8 @@ operations:
   candidate_source_id: CAND-006
   source_cluster_id: CLUSTER_SLACK
   source_project: Slack (slackapi/slack-api-specs)
-  source_file_path: web-api/slack_web_openapi_v2.json
-  source_file_blob_sha: 72c5dfb431e05f5d6fa2aa28ebcd60d503a67886
+  source_file_path: web-api/slack_web_openapi_v2_without_examples.json
+  source_file_blob_sha: f7b1affd1fb34f9473cd87980428883019b29c07
   http_method: POST
   endpoint_path: /users.profile.set
   source_spec_pointer: '#/paths/~1users.profile.set/post'
@@ -576,8 +576,8 @@ operations:
   candidate_source_id: CAND-006
   source_cluster_id: CLUSTER_SLACK
   source_project: Slack (slackapi/slack-api-specs)
-  source_file_path: web-api/slack_web_openapi_v2.json
-  source_file_blob_sha: 72c5dfb431e05f5d6fa2aa28ebcd60d503a67886
+  source_file_path: web-api/slack_web_openapi_v2_without_examples.json
+  source_file_blob_sha: f7b1affd1fb34f9473cd87980428883019b29c07
   http_method: POST
   endpoint_path: /chat.postMessage
   source_spec_pointer: '#/paths/~1chat.postMessage/post'
@@ -612,7 +612,7 @@ operations:
   source_file_blob_sha: 1b97a6a4903bd8961941cdff43df3b059e610e5f
   http_method: RPC_TOOL
   endpoint_path: tools/call:read_query
-  source_spec_pointer: server.py:list_tools:read_query
+  source_spec_pointer: server.py:list_tools:read-query
   intended_benchmark_domain: Data/Identity
   complexity_tier: FLAT
   input_surface:
@@ -644,7 +644,7 @@ operations:
   source_file_blob_sha: 1b97a6a4903bd8961941cdff43df3b059e610e5f
   http_method: RPC_TOOL
   endpoint_path: tools/call:describe_table
-  source_spec_pointer: server.py:list_tools:describe_table
+  source_spec_pointer: server.py:list_tools:describe-table
   intended_benchmark_domain: Data/Identity
   complexity_tier: FLAT
   input_surface:
@@ -676,7 +676,7 @@ operations:
   source_file_blob_sha: 1b97a6a4903bd8961941cdff43df3b059e610e5f
   http_method: RPC_TOOL
   endpoint_path: tools/call:write_query
-  source_spec_pointer: server.py:list_tools:write_query
+  source_spec_pointer: server.py:list_tools:write-query
   intended_benchmark_domain: Data/Identity
   complexity_tier: FLAT
   input_surface:

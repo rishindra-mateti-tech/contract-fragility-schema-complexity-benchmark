@@ -1,0 +1,20 @@
+{
+  "candidate_source_id": "CAND-004",
+  "source_project": "Twilio (twilio/twilio-oai)",
+  "source_repository_url": "https://github.com/twilio/twilio-oai",
+  "immutable_commit_sha": "141f1201b55abcc16b3aa8089e71c4a927326975",
+  "source_file_path": "spec/yaml/twilio_api_v2010.yaml",
+  "source_file_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+  "retrieved_file_size_bytes": 1504725,
+  "downloaded_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+  "retrieval_timestamp": "2026-10-09T18:36:51Z",
+  "raw_source_url": "https://raw.githubusercontent.com/twilio/twilio-oai/141f1201b55abcc16b3aa8089e71c4a927326975/spec/yaml/twilio_api_v2010.yaml",
+  "license_file_url": "https://github.com/twilio/twilio-oai/blob/141f1201b55abcc16b3aa8089e71c4a927326975/LICENSE",
+  "license_file_blob_sha": "ca16167a61ceca8666680796ee393900289ec6cc",
+  "associated_operation_ids": [
+    "UpdateAccount",
+    "CreateMessage",
+    "CreateCall"
+  ],
+  "blob_sha_verified": true
+}
