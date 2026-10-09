@@ -7,7 +7,7 @@
   "source_file_blob_sha": "0676a34c85537e610f911fbd73a5a079f38be18e",
   "retrieved_file_size_bytes": 18123,
   "downloaded_file_sha256": "bb964ea5a47c00205805317a5a8066a955c59f500073a7c2cf0c2b4020ddeb3a",
-  "retrieval_timestamp": "2026-10-09T18:36:52Z",
+  "retrieval_timestamp": "2026-10-09T18:43:06Z",
   "raw_source_url": "https://raw.githubusercontent.com/modelcontextprotocol/servers/68b880d96b797a0bddf0322effb29edf67afdc8d/src/github/index.ts",
   "license_file_url": "https://github.com/modelcontextprotocol/servers/blob/68b880d96b797a0bddf0322effb29edf67afdc8d/LICENSE",
   "license_file_blob_sha": "3d48435454b105021b4f777c11b6b07d8d2ffea3",
@@ -16,5 +16,6 @@
     "create_issue",
     "create_or_update_file"
   ],
+  "eol_normalization_disabled": true,
   "blob_sha_verified": true
 }

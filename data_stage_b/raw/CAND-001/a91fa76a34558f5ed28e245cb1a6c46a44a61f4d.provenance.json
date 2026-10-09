@@ -7,7 +7,7 @@
   "source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
   "retrieved_file_size_bytes": 13018090,
   "downloaded_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
-  "retrieval_timestamp": "2026-10-09T18:36:51Z",
+  "retrieval_timestamp": "2026-10-09T18:43:04Z",
   "raw_source_url": "https://raw.githubusercontent.com/github/rest-api-description/7dee0622aeecf9df3c5060ca28c7a57ee5007804/descriptions/api.github.com/api.github.com.json",
   "license_file_url": "https://github.com/github/rest-api-description/blob/7dee0622aeecf9df3c5060ca28c7a57ee5007804/LICENSE.md",
   "license_file_blob_sha": "b50625eb63949013cae604b1cadd42cfa1eaf825",
@@ -16,5 +16,6 @@
     "issues/create",
     "repos/create-for-authenticated-user"
   ],
+  "eol_normalization_disabled": true,
   "blob_sha_verified": true
 }

@@ -7,7 +7,7 @@
   "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
   "retrieved_file_size_bytes": 8317513,
   "downloaded_file_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
-  "retrieval_timestamp": "2026-10-09T18:36:51Z",
+  "retrieval_timestamp": "2026-10-09T18:43:05Z",
   "raw_source_url": "https://raw.githubusercontent.com/stripe/openapi/7d487b5e5d8d28cf0613856cc63000b673bce7bc/openapi/spec3.json",
   "license_file_url": "https://github.com/stripe/openapi/blob/7d487b5e5d8d28cf0613856cc63000b673bce7bc/LICENSE",
   "license_file_blob_sha": "edf2d132d8bb95146e05585c3a782d059298b46b",
@@ -16,5 +16,6 @@
     "PostCustomers",
     "PostPaymentIntents"
   ],
+  "eol_normalization_disabled": true,
   "blob_sha_verified": true
 }

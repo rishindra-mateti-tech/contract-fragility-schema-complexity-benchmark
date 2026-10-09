@@ -1,6 +1,6 @@
 {
-  "registry_version": "1.0.0",
-  "generated_at": "2026-10-09T18:36:52Z",
+  "registry_version": "1.1.0",
+  "generated_at": "2026-10-09T18:43:06Z",
   "total_sources_retrieved": 10,
   "sources": [
     {
@@ -12,7 +12,7 @@
       "source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
       "retrieved_file_size_bytes": 13018090,
       "downloaded_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
-      "retrieval_timestamp": "2026-10-09T18:36:51Z",
+      "retrieval_timestamp": "2026-10-09T18:43:04Z",
       "raw_source_url": "https://raw.githubusercontent.com/github/rest-api-description/7dee0622aeecf9df3c5060ca28c7a57ee5007804/descriptions/api.github.com/api.github.com.json",
       "license_file_url": "https://github.com/github/rest-api-description/blob/7dee0622aeecf9df3c5060ca28c7a57ee5007804/LICENSE.md",
       "license_file_blob_sha": "b50625eb63949013cae604b1cadd42cfa1eaf825",
@@ -21,6 +21,7 @@
         "issues/create",
         "repos/create-for-authenticated-user"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -32,7 +33,7 @@
       "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
       "retrieved_file_size_bytes": 8317513,
       "downloaded_file_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
-      "retrieval_timestamp": "2026-10-09T18:36:51Z",
+      "retrieval_timestamp": "2026-10-09T18:43:05Z",
       "raw_source_url": "https://raw.githubusercontent.com/stripe/openapi/7d487b5e5d8d28cf0613856cc63000b673bce7bc/openapi/spec3.json",
       "license_file_url": "https://github.com/stripe/openapi/blob/7d487b5e5d8d28cf0613856cc63000b673bce7bc/LICENSE",
       "license_file_blob_sha": "edf2d132d8bb95146e05585c3a782d059298b46b",
@@ -41,6 +42,7 @@
         "PostCustomers",
         "PostPaymentIntents"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -52,7 +54,7 @@
       "source_file_blob_sha": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95",
       "retrieved_file_size_bytes": 124775,
       "downloaded_file_sha256": "e18ad525a336da3dd83776659d5b574e30748b1d59efc53a42c86115b290a76a",
-      "retrieval_timestamp": "2026-10-09T18:36:51Z",
+      "retrieval_timestamp": "2026-10-09T18:43:05Z",
       "raw_source_url": "https://raw.githubusercontent.com/digitalocean/openapi/e326f5060794769b6835084e48be7ce4db062d39/specification/DigitalOcean-public.v2.yaml",
       "license_file_url": "https://github.com/digitalocean/openapi/blob/e326f5060794769b6835084e48be7ce4db062d39/LICENSE",
       "license_file_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
@@ -61,6 +63,7 @@
         "domains_create",
         "droplets_create"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -72,7 +75,7 @@
       "source_file_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
       "retrieved_file_size_bytes": 1504725,
       "downloaded_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
-      "retrieval_timestamp": "2026-10-09T18:36:51Z",
+      "retrieval_timestamp": "2026-10-09T18:43:05Z",
       "raw_source_url": "https://raw.githubusercontent.com/twilio/twilio-oai/141f1201b55abcc16b3aa8089e71c4a927326975/spec/yaml/twilio_api_v2010.yaml",
       "license_file_url": "https://github.com/twilio/twilio-oai/blob/141f1201b55abcc16b3aa8089e71c4a927326975/LICENSE",
       "license_file_blob_sha": "ca16167a61ceca8666680796ee393900289ec6cc",
@@ -81,6 +84,7 @@
         "CreateMessage",
         "CreateCall"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -92,7 +96,7 @@
       "source_file_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
       "retrieved_file_size_bytes": 1781543,
       "downloaded_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
-      "retrieval_timestamp": "2026-10-09T18:36:51Z",
+      "retrieval_timestamp": "2026-10-09T18:43:05Z",
       "raw_source_url": "https://raw.githubusercontent.com/box/box-openapi/5b055e333a802b10b8ca90fcc513643836dd92b4/openapi.json",
       "license_file_url": "https://github.com/box/box-openapi/blob/5b055e333a802b10b8ca90fcc513643836dd92b4/LICENSE",
       "license_file_blob_sha": "167ec4d66df8f9c0f49d9ba06eb284c8d5ab472d",
@@ -101,6 +105,7 @@
         "post_collaborations",
         "post_users"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -112,7 +117,7 @@
       "source_file_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
       "retrieved_file_size_bytes": 1039581,
       "downloaded_file_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
-      "retrieval_timestamp": "2026-10-09T18:36:52Z",
+      "retrieval_timestamp": "2026-10-09T18:43:06Z",
       "raw_source_url": "https://raw.githubusercontent.com/slackapi/slack-api-specs/bc08db49625630e3585bf2f1322128ea04f2a7f3/web-api/slack_web_openapi_v2_without_examples.json",
       "license_file_url": "https://github.com/slackapi/slack-api-specs/blob/bc08db49625630e3585bf2f1322128ea04f2a7f3/LICENSE",
       "license_file_blob_sha": "4c4907b159ed25001dc9a217cd709dfdafd7e08b",
@@ -121,6 +126,7 @@
         "users.profile.set",
         "chat.postMessage"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -132,7 +138,7 @@
       "source_file_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
       "retrieved_file_size_bytes": 18533,
       "downloaded_file_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
-      "retrieval_timestamp": "2026-10-09T18:36:52Z",
+      "retrieval_timestamp": "2026-10-09T18:43:06Z",
       "raw_source_url": "https://raw.githubusercontent.com/modelcontextprotocol/servers/68b880d96b797a0bddf0322effb29edf67afdc8d/src/sqlite/src/mcp_server_sqlite/server.py",
       "license_file_url": "https://github.com/modelcontextprotocol/servers/blob/68b880d96b797a0bddf0322effb29edf67afdc8d/LICENSE",
       "license_file_blob_sha": "3d48435454b105021b4f777c11b6b07d8d2ffea3",
@@ -141,6 +147,7 @@
         "describe_table",
         "write_query"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -152,7 +159,7 @@
       "source_file_blob_sha": "0676a34c85537e610f911fbd73a5a079f38be18e",
       "retrieved_file_size_bytes": 18123,
       "downloaded_file_sha256": "bb964ea5a47c00205805317a5a8066a955c59f500073a7c2cf0c2b4020ddeb3a",
-      "retrieval_timestamp": "2026-10-09T18:36:52Z",
+      "retrieval_timestamp": "2026-10-09T18:43:06Z",
       "raw_source_url": "https://raw.githubusercontent.com/modelcontextprotocol/servers/68b880d96b797a0bddf0322effb29edf67afdc8d/src/github/index.ts",
       "license_file_url": "https://github.com/modelcontextprotocol/servers/blob/68b880d96b797a0bddf0322effb29edf67afdc8d/LICENSE",
       "license_file_blob_sha": "3d48435454b105021b4f777c11b6b07d8d2ffea3",
@@ -161,6 +168,7 @@
         "create_issue",
         "create_or_update_file"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -172,7 +180,7 @@
       "source_file_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
       "retrieved_file_size_bytes": 537652,
       "downloaded_file_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
-      "retrieval_timestamp": "2026-10-09T18:36:52Z",
+      "retrieval_timestamp": "2026-10-09T18:43:06Z",
       "raw_source_url": "https://raw.githubusercontent.com/chatwoot/chatwoot/f4bc89957b5e49dab3cd1d1c074248e60ac43d2e/swagger/swagger.json",
       "license_file_url": "https://github.com/chatwoot/chatwoot/blob/f4bc89957b5e49dab3cd1d1c074248e60ac43d2e/LICENSE",
       "license_file_blob_sha": "d0425a707ab6f0cf06c9aa3c08e8edf5c64adc61",
@@ -181,6 +189,7 @@
         "create-a-contact",
         "create-a-conversation"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     },
     {
@@ -192,7 +201,7 @@
       "source_file_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
       "retrieved_file_size_bytes": 190228,
       "downloaded_file_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
-      "retrieval_timestamp": "2026-10-09T18:36:52Z",
+      "retrieval_timestamp": "2026-10-09T18:43:06Z",
       "raw_source_url": "https://raw.githubusercontent.com/line/line-openapi/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe/messaging-api.yml",
       "license_file_url": "https://github.com/line/line-openapi/blob/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe/LICENSE",
       "license_file_blob_sha": "5c515ba9be1536b927961b6c9522d27b1b86a34f",
@@ -201,6 +210,7 @@
         "replyMessage",
         "pushMessage"
       ],
+      "eol_normalization_disabled": true,
       "blob_sha_verified": true
     }
   ]

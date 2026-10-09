@@ -57,23 +57,37 @@ def test_raw_source_files_exist_and_match_blob_sha():
     with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
         registry = json.load(f)
     
+    mismatches = []
     for s in registry["sources"]:
         cid = s["candidate_source_id"]
-        blob_sha = s["source_file_blob_sha"]
+        expected_blob_sha = s["source_file_blob_sha"]
         ext = os.path.splitext(s["source_file_path"])[1]
-        raw_path = os.path.join(RAW_BASE_DIR, cid, f"{blob_sha}{ext}")
+        raw_path = os.path.join(RAW_BASE_DIR, cid, f"{expected_blob_sha}{ext}")
         
-        assert os.path.exists(raw_path), f"Raw source file missing: {raw_path}"
+        if not os.path.exists(raw_path):
+            mismatches.append(f"[{cid}] Raw source file missing on disk: {raw_path}")
+            continue
+            
         with open(raw_path, "rb") as f:
             content = f.read()
         
         # Verify Git blob SHA identity
         actual_blob_sha = git_blob_sha(content)
-        assert actual_blob_sha == blob_sha, f"Git blob SHA mismatch for {cid}: expected {blob_sha}, got {actual_blob_sha}"
+        if actual_blob_sha != expected_blob_sha:
+            mismatches.append(
+                f"[{cid}] Git blob SHA mismatch: expected {expected_blob_sha}, got {actual_blob_sha} "
+                f"(file_size={len(content)} bytes, path={raw_path})"
+            )
         
         # Verify SHA-256 identity
         actual_sha256 = hashlib.sha256(content).hexdigest()
-        assert actual_sha256 == s["downloaded_file_sha256"], f"SHA-256 mismatch for {cid}"
+        if actual_sha256 != s["downloaded_file_sha256"]:
+            mismatches.append(
+                f"[{cid}] SHA-256 mismatch: recorded {s['downloaded_file_sha256']}, got {actual_sha256}"
+            )
+            
+    if mismatches:
+        pytest.fail(f"Raw source integrity check failed with {len(mismatches)} errors:\n" + "\n".join(mismatches))
 
 def test_sidecar_provenance_files():
     with open(REGISTRY_PATH, "r", encoding="utf-8") as f:
@@ -87,19 +101,31 @@ def test_sidecar_provenance_files():
         "license_file_blob_sha", "associated_operation_ids", "blob_sha_verified"
     ]
     
+    errors = []
     for s in registry["sources"]:
         cid = s["candidate_source_id"]
         blob_sha = s["source_file_blob_sha"]
         sidecar_path = os.path.join(RAW_BASE_DIR, cid, f"{blob_sha}.provenance.json")
         
-        assert os.path.exists(sidecar_path), f"Sidecar provenance missing: {sidecar_path}"
+        if not os.path.exists(sidecar_path):
+            errors.append(f"[{cid}] Sidecar provenance missing: {sidecar_path}")
+            continue
+            
         with open(sidecar_path, "r", encoding="utf-8") as f:
             sidecar = json.load(f)
             
         for rf in required_fields:
-            assert rf in sidecar, f"Missing field {rf} in {sidecar_path}"
-        assert sidecar["blob_sha_verified"] is True
-        assert len(sidecar["associated_operation_ids"]) >= 1
+            if rf not in sidecar:
+                errors.append(f"[{cid}] Missing required provenance field '{rf}' in {sidecar_path}")
+                
+        if sidecar.get("blob_sha_verified") is not True:
+            errors.append(f"[{cid}] blob_sha_verified is not True in {sidecar_path}")
+            
+        if len(sidecar.get("associated_operation_ids", [])) < 1:
+            errors.append(f"[{cid}] associated_operation_ids is empty in {sidecar_path}")
+            
+    if errors:
+        pytest.fail(f"Sidecar provenance check failed with {len(errors)} errors:\n" + "\n".join(errors))
 
 def test_all_30_operations_resolve_deterministic_pointers():
     assert os.path.exists(MANIFEST_PATH), "Operation manifest must exist"
@@ -108,6 +134,7 @@ def test_all_30_operations_resolve_deterministic_pointers():
         
     assert len(manifest["operations"]) == 30, "Expected exactly 30 approved operations"
     
+    errors = []
     for op in manifest["operations"]:
         cid = op["candidate_source_id"]
         op_id = op["operation_id"]
@@ -117,8 +144,10 @@ def test_all_30_operations_resolve_deterministic_pointers():
         raw_path = os.path.join(RAW_BASE_DIR, cid, f"{blob_sha}{ext}")
         pointer = op["source_spec_pointer"]
         
-        assert os.path.exists(raw_path), f"Raw source missing for {op_id}: {raw_path}"
-        
+        if not os.path.exists(raw_path):
+            errors.append(f"[{op_id}] Raw source missing: {raw_path}")
+            continue
+            
         if ext in [".json", ".yaml", ".yml"]:
             if ext == ".json":
                 with open(raw_path, "r", encoding="utf-8") as f:
@@ -127,12 +156,18 @@ def test_all_30_operations_resolve_deterministic_pointers():
                 with open(raw_path, "r", encoding="utf-8") as f:
                     doc = yaml.safe_load(f)
             resolved = resolve_json_pointer(doc, pointer)
-            assert resolved is not None, f"JSON Pointer {pointer} for {op_id} failed to resolve in {raw_path}"
-            assert isinstance(resolved, dict), f"Resolved target for {op_id} must be a dict"
+            if resolved is None:
+                errors.append(f"[{op_id}] JSON Pointer '{pointer}' failed to resolve in {raw_path}")
+            elif not isinstance(resolved, dict):
+                errors.append(f"[{op_id}] Resolved target for '{pointer}' is not a dict (got {type(resolved)})")
         elif ext in [".py", ".ts"]:
             with open(raw_path, "r", encoding="utf-8") as f:
                 content = f.read()
             matched = resolve_mcp_pointer(content, pointer)
-            assert matched is not None, f"MCP Pointer {pointer} for {op_id} failed to resolve in {raw_path}"
+            if matched is None:
+                errors.append(f"[{op_id}] MCP Pointer '{pointer}' failed to resolve in {raw_path}")
         else:
-            pytest.fail(f"Unsupported file extension {ext} for {op_id}")
+            errors.append(f"[{op_id}] Unsupported file extension {ext}")
+            
+    if errors:
+        pytest.fail(f"Operation pointer resolution failed with {len(errors)} errors:\n" + "\n".join(errors))

@@ -7,7 +7,7 @@
   "source_file_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
   "retrieved_file_size_bytes": 18533,
   "downloaded_file_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
-  "retrieval_timestamp": "2026-10-09T18:36:52Z",
+  "retrieval_timestamp": "2026-10-09T18:43:06Z",
   "raw_source_url": "https://raw.githubusercontent.com/modelcontextprotocol/servers/68b880d96b797a0bddf0322effb29edf67afdc8d/src/sqlite/src/mcp_server_sqlite/server.py",
   "license_file_url": "https://github.com/modelcontextprotocol/servers/blob/68b880d96b797a0bddf0322effb29edf67afdc8d/LICENSE",
   "license_file_blob_sha": "3d48435454b105021b4f777c11b6b07d8d2ffea3",
@@ -16,5 +16,6 @@
     "describe_table",
     "write_query"
   ],
+  "eol_normalization_disabled": true,
   "blob_sha_verified": true
 }

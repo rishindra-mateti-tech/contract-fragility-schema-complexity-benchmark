@@ -1,0 +1,6 @@
+# Set default behavior, in case users don't have core.autocrlf set.
+* text=auto
+
+# Raw experimental artifacts and schema sources must be binary-exact across platforms
+data_stage_b/raw/** -text
+data_stage_b/** -text
