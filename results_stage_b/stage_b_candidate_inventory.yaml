@@ -25,7 +25,7 @@
     bloat.
   Inclusion Risks / Exclusion Reason: Very large spec; will require significant pruning
     to isolate 1-2 representative endpoints without exceeding token limits.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-002
   Organization / Project: Stripe (stripe/openapi)
   Source Repository URL: https://github.com/stripe/openapi
@@ -52,7 +52,7 @@
     parameters (e.g., charge creation, refund processing).
   Inclusion Risks / Exclusion Reason: Deep nesting could easily overflow context windows
     if not carefully isolated to single endpoints.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-003
   Organization / Project: DigitalOcean (digitalocean/openapi)
   Source Repository URL: https://github.com/digitalocean/openapi
@@ -78,7 +78,7 @@
   Reason for Inclusion: Classical cloud provisioning API. Excellent test case for
     CRUD-heavy tools with strict string enums (region, size, image).
   Inclusion Risks / Exclusion Reason: None identified.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-004
   Organization / Project: Twilio (twilio/twilio-oai)
   Source Repository URL: https://github.com/twilio/twilio-oai
@@ -106,7 +106,7 @@
     with 20+ optional configuration flags).
   Inclusion Risks / Exclusion Reason: Multi-file referenced schemas require robust
     resolution before flattening.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-005
   Organization / Project: Box (box/box-openapi)
   Source Repository URL: https://github.com/box/box-openapi
@@ -132,7 +132,7 @@
   Reason for Inclusion: Highly structured enterprise file storage API with intense
     metadata parameter requirements.
   Inclusion Risks / Exclusion Reason: None identified.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-006
   Organization / Project: Slack (slackapi/slack-api-specs)
   Source Repository URL: https://github.com/slackapi/slack-api-specs
@@ -160,7 +160,7 @@
     are perfect for nested hierarchy tests.
   Inclusion Risks / Exclusion Reason: High use of polymorphic/union types (blocks)
     which may require simplification for strict benchmarking.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-007
   Organization / Project: DataDog (DataDog/datadog-api-spec)
   Source Repository URL: https://github.com/DataDog/datadog-api-spec
@@ -244,7 +244,7 @@
     database tools (read_query, list_tables). Tests modern non-OpenAPI formats.
   Inclusion Risks / Exclusion Reason: Small parameter footprint; primarily useful
     as a low-friction control schema.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-010
   Organization / Project: Model Context Protocol (modelcontextprotocol/servers - GitHub)
   Source Repository URL: https://github.com/modelcontextprotocol/servers
@@ -272,7 +272,7 @@
   Reason for Inclusion: Modern direct-to-agent MCP tool definitions. Essential for
     contrasting against traditional heavy OpenAPI specs.
   Inclusion Risks / Exclusion Reason: None identified.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-011
   Organization / Project: Chatwoot (chatwoot/chatwoot)
   Source Repository URL: https://github.com/chatwoot/chatwoot
@@ -300,7 +300,7 @@
     representative ticketing/contact creation tools.
   Inclusion Risks / Exclusion Reason: Spec might be fragmented across YAML files in
     the repository.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-012
   Organization / Project: New York Times (nytimes/public_api_specs)
   Source Repository URL: https://github.com/nytimes/public_api_specs
@@ -354,7 +354,7 @@
   Reason for Inclusion: High-traffic messaging API distinct from Slack, allowing tests
     of webhook configurations and message broadcasts.
   Inclusion Risks / Exclusion Reason: None identified.
-  Admission Decision: PENDING_REVIEW
+  Admission Decision: ADMITTED
 - Candidate ID: CAND-014
   Organization / Project: OpenAI (openai/openai-openapi)
   Source Repository URL: https://github.com/openai/openai-openapi

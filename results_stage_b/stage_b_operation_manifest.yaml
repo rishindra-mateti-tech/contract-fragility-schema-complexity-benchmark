@@ -1,0 +1,1495 @@
+manifest_version: 1.0.0
+created_at: '2026-10-09T17:40:00Z'
+total_operations_selected: 30
+domain_distribution:
+  Developer Platforms: 6
+  Payments: 3
+  Cloud/Infra: 3
+  Logistics/Communications: 6
+  Data/Identity: 6
+  CRM/Support: 6
+complexity_distribution:
+  FLAT: 10
+  MODERATE: 13
+  DEEP_BLOATED: 7
+operations:
+- operation_id: repos/create-commit-status
+  candidate_source_id: CAND-001
+  source_project: GitHub (github/rest-api-description)
+  source_file_path: descriptions/api.github.com/api.github.com.json
+  source_file_blob_sha: a91fa76a34558f5ed28e245cb1a6c46a44a61f4d
+  http_method: POST
+  endpoint_path: /repos/{owner}/{repo}/statuses/{sha}
+  intended_benchmark_domain: Developer Platforms
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      state:
+        type: string
+        enum:
+        - error
+        - failure
+        - pending
+        - success
+        description: The state of the status.
+      target_url:
+        type: string
+        description: The target URL to associate with this status.
+      description:
+        type: string
+        description: A short description of the status.
+      context:
+        type: string
+        description: A string label to differentiate this status from the status of
+          other systems.
+    required:
+    - state
+  metrics:
+    parameter_count: 4
+    nesting_depth: 1
+    optional_field_ratio: 0.75
+    enum_density: 0.25
+    description_length_chars: 158
+    estimated_token_length: 92
+  reason_for_selection: Clean, flat developer operation with mandatory enum constraint;
+    establishes a baseline for low-friction tool invocation.
+  exclusion_reason_nearby_operations: Excluded GET /repos/{owner}/{repo}/statuses/{ref}
+    (read-only listing) and DELETE endpoints (non-actionable for status reporting).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Pure state payload without complex runtime dependencies;
+    trivial to mock locally with static return.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: issues/create
+  candidate_source_id: CAND-001
+  source_project: GitHub (github/rest-api-description)
+  source_file_path: descriptions/api.github.com/api.github.com.json
+  source_file_blob_sha: a91fa76a34558f5ed28e245cb1a6c46a44a61f4d
+  http_method: POST
+  endpoint_path: /repos/{owner}/{repo}/issues
+  intended_benchmark_domain: Developer Platforms
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      title:
+        type: string
+        description: The title of the issue.
+      body:
+        type: string
+        description: The contents of the issue.
+      assignee:
+        type: string
+        description: Login for the user that this issue should be assigned to.
+      milestone:
+        type: integer
+        description: The number of the milestone to associate this issue with.
+      labels:
+        type: array
+        items:
+          type: string
+        description: Labels to associate with this issue.
+      assignees:
+        type: array
+        items:
+          type: string
+        description: Logins for users to assign to this issue.
+    required:
+    - title
+  metrics:
+    parameter_count: 6
+    nesting_depth: 2
+    optional_field_ratio: 0.833
+    enum_density: 0.0
+    description_length_chars: 268
+    estimated_token_length: 134
+  reason_for_selection: Direct real-world analogue to Stage A synthetic issue creation;
+    enables backward comparison while introducing array parameters.
+  exclusion_reason_nearby_operations: Excluded PATCH /repos/{owner}/{repo}/issues/{issue_number}
+    due to ambiguous state update semantics compared to clean creation.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Input parameters are string/array based with clear mock validation
+    bounds.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: repos/create-for-authenticated-user
+  candidate_source_id: CAND-001
+  source_project: GitHub (github/rest-api-description)
+  source_file_path: descriptions/api.github.com/api.github.com.json
+  source_file_blob_sha: a91fa76a34558f5ed28e245cb1a6c46a44a61f4d
+  http_method: POST
+  endpoint_path: /user/repos
+  intended_benchmark_domain: Developer Platforms
+  complexity_tier: DEEP_BLOATED
+  parameter_schema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: The name of the repository.
+      description:
+        type: string
+        description: A short description of the repository.
+      homepage:
+        type: string
+        description: A URL with more information about the repository.
+      private:
+        type: boolean
+        description: Whether the repository is private.
+      visibility:
+        type: string
+        enum:
+        - public
+        - private
+        description: Can be public or private.
+      has_issues:
+        type: boolean
+        description: Whether issues are enabled.
+      has_projects:
+        type: boolean
+        description: Whether projects are enabled.
+      has_wiki:
+        type: boolean
+        description: Whether the wiki is enabled.
+      is_template:
+        type: boolean
+        description: Whether this repo is a template.
+      team_id:
+        type: integer
+        description: The id of the team that will be granted access.
+      auto_init:
+        type: boolean
+        description: Pass true to create an initial commit.
+      gitignore_template:
+        type: string
+        description: Language-specific gitignore template.
+      license_template:
+        type: string
+        description: Open source license template keyword.
+      allow_squash_merge:
+        type: boolean
+        description: Allow squash-merging pull requests.
+      allow_merge_commit:
+        type: boolean
+        description: Allow merging commits with a merge commit.
+      allow_rebase_merge:
+        type: boolean
+        description: Allow rebase-merging pull requests.
+    required:
+    - name
+  metrics:
+    parameter_count: 16
+    nesting_depth: 1
+    optional_field_ratio: 0.938
+    enum_density: 0.062
+    description_length_chars: 642
+    estimated_token_length: 286
+  reason_for_selection: Represents extreme optionality bloat in real-world specifications
+    (15 optional flags with overlapping semantic fields).
+  exclusion_reason_nearby_operations: Excluded POST /orgs/{org}/repos as it duplicates
+    field definitions with organization permission wrappers.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Flags map to standard boolean/string schema properties easily
+    validated by mock schema checkers.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: PostRefunds
+  candidate_source_id: CAND-002
+  source_project: Stripe (stripe/openapi)
+  source_file_path: openapi/spec3.json
+  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
+  http_method: POST
+  endpoint_path: /v1/refunds
+  intended_benchmark_domain: Payments
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      charge:
+        type: string
+        description: The identifier of the charge to refund.
+      amount:
+        type: integer
+        description: A positive integer in cents representing how much of this charge
+          to refund.
+      payment_intent:
+        type: string
+        description: ID of the PaymentIntent to refund.
+      reason:
+        type: string
+        enum:
+        - duplicate
+        - fraudulent
+        - requested_by_customer
+        description: String indicating reason for the refund.
+      refund_application_fee:
+        type: boolean
+        description: Boolean indicating whether the application fee should be refunded.
+      reverse_transfer:
+        type: boolean
+        description: Boolean indicating whether the transfer should be reversed.
+      metadata:
+        type: object
+        description: Set of key-value pairs that you can attach to an object.
+  metrics:
+    parameter_count: 7
+    nesting_depth: 2
+    optional_field_ratio: 1.0
+    enum_density: 0.143
+    description_length_chars: 372
+    estimated_token_length: 158
+  reason_for_selection: Direct real-world production counterpart to Stage A synthetic
+    Stripe refund tool; validates real-world transferability.
+  exclusion_reason_nearby_operations: Excluded GET /v1/refunds (listing) and POST
+    /v1/refunds/{refund}/cancel (lifecycle cancellation) to focus on primary execution.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Straightforward mock receipt schema returning synthetic refund
+    object ID and status.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: PostCustomers
+  candidate_source_id: CAND-002
+  source_project: Stripe (stripe/openapi)
+  source_file_path: openapi/spec3.json
+  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
+  http_method: POST
+  endpoint_path: /v1/customers
+  intended_benchmark_domain: Payments
+  complexity_tier: DEEP_BLOATED
+  parameter_schema:
+    type: object
+    properties:
+      email:
+        type: string
+        description: Customer's email address.
+      name:
+        type: string
+        description: The customer's full name or business name.
+      phone:
+        type: string
+        description: The customer's phone number.
+      description:
+        type: string
+        description: An arbitrary string attached to the object.
+      address:
+        type: object
+        description: The customer's address.
+        properties:
+          city:
+            type: string
+          country:
+            type: string
+          line1:
+            type: string
+          line2:
+            type: string
+          postal_code:
+            type: string
+          state:
+            type: string
+      shipping:
+        type: object
+        description: The customer's shipping information.
+        properties:
+          address:
+            type: object
+            properties:
+              city:
+                type: string
+              country:
+                type: string
+              line1:
+                type: string
+              postal_code:
+                type: string
+          name:
+            type: string
+          phone:
+            type: string
+      balance:
+        type: integer
+        description: An integer amount in cents that represents the customer's current
+          balance.
+  metrics:
+    parameter_count: 7
+    nesting_depth: 3
+    optional_field_ratio: 1.0
+    enum_density: 0.0
+    description_length_chars: 348
+    estimated_token_length: 218
+  reason_for_selection: Multi-level nesting stress test featuring identical field
+    names (`address`, `city`, `phone`) at different structural levels.
+  exclusion_reason_nearby_operations: Excluded POST /v1/customers/{customer} (update
+    endpoint) due to ambiguous sentinel clearing syntax (e.g. empty strings to unset).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Deterministic dictionary structure testable without third-party
+    network egress.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: PostPaymentIntents
+  candidate_source_id: CAND-002
+  source_project: Stripe (stripe/openapi)
+  source_file_path: openapi/spec3.json
+  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
+  http_method: POST
+  endpoint_path: /v1/payment_intents
+  intended_benchmark_domain: Payments
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      amount:
+        type: integer
+        description: Amount intended to be collected in cents.
+      currency:
+        type: string
+        description: Three-letter ISO currency code.
+      customer:
+        type: string
+        description: ID of the Customer this PaymentIntent belongs to.
+      payment_method:
+        type: string
+        description: ID of the payment method to attach.
+      confirm:
+        type: boolean
+        description: Set to true to attempt to immediately confirm this PaymentIntent.
+      receipt_email:
+        type: string
+        description: Email address to send receipts to.
+      automatic_payment_methods:
+        type: object
+        properties:
+          enabled:
+            type: boolean
+    required:
+    - amount
+    - currency
+  metrics:
+    parameter_count: 7
+    nesting_depth: 2
+    optional_field_ratio: 0.714
+    enum_density: 0.0
+    description_length_chars: 312
+    estimated_token_length: 146
+  reason_for_selection: Represents essential payment state initialization with strict
+    required financial parameters alongside sub-object configurations.
+  exclusion_reason_nearby_operations: Excluded POST /v1/payment_intents/{intent}/capture
+    to focus on intent declaration rather than post-auth capture.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: High-frequency payment pattern readily verifiable by schema
+    checkers.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: floating_ips_create
+  candidate_source_id: CAND-003
+  source_project: DigitalOcean (digitalocean/openapi)
+  source_file_path: specification/DigitalOcean-public.v2.yaml
+  source_file_blob_sha: a26d71aa637fd6c6241602e9862eae7fb3d1ed95
+  http_method: POST
+  endpoint_path: /v2/floating_ips
+  intended_benchmark_domain: Cloud/Infra
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      droplet_id:
+        type: integer
+        description: The unique ID of the Droplet that the floating IP will be assigned
+          to.
+      region:
+        type: string
+        description: The slug that identifies the type of regional data center (e.g.
+          nyc3).
+  metrics:
+    parameter_count: 2
+    nesting_depth: 1
+    optional_field_ratio: 1.0
+    enum_density: 0.0
+    description_length_chars: 154
+    estimated_token_length: 68
+  reason_for_selection: Ultra-flat infrastructure allocation endpoint ideal as a low-complexity
+    control anchor.
+  exclusion_reason_nearby_operations: Excluded DELETE /v2/floating_ips/{floating_ip}
+    (destructive) and GET /v2/floating_ips (unconstrained list).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Simple integer/string pair requiring no server-side orchestration
+    to validate.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: domains_create
+  candidate_source_id: CAND-003
+  source_project: DigitalOcean (digitalocean/openapi)
+  source_file_path: specification/DigitalOcean-public.v2.yaml
+  source_file_blob_sha: a26d71aa637fd6c6241602e9862eae7fb3d1ed95
+  http_method: POST
+  endpoint_path: /v2/domains
+  intended_benchmark_domain: Cloud/Infra
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: The name of the domain itself (e.g. example.com).
+      ip_address:
+        type: string
+        description: This optional attribute may contain an IP address for an A record.
+    required:
+    - name
+  metrics:
+    parameter_count: 2
+    nesting_depth: 1
+    optional_field_ratio: 0.5
+    enum_density: 0.0
+    description_length_chars: 138
+    estimated_token_length: 64
+  reason_for_selection: Concise infrastructure resource creation with single required
+    parameter.
+  exclusion_reason_nearby_operations: Excluded POST /v2/domains/{name}/records due
+    to disparate polymorphic record types (A, CNAME, MX) requiring separate schemas.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Simple domain/IP verification easily validated locally.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: droplets_create
+  candidate_source_id: CAND-003
+  source_project: DigitalOcean (digitalocean/openapi)
+  source_file_path: specification/DigitalOcean-public.v2.yaml
+  source_file_blob_sha: a26d71aa637fd6c6241602e9862eae7fb3d1ed95
+  http_method: POST
+  endpoint_path: /v2/droplets
+  intended_benchmark_domain: Cloud/Infra
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: The human-readable string you wish to use when displaying the
+          Droplet name.
+      region:
+        type: string
+        description: The slug identifier for the region that you wish to deploy the
+          Droplet in.
+      size:
+        type: string
+        description: The slug identifier for the size that you wish to select for
+          this Droplet.
+      image:
+        type: string
+        description: The image ID of a public or personal image or the slug identifier
+          for an image.
+      ssh_keys:
+        type: array
+        items:
+          type: string
+        description: An array containing the IDs or fingerprints of the SSH keys.
+      backups:
+        type: boolean
+        description: A boolean indicating whether automated backups should be enabled.
+      ipv6:
+        type: boolean
+        description: A boolean indicating whether IPv6 is enabled on the Droplet.
+      monitoring:
+        type: boolean
+        description: A boolean indicating whether to install the DigitalOcean agent.
+      tags:
+        type: array
+        items:
+          type: string
+        description: A flat array of tag names as strings to apply.
+    required:
+    - name
+    - region
+    - size
+    - image
+  metrics:
+    parameter_count: 9
+    nesting_depth: 2
+    optional_field_ratio: 0.556
+    enum_density: 0.0
+    description_length_chars: 586
+    estimated_token_length: 210
+  reason_for_selection: Exemplary standard for enterprise cloud provisioning with
+    multiple required parameters and mixed arrays/booleans.
+  exclusion_reason_nearby_operations: Excluded POST /v2/droplets/actions (reboot,
+    resize, rebuild) due to polymorphic action type dispatching.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Rigid specification easily checked against mock VM inventory.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: UpdateAccount
+  candidate_source_id: CAND-004
+  source_project: Twilio (twilio/twilio-oai)
+  source_file_path: spec/yaml/twilio_api_v2010.yaml
+  source_file_blob_sha: 5b2e77834f20cbe5d3efeffd27326381fee6b07e
+  http_method: POST
+  endpoint_path: /2010-04-01/Accounts/{Sid}.json
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      FriendlyName:
+        type: string
+        description: A human readable description of the account to create.
+      Status:
+        type: string
+        enum:
+        - active
+        - suspended
+        - closed
+        description: The status of the account.
+  metrics:
+    parameter_count: 2
+    nesting_depth: 1
+    optional_field_ratio: 1.0
+    enum_density: 0.5
+    description_length_chars: 122
+    estimated_token_length: 62
+  reason_for_selection: Flat administrative communication tool with enum state restriction.
+  exclusion_reason_nearby_operations: Excluded GET /2010-04-01/Accounts/{Sid}.json
+    (read-only) and POST /2010-04-01/Accounts.json (account provisioning with subaccount
+    hierarchies).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: High-simplicity property update, safe for mock execution.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: CreateMessage
+  candidate_source_id: CAND-004
+  source_project: Twilio (twilio/twilio-oai)
+  source_file_path: spec/yaml/twilio_api_v2010.yaml
+  source_file_blob_sha: 5b2e77834f20cbe5d3efeffd27326381fee6b07e
+  http_method: POST
+  endpoint_path: /2010-04-01/Accounts/{AccountSid}/Messages.json
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      To:
+        type: string
+        description: The destination phone number in E.164 format.
+      From:
+        type: string
+        description: A Twilio phone number in E.164 format or alphanumeric sender
+          ID.
+      Body:
+        type: string
+        description: The text of the message you want to send. Can be up to 1,600
+          characters.
+      MediaUrl:
+        type: array
+        items:
+          type: string
+        description: The URL of the media you wish to send with the message.
+      MessagingServiceSid:
+        type: string
+        description: The SID of the Messaging Service you want to associate with the
+          Message.
+      StatusCallback:
+        type: string
+        description: The URL we should call to send status information to your application.
+    required:
+    - To
+  metrics:
+    parameter_count: 6
+    nesting_depth: 2
+    optional_field_ratio: 0.833
+    enum_density: 0.0
+    description_length_chars: 384
+    estimated_token_length: 142
+  reason_for_selection: Ubiquitous telecommunications API pattern combining routing
+    strings, message bodies, and media array attachments.
+  exclusion_reason_nearby_operations: Excluded DELETE /2010-04-01/Accounts/{AccountSid}/Messages/{Sid}.json
+    as redacting message bodies is non-standard for agent tooling.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Standard SMS mock receiver returning synthetic message SID.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: CreateCall
+  candidate_source_id: CAND-004
+  source_project: Twilio (twilio/twilio-oai)
+  source_file_path: spec/yaml/twilio_api_v2010.yaml
+  source_file_blob_sha: 5b2e77834f20cbe5d3efeffd27326381fee6b07e
+  http_method: POST
+  endpoint_path: /2010-04-01/Accounts/{AccountSid}/Calls.json
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: DEEP_BLOATED
+  parameter_schema:
+    type: object
+    properties:
+      To:
+        type: string
+        description: The phone number or client identifier to call.
+      From:
+        type: string
+        description: The phone number or client identifier to use as the caller id.
+      Url:
+        type: string
+        description: The absolute URL that returns TwiML instructions for the call.
+      Method:
+        type: string
+        enum:
+        - GET
+        - POST
+        description: The HTTP method we should use to call the url.
+      FallbackUrl:
+        type: string
+        description: The URL that we should call if there is an error in URL.
+      StatusCallback:
+        type: string
+        description: The URL we should call to send status information to your application.
+      Timeout:
+        type: integer
+        description: The integer number of seconds that we should allow the phone
+          to ring.
+      Record:
+        type: boolean
+        description: Whether to record the call.
+      SendDigits:
+        type: string
+        description: A string of keys to play after connecting.
+    required:
+    - To
+    - From
+  metrics:
+    parameter_count: 9
+    nesting_depth: 1
+    optional_field_ratio: 0.778
+    enum_density: 0.111
+    description_length_chars: 482
+    estimated_token_length: 194
+  reason_for_selection: Telephony initiation endpoint with PascalCase identifiers
+    and multiple interacting routing options.
+  exclusion_reason_nearby_operations: Excluded POST /2010-04-01/Accounts/{AccountSid}/Calls/{Sid}/Feedback.json
+    due to subjective star-rating semantics.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Easily simulated with local call-event dispatcher stub.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: post_folders
+  candidate_source_id: CAND-005
+  source_project: Box (box/box-openapi)
+  source_file_path: openapi.json
+  source_file_blob_sha: e740e641b82d30e398a2a0d1b14b4c052e310422
+  http_method: POST
+  endpoint_path: /folders
+  intended_benchmark_domain: Data/Identity
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: The name for the new folder.
+      parent:
+        type: object
+        description: The parent folder.
+        properties:
+          id:
+            type: string
+            description: The ID of parent folder
+        required:
+        - id
+      sync_state:
+        type: string
+        enum:
+        - synced
+        - not_synced
+        - partially_synced
+        description: Specifies whether a folder should be synced.
+    required:
+    - name
+    - parent
+  metrics:
+    parameter_count: 3
+    nesting_depth: 2
+    optional_field_ratio: 0.333
+    enum_density: 0.333
+    description_length_chars: 172
+    estimated_token_length: 104
+  reason_for_selection: Classic enterprise hierarchical data organization schema requiring
+    parent pointer sub-objects.
+  exclusion_reason_nearby_operations: Excluded PUT /folders/{folder_id} to avoid partial
+    tree move/rename mutations.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Clean directory graph simulation without disk IO requirements.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: post_collaborations
+  candidate_source_id: CAND-005
+  source_project: Box (box/box-openapi)
+  source_file_path: openapi.json
+  source_file_blob_sha: e740e641b82d30e398a2a0d1b14b4c052e310422
+  http_method: POST
+  endpoint_path: /collaborations
+  intended_benchmark_domain: Data/Identity
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      item:
+        type: object
+        description: The item to collaborate on.
+        properties:
+          type:
+            type: string
+            enum:
+            - file
+            - folder
+          id:
+            type: string
+        required:
+        - type
+        - id
+      accessible_by:
+        type: object
+        description: The user or group who will be granted access.
+        properties:
+          type:
+            type: string
+            enum:
+            - user
+            - group
+          id:
+            type: string
+          login:
+            type: string
+        required:
+        - type
+      role:
+        type: string
+        enum:
+        - editor
+        - viewer
+        - previewer
+        - uploader
+        - previewer uploader
+        - viewer uploader
+        - co-owner
+        description: The access level of the collaborations.
+    required:
+    - item
+    - accessible_by
+    - role
+  metrics:
+    parameter_count: 3
+    nesting_depth: 2
+    optional_field_ratio: 0.0
+    enum_density: 0.667
+    description_length_chars: 236
+    estimated_token_length: 164
+  reason_for_selection: High enum density and multi-entity binding (item + principal
+    + permission role).
+  exclusion_reason_nearby_operations: Excluded DELETE /collaborations/{collaboration_id}
+    (permission revocation) to focus on access granting.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Permission grant mock validator checks standard access tuple.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: post_users
+  candidate_source_id: CAND-005
+  source_project: Box (box/box-openapi)
+  source_file_path: openapi.json
+  source_file_blob_sha: e740e641b82d30e398a2a0d1b14b4c052e310422
+  http_method: POST
+  endpoint_path: /users
+  intended_benchmark_domain: Data/Identity
+  complexity_tier: DEEP_BLOATED
+  parameter_schema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: The name of the user.
+      login:
+        type: string
+        description: The email address the user uses to sign in.
+      role:
+        type: string
+        enum:
+        - coadmin
+        - user
+        description: The user's enterprise role.
+      language:
+        type: string
+        description: The language of the user, formatted in ISO 639-1 format.
+      is_sync_enabled:
+        type: boolean
+        description: Whether the user will be able to use Box Sync.
+      job_title:
+        type: string
+        description: The user's job title.
+      phone:
+        type: string
+        description: The user's phone number.
+      address:
+        type: string
+        description: The user's address.
+      space_amount:
+        type: integer
+        description: The user's total available space in bytes.
+      status:
+        type: string
+        enum:
+        - active
+        - inactive
+        - cannot_delete_edit
+        description: The user's account status.
+    required:
+    - name
+  metrics:
+    parameter_count: 10
+    nesting_depth: 1
+    optional_field_ratio: 0.9
+    enum_density: 0.2
+    description_length_chars: 478
+    estimated_token_length: 182
+  reason_for_selection: Enterprise identity provisioning endpoint with substantial
+    optional attributes and state enums.
+  exclusion_reason_nearby_operations: Excluded DELETE /users/{user_id} and GET /users
+    (identity scraping).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Identity profile fields are completely stateless and mock-friendly.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: conversations.create
+  candidate_source_id: CAND-006
+  source_project: Slack (slackapi/slack-api-specs)
+  source_file_path: web-api/slack_web_openapi_v2.json
+  source_file_blob_sha: 72c5dfb431e05f5d6fa2aa28ebcd60d503a67886
+  http_method: POST
+  endpoint_path: /conversations.create
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the public or private channel to create.
+      is_private:
+        type: boolean
+        description: Whether the channel should be private.
+    required:
+    - name
+  metrics:
+    parameter_count: 2
+    nesting_depth: 1
+    optional_field_ratio: 0.5
+    enum_density: 0.0
+    description_length_chars: 98
+    estimated_token_length: 56
+  reason_for_selection: Minimal flat collaboration channel constructor.
+  exclusion_reason_nearby_operations: Excluded /conversations.archive and /conversations.close
+    due to trivial zero-argument or single-id deletion behavior.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Returns mock channel ID and channel metadata object.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: users.profile.set
+  candidate_source_id: CAND-006
+  source_project: Slack (slackapi/slack-api-specs)
+  source_file_path: web-api/slack_web_openapi_v2.json
+  source_file_blob_sha: 72c5dfb431e05f5d6fa2aa28ebcd60d503a67886
+  http_method: POST
+  endpoint_path: /users.profile.set
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      user:
+        type: string
+        description: ID of user to change. This argument may only be specified by
+          admins on paid teams.
+      profile:
+        type: object
+        description: Collection of key-value pairs to set in user profile.
+        properties:
+          status_text:
+            type: string
+            description: The text of the user's status.
+          status_emoji:
+            type: string
+            description: The emoji to display with status.
+          status_expiration:
+            type: integer
+            description: Unix timestamp for status expiration.
+          first_name:
+            type: string
+            description: User's first name.
+          last_name:
+            type: string
+            description: User's last name.
+  metrics:
+    parameter_count: 2
+    nesting_depth: 2
+    optional_field_ratio: 1.0
+    enum_density: 0.0
+    description_length_chars: 332
+    estimated_token_length: 148
+  reason_for_selection: Nested profile object mapping user details and temporal expiration
+    flags.
+  exclusion_reason_nearby_operations: Excluded /users.profile.get (read-only query).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Profile mutation parameters are pure key-value payload entries
+    easily echoed by mock server.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: chat.postMessage
+  candidate_source_id: CAND-006
+  source_project: Slack (slackapi/slack-api-specs)
+  source_file_path: web-api/slack_web_openapi_v2.json
+  source_file_blob_sha: 72c5dfb431e05f5d6fa2aa28ebcd60d503a67886
+  http_method: POST
+  endpoint_path: /chat.postMessage
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: DEEP_BLOATED
+  parameter_schema:
+    type: object
+    properties:
+      channel:
+        type: string
+        description: Channel, private group, or IM channel to send message to.
+      text:
+        type: string
+        description: The formatted text of the message to be sent.
+      thread_ts:
+        type: string
+        description: Provide another message's ts value to make this message a reply.
+      reply_broadcast:
+        type: boolean
+        description: Used in conjunction with thread_ts to indicate whether reply
+          should be broadcast.
+      unfurl_links:
+        type: boolean
+        description: Pass true to enable unfurling of primarily text-based links.
+      mrkdwn:
+        type: boolean
+        description: Disable Slack markup parsing by setting to false.
+      blocks:
+        type: array
+        description: A JSON-based array of structured blocks.
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - section
+              - divider
+              - header
+              - context
+            text:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                  - mrkdwn
+                  - plain_text
+                text:
+                  type: string
+    required:
+    - channel
+  metrics:
+    parameter_count: 7
+    nesting_depth: 4
+    optional_field_ratio: 0.857
+    enum_density: 0.286
+    description_length_chars: 476
+    estimated_token_length: 258
+  reason_for_selection: Deeply nested, polymorphic enterprise chat message structure;
+    stress-tests deep JSON generation in LLMs.
+  exclusion_reason_nearby_operations: Excluded /chat.postEphemeral (ephemeral message
+    targeting user) due to redundancy with primary message dispatch.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Block structures are standardized and mock-validated by JSON
+    Schema.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: read_query
+  candidate_source_id: CAND-009
+  source_project: Model Context Protocol (modelcontextprotocol/servers - SQLite)
+  source_file_path: src/sqlite/src/mcp_server_sqlite/server.py
+  source_file_blob_sha: 1b97a6a4903bd8961941cdff43df3b059e610e5f
+  http_method: RPC_TOOL
+  endpoint_path: tools/call:read_query
+  intended_benchmark_domain: Data/Identity
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      query:
+        type: string
+        description: The SELECT SQL query to execute.
+    required:
+    - query
+  metrics:
+    parameter_count: 1
+    nesting_depth: 1
+    optional_field_ratio: 0.0
+    enum_density: 0.0
+    description_length_chars: 42
+    estimated_token_length: 42
+  reason_for_selection: Minimal single-parameter tool RPC; acts as the primary experimental
+    control for direct agent tool calling.
+  exclusion_reason_nearby_operations: Excluded list_tables tool because it takes zero
+    parameters (vacuous for parameter construction evaluation).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Direct SQL string validation against in-memory SQLite mock
+    db.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: describe_table
+  candidate_source_id: CAND-009
+  source_project: Model Context Protocol (modelcontextprotocol/servers - SQLite)
+  source_file_path: src/sqlite/src/mcp_server_sqlite/server.py
+  source_file_blob_sha: 1b97a6a4903bd8961941cdff43df3b059e610e5f
+  http_method: RPC_TOOL
+  endpoint_path: tools/call:describe_table
+  intended_benchmark_domain: Data/Identity
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      table_name:
+        type: string
+        description: The name of the table to describe.
+    required:
+    - table_name
+  metrics:
+    parameter_count: 1
+    nesting_depth: 1
+    optional_field_ratio: 0.0
+    enum_density: 0.0
+    description_length_chars: 42
+    estimated_token_length: 42
+  reason_for_selection: Single identifier tool call; tests exact identifier extraction
+    without syntactic nesting.
+  exclusion_reason_nearby_operations: Excluded append_insight (memo prompt tool) because
+    it is a demonstration artifact rather than a core database primitive.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Trivial schema lookup against mock table definition.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: write_query
+  candidate_source_id: CAND-009
+  source_project: Model Context Protocol (modelcontextprotocol/servers - SQLite)
+  source_file_path: src/sqlite/src/mcp_server_sqlite/server.py
+  source_file_blob_sha: 1b97a6a4903bd8961941cdff43df3b059e610e5f
+  http_method: RPC_TOOL
+  endpoint_path: tools/call:write_query
+  intended_benchmark_domain: Data/Identity
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      query:
+        type: string
+        description: The INSERT, UPDATE, or DELETE SQL query to execute.
+    required:
+    - query
+  metrics:
+    parameter_count: 1
+    nesting_depth: 1
+    optional_field_ratio: 0.0
+    enum_density: 0.0
+    description_length_chars: 58
+    estimated_token_length: 46
+  reason_for_selection: Complements read_query to test tool disambiguation between
+    state-modifying and read-only database queries.
+  exclusion_reason_nearby_operations: Excluded create_table as it duplicates DDL string
+    execution with write_query.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Mock SQL parser checks statement type.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: search_repositories
+  candidate_source_id: CAND-010
+  source_project: Model Context Protocol (modelcontextprotocol/servers - GitHub)
+  source_file_path: src/github/index.ts
+  source_file_blob_sha: 0676a34c85537e610f911fbd73a5a079f38be18e
+  http_method: RPC_TOOL
+  endpoint_path: tools/call:search_repositories
+  intended_benchmark_domain: Developer Platforms
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      query:
+        type: string
+        description: Search query.
+      page:
+        type: integer
+        description: Page number for pagination.
+      perPage:
+        type: integer
+        description: Number of results per page.
+    required:
+    - query
+  metrics:
+    parameter_count: 3
+    nesting_depth: 1
+    optional_field_ratio: 0.667
+    enum_density: 0.0
+    description_length_chars: 78
+    estimated_token_length: 66
+  reason_for_selection: Lightweight MCP search primitive contrasting modern TypeScript
+    MCP tool declarations against verbose OpenAPI specifications.
+  exclusion_reason_nearby_operations: Excluded get_file_contents (read-only file fetch)
+    to prioritize creation/search operations.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Static array mock response.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: create_issue
+  candidate_source_id: CAND-010
+  source_project: Model Context Protocol (modelcontextprotocol/servers - GitHub)
+  source_file_path: src/github/index.ts
+  source_file_blob_sha: 0676a34c85537e610f911fbd73a5a079f38be18e
+  http_method: RPC_TOOL
+  endpoint_path: tools/call:create_issue
+  intended_benchmark_domain: Developer Platforms
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      owner:
+        type: string
+        description: Repository owner.
+      repo:
+        type: string
+        description: Repository name.
+      title:
+        type: string
+        description: Issue title.
+      body:
+        type: string
+        description: Issue body content.
+      assignees:
+        type: array
+        items:
+          type: string
+        description: Usernames to assign.
+      labels:
+        type: array
+        items:
+          type: string
+        description: Labels to apply.
+      milestone:
+        type: integer
+        description: Milestone number.
+    required:
+    - owner
+    - repo
+    - title
+  metrics:
+    parameter_count: 7
+    nesting_depth: 2
+    optional_field_ratio: 0.571
+    enum_density: 0.0
+    description_length_chars: 178
+    estimated_token_length: 118
+  reason_for_selection: Direct architectural parallel between OpenAPI issue creation
+    (CAND-001) and MCP RPC issue creation (CAND-010); isolates OpenAPI vs MCP formatting
+    effects.
+  exclusion_reason_nearby_operations: Excluded create_pull_request to avoid overlapping
+    branch state requirements with create_issue.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Simple schema validator returning synthetic issue URL.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: create_or_update_file
+  candidate_source_id: CAND-010
+  source_project: Model Context Protocol (modelcontextprotocol/servers - GitHub)
+  source_file_path: src/github/index.ts
+  source_file_blob_sha: 0676a34c85537e610f911fbd73a5a079f38be18e
+  http_method: RPC_TOOL
+  endpoint_path: tools/call:create_or_update_file
+  intended_benchmark_domain: Developer Platforms
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      owner:
+        type: string
+        description: Repository owner.
+      repo:
+        type: string
+        description: Repository name.
+      path:
+        type: string
+        description: Path to the file.
+      content:
+        type: string
+        description: Content of the file.
+      message:
+        type: string
+        description: Commit message.
+      branch:
+        type: string
+        description: Branch to commit to.
+      sha:
+        type: string
+        description: SHA of the file being replaced (required when updating).
+    required:
+    - owner
+    - repo
+    - path
+    - content
+    - message
+  metrics:
+    parameter_count: 7
+    nesting_depth: 1
+    optional_field_ratio: 0.286
+    enum_density: 0.0
+    description_length_chars: 214
+    estimated_token_length: 128
+  reason_for_selection: Code manipulation tool requiring multiple distinct semantic
+    arguments (path, content, message, branch).
+  exclusion_reason_nearby_operations: Excluded create_branch due to minimal two-parameter
+    signature redundant with search_repositories.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Mock repository filesystem records commit and file contents.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: create-an-account-user
+  candidate_source_id: CAND-011
+  source_project: Chatwoot (chatwoot/chatwoot)
+  source_file_path: swagger/swagger.json
+  source_file_blob_sha: b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589
+  http_method: POST
+  endpoint_path: /platform/api/v1/accounts/{account_id}/account_users
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      user_id:
+        type: integer
+        description: The ID of the user to be added.
+      role:
+        type: string
+        enum:
+        - agent
+        - administrator
+        description: The role of the user in the account.
+    required:
+    - user_id
+    - role
+  metrics:
+    parameter_count: 2
+    nesting_depth: 1
+    optional_field_ratio: 0.0
+    enum_density: 0.5
+    description_length_chars: 84
+    estimated_token_length: 58
+  reason_for_selection: Flat role binding endpoint with required role enum.
+  exclusion_reason_nearby_operations: Excluded DELETE /platform/api/v1/accounts/{account_id}/account_users
+    to focus on construction.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Static user-account association validated immediately.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: create-a-contact
+  candidate_source_id: CAND-011
+  source_project: Chatwoot (chatwoot/chatwoot)
+  source_file_path: swagger/swagger.json
+  source_file_blob_sha: b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589
+  http_method: POST
+  endpoint_path: /public/api/v1/inboxes/{inbox_identifier}/contacts
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Name of the contact.
+      email:
+        type: string
+        description: Email address of the contact.
+      phone_number:
+        type: string
+        description: Phone number of the contact.
+      identifier:
+        type: string
+        description: External identifier for the contact.
+      custom_attributes:
+        type: object
+        description: Custom attributes for the contact.
+  metrics:
+    parameter_count: 5
+    nesting_depth: 2
+    optional_field_ratio: 1.0
+    enum_density: 0.0
+    description_length_chars: 204
+    estimated_token_length: 112
+  reason_for_selection: CRM contact creation pattern with optional metadata and mixed
+    communication channels.
+  exclusion_reason_nearby_operations: Excluded GET /public/api/v1/inboxes/{inbox_identifier}/contacts/{contact_identifier}
+    (retrieval only).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Echoes back mock contact ID and timestamp.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: create-a-conversation
+  candidate_source_id: CAND-011
+  source_project: Chatwoot (chatwoot/chatwoot)
+  source_file_path: swagger/swagger.json
+  source_file_blob_sha: b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589
+  http_method: POST
+  endpoint_path: /public/api/v1/inboxes/{inbox_identifier}/contacts/{contact_identifier}/conversations
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      custom_attributes:
+        type: object
+        description: Custom attributes for the conversation.
+  metrics:
+    parameter_count: 1
+    nesting_depth: 2
+    optional_field_ratio: 1.0
+    enum_density: 0.0
+    description_length_chars: 54
+    estimated_token_length: 48
+  reason_for_selection: Represents context-heavy REST resource instantiation where
+    primary identifiers reside in path parameters rather than body payload.
+  exclusion_reason_nearby_operations: Excluded POST .../toggle_status (resolve conversation)
+    to focus on ticket instantiation.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Generates mock ticket record tied to mock contact.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: setWebhookEndpoint
+  candidate_source_id: CAND-013
+  source_project: LINE (line/line-openapi)
+  source_file_path: messaging-api.yml
+  source_file_blob_sha: 11f1fdb91092246f881edd1a9457cb37327a6c5d
+  http_method: PUT
+  endpoint_path: /v2/bot/channel/webhook/endpoint
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: FLAT
+  parameter_schema:
+    type: object
+    properties:
+      endpoint:
+        type: string
+        description: A valid HTTPS URL for the webhook.
+    required:
+    - endpoint
+  metrics:
+    parameter_count: 1
+    nesting_depth: 1
+    optional_field_ratio: 0.0
+    enum_density: 0.0
+    description_length_chars: 38
+    estimated_token_length: 38
+  reason_for_selection: Minimal webhook configuration tool; provides an ultra-flat
+    single-property baseline for messaging platforms.
+  exclusion_reason_nearby_operations: Excluded POST /v2/bot/channel/webhook/test due
+    to empty-body trigger semantics.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Validates URL string format with local regex.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: replyMessage
+  candidate_source_id: CAND-013
+  source_project: LINE (line/line-openapi)
+  source_file_path: messaging-api.yml
+  source_file_blob_sha: 11f1fdb91092246f881edd1a9457cb37327a6c5d
+  http_method: POST
+  endpoint_path: /v2/bot/message/reply
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: MODERATE
+  parameter_schema:
+    type: object
+    properties:
+      replyToken:
+        type: string
+        description: Reply token received via webhook.
+      messages:
+        type: array
+        description: Array of Message objects.
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - text
+              - image
+              - video
+              - audio
+              - location
+              - sticker
+            text:
+              type: string
+              description: Message text when type is text.
+          required:
+          - type
+      notificationDisabled:
+        type: boolean
+        description: True to send without push notification.
+    required:
+    - replyToken
+    - messages
+  metrics:
+    parameter_count: 3
+    nesting_depth: 3
+    optional_field_ratio: 0.333
+    enum_density: 0.333
+    description_length_chars: 196
+    estimated_token_length: 136
+  reason_for_selection: Standard bot reply contract featuring array payloads with
+    type discriminator enums.
+  exclusion_reason_nearby_operations: Excluded POST /v2/bot/message/multicast to avoid
+    redundancy with replyMessage and pushMessage.
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Checks replyToken string and message type enum validation.
+  usage_role: CANONICAL_SOURCE_SCHEMA
+- operation_id: pushMessage
+  candidate_source_id: CAND-013
+  source_project: LINE (line/line-openapi)
+  source_file_path: messaging-api.yml
+  source_file_blob_sha: 11f1fdb91092246f881edd1a9457cb37327a6c5d
+  http_method: POST
+  endpoint_path: /v2/bot/message/push
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: DEEP_BLOATED
+  parameter_schema:
+    type: object
+    properties:
+      to:
+        type: string
+        description: ID of the target recipient user, group, or room.
+      messages:
+        type: array
+        description: List of messages to send (max 5).
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - text
+              - image
+              - video
+              - audio
+              - location
+              - sticker
+              - template
+              - flex
+            text:
+              type: string
+            packageId:
+              type: string
+              description: Package ID for sticker messages.
+            stickerId:
+              type: string
+              description: Sticker ID for sticker messages.
+          required:
+          - type
+      notificationDisabled:
+        type: boolean
+        description: True to send without push notification.
+      customAggregationUnits:
+        type: array
+        items:
+          type: string
+        description: Name of aggregation unit.
+    required:
+    - to
+    - messages
+  metrics:
+    parameter_count: 4
+    nesting_depth: 3
+    optional_field_ratio: 0.5
+    enum_density: 0.25
+    description_length_chars: 284
+    estimated_token_length: 178
+  reason_for_selection: Direct outbound messaging requiring target ID, complex polymorphic
+    message blocks, and tracking units.
+  exclusion_reason_nearby_operations: Excluded POST /v2/bot/message/narrowcast due
+    to demographic filtering sub-trees (too large for bounded LLM context).
+  safe_for_local_mock_evaluation: true
+  mock_safety_rationale: Mock recipient validation and message array validation.
+  usage_role: CANONICAL_SOURCE_SCHEMA
