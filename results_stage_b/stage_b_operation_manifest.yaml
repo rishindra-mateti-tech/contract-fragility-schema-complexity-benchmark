@@ -27,8 +27,9 @@ domain_distribution:
   CRM/Support: 6
 complexity_distribution:
   FLAT: 10
-  MODERATE: 13
-  DEEP_BLOATED: 7
+  MODERATE: 15
+  DEEP_BLOATED: 5
+total_operations_excluded: 2
 operations:
 - operation_id: repos/create-commit-status
   candidate_source_id: CAND-001
@@ -57,7 +58,7 @@ operations:
     establishes a baseline for low-friction tool invocation.
   exclusion_reason_nearby_operations: Excluded GET /repos/{owner}/{repo}/statuses/{ref}
     (read-only listing) and DELETE endpoints (non-actionable for status reporting).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -89,7 +90,7 @@ operations:
     enables backward comparison while introducing array parameters.
   exclusion_reason_nearby_operations: Excluded PATCH /repos/{owner}/{repo}/issues/{issue_number}
     due to ambiguous state update semantics compared to clean creation.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -121,7 +122,7 @@ operations:
     (15 optional flags with overlapping semantic fields).
   exclusion_reason_nearby_operations: Excluded POST /orgs/{org}/repos as it duplicates
     field definitions with organization permission wrappers.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -153,7 +154,7 @@ operations:
     Stripe refund tool; validates real-world transferability.
   exclusion_reason_nearby_operations: Excluded GET /v1/refunds (listing) and POST
     /v1/refunds/{refund}/cancel (lifecycle cancellation) to focus on primary execution.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -185,7 +186,7 @@ operations:
     names (address, city, phone) at different structural levels.
   exclusion_reason_nearby_operations: Excluded POST /v1/customers/{customer} (update
     endpoint) due to ambiguous sentinel clearing syntax (e.g. empty strings to unset).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -217,7 +218,7 @@ operations:
     required financial parameters alongside sub-object configurations.
   exclusion_reason_nearby_operations: Excluded POST /v1/payment_intents/{intent}/capture
     to focus on intent declaration rather than post-auth capture.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -249,7 +250,7 @@ operations:
     control anchor.
   exclusion_reason_nearby_operations: Excluded DELETE /v2/floating_ips/{floating_ip}
     (destructive) and GET /v2/floating_ips (unconstrained list).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -281,7 +282,7 @@ operations:
     parameter.
   exclusion_reason_nearby_operations: Excluded POST /v2/domains/{name}/records due
     to disparate polymorphic record types (A, CNAME, MX) requiring separate schemas.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -313,7 +314,7 @@ operations:
     multiple required parameters and mixed arrays/booleans.
   exclusion_reason_nearby_operations: Excluded POST /v2/droplets/actions (reboot,
     resize, rebuild) due to polymorphic action type dispatching.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -345,7 +346,7 @@ operations:
   exclusion_reason_nearby_operations: Excluded GET /2010-04-01/Accounts/{Sid}.json
     (read-only) and POST /2010-04-01/Accounts.json (account provisioning with subaccount
     hierarchies).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -377,7 +378,7 @@ operations:
     strings, message bodies, and media array attachments.
   exclusion_reason_nearby_operations: Excluded DELETE /2010-04-01/Accounts/{AccountSid}/Messages/{Sid}.json
     as redacting message bodies is non-standard for agent tooling.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -409,7 +410,7 @@ operations:
     and multiple interacting routing options.
   exclusion_reason_nearby_operations: Excluded POST /2010-04-01/Accounts/{AccountSid}/Calls/{Sid}/Feedback.json
     due to subjective star-rating semantics.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -441,7 +442,7 @@ operations:
     parent pointer sub-objects.
   exclusion_reason_nearby_operations: Excluded PUT /folders/{folder_id} to avoid partial
     tree move/rename mutations.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -473,7 +474,7 @@ operations:
     + permission role).
   exclusion_reason_nearby_operations: Excluded DELETE /collaborations/{collaboration_id}
     (permission revocation) to focus on access granting.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -505,7 +506,7 @@ operations:
     optional attributes and state enums.
   exclusion_reason_nearby_operations: Excluded DELETE /users/{user_id} and GET /users
     (identity scraping).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -536,7 +537,7 @@ operations:
   reason_for_selection: Minimal flat collaboration channel constructor.
   exclusion_reason_nearby_operations: Excluded /conversations.archive and /conversations.close
     due to trivial zero-argument or single-id deletion behavior.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -567,39 +568,38 @@ operations:
   reason_for_selection: Nested profile object mapping user details and temporal expiration
     flags.
   exclusion_reason_nearby_operations: Excluded /users.profile.get (read-only query).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
     suite verification before declaring mock evaluation safe.
-- operation_id: chat.postMessage
+- operation_id: reminders.add
   candidate_source_id: CAND-006
   source_cluster_id: CLUSTER_SLACK
   source_project: Slack (slackapi/slack-api-specs)
   source_file_path: web-api/slack_web_openapi_v2_without_examples.json
   source_file_blob_sha: f7b1affd1fb34f9473cd87980428883019b29c07
   http_method: POST
-  endpoint_path: /chat.postMessage
-  source_spec_pointer: '#/paths/~1chat.postMessage/post'
+  endpoint_path: /reminders.add
+  source_spec_pointer: '#/paths/~1reminders.add/post'
   intended_benchmark_domain: CRM/Support
-  complexity_tier: DEEP_BLOATED
+  complexity_tier: MODERATE
   input_surface:
     path_parameters_present: false
     query_parameters_present: false
+    header_parameters_present: true
     request_body_present: true
     full_input_extraction_required: true
   metrics:
-    estimated_parameter_count: 7
-    estimated_nesting_depth: 4
-    estimated_optional_field_ratio: 0.857
-    estimated_enum_density: 0.286
-    description_length_chars: 476
-    estimated_token_length: 258
-  reason_for_selection: Deeply nested, polymorphic enterprise chat message structure;
-    stress-tests deep JSON generation in LLMs.
-  exclusion_reason_nearby_operations: Excluded /chat.postEphemeral (ephemeral message
-    targeting user) due to redundancy with primary message dispatch.
-  candidate_status: APPROVED_DRAFT_SELECTION
+    estimated_parameter_count: 4
+    estimated_nesting_depth: 1
+    estimated_optional_field_ratio: 0.25
+    estimated_enum_density: 0.0
+    description_length_chars: 20
+    estimated_token_length: 75
+  reason_for_selection: Standard reminder creation endpoint with header auth and form body properties; clean canonical replacement for excluded chat.postMessage without lossy pruning.
+  exclusion_reason_nearby_operations: Excluded /reminders.complete and /reminders.delete due to single-id mutation semantics.
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -631,7 +631,7 @@ operations:
     control for direct agent tool calling.
   exclusion_reason_nearby_operations: Excluded list_tables tool because it takes zero
     parameters (vacuous for parameter construction evaluation).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -663,7 +663,7 @@ operations:
     without syntactic nesting.
   exclusion_reason_nearby_operations: Excluded append_insight (memo prompt tool) because
     it is a demonstration artifact rather than a core database primitive.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -695,7 +695,7 @@ operations:
     state-modifying and read-only database queries.
   exclusion_reason_nearby_operations: Excluded create_table as it duplicates DDL string
     execution with write_query.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -727,7 +727,7 @@ operations:
     MCP tool declarations against verbose OpenAPI specifications.
   exclusion_reason_nearby_operations: Excluded get_file_contents (read-only file fetch)
     to prioritize creation/search operations.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -760,7 +760,7 @@ operations:
     effects.
   exclusion_reason_nearby_operations: Excluded create_pull_request to avoid overlapping
     branch state requirements with create_issue.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -792,7 +792,7 @@ operations:
     arguments (path, content, message, branch).
   exclusion_reason_nearby_operations: Excluded create_branch due to minimal two-parameter
     signature redundant with search_repositories.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -823,7 +823,7 @@ operations:
   reason_for_selection: Flat role binding endpoint with required role enum.
   exclusion_reason_nearby_operations: Excluded DELETE /platform/api/v1/accounts/{account_id}/account_users
     to focus on construction.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -855,7 +855,7 @@ operations:
     communication channels.
   exclusion_reason_nearby_operations: Excluded GET /public/api/v1/inboxes/{inbox_identifier}/contacts/{contact_identifier}
     (retrieval only).
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -887,7 +887,7 @@ operations:
     primary identifiers reside in path parameters rather than body payload.
   exclusion_reason_nearby_operations: Excluded POST .../toggle_status (resolve conversation)
     to focus on ticket instantiation.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -919,7 +919,7 @@ operations:
     single-property baseline for messaging platforms.
   exclusion_reason_nearby_operations: Excluded POST /v2/bot/channel/webhook/test due
     to empty-body trigger semantics.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -951,11 +951,71 @@ operations:
     type discriminator enums.
   exclusion_reason_nearby_operations: Excluded POST /v2/bot/message/multicast to avoid
     redundancy with replyMessage and pushMessage.
-  candidate_status: APPROVED_DRAFT_SELECTION
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
     suite verification before declaring mock evaluation safe.
+- operation_id: markMessagesAsRead
+  candidate_source_id: CAND-013
+  source_cluster_id: CLUSTER_LINE
+  source_project: LINE (line/line-openapi)
+  source_file_path: messaging-api.yml
+  source_file_blob_sha: 11f1fdb91092246f881edd1a9457cb37327a6c5d
+  http_method: POST
+  endpoint_path: /v2/bot/message/markAsRead
+  source_spec_pointer: '#/paths/~1v2~1bot~1message~1markAsRead/post'
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: MODERATE
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    header_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 2
+    estimated_nesting_depth: 2
+    estimated_optional_field_ratio: 0.0
+    estimated_enum_density: 0.0
+    description_length_chars: 32
+    estimated_token_length: 65
+  reason_for_selection: Nested object message status update endpoint using ChatReference without polymorphic message unions; clean canonical replacement for excluded pushMessage.
+  exclusion_reason_nearby_operations: Excluded /v2/bot/chat/markAsRead (token-based variant) and pushMessage (wide polymorphic message union).
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
+  usage_role: CANDIDATE_CANONICAL_REFERENCE
+  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
+  mock_safety_rationale: Awaiting concrete local mock executor specification and test
+    suite verification before declaring mock evaluation safe.
+excluded_operations:
+- operation_id: chat.postMessage
+  candidate_source_id: CAND-006
+  source_cluster_id: CLUSTER_SLACK
+  source_project: Slack (slackapi/slack-api-specs)
+  source_file_path: web-api/slack_web_openapi_v2_without_examples.json
+  source_file_blob_sha: f7b1affd1fb34f9473cd87980428883019b29c07
+  http_method: POST
+  endpoint_path: /chat.postMessage
+  source_spec_pointer: '#/paths/~1chat.postMessage/post'
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: DEEP_BLOATED
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 7
+    estimated_nesting_depth: 4
+    estimated_optional_field_ratio: 0.857
+    estimated_enum_density: 0.286
+    description_length_chars: 476
+    estimated_token_length: 258
+  reason_for_exclusion: Disqualified from canonical cohort due to wide polymorphic Block Kit union requiring lossy pruning.
+  candidate_status: EXCLUDE_PENDING
+  usage_role: EXCLUDED_REFERENCE
+  safe_for_local_mock_evaluation: NOT_APPLICABLE
+  mock_safety_rationale: Excluded from canonical benchmark evaluation.
 - operation_id: pushMessage
   candidate_source_id: CAND-013
   source_cluster_id: CLUSTER_LINE
@@ -979,12 +1039,8 @@ operations:
     estimated_enum_density: 0.25
     description_length_chars: 284
     estimated_token_length: 178
-  reason_for_selection: Direct outbound messaging requiring target ID, complex polymorphic
-    message blocks, and tracking units.
-  exclusion_reason_nearby_operations: Excluded POST /v2/bot/message/narrowcast due
-    to demographic filtering sub-trees (too large for bounded LLM context).
-  candidate_status: APPROVED_DRAFT_SELECTION
-  usage_role: CANDIDATE_CANONICAL_REFERENCE
-  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
-  mock_safety_rationale: Awaiting concrete local mock executor specification and test
-    suite verification before declaring mock evaluation safe.
+  reason_for_exclusion: Disqualified from canonical cohort due to wide polymorphic Message union requiring lossy pruning.
+  candidate_status: EXCLUDE_PENDING
+  usage_role: EXCLUDED_REFERENCE
+  safe_for_local_mock_evaluation: NOT_APPLICABLE
+  mock_safety_rationale: Excluded from canonical benchmark evaluation.

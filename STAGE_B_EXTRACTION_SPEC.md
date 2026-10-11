@@ -69,7 +69,7 @@ Real-world OpenAPI operations accept inputs across multiple surfaces: path templ
     "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1issues/post",
     "extraction_timestamp": "2026-10-09T18:00:00Z",
     "extractor_version": "1.1.0",
-    "admission_decision": "PROVISIONAL_CANONICAL_CANDIDATE", // Promoted to CANONICAL_FAITHFUL only post-validation & manual review
+    "admission_decision": "PROVISIONAL_CANONICAL_CANDIDATE",
     "source_structural_metrics": {
       "raw_parameter_count": 8,
       "raw_nesting_depth": 2,
@@ -108,8 +108,9 @@ Real-world OpenAPI operations accept inputs across multiple surfaces: path templ
      - Query parameters: added to `query.required` if and only if raw `required: true`.
      - Header parameters: added to `header.required` if and only if raw `required: true`.
      - Body properties: added to `body.required` if listed in the body schema's `required` array.
-4. **Form Bodies**:
-   - Form-encoded endpoints (`application/x-www-form-urlencoded` or `multipart/form-data`) map their parameter properties into the `"body"` container, with an explicit metadata annotation `"x-content-type": "application/x-www-form-urlencoded"`.
+4. **Form Bodies & Exclusion of Multipart/File Operations**:
+   - Form-encoded endpoints using `application/x-www-form-urlencoded` map their parameter properties into the `"body"` container, with an explicit metadata annotation `"x-content-type": "application/x-www-form-urlencoded"`.
+   - **Strict Exclusion Rule for Multipart/File-Bearing Endpoints**: Any operation requiring `multipart/form-data`, file-bearing inputs, byte streams, or binary file uploads is strictly **`EXCLUDE_PENDING`** in the canonical cohort. Tool-calling JSON interfaces evaluate structured data and cannot reliably represent binary file uploads without lossy mock envelopes or out-of-band transfer mechanisms.
 5. **Parameter Descriptions**:
    - Parameter descriptions are preserved verbatim at the property level.
 6. **Deterministic Property and Required-Array Ordering**:
@@ -302,7 +303,7 @@ Every operation in the benchmark catalog receives one of four immutable admissio
 1. **`CANONICAL_FAITHFUL`**: Full, faithful representation of the upstream API contract without lossy pruning, subjective simplification, or dropped variants. Eligible for main Stage B benchmark evaluation and causal claims. Assigned strictly and solely after extraction, automated validation, field-lineage verification, and mandatory manual review are complete.
 2. **`PROVISIONAL_CANONICAL_CANDIDATE`**: Operations provisionally selected for extraction without anticipated need for lossy pruning. Subject to extraction, automated verification, lineage logging, and manual sign-off before admission as `CANONICAL_FAITHFUL`.
 3. **`LOSSY_DERIVED_EXPLORATORY`**: Operations requiring heuristic pruning, bounding, or simplification to evaluate. Strictly quarantined in a separate cohort.
-4. **`EXCLUDE_PENDING`**: Operations that cannot be extracted faithfully, exhibit cyclic references, exceed recursion depth limits, or contain conflicting `allOf` schemas, and are disqualified from canonical evaluation.
+4. **`EXCLUDE_PENDING`**: Operations that cannot be extracted faithfully, exhibit cyclic references, exceed recursion depth limits, require wide polymorphic unions, contain conflicting `allOf` schemas, or require `multipart/form-data` or binary file inputs, and are disqualified from canonical evaluation.
 
 ### 7.2 Strict Cohort Isolation Rules
 - **No Pooling**: `LOSSY_DERIVED_EXPLORATORY` data must **never** be pooled with `CANONICAL_REAL_WORLD` or `SYNTHETIC` results in primary paper tables, causal effect estimates, or headline metrics.
@@ -316,9 +317,9 @@ Every operation in the benchmark catalog receives one of four immutable admissio
 ## 8. Operation Extraction Risk & Decision Matrix (30 Selected Operations)
 
 ### Status Summary
-- **`PROVISIONAL_CANONICAL_CANDIDATE`**: **28 operations** (Provisionally selected for extraction without anticipated need for lossy pruning; pending extraction, validation, lineage verification, and manual review).
+- **`PROVISIONAL_CANONICAL_CANDIDATE`**: **30 operations** (3 per cluster across all 10 clusters: provisionally selected for extraction without anticipated need for lossy pruning; pending extraction, validation, lineage verification, and manual review).
 - **`EXCLUDE_PENDING`**: **2 operations** (Disqualified from canonical cohort due to wide polymorphic unions: Slack `chat.postMessage` and LINE `pushMessage`).
-- **Pending Replacement Operations**: **2 operations** (1 for Slack CRM cluster, 1 for LINE Communications cluster, to be admitted via official source-admission protocol).
+- **Pending Replacement Operations**: **0 operations** (Both replacements successfully identified from frozen raw sources: Slack `reminders.add` and LINE `markMessagesAsRead`).
 - **`CANONICAL_FAITHFUL`**: **0 operations** (Zero operations admitted until the extraction, automated validation, field-lineage verification, and mandatory manual review gate completes).
 
 ### Complete 30-Operation Decision Table
@@ -342,6 +343,7 @@ Every operation in the benchmark catalog receives one of four immutable admissio
 | `CLUSTER_BOX` | Box | `post_users` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | 10 properties with enterprise role and status enums inside `body`. |
 | `CLUSTER_SLACK` | Slack | `conversations.create` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Flat 2-parameter channel constructor inside `body`. |
 | `CLUSTER_SLACK` | Slack | `users.profile.set` | POST | Body only | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | Nested `profile` key-value collection inside `body`. |
+| `CLUSTER_SLACK` | Slack | `reminders.add` | POST | Header + Body | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Standard reminder creation with header auth and 3 form body properties; lossless replacement for chat.postMessage. |
 | `CLUSTER_SLACK` | Slack | `chat.postMessage` | POST | Body only | 4 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** `blocks` requires lossy pruning of polymorphic Block Kit union. |
 | `CLUSTER_MCP_SQLITE` | MCP SQLite | `read_query` | RPC | Tool Schema | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Static AST extraction of `query` parameter from Python AST node; wrapped in `arguments`. |
 | `CLUSTER_MCP_SQLITE` | MCP SQLite | `describe_table` | RPC | Tool Schema | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Static AST extraction of `table_name` parameter; wrapped in `arguments`. |
@@ -354,12 +356,13 @@ Every operation in the benchmark catalog receives one of four immutable admissio
 | `CLUSTER_CHATWOOT` | Chatwoot | `create-a-conversation` | POST | Path + Body | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Path params in `path`; custom attributes in `body`. |
 | `CLUSTER_LINE` | LINE | `setWebhookEndpoint` | PUT | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Flat single-URL property constructor inside `body`. |
 | `CLUSTER_LINE` | LINE | `replyMessage` | POST | Body only | 3 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | `messages` array contains discriminated union by `type`; preserved without pruning. |
+| `CLUSTER_LINE` | LINE | `markMessagesAsRead` | POST | Body only | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Nested `chat` object reference (`ChatReference` with `userId`); lossless replacement for pushMessage without polymorphic unions. |
 | `CLUSTER_LINE` | LINE | `pushMessage` | POST | Body only | 3 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** Wide polymorphic message union requires lossy pruning. |
 
 ---
 
 ## 9. Next Steps Prior to Extraction Execution
 
-1. Present this revised specification for user review.
-2. Upon review, identify 2 replacement candidate operations (one for Slack, one for LINE) that can be faithfully extracted without lossy pruning, submit them to the source-admission protocol, and update the operation manifest to restore the 30-operation canonical target.
-3. Implement the read-only, AST-safe extraction engine and lineage logger strictly in accordance with Sections 2, 3, 4, and 5.
+1. Present this revised specification and identified replacement operations for user review.
+2. Following final review and approval, implement the read-only, AST-safe extraction engine and lineage logger strictly in accordance with Sections 2, 3, 4, and 5.
+3. Execute the automated five-stage verification suite and conduct mandatory manual review on the 30 provisional candidates to determine their `CANONICAL_FAITHFUL` admission.
