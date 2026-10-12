@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Create a pull request",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "base": {
+          "description": "The name of the branch you want the changes pulled into. This should be an existing branch on the current repository. You cannot submit a pull request to one repository that requests a merge to a base of another repository.",
+          "type": "string"
+        },
+        "body": {
+          "description": "The contents of the pull request.",
+          "type": "string"
+        },
+        "draft": {
+          "description": "Indicates whether the pull request is a draft. See \"[Draft Pull Requests](https://docs.github.com/articles/about-pull-requests#draft-pull-requests)\" in the GitHub Help documentation to learn more.",
+          "type": "boolean"
+        },
+        "head": {
+          "description": "The name of the branch where your changes are implemented. For cross-repository pull requests in the same network, namespace `head` with a user like this: `username:branch`.",
+          "type": "string"
+        },
+        "head_repo": {
+          "description": "The name of the repository where the changes in the pull request were made. This field is required for cross-repository pull requests if both repositories are owned by the same organization.",
+          "example": "octo-org/octo-repo",
+          "format": "repo.nwo",
+          "type": "string"
+        },
+        "issue": {
+          "description": "An issue in the repository to convert to a pull request. The issue title, body, and comments will become the title, body, and comments on the new pull request. Required unless `title` is specified.",
+          "example": 1,
+          "format": "int64",
+          "type": "integer"
+        },
+        "maintainer_can_modify": {
+          "description": "Indicates whether [maintainers can modify](https://docs.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/) the pull request.",
+          "type": "boolean"
+        },
+        "title": {
+          "description": "The title of the new pull request. Required unless `issue` is specified.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "base",
+        "head"
+      ],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {
+        "owner": {
+          "description": "The account owner of the repository. The name is not case sensitive.",
+          "type": "string"
+        },
+        "repo": {
+          "description": "The name of the repository without the `.git` extension. The name is not case sensitive.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "owner",
+        "repo"
+      ],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "type": "object"
+    }
+  },
+  "required": [
+    "body",
+    "path"
+  ],
+  "title": "pulls_create",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "admission_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "candidate_source_id": "CAND-001",
+    "endpoint": "/repos/{owner}/{repo}/pulls",
+    "extraction_rule_version": "1.2.0",
+    "extraction_timestamp": "2026-10-12T18:15:00Z",
+    "extractor_version": "1.0.0",
+    "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+    "http_method": "POST",
+    "operation_id": "pulls/create",
+    "request_content_type": "application/json",
+    "slot_id": "SLOT_GITHUB_01",
+    "source_cluster_id": "CLUSTER_GITHUB",
+    "source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+    "source_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+    "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post",
+    "source_structural_metrics": {
+      "raw_enum_density": 0.0,
+      "raw_nesting_depth": 2,
+      "raw_optional_ratio": 0.6,
+      "raw_parameter_count": 10
+    },
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "target_domain": "Developer Platforms",
+    "wrapped_contract_structural_metrics": {
+      "surface_containers_present": [
+        "body",
+        "header",
+        "path",
+        "query"
+      ],
+      "surface_containers_required": [
+        "body",
+        "path"
+      ],
+      "total_property_count": 10,
+      "wrapped_nesting_depth": 2
+    }
+  }
+}

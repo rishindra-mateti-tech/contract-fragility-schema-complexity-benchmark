@@ -1,0 +1,244 @@
+{
+  "checks": [
+    {
+      "check": "files_exist",
+      "details": "All three artifacts exist on disk.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "meta_schema_declaration",
+      "details": "Expected 'http://json-schema.org/draft-07/schema#', got 'http://json-schema.org/draft-07/schema#'",
+      "passed": true,
+      "pointer": "/$schema"
+    },
+    {
+      "check": "draft7_syntax_validation",
+      "details": "Contract passes Draft7Validator meta-schema check.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "root_wrapper_keys",
+      "details": "Top-level keys mismatch. Extraneous/missing: set()",
+      "passed": true,
+      "pointer": "/"
+    },
+    {
+      "check": "root_type_object",
+      "details": "Root type must be 'object'.",
+      "passed": true,
+      "pointer": "/type"
+    },
+    {
+      "check": "root_additional_properties_false",
+      "details": "Root additionalProperties must be strictly false.",
+      "passed": true,
+      "pointer": "/additionalProperties"
+    },
+    {
+      "check": "surface_containers_exact",
+      "details": "Surface containers must be exactly {'header', 'path', 'query', 'body'}, got {'header', 'path', 'query', 'body'}",
+      "passed": true,
+      "pointer": "/properties"
+    },
+    {
+      "check": "root_required_valid",
+      "details": "Root required must be sorted subset of surfaces: ['body', 'path']",
+      "passed": true,
+      "pointer": "/required"
+    },
+    {
+      "check": "surface_path_structure",
+      "details": "Surface 'path' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/path"
+    },
+    {
+      "check": "surface_body_structure",
+      "details": "Surface 'body' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/body"
+    },
+    {
+      "check": "surface_query_structure",
+      "details": "Surface 'query' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/query"
+    },
+    {
+      "check": "surface_header_structure",
+      "details": "Surface 'header' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/header"
+    },
+    {
+      "check": "path_parameters_present",
+      "details": "Path surface must contain exactly 'owner' and 'repo', found: ['owner', 'repo']",
+      "passed": true,
+      "pointer": "/properties/path/properties"
+    },
+    {
+      "check": "path_required_exact",
+      "details": "Path required must be ['owner', 'repo'], got: ['owner', 'repo']",
+      "passed": true,
+      "pointer": "/properties/path/required"
+    },
+    {
+      "check": "transport_separation_no_path_leak_into_body",
+      "details": "Path parameters must never leak into body container.",
+      "passed": true,
+      "pointer": "/properties/body/properties"
+    },
+    {
+      "check": "body_properties_exact",
+      "details": "Body properties mismatch. Diff: set()",
+      "passed": true,
+      "pointer": "/properties/body/properties"
+    },
+    {
+      "check": "body_required_exact",
+      "details": "Body required must be ['base', 'head'], got: ['base', 'head']",
+      "passed": true,
+      "pointer": "/properties/body/required"
+    },
+    {
+      "check": "absent_surfaces_empty",
+      "details": "Query (0) and header (0) must have empty properties.",
+      "passed": true,
+      "pointer": "/properties"
+    },
+    {
+      "check": "recursion_depth_within_bound",
+      "details": "Observed depth is 2 (limit: <= 5).",
+      "passed": true,
+      "pointer": "/"
+    },
+    {
+      "check": "no_object_union_path_owner",
+      "details": "Property 'path.owner' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/path/properties/owner"
+    },
+    {
+      "check": "no_object_union_path_repo",
+      "details": "Property 'path.repo' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/path/properties/repo"
+    },
+    {
+      "check": "no_object_union_body_base",
+      "details": "Property 'body.base' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/base"
+    },
+    {
+      "check": "no_object_union_body_body",
+      "details": "Property 'body.body' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/body"
+    },
+    {
+      "check": "no_object_union_body_draft",
+      "details": "Property 'body.draft' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/draft"
+    },
+    {
+      "check": "no_object_union_body_head",
+      "details": "Property 'body.head' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/head"
+    },
+    {
+      "check": "no_object_union_body_head_repo",
+      "details": "Property 'body.head_repo' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/head_repo"
+    },
+    {
+      "check": "no_object_union_body_issue",
+      "details": "Property 'body.issue' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/issue"
+    },
+    {
+      "check": "no_object_union_body_maintainer_can_modify",
+      "details": "Property 'body.maintainer_can_modify' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/maintainer_can_modify"
+    },
+    {
+      "check": "no_object_union_body_title",
+      "details": "Property 'body.title' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/title"
+    },
+    {
+      "check": "complete_field_lineage_coverage",
+      "details": "Every canonical property must have a lineage record. Missing: []",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "no_extraneous_lineage_records",
+      "details": "Extraneous lineage records found: []",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "lineage_hash_continuity",
+      "details": "All lineage records have continuous SHA-256 and blob SHA.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "raw_pointer_resolves",
+      "details": "Resolved operation at #/paths/~1repos~1{owner}~1{repo}~1pulls/post",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "raw_parameters_lossless_representation",
+      "details": "Raw parameters {'repo', 'owner'} match canonical path {'repo', 'owner'}",
+      "passed": true,
+      "pointer": "/properties/path"
+    },
+    {
+      "check": "raw_body_properties_lossless_representation",
+      "details": "Raw body properties {'issue', 'draft', 'title', 'base', 'maintainer_can_modify', 'head', 'head_repo', 'body'} match canonical body {'issue', 'draft', 'title', 'base', 'maintainer_can_modify', 'head', 'head_repo', 'body'}",
+      "passed": true,
+      "pointer": "/properties/body"
+    },
+    {
+      "check": "raw_body_required_exact_match",
+      "details": "Raw required {'base', 'head'} matches canonical body required {'head', 'base'}",
+      "passed": true,
+      "pointer": "/properties/body/required"
+    },
+    {
+      "check": "manifest_canonical_sha_match",
+      "details": "Manifest SHA 8b7721b33ec204bf88667de03eb48cbf44a73c485f5dc11cc97d186c0ffaa6d7 matches computed 8b7721b33ec204bf88667de03eb48cbf44a73c485f5dc11cc97d186c0ffaa6d7",
+      "passed": true,
+      "pointer": "/canonical_schema_sha256"
+    },
+    {
+      "check": "manifest_status_pilot_valid",
+      "details": "Status must be 'EXTRACTED_PENDING_HUMAN_VALIDATION', got 'EXTRACTED_PENDING_HUMAN_VALIDATION'",
+      "passed": true,
+      "pointer": "/status"
+    },
+    {
+      "check": "manifest_raw_file_sha_match",
+      "details": "Disk raw SHA ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194 matches manifest ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+      "passed": true,
+      "pointer": "/raw_source_file_sha256"
+    }
+  ],
+  "failed_checks": 0,
+  "operation_id": "pulls/create",
+  "passed_checks": 39,
+  "slot_id": "SLOT_GITHUB_01",
+  "total_checks": 39,
+  "validation_status": "PASS"
+}
