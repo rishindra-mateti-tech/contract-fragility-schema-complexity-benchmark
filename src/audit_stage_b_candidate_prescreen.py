@@ -15,6 +15,8 @@ Emits reproducible JSON and Markdown audit artifacts to:
 - results_stage_b/pre_extraction_candidate_audit.md
 """
 
+import argparse
+from datetime import datetime, timezone
 import hashlib
 import json
 import os
@@ -250,8 +252,15 @@ class OperationAuditor:
             self._traverse_schema(schema["items"], depth + 1, visited.copy(), f"{pointer}/items")
 
 
-def run_candidate_prescreen() -> dict:
+def run_candidate_prescreen(generated_at_utc: str | None = None) -> dict:
     """Executes the full pre-screen audit and returns structured audit results."""
+    if generated_at_utc is None:
+        generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        cmd_str = "python src/audit_stage_b_candidate_prescreen.py"
+    else:
+        generated_at = generated_at_utc
+        cmd_str = f"python src/audit_stage_b_candidate_prescreen.py --generated-at {generated_at_utc}"
+
     manifest_bytes = open(MANIFEST_PATH, "rb").read()
     manifest_sha = hashlib.sha256(manifest_bytes).hexdigest()
     manifest = yaml.safe_load(manifest_bytes)
@@ -345,10 +354,10 @@ def run_candidate_prescreen() -> dict:
 
         if status == "EXCLUDE_PENDING":
             verdict = "EXCLUDE_PENDING"
+        elif status == "PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT":
+            verdict = "FLAGGED_PENDING_UNION_AMENDMENT"
         elif len(failures) == 0:
             verdict = "PASS_PROVISIONAL_CANONICAL"
-        elif all(f in ["OBJECT_UNION", "DEPTH_6", "DEPTH_9"] for f in failures):
-            verdict = "FLAGGED_PENDING_UNION_AMENDMENT"
         else:
             verdict = "FLAGGED_EXCLUDE_PENDING"
 
@@ -391,7 +400,7 @@ def run_candidate_prescreen() -> dict:
         "clean_provisional_candidates_passed": sum(1 for r in audit_records if r["audit_verdict"] == "PASS_PROVISIONAL_CANONICAL"),
         "provisional_pending_union_amendment": sum(1 for r in audit_records if r["audit_verdict"] == "FLAGGED_PENDING_UNION_AMENDMENT"),
         "flagged_exclude_pending": sum(1 for r in audit_records if r["audit_verdict"] in ["EXCLUDE_PENDING", "FLAGGED_EXCLUDE_PENDING"]),
-        "replacement_slots_required": 2,
+        "replacement_slots_required": 3,
     }
 
     report = {
@@ -400,12 +409,17 @@ def run_candidate_prescreen() -> dict:
             "audit_script_sha256": self_sha,
             "manifest_file": "results_stage_b/stage_b_operation_manifest.yaml",
             "manifest_sha256": manifest_sha,
+            "generated_at_utc": generated_at,
             "python_version": platform.python_version(),
             "platform": sys.platform,
             "dependencies": {
                 "pyyaml": yaml.__version__,
             },
-            "command": "python src/audit_stage_b_candidate_prescreen.py",
+            "command": cmd_str,
+            "reproducibility_note": (
+                "When executed with --generated-at <TIMESTAMP>, outputs are 100% byte-stable. "
+                "Normal runtime execution without this argument is expected to vary only in timestamp metadata."
+            ),
         },
         "summary": summary,
         "operations": audit_records,
@@ -425,8 +439,11 @@ def generate_markdown_report(report_data: dict) -> str:
         "**Document Type:** Reproducible Pre-Extraction Empirical Audit  ",
         f"**Audit Script SHA-256:** `{meta['audit_script_sha256']}`  ",
         f"**Operation Manifest SHA-256:** `{meta['manifest_sha256']}`  ",
+        f"**Generated At (UTC):** `{meta['generated_at_utc']}`  ",
         f"**Environment:** Python `{meta['python_version']}` ({meta['platform']}) | PyYAML `{meta['dependencies']['pyyaml']}`  ",
         f"**Execution Command:** `{meta['command']}`  ",
+        "",
+        "> **Reproducibility Note:** When executed with `--generated-at <TIMESTAMP>`, outputs are 100% byte-stable. Normal runtime execution without this argument is expected to vary only in timestamp metadata (`generated_at_utc`).",
         "",
         "---",
         "",
@@ -434,9 +451,9 @@ def generate_markdown_report(report_data: dict) -> str:
         "",
         f"- **Total Operations Audited:** {summ['total_operations_audited']} operations across 10 source clusters.",
         f"- **Clean Provisional Candidates (`PASS`):** **{summ['clean_provisional_candidates_passed']} operations** (Pass all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, no conflicting allOf).",
-        f"- **Provisional Candidates Pending Union Amendment:** **{summ['provisional_pending_union_amendment']} operations** (`GitHub issues/create`, `Stripe PostRefunds`, `Stripe PostCustomers`, `Stripe PostPaymentIntents` — flagged solely due to finite object-level `oneOf`/`anyOf` or associated depth overflow, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).",
-        f"- **Excluded Operations (`EXCLUDE_PENDING`):** **{summ['flagged_exclude_pending']} operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`).",
-        f"- **Replacement Slots Still Required:** **{summ['replacement_slots_required']} operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support).",
+        f"- **Provisional Candidates Pending Union Amendment:** **{summ['provisional_pending_union_amendment']} operations** (`Stripe PostRefunds`, `Stripe PostCustomers`, `Stripe PostPaymentIntents` — flagged solely due to finite object-level `anyOf` unsetting semantics, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).",
+        f"- **Excluded Operations (`EXCLUDE_PENDING`):** **{summ['flagged_exclude_pending']} operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`).",
+        f"- **Replacement Slots Still Required:** **{summ['replacement_slots_required']} operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support, 1 slot for GitHub Developer Platforms).",
         "",
         "---",
         "",
@@ -485,7 +502,16 @@ def generate_markdown_report(report_data: dict) -> str:
 
 
 def main():
-    report = run_candidate_prescreen()
+    parser = argparse.ArgumentParser(description="Stage B Candidate Pre-Screen Static Auditor")
+    parser.add_argument(
+        "--generated-at",
+        dest="generated_at_utc",
+        default=None,
+        help="Explicit UTC ISO8601 timestamp for byte-stable reproducible report generation (e.g. 2026-10-12T03:30:00Z)",
+    )
+    args = parser.parse_args()
+
+    report = run_candidate_prescreen(generated_at_utc=args.generated_at_utc)
 
     # Write JSON report
     with open(JSON_OUTPUT_PATH, "w", encoding="utf-8") as f:

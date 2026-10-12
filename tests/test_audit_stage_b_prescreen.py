@@ -15,8 +15,12 @@ import pytest
 from src.audit_stage_b_candidate_prescreen import (
     OperationAuditor,
     run_candidate_prescreen,
+    generate_markdown_report,
+    sha256_file,
     JSON_OUTPUT_PATH,
     MD_OUTPUT_PATH,
+    ROOT_DIR,
+    MANIFEST_PATH,
 )
 
 
@@ -303,12 +307,75 @@ def test_auth_field_classification():
 
 
 def test_candidate_prescreen_runner_and_artifacts():
-    report = run_candidate_prescreen()
+    report = run_candidate_prescreen(generated_at_utc="2026-10-12T03:30:00Z")
     assert report["summary"]["total_operations_audited"] == 32
+    assert report["summary"]["clean_provisional_candidates_passed"] == 24
+    assert report["summary"]["provisional_pending_union_amendment"] == 3
+    assert report["summary"]["flagged_exclude_pending"] == 5
+    assert report["summary"]["replacement_slots_required"] == 3
     assert "operations" in report
     assert len(report["operations"]) == 32
     # Verify metadata fields exist
     meta = report["metadata"]
     assert meta["audit_script_sha256"]
     assert meta["manifest_sha256"]
+    assert meta["generated_at_utc"] == "2026-10-12T03:30:00Z"
     assert meta["python_version"]
+    assert meta["command"] == "python src/audit_stage_b_candidate_prescreen.py --generated-at 2026-10-12T03:30:00Z"
+
+
+def test_reproducibility_same_timestamp_byte_identical():
+    fixed_ts = "2026-10-12T03:30:00Z"
+    rep1 = run_candidate_prescreen(generated_at_utc=fixed_ts)
+    rep2 = run_candidate_prescreen(generated_at_utc=fixed_ts)
+
+    json1 = json.dumps(rep1, indent=2, sort_keys=True)
+    json2 = json.dumps(rep2, indent=2, sort_keys=True)
+    assert json1 == json2, "Runs with identical inputs and generated-at must produce byte-identical JSON"
+
+    md1 = generate_markdown_report(rep1)
+    md2 = generate_markdown_report(rep2)
+    assert md1 == md2, "Runs with identical inputs and generated-at must produce byte-identical Markdown"
+
+
+def test_reproducibility_different_timestamp_changes_only_timestamp_metadata():
+    ts1 = "2026-10-12T01:00:00Z"
+    ts2 = "2026-10-12T02:00:00Z"
+    rep1 = run_candidate_prescreen(generated_at_utc=ts1)
+    rep2 = run_candidate_prescreen(generated_at_utc=ts2)
+
+    # Operations and summary must be identical
+    assert rep1["summary"] == rep2["summary"], "Summary must not be affected by timestamp"
+    assert rep1["operations"] == rep2["operations"], "Operation audits must not be affected by timestamp"
+
+    # In metadata, generated_at_utc and command differ
+    assert rep1["metadata"]["generated_at_utc"] == ts1
+    assert rep2["metadata"]["generated_at_utc"] == ts2
+
+    # When normalizing timestamp-dependent fields, metadata must be identical
+    meta1_norm = {k: v for k, v in rep1["metadata"].items() if k not in ["generated_at_utc", "command"]}
+    meta2_norm = {k: v for k, v in rep2["metadata"].items() if k not in ["generated_at_utc", "command"]}
+    assert meta1_norm == meta2_norm, "Metadata excluding timestamp fields must be identical"
+
+    # In Markdown, only header lines containing timestamp/command differ
+    md1 = generate_markdown_report(rep1)
+    md2 = generate_markdown_report(rep2)
+    lines1 = md1.splitlines()
+    lines2 = md2.splitlines()
+    assert len(lines1) == len(lines2)
+    differing_lines = [(l1, l2) for l1, l2 in zip(lines1, lines2) if l1 != l2]
+    assert len(differing_lines) == 2, f"Expected exactly 2 differing lines (timestamp & command), got {differing_lines}"
+    for l1, l2 in differing_lines:
+        assert "Generated At" in l1 or "Execution Command" in l1
+
+
+def test_audit_and_manifest_hashes_remain_correct():
+    rep = run_candidate_prescreen(generated_at_utc="2026-10-12T03:30:00Z")
+    audit_script_path = os.path.join(ROOT_DIR, "src", "audit_stage_b_candidate_prescreen.py")
+    manifest_path = os.path.join(ROOT_DIR, "results_stage_b", "stage_b_operation_manifest.yaml")
+
+    expected_script_sha = sha256_file(audit_script_path)
+    expected_manifest_sha = sha256_file(manifest_path)
+
+    assert rep["metadata"]["audit_script_sha256"] == expected_script_sha
+    assert rep["metadata"]["manifest_sha256"] == expected_manifest_sha

@@ -1,10 +1,13 @@
 # Stage B Candidate Pre-Screen Static Audit Report
 
 **Document Type:** Reproducible Pre-Extraction Empirical Audit  
-**Audit Script SHA-256:** `aff4617a2e906fec9cbca1b9a186cf1b672f511c2f2925f618144574ea2a4d99`  
-**Operation Manifest SHA-256:** `669bcc91fd9777e8e6329f89117c6d6c7ca171ac48cea0756799231582394e98`  
+**Audit Script SHA-256:** `70168ac8c5aaae401564ebd16dbe87bec1185d7e70415b6f39e3461da030da1e`  
+**Operation Manifest SHA-256:** `b5e186799aa317b2c7e2e2415199ec032b6317ab61f5708b5eee590ba1d79fdd`  
+**Generated At (UTC):** `2026-10-12T03:30:00Z`  
 **Environment:** Python `3.13.2` (win32) | PyYAML `6.0.3`  
-**Execution Command:** `python src/audit_stage_b_candidate_prescreen.py`  
+**Execution Command:** `python src/audit_stage_b_candidate_prescreen.py --generated-at 2026-10-12T03:30:00Z`  
+
+> **Reproducibility Note:** When executed with `--generated-at <TIMESTAMP>`, outputs are 100% byte-stable. Normal runtime execution without this argument is expected to vary only in timestamp metadata (`generated_at_utc`).
 
 ---
 
@@ -12,9 +15,9 @@
 
 - **Total Operations Audited:** 32 operations across 10 source clusters.
 - **Clean Provisional Candidates (`PASS`):** **24 operations** (Pass all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, no conflicting allOf).
-- **Provisional Candidates Pending Union Amendment:** **4 operations** (`GitHub issues/create`, `Stripe PostRefunds`, `Stripe PostCustomers`, `Stripe PostPaymentIntents` — flagged solely due to finite object-level `oneOf`/`anyOf` or associated depth overflow, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).
-- **Excluded Operations (`EXCLUDE_PENDING`):** **4 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`).
-- **Replacement Slots Still Required:** **2 operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support).
+- **Provisional Candidates Pending Union Amendment:** **3 operations** (`Stripe PostRefunds`, `Stripe PostCustomers`, `Stripe PostPaymentIntents` — flagged solely due to finite object-level `anyOf` unsetting semantics, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).
+- **Excluded Operations (`EXCLUDE_PENDING`):** **5 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`).
+- **Replacement Slots Still Required:** **3 operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support, 1 slot for GitHub Developer Platforms).
 
 ---
 
@@ -31,7 +34,7 @@
 | `CLUSTER_DIGITALOCEAN` | `domains_create` | POST | `#/paths/~1v2~1domains/post` | 1 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_DIGITALOCEAN` | `droplets_create` | POST | `#/paths/~1v2~1droplets/post` | 1 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_DIGITALOCEAN` | `floating_ips_create` | POST | `#/paths/~1v2~1floating_ips/post` | 1 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
-| `CLUSTER_GITHUB` | `issues/create` | POST | `#/paths/~1repos~1{owner}~1{repo}~1issues/post` | 6 | PASS | PASS | FAIL | PASS | PASS | `None` | **FLAGGED_PENDING_UNION_AMENDMENT** |
+| `CLUSTER_GITHUB` | `issues/create` | POST | `#/paths/~1repos~1{owner}~1{repo}~1issues/post` | 6 | PASS | PASS | FAIL | PASS | PASS | `None` | **EXCLUDE_PENDING** |
 | `CLUSTER_GITHUB` | `repos/create-commit-status` | POST | `#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post` | 2 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_GITHUB` | `repos/create-for-authenticated-user` | POST | `#/paths/~1user~1repos/post` | 2 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_LINE` | `markMessagesAsRead` | POST | `#/paths/~1v2~1bot~1message~1markAsRead/post` | 5 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
@@ -70,7 +73,7 @@
 ### `CLUSTER_GITHUB` : `issues/create`
 - **Pointer:** `#/paths/~1repos~1{owner}~1{repo}~1issues/post`
 - **Blob SHA:** `a91fa76a34558f5ed28e245cb1a6c46a44a61f4d`
-- **Audit Verdict:** `FLAGGED_PENDING_UNION_AMENDMENT`
+- **Audit Verdict:** `EXCLUDE_PENDING`
 - **Blocking Rules:** DEPTH_6, OBJECT_UNION
 - **Failure Rationale:**
   - Observed depth 6 exceeds maximum recursion depth limit of 5
