@@ -22,7 +22,7 @@
       "Potentially stateful endpoints (e.g. pulls/submit-review depending on review_id) are explicitly flagged."
     ],
     "universe_source_file": "results_stage_b/raw_operation_universe.json",
-    "universe_source_sha256": "9fdb53f08049f5e3c8257ccfc6f305dcf1ed16cba5047124eb528900e12b8096"
+    "universe_source_sha256": "d6722cfe408e486cdd7b1a03a08f715148e773c2af5eacbaa2dc73bcf52ea8df"
   },
   "slots": [
     {

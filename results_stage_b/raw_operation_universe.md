@@ -1,7 +1,7 @@
 # Stage B Raw-Source Operation Universe Static Analysis Report
 
 **Document Type:** Full Static-Analysis Universe Enumeration & Metric Audit  
-**Scanner Script SHA-256:** `bf78f0d1caa7328f7abbf65b3ef90eb7710921b5b16f301f826bc6c88563f316`  
+**Scanner Script SHA-256:** `38f9e2ba66b5963d1b486caf94ccc16a81eb7c894216131eaab5b62577b6ded2`  
 **Operation Manifest SHA-256:** `bdd6aaad31779b527503d324ebe8459aebd1dad8659120b85119f8c18a577ce3`  
 **Provenance Registry SHA-256:** `14245163b15a5a23e84247dcc91cae725c6e883a62eda5646a0c2aea2673b699`  
 **Generated At (UTC):** `2026-10-12T04:30:00Z`  
@@ -79,6 +79,8 @@
 | `OBJECT_UNION` | 176 | Contains object-level oneOf, anyOf, or polymorphic discriminator |
 | `DEPTH` | 137 | Maximum recursion depth exceeds frozen threshold of 5 |
 | `MULTIPART_BINARY` | 19 | Declares binary/file payload format or multipart/form-data content type |
+
+Violation counts are non-exclusive: a single operation may contribute to multiple root-cause categories; therefore their sum can exceed the number of disqualified operations.
 
 ---
 

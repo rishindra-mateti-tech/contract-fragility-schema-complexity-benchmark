@@ -552,4 +552,18 @@ def test_source_hash_and_blob_mismatch_detection():
     assert blob == "d670460b4b4aece5915caf5c68d12f560a9fe3e4"
 
 
+def test_disqualification_cause_non_exclusive_disclosure():
+    expected_disclosure = (
+        "Violation counts are non-exclusive: a single operation may contribute to multiple root-cause categories; "
+        "therefore their sum can exceed the number of disqualified operations."
+    )
+    fixed_ts = "2026-10-12T04:30:00Z"
+    rep = scan_raw_operation_universe(generated_at_utc=fixed_ts)
+    assert "disqualification_cause_note" in rep["summary"]
+    assert rep["summary"]["disqualification_cause_note"] == expected_disclosure
+
+    md = generate_markdown_report(rep)
+    assert expected_disclosure in md
+
+
 

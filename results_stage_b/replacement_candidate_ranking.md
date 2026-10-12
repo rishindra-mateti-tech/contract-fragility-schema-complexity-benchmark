@@ -3,7 +3,7 @@
 **Document Type:** Deterministic Explainable Multi-Slot Candidate Ranking  
 **Ranking Script SHA-256:** `212462e8323027dcfe79dac9024fed0ec20d00ee93deee5ae00c633deb223c3a`  
 **Ranking Config SHA-256:** `f7dff5f3e9e8155e0babbaecb51da0981eb252787c177ec2cc4f48eb7f0a13ed`  
-**Raw Universe SHA-256:** `9fdb53f08049f5e3c8257ccfc6f305dcf1ed16cba5047124eb528900e12b8096`  
+**Raw Universe SHA-256:** `d6722cfe408e486cdd7b1a03a08f715148e773c2af5eacbaa2dc73bcf52ea8df`  
 **Operation Manifest SHA-256:** `bdd6aaad31779b527503d324ebe8459aebd1dad8659120b85119f8c18a577ce3`  
 **Generated At (UTC):** `2026-10-12T04:45:00Z`  
 **Environment:** Python `3.13.2` (win32) | PyYAML `6.0.3`  

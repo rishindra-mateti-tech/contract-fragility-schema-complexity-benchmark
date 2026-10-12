@@ -854,6 +854,10 @@ def scan_raw_operation_universe(generated_at_utc: Optional[str] = None) -> Dict[
         "cluster_breakdown": cluster_breakdown,
         "depth_distribution": dict(sorted(depth_dist.items(), key=lambda kv: int(kv[0].split("_")[1]))),
         "disqualification_cause_breakdown": dict(sorted(cause_breakdown.items(), key=lambda kv: -kv[1])),
+        "disqualification_cause_note": (
+            "Violation counts are non-exclusive: a single operation may contribute to multiple root-cause categories; "
+            "therefore their sum can exceed the number of disqualified operations."
+        ),
     }
 
     report = {
@@ -989,6 +993,8 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
         lines.append(f"| `{code}` | {cnt} | {desc} |")
 
     lines.extend([
+        "",
+        "Violation counts are non-exclusive: a single operation may contribute to multiple root-cause categories; therefore their sum can exceed the number of disqualified operations.",
         "",
         "---",
         "",
