@@ -132,7 +132,7 @@ def test_all_provisional_operations_resolve_deterministic_pointers():
     with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
         manifest = yaml.safe_load(f)
         
-    assert len(manifest["operations"]) == 25, "Expected exactly 25 provisional candidate operations"
+    assert len(manifest["operations"]) == 30, "Expected exactly 30 candidate operations (25 provisional + 5 admitted)"
     assert len(manifest.get("excluded_operations", [])) == 7, "Expected exactly 7 excluded operations"
     
     all_ops_to_test = manifest["operations"] + manifest.get("excluded_operations", [])

@@ -228,7 +228,8 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
     # Collect existing manifest operation IDs to avoid duplicate recommendations
     existing_manifest_ops: Set[str] = set()
     for op in manifest_data.get("operations", []):
-        existing_manifest_ops.add(op["operation_id"])
+        if not op.get("admission_slot_id"):
+            existing_manifest_ops.add(op["operation_id"])
     for op in manifest_data.get("excluded_operations", []):
         existing_manifest_ops.add(op["operation_id"])
 

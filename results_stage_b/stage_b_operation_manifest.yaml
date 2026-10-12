@@ -2,19 +2,20 @@ manifest_version: 1.1.0
 manifest_role: DRAFT_OPERATION_SELECTION
 created_at: '2026-10-09T17:55:00Z'
 corpus_composition:
-  clean_monomorphic_provisional: 24
+  clean_monomorphic_provisional: 29
   faithful_union_provisional: 1
-  total_provisional_operations_cohort: 25
+  total_provisional_operations_cohort: 30
   excluded_operations_cohort: 7
-  pending_replacement_cohort: 5
+  pending_replacement_cohort: 0
   canonical_target_size: 30
   synthetic_schemas_cohort: 20
   active_benchmark_target_size: 50
-  note_on_corpus_size: The 30 canonical real-schema candidate slots (currently 24 clean monomorphic
-    provisional candidates, 1 faithful-union provisional candidate under ratified Amendment 003, and
-    5 pending replacements, with 7 excluded operations tracked) combine with 20 synthetic schemas to form
-    the valid 50-schema benchmark minimum. Zero operations are designated as approved until extraction,
-    automated validation, lineage verification, and mandatory manual review are complete.
+  note_on_corpus_size: The 30 canonical real-schema candidate slots (29 clean monomorphic
+    provisional candidates including 5 admitted replacements, 1 faithful-union provisional candidate
+    under ratified Amendment 003, and 0 pending replacements, with 7 excluded operations tracked) combine
+    with 20 synthetic schemas to form the valid 50-schema benchmark minimum. Zero operations are designated
+    as approved CANONICAL_FAITHFUL until extraction, automated validation, lineage verification, and mandatory
+    manual review are complete.
 authentication_handling_policy:
   policy_role: UNIVERSAL_EXECUTOR_BOUND_CREDENTIAL_POLICY
   principles:
@@ -32,17 +33,17 @@ cluster_aware_analysis_plan:
     source as independent samples introduces cluster autocorrelation. Statistical
     evaluations must cluster standard errors or use clustered bootstrap resampling
     at the source_cluster_id level.
-total_clean_monomorphic_provisional: 24
+total_clean_monomorphic_provisional: 29
 total_faithful_union_provisional: 1
 total_operations_excluded: 7
-total_pending_replacements: 5
+total_pending_replacements: 0
 domain_distribution_provisional:
-  Developer Platforms: 5
-  Payments: 1
+  Developer Platforms: 6
+  Payments: 3
   Cloud/Infra: 3
-  Logistics/Communications: 5
+  Logistics/Communications: 6
   Data/Identity: 6
-  CRM/Support: 5
+  CRM/Support: 6
 operations:
 - operation_id: repos/create-commit-status
   candidate_source_id: CAND-001
@@ -840,6 +841,171 @@ operations:
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
     suite verification before declaring mock evaluation safe.
+- operation_id: pulls/create
+  admission_slot_id: SLOT_GITHUB_01
+  candidate_source_id: CAND-001
+  source_cluster_id: CLUSTER_GITHUB
+  source_project: GitHub (github/rest-api-description)
+  source_file_path: descriptions/api.github.com/api.github.com.json
+  source_file_blob_sha: a91fa76a34558f5ed28e245cb1a6c46a44a61f4d
+  raw_file_sha256: ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194
+  http_method: POST
+  endpoint_path: /repos/{owner}/{repo}/pulls
+  source_spec_pointer: '#/paths/~1repos~1{owner}~1{repo}~1pulls/post'
+  intended_benchmark_domain: Developer Platforms
+  complexity_tier: MODERATE
+  input_surface:
+    path_parameters_present: true
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 10
+    estimated_nesting_depth: 2
+    estimated_optional_field_ratio: 0.6
+    estimated_enum_density: 0.0
+    description_length_chars: 142
+    estimated_token_length: 179
+  reason_for_selection: "High-fidelity developer platform operation admitted to replace issues/create. Cleanly bounded at depth 2 with 10 properties (4 required: 2 path + 2 body). Self-contained without pre-existing review or PR ID dependencies."
+  exclusion_reason_nearby_operations: "Excluded pulls/submit-review (stateful dependency on review_id) and pulls/create-review-comment (diff/commit context dependency)."
+  static_eligibility_status: STATICALLY_ELIGIBLE_CANDIDATE
+  statefulness_classification: SELF_CONTAINED_STATELESS_CREATION
+  candidate_status: ADMITTED_PENDING_EXTRACTION
+  usage_role: CANDIDATE_CANONICAL_REFERENCE
+  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
+  mock_safety_rationale: "Requires in-memory pull request register and head/base branch validation. Status held as PENDING until post-extraction mock implementation and verification."
+- operation_id: PostPayouts
+  admission_slot_id: SLOT_STRIPE_01
+  candidate_source_id: CAND-002
+  source_cluster_id: CLUSTER_STRIPE
+  source_project: Stripe (stripe/openapi)
+  source_file_path: openapi/spec3.json
+  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
+  raw_file_sha256: 7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776
+  http_method: POST
+  endpoint_path: /v1/payouts
+  source_spec_pointer: '#/paths/~1v1~1payouts/post'
+  intended_benchmark_domain: Payments
+  complexity_tier: MODERATE
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 10
+    estimated_nesting_depth: 3
+    estimated_optional_field_ratio: 0.8
+    estimated_enum_density: 0.2
+    description_length_chars: 184
+    estimated_token_length: 186
+  reason_for_selection: "Core merchant balance routing operation admitted to replace PostCustomers. Cleanly bounded at depth 3 with 10 properties (2 required: amount and currency). Self-contained without pre-existing customer dependencies."
+  exclusion_reason_nearby_operations: "Excluded PostAccountLinks (requires connected account ID) and PostPayoutsPayoutCancel (lifecycle mutation requiring payout ID in path)."
+  static_eligibility_status: STATICALLY_ELIGIBLE_CANDIDATE
+  statefulness_classification: SELF_CONTAINED_CREATION
+  candidate_status: ADMITTED_PENDING_EXTRACTION
+  usage_role: CANDIDATE_CANONICAL_REFERENCE
+  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
+  mock_safety_rationale: "Requires tracking merchant ledger balance and returning deterministic payout records. Status held as PENDING until post-extraction mock implementation and verification."
+- operation_id: PostShippingRates
+  admission_slot_id: SLOT_STRIPE_02
+  candidate_source_id: CAND-002
+  source_cluster_id: CLUSTER_STRIPE
+  source_project: Stripe (stripe/openapi)
+  source_file_path: openapi/spec3.json
+  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
+  raw_file_sha256: 7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776
+  http_method: POST
+  endpoint_path: /v1/shipping_rates
+  source_spec_pointer: '#/paths/~1v1~1shipping_rates/post'
+  intended_benchmark_domain: Payments
+  complexity_tier: COMPLEX_NESTED
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 17
+    estimated_nesting_depth: 4
+    estimated_optional_field_ratio: 0.588
+    estimated_enum_density: 0.118
+    description_length_chars: 196
+    estimated_token_length: 280
+  reason_for_selection: "Rich nested commerce configuration operation admitted to replace PostPaymentIntents. Depth 4 with nested delivery_estimate and fixed_amount structures. Self-contained creation with zero entity dependencies."
+  exclusion_reason_nearby_operations: "Excluded PostInvoicesInvoiceAttachPayment and PostInvoicesInvoicePay due to tight state dependency on existing unpaid invoice ID in path."
+  static_eligibility_status: STATICALLY_ELIGIBLE_CANDIDATE
+  statefulness_classification: SELF_CONTAINED_CREATION
+  candidate_status: ADMITTED_PENDING_EXTRACTION
+  usage_role: CANDIDATE_CANONICAL_REFERENCE
+  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
+  mock_safety_rationale: "Deterministic creation endpoint returning shipping_rate resource. Status held as PENDING until post-extraction mock implementation and verification."
+- operation_id: create-a-webhook
+  admission_slot_id: SLOT_CHATWOOT_01
+  candidate_source_id: CAND-011
+  source_cluster_id: CLUSTER_CHATWOOT
+  source_project: Chatwoot (chatwoot/chatwoot)
+  source_file_path: swagger/swagger.json
+  source_file_blob_sha: b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589
+  raw_file_sha256: c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43
+  http_method: POST
+  endpoint_path: /api/v1/accounts/{account_id}/webhooks
+  source_spec_pointer: '#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post'
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: MODERATE
+  input_surface:
+    path_parameters_present: true
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 4
+    estimated_nesting_depth: 4
+    estimated_optional_field_ratio: 0.75
+    estimated_enum_density: 0.25
+    description_length_chars: 120
+    estimated_token_length: 126
+  reason_for_selection: "Standard event automation integration in customer support systems admitted to replace create-a-contact. Combines path routing (account_id) with structured payload containing an array of 10 subscription event enums. Self-contained without binary upload."
+  exclusion_reason_nearby_operations: "Excluded update-canned-response-in-account (requires pre-existing canned response ID) and update-a-webhook (requires existing webhook ID)."
+  static_eligibility_status: STATICALLY_ELIGIBLE_CANDIDATE
+  statefulness_classification: SELF_CONTAINED_CREATION
+  candidate_status: ADMITTED_PENDING_EXTRACTION
+  usage_role: CANDIDATE_CANONICAL_REFERENCE
+  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
+  mock_safety_rationale: "Webhook receiver store can be mocked deterministically. Status held as PENDING until post-extraction mock implementation and verification."
+- operation_id: showLoadingAnimation
+  admission_slot_id: SLOT_LINE_01
+  candidate_source_id: CAND-013
+  source_cluster_id: CLUSTER_LINE
+  source_project: LINE (line/line-openapi)
+  source_file_path: messaging-api.yml
+  source_file_blob_sha: 11f1fdb91092246f881edd1a9457cb37327a6c5d
+  raw_file_sha256: 41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc
+  http_method: POST
+  endpoint_path: /v2/bot/chat/loading/start
+  source_spec_pointer: '#/paths/~1v2~1bot~1chat~1loading~1start/post'
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: FLAT
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 2
+    estimated_nesting_depth: 3
+    estimated_optional_field_ratio: 0.5
+    estimated_enum_density: 0.0
+    description_length_chars: 98
+    estimated_token_length: 89
+  reason_for_selection: "Conversational bot interaction endpoint admitted to replace replyMessage. Self-contained request requiring chatId and bounded integer loadingSeconds (5–60s). Completely avoids depth-13 recursion and polymorphic message unions."
+  exclusion_reason_nearby_operations: "Excluded updateRichMenuAlias (requires richMenuAliasId in path) and linkRichMenuIdToUser (path-only parameter mapping lacking body depth)."
+  static_eligibility_status: STATICALLY_ELIGIBLE_CANDIDATE
+  statefulness_classification: SELF_CONTAINED_INTERACTION
+  candidate_status: ADMITTED_PENDING_EXTRACTION
+  usage_role: CANDIDATE_CANONICAL_REFERENCE
+  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
+  mock_safety_rationale: "Deterministic response simulation validating chatId and loadingSeconds range. Status held as PENDING until post-extraction mock implementation and verification."
 excluded_operations:
 - operation_id: chat.postMessage
   candidate_source_id: CAND-006

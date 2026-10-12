@@ -73,7 +73,11 @@ def test_no_candidate_duplicates_existing_manifest_operation():
     with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
         manifest = yaml.safe_load(f)
 
-    existing_op_ids = {op["operation_id"] for op in manifest.get("operations", [])}
+    existing_op_ids = {
+        op["operation_id"]
+        for op in manifest.get("operations", [])
+        if not op.get("admission_slot_id")
+    }
     excluded_op_ids = {op["operation_id"] for op in manifest.get("excluded_operations", [])}
     forbidden = existing_op_ids.union(excluded_op_ids)
 

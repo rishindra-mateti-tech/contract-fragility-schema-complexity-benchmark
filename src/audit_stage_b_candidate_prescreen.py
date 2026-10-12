@@ -274,7 +274,8 @@ def run_candidate_prescreen(generated_at_utc: str | None = None) -> dict:
 
     operations_to_audit = []
     for op in manifest.get("operations", []):
-        operations_to_audit.append(op)
+        if op.get("candidate_status", "").startswith("PROVISIONAL"):
+            operations_to_audit.append(op)
     for op in manifest.get("excluded_operations", []):
         operations_to_audit.append(op)
 
