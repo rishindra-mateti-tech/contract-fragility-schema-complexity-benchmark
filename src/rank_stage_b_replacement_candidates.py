@@ -146,15 +146,15 @@ def score_candidate_for_slot(
     if "{review_id}" in endpoint or op_id == "pulls/submit-review":
         is_potentially_stateful = True
         statefulness_warning = (
-            "POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. "
-            "Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it."
+            "MULTI_TURN_LIFECYCLE_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. "
+            "Cannot be called without prior state setup; single-turn constructible pulls/create requiring standard fixtures should be evaluated alongside it."
         )
     elif "{id}" in endpoint and "canned_responses" in endpoint:
         is_potentially_stateful = True
         statefulness_warning = "Requires an existing canned response id to update; requires seeded mock state."
     elif "{invoice}" in endpoint and "pay" in endpoint:
         is_potentially_stateful = True
-        statefulness_warning = "Requires an existing unpaid invoice; PostShippingRates is self-contained."
+        statefulness_warning = "Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures."
 
     stateful_info = {
         "is_potentially_stateful": is_potentially_stateful,
@@ -369,7 +369,7 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
         "> **Scientific Modesty Principles:**  ",
         "> 1. **Co-Leading Ties:** Multiple operations sharing the top score are preserved as co-leading candidates. A score of 100 does not imply a uniquely best choice.  ",
         "> 2. **Mock-Safety Inactive:** Mock-safety feasibility contributes strictly 0 points until empirical mock state execution is verified.  ",
-        "> 3. **Statefulness Transparency:** Operations depending on pre-existing external state (e.g. `pulls/submit-review` depending on `review_id`) are explicitly flagged; self-contained constructors (e.g. `pulls/create`) must be evaluated alongside them.",
+        "> 3. **Statefulness Transparency:** Operations depending on pre-existing external state (e.g. `pulls/submit-review` depending on `review_id`) are explicitly flagged; single-turn constructible constructors requiring standard fixtures (e.g. `pulls/create`) must be evaluated alongside them.",
         "",
         "---",
         "",
@@ -468,8 +468,8 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
         "",
         "1. **Status**: All rankings are strictly `DRAFT_PENDING_REVIEW`.",
         "2. **Official Manifest**: Remains 100% unmodified until user approves selections.",
-        "3. **Stateful vs. Self-Contained Review Highlight**:",
-        "   - In GitHub Slot (`SLOT_GITHUB_01`), `pulls/submit-review` and `pulls/create` both score 100/100 (co-leaders). `pulls/submit-review` requires a pre-existing `review_id`, while `pulls/create` is a self-contained PR constructor. Human review should determine whether mock harness simplicity favors `pulls/create`.",
+        "3. **Multi-Turn Lifecycle vs. Single-Turn Constructible Review Highlight**:",
+        "   - In GitHub Slot (`SLOT_GITHUB_01`), `pulls/submit-review` and `pulls/create` both score 100/100 (co-leaders). `pulls/submit-review` requires a pre-existing `review_id` (multi-turn lifecycle dependency), while `pulls/create` is a single-turn constructible PR constructor requiring standard fixtures. Human review should determine whether mock harness simplicity favors `pulls/create`.",
     ])
 
     return "\n".join(lines)

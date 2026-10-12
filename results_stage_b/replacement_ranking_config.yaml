@@ -11,7 +11,7 @@ governing_principles:
   ranking_status: "DRAFT_PENDING_REVIEW"
   manifest_immutability: "This ranking is diagnostic and advisory only. It does NOT modify or admit operations into stage_b_operation_manifest.yaml."
   tie_handling: "All candidates sharing the highest score in a slot are preserved as co-leading candidates. A top score does NOT imply a uniquely optimal replacement."
-  statefulness_transparency: "Candidates depending on pre-existing external state (e.g. review_id, webhook_id) must be explicitly flagged and cannot be automatically preferred over self-contained resource constructors."
+  statefulness_transparency: "Candidates depending on pre-existing external state (e.g. review_id, webhook_id) must be explicitly flagged and cannot be automatically preferred over single-turn constructible constructors requiring standard fixtures."
 
 scoring_criteria_weights_and_rationale:
   protocol_eligibility_gate:
@@ -84,8 +84,8 @@ slot_configurations:
     replaced_operation_id: "issues/create"
     replacement_rationale: "Replaces issues/create (disqualified due to depth 6 recursion overflow and labels.items object union)."
     statefulness_warning: >
-      pulls/submit-review requires an existing review_id (stateful dependency).
-      Self-contained operations such as pulls/create should be evaluated alongside it.
+      pulls/submit-review requires an existing review_id (multi-turn lifecycle dependency).
+      Single-turn constructible operations requiring standard fixtures such as pulls/create should be evaluated alongside it.
     priority_patterns:
       - pattern: "issues/{issue_number}/comments"
         weight: 25
@@ -136,7 +136,7 @@ slot_configurations:
     source_cluster_id: "CLUSTER_STRIPE"
     replaced_operation_id: "PostPaymentIntents"
     replacement_rationale: "Replaces PostPaymentIntents (disqualified due to depth 9 recursion overflow and wide payment_method_options unions)."
-    statefulness_warning: "PostInvoicesInvoicePay depends on an unpaid invoice ID; PostShippingRates is self-contained."
+    statefulness_warning: "PostInvoicesInvoicePay depends on an unpaid invoice ID (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures."
     priority_patterns:
       - pattern: "/shipping_rates"
         weight: 25

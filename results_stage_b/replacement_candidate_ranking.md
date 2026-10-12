@@ -1,10 +1,10 @@
 # Stage B Replacement Candidate Ranking Report (DRAFT_PENDING_REVIEW)
 
 **Document Type:** Deterministic Explainable Multi-Slot Candidate Ranking  
-**Ranking Script SHA-256:** `212462e8323027dcfe79dac9024fed0ec20d00ee93deee5ae00c633deb223c3a`  
-**Ranking Config SHA-256:** `f7dff5f3e9e8155e0babbaecb51da0981eb252787c177ec2cc4f48eb7f0a13ed`  
+**Ranking Script SHA-256:** `382efcbfdcdd713d5d0464e0f74e97ffc212b031eaae8b7fda18ae5d85a85029`  
+**Ranking Config SHA-256:** `9eb38fa5a23ca2ccb05a3fe6f7fed8faffabeac6d8e14d70ede740095eac7ca7`  
 **Raw Universe SHA-256:** `d6722cfe408e486cdd7b1a03a08f715148e773c2af5eacbaa2dc73bcf52ea8df`  
-**Operation Manifest SHA-256:** `bdd6aaad31779b527503d324ebe8459aebd1dad8659120b85119f8c18a577ce3`  
+**Operation Manifest SHA-256:** `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326`  
 **Generated At (UTC):** `2026-10-12T04:45:00Z`  
 **Environment:** Python `3.13.2` (win32) | PyYAML `6.0.3`  
 **Execution Command:** `python src/rank_stage_b_replacement_candidates.py --generated-at 2026-10-12T04:45:00Z`  
@@ -14,7 +14,7 @@
 > **Scientific Modesty Principles:**  
 > 1. **Co-Leading Ties:** Multiple operations sharing the top score are preserved as co-leading candidates. A score of 100 does not imply a uniquely best choice.  
 > 2. **Mock-Safety Inactive:** Mock-safety feasibility contributes strictly 0 points until empirical mock state execution is verified.  
-> 3. **Statefulness Transparency:** Operations depending on pre-existing external state (e.g. `pulls/submit-review` depending on `review_id`) are explicitly flagged; self-contained constructors (e.g. `pulls/create`) must be evaluated alongside them.
+> 3. **Statefulness Transparency:** Operations depending on pre-existing external state (e.g. `pulls/submit-review` depending on `review_id`) are explicitly flagged; single-turn constructible constructors requiring standard fixtures (e.g. `pulls/create`) must be evaluated alongside them.
 
 ---
 
@@ -57,7 +57,7 @@ Five canonical replacement slots are open due to exclusions for structural depth
 - **Source Cluster:** `CLUSTER_GITHUB`
 - **Replaced Operation:** `issues/create`
 - **Exclusion Cause:** Replaces issues/create (disqualified due to depth 6 recursion overflow and labels.items object union).
-- **Statefulness Guidance:** pulls/submit-review requires an existing review_id (stateful dependency). Self-contained operations such as pulls/create should be evaluated alongside it.
+- **Statefulness Guidance:** pulls/submit-review requires an existing review_id (multi-turn lifecycle dependency). Single-turn constructible operations requiring standard fixtures such as pulls/create should be evaluated alongside it.
 
 - **Total Statically Eligible Candidates in Cluster Pool:** 357 operations
 - **Co-Leading Candidates Count:** 5
@@ -76,8 +76,8 @@ Five canonical replacement slots are open due to exclusions for structural depth
 - **JSON Pointer:** `#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1reviews~1{review_id}~1events/post`
 - **HTTP Method / Endpoint:** `POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events`
 - **Score Breakdown:** Domain: 24/25 | Diversity: 20/20 | Complexity: 20/20 | Footprint: 15/15 | Role: 20/20 | Mock Safety: 0/0 (deferred)
-- **Scoring Notes:** Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.1667 (10 pts); Complexity: depth 2, props 6 (20/20); Tokens: 141 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it.]
-- **Statefulness Warning:** POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it.
+- **Scoring Notes:** Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.1667 (10 pts); Complexity: depth 2, props 6 (20/20); Tokens: 141 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: MULTI_TURN_LIFECYCLE_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; single-turn constructible pulls/create requiring standard fixtures should be evaluated alongside it.]
+- **Statefulness Warning:** MULTI_TURN_LIFECYCLE_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; single-turn constructible pulls/create requiring standard fixtures should be evaluated alongside it.
 - **Mock Safety Status:** `MOCK_SAFETY_REVIEW_PENDING` (Contributed: 0 pts)
 - **Mock Safety Analysis:** Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events. Input surfaces (body+path) declare 6 properties (5 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.
 
@@ -181,7 +181,7 @@ Five canonical replacement slots are open due to exclusions for structural depth
 - **Source Cluster:** `CLUSTER_STRIPE`
 - **Replaced Operation:** `PostPaymentIntents`
 - **Exclusion Cause:** Replaces PostPaymentIntents (disqualified due to depth 9 recursion overflow and wide payment_method_options unions).
-- **Statefulness Guidance:** PostInvoicesInvoicePay depends on an unpaid invoice ID; PostShippingRates is self-contained.
+- **Statefulness Guidance:** PostInvoicesInvoicePay depends on an unpaid invoice ID (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.
 - **Total Statically Eligible Candidates in Cluster Pool:** 172 operations
 - **Co-Leading Candidates Count:** 2
 
@@ -199,8 +199,8 @@ Five canonical replacement slots are open due to exclusions for structural depth
 - **JSON Pointer:** `#/paths/~1v1~1invoices~1{invoice}~1attach_payment/post`
 - **HTTP Method / Endpoint:** `POST /v1/invoices/{invoice}/attach_payment`
 - **Score Breakdown:** Domain: 23/25 | Diversity: 20/20 | Complexity: 20/20 | Footprint: 15/15 | Role: 20/20 | Mock Safety: 0/0 (deferred)
-- **Scoring Notes:** Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 3, props 4 (20/20); Tokens: 122 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice; PostShippingRates is self-contained.]
-- **Statefulness Warning:** Requires an existing unpaid invoice; PostShippingRates is self-contained.
+- **Scoring Notes:** Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 3, props 4 (20/20); Tokens: 122 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.]
+- **Statefulness Warning:** Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.
 - **Mock Safety Status:** `MOCK_SAFETY_REVIEW_PENDING` (Contributed: 0 pts)
 - **Mock Safety Analysis:** Mock execution requires local state simulation for /v1/invoices/{invoice}/attach_payment. Input surfaces (body+path) declare 4 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.
 
@@ -208,8 +208,8 @@ Five canonical replacement slots are open due to exclusions for structural depth
 - **JSON Pointer:** `#/paths/~1v1~1invoices~1{invoice}~1pay/post`
 - **HTTP Method / Endpoint:** `POST /v1/invoices/{invoice}/pay`
 - **Score Breakdown:** Domain: 23/25 | Diversity: 20/20 | Complexity: 20/20 | Footprint: 15/15 | Role: 20/20 | Mock Safety: 0/0 (deferred)
-- **Scoring Notes:** Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 167 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice; PostShippingRates is self-contained.]
-- **Statefulness Warning:** Requires an existing unpaid invoice; PostShippingRates is self-contained.
+- **Scoring Notes:** Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 167 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.]
+- **Statefulness Warning:** Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.
 - **Mock Safety Status:** `MOCK_SAFETY_REVIEW_PENDING` (Contributed: 0 pts)
 - **Mock Safety Analysis:** Mock execution requires local state simulation for /v1/invoices/{invoice}/pay. Input surfaces (body+path) declare 8 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.
 
@@ -366,5 +366,5 @@ Five canonical replacement slots are open due to exclusions for structural depth
 
 1. **Status**: All rankings are strictly `DRAFT_PENDING_REVIEW`.
 2. **Official Manifest**: Remains 100% unmodified until user approves selections.
-3. **Stateful vs. Self-Contained Review Highlight**:
-   - In GitHub Slot (`SLOT_GITHUB_01`), `pulls/submit-review` and `pulls/create` both score 100/100 (co-leaders). `pulls/submit-review` requires a pre-existing `review_id`, while `pulls/create` is a self-contained PR constructor. Human review should determine whether mock harness simplicity favors `pulls/create`.
+3. **Multi-Turn Lifecycle vs. Single-Turn Constructible Review Highlight**:
+   - In GitHub Slot (`SLOT_GITHUB_01`), `pulls/submit-review` and `pulls/create` both score 100/100 (co-leaders). `pulls/submit-review` requires a pre-existing `review_id` (multi-turn lifecycle dependency), while `pulls/create` is a single-turn constructible PR constructor requiring standard fixtures. Human review should determine whether mock harness simplicity favors `pulls/create`.

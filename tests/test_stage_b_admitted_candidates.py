@@ -195,13 +195,22 @@ def test_admitted_candidates_statefulness_and_mock_safety_invariants():
 
     for op in admitted_ops:
         op_id = op["operation_id"]
-        # Operational statefulness classification must be declared
-        state_class = op.get("statefulness_classification")
-        assert state_class in [
-            "SELF_CONTAINED_STATELESS_CREATION",
-            "SELF_CONTAINED_CREATION",
-            "SELF_CONTAINED_INTERACTION",
-        ], f"Invalid or missing statefulness classification for {op_id}: {state_class}"
+        # Schema invocation mode and external prerequisite state must be declared
+        assert op.get("schema_invocation_mode") == "SINGLE_TURN_CONSTRUCTIBLE", (
+            f"Expected schema_invocation_mode SINGLE_TURN_CONSTRUCTIBLE for {op_id}"
+        )
+        assert op.get("external_prerequisite_state") == "FIXTURE_REQUIRED", (
+            f"Expected external_prerequisite_state FIXTURE_REQUIRED for {op_id}"
+        )
+        mock_fixtures = op.get("mock_fixture_requirements")
+        assert isinstance(mock_fixtures, list) and len(mock_fixtures) >= 1, (
+            f"Expected non-empty list of mock_fixture_requirements for {op_id}"
+        )
+
+        # Neither 'stateless' nor 'self-contained' must appear in reason_for_selection
+        reason = op.get("reason_for_selection", "")
+        assert "stateless" not in reason.lower(), f"'stateless' found in reason_for_selection for {op_id}"
+        assert "self-contained" not in reason.lower(), f"'self-contained' found in reason_for_selection for {op_id}"
 
         # Mock safety feasibility must be strictly PENDING
         assert op.get("safe_for_local_mock_evaluation") == "MOCK_SAFETY_REVIEW_PENDING", (
@@ -222,6 +231,7 @@ def test_admission_decisions_json_and_review_doc_consistency():
     assert meta["total_admitted"] == 5
     assert meta["total_open_slots"] == 0
     assert meta["governing_policy"] == "STAGE_B_CANDIDATE_ADMISSION_GATE"
+    assert meta["human_review_status"] == "PENDING"
 
     decisions = decisions_data["decisions"]
     assert len(decisions) == 5
@@ -229,20 +239,32 @@ def test_admission_decisions_json_and_review_doc_consistency():
     with open(REVIEW_MD_PATH, "r", encoding="utf-8") as f:
         review_md = f.read()
 
+    assert "Human Review Status: `PENDING`" in review_md or "**Human Review Status:** `PENDING`" in review_md
+
     for d in decisions:
         assert d["admission_decision"] == "ADMITTED_PENDING_EXTRACTION"
         admitted = d["admitted_candidate"]
         assert admitted["mock_feasibility_status"] == "PENDING"
+        assert admitted["human_review_status"] == "PENDING"
 
-        # Reviewer checklist must all be True
-        checklist = admitted["reviewer_checklist"]
+        # Human sign-off record keys
+        sign_off = admitted["human_sign_off_record"]
+        assert "reviewer_name" in sign_off
+        assert "review_date" in sign_off
+        assert "reviewed_artifact_sha256" in sign_off
+        assert "human_sign_off_decision" in sign_off
+
+        # Automated checklist must all be True
+        checklist = admitted["automated_static_admission_checklist"]
         for check_name, check_val in checklist.items():
             assert check_val is True, f"Checklist item {check_name} must be True for {admitted['operation_id']}"
 
-        # Rejected candidates must have reasons
+        # Rejected candidates must have reasons and state partitions
         assert len(d["evaluated_rejected_candidates"]) >= 2
         for rej in d["evaluated_rejected_candidates"]:
             assert len(rej["rejection_reason"]) > 10
+            assert rej["schema_invocation_mode"] in ["SINGLE_TURN_CONSTRUCTIBLE", "MULTI_TURN_DEPENDENT"]
+            assert rej["external_prerequisite_state"] in ["FIXTURE_REQUIRED", "LIFECYCLE_STATE_REQUIRED", "NONE"]
 
         # Markdown report must mention admitted operation
         assert admitted["operation_id"] in review_md

@@ -2,18 +2,18 @@
   "metadata": {
     "command": "python src/rank_stage_b_replacement_candidates.py --generated-at 2026-10-12T04:45:00Z",
     "config_file": "results_stage_b/replacement_ranking_config.yaml",
-    "config_sha256": "f7dff5f3e9e8155e0babbaecb51da0981eb252787c177ec2cc4f48eb7f0a13ed",
+    "config_sha256": "9eb38fa5a23ca2ccb05a3fe6f7fed8faffabeac6d8e14d70ede740095eac7ca7",
     "dependencies": {
       "pyyaml": "6.0.3"
     },
     "generated_at_utc": "2026-10-12T04:45:00Z",
     "manifest_file": "results_stage_b/stage_b_operation_manifest.yaml",
     "manifest_modification_status": "UNTOUCHED (Rankings are DRAFT_PENDING_REVIEW only; no manifest admission executed)",
-    "manifest_sha256": "bdd6aaad31779b527503d324ebe8459aebd1dad8659120b85119f8c18a577ce3",
+    "manifest_sha256": "117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326",
     "platform": "win32",
     "python_version": "3.13.2",
     "ranking_script": "src/rank_stage_b_replacement_candidates.py",
-    "ranking_script_sha256": "212462e8323027dcfe79dac9024fed0ec20d00ee93deee5ae00c633deb223c3a",
+    "ranking_script_sha256": "382efcbfdcdd713d5d0464e0f74e97ffc212b031eaae8b7fda18ae5d85a85029",
     "reproducibility_note": "When executed with --generated-at <TIMESTAMP>, outputs are 100% byte-stable. Normal runtime execution without this argument varies only in timestamp metadata.",
     "scientific_modesty_principles": [
       "Rankings are DRAFT_PENDING_REVIEW only; official manifest remains 100% untouched.",
@@ -64,10 +64,10 @@
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.1667 (10 pts); Complexity: depth 2, props 6 (20/20); Tokens: 141 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it.]",
+          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.1667 (10 pts); Complexity: depth 2, props 6 (20/20); Tokens: 141 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: MULTI_TURN_LIFECYCLE_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; single-turn constructible pulls/create requiring standard fixtures should be evaluated alongside it.]",
           "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
           "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1reviews~1{review_id}~1events/post",
-          "statefulness_warning": "POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it.",
+          "statefulness_warning": "MULTI_TURN_LIFECYCLE_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; single-turn constructible pulls/create requiring standard fixtures should be evaluated alongside it.",
           "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
@@ -240,7 +240,7 @@
       "slot_id": "SLOT_GITHUB_01",
       "slot_name": "GitHub Developer Platforms Slot",
       "source_cluster_id": "CLUSTER_GITHUB",
-      "statefulness_guidance": "pulls/submit-review requires an existing review_id (stateful dependency). Self-contained operations such as pulls/create should be evaluated alongside it.\n",
+      "statefulness_guidance": "pulls/submit-review requires an existing review_id (multi-turn lifecycle dependency). Single-turn constructible operations requiring standard fixtures such as pulls/create should be evaluated alongside it.\n",
       "target_domain": "Developer Platforms & Source Automation",
       "total_cluster_eligible_candidates": 357
     },
@@ -499,10 +499,10 @@
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 3, props 4 (20/20); Tokens: 122 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice; PostShippingRates is self-contained.]",
+          "scoring_notes": "Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 3, props 4 (20/20); Tokens: 122 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.]",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
           "source_spec_pointer": "#/paths/~1v1~1invoices~1{invoice}~1attach_payment/post",
-          "statefulness_warning": "Requires an existing unpaid invoice; PostShippingRates is self-contained.",
+          "statefulness_warning": "Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.",
           "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
@@ -540,10 +540,10 @@
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 167 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice; PostShippingRates is self-contained.]",
+          "scoring_notes": "Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 167 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.]",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
           "source_spec_pointer": "#/paths/~1v1~1invoices~1{invoice}~1pay/post",
-          "statefulness_warning": "Requires an existing unpaid invoice; PostShippingRates is self-contained.",
+          "statefulness_warning": "Requires an existing unpaid invoice (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.",
           "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
@@ -672,7 +672,7 @@
       "slot_id": "SLOT_STRIPE_02",
       "slot_name": "Stripe Payments Slot B",
       "source_cluster_id": "CLUSTER_STRIPE",
-      "statefulness_guidance": "PostInvoicesInvoicePay depends on an unpaid invoice ID; PostShippingRates is self-contained.",
+      "statefulness_guidance": "PostInvoicesInvoicePay depends on an unpaid invoice ID (multi-turn lifecycle dependency); PostShippingRates is single-turn constructible requiring standard fixtures.",
       "target_domain": "Billing, Tax, & Commerce",
       "total_cluster_eligible_candidates": 172
     },

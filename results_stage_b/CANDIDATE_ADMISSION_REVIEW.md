@@ -3,7 +3,8 @@
 **Document Role:** Stage B Candidate Admission Gatekeeper Review  
 **Date (UTC):** 2026-10-12T18:15:00Z  
 **Governing Policy:** `STAGE_B_CANDIDATE_ADMISSION_GATE`  
-**Review Status:** ALL_SLOTS_DECIDED — `ADMITTED_PENDING_EXTRACTION`  
+**Automated Static Gate Status:** ALL_SLOTS_DECIDED — `ADMITTED_PENDING_EXTRACTION`  
+**Human Review Status:** `PENDING`  
 
 ---
 
@@ -11,13 +12,18 @@
 
 This gatekeeper review formally evaluates and admits five replacement operations for the open canonical slots in Stage B. Each candidate was verified directly against the pinned raw OpenAPI specifications for structural eligibility, provenance immutability, operational statefulness, and future deterministic mock feasibility.
 
-| Slot ID | Slot Domain | Replaced Operation | Admitted Replacement | Depth | Props | Req | Surfaces | Decision |
-| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :--- | :---: |
-| `SLOT_GITHUB_01` | Developer Platforms | `issues/create` | `pulls/create` | 2 | 10 | 4 | `body+path` | **`ADMITTED_PENDING_EXTRACTION`** |
-| `SLOT_STRIPE_01` | Payments | `PostCustomers` | `PostPayouts` | 3 | 10 | 2 | `body` | **`ADMITTED_PENDING_EXTRACTION`** |
-| `SLOT_STRIPE_02` | Payments | `PostPaymentIntents` | `PostShippingRates` | 4 | 17 | 7 | `body` | **`ADMITTED_PENDING_EXTRACTION`** |
-| `SLOT_CHATWOOT_01` | CRM/Support | `create-a-contact` | `create-a-webhook` | 4 | 4 | 1 | `body+path` | **`ADMITTED_PENDING_EXTRACTION`** |
-| `SLOT_LINE_01` | Logistics/Communications | `replyMessage` | `showLoadingAnimation` | 3 | 2 | 1 | `body` | **`ADMITTED_PENDING_EXTRACTION`** |
+To prevent conflating schema-level single-turn constructibility with runtime state independence, every operation is rigorously characterized by three distinct dimensions:
+1. **`schema_invocation_mode`**: `SINGLE_TURN_CONSTRUCTIBLE` vs `MULTI_TURN_DEPENDENT`
+2. **`external_prerequisite_state`**: `NONE` vs `FIXTURE_REQUIRED` vs `LIFECYCLE_STATE_REQUIRED`
+3. **`mock_fixture_requirements`**: minimal deterministic fixtures required by mock runtime
+
+| Slot ID | Slot Domain | Replaced Operation | Admitted Replacement | Invocation Mode | Prerequisite State | Mock Fixtures | Decision |
+| :--- | :--- | :--- | :--- | :---: | :---: | :--- | :---: |
+| `SLOT_GITHUB_01` | Developer Platforms | `issues/create` | `pulls/create` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | `repository_fixture, base_branch_fixture, head_branch_fixture` | **`ADMITTED_PENDING_EXTRACTION`** |
+| `SLOT_STRIPE_01` | Payments | `PostCustomers` | `PostPayouts` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | `merchant_account_fixture, payout_capability_active_fixture, sufficient_ledger_balance_fixture` | **`ADMITTED_PENDING_EXTRACTION`** |
+| `SLOT_STRIPE_02` | Payments | `PostPaymentIntents` | `PostShippingRates` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | `authenticated_account_context_fixture` | **`ADMITTED_PENDING_EXTRACTION`** |
+| `SLOT_CHATWOOT_01` | CRM/Support | `create-a-contact` | `create-a-webhook` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | `account_fixture` | **`ADMITTED_PENDING_EXTRACTION`** |
+| `SLOT_LINE_01` | Logistics/Communications | `replyMessage` | `showLoadingAnimation` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | `target_chat_or_user_fixture` | **`ADMITTED_PENDING_EXTRACTION`** |
 
 ### Benchmark Real-Cohort Composition Status
 - **Clean Monomorphic Operations:** 29 (24 existing provisional candidates + 5 newly admitted replacement candidates)
@@ -26,6 +32,7 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - **Open Replacement Slots Remaining:** **0**
 - **Excluded Operations Tracked:** 7 (retained permanently in exclusion registry for benchmark provenance)
 - **Admission Invariant:** Status remains strictly `ADMITTED_PENDING_EXTRACTION`. Zero operations are designated as `CANONICAL_FAITHFUL` until extraction, automated validation, field-lineage verification, and manual review are complete.
+- **Human Review Gate:** Human review status remains strictly `PENDING`. No operation receives final canonical ratification without manual researcher sign-off.
 
 ---
 
@@ -55,15 +62,20 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - **Estimated Token Footprint:** ~179 tokens
 - **Static Eligibility Verdict:** `STATICALLY_ELIGIBLE_CANDIDATE`
 
-#### Operational Statefulness Assessment
-- **Classification:** `SELF_CONTAINED_STATELESS_CREATION`
-- **Analysis:** High-fidelity developer platform operation. Cleanly bounded at recursion depth 2 with 10 properties (4 required: 2 path parameters '{owner}', '{repo}', plus 2 body fields 'head', 'base'). Completely self-contained; does not depend on pre-existing review or pull request IDs. Mirrors the collaborative authoring semantics of the disqualified issues/create endpoint without structural bloat or polymorphic object unions.
+#### Operational Statefulness & Invocation Mode Assessment
+- **Schema Invocation Mode:** `SINGLE_TURN_CONSTRUCTIBLE`
+- **External Prerequisite State:** `FIXTURE_REQUIRED`
+- **Mock Fixture Requirements:**
+  - `repository_fixture`
+  - `base_branch_fixture`
+  - `head_branch_fixture`
+- **Analysis:** High-fidelity developer platform operation. Cleanly bounded at recursion depth 2 with 10 properties (4 required: 2 path parameters '{owner}', '{repo}', plus 2 body fields 'head', 'base'). Schema parameters can be formulated in a single turn without inspecting prior responses (SINGLE_TURN_CONSTRUCTIBLE), but execution is not state-independent: mock execution requires pre-configured repository and base/head branch fixtures (FIXTURE_REQUIRED). Avoids structural bloat and polymorphic object unions of issues/create.
 
 #### Mock-Safety Feasibility Review
 - **Status:** **`PENDING`** (Held strictly pending empirical validation)
 - **Assessment:** Local mock execution requires an in-memory repository store that registers pull requests and validates head/base branches. Feasibility is pending extraction verification and implementation of the hermetic mock harness.
 
-#### Manual Reviewer Checklist
+#### Automated / Agent-Assisted Static Admission Checklist
 - [x] Immutable Provenance Verified: Raw file SHA-256 and Git blob SHA match pinned registry.
 - [x] JSON Pointer Verified: Resolves unambiguously to target `POST` operation in raw spec.
 - [x] Depth Bound Verified: Observed depth 2 strictly $\le 5$.
@@ -71,16 +83,24 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - [x] Format Compliance: Contains zero binary, multipart/form-data, or file payload parameters.
 - [x] Reference Integrity: Zero cyclic refs and zero unresolved external $ref pointers.
 - [x] Composition Integrity: Zero conflicting scalar type merges under allOf.
-- [x] Operational Statefulness: Verified to be self-contained and suitable for single-turn invocation.
+- [x] Operational Statefulness: Formally partitioned into invocation mode, prerequisite state, and mock fixtures.
 - [x] Mock Feasibility: Recorded as `PENDING`, not assumed.
+
+**Human Review Status:** `PENDING`
+
+#### Human Sign-Off Record
+- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Review Date:** `[PENDING_DATE]`
+- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
 
 #### Evaluated & Rejected Competing Candidates
 
-| Competing Candidate | Endpoint | Explicit Rejection Rationale |
-| :--- | :--- | :--- |
-| `pulls/submit-review` | `POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events` | Potentially stateful dependency: requires a pre-existing review_id created in a prior review turn. Cannot be invoked reliably in a standalone single-turn benchmark without multi-turn state pre-seeding. |
-| `pulls/create-review-comment` | `POST /repos/{owner}/{repo}/pulls/{pull_number}/comments` | Requires specific line/commit_id diff context and pull_number; less representative of primary top-level creation actions than pulls/create. |
-| `codespaces/create-with-pr-for-authenticated-user` | `POST /repos/{owner}/{repo}/pulls/{pull_number}/codespaces` | Specialized virtual machine / container infrastructure provisioning rather than core developer collaborative workflow. |
+| Competing Candidate | Endpoint | Invocation Mode | Prerequisite State | Explicit Rejection Rationale |
+| :--- | :--- | :---: | :---: | :--- |
+| `pulls/submit-review` | `POST /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn dependent operation: requires a pre-existing review_id created in a prior review turn. Cannot be invoked reliably in a single-turn benchmark without multi-turn state pre-seeding. |
+| `pulls/create-review-comment` | `POST /repos/{owner}/{repo}/pulls/{pull_number}/comments` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Requires specific line/commit_id diff context and pull_number; less representative of primary top-level creation actions than pulls/create. |
+| `codespaces/create-with-pr-for-authenticated-user` | `POST /repos/{owner}/{repo}/pulls/{pull_number}/codespaces` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | Specialized virtual machine / container infrastructure provisioning rather than core developer collaborative workflow. |
 
 ---
 
@@ -108,15 +128,20 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - **Estimated Token Footprint:** ~186 tokens
 - **Static Eligibility Verdict:** `STATICALLY_ELIGIBLE_CANDIDATE`
 
-#### Operational Statefulness Assessment
-- **Classification:** `SELF_CONTAINED_CREATION`
-- **Analysis:** Core merchant balance routing operation. Cleanly bounded at depth 3 with 10 properties (2 required: 'amount' and 'currency'). Self-contained; does not depend on pre-existing customer or external resource IDs. Provides essential coverage of merchant fund movement without the bloated recursive depth (depth 6) and polymorphic address objects of PostCustomers.
+#### Operational Statefulness & Invocation Mode Assessment
+- **Schema Invocation Mode:** `SINGLE_TURN_CONSTRUCTIBLE`
+- **External Prerequisite State:** `FIXTURE_REQUIRED`
+- **Mock Fixture Requirements:**
+  - `merchant_account_fixture`
+  - `payout_capability_active_fixture`
+  - `sufficient_ledger_balance_fixture`
+- **Analysis:** Core merchant balance routing operation. Cleanly bounded at depth 3 with 10 properties (2 required: 'amount' and 'currency'). Schema parameters can be formulated in a single turn without prior entity outputs (SINGLE_TURN_CONSTRUCTIBLE), but execution is not state-independent: mock execution requires active merchant account capability and a sufficient available ledger-balance fixture (FIXTURE_REQUIRED). Avoids recursive depth bloat (depth 6) and polymorphic address objects of PostCustomers.
 
 #### Mock-Safety Feasibility Review
 - **Status:** **`PENDING`** (Held strictly pending empirical validation)
 - **Assessment:** Local mock execution requires tracking merchant ledger balance and returning deterministic payout records. Feasibility is pending extraction verification and implementation of the hermetic mock harness.
 
-#### Manual Reviewer Checklist
+#### Automated / Agent-Assisted Static Admission Checklist
 - [x] Immutable Provenance Verified: Raw file SHA-256 and Git blob SHA match pinned registry.
 - [x] JSON Pointer Verified: Resolves unambiguously to target `POST` operation in raw spec.
 - [x] Depth Bound Verified: Observed depth 3 strictly $\le 5$.
@@ -124,16 +149,24 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - [x] Format Compliance: Contains zero binary, multipart/form-data, or file payload parameters.
 - [x] Reference Integrity: Zero cyclic refs and zero unresolved external $ref pointers.
 - [x] Composition Integrity: Zero conflicting scalar type merges under allOf.
-- [x] Operational Statefulness: Verified to be self-contained and suitable for single-turn invocation.
+- [x] Operational Statefulness: Formally partitioned into invocation mode, prerequisite state, and mock fixtures.
 - [x] Mock Feasibility: Recorded as `PENDING`, not assumed.
+
+**Human Review Status:** `PENDING`
+
+#### Human Sign-Off Record
+- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Review Date:** `[PENDING_DATE]`
+- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
 
 #### Evaluated & Rejected Competing Candidates
 
-| Competing Candidate | Endpoint | Explicit Rejection Rationale |
-| :--- | :--- | :--- |
-| `PostTransfers` | `POST /v1/transfers` | Ranked #2 for fund routing (score 96, depth 3, 9 props). Structurally valid, but PostPayouts is preferred as it represents direct merchant settlement rather than intra-account transfer. |
-| `PostAccountLinks` | `POST /v1/account_links` | Requires a pre-existing connected account ID ('account'), introducing entity linkage statefulness. |
-| `PostPayoutsPayoutCancel` | `POST /v1/payouts/{payout}/cancel` | Lifecycle mutation requiring pre-existing payout ID in path, rather than primary resource creation. |
+| Competing Candidate | Endpoint | Invocation Mode | Prerequisite State | Explicit Rejection Rationale |
+| :--- | :--- | :---: | :---: | :--- |
+| `PostTransfers` | `POST /v1/transfers` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | Ranked #2 for fund routing (score 96, depth 3, 9 props). Structurally valid, but PostPayouts is preferred as it represents direct merchant settlement rather than intra-account transfer. |
+| `PostAccountLinks` | `POST /v1/account_links` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn dependent operation: requires a pre-existing connected account ID ('account'), introducing entity linkage statefulness. |
+| `PostPayoutsPayoutCancel` | `POST /v1/payouts/{payout}/cancel` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Lifecycle state mutation requiring a pre-existing payout ID in path that is currently in a pending/cancellable lifecycle state. |
 
 ---
 
@@ -161,15 +194,18 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - **Estimated Token Footprint:** ~280 tokens
 - **Static Eligibility Verdict:** `STATICALLY_ELIGIBLE_CANDIDATE`
 
-#### Operational Statefulness Assessment
-- **Classification:** `SELF_CONTAINED_CREATION`
-- **Analysis:** Highly representative commerce and checkout configuration operation. Exhibits rich nested object architecture (depth 4 with nested 'delivery_estimate' and 'fixed_amount' objects containing currency and duration units) while strictly complying with the frozen bound d <= 5. Self-contained with no pre-existing entity dependencies. Replaces the extreme bloat and 492-property depth-9 explosion of PostPaymentIntents with a rigorous, tractable complex contract.
+#### Operational Statefulness & Invocation Mode Assessment
+- **Schema Invocation Mode:** `SINGLE_TURN_CONSTRUCTIBLE`
+- **External Prerequisite State:** `FIXTURE_REQUIRED`
+- **Mock Fixture Requirements:**
+  - `authenticated_account_context_fixture`
+- **Analysis:** Highly representative commerce and checkout configuration operation. Exhibits rich nested object architecture (depth 4 with nested 'delivery_estimate' and 'fixed_amount' objects containing currency and duration units) while strictly complying with the frozen bound d <= 5. Schema parameters can be formulated in a single turn (SINGLE_TURN_CONSTRUCTIBLE); runtime execution requires an authenticated merchant account context fixture (FIXTURE_REQUIRED). Replaces the extreme bloat and 492-property depth-9 explosion of PostPaymentIntents with a rigorous, tractable complex contract.
 
 #### Mock-Safety Feasibility Review
 - **Status:** **`PENDING`** (Held strictly pending empirical validation)
 - **Assessment:** Deterministic creation endpoint; mock returns standard shipping_rate resource. Feasibility is pending extraction verification and implementation of the hermetic mock harness.
 
-#### Manual Reviewer Checklist
+#### Automated / Agent-Assisted Static Admission Checklist
 - [x] Immutable Provenance Verified: Raw file SHA-256 and Git blob SHA match pinned registry.
 - [x] JSON Pointer Verified: Resolves unambiguously to target `POST` operation in raw spec.
 - [x] Depth Bound Verified: Observed depth 4 strictly $\le 5$.
@@ -177,16 +213,24 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - [x] Format Compliance: Contains zero binary, multipart/form-data, or file payload parameters.
 - [x] Reference Integrity: Zero cyclic refs and zero unresolved external $ref pointers.
 - [x] Composition Integrity: Zero conflicting scalar type merges under allOf.
-- [x] Operational Statefulness: Verified to be self-contained and suitable for single-turn invocation.
+- [x] Operational Statefulness: Formally partitioned into invocation mode, prerequisite state, and mock fixtures.
 - [x] Mock Feasibility: Recorded as `PENDING`, not assumed.
+
+**Human Review Status:** `PENDING`
+
+#### Human Sign-Off Record
+- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Review Date:** `[PENDING_DATE]`
+- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
 
 #### Evaluated & Rejected Competing Candidates
 
-| Competing Candidate | Endpoint | Explicit Rejection Rationale |
-| :--- | :--- | :--- |
-| `PostInvoicesInvoiceAttachPayment` | `POST /v1/invoices/{invoice}/attach_payment` | Potentially stateful dependency on existing unpaid invoice ID in path ('/v1/invoices/{invoice}/attach_payment'). Cannot be tested in isolation without seeded invoice state. |
-| `PostInvoicesInvoicePay` | `POST /v1/invoices/{invoice}/pay` | Potentially stateful dependency on existing unpaid invoice ID in path ('/v1/invoices/{invoice}/pay'). |
-| `PostTaxRates` | `POST /v1/tax_rates` | Depth 3, 11 properties; structurally valid, but PostShippingRates provides richer structural nesting diversity (depth 4, 17 properties, 7 required) while adhering to all protocol constraints. |
+| Competing Candidate | Endpoint | Invocation Mode | Prerequisite State | Explicit Rejection Rationale |
+| :--- | :--- | :---: | :---: | :--- |
+| `PostInvoicesInvoiceAttachPayment` | `POST /v1/invoices/{invoice}/attach_payment` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn lifecycle dependency: requires a pre-existing unpaid invoice in open lifecycle state ('/v1/invoices/{invoice}/attach_payment'). Cannot be tested in isolation without seeded invoice state. |
+| `PostInvoicesInvoicePay` | `POST /v1/invoices/{invoice}/pay` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn lifecycle dependency: requires a pre-existing unpaid invoice in open lifecycle state ('/v1/invoices/{invoice}/pay'). |
+| `PostTaxRates` | `POST /v1/tax_rates` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | Depth 3, 11 properties; structurally valid, but PostShippingRates provides richer structural nesting diversity (depth 4, 17 properties, 7 required) while adhering to all protocol constraints. |
 
 ---
 
@@ -214,15 +258,18 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - **Estimated Token Footprint:** ~126 tokens
 - **Static Eligibility Verdict:** `STATICALLY_ELIGIBLE_CANDIDATE`
 
-#### Operational Statefulness Assessment
-- **Classification:** `SELF_CONTAINED_CREATION`
-- **Analysis:** Standard event automation integration in customer support systems. Combines path routing ('account_id') with a structured JSON body containing an array of 10 distinct event enums ('subscriptions'). Completely self-contained; avoids the multipart/form-data binary upload violation that disqualified create-a-contact.
+#### Operational Statefulness & Invocation Mode Assessment
+- **Schema Invocation Mode:** `SINGLE_TURN_CONSTRUCTIBLE`
+- **External Prerequisite State:** `FIXTURE_REQUIRED`
+- **Mock Fixture Requirements:**
+  - `account_fixture`
+- **Analysis:** Standard event automation integration in customer support systems. Combines path routing ('account_id') with a structured JSON body containing an array of 10 distinct event enums ('subscriptions'). Schema parameters are constructible in a single turn without prior entity outputs (SINGLE_TURN_CONSTRUCTIBLE); runtime execution requires an existing account fixture corresponding to the path parameter (FIXTURE_REQUIRED). Avoids the multipart/form-data binary upload violation that disqualified create-a-contact.
 
 #### Mock-Safety Feasibility Review
 - **Status:** **`PENDING`** (Held strictly pending empirical validation)
 - **Assessment:** Webhook receiver store can be mocked deterministically by recording webhook registration in mock state. Feasibility is pending extraction verification and implementation of the hermetic mock harness.
 
-#### Manual Reviewer Checklist
+#### Automated / Agent-Assisted Static Admission Checklist
 - [x] Immutable Provenance Verified: Raw file SHA-256 and Git blob SHA match pinned registry.
 - [x] JSON Pointer Verified: Resolves unambiguously to target `POST` operation in raw spec.
 - [x] Depth Bound Verified: Observed depth 4 strictly $\le 5$.
@@ -230,16 +277,24 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - [x] Format Compliance: Contains zero binary, multipart/form-data, or file payload parameters.
 - [x] Reference Integrity: Zero cyclic refs and zero unresolved external $ref pointers.
 - [x] Composition Integrity: Zero conflicting scalar type merges under allOf.
-- [x] Operational Statefulness: Verified to be self-contained and suitable for single-turn invocation.
+- [x] Operational Statefulness: Formally partitioned into invocation mode, prerequisite state, and mock fixtures.
 - [x] Mock Feasibility: Recorded as `PENDING`, not assumed.
+
+**Human Review Status:** `PENDING`
+
+#### Human Sign-Off Record
+- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Review Date:** `[PENDING_DATE]`
+- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
 
 #### Evaluated & Rejected Competing Candidates
 
-| Competing Candidate | Endpoint | Explicit Rejection Rationale |
-| :--- | :--- | :--- |
-| `update-canned-response-in-account` | `PATCH /api/v1/accounts/{account_id}/canned_responses/{id}` | Potentially stateful dependency on pre-existing canned response ID in path ('/canned_responses/{id}'). Cannot be tested in isolation without seeded canned response state. |
-| `update-a-webhook` | `PATCH /api/v1/accounts/{account_id}/webhooks/{webhook_id}` | Requires pre-existing webhook ID in path ('/webhooks/{webhook_id}'). |
-| `add-new-canned-response-to-account` | `POST /api/v1/accounts/{account_id}/canned_responses` | Structurally simpler (depth 3, 3 props, flat string pair) without array/enum diversity; create-a-webhook is more representative of programmatic integration complexity. |
+| Competing Candidate | Endpoint | Invocation Mode | Prerequisite State | Explicit Rejection Rationale |
+| :--- | :--- | :---: | :---: | :--- |
+| `update-canned-response-in-account` | `PATCH /api/v1/accounts/{account_id}/canned_responses/{id}` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn lifecycle dependency: requires a pre-existing canned response ID in path ('/canned_responses/{id}'). Cannot be tested in isolation without seeded canned response state. |
+| `update-a-webhook` | `PATCH /api/v1/accounts/{account_id}/webhooks/{webhook_id}` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn lifecycle dependency: requires pre-existing webhook ID in path ('/webhooks/{webhook_id}'). |
+| `add-new-canned-response-to-account` | `POST /api/v1/accounts/{account_id}/canned_responses` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | Structurally simpler (depth 3, 3 props, flat string pair) without array/enum diversity; create-a-webhook is more representative of programmatic integration complexity. |
 
 ---
 
@@ -267,15 +322,18 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - **Estimated Token Footprint:** ~89 tokens
 - **Static Eligibility Verdict:** `STATICALLY_ELIGIBLE_CANDIDATE`
 
-#### Operational Statefulness Assessment
-- **Classification:** `SELF_CONTAINED_INTERACTION`
-- **Analysis:** Authentic messaging interaction endpoint in the LINE bot ecosystem ('/v2/bot/chat/loading/start'). Self-contained request requiring target 'chatId' and bounded integer 'loadingSeconds' (5–60s). Avoids the depth-13 recursion and 11-variant polymorphic discriminated union that disqualified replyMessage and pushMessage.
+#### Operational Statefulness & Invocation Mode Assessment
+- **Schema Invocation Mode:** `SINGLE_TURN_CONSTRUCTIBLE`
+- **External Prerequisite State:** `FIXTURE_REQUIRED`
+- **Mock Fixture Requirements:**
+  - `target_chat_or_user_fixture`
+- **Analysis:** Authentic messaging interaction endpoint in the LINE bot ecosystem ('/v2/bot/chat/loading/start'). Schema arguments ('chatId' and bounded integer 'loadingSeconds' [5-60s]) can be formulated in a single turn without inspecting prior responses (SINGLE_TURN_CONSTRUCTIBLE). Crucially, external prerequisite state is classified as FIXTURE_REQUIRED (not NONE) because the pinned LINE OpenAPI specification explicitly models response 400 for 'An invalid chat ID is specified', confirming that server-side chat/user identity validation is represented in the contract semantics. Avoids depth-13 recursion and polymorphic discriminated message unions of replyMessage.
 
 #### Mock-Safety Feasibility Review
 - **Status:** **`PENDING`** (Held strictly pending empirical validation)
-- **Assessment:** Trivial deterministic response simulation; mock validates chatId and loadingSeconds range and returns HTTP 200/202. Feasibility is pending extraction verification and implementation of the hermetic mock harness.
+- **Assessment:** Deterministic response simulation; mock validates chatId against active target chat fixture and verifies loadingSeconds range (5-60s), returning HTTP 202. Feasibility is pending extraction verification and implementation of the hermetic mock harness.
 
-#### Manual Reviewer Checklist
+#### Automated / Agent-Assisted Static Admission Checklist
 - [x] Immutable Provenance Verified: Raw file SHA-256 and Git blob SHA match pinned registry.
 - [x] JSON Pointer Verified: Resolves unambiguously to target `POST` operation in raw spec.
 - [x] Depth Bound Verified: Observed depth 3 strictly $\le 5$.
@@ -283,19 +341,27 @@ This gatekeeper review formally evaluates and admits five replacement operations
 - [x] Format Compliance: Contains zero binary, multipart/form-data, or file payload parameters.
 - [x] Reference Integrity: Zero cyclic refs and zero unresolved external $ref pointers.
 - [x] Composition Integrity: Zero conflicting scalar type merges under allOf.
-- [x] Operational Statefulness: Verified to be self-contained and suitable for single-turn invocation.
+- [x] Operational Statefulness: Formally partitioned into invocation mode, prerequisite state, and mock fixtures.
 - [x] Mock Feasibility: Recorded as `PENDING`, not assumed.
+
+**Human Review Status:** `PENDING`
+
+#### Human Sign-Off Record
+- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Review Date:** `[PENDING_DATE]`
+- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
 
 #### Evaluated & Rejected Competing Candidates
 
-| Competing Candidate | Endpoint | Explicit Rejection Rationale |
-| :--- | :--- | :--- |
-| `updateRichMenuAlias` | `POST /v2/bot/richmenu/alias/{richMenuAliasId}` | Administrative alias mapping requiring pre-existing richMenuAliasId in path. |
-| `linkRichMenuIdToUser` | `POST /v2/bot/user/{userId}/richmenu/{richMenuId}` | Depth 1 path-only mapping; lacks request body and structural depth. |
-| `testWebhookEndpoint` | `POST /v2/bot/channel/webhook/test` | Diagnostic health probe ('/channel/webhook/test') rather than conversational bot interaction. |
+| Competing Candidate | Endpoint | Invocation Mode | Prerequisite State | Explicit Rejection Rationale |
+| :--- | :--- | :---: | :---: | :--- |
+| `updateRichMenuAlias` | `POST /v2/bot/richmenu/alias/{richMenuAliasId}` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn lifecycle dependency: administrative alias mapping requiring pre-existing richMenuAliasId in path. |
+| `linkRichMenuIdToUser` | `POST /v2/bot/user/{userId}/richmenu/{richMenuId}` | `MULTI_TURN_DEPENDENT` | `LIFECYCLE_STATE_REQUIRED` | Multi-turn lifecycle dependency: depth 1 path-only mapping; lacks request body and structural depth. |
+| `testWebhookEndpoint` | `POST /v2/bot/channel/webhook/test` | `SINGLE_TURN_CONSTRUCTIBLE` | `FIXTURE_REQUIRED` | Diagnostic health probe ('/channel/webhook/test') rather than conversational bot interaction. |
 
 ---
 
 ## 3. Provenance & Reproducibility Certification
 
-Every admitted operation is cryptographically pinned to an immutable Git blob SHA and raw source file SHA-256 digest. No modifications have been made to Stage A, frozen raw source files, or existing provisional candidates. The operation manifest (`stage_b_operation_manifest.yaml`) will be updated to reflect these admissions under the status `ADMITTED_PENDING_EXTRACTION`.
+Every admitted operation is cryptographically pinned to an immutable Git blob SHA and raw source file SHA-256 digest. No modifications have been made to Stage A, frozen raw source files, or existing provisional candidates. The operation manifest (`stage_b_operation_manifest.yaml`) reflects these admissions under the status `ADMITTED_PENDING_EXTRACTION`. Human sign-off remains formally PENDING.

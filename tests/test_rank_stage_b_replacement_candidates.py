@@ -149,5 +149,5 @@ def test_statefulness_warning_on_dependent_operations():
     github_slot = next(s for s in report["slots"] if s["slot_id"] == "SLOT_GITHUB_01")
     submit_review = next(c for c in github_slot["ranked_candidates"] if c["operation_id"] == "pulls/submit-review")
     assert submit_review["is_potentially_stateful"] is True
-    assert "POTENTIALLY_STATEFUL_DEPENDENCY" in submit_review["statefulness_warning"]
+    assert "MULTI_TURN_LIFECYCLE_DEPENDENCY" in submit_review["statefulness_warning"]
     assert "review_id" in submit_review["statefulness_warning"]
