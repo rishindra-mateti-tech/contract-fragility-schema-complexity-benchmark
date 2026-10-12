@@ -2,18 +2,18 @@ manifest_version: 1.1.0
 manifest_role: DRAFT_OPERATION_SELECTION
 created_at: '2026-10-09T17:55:00Z'
 corpus_composition:
-  clean_provisional_candidates: 24
-  provisional_candidates_pending_union_amendment: 1
+  clean_monomorphic_provisional: 24
+  faithful_union_provisional: 1
   total_provisional_operations_cohort: 25
   excluded_operations_cohort: 7
   pending_replacement_cohort: 5
   canonical_target_size: 30
   synthetic_schemas_cohort: 20
   active_benchmark_target_size: 50
-  note_on_corpus_size: The 30 canonical real-schema candidate slots (currently 24 clean provisional
-    candidates, 1 candidate pending union amendment under Amendment 003, and 5 pending replacements,
-    with 7 excluded operations tracked) combine with 20 synthetic schemas to form the valid
-    50-schema benchmark minimum. Zero operations are designated as approved until extraction,
+  note_on_corpus_size: The 30 canonical real-schema candidate slots (currently 24 clean monomorphic
+    provisional candidates, 1 faithful-union provisional candidate under ratified Amendment 003, and
+    5 pending replacements, with 7 excluded operations tracked) combine with 20 synthetic schemas to form
+    the valid 50-schema benchmark minimum. Zero operations are designated as approved until extraction,
     automated validation, lineage verification, and mandatory manual review are complete.
 authentication_handling_policy:
   policy_role: UNIVERSAL_EXECUTOR_BOUND_CREDENTIAL_POLICY
@@ -32,8 +32,8 @@ cluster_aware_analysis_plan:
     source as independent samples introduces cluster autocorrelation. Statistical
     evaluations must cluster standard errors or use clustered bootstrap resampling
     at the source_cluster_id level.
-total_clean_provisional_operations: 24
-total_pending_union_amendment_operations: 1
+total_clean_monomorphic_provisional: 24
+total_faithful_union_provisional: 1
 total_operations_excluded: 7
 total_pending_replacements: 5
 domain_distribution_provisional:
@@ -135,7 +135,7 @@ operations:
     Stripe refund tool; validates real-world transferability.
   exclusion_reason_nearby_operations: Excluded GET /v1/refunds (listing) and POST
     /v1/refunds/{refund}/cancel (lifecycle cancellation) to focus on primary execution.
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_FAITHFUL_UNION
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test

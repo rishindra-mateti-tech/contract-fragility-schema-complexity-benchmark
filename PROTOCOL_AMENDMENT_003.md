@@ -1,8 +1,8 @@
 # PROTOCOL_AMENDMENT_003: Source-Faithful Representation and Scoring of Finite Object Unions in Stage B
 
-**Date:** October 2026  
-**Reference:** `PROTOCOL.md`, `STAGE_B_EXTRACTION_SPEC.md` (Section 3.3, Section 7)  
-**Status:** DRAFT_AMENDMENT_PENDING_REVIEW  
+**Date:** October 12, 2026  
+**Reference:** `PROTOCOL.md`, `STAGE_B_EXTRACTION_SPEC.md` (Section 3.3, Section 7), `UNION_VALIDATION_TEST_PLAN.md`  
+**Status:** RATIFIED  
 **Target Corpus:** Stage B Canonical Real-Source Benchmark  
 
 ---
@@ -30,8 +30,9 @@ To qualify for canonical inclusion under this amendment, object-level union stru
    - Upstream `discriminator` metadata (including `propertyName` and explicit `mapping` dictionaries) must be preserved verbatim in the derived contract.
 3. **Branch-Level Lineage Traceability**:
    - Each variant branch within an object union must receive an explicit, machine-verifiable entry in `canonical_field_lineage.jsonl` recording its branch index, exact upstream source JSON Pointer, and branch-level cryptographic SHA-256 hash.
-4. **Finite, Non-Cyclic Recursion Bound**:
-   - The union structure must have finite branch cardinality and zero cyclic references. The recursion depth across all constituent branches must terminate deterministically within a reviewed depth bound.
+4. **Finite, Non-Cyclic Recursion Bound (MAX_RECURSION_DEPTH = 5 Unaltered)**:
+   - The union structure must have finite branch cardinality and zero cyclic references.
+   - **Crucial Invariant:** Ratification of Amendment 003 strictly **does not alter** the frozen rule `MAX_RECURSION_DEPTH = 5`. Any union-bearing candidate exceeding depth 5 remains disqualified and excluded (`EXCLUDE_PENDING`).
 5. **Strict Protocol vs. Provider Separation**:
    - If a downstream inference provider, hosted API proxy, or model tool-calling interface cannot ingest or correctly parse the preserved JSON Schema union, this failure must be recorded strictly as a **downstream provider-interface limitation**.
    - Under no circumstances may the canonical schema be mutated, flattened, or stripped to accommodate provider-specific constraints.
@@ -48,17 +49,20 @@ To qualify for canonical inclusion under this amendment, object-level union stru
 3. **Stratified Reporting & Empirical Isolation**:
    - In benchmark result tables and regression analyses, union-bearing operations must be reported **both as stratified sub-cohorts and in pooled views**, enabling explicit measurement of whether polymorphic union boundaries amplify model fragility relative to monomorphic contracts.
 4. **Pre-Implementation Test Requirement**:
-   - Dedicated union-preservation unit tests must be added to the test suite and pass completely before any extraction implementation code is authorized.
+   - Dedicated union-preservation validation specifications are established in `UNION_VALIDATION_TEST_PLAN.md`. All validation tests must pass before canonical extraction execution.
 
 ---
 
-## 4. Operational Transition & Candidate Scoping
+## 4. Ratification Scope & Operation Classifications
 
-1. **Review Gate**:
-   - This amendment is a design specification and applies only upon formal user review and approval.
-2. **Immediate Candidate Classifications**:
-   - GitHub `issues/create`, Stripe `PostRefunds`, Stripe `PostCustomers`, and Stripe `PostPaymentIntents` are retained under the transitional status:
-     `PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT`
-   - These 4 operations may transition to `PROVISIONAL_CANONICAL_CANDIDATE` only once Amendment 003 is ratified.
-3. **Stage A Absolute Invariance**:
+1. **Ratification Action**:
+   - Amendment 003 is formally ratified as of October 12, 2026.
+2. **Admitted Operation (`PROVISIONAL_CANONICAL_CANDIDATE_FAITHFUL_UNION`)**:
+   - **Stripe `PostRefunds`** (`#/paths/~1v1~1refunds/post`): Admitted under ratified Amendment 003. It has observed recursion depth 3 ($\le 5$), zero cycles, zero binary fields, and its sole non-monomorphic structure is the finite `metadata` object/string `anyOf`.
+3. **Permanently Excluded Operations Due to Depth Limits (`EXCLUDE_PENDING`)**:
+   - **GitHub `issues/create`** (observed depth 6): Excluded under Section 2.2 / Section 3.2 depth limit ($6 > 5$).
+   - **Stripe `PostCustomers`** (observed depth 6): Excluded under Section 2.2 / Section 3.2 depth limit ($6 > 5$).
+   - **Stripe `PostPaymentIntents`** (observed depth 9): Excluded under Section 2.2 / Section 3.2 depth limit ($9 > 5$).
+   - Amendment 003 provides no waiver for recursion depth limits.
+4. **Stage A Absolute Invariance**:
    - This amendment applies solely to Stage B empirical expansion. Stage A schemas, results, manifests, scripts, paper tables, and audits remain 100% frozen and untouched.

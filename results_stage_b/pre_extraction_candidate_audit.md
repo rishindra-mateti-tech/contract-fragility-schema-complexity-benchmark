@@ -1,8 +1,8 @@
 # Stage B Candidate Pre-Screen Static Audit Report
 
 **Document Type:** Reproducible Pre-Extraction Empirical Audit  
-**Audit Script SHA-256:** `269188c7f4a300a474bc49ff89abe845960553cafc9693834817608a47d1c155`  
-**Operation Manifest SHA-256:** `ff87dd91427ec2fb09410d82dbbe202ca325a4672789e8ae67a354dfaa1f62b9`  
+**Audit Script SHA-256:** `59f1930c7cfc7a683b2f57c99d58a1113528a9063ccbde7892debf29f5c89d9d`  
+**Operation Manifest SHA-256:** `bdd6aaad31779b527503d324ebe8459aebd1dad8659120b85119f8c18a577ce3`  
 **Generated At (UTC):** `2026-10-12T03:30:00Z`  
 **Environment:** Python `3.13.2` (win32) | PyYAML `6.0.3`  
 **Execution Command:** `python src/audit_stage_b_candidate_prescreen.py --generated-at 2026-10-12T03:30:00Z`  
@@ -14,10 +14,11 @@
 ## 1. Executive Summary & Cohort Health
 
 - **Total Operations Audited:** 32 operations across 10 source clusters.
-- **Clean Provisional Candidates (`PASS`):** **24 operations** (Pass all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, no conflicting allOf).
-- **Provisional Candidates Pending Union Amendment:** **1 operation** (`Stripe PostRefunds` — flagged solely due to finite metadata object/string anyOf unsetting semantics, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).
+- **Clean Monomorphic Provisional Candidates (`PASS`):** **24 operations** (Pass all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, no conflicting allOf).
+- **Faithful-Union Provisional Candidates (`PASS_PROVISIONAL_FAITHFUL_UNION`):** **1 operation** (`Stripe PostRefunds` — admitted under ratified `PROTOCOL_AMENDMENT_003.md`, preserving finite metadata object/string anyOf without pruning; governed by `UNION_VALIDATION_TEST_PLAN.md`).
 - **Excluded Operations (`EXCLUDE_PENDING`):** **7 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`, Stripe `PostCustomers`, Stripe `PostPaymentIntents`).
 - **Replacement Slots Still Required:** **5 operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support, 1 slot for GitHub Developer Platforms, 2 slots for Stripe Payments).
+- **Canonical Faithful Admitted:** **0 operations** (Zero operations admitted until extraction, validation, lineage verification, and review gates complete).
 
 ---
 
@@ -53,7 +54,7 @@
 | `CLUSTER_SLACK` | `users.profile.set` | POST | `#/paths/~1users.profile.set/post` | 1 | PASS | PASS | PASS | PASS | PASS | `header.token` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_STRIPE` | `PostCustomers` | POST | `#/paths/~1v1~1customers/post` | 6 | PASS | PASS | FAIL | PASS | PASS | `None` | **EXCLUDE_PENDING** |
 | `CLUSTER_STRIPE` | `PostPaymentIntents` | POST | `#/paths/~1v1~1payment_intents/post` | 9 | PASS | PASS | FAIL | PASS | PASS | `None` | **EXCLUDE_PENDING** |
-| `CLUSTER_STRIPE` | `PostRefunds` | POST | `#/paths/~1v1~1refunds/post` | 3 | PASS | PASS | FAIL | PASS | PASS | `None` | **FLAGGED_PENDING_UNION_AMENDMENT** |
+| `CLUSTER_STRIPE` | `PostRefunds` | POST | `#/paths/~1v1~1refunds/post` | 3 | PASS | PASS | FAIL | PASS | PASS | `None` | **PASS_PROVISIONAL_FAITHFUL_UNION** |
 | `CLUSTER_TWILIO` | `CreateCall` | POST | `#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post` | 3 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_TWILIO` | `CreateMessage` | POST | `#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post` | 3 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_TWILIO` | `UpdateAccount` | POST | `#/paths/~12010-04-01~1Accounts~1{Sid}.json/post` | 3 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
@@ -189,7 +190,7 @@
 ### `CLUSTER_STRIPE` : `PostRefunds`
 - **Pointer:** `#/paths/~1v1~1refunds/post`
 - **Blob SHA:** `f1cedf38e0178538a3c72e750da80226df41e28c`
-- **Audit Verdict:** `FLAGGED_PENDING_UNION_AMENDMENT`
+- **Audit Verdict:** `PASS_PROVISIONAL_FAITHFUL_UNION`
 - **Blocking Rules:** OBJECT_UNION
 - **Failure Rationale:**
   - Object-level anyOf variant[0] at #/paths/~1v1~1refunds/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/metadata/anyOf

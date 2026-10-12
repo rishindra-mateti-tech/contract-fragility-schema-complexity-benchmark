@@ -1,14 +1,14 @@
 {
   "metadata": {
     "audit_script": "src/audit_stage_b_candidate_prescreen.py",
-    "audit_script_sha256": "269188c7f4a300a474bc49ff89abe845960553cafc9693834817608a47d1c155",
+    "audit_script_sha256": "59f1930c7cfc7a683b2f57c99d58a1113528a9063ccbde7892debf29f5c89d9d",
     "command": "python src/audit_stage_b_candidate_prescreen.py --generated-at 2026-10-12T03:30:00Z",
     "dependencies": {
       "pyyaml": "6.0.3"
     },
     "generated_at_utc": "2026-10-12T03:30:00Z",
     "manifest_file": "results_stage_b/stage_b_operation_manifest.yaml",
-    "manifest_sha256": "ff87dd91427ec2fb09410d82dbbe202ca325a4672789e8ae67a354dfaa1f62b9",
+    "manifest_sha256": "bdd6aaad31779b527503d324ebe8459aebd1dad8659120b85119f8c18a577ce3",
     "platform": "win32",
     "python_version": "3.13.2",
     "reproducibility_note": "When executed with --generated-at <TIMESTAMP>, outputs are 100% byte-stable. Normal runtime execution without this argument is expected to vary only in timestamp metadata."
@@ -940,7 +940,7 @@
       "source_spec_pointer": "#/paths/~1v1~1payment_intents/post"
     },
     {
-      "audit_verdict": "FLAGGED_PENDING_UNION_AMENDMENT",
+      "audit_verdict": "PASS_PROVISIONAL_FAITHFUL_UNION",
       "blocking_failures": [
         "OBJECT_UNION"
       ],
@@ -949,7 +949,7 @@
         "Object-level anyOf variant[0] at #/paths/~1v1~1refunds/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/metadata/anyOf"
       ],
       "http_method": "POST",
-      "manifest_status": "PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT",
+      "manifest_status": "PROVISIONAL_CANONICAL_CANDIDATE_FAITHFUL_UNION",
       "max_depth_allowed": 5,
       "max_depth_observed": 3,
       "operation_id": "PostRefunds",
@@ -1061,9 +1061,12 @@
     }
   ],
   "summary": {
+    "canonical_faithful_admitted": 0,
+    "clean_monomorphic_provisional_passed": 24,
     "clean_provisional_candidates_passed": 24,
+    "faithful_union_provisional": 1,
     "flagged_exclude_pending": 7,
-    "provisional_pending_union_amendment": 1,
+    "provisional_pending_union_amendment": 0,
     "replacement_slots_required": 5,
     "total_operations_audited": 32
   }

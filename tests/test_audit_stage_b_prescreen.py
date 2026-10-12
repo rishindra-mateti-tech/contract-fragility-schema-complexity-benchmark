@@ -309,10 +309,12 @@ def test_auth_field_classification():
 def test_candidate_prescreen_runner_and_artifacts():
     report = run_candidate_prescreen(generated_at_utc="2026-10-12T03:30:00Z")
     assert report["summary"]["total_operations_audited"] == 32
+    assert report["summary"]["clean_monomorphic_provisional_passed"] == 24
     assert report["summary"]["clean_provisional_candidates_passed"] == 24
-    assert report["summary"]["provisional_pending_union_amendment"] == 1
+    assert report["summary"]["faithful_union_provisional"] == 1
     assert report["summary"]["flagged_exclude_pending"] == 7
     assert report["summary"]["replacement_slots_required"] == 5
+    assert report["summary"]["canonical_faithful_admitted"] == 0
     assert "operations" in report
     assert len(report["operations"]) == 32
     # Verify metadata fields exist
@@ -409,10 +411,10 @@ def test_depth_overflow_with_object_unions_regression():
     assert post_payment_intents["audit_verdict"] == "EXCLUDE_PENDING"
     assert "DEPTH_9" in post_payment_intents["blocking_failures"]
 
-    # 3. Depth-3 finite object-union operation (PostRefunds) is eligible only for PENDING_UNION_AMENDMENT status
+    # 3. Depth-3 finite object-union operation (PostRefunds) is admitted under ratified Amendment 003
     post_refunds = ops_by_id["PostRefunds"]
     assert post_refunds["max_depth_observed"] == 3
     assert post_refunds["rule_checks"]["recursion_depth_bounded"] == "PASS"
     assert post_refunds["rule_checks"]["object_union_restricted"] == "FAIL"
-    assert post_refunds["audit_verdict"] == "FLAGGED_PENDING_UNION_AMENDMENT"
+    assert post_refunds["audit_verdict"] == "PASS_PROVISIONAL_FAITHFUL_UNION"
     assert post_refunds["blocking_failures"] == ["OBJECT_UNION"]
