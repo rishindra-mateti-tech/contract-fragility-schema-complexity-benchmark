@@ -2,21 +2,19 @@
 """Deterministic Replacement Candidate Ranking Engine for Stage B Open Slots.
 
 Consumes the Stage B Raw-Source Operation Universe report (results_stage_b/raw_operation_universe.json)
-and ranks candidate operations for the five open canonical replacement slots:
+and ranks candidate operations for the five open canonical replacement slots according to pinned
+scoring weights and criteria defined in results_stage_b/replacement_ranking_config.yaml:
 1. GitHub Developer Platforms Slot (replacing issues/create)
 2. Stripe Payments Slot A (replacing PostCustomers)
 3. Stripe Payments Slot B (replacing PostPaymentIntents)
 4. Chatwoot CRM & Support Slot (replacing create-a-contact)
 5. LINE Logistics & Communications Slot (replacing replyMessage)
 
-Scoring Criteria:
-- Protocol Eligibility Gate: Passes every frozen eligibility rule (depth <= 5, no cycles, no binary/multipart, no object unions).
-- Structural Diversity: Multi-surface partitioning (path, query, header, body) and balanced optionality.
-- Domain & Workflow Fit: Core representative production API primitives.
-- Complexity-Tier Balance: Balanced properties (5-45) and nesting depths (2-5).
-- Token-Footprint Balance: Optimal prompt budget (80-600 tokens).
-- Semantic Role Non-Duplication: Complements rather than duplicates existing manifest operations.
-- Mock-Safety Feasibility: Explicitly marked MOCK_SAFETY_REVIEW_PENDING (never assumed safe).
+Scientific Modesty Invariants:
+- Status is strictly DRAFT_PENDING_REVIEW; official manifest is untouched.
+- Ties are preserved as co-leading candidates; a score of 100 does not imply a uniquely best choice.
+- Mock-safety feasibility contributes strictly 0 points pending concrete post-extraction mock validation.
+- Potentially stateful operations (e.g. pulls/submit-review depending on review_id) are explicitly flagged.
 """
 
 import argparse
@@ -32,6 +30,7 @@ import yaml
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 UNIVERSE_JSON_PATH = os.path.join(ROOT_DIR, "results_stage_b", "raw_operation_universe.json")
 MANIFEST_PATH = os.path.join(ROOT_DIR, "results_stage_b", "stage_b_operation_manifest.yaml")
+CONFIG_PATH = os.path.join(ROOT_DIR, "results_stage_b", "replacement_ranking_config.yaml")
 JSON_OUTPUT_PATH = os.path.join(ROOT_DIR, "results_stage_b", "replacement_candidate_ranking.json")
 MD_OUTPUT_PATH = os.path.join(ROOT_DIR, "results_stage_b", "replacement_candidate_ranking.md")
 
@@ -45,129 +44,52 @@ def sha256_file(path: str) -> str:
     return h.hexdigest()
 
 
-# Slot definitions and scoring domain heuristics
-SLOT_CONFIGS = [
-    {
-        "slot_id": "SLOT_GITHUB_01",
-        "slot_name": "GitHub Developer Platforms Slot",
-        "target_domain": "Developer Platforms & Source Automation",
-        "source_cluster_id": "CLUSTER_GITHUB",
-        "replaced_operation_id": "issues/create",
-        "replacement_rationale": "Replaces issues/create (disqualified due to depth 6 recursion overflow and labels.items object union).",
-        "priority_patterns": [
-            ("issues/{issue_number}/comments", 25),
-            ("/pulls", 24),
-            ("/dispatches", 23),
-            ("/releases", 22),
-            ("/forks", 21),
-            ("/branches", 18),
-            ("/labels", 18),
-        ],
-        "deprioritize_patterns": ["interaction-limits", "interaction-cap", "import", "migrations"],
-        "existing_cluster_roles": ["commit-status", "authenticated-user-repo"],
-    },
-    {
-        "slot_id": "SLOT_STRIPE_01",
-        "slot_name": "Stripe Payments Slot A (Merchant & Fund Routing)",
-        "target_domain": "Payments & Financial Infrastructure",
-        "source_cluster_id": "CLUSTER_STRIPE",
-        "replaced_operation_id": "PostCustomers",
-        "replacement_rationale": "Replaces PostCustomers (disqualified due to depth 6 recursion overflow and address/metadata object unions).",
-        "priority_patterns": [
-            ("/v1/payouts", 25),
-            ("/v1/transfers", 24),
-            ("/v1/account_links", 23),
-            ("/v1/ephemeral_keys", 22),
-            ("/v1/treasury/inbound_transfers", 21),
-            ("/v1/topups", 19),
-        ],
-        "deprioritize_patterns": ["test_helpers", "cancel", "fail", "return"],
-        "existing_cluster_roles": ["refunds"],
-    },
-    {
-        "slot_id": "SLOT_STRIPE_02",
-        "slot_name": "Stripe Payments Slot B (Billing, Tax & Catalog)",
-        "target_domain": "Payments & Financial Infrastructure",
-        "source_cluster_id": "CLUSTER_STRIPE",
-        "replaced_operation_id": "PostPaymentIntents",
-        "replacement_rationale": "Replaces PostPaymentIntents (disqualified due to depth 9 recursion overflow and wide polymorphic payment_method_options).",
-        "priority_patterns": [
-            ("/v1/tax/calculations", 25),
-            ("/v1/shipping_rates", 24),
-            ("/v1/promotion_codes", 23),
-            ("/v1/tax_rates", 22),
-            ("/v1/tax_ids", 21),
-            ("/v1/product_catalog/trial_offers", 20),
-            ("/v1/invoices/{invoice}/pay", 19),
-        ],
-        "deprioritize_patterns": ["test_helpers", "payouts", "transfers", "cancel"],
-        "existing_cluster_roles": ["refunds", "payouts", "transfers"],
-    },
-    {
-        "slot_id": "SLOT_CHATWOOT_01",
-        "slot_name": "Chatwoot CRM & Support Slot",
-        "target_domain": "CRM & Customer Support",
-        "source_cluster_id": "CLUSTER_CHATWOOT",
-        "replaced_operation_id": "create-a-contact",
-        "replacement_rationale": "Replaces create-a-contact (disqualified due to multipart/form-data binary upload 'avatar').",
-        "priority_patterns": [
-            ("canned_responses", 25),
-            ("webhooks", 24),
-            ("custom_attribute_definitions", 23),
-            ("labels", 22),
-            ("inbox_members", 21),
-            ("teams", 19),
-        ],
-        "deprioritize_patterns": ["delete", "archive"],
-        "existing_cluster_roles": ["account-user", "conversation"],
-    },
-    {
-        "slot_id": "SLOT_LINE_01",
-        "slot_name": "LINE Logistics & Communications Slot",
-        "target_domain": "Logistics & Communications",
-        "source_cluster_id": "CLUSTER_LINE",
-        "replaced_operation_id": "replyMessage",
-        "replacement_rationale": "Replaces replyMessage (disqualified due to depth 13 polymorphic messages union).",
-        "priority_patterns": [
-            ("webhook/test", 25),
-            ("loading/start", 24),
-            ("richmenu/{richmenuid}", 23),
-            ("linktoken", 22),
-            ("richmenu/alias", 21),
-            ("leave", 18),
-        ],
-        "deprioritize_patterns": ["delete"],
-        "existing_cluster_roles": ["webhook-endpoint", "mark-messages-as-read"],
-    },
-]
+def load_ranking_config() -> Dict[str, Any]:
+    """Loads pinned ranking criteria and slot configurations."""
+    if not os.path.exists(CONFIG_PATH):
+        raise FileNotFoundError(f"Missing ranking config file: {CONFIG_PATH}")
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
 
 
 def score_candidate_for_slot(
     op: Dict[str, Any],
     slot_cfg: Dict[str, Any],
     already_assigned_ops: Set[str]
-) -> Tuple[int, Dict[str, Any], str]:
-    """Computes transparent, explainable score across declared criteria."""
+) -> Tuple[int, Dict[str, Any], str, Dict[str, Any]]:
+    """Computes transparent, explainable score across declared criteria.
+
+    Mock safety feasibility contributes strictly 0 points.
+    Stateful operations are flagged with an explicit warning.
+    """
     op_id = op["operation_id"]
     endpoint = op["endpoint"]
 
     # Criterion 1: Protocol Eligibility Gate
-    if op["canonical_eligibility"] not in ["ELIGIBLE", "ELIGIBLE_FAITHFUL_UNION"]:
-        return 0, {}, "Failed frozen protocol eligibility gate (contains depth > 5, object unions, binary format, or cycles)."
+    eligibility = op.get("static_eligibility", op.get("canonical_eligibility"))
+    if eligibility not in [
+        "STATICALLY_ELIGIBLE_CANDIDATE",
+        "STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE",
+        "ELIGIBLE",
+        "ELIGIBLE_FAITHFUL_UNION",
+    ]:
+        return 0, {}, "Failed frozen protocol eligibility gate (contains depth > 5, object unions, binary format, or cycles).", {}
 
     # Filter out already assigned or existing manifest operations
     if op_id in already_assigned_ops:
-        return 0, {}, "Already assigned to a higher slot or present in active manifest cohort."
+        return 0, {}, "Already assigned to a higher slot or present in active manifest cohort.", {}
 
     # Deprioritize internal test helpers or admin configs
     for dep in slot_cfg.get("deprioritize_patterns", []):
         if dep in endpoint.lower() or dep in op_id.lower():
-            return 0, {}, f"Deprioritized due to pattern match '{dep}' (internal testing or administrative setting)."
+            return 0, {}, f"Deprioritized due to pattern match '{dep}' (internal testing or administrative setting).", {}
 
     # Criterion 2: Domain & Workflow Fit (max 25 pts)
     domain_score = 12
     matched_pattern = None
-    for pat, bonus in slot_cfg["priority_patterns"]:
+    for p_entry in slot_cfg.get("priority_patterns", []):
+        pat = p_entry["pattern"] if isinstance(p_entry, dict) else p_entry[0]
+        bonus = p_entry["weight"] if isinstance(p_entry, dict) else p_entry[1]
         if pat.lower() in endpoint.lower() or pat.lower() in op_id.lower():
             if bonus > domain_score:
                 domain_score = bonus
@@ -205,7 +127,7 @@ def score_candidate_for_slot(
 
     # Criterion 6: Semantic Role Non-Duplication (max 20 pts)
     role_score = 20
-    for ex_role in slot_cfg["existing_cluster_roles"]:
+    for ex_role in slot_cfg.get("existing_cluster_roles", []):
         if ex_role in endpoint.lower() or ex_role in op_id.lower():
             role_score = 10
             break
@@ -213,7 +135,31 @@ def score_candidate_for_slot(
     # Criterion 7: HTTP Method Primary Action Preference (POST creation action +1 pt)
     post_bonus = 1 if op["http_method"] == "POST" else 0
 
-    total = domain_score + diversity_score + tier_score + footprint_score + role_score + post_bonus
+    # Criterion 8: Mock-Safety Feasibility (STRICTLY 0 POINTS until empirical validation)
+    mock_safety_pts = 0
+
+    total = domain_score + diversity_score + tier_score + footprint_score + role_score + post_bonus + mock_safety_pts
+
+    # Statefulness evaluation
+    is_potentially_stateful = False
+    statefulness_warning = ""
+    if "{review_id}" in endpoint or op_id == "pulls/submit-review":
+        is_potentially_stateful = True
+        statefulness_warning = (
+            "POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. "
+            "Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it."
+        )
+    elif "{id}" in endpoint and "canned_responses" in endpoint:
+        is_potentially_stateful = True
+        statefulness_warning = "Requires an existing canned response id to update; requires seeded mock state."
+    elif "{invoice}" in endpoint and "pay" in endpoint:
+        is_potentially_stateful = True
+        statefulness_warning = "Requires an existing unpaid invoice; PostShippingRates is self-contained."
+
+    stateful_info = {
+        "is_potentially_stateful": is_potentially_stateful,
+        "statefulness_warning": statefulness_warning,
+    }
 
     breakdown = {
         "domain_workflow_fit": domain_score,
@@ -222,6 +168,7 @@ def score_candidate_for_slot(
         "token_footprint_balance": footprint_score,
         "role_non_duplication": role_score,
         "post_method_bonus": post_bonus,
+        "mock_safety_feasibility_points": mock_safety_pts,
         "matched_domain_pattern": matched_pattern,
     }
 
@@ -230,10 +177,13 @@ def score_candidate_for_slot(
         f"Surfaces: {surfaces} ({surface_pts} pts) + Opt-ratio {opt_ratio} ({opt_pts} pts); "
         f"Complexity: depth {depth}, props {props} ({tier_score}/20); "
         f"Tokens: {tokens} ({footprint_score}/15); "
-        f"Role distinctness: {role_score}/20; POST bonus: {post_bonus}/1."
+        f"Role distinctness: {role_score}/20; POST bonus: {post_bonus}/1; "
+        f"Mock-safety points: 0 (deferred pending extraction)."
     )
+    if is_potentially_stateful:
+        notes += f" [WARNING: {statefulness_warning}]"
 
-    return total, breakdown, notes
+    return total, breakdown, notes, stateful_info
 
 
 def determine_mock_safety_notes(op: Dict[str, Any]) -> str:
@@ -247,8 +197,9 @@ def determine_mock_safety_notes(op: Dict[str, Any]) -> str:
         f"Mock execution requires local state simulation for {op['endpoint']}. "
         f"Input surfaces ({'+'.join(surfaces)}) declare {props} properties ({req} required). "
         f"At nesting depth {depth}, deterministic mock verification requires validating "
-        f"contract arguments against local SQLite/in-memory state machine. "
-        "Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes."
+        f"contract arguments against local state machine. "
+        "Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. "
+        "Contributes 0 points to candidate composite score."
     )
     return notes
 
@@ -266,11 +217,13 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
     self_sha = sha256_file(self_path) if os.path.exists(self_path) else "PENDING_SELF_HASH"
     universe_sha = sha256_file(UNIVERSE_JSON_PATH)
     manifest_sha = sha256_file(MANIFEST_PATH)
+    config_sha = sha256_file(CONFIG_PATH)
 
     with open(UNIVERSE_JSON_PATH, "r", encoding="utf-8") as f:
         universe_data = json.load(f)
     with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
         manifest_data = yaml.safe_load(f)
+    config_data = load_ranking_config()
 
     # Collect existing manifest operation IDs to avoid duplicate recommendations
     existing_manifest_ops: Set[str] = set()
@@ -280,11 +233,12 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
         existing_manifest_ops.add(op["operation_id"])
 
     all_universe_ops = universe_data["operations"]
-
     assigned_in_ranking: Set[str] = set(existing_manifest_ops)
     ranked_slots = []
 
-    for slot_cfg in SLOT_CONFIGS:
+    slot_cfgs = list(config_data.get("slot_configurations", {}).values())
+
+    for slot_cfg in slot_cfgs:
         slot_id = slot_cfg["slot_id"]
         cluster_id = slot_cfg["source_cluster_id"]
 
@@ -295,20 +249,26 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
 
         scored_list = []
         for op in cluster_candidates:
-            score, breakdown, scoring_notes = score_candidate_for_slot(op, slot_cfg, assigned_in_ranking)
+            score, breakdown, scoring_notes, stateful_info = score_candidate_for_slot(op, slot_cfg, assigned_in_ranking)
             if score > 0:
-                scored_list.append((score, op, breakdown, scoring_notes))
+                scored_list.append((score, op, breakdown, scoring_notes, stateful_info))
 
         # Sort deterministically: descending score, then ascending depth, then ascending tokens, then op_id
         scored_list.sort(key=lambda item: (-item[0], item[1]["maximum_nesting_depth"], item[1]["estimated_token_footprint"], item[1]["operation_id"]))
 
         # Select top candidates (at least 5 where available)
+        max_score = scored_list[0][0] if scored_list else 0
         top_candidates = []
-        for rank_num, (score, op, breakdown, scoring_notes) in enumerate(scored_list[:5], 1):
+        for rank_num, (score, op, breakdown, scoring_notes, stateful_info) in enumerate(scored_list[:5], 1):
             mock_notes = determine_mock_safety_notes(op)
+            is_co_leader = (score == max_score)
+            status_label = "CO_LEADING_CANDIDATE (Tied)" if is_co_leader else f"RANK_{rank_num}"
+
             top_candidates.append({
                 "rank": rank_num,
                 "composite_score": score,
+                "is_co_leading": is_co_leader,
+                "status_label": status_label,
                 "operation_id": op["operation_id"],
                 "endpoint": op["endpoint"],
                 "http_method": op["http_method"],
@@ -322,9 +282,12 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
                 "input_surfaces": op["input_surfaces"],
                 "content_types": op["content_types"],
                 "estimated_token_footprint": op["estimated_token_footprint"],
+                "is_potentially_stateful": stateful_info["is_potentially_stateful"],
+                "statefulness_warning": stateful_info["statefulness_warning"],
                 "score_breakdown": breakdown,
                 "scoring_notes": scoring_notes,
                 "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
+                "mock_safety_points_contributed": 0,
                 "mock_safety_notes": mock_notes,
                 "recommendation_status": "DRAFT_PENDING_REVIEW",
             })
@@ -340,8 +303,10 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
             "source_cluster_id": cluster_id,
             "replaced_operation_id": slot_cfg["replaced_operation_id"],
             "replacement_rationale": slot_cfg["replacement_rationale"],
-            "total_cluster_eligible_candidates": sum(1 for op in cluster_candidates if op["canonical_eligibility"] in ["ELIGIBLE", "ELIGIBLE_FAITHFUL_UNION"]),
+            "statefulness_guidance": slot_cfg.get("statefulness_warning", ""),
+            "total_cluster_eligible_candidates": sum(1 for op in cluster_candidates if op.get("static_eligibility", op.get("canonical_eligibility")) in ["STATICALLY_ELIGIBLE_CANDIDATE", "STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE", "ELIGIBLE", "ELIGIBLE_FAITHFUL_UNION"]),
             "candidates_ranked": len(top_candidates),
+            "co_leading_candidates_count": sum(1 for c in top_candidates if c["is_co_leading"]),
             "ranked_candidates": top_candidates,
         })
 
@@ -349,6 +314,8 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
         "metadata": {
             "ranking_script": "src/rank_stage_b_replacement_candidates.py",
             "ranking_script_sha256": self_sha,
+            "config_file": "results_stage_b/replacement_ranking_config.yaml",
+            "config_sha256": config_sha,
             "universe_source_file": "results_stage_b/raw_operation_universe.json",
             "universe_source_sha256": universe_sha,
             "manifest_file": "results_stage_b/stage_b_operation_manifest.yaml",
@@ -360,6 +327,12 @@ def rank_replacement_candidates(generated_at_utc: Optional[str] = None) -> Dict[
                 "pyyaml": yaml.__version__,
             },
             "command": cmd_str,
+            "scientific_modesty_principles": [
+                "Rankings are DRAFT_PENDING_REVIEW only; official manifest remains 100% untouched.",
+                "Ties are explicitly preserved as co-leading candidates; a score of 100 does not establish unique supremacy.",
+                "Mock-safety feasibility contributes strictly 0 points pending empirical Stage B mock execution verification.",
+                "Potentially stateful endpoints (e.g. pulls/submit-review depending on review_id) are explicitly flagged."
+            ],
             "reproducibility_note": (
                 "When executed with --generated-at <TIMESTAMP>, outputs are 100% byte-stable. "
                 "Normal runtime execution without this argument varies only in timestamp metadata."
@@ -381,6 +354,7 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
         "",
         "**Document Type:** Deterministic Explainable Multi-Slot Candidate Ranking  ",
         f"**Ranking Script SHA-256:** `{meta['ranking_script_sha256']}`  ",
+        f"**Ranking Config SHA-256:** `{meta['config_sha256']}`  ",
         f"**Raw Universe SHA-256:** `{meta['universe_source_sha256']}`  ",
         f"**Operation Manifest SHA-256:** `{meta['manifest_sha256']}`  ",
         f"**Generated At (UTC):** `{meta['generated_at_utc']}`  ",
@@ -390,6 +364,11 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
         "> **Operational Constraint Notice:** This report produces a deterministic ranking for informational review only. "
         "The official operation manifest (`stage_b_operation_manifest.yaml`) remains **100% UNMODIFIED**. "
         "All recommendations are explicitly labeled **`DRAFT_PENDING_REVIEW`** and require formal human authorization before admission.",
+        "",
+        "> **Scientific Modesty Principles:**  ",
+        "> 1. **Co-Leading Ties:** Multiple operations sharing the top score are preserved as co-leading candidates. A score of 100 does not imply a uniquely best choice.  ",
+        "> 2. **Mock-Safety Inactive:** Mock-safety feasibility contributes strictly 0 points until empirical mock state execution is verified.  ",
+        "> 3. **Statefulness Transparency:** Operations depending on pre-existing external state (e.g. `pulls/submit-review` depending on `review_id`) are explicitly flagged; self-contained constructors (e.g. `pulls/create`) must be evaluated alongside them.",
         "",
         "---",
         "",
@@ -402,29 +381,30 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
         "4. **Chatwoot CRM & Support Slot** (1 slot to replace `create-a-contact`)",
         "5. **LINE Logistics & Communications Slot** (1 slot to replace `replyMessage`)",
         "",
-        "### Transparent Scoring Rubric (100-Point Composite Scale):",
-        "- **Protocol Eligibility Gate (Hard Gate)**: Candidate must pass all frozen rules (`canonical_eligibility == ELIGIBLE` or `ELIGIBLE_FAITHFUL_UNION`). Disqualified operations receive 0 pts.",
-        "- **Domain & Workflow Fit (25 pts)**: High-frequency, representative core production API primitives (comments, pulls, payouts, products, webhooks).",
-        "- **Structural Diversity (20 pts)**: Rewards multi-surface inputs (`path + body`, etc.) and balanced optionality ratios (0.15–0.85).",
-        "- **Complexity-Tier Balance (20 pts)**: Rewards well-proportioned payloads (properties 5–35, depth 2–4) over trivial empty objects or boundary extremes.",
+        "### Transparent Scoring Rubric (Pinned in `results_stage_b/replacement_ranking_config.yaml`):",
+        "- **Protocol Eligibility Gate (Hard Gate)**: Candidate must pass all static filter rules (`static_eligibility == STATICALLY_ELIGIBLE_CANDIDATE` or `STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE`). Disqualified operations receive 0 pts.",
+        "- **Domain & Workflow Fit (25 pts)**: High-frequency, representative core production API primitives (comments, pulls, payouts, shipping rates, webhooks).",
+        "- **Structural Diversity (20 pts)**: Rewards multi-surface inputs (`path + body`, etc.) and balanced optionality ratios (0.10–0.90).",
+        "- **Complexity-Tier Balance (20 pts)**: Rewards well-proportioned payloads (properties 4–35, depth 2–4) over trivial empty objects or boundary extremes.",
         "- **Token Footprint Balance (15 pts)**: Optimal prompt budget (80–500 tokens).",
         "- **Semantic Role Non-Duplication (20 pts)**: Penalizes functional redundancy against existing operations in the cluster.",
-        "- **Mock-Safety Feasibility**: Formally evaluated and marked **`MOCK_SAFETY_REVIEW_PENDING`** (never assumed safe).",
+        "- **Mock-Safety Feasibility**: Formally evaluated and marked **`MOCK_SAFETY_REVIEW_PENDING`** (0 points contributed; never assumed safe).",
         "",
         "---",
         "",
-        "## 2. Top-Ranked Recommendation Summary Table",
+        "## 2. Co-Leading Replacement Recommendations Summary Table",
         "",
-        "| Slot ID | Cluster | Replaced Operation | Top Recommended Candidate | Method | Score | Depth | Props | Surfaces | Tokens | Recommendation Status | Mock Safety |",
-        "| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :--- | :---: | :--- | :--- |",
+        "| Slot ID | Cluster | Replaced Operation | Top Candidate | Method | Score | Status Label | Depth | Props | Surfaces | Stateful? | Mock Safety |",
+        "| :--- | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :--- | :---: | :--- |",
     ]
 
     for s in slots:
         top = s["ranked_candidates"][0] if s["ranked_candidates"] else None
         if top:
             surfaces_str = "+".join(top["input_surfaces"])
+            stateful_flag = "⚠️ YES" if top["is_potentially_stateful"] else "NO"
             lines.append(
-                f"| `{s['slot_id']}` | `{s['source_cluster_id']}` | `{s['replaced_operation_id']}` | **`{top['operation_id']}`** | {top['http_method']} | **{top['composite_score']}** | {top['maximum_nesting_depth']} | {top['property_count']} | `{surfaces_str}` | {top['estimated_token_footprint']} | **{top['recommendation_status']}** | `{top['mock_safety_status']}` |"
+                f"| `{s['slot_id']}` | `{s['source_cluster_id']}` | `{s['replaced_operation_id']}` | **`{top['operation_id']}`** | {top['http_method']} | **{top['composite_score']}** | `{top['status_label']}` | {top['maximum_nesting_depth']} | {top['property_count']} | `{surfaces_str}` | {stateful_flag} | `{top['mock_safety_status']}` |"
             )
 
     lines.extend([
@@ -442,16 +422,19 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
             f"- **Source Cluster:** `{s['source_cluster_id']}`",
             f"- **Replaced Operation:** `{s['replaced_operation_id']}`",
             f"- **Exclusion Cause:** {s['replacement_rationale']}",
-            f"- **Total Eligible Candidates in Cluster Pool:** {s['total_cluster_eligible_candidates']} operations",
+            f"- **Statefulness Guidance:** {s['statefulness_guidance']}",
+            f"- **Total Statically Eligible Candidates in Cluster Pool:** {s['total_cluster_eligible_candidates']} operations",
+            f"- **Co-Leading Candidates Count:** {s['co_leading_candidates_count']}",
             "",
-            "| Rank | Composite Score | Operation ID | HTTP | Endpoint | Depth | Props | Req | Surfaces | Tokens | Recommendation Status |",
-            "| :---: | :---: | :--- | :---: | :--- | :---: | :---: | :---: | :--- | :---: | :--- |",
+            "| Rank | Composite Score | Operation ID | HTTP | Endpoint | Status Label | Depth | Props | Req | Surfaces | Stateful? |",
+            "| :---: | :---: | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :--- | :---: |",
         ])
 
         for c in s["ranked_candidates"]:
             surfaces_str = "+".join(c["input_surfaces"])
+            stateful_str = "⚠️ YES" if c["is_potentially_stateful"] else "NO"
             lines.append(
-                f"| {c['rank']} | **{c['composite_score']}** | `{c['operation_id']}` | {c['http_method']} | `{c['endpoint']}` | {c['maximum_nesting_depth']} | {c['property_count']} | {c['required_count']} | `{surfaces_str}` | {c['estimated_token_footprint']} | **{c['recommendation_status']}** |"
+                f"| {c['rank']} | **{c['composite_score']}** | `{c['operation_id']}` | {c['http_method']} | `{c['endpoint']}` | `{c['status_label']}` | {c['maximum_nesting_depth']} | {c['property_count']} | {c['required_count']} | `{surfaces_str}` | {stateful_str} |"
             )
 
         lines.extend([
@@ -462,13 +445,14 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
 
         for c in s["ranked_candidates"]:
             bd = c["score_breakdown"]
+            stateful_note = f"\n- **Statefulness Warning:** {c['statefulness_warning']}" if c["is_potentially_stateful"] else ""
             lines.extend([
-                f"##### Rank {c['rank']}: `{c['operation_id']}` (Score: {c['composite_score']}/100)",
+                f"##### Rank {c['rank']}: `{c['operation_id']}` (Score: {c['composite_score']}/100 — `{c['status_label']}`)",
                 f"- **JSON Pointer:** `{c['source_spec_pointer']}`",
                 f"- **HTTP Method / Endpoint:** `{c['http_method']} {c['endpoint']}`",
-                f"- **Score Breakdown:** Domain: {bd['domain_workflow_fit']}/25 | Diversity: {bd['structural_diversity']}/20 | Complexity: {bd['complexity_tier_balance']}/20 | Footprint: {bd['token_footprint_balance']}/15 | Role: {bd['role_non_duplication']}/20",
-                f"- **Scoring Notes:** {c['scoring_notes']}",
-                f"- **Mock Safety Status:** `{c['mock_safety_status']}`",
+                f"- **Score Breakdown:** Domain: {bd['domain_workflow_fit']}/25 | Diversity: {bd['structural_diversity']}/20 | Complexity: {bd['complexity_tier_balance']}/20 | Footprint: {bd['token_footprint_balance']}/15 | Role: {bd['role_non_duplication']}/20 | Mock Safety: {bd['mock_safety_feasibility_points']}/0 (deferred)",
+                f"- **Scoring Notes:** {c['scoring_notes']}{stateful_note}",
+                f"- **Mock Safety Status:** `{c['mock_safety_status']}` (Contributed: {c['mock_safety_points_contributed']} pts)",
                 f"- **Mock Safety Analysis:** {c['mock_safety_notes']}",
                 "",
             ])
@@ -483,12 +467,8 @@ def generate_markdown_report(report_data: Dict[str, Any]) -> str:
         "",
         "1. **Status**: All rankings are strictly `DRAFT_PENDING_REVIEW`.",
         "2. **Official Manifest**: Remains 100% unmodified until user approves selections.",
-        "3. **Recommended Top 5 Set**:",
-        "   - GitHub: `issues/create-comment`",
-        "   - Stripe Slot A: `PostPayouts`",
-        "   - Stripe Slot B: `PostProducts`",
-        "   - Chatwoot: `add-new-canned-response-to-account`",
-        "   - LINE: `testWebhookEndpoint`",
+        "3. **Stateful vs. Self-Contained Review Highlight**:",
+        "   - In GitHub Slot (`SLOT_GITHUB_01`), `pulls/submit-review` and `pulls/create` both score 100/100 (co-leaders). `pulls/submit-review` requires a pre-existing `review_id`, while `pulls/create` is a self-contained PR constructor. Human review should determine whether mock harness simplicity favors `pulls/create`.",
     ])
 
     return "\n".join(lines)

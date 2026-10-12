@@ -22,6 +22,8 @@ from src.rank_stage_b_replacement_candidates import (
     MD_OUTPUT_PATH,
     MANIFEST_PATH,
     UNIVERSE_JSON_PATH,
+    CONFIG_PATH,
+    sha256_file,
 )
 
 
@@ -58,7 +60,8 @@ def test_ranked_candidates_are_strictly_protocol_eligible():
             op_id = c["operation_id"]
             assert op_id in univ_by_id, f"Candidate {op_id} must exist in universe"
             orig = univ_by_id[op_id]
-            assert orig["canonical_eligibility"] in ["ELIGIBLE", "ELIGIBLE_FAITHFUL_UNION"]
+            elig = orig.get("static_eligibility", orig.get("canonical_eligibility"))
+            assert elig in ["STATICALLY_ELIGIBLE_CANDIDATE", "STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE", "ELIGIBLE", "ELIGIBLE_FAITHFUL_UNION"]
             assert orig["maximum_nesting_depth"] <= 5
             assert orig["has_cycle"] is False
             assert orig["has_binary_or_multipart"] is False
@@ -106,3 +109,41 @@ def test_deterministic_output_with_generated_at():
     md1 = generate_markdown_report(rep1)
     md2 = generate_markdown_report(rep2)
     assert md1 == md2, "Runs with identical inputs and generated-at must produce byte-identical Markdown"
+
+
+def test_ranking_config_loaded_and_hashed():
+    report = rank_replacement_candidates(generated_at_utc="2026-10-12T04:45:00Z")
+    meta = report["metadata"]
+    assert meta["config_file"] == "results_stage_b/replacement_ranking_config.yaml"
+    assert meta["config_sha256"] == sha256_file(CONFIG_PATH)
+
+
+def test_mock_safety_contributes_strictly_zero_points():
+    report = rank_replacement_candidates(generated_at_utc="2026-10-12T04:45:00Z")
+    for s in report["slots"]:
+        for c in s["ranked_candidates"]:
+            assert c["mock_safety_points_contributed"] == 0
+            assert c["score_breakdown"]["mock_safety_feasibility_points"] == 0
+
+
+def test_ties_preserved_as_co_leading_candidates():
+    report = report_data = rank_replacement_candidates(generated_at_utc="2026-10-12T04:45:00Z")
+    github_slot = next(s for s in report["slots"] if s["slot_id"] == "SLOT_GITHUB_01")
+    candidates = github_slot["ranked_candidates"]
+    top_two = candidates[:2]
+    assert top_two[0]["composite_score"] == top_two[1]["composite_score"] == 100
+    assert top_two[0]["is_co_leading"] is True
+    assert top_two[1]["is_co_leading"] is True
+    assert "CO_LEADING_CANDIDATE (Tied)" in top_two[0]["status_label"]
+    assert "CO_LEADING_CANDIDATE (Tied)" in top_two[1]["status_label"]
+    op_ids = {top_two[0]["operation_id"], top_two[1]["operation_id"]}
+    assert op_ids == {"pulls/submit-review", "pulls/create"}
+
+
+def test_statefulness_warning_on_dependent_operations():
+    report = rank_replacement_candidates(generated_at_utc="2026-10-12T04:45:00Z")
+    github_slot = next(s for s in report["slots"] if s["slot_id"] == "SLOT_GITHUB_01")
+    submit_review = next(c for c in github_slot["ranked_candidates"] if c["operation_id"] == "pulls/submit-review")
+    assert submit_review["is_potentially_stateful"] is True
+    assert "POTENTIALLY_STATEFUL_DEPENDENCY" in submit_review["statefulness_warning"]
+    assert "review_id" in submit_review["statefulness_warning"]

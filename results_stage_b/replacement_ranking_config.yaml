@@ -1,0 +1,201 @@
+# Replacement Candidate Ranking Configuration & Scientific Rationale
+# Benchmark: Contract Fragility & Schema Complexity Benchmark (Stage B)
+# Document Role: Pinned, Human-Readable Ranking Weights, Criteria, and Scoring Rules
+# Status: DRAFT_PENDING_REVIEW
+
+config_version: "1.1.0"
+date_utc: "2026-10-12"
+governing_protocol: "STAGE_B_EXTRACTION_SPEC.md"
+
+governing_principles:
+  ranking_status: "DRAFT_PENDING_REVIEW"
+  manifest_immutability: "This ranking is diagnostic and advisory only. It does NOT modify or admit operations into stage_b_operation_manifest.yaml."
+  tie_handling: "All candidates sharing the highest score in a slot are preserved as co-leading candidates. A top score does NOT imply a uniquely optimal replacement."
+  statefulness_transparency: "Candidates depending on pre-existing external state (e.g. review_id, webhook_id) must be explicitly flagged and cannot be automatically preferred over self-contained resource constructors."
+
+scoring_criteria_weights_and_rationale:
+  protocol_eligibility_gate:
+    max_points: 0  # Binary gate (0 or DQ)
+    type: "BINARY_PREREQUISITE"
+    rationale: >
+      Hard exclusion gate. A candidate must possess STATICALLY_ELIGIBLE_CANDIDATE or
+      STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE status. Any violation of depth <= 5,
+      cycles, external refs, multipart/binary payloads, or object unions causes immediate disqualification.
+
+  domain_workflow_fit:
+    max_points: 25
+    type: "HEURISTIC_PREFERENCE"
+    rationale: >
+      Evaluates whether an endpoint represents a core, production-relevant capability of the service
+      (e.g., submitting pull request reviews, executing payouts, calculating shipping rates, managing canned responses)
+      rather than esoteric debugging endpoints, internal test helpers, or obscure administrative settings.
+
+  structural_diversity:
+    max_points: 20
+    type: "STRUCTURAL_PROPERTY"
+    rationale: >
+      Rewards operations exhibiting multi-surface HTTP transport partitioning (e.g. combining path and body surfaces,
+      10 pts) and realistic optional-property ratios (0.10 <= ratio <= 0.90, 10 pts). Flat single-surface or all-required
+      schemas do not test transport routing capabilities.
+
+  complexity_tier_balance:
+    max_points: 20
+    type: "STRUCTURAL_PROPERTY"
+    rationale: >
+      Targets meaningful schema depth and property count without approaching the recursion ceiling:
+      Depth 2-4 with 4-35 properties receives full 20 pts; depth 5 receives 18 pts; depth 1 with 2-8 properties receives 14 pts.
+      Trivial single-property schemas receive lower scores.
+
+  token_footprint_balance:
+    max_points: 15
+    type: "OPERATIONAL_BUDGET"
+    rationale: >
+      Optimal prompt footprint between 80 and 500 tokens receives 15 pts; 40 to 800 tokens receives 11 pts;
+      extreme footprints (<40 or >800 tokens) receive 6 pts to avoid context budget bloat while maintaining realistic complexity.
+
+  semantic_role_non_duplication:
+    max_points: 20
+    type: "COHORT_DIVERSITY"
+    rationale: >
+      Ensures that replacement operations introduce distinct functional roles rather than duplicating existing
+      active manifest operations in the same cluster. Full 20 pts awarded if the candidate's functional role
+      is orthogonal to existing cluster operations; 10 pts if partially overlapping.
+
+  method_primary_action:
+    max_points: 1
+    type: "HTTP_METHOD_PREFERENCE"
+    rationale: >
+      Slight tie-breaker preference (+1 pt) for state-constructing POST operations over PUT/PATCH modifications.
+
+  mock_safety_feasibility:
+    max_points: 0
+    type: "DEFERRED_POST_EXTRACTION"
+    status: "MOCK_SAFETY_REVIEW_PENDING"
+    rationale: >
+      SCIENTIFIC INTEGRITY INVARIANT: Mock-safety feasibility must NOT contribute points until it has been
+      formally evaluated by the future extraction and stateful mock validation pipeline. Points allocated: strictly 0.
+
+slot_configurations:
+  SLOT_GITHUB_01:
+    slot_id: "SLOT_GITHUB_01"
+    slot_name: "GitHub Developer Platforms Slot"
+    target_domain: "Developer Platforms & Source Automation"
+    source_cluster_id: "CLUSTER_GITHUB"
+    replaced_operation_id: "issues/create"
+    replacement_rationale: "Replaces issues/create (disqualified due to depth 6 recursion overflow and labels.items object union)."
+    statefulness_warning: >
+      pulls/submit-review requires an existing review_id (stateful dependency).
+      Self-contained operations such as pulls/create should be evaluated alongside it.
+    priority_patterns:
+      - pattern: "issues/{issue_number}/comments"
+        weight: 25
+      - pattern: "/pulls"
+        weight: 24
+      - pattern: "/dispatches"
+        weight: 23
+      - pattern: "/releases"
+        weight: 22
+      - pattern: "/labels"
+        weight: 20
+    existing_cluster_roles:
+      - "status"
+      - "user/repos"
+    deprioritize_patterns:
+      - "import"
+      - "migration"
+      - "hook"
+
+  SLOT_STRIPE_01:
+    slot_id: "SLOT_STRIPE_01"
+    slot_name: "Stripe Payments Slot A"
+    target_domain: "Merchant Fund Routing & Balances"
+    source_cluster_id: "CLUSTER_STRIPE"
+    replaced_operation_id: "PostCustomers"
+    replacement_rationale: "Replaces PostCustomers (disqualified due to depth 6 recursion overflow and address/metadata anyOf unions)."
+    statefulness_warning: "None; endpoints evaluate standard merchant balance and transfer structures."
+    priority_patterns:
+      - pattern: "/payouts"
+        weight: 25
+      - pattern: "/transfers"
+        weight: 24
+      - pattern: "/balance"
+        weight: 23
+      - pattern: "/account_links"
+        weight: 22
+    existing_cluster_roles:
+      - "refunds"
+    deprioritize_patterns:
+      - "test_helpers"
+      - "radar"
+      - "terminal"
+
+  SLOT_STRIPE_02:
+    slot_id: "SLOT_STRIPE_02"
+    slot_name: "Stripe Payments Slot B"
+    target_domain: "Billing, Tax, & Commerce"
+    source_cluster_id: "CLUSTER_STRIPE"
+    replaced_operation_id: "PostPaymentIntents"
+    replacement_rationale: "Replaces PostPaymentIntents (disqualified due to depth 9 recursion overflow and wide payment_method_options unions)."
+    statefulness_warning: "PostInvoicesInvoicePay depends on an unpaid invoice ID; PostShippingRates is self-contained."
+    priority_patterns:
+      - pattern: "/shipping_rates"
+        weight: 25
+      - pattern: "/tax_rates"
+        weight: 24
+      - pattern: "/invoices"
+        weight: 23
+      - pattern: "/promotion_codes"
+        weight: 22
+    existing_cluster_roles:
+      - "refunds"
+    deprioritize_patterns:
+      - "test_helpers"
+      - "radar"
+      - "terminal"
+
+  SLOT_CHATWOOT_01:
+    slot_id: "SLOT_CHATWOOT_01"
+    slot_name: "Chatwoot CRM & Support Slot"
+    target_domain: "Customer Support Automation & Canned Responses"
+    source_cluster_id: "CLUSTER_CHATWOOT"
+    replaced_operation_id: "create-a-contact"
+    replacement_rationale: "Replaces create-a-contact (disqualified due to binary avatar property)."
+    statefulness_warning: "update-canned-response-in-account requires account_id and canned response id."
+    priority_patterns:
+      - pattern: "canned_responses"
+        weight: 25
+      - pattern: "webhooks"
+        weight: 24
+      - pattern: "custom_attributes"
+        weight: 23
+      - pattern: "automation_rules"
+        weight: 22
+    existing_cluster_roles:
+      - "account_users"
+      - "conversations"
+    deprioritize_patterns:
+      - "bulk"
+      - "notification_settings"
+
+  SLOT_LINE_01:
+    slot_id: "SLOT_LINE_01"
+    slot_name: "LINE Logistics & Communications Slot"
+    target_domain: "Chat Experience & Bot Interactions"
+    source_cluster_id: "CLUSTER_LINE"
+    replaced_operation_id: "replyMessage"
+    replacement_rationale: "Replaces replyMessage (disqualified due to 11-variant discriminated message union)."
+    statefulness_warning: "showLoadingAnimation requires a valid chatId; testWebhookEndpoint tests connectivity."
+    priority_patterns:
+      - pattern: "/chat/loading/start"
+        weight: 25
+      - pattern: "/richmenu"
+        weight: 22
+      - pattern: "/webhook/test"
+        weight: 20
+    existing_cluster_roles:
+      - "webhook:set"
+      - "messages:markAsRead"
+    deprioritize_patterns:
+      - "aggregation"
+      - "insight"
+      - "audience"

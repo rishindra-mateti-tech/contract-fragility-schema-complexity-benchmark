@@ -1,6 +1,8 @@
 {
   "metadata": {
     "command": "python src/rank_stage_b_replacement_candidates.py --generated-at 2026-10-12T04:45:00Z",
+    "config_file": "results_stage_b/replacement_ranking_config.yaml",
+    "config_sha256": "f7dff5f3e9e8155e0babbaecb51da0981eb252787c177ec2cc4f48eb7f0a13ed",
     "dependencies": {
       "pyyaml": "6.0.3"
     },
@@ -11,14 +13,21 @@
     "platform": "win32",
     "python_version": "3.13.2",
     "ranking_script": "src/rank_stage_b_replacement_candidates.py",
-    "ranking_script_sha256": "f33e40020056a2bc37c958776a0498678563115f01b3ba727025c634f86d48e4",
+    "ranking_script_sha256": "212462e8323027dcfe79dac9024fed0ec20d00ee93deee5ae00c633deb223c3a",
     "reproducibility_note": "When executed with --generated-at <TIMESTAMP>, outputs are 100% byte-stable. Normal runtime execution without this argument varies only in timestamp metadata.",
+    "scientific_modesty_principles": [
+      "Rankings are DRAFT_PENDING_REVIEW only; official manifest remains 100% untouched.",
+      "Ties are explicitly preserved as co-leading candidates; a score of 100 does not establish unique supremacy.",
+      "Mock-safety feasibility contributes strictly 0 points pending empirical Stage B mock execution verification.",
+      "Potentially stateful endpoints (e.g. pulls/submit-review depending on review_id) are explicitly flagged."
+    ],
     "universe_source_file": "results_stage_b/raw_operation_universe.json",
-    "universe_source_sha256": "0886cbf0115fafdd1e2f035a4da2214d60f4df19b943b1a4979766d5acfca734"
+    "universe_source_sha256": "9fdb53f08049f5e3c8257ccfc6f305dcf1ed16cba5047124eb528900e12b8096"
   },
   "slots": [
     {
       "candidates_ranked": 5,
+      "co_leading_candidates_count": 5,
       "ranked_candidates": [
         {
           "composite_score": 100,
@@ -32,8 +41,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": true,
           "maximum_nesting_depth": 2,
-          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events. Input surfaces (body+path) declare 6 properties (5 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events. Input surfaces (body+path) declare 6 properties (5 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "pulls/submit-review",
           "optional_ratio": 0.1667,
@@ -46,14 +58,17 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
             "matched_domain_pattern": "/pulls",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.1667 (10 pts); Complexity: depth 2, props 6 (20/20); Tokens: 141 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.1667 (10 pts); Complexity: depth 2, props 6 (20/20); Tokens: 141 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it.]",
           "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
-          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1reviews~1{review_id}~1events/post"
+          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1reviews~1{review_id}~1events/post",
+          "statefulness_warning": "POTENTIALLY_STATEFUL_DEPENDENCY: Requires a pre-existing review_id created in a prior review turn. Cannot be called without prior state setup; self-contained pulls/create should be evaluated alongside it.",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
           "composite_score": 100,
@@ -67,8 +82,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 2,
-          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls. Input surfaces (body+path) declare 10 properties (4 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls. Input surfaces (body+path) declare 10 properties (4 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "pulls/create",
           "optional_ratio": 0.6,
@@ -81,14 +99,17 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
             "matched_domain_pattern": "/pulls",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.6 (10 pts); Complexity: depth 2, props 10 (20/20); Tokens: 179 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.6 (10 pts); Complexity: depth 2, props 10 (20/20); Tokens: 179 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
-          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post"
+          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post",
+          "statefulness_warning": "",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
           "composite_score": 100,
@@ -102,8 +123,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 2,
-          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/comments. Input surfaces (body+path) declare 13 properties (6 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/comments. Input surfaces (body+path) declare 13 properties (6 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "pulls/create-review-comment",
           "optional_ratio": 0.5385,
@@ -116,14 +140,17 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
             "matched_domain_pattern": "/pulls",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.5385 (10 pts); Complexity: depth 2, props 13 (20/20); Tokens: 221 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.5385 (10 pts); Complexity: depth 2, props 13 (20/20); Tokens: 221 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
-          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1comments/post"
+          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1comments/post",
+          "statefulness_warning": "",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
           "composite_score": 100,
@@ -137,8 +164,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 2,
-          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/codespaces. Input surfaces (body+path) declare 13 properties (3 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/codespaces. Input surfaces (body+path) declare 13 properties (3 required). At nesting depth 2, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "codespaces/create-with-pr-for-authenticated-user",
           "optional_ratio": 0.7692,
@@ -151,14 +181,17 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
             "matched_domain_pattern": "/pulls",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.7692 (10 pts); Complexity: depth 2, props 13 (20/20); Tokens: 222 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.7692 (10 pts); Complexity: depth 2, props 13 (20/20); Tokens: 222 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
-          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1codespaces/post"
+          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1codespaces/post",
+          "statefulness_warning": "",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
           "composite_score": 100,
@@ -172,8 +205,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers. Input surfaces (body+path) declare 5 properties (3 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers. Input surfaces (body+path) declare 5 properties (3 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "pulls/request-reviewers",
           "optional_ratio": 0.4,
@@ -186,14 +222,17 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
             "matched_domain_pattern": "/pulls",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.4 (10 pts); Complexity: depth 3, props 5 (20/20); Tokens: 136 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: '/pulls'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.4 (10 pts); Complexity: depth 3, props 5 (20/20); Tokens: 136 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
-          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1requested_reviewers/post"
+          "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls~1{pull_number}~1requested_reviewers/post",
+          "statefulness_warning": "",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         }
       ],
       "replaced_operation_id": "issues/create",
@@ -201,11 +240,13 @@
       "slot_id": "SLOT_GITHUB_01",
       "slot_name": "GitHub Developer Platforms Slot",
       "source_cluster_id": "CLUSTER_GITHUB",
+      "statefulness_guidance": "pulls/submit-review requires an existing review_id (stateful dependency). Self-contained operations such as pulls/create should be evaluated alongside it.\n",
       "target_domain": "Developer Platforms & Source Automation",
       "total_cluster_eligible_candidates": 357
     },
     {
       "candidates_ranked": 5,
+      "co_leading_candidates_count": 1,
       "ranked_candidates": [
         {
           "composite_score": 97,
@@ -218,8 +259,11 @@
           "input_surfaces": [
             "body"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/payouts. Input surfaces (body) declare 10 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/payouts. Input surfaces (body) declare 10 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "PostPayouts",
           "optional_ratio": 0.8,
@@ -231,15 +275,18 @@
           "score_breakdown": {
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 25,
-            "matched_domain_pattern": "/v1/payouts",
+            "matched_domain_pattern": "/payouts",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 16,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (25/25, pattern: '/v1/payouts'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.8 (10 pts); Complexity: depth 3, props 10 (20/20); Tokens: 186 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (25/25, pattern: '/payouts'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.8 (10 pts); Complexity: depth 3, props 10 (20/20); Tokens: 186 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1payouts/post"
+          "source_spec_pointer": "#/paths/~1v1~1payouts/post",
+          "statefulness_warning": "",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
           "composite_score": 96,
@@ -252,8 +299,11 @@
           "input_surfaces": [
             "body"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/transfers. Input surfaces (body) declare 9 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/transfers. Input surfaces (body) declare 9 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "PostTransfers",
           "optional_ratio": 0.7778,
@@ -265,18 +315,21 @@
           "score_breakdown": {
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
-            "matched_domain_pattern": "/v1/transfers",
+            "matched_domain_pattern": "/transfers",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 16,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/v1/transfers'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.7778 (10 pts); Complexity: depth 3, props 9 (20/20); Tokens: 174 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: '/transfers'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.7778 (10 pts); Complexity: depth 3, props 9 (20/20); Tokens: 174 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1transfers/post"
+          "source_spec_pointer": "#/paths/~1v1~1transfers/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_2"
         },
         {
-          "composite_score": 95,
+          "composite_score": 94,
           "content_types": [
             "application/x-www-form-urlencoded"
           ],
@@ -286,8 +339,11 @@
           "input_surfaces": [
             "body"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/account_links. Input surfaces (body) declare 9 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/account_links. Input surfaces (body) declare 9 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "PostAccountLinks",
           "optional_ratio": 0.7778,
@@ -298,50 +354,60 @@
           "required_count": 2,
           "score_breakdown": {
             "complexity_tier_balance": 20,
-            "domain_workflow_fit": 23,
-            "matched_domain_pattern": "/v1/account_links",
+            "domain_workflow_fit": 22,
+            "matched_domain_pattern": "/account_links",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 16,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (23/25, pattern: '/v1/account_links'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.7778 (10 pts); Complexity: depth 3, props 9 (20/20); Tokens: 175 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (22/25, pattern: '/account_links'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.7778 (10 pts); Complexity: depth 3, props 9 (20/20); Tokens: 175 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1account_links/post"
+          "source_spec_pointer": "#/paths/~1v1~1account_links/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_3"
         },
         {
-          "composite_score": 93,
+          "composite_score": 91,
           "content_types": [
             "application/x-www-form-urlencoded"
           ],
-          "endpoint": "/v1/treasury/inbound_transfers",
-          "estimated_token_footprint": 166,
+          "endpoint": "/v1/payouts/{payout}/cancel",
+          "estimated_token_footprint": 95,
           "http_method": "POST",
           "input_surfaces": [
-            "body"
+            "body",
+            "path"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/treasury/inbound_transfers. Input surfaces (body) declare 8 properties (4 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/payouts/{payout}/cancel. Input surfaces (body+path) declare 2 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
-          "operation_id": "PostTreasuryInboundTransfers",
+          "operation_id": "PostPayoutsPayoutCancel",
           "optional_ratio": 0.5,
-          "property_count": 8,
+          "property_count": 2,
           "rank": 4,
           "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
           "recommendation_status": "DRAFT_PENDING_REVIEW",
-          "required_count": 4,
+          "required_count": 1,
           "score_breakdown": {
-            "complexity_tier_balance": 20,
-            "domain_workflow_fit": 21,
-            "matched_domain_pattern": "/v1/treasury/inbound_transfers",
+            "complexity_tier_balance": 10,
+            "domain_workflow_fit": 25,
+            "matched_domain_pattern": "/payouts",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
-            "structural_diversity": 16,
+            "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (21/25, pattern: '/v1/treasury/inbound_transfers'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.5 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 166 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (25/25, pattern: '/payouts'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.5 (10 pts); Complexity: depth 3, props 2 (10/20); Tokens: 95 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1treasury~1inbound_transfers/post"
+          "source_spec_pointer": "#/paths/~1v1~1payouts~1{payout}~1cancel/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_4"
         },
         {
           "composite_score": 91,
@@ -355,8 +421,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/payouts/{payout}/reverse. Input surfaces (body+path) declare 3 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/payouts/{payout}/reverse. Input surfaces (body+path) declare 3 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "PostPayoutsPayoutReverse",
           "optional_ratio": 0.6667,
@@ -368,64 +437,76 @@
           "score_breakdown": {
             "complexity_tier_balance": 10,
             "domain_workflow_fit": 25,
-            "matched_domain_pattern": "/v1/payouts",
+            "matched_domain_pattern": "/payouts",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (25/25, pattern: '/v1/payouts'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.6667 (10 pts); Complexity: depth 3, props 3 (10/20); Tokens: 108 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (25/25, pattern: '/payouts'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.6667 (10 pts); Complexity: depth 3, props 3 (10/20); Tokens: 108 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1payouts~1{payout}~1reverse/post"
+          "source_spec_pointer": "#/paths/~1v1~1payouts~1{payout}~1reverse/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_5"
         }
       ],
       "replaced_operation_id": "PostCustomers",
-      "replacement_rationale": "Replaces PostCustomers (disqualified due to depth 6 recursion overflow and address/metadata object unions).",
+      "replacement_rationale": "Replaces PostCustomers (disqualified due to depth 6 recursion overflow and address/metadata anyOf unions).",
       "slot_id": "SLOT_STRIPE_01",
-      "slot_name": "Stripe Payments Slot A (Merchant & Fund Routing)",
+      "slot_name": "Stripe Payments Slot A",
       "source_cluster_id": "CLUSTER_STRIPE",
-      "target_domain": "Payments & Financial Infrastructure",
+      "statefulness_guidance": "None; endpoints evaluate standard merchant balance and transfer structures.",
+      "target_domain": "Merchant Fund Routing & Balances",
       "total_cluster_eligible_candidates": 172
     },
     {
       "candidates_ranked": 5,
+      "co_leading_candidates_count": 2,
       "ranked_candidates": [
         {
-          "composite_score": 96,
+          "composite_score": 99,
           "content_types": [
             "application/x-www-form-urlencoded"
           ],
-          "endpoint": "/v1/shipping_rates",
-          "estimated_token_footprint": 280,
+          "endpoint": "/v1/invoices/{invoice}/attach_payment",
+          "estimated_token_footprint": 122,
           "http_method": "POST",
           "input_surfaces": [
-            "body"
+            "body",
+            "path"
           ],
-          "maximum_nesting_depth": 4,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/shipping_rates. Input surfaces (body) declare 17 properties (7 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "is_co_leading": true,
+          "is_potentially_stateful": true,
+          "maximum_nesting_depth": 3,
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/invoices/{invoice}/attach_payment. Input surfaces (body+path) declare 4 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
-          "operation_id": "PostShippingRates",
-          "optional_ratio": 0.5882,
-          "property_count": 17,
+          "operation_id": "PostInvoicesInvoiceAttachPayment",
+          "optional_ratio": 0.75,
+          "property_count": 4,
           "rank": 1,
           "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
           "recommendation_status": "DRAFT_PENDING_REVIEW",
-          "required_count": 7,
+          "required_count": 1,
           "score_breakdown": {
             "complexity_tier_balance": 20,
-            "domain_workflow_fit": 24,
-            "matched_domain_pattern": "/v1/shipping_rates",
+            "domain_workflow_fit": 23,
+            "matched_domain_pattern": "/invoices",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
-            "structural_diversity": 16,
+            "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: '/v1/shipping_rates'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.5882 (10 pts); Complexity: depth 4, props 17 (20/20); Tokens: 280 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 3, props 4 (20/20); Tokens: 122 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice; PostShippingRates is self-contained.]",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1shipping_rates/post"
+          "source_spec_pointer": "#/paths/~1v1~1invoices~1{invoice}~1attach_payment/post",
+          "statefulness_warning": "Requires an existing unpaid invoice; PostShippingRates is self-contained.",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
-          "composite_score": 95,
+          "composite_score": 99,
           "content_types": [
             "application/x-www-form-urlencoded"
           ],
@@ -436,8 +517,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": true,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/invoices/{invoice}/pay. Input surfaces (body+path) declare 8 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/invoices/{invoice}/pay. Input surfaces (body+path) declare 8 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "PostInvoicesInvoicePay",
           "optional_ratio": 0.875,
@@ -448,53 +532,62 @@
           "required_count": 1,
           "score_breakdown": {
             "complexity_tier_balance": 20,
-            "domain_workflow_fit": 19,
-            "matched_domain_pattern": "/v1/invoices/{invoice}/pay",
+            "domain_workflow_fit": 23,
+            "matched_domain_pattern": "/invoices",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (19/25, pattern: '/v1/invoices/{invoice}/pay'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 167 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (23/25, pattern: '/invoices'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 167 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing unpaid invoice; PostShippingRates is self-contained.]",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1invoices~1{invoice}~1pay/post"
+          "source_spec_pointer": "#/paths/~1v1~1invoices~1{invoice}~1pay/post",
+          "statefulness_warning": "Requires an existing unpaid invoice; PostShippingRates is self-contained.",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
-          "composite_score": 95,
+          "composite_score": 97,
           "content_types": [
             "application/x-www-form-urlencoded"
           ],
-          "endpoint": "/v1/promotion_codes",
-          "estimated_token_footprint": 268,
+          "endpoint": "/v1/shipping_rates",
+          "estimated_token_footprint": 280,
           "http_method": "POST",
           "input_surfaces": [
             "body"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 4,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/promotion_codes. Input surfaces (body) declare 16 properties (2 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/shipping_rates. Input surfaces (body) declare 17 properties (7 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
-          "operation_id": "PostPromotionCodes",
-          "optional_ratio": 0.875,
-          "property_count": 16,
+          "operation_id": "PostShippingRates",
+          "optional_ratio": 0.5882,
+          "property_count": 17,
           "rank": 3,
           "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
           "recommendation_status": "DRAFT_PENDING_REVIEW",
-          "required_count": 2,
+          "required_count": 7,
           "score_breakdown": {
             "complexity_tier_balance": 20,
-            "domain_workflow_fit": 23,
-            "matched_domain_pattern": "/v1/promotion_codes",
+            "domain_workflow_fit": 25,
+            "matched_domain_pattern": "/shipping_rates",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 16,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (23/25, pattern: '/v1/promotion_codes'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 4, props 16 (20/20); Tokens: 268 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (25/25, pattern: '/shipping_rates'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.5882 (10 pts); Complexity: depth 4, props 17 (20/20); Tokens: 280 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1promotion_codes/post"
+          "source_spec_pointer": "#/paths/~1v1~1shipping_rates/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_3"
         },
         {
-          "composite_score": 94,
+          "composite_score": 96,
           "content_types": [
             "application/x-www-form-urlencoded"
           ],
@@ -504,8 +597,11 @@
           "input_surfaces": [
             "body"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/tax_rates. Input surfaces (body) declare 11 properties (3 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/tax_rates. Input surfaces (body) declare 11 properties (3 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "PostTaxRates",
           "optional_ratio": 0.7273,
@@ -516,62 +612,73 @@
           "required_count": 3,
           "score_breakdown": {
             "complexity_tier_balance": 20,
-            "domain_workflow_fit": 22,
-            "matched_domain_pattern": "/v1/tax_rates",
+            "domain_workflow_fit": 24,
+            "matched_domain_pattern": "/tax_rates",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 16,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (22/25, pattern: '/v1/tax_rates'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.7273 (10 pts); Complexity: depth 3, props 11 (20/20); Tokens: 198 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: '/tax_rates'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.7273 (10 pts); Complexity: depth 3, props 11 (20/20); Tokens: 198 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1tax_rates/post"
+          "source_spec_pointer": "#/paths/~1v1~1tax_rates/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_4"
         },
         {
-          "composite_score": 93,
+          "composite_score": 94,
           "content_types": [
             "application/x-www-form-urlencoded"
           ],
-          "endpoint": "/v1/tax_ids",
-          "estimated_token_footprint": 162,
+          "endpoint": "/v1/promotion_codes",
+          "estimated_token_footprint": 268,
           "http_method": "POST",
           "input_surfaces": [
             "body"
           ],
-          "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v1/tax_ids. Input surfaces (body) declare 8 properties (3 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
+          "maximum_nesting_depth": 4,
+          "mock_safety_notes": "Mock execution requires local state simulation for /v1/promotion_codes. Input surfaces (body) declare 16 properties (2 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
-          "operation_id": "PostTaxIds",
-          "optional_ratio": 0.625,
-          "property_count": 8,
+          "operation_id": "PostPromotionCodes",
+          "optional_ratio": 0.875,
+          "property_count": 16,
           "rank": 5,
           "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
           "recommendation_status": "DRAFT_PENDING_REVIEW",
-          "required_count": 3,
+          "required_count": 2,
           "score_breakdown": {
             "complexity_tier_balance": 20,
-            "domain_workflow_fit": 21,
-            "matched_domain_pattern": "/v1/tax_ids",
+            "domain_workflow_fit": 22,
+            "matched_domain_pattern": "/promotion_codes",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 16,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (21/25, pattern: '/v1/tax_ids'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.625 (10 pts); Complexity: depth 3, props 8 (20/20); Tokens: 162 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (22/25, pattern: '/promotion_codes'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.875 (10 pts); Complexity: depth 4, props 16 (20/20); Tokens: 268 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
-          "source_spec_pointer": "#/paths/~1v1~1tax_ids/post"
+          "source_spec_pointer": "#/paths/~1v1~1promotion_codes/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_5"
         }
       ],
       "replaced_operation_id": "PostPaymentIntents",
-      "replacement_rationale": "Replaces PostPaymentIntents (disqualified due to depth 9 recursion overflow and wide polymorphic payment_method_options).",
+      "replacement_rationale": "Replaces PostPaymentIntents (disqualified due to depth 9 recursion overflow and wide payment_method_options unions).",
       "slot_id": "SLOT_STRIPE_02",
-      "slot_name": "Stripe Payments Slot B (Billing, Tax & Catalog)",
+      "slot_name": "Stripe Payments Slot B",
       "source_cluster_id": "CLUSTER_STRIPE",
-      "target_domain": "Payments & Financial Infrastructure",
+      "statefulness_guidance": "PostInvoicesInvoicePay depends on an unpaid invoice ID; PostShippingRates is self-contained.",
+      "target_domain": "Billing, Tax, & Commerce",
       "total_cluster_eligible_candidates": 172
     },
     {
       "candidates_ranked": 5,
+      "co_leading_candidates_count": 2,
       "ranked_candidates": [
         {
           "composite_score": 100,
@@ -585,8 +692,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": true,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/canned_responses/{id}. Input surfaces (body+path) declare 4 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/canned_responses/{id}. Input surfaces (body+path) declare 4 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "update-canned-response-in-account",
           "optional_ratio": 0.5,
@@ -599,14 +709,17 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 25,
             "matched_domain_pattern": "canned_responses",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 0,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (25/25, pattern: 'canned_responses'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.5 (10 pts); Complexity: depth 3, props 4 (20/20); Tokens: 121 (15/15); Role distinctness: 20/20; POST bonus: 0/1.",
+          "scoring_notes": "Domain fit (25/25, pattern: 'canned_responses'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.5 (10 pts); Complexity: depth 3, props 4 (20/20); Tokens: 121 (15/15); Role distinctness: 20/20; POST bonus: 0/1; Mock-safety points: 0 (deferred pending extraction). [WARNING: Requires an existing canned response id to update; requires seeded mock state.]",
           "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
-          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1canned_responses~1{id}/patch"
+          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1canned_responses~1{id}/patch",
+          "statefulness_warning": "Requires an existing canned response id to update; requires seeded mock state.",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
           "composite_score": 100,
@@ -620,8 +733,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 4,
-          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/webhooks. Input surfaces (body+path) declare 4 properties (1 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/webhooks. Input surfaces (body+path) declare 4 properties (1 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "create-a-webhook",
           "optional_ratio": 0.75,
@@ -634,14 +750,17 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
             "matched_domain_pattern": "webhooks",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: 'webhooks'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 4, props 4 (20/20); Tokens: 126 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: 'webhooks'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 4, props 4 (20/20); Tokens: 126 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
-          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post"
+          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+          "statefulness_warning": "",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
           "composite_score": 99,
@@ -655,8 +774,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 4,
-          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/webhooks/{webhook_id}. Input surfaces (body+path) declare 4 properties (1 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/webhooks/{webhook_id}. Input surfaces (body+path) declare 4 properties (1 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "update-a-webhook",
           "optional_ratio": 0.75,
@@ -669,99 +791,116 @@
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 24,
             "matched_domain_pattern": "webhooks",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 0,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: 'webhooks'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 4, props 4 (20/20); Tokens: 129 (15/15); Role distinctness: 20/20; POST bonus: 0/1.",
+          "scoring_notes": "Domain fit (24/25, pattern: 'webhooks'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 4, props 4 (20/20); Tokens: 129 (15/15); Role distinctness: 20/20; POST bonus: 0/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
-          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks~1{webhook_id}/patch"
-        },
-        {
-          "composite_score": 99,
-          "content_types": [
-            "application/json"
-          ],
-          "endpoint": "/api/v1/accounts/{account_id}/custom_attribute_definitions",
-          "estimated_token_footprint": 191,
-          "http_method": "POST",
-          "input_surfaces": [
-            "body",
-            "path"
-          ],
-          "maximum_nesting_depth": 4,
-          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/custom_attribute_definitions. Input surfaces (body+path) declare 9 properties (1 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
-          "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
-          "operation_id": "add-new-custom-attribute-to-account",
-          "optional_ratio": 0.8889,
-          "property_count": 9,
-          "rank": 4,
-          "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
-          "recommendation_status": "DRAFT_PENDING_REVIEW",
-          "required_count": 1,
-          "score_breakdown": {
-            "complexity_tier_balance": 20,
-            "domain_workflow_fit": 23,
-            "matched_domain_pattern": "custom_attribute_definitions",
-            "post_method_bonus": 1,
-            "role_non_duplication": 20,
-            "structural_diversity": 20,
-            "token_footprint_balance": 15
-          },
-          "scoring_notes": "Domain fit (23/25, pattern: 'custom_attribute_definitions'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.8889 (10 pts); Complexity: depth 4, props 9 (20/20); Tokens: 191 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
-          "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
-          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1custom_attribute_definitions/post"
+          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks~1{webhook_id}/patch",
+          "statefulness_warning": "",
+          "status_label": "RANK_3"
         },
         {
           "composite_score": 98,
           "content_types": [
             "application/json"
           ],
-          "endpoint": "/api/v1/accounts/{account_id}/labels",
-          "estimated_token_footprint": 129,
+          "endpoint": "/api/v1/accounts/{account_id}/automation_rules",
+          "estimated_token_footprint": 164,
           "http_method": "POST",
           "input_surfaces": [
             "body",
             "path"
           ],
-          "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/labels. Input surfaces (body+path) declare 5 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
+          "maximum_nesting_depth": 4,
+          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/automation_rules. Input surfaces (body+path) declare 7 properties (1 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
-          "operation_id": "create-a-label",
-          "optional_ratio": 0.8,
-          "property_count": 5,
-          "rank": 5,
+          "operation_id": "add-new-automation-rule-to-account",
+          "optional_ratio": 0.8571,
+          "property_count": 7,
+          "rank": 4,
           "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
           "recommendation_status": "DRAFT_PENDING_REVIEW",
           "required_count": 1,
           "score_breakdown": {
             "complexity_tier_balance": 20,
             "domain_workflow_fit": 22,
-            "matched_domain_pattern": "labels",
+            "matched_domain_pattern": "automation_rules",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 20,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (22/25, pattern: 'labels'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.8 (10 pts); Complexity: depth 3, props 5 (20/20); Tokens: 129 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (22/25, pattern: 'automation_rules'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.8571 (10 pts); Complexity: depth 4, props 7 (20/20); Tokens: 164 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
-          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1labels/post"
+          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1automation_rules/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_4"
+        },
+        {
+          "composite_score": 97,
+          "content_types": [
+            "application/json"
+          ],
+          "endpoint": "/api/v1/accounts/{account_id}/automation_rules/{id}",
+          "estimated_token_footprint": 177,
+          "http_method": "PATCH",
+          "input_surfaces": [
+            "body",
+            "path"
+          ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
+          "maximum_nesting_depth": 4,
+          "mock_safety_notes": "Mock execution requires local state simulation for /api/v1/accounts/{account_id}/automation_rules/{id}. Input surfaces (body+path) declare 8 properties (2 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
+          "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
+          "operation_id": "update-automation-rule-in-account",
+          "optional_ratio": 0.75,
+          "property_count": 8,
+          "rank": 5,
+          "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+          "recommendation_status": "DRAFT_PENDING_REVIEW",
+          "required_count": 2,
+          "score_breakdown": {
+            "complexity_tier_balance": 20,
+            "domain_workflow_fit": 22,
+            "matched_domain_pattern": "automation_rules",
+            "mock_safety_feasibility_points": 0,
+            "post_method_bonus": 0,
+            "role_non_duplication": 20,
+            "structural_diversity": 20,
+            "token_footprint_balance": 15
+          },
+          "scoring_notes": "Domain fit (22/25, pattern: 'automation_rules'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.75 (10 pts); Complexity: depth 4, props 8 (20/20); Tokens: 177 (15/15); Role distinctness: 20/20; POST bonus: 0/1; Mock-safety points: 0 (deferred pending extraction).",
+          "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+          "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1automation_rules~1{id}/patch",
+          "statefulness_warning": "",
+          "status_label": "RANK_5"
         }
       ],
       "replaced_operation_id": "create-a-contact",
-      "replacement_rationale": "Replaces create-a-contact (disqualified due to multipart/form-data binary upload 'avatar').",
+      "replacement_rationale": "Replaces create-a-contact (disqualified due to binary avatar property).",
       "slot_id": "SLOT_CHATWOOT_01",
       "slot_name": "Chatwoot CRM & Support Slot",
       "source_cluster_id": "CLUSTER_CHATWOOT",
-      "target_domain": "CRM & Customer Support",
+      "statefulness_guidance": "update-canned-response-in-account requires account_id and canned response id.",
+      "target_domain": "Customer Support Automation & Canned Responses",
       "total_cluster_eligible_candidates": 57
     },
     {
       "candidates_ranked": 5,
+      "co_leading_candidates_count": 1,
       "ranked_candidates": [
         {
-          "composite_score": 86,
+          "composite_score": 87,
           "content_types": [
             "application/json"
           ],
@@ -771,8 +910,11 @@
           "input_surfaces": [
             "body"
           ],
+          "is_co_leading": true,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/chat/loading/start. Input surfaces (body) declare 2 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/chat/loading/start. Input surfaces (body) declare 2 properties (1 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "showLoadingAnimation",
           "optional_ratio": 0.5,
@@ -783,19 +925,22 @@
           "required_count": 1,
           "score_breakdown": {
             "complexity_tier_balance": 10,
-            "domain_workflow_fit": 24,
-            "matched_domain_pattern": "loading/start",
+            "domain_workflow_fit": 25,
+            "matched_domain_pattern": "/chat/loading/start",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 16,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (24/25, pattern: 'loading/start'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.5 (10 pts); Complexity: depth 3, props 2 (10/20); Tokens: 89 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (25/25, pattern: '/chat/loading/start'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.5 (10 pts); Complexity: depth 3, props 2 (10/20); Tokens: 89 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
-          "source_spec_pointer": "#/paths/~1v2~1bot~1chat~1loading~1start/post"
+          "source_spec_pointer": "#/paths/~1v2~1bot~1chat~1loading~1start/post",
+          "statefulness_warning": "",
+          "status_label": "CO_LEADING_CANDIDATE (Tied)"
         },
         {
-          "composite_score": 82,
+          "composite_score": 83,
           "content_types": [
             "application/json"
           ],
@@ -806,8 +951,11 @@
             "body",
             "path"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/richmenu/alias/{richMenuAliasId}. Input surfaces (body+path) declare 2 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/richmenu/alias/{richMenuAliasId}. Input surfaces (body+path) declare 2 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "updateRichMenuAlias",
           "optional_ratio": 0.0,
@@ -818,19 +966,22 @@
           "required_count": 2,
           "score_breakdown": {
             "complexity_tier_balance": 10,
-            "domain_workflow_fit": 21,
-            "matched_domain_pattern": "richmenu/alias",
+            "domain_workflow_fit": 22,
+            "matched_domain_pattern": "/richmenu",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 15,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (21/25, pattern: 'richmenu/alias'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.0 (5 pts); Complexity: depth 3, props 2 (10/20); Tokens: 94 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (22/25, pattern: '/richmenu'); Surfaces: ['body', 'path'] (10 pts) + Opt-ratio 0.0 (5 pts); Complexity: depth 3, props 2 (10/20); Tokens: 94 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
-          "source_spec_pointer": "#/paths/~1v2~1bot~1richmenu~1alias~1{richMenuAliasId}/post"
+          "source_spec_pointer": "#/paths/~1v2~1bot~1richmenu~1alias~1{richMenuAliasId}/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_2"
         },
         {
-          "composite_score": 80,
+          "composite_score": 79,
           "content_types": [],
           "endpoint": "/v2/bot/user/{userId}/richmenu/{richMenuId}",
           "estimated_token_footprint": 73,
@@ -838,8 +989,11 @@
           "input_surfaces": [
             "path"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 1,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/user/{userId}/richmenu/{richMenuId}. Input surfaces (path) declare 2 properties (2 required). At nesting depth 1, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/user/{userId}/richmenu/{richMenuId}. Input surfaces (path) declare 2 properties (2 required). At nesting depth 1, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "linkRichMenuIdToUser",
           "optional_ratio": 0.0,
@@ -850,53 +1004,22 @@
           "required_count": 2,
           "score_breakdown": {
             "complexity_tier_balance": 14,
-            "domain_workflow_fit": 23,
-            "matched_domain_pattern": "richmenu/{richmenuid}",
+            "domain_workflow_fit": 22,
+            "matched_domain_pattern": "/richmenu",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 11,
             "token_footprint_balance": 11
           },
-          "scoring_notes": "Domain fit (23/25, pattern: 'richmenu/{richmenuid}'); Surfaces: ['path'] (6 pts) + Opt-ratio 0.0 (5 pts); Complexity: depth 1, props 2 (14/20); Tokens: 73 (11/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (22/25, pattern: '/richmenu'); Surfaces: ['path'] (6 pts) + Opt-ratio 0.0 (5 pts); Complexity: depth 1, props 2 (14/20); Tokens: 73 (11/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
-          "source_spec_pointer": "#/paths/~1v2~1bot~1user~1{userId}~1richmenu~1{richMenuId}/post"
+          "source_spec_pointer": "#/paths/~1v2~1bot~1user~1{userId}~1richmenu~1{richMenuId}/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_3"
         },
         {
-          "composite_score": 78,
-          "content_types": [
-            "application/json"
-          ],
-          "endpoint": "/v2/bot/channel/webhook/test",
-          "estimated_token_footprint": 78,
-          "http_method": "POST",
-          "input_surfaces": [
-            "body"
-          ],
-          "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/channel/webhook/test. Input surfaces (body) declare 1 properties (0 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
-          "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
-          "operation_id": "testWebhookEndpoint",
-          "optional_ratio": 1.0,
-          "property_count": 1,
-          "rank": 4,
-          "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
-          "recommendation_status": "DRAFT_PENDING_REVIEW",
-          "required_count": 0,
-          "score_breakdown": {
-            "complexity_tier_balance": 10,
-            "domain_workflow_fit": 25,
-            "matched_domain_pattern": "webhook/test",
-            "post_method_bonus": 1,
-            "role_non_duplication": 20,
-            "structural_diversity": 11,
-            "token_footprint_balance": 11
-          },
-          "scoring_notes": "Domain fit (25/25, pattern: 'webhook/test'); Surfaces: ['body'] (6 pts) + Opt-ratio 1.0 (5 pts); Complexity: depth 3, props 1 (10/20); Tokens: 78 (11/15); Role distinctness: 20/20; POST bonus: 1/1.",
-          "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
-          "source_spec_pointer": "#/paths/~1v2~1bot~1channel~1webhook~1test/post"
-        },
-        {
-          "composite_score": 78,
+          "composite_score": 79,
           "content_types": [
             "application/json"
           ],
@@ -906,36 +1029,83 @@
           "input_surfaces": [
             "body"
           ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
           "maximum_nesting_depth": 3,
-          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/richmenu/alias. Input surfaces (body) declare 2 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local SQLite/in-memory state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes.",
+          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/richmenu/alias. Input surfaces (body) declare 2 properties (2 required). At nesting depth 3, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
           "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
           "operation_id": "createRichMenuAlias",
           "optional_ratio": 0.0,
           "property_count": 2,
-          "rank": 5,
+          "rank": 4,
           "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
           "recommendation_status": "DRAFT_PENDING_REVIEW",
           "required_count": 2,
           "score_breakdown": {
             "complexity_tier_balance": 10,
-            "domain_workflow_fit": 21,
-            "matched_domain_pattern": "richmenu/alias",
+            "domain_workflow_fit": 22,
+            "matched_domain_pattern": "/richmenu",
+            "mock_safety_feasibility_points": 0,
             "post_method_bonus": 1,
             "role_non_duplication": 20,
             "structural_diversity": 11,
             "token_footprint_balance": 15
           },
-          "scoring_notes": "Domain fit (21/25, pattern: 'richmenu/alias'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.0 (5 pts); Complexity: depth 3, props 2 (10/20); Tokens: 88 (15/15); Role distinctness: 20/20; POST bonus: 1/1.",
+          "scoring_notes": "Domain fit (22/25, pattern: '/richmenu'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.0 (5 pts); Complexity: depth 3, props 2 (10/20); Tokens: 88 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
           "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
-          "source_spec_pointer": "#/paths/~1v2~1bot~1richmenu~1alias/post"
+          "source_spec_pointer": "#/paths/~1v2~1bot~1richmenu~1alias/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_4"
+        },
+        {
+          "composite_score": 79,
+          "content_types": [
+            "application/json"
+          ],
+          "endpoint": "/v2/bot/richmenu/bulk/unlink",
+          "estimated_token_footprint": 86,
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "is_co_leading": false,
+          "is_potentially_stateful": false,
+          "maximum_nesting_depth": 4,
+          "mock_safety_notes": "Mock execution requires local state simulation for /v2/bot/richmenu/bulk/unlink. Input surfaces (body) declare 1 properties (1 required). At nesting depth 4, deterministic mock verification requires validating contract arguments against local state machine. Status remains strictly MOCK_SAFETY_REVIEW_PENDING until concrete mock executor test passes. Contributes 0 points to candidate composite score.",
+          "mock_safety_points_contributed": 0,
+          "mock_safety_status": "MOCK_SAFETY_REVIEW_PENDING",
+          "operation_id": "unlinkRichMenuIdFromUsers",
+          "optional_ratio": 0.0,
+          "property_count": 1,
+          "rank": 5,
+          "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+          "recommendation_status": "DRAFT_PENDING_REVIEW",
+          "required_count": 1,
+          "score_breakdown": {
+            "complexity_tier_balance": 10,
+            "domain_workflow_fit": 22,
+            "matched_domain_pattern": "/richmenu",
+            "mock_safety_feasibility_points": 0,
+            "post_method_bonus": 1,
+            "role_non_duplication": 20,
+            "structural_diversity": 11,
+            "token_footprint_balance": 15
+          },
+          "scoring_notes": "Domain fit (22/25, pattern: '/richmenu'); Surfaces: ['body'] (6 pts) + Opt-ratio 0.0 (5 pts); Complexity: depth 4, props 1 (10/20); Tokens: 86 (15/15); Role distinctness: 20/20; POST bonus: 1/1; Mock-safety points: 0 (deferred pending extraction).",
+          "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+          "source_spec_pointer": "#/paths/~1v2~1bot~1richmenu~1bulk~1unlink/post",
+          "statefulness_warning": "",
+          "status_label": "RANK_5"
         }
       ],
       "replaced_operation_id": "replyMessage",
-      "replacement_rationale": "Replaces replyMessage (disqualified due to depth 13 polymorphic messages union).",
+      "replacement_rationale": "Replaces replyMessage (disqualified due to 11-variant discriminated message union).",
       "slot_id": "SLOT_LINE_01",
       "slot_name": "LINE Logistics & Communications Slot",
       "source_cluster_id": "CLUSTER_LINE",
-      "target_domain": "Logistics & Communications",
+      "statefulness_guidance": "showLoadingAnimation requires a valid chatId; testWebhookEndpoint tests connectivity.",
+      "target_domain": "Chat Experience & Bot Interactions",
       "total_cluster_eligible_candidates": 15
     }
   ]
