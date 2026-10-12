@@ -12,7 +12,7 @@
 
 This gatekeeper review formally evaluates and admits five replacement operations for the open canonical slots in Stage B. Each candidate was verified directly against the pinned raw OpenAPI specifications for structural eligibility, provenance immutability, operational statefulness, and future deterministic mock feasibility.
 
-To prevent conflating schema-level single-turn constructibility with runtime state independence, every operation is rigorously characterized by three distinct dimensions:
+To prevent conflating schema-level single-turn constructibility with runtime state independence, every operation is characterized by conservative, protocol-defined pre-extraction classifications subject to extraction validation and human review:
 1. **`schema_invocation_mode`**: `SINGLE_TURN_CONSTRUCTIBLE` vs `MULTI_TURN_DEPENDENT`
 2. **`external_prerequisite_state`**: `NONE` vs `FIXTURE_REQUIRED` vs `LIFECYCLE_STATE_REQUIRED`
 3. **`mock_fixture_requirements`**: minimal deterministic fixtures required by mock runtime
@@ -90,9 +90,10 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 
 #### Human Sign-Off Record
 - **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`
 - **Review Date:** `[PENDING_DATE]`
 - **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
-- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by designated human reviewer; options: APPROVE, REJECT, REQUEST_CHANGES)
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -156,9 +157,10 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 
 #### Human Sign-Off Record
 - **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`
 - **Review Date:** `[PENDING_DATE]`
 - **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
-- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by designated human reviewer; options: APPROVE, REJECT, REQUEST_CHANGES)
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -220,9 +222,10 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 
 #### Human Sign-Off Record
 - **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`
 - **Review Date:** `[PENDING_DATE]`
 - **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
-- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by designated human reviewer; options: APPROVE, REJECT, REQUEST_CHANGES)
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -284,9 +287,10 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 
 #### Human Sign-Off Record
 - **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`
 - **Review Date:** `[PENDING_DATE]`
 - **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
-- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by designated human reviewer; options: APPROVE, REJECT, REQUEST_CHANGES)
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -348,9 +352,10 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 
 #### Human Sign-Off Record
 - **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`
+- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`
 - **Review Date:** `[PENDING_DATE]`
 - **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`
-- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)
+- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by designated human reviewer; options: APPROVE, REJECT, REQUEST_CHANGES)
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -364,4 +369,4 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 
 ## 3. Provenance & Reproducibility Certification
 
-Every admitted operation is cryptographically pinned to an immutable Git blob SHA and raw source file SHA-256 digest. No modifications have been made to Stage A, frozen raw source files, or existing provisional candidates. The operation manifest (`stage_b_operation_manifest.yaml`) reflects these admissions under the status `ADMITTED_PENDING_EXTRACTION`. Human sign-off remains formally PENDING.
+Every admitted operation is cryptographically pinned to an immutable Git blob SHA and raw source file SHA-256 digest. No modifications have been made to Stage A, frozen raw source files, or existing provisional candidates. The operation manifest (`stage_b_operation_manifest.yaml`) reflects these admissions under the status `ADMITTED_PENDING_EXTRACTION`. Human sign-off remains formally PENDING, awaiting review by a designated human reviewer per AUTHOR_REVIEW_INSTRUCTIONS.md.

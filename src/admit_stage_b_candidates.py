@@ -36,6 +36,8 @@ from typing import Any, Dict, List, Optional
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 JSON_DECISIONS_PATH = os.path.join(ROOT_DIR, "results_stage_b", "candidate_admission_decisions.json")
 MD_REVIEW_PATH = os.path.join(ROOT_DIR, "results_stage_b", "CANDIDATE_ADMISSION_REVIEW.md")
+REVIEW_PACKET_PATH = os.path.join(ROOT_DIR, "results_stage_b", "HUMAN_ADMISSION_REVIEW_PACKET.md")
+MANIFEST_PATH = os.path.join(ROOT_DIR, "results_stage_b", "stage_b_operation_manifest.yaml")
 UNIVERSE_JSON_PATH = os.path.join(ROOT_DIR, "results_stage_b", "raw_operation_universe.json")
 REGISTRY_JSON_PATH = os.path.join(ROOT_DIR, "results_stage_b", "raw_sources_provenance_registry.json")
 
@@ -114,6 +116,7 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
             "human_review_status": "PENDING",
             "human_sign_off_record": {
                 "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
                 "review_date": "[PENDING_DATE]",
                 "reviewed_artifact_sha256": "[PENDING_SHA256]",
                 "human_sign_off_decision": "PENDING_REVIEW",
@@ -228,6 +231,7 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
             "human_review_status": "PENDING",
             "human_sign_off_record": {
                 "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
                 "review_date": "[PENDING_DATE]",
                 "reviewed_artifact_sha256": "[PENDING_SHA256]",
                 "human_sign_off_decision": "PENDING_REVIEW",
@@ -338,6 +342,7 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
             "human_review_status": "PENDING",
             "human_sign_off_record": {
                 "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
                 "review_date": "[PENDING_DATE]",
                 "reviewed_artifact_sha256": "[PENDING_SHA256]",
                 "human_sign_off_decision": "PENDING_REVIEW",
@@ -446,6 +451,7 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
             "human_review_status": "PENDING",
             "human_sign_off_record": {
                 "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
                 "review_date": "[PENDING_DATE]",
                 "reviewed_artifact_sha256": "[PENDING_SHA256]",
                 "human_sign_off_decision": "PENDING_REVIEW",
@@ -557,6 +563,7 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
             "human_review_status": "PENDING",
             "human_sign_off_record": {
                 "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
                 "review_date": "[PENDING_DATE]",
                 "reviewed_artifact_sha256": "[PENDING_SHA256]",
                 "human_sign_off_decision": "PENDING_REVIEW",
@@ -616,7 +623,18 @@ def generate_json_decisions(generated_at_utc: str) -> Dict[str, Any]:
             "generated_at_utc": generated_at_utc,
             "governing_policy": "STAGE_B_CANDIDATE_ADMISSION_GATE",
             "review_document": "results_stage_b/CANDIDATE_ADMISSION_REVIEW.md",
+            "human_review_packet": "results_stage_b/HUMAN_ADMISSION_REVIEW_PACKET.md",
+            "author_review_instructions": "results_stage_b/AUTHOR_REVIEW_INSTRUCTIONS.md",
             "human_review_status": "PENDING",
+            "reviewer_roles_permitted": [
+                "AUTHOR_MANUAL_REVIEW",
+                "INDEPENDENT_REVIEW",
+            ],
+            "independent_review_conducted": False,
+            "classification_framework": (
+                "conservative, protocol-defined pre-extraction classifications "
+                "subject to extraction validation and human review"
+            ),
             "total_slots_reviewed": len(DECISIONS_DATA),
             "total_admitted": sum(1 for d in DECISIONS_DATA if d["admission_decision"] == "ADMITTED_PENDING_EXTRACTION"),
             "total_open_slots": sum(1 for d in DECISIONS_DATA if d["admission_decision"] != "ADMITTED_PENDING_EXTRACTION"),
@@ -648,7 +666,8 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
         "provenance immutability, operational statefulness, and future deterministic mock feasibility.",
         "",
         "To prevent conflating schema-level single-turn constructibility with runtime state independence, "
-        "every operation is rigorously characterized by three distinct dimensions:",
+        "every operation is characterized by conservative, protocol-defined pre-extraction classifications "
+        "subject to extraction validation and human review:",
         "1. **`schema_invocation_mode`**: `SINGLE_TURN_CONSTRUCTIBLE` vs `MULTI_TURN_DEPENDENT`",
         "2. **`external_prerequisite_state`**: `NONE` vs `FIXTURE_REQUIRED` vs `LIFECYCLE_STATE_REQUIRED`",
         "3. **`mock_fixture_requirements`**: minimal deterministic fixtures required by mock runtime",
@@ -738,9 +757,10 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
             "",
             "#### Human Sign-Off Record",
             "- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`",
+            "- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`",
             "- **Review Date:** `[PENDING_DATE]`",
             "- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`",
-            "- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by research staff)",
+            "- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by designated human reviewer; options: APPROVE, REJECT, REQUEST_CHANGES)",
             "",
             "#### Evaluated & Rejected Competing Candidates",
             "",
@@ -760,9 +780,149 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
         "Every admitted operation is cryptographically pinned to an immutable Git blob SHA and raw source file SHA-256 digest. "
         "No modifications have been made to Stage A, frozen raw source files, or existing provisional candidates. "
         "The operation manifest (`stage_b_operation_manifest.yaml`) reflects these admissions under "
-        "the status `ADMITTED_PENDING_EXTRACTION`. Human sign-off remains formally PENDING.",
+        "the status `ADMITTED_PENDING_EXTRACTION`. Human sign-off remains formally PENDING, awaiting review "
+        "by a designated human reviewer per AUTHOR_REVIEW_INSTRUCTIONS.md.",
         "",
     ])
+
+    return "\n".join(lines)
+
+
+def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha: str, decisions_sha: str) -> str:
+    meta = decisions_report["metadata"]
+    decisions = decisions_report["decisions"]
+
+    lines = [
+        "# Stage B Candidate Admission Human Review Packet",
+        "",
+        "**Document Role:** Human Review Gate & Provenance Verification Packet  ",
+        "**Document Status:** `PENDING_HUMAN_REVIEW`  ",
+        "**Governing Specification:** `STAGE_B_EXTRACTION_SPEC.md`  ",
+        "**Review Instructions:** [AUTHOR_REVIEW_INSTRUCTIONS.md](AUTHOR_REVIEW_INSTRUCTIONS.md)  ",
+        f"**Operation Manifest SHA-256:** `{manifest_sha}`  ",
+        f"**Decisions Artifact SHA-256:** `{decisions_sha}`  ",
+        f"**Date (UTC):** `{meta['generated_at_utc']}`  ",
+        "",
+        "---",
+        "",
+        "## 1. Review Packet Protocol & Reviewer Guidance",
+        "",
+        "This review packet compiles the five replacement candidate operations admitted into Stage B under status `ADMITTED_PENDING_EXTRACTION`. "
+        "Before canonical extraction (`data_stage_b/canonical/**`) may begin, a designated human reviewer must evaluate each operation "
+        "against this review packet and record their sign-off.",
+        "",
+        "### Permitted Reviewer Roles:",
+        "- **`AUTHOR_MANUAL_REVIEW`**: Conducted by benchmark authors/maintainers to confirm cryptographic provenance, protocol compliance, "
+        "and domain engineering rationale. *Author review confirms provenance and authorial design decisions but is NOT independent third-party validation.*",
+        "- **`INDEPENDENT_REVIEW`**: Conducted by an external, independent researcher with no authorship or conflict of interest. "
+        "*Independent review has NOT occurred.*",
+        "",
+        "All classifications recorded herein represent **conservative, protocol-defined pre-extraction classifications subject to extraction validation and human review**.",
+        "",
+        "Zero extraction code, derived schemas, mutations, mock runtime harnesses, or model evaluations have been generated.",
+        "",
+        "---",
+        "",
+        "## 2. Operation Review Pages",
+        "",
+    ]
+
+    for idx, d in enumerate(decisions, 1):
+        c = d["admitted_candidate"]
+        fixtures_bullets = "\n".join([f"- `{fix}`" for fix in c["mock_fixture_requirements"]])
+
+        lines.extend([
+            f"### Operation Review {idx}: `{c['operation_id']}` (Slot: `{d['slot_id']}`)",
+            "",
+            "#### A. Operation Identification & Source Link / Pointer",
+            f"- **Slot Name:** {d['slot_name']} (`{d['slot_id']}`)",
+            f"- **Domain:** {d['target_domain']}",
+            f"- **Replaced Operation:** `{d['replaced_operation_id']}`",
+            f"- **Replaced Exclusion Rationale:** {d['replaced_exclusion_reason']}",
+            f"- **Admission Decision:** **`{d['admission_decision']}`**",
+            f"- **Admitted Operation ID:** `{c['operation_id']}`",
+            f"- **HTTP Method & Endpoint:** `{c['http_method']} {c['endpoint']}`",
+            f"- **Exact OpenAPI Pointer:** `{c['source_spec_pointer']}`",
+            f"- **Source Project:** {c['source_project']} (`{c['candidate_source_id']}`)",
+            f"- **Raw On-Disk Source Path:** `{c['raw_source_file_path']}`",
+            "",
+            "#### B. Cryptographic Provenance & Artifact SHAs",
+            f"- **Raw Source Git Blob SHA:** `{c['source_blob_sha']}`",
+            f"- **Raw Source File SHA-256:** `{c['raw_file_sha256']}`",
+            f"- **Reviewed Operation Manifest SHA-256:** `{manifest_sha}`",
+            f"- **Reviewed Decisions Artifact SHA-256:** `{decisions_sha}`",
+            "",
+            "#### C. Selection Rationale (Why Selected)",
+            f"- **Rationale:** {c['acceptance_rationale']}",
+            f"- **Complexity Tier:** `{c['complexity_tier']}`",
+            f"- **Maximum Nesting Depth:** {c['maximum_nesting_depth']} (Protocol limit: $\\le 5$)",
+            f"- **Property Count:** {c['property_count']} (Required properties: {c['required_count']})",
+            f"- **Optional Field Ratio:** {c['optional_ratio']}",
+            f"- **Input Surfaces:** `{', '.join(c['input_surfaces'])}`",
+            f"- **Content Types:** `{', '.join(c['content_types'])}`",
+            f"- **Estimated Token Footprint:** ~{c['estimated_token_footprint']} tokens",
+            "",
+            "#### D. Required Future Mock Fixtures",
+            f"{fixtures_bullets}",
+            f"- **Mock Feasibility Status:** **`{c['mock_feasibility_status']}`** (Held strictly pending empirical validation)",
+            f"- **Mock Feasibility Notes:** {c['mock_feasibility_notes']}",
+            "",
+            "#### E. Operational Statefulness & Invocation Mode Classification",
+            "*Note: Conservative, protocol-defined pre-extraction classifications subject to extraction validation and human review.*",
+            f"- **`schema_invocation_mode`:** `{c['schema_invocation_mode']}`",
+            f"- **`external_prerequisite_state`:** `{c['external_prerequisite_state']}`",
+            f"- **Mock Fixtures Required:** `{', '.join(c['mock_fixture_requirements'])}`",
+            f"- **State Partitioning Rationale:** Schema arguments can be formulated in a single turn without inspecting prior tool outputs "
+            f"(`{c['schema_invocation_mode']}`), but runtime mock execution requires pre-configured fixtures (`{c['external_prerequisite_state']}`). "
+            "This strictly separates schema single-turn constructibility from API/runtime state independence.",
+            "",
+            "#### F. Competing Candidates Evaluated & Rejected",
+            "",
+            "| Competing Candidate | Endpoint | Invocation Mode | Prerequisite State | Explicit Rejection Rationale |",
+            "| :--- | :--- | :---: | :---: | :--- |",
+        ])
+
+        for r in d["evaluated_rejected_candidates"]:
+            lines.append(
+                f"| `{r['operation_id']}` | `{r['endpoint']}` | `{r['schema_invocation_mode']}` | "
+                f"`{r['external_prerequisite_state']}` | {r['rejection_reason']} |"
+            )
+
+        lines.extend([
+            "",
+            "#### G. Checkbox List for Human Reviewer",
+            f"- [ ] **Provenance Verification:** Raw file SHA-256 (`{c['raw_file_sha256'][:16]}...`) and Git blob SHA (`{c['source_blob_sha'][:16]}...`) match pinned registry.",
+            f"- [ ] **JSON Pointer Resolution:** Pointer `{c['source_spec_pointer']}` resolves unambiguously in `{c['raw_source_file_path']}`.",
+            f"- [ ] **Structural Rules Compliance:** Observed depth {c['maximum_nesting_depth']} $\\le 5$, 0 object unions, 0 binary/multipart formats, 0 cycles, 0 external refs.",
+            f"- [ ] **Invocation Mode Verified:** Operation is constructible in a single turn (`{c['schema_invocation_mode']}`).",
+            f"- [ ] **Fixture Requirements Verified:** Deterministic mock fixtures are minimal and feasible (`{c['external_prerequisite_state']}`).",
+            f"- [ ] **Domain Representation:** Operation represents authentic production workflow for {d['target_domain']}.",
+            f"- [ ] **Mock Feasibility Pre-Screen:** Local hermetic mock execution is feasible given declared fixtures.",
+            "",
+            "#### H. Human Review Sign-Off Block",
+            "- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`",
+            "- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`",
+            "- **Review Date:** `[PENDING_DATE]`",
+            "- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`",
+            "- **Review Decision:** `[PENDING_DECISION: APPROVE | REJECT | REQUEST_CHANGES]`",
+            "- **Review Notes / Conditions:** `[PENDING_NOTES]`",
+            "",
+            "---",
+            "",
+        ])
+
+    lines.extend([
+        "## 3. Human Sign-Off Summary Table",
+        "",
+        "| Slot ID | Admitted Operation | Reviewer Name | Reviewer Role | Decision | Sign-Off Date |",
+        "| :--- | :--- | :---: | :---: | :---: | :---: |",
+    ])
+    for d in decisions:
+        c = d["admitted_candidate"]
+        lines.append(
+            f"| `{d['slot_id']}` | `{c['operation_id']}` | `[PENDING]` | `[PENDING_ROLE]` | `[PENDING_DECISION]` | `[PENDING_DATE]` |"
+        )
+    lines.extend(["", ""])
 
     return "\n".join(lines)
 
@@ -784,10 +944,18 @@ def main():
         f.write("\n")
     print(f"Wrote admission decisions JSON to {JSON_DECISIONS_PATH}")
 
+    decisions_sha = sha256_file(JSON_DECISIONS_PATH)
+    manifest_sha = sha256_file(MANIFEST_PATH) if os.path.exists(MANIFEST_PATH) else "PENDING_MANIFEST_HASH"
+
     md_content = generate_markdown_review(decisions_report)
     with open(MD_REVIEW_PATH, "w", encoding="utf-8") as f:
         f.write(md_content)
     print(f"Wrote admission review Markdown to {MD_REVIEW_PATH}")
+
+    packet_content = generate_human_review_packet(decisions_report, manifest_sha, decisions_sha)
+    with open(REVIEW_PACKET_PATH, "w", encoding="utf-8") as f:
+        f.write(packet_content)
+    print(f"Wrote human review packet Markdown to {REVIEW_PACKET_PATH}")
 
 
 if __name__ == "__main__":

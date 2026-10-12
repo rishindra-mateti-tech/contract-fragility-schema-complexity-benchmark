@@ -250,6 +250,7 @@ def test_admission_decisions_json_and_review_doc_consistency():
         # Human sign-off record keys
         sign_off = admitted["human_sign_off_record"]
         assert "reviewer_name" in sign_off
+        assert "reviewer_role" in sign_off
         assert "review_date" in sign_off
         assert "reviewed_artifact_sha256" in sign_off
         assert "human_sign_off_decision" in sign_off

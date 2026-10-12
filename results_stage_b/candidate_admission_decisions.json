@@ -30,7 +30,8 @@
           "human_sign_off_decision": "PENDING_REVIEW",
           "review_date": "[PENDING_DATE]",
           "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]"
+          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
         },
         "input_surfaces": [
           "body",
@@ -130,7 +131,8 @@
           "human_sign_off_decision": "PENDING_REVIEW",
           "review_date": "[PENDING_DATE]",
           "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]"
+          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
         },
         "input_surfaces": [
           "body"
@@ -227,7 +229,8 @@
           "human_sign_off_decision": "PENDING_REVIEW",
           "review_date": "[PENDING_DATE]",
           "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]"
+          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
         },
         "input_surfaces": [
           "body"
@@ -320,7 +323,8 @@
           "human_sign_off_decision": "PENDING_REVIEW",
           "review_date": "[PENDING_DATE]",
           "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]"
+          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
         },
         "input_surfaces": [
           "body",
@@ -416,7 +420,8 @@
           "human_sign_off_decision": "PENDING_REVIEW",
           "review_date": "[PENDING_DATE]",
           "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]"
+          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
+          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
         },
         "input_surfaces": [
           "body"
@@ -483,11 +488,19 @@
   ],
   "metadata": {
     "admission_script": "src/admit_stage_b_candidates.py",
-    "admission_script_sha256": "af452ccee719b903355b5e157653ce908a850e5da917918ee25c9c3b98d27e89",
+    "admission_script_sha256": "6102a5884b89953d78e4d15d5809bd97e1989e6a892f3149019797f654bf2a7b",
+    "author_review_instructions": "results_stage_b/AUTHOR_REVIEW_INSTRUCTIONS.md",
+    "classification_framework": "conservative, protocol-defined pre-extraction classifications subject to extraction validation and human review",
     "generated_at_utc": "2026-10-12T18:15:00Z",
     "governing_policy": "STAGE_B_CANDIDATE_ADMISSION_GATE",
+    "human_review_packet": "results_stage_b/HUMAN_ADMISSION_REVIEW_PACKET.md",
     "human_review_status": "PENDING",
+    "independent_review_conducted": false,
     "review_document": "results_stage_b/CANDIDATE_ADMISSION_REVIEW.md",
+    "reviewer_roles_permitted": [
+      "AUTHOR_MANUAL_REVIEW",
+      "INDEPENDENT_REVIEW"
+    ],
     "total_admitted": 5,
     "total_open_slots": 0,
     "total_slots_reviewed": 5
