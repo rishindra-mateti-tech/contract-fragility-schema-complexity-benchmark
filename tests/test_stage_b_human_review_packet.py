@@ -10,12 +10,14 @@ Verifies:
    - Statefulness classification (schema_invocation_mode, external_prerequisite_state)
    - Competing candidates evaluated and rejected with explicit rationales
    - Checkbox list for human reviewer (checked by author reviewer)
-   - Signature block with reviewer name, role, date, artifact SHA, and decision.
+   - Signature block with reviewer name, role, date, immutable Git provenance fields, and decision.
 3. Cryptographic SHA references match actual on-disk files.
 4. Permitted reviewer roles (AUTHOR_MANUAL_REVIEW, INDEPENDENT_REVIEW) are documented.
 5. Author review instructions clearly state author review confirms provenance and design
    decisions but does not constitute independent validation.
 6. Author manual review is completed and approved, but independent validation is NOT claimed.
+7. Immutable Git provenance references (commit, blob SHA, historical SHA-256, recording commit)
+   are validated against Git history and verified not to falsely equal current packet hash.
 """
 
 import hashlib
@@ -127,7 +129,10 @@ def test_packet_required_fields_and_sections_per_operation():
         assert "Reviewer Name:** `Rishindra Mateti`" in section
         assert "Reviewer Role:** `AUTHOR_MANUAL_REVIEW`" in section
         assert "Review Date:** `2026-10-12`" in section
-        assert "Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`" in section
+        assert "Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`" in section
+        assert "Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`" in section
+        assert "Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`" in section
+        assert "Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`" in section
         assert "Review Decision:** `APPROVE`" in section
 
 
@@ -187,7 +192,10 @@ def test_author_manual_review_completed_and_approved():
     assert "**Document Status:** `AUTHOR_MANUAL_REVIEW_COMPLETED` (Independent Review: `NOT_CONDUCTED`)" in packet_content
     assert "Rishindra Mateti" in packet_content
     assert "2026-10-12" in packet_content
+    assert "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e" in packet_content
+    assert "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d" in packet_content
     assert "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b" in packet_content
+    assert "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066" in packet_content
 
     with open(DECISIONS_JSON_PATH, "r", encoding="utf-8") as f:
         decisions = json.load(f)
@@ -197,7 +205,10 @@ def test_author_manual_review_completed_and_approved():
     assert meta["author_review_sign_off"]["reviewer_name"] == "Rishindra Mateti"
     assert meta["author_review_sign_off"]["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
     assert meta["author_review_sign_off"]["review_date"] == "2026-10-12"
+    assert meta["author_review_sign_off"]["reviewed_packet_git_commit"] == "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e"
+    assert meta["author_review_sign_off"]["reviewed_packet_blob_sha"] == "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d"
     assert meta["author_review_sign_off"]["reviewed_packet_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+    assert meta["author_review_sign_off"]["sign_off_recording_commit"] == "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
     assert meta["author_review_sign_off"]["decision"] == "APPROVE"
 
     for d in decisions["decisions"]:
@@ -207,8 +218,12 @@ def test_author_manual_review_completed_and_approved():
         assert sign_off["reviewer_name"] == "Rishindra Mateti"
         assert sign_off["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
         assert sign_off["review_date"] == "2026-10-12"
-        assert sign_off["reviewed_artifact_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+        assert sign_off["reviewed_packet_git_commit"] == "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e"
+        assert sign_off["reviewed_packet_blob_sha"] == "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d"
+        assert sign_off["reviewed_packet_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+        assert sign_off["sign_off_recording_commit"] == "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
         assert sign_off["human_sign_off_decision"] == "APPROVE"
+        assert "reviewed_artifact_sha256" not in sign_off
 
 
 def test_no_independent_validation_claimed():
@@ -250,3 +265,87 @@ def test_conservative_pre_extraction_classification_wording():
 
     with open(DECISIONS_JSON_PATH, "r", encoding="utf-8") as f:
         assert expected_phrase in f.read()
+
+
+def test_immutable_git_provenance_retrieval_and_hash_divergence():
+    """Validates immutable Git provenance fields against actual Git history and
+    asserts historical reviewed hash does not falsely equal current packet hash
+    unless the contents truly match."""
+    import subprocess
+
+    with open(DECISIONS_JSON_PATH, "r", encoding="utf-8") as f:
+        decisions = json.load(f)
+
+    meta = decisions["metadata"]
+    sign_off = meta["author_review_sign_off"]
+    git_commit = sign_off["reviewed_packet_git_commit"]
+    blob_sha = sign_off["reviewed_packet_blob_sha"]
+    historical_sha256 = sign_off["reviewed_packet_sha256"]
+    recording_commit = sign_off["sign_off_recording_commit"]
+
+    # 1. Verify git_commit is an actual commit in Git repository
+    res_commit_type = subprocess.run(
+        ["git", "cat-file", "-t", git_commit],
+        capture_output=True, text=True, check=True
+    )
+    assert res_commit_type.stdout.strip() == "commit", f"{git_commit} must be a valid commit"
+
+    # 2. Verify recording_commit is an actual commit in Git repository
+    res_rec_type = subprocess.run(
+        ["git", "cat-file", "-t", recording_commit],
+        capture_output=True, text=True, check=True
+    )
+    assert res_rec_type.stdout.strip() == "commit", f"{recording_commit} must be a valid commit"
+
+    # 3. Verify blob_sha matches the exact Git tree entry at git_commit for the review packet
+    res_tree_blob = subprocess.run(
+        ["git", "rev-parse", f"{git_commit}:results_stage_b/HUMAN_ADMISSION_REVIEW_PACKET.md"],
+        capture_output=True, text=True, check=True
+    )
+    assert res_tree_blob.stdout.strip() == blob_sha, (
+        f"Git tree at {git_commit} must point to blob {blob_sha}"
+    )
+
+    # 4. Retrieve historical blob content from Git and verify historical SHA-256 matches
+    res_blob_content = subprocess.run(
+        ["git", "cat-file", "-p", blob_sha],
+        capture_output=True, check=True
+    )
+    historical_bytes = res_blob_content.stdout
+    hash_raw = hashlib.sha256(historical_bytes).hexdigest()
+    hash_crlf = hashlib.sha256(historical_bytes.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")).hexdigest()
+    assert historical_sha256 in (hash_raw, hash_crlf), (
+        f"Historical hash {historical_sha256} must match blob content ({hash_raw} or {hash_crlf})"
+    )
+
+    # 5. Read current on-disk packet bytes and compute its current SHA-256
+    with open(PACKET_PATH, "rb") as f:
+        current_bytes = f.read()
+    current_sha256 = hashlib.sha256(current_bytes).hexdigest()
+
+    # 6. Ensure historical hash does NOT falsely equal current packet hash unless contents truly match
+    contents_match = (
+        current_bytes == historical_bytes or
+        current_bytes == historical_bytes.replace(b"\r\n", b"\n") or
+        current_bytes == historical_bytes.replace(b"\n", b"\r\n")
+    )
+    if contents_match:
+        assert current_sha256 == historical_sha256
+    else:
+        assert current_sha256 != historical_sha256, (
+            "Current packet SHA-256 must not falsely equal historical reviewed packet SHA-256 "
+            "because the current packet contains subsequent sign-off records."
+        )
+
+    # 7. Verify explicit provenance statement is present across artifacts
+    expected_statement = (
+        "The author reviewed the packet snapshot identified above. "
+        "The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256."
+    )
+    with open(PACKET_PATH, "r", encoding="utf-8") as f:
+        assert expected_statement in f.read()
+
+    with open(ADMISSION_REVIEW_MD_PATH, "r", encoding="utf-8") as f:
+        assert expected_statement in f.read()
+
+    assert sign_off["provenance_statement"] == expected_statement

@@ -41,6 +41,15 @@ MANIFEST_PATH = os.path.join(ROOT_DIR, "results_stage_b", "stage_b_operation_man
 UNIVERSE_JSON_PATH = os.path.join(ROOT_DIR, "results_stage_b", "raw_operation_universe.json")
 REGISTRY_JSON_PATH = os.path.join(ROOT_DIR, "results_stage_b", "raw_sources_provenance_registry.json")
 
+REVIEWED_PACKET_GIT_COMMIT = "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e"
+REVIEWED_PACKET_BLOB_SHA = "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d"
+REVIEWED_PACKET_SHA256 = "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+SIGN_OFF_RECORDING_COMMIT = "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
+PROVENANCE_STATEMENT = (
+    "The author reviewed the packet snapshot identified above. "
+    "The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256."
+)
+
 
 def sha256_file(path: str) -> str:
     h = hashlib.sha256()
@@ -118,7 +127,10 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "reviewer_name": "Rishindra Mateti",
                 "reviewer_role": "AUTHOR_MANUAL_REVIEW",
                 "review_date": "2026-10-12",
-                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "reviewed_packet_git_commit": REVIEWED_PACKET_GIT_COMMIT,
+                "reviewed_packet_blob_sha": REVIEWED_PACKET_BLOB_SHA,
+                "reviewed_packet_sha256": REVIEWED_PACKET_SHA256,
+                "sign_off_recording_commit": SIGN_OFF_RECORDING_COMMIT,
                 "human_sign_off_decision": "APPROVE",
             },
         },
@@ -233,7 +245,10 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "reviewer_name": "Rishindra Mateti",
                 "reviewer_role": "AUTHOR_MANUAL_REVIEW",
                 "review_date": "2026-10-12",
-                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "reviewed_packet_git_commit": REVIEWED_PACKET_GIT_COMMIT,
+                "reviewed_packet_blob_sha": REVIEWED_PACKET_BLOB_SHA,
+                "reviewed_packet_sha256": REVIEWED_PACKET_SHA256,
+                "sign_off_recording_commit": SIGN_OFF_RECORDING_COMMIT,
                 "human_sign_off_decision": "APPROVE",
             },
         },
@@ -344,7 +359,10 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "reviewer_name": "Rishindra Mateti",
                 "reviewer_role": "AUTHOR_MANUAL_REVIEW",
                 "review_date": "2026-10-12",
-                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "reviewed_packet_git_commit": REVIEWED_PACKET_GIT_COMMIT,
+                "reviewed_packet_blob_sha": REVIEWED_PACKET_BLOB_SHA,
+                "reviewed_packet_sha256": REVIEWED_PACKET_SHA256,
+                "sign_off_recording_commit": SIGN_OFF_RECORDING_COMMIT,
                 "human_sign_off_decision": "APPROVE",
             },
         },
@@ -453,7 +471,10 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "reviewer_name": "Rishindra Mateti",
                 "reviewer_role": "AUTHOR_MANUAL_REVIEW",
                 "review_date": "2026-10-12",
-                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "reviewed_packet_git_commit": REVIEWED_PACKET_GIT_COMMIT,
+                "reviewed_packet_blob_sha": REVIEWED_PACKET_BLOB_SHA,
+                "reviewed_packet_sha256": REVIEWED_PACKET_SHA256,
+                "sign_off_recording_commit": SIGN_OFF_RECORDING_COMMIT,
                 "human_sign_off_decision": "APPROVE",
             },
         },
@@ -565,7 +586,10 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "reviewer_name": "Rishindra Mateti",
                 "reviewer_role": "AUTHOR_MANUAL_REVIEW",
                 "review_date": "2026-10-12",
-                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "reviewed_packet_git_commit": REVIEWED_PACKET_GIT_COMMIT,
+                "reviewed_packet_blob_sha": REVIEWED_PACKET_BLOB_SHA,
+                "reviewed_packet_sha256": REVIEWED_PACKET_SHA256,
+                "sign_off_recording_commit": SIGN_OFF_RECORDING_COMMIT,
                 "human_sign_off_decision": "APPROVE",
             },
         },
@@ -635,9 +659,13 @@ def generate_json_decisions(generated_at_utc: str) -> Dict[str, Any]:
                 "reviewer_name": "Rishindra Mateti",
                 "reviewer_role": "AUTHOR_MANUAL_REVIEW",
                 "review_date": "2026-10-12",
-                "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "reviewed_packet_git_commit": REVIEWED_PACKET_GIT_COMMIT,
+                "reviewed_packet_blob_sha": REVIEWED_PACKET_BLOB_SHA,
+                "reviewed_packet_sha256": REVIEWED_PACKET_SHA256,
+                "sign_off_recording_commit": SIGN_OFF_RECORDING_COMMIT,
                 "decision": "APPROVE",
                 "independent_validation_claimed": False,
+                "provenance_statement": PROVENANCE_STATEMENT,
             },
             "classification_framework": (
                 "conservative, protocol-defined pre-extraction classifications "
@@ -768,8 +796,12 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
             f"- **Reviewer Name:** `{so['reviewer_name']}`",
             f"- **Reviewer Role:** `{so['reviewer_role']}`",
             f"- **Review Date:** `{so['review_date']}`",
-            f"- **Reviewed Artifact SHA-256:** `{so['reviewed_artifact_sha256']}`",
+            f"- **Reviewed Packet Git Commit:** `{so['reviewed_packet_git_commit']}`",
+            f"- **Reviewed Packet Git Blob SHA:** `{so['reviewed_packet_blob_sha']}`",
+            f"- **Reviewed Packet SHA-256:** `{so['reviewed_packet_sha256']}`",
+            f"- **Sign-Off Recording Commit:** `{so['sign_off_recording_commit']}`",
             f"- **Human Sign-Off Decision:** `{so['human_sign_off_decision']}` (Author manual review confirms provenance and protocol compliance; independent validation NOT claimed)",
+            f"- **Provenance Note:** {PROVENANCE_STATEMENT}",
             "",
             "#### Evaluated & Rejected Competing Candidates",
             "",
@@ -810,7 +842,10 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
         "**Review Instructions:** [AUTHOR_REVIEW_INSTRUCTIONS.md](AUTHOR_REVIEW_INSTRUCTIONS.md)  ",
         f"**Operation Manifest SHA-256:** `{manifest_sha}`  ",
         f"**Decisions Artifact SHA-256:** `{decisions_sha}`  ",
-        f"**Reviewed Packet Base SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`  ",
+        f"**Reviewed Packet Git Commit:** `{REVIEWED_PACKET_GIT_COMMIT}`  ",
+        f"**Reviewed Packet Git Blob SHA:** `{REVIEWED_PACKET_BLOB_SHA}`  ",
+        f"**Reviewed Packet SHA-256:** `{REVIEWED_PACKET_SHA256}`  ",
+        f"**Sign-Off Recording Commit:** `{SIGN_OFF_RECORDING_COMMIT}`  ",
         f"**Date (UTC):** `{meta['generated_at_utc']}`  ",
         "",
         "---",
@@ -819,6 +854,8 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
         "",
         "This review packet compiles the five replacement candidate operations admitted into Stage B under status `ADMITTED_PENDING_EXTRACTION`. "
         "Author manual review (`AUTHOR_MANUAL_REVIEW`) has been completed and approved by Rishindra Mateti.",
+        "",
+        f"> **Provenance Clarification:** {PROVENANCE_STATEMENT}",
         "",
         "### Reviewer Roles & Independence Boundary:",
         "- **`AUTHOR_MANUAL_REVIEW` (COMPLETED)**: Conducted by benchmark author Rishindra Mateti on 2026-10-12 to confirm cryptographic provenance, "
@@ -913,9 +950,12 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
             f"- **Reviewer Name:** `{so['reviewer_name']}`",
             f"- **Reviewer Role:** `{so['reviewer_role']}`",
             f"- **Review Date:** `{so['review_date']}`",
-            f"- **Reviewed Artifact SHA-256:** `{so['reviewed_artifact_sha256']}`",
+            f"- **Reviewed Packet Git Commit:** `{so['reviewed_packet_git_commit']}`",
+            f"- **Reviewed Packet Git Blob SHA:** `{so['reviewed_packet_blob_sha']}`",
+            f"- **Reviewed Packet SHA-256:** `{so['reviewed_packet_sha256']}`",
+            f"- **Sign-Off Recording Commit:** `{so['sign_off_recording_commit']}`",
             f"- **Review Decision:** `{so['human_sign_off_decision']}`",
-            "- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation.",
+            f"- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation. {PROVENANCE_STATEMENT}",
             "",
             "---",
             "",
@@ -933,7 +973,12 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
         lines.append(
             f"| `{d['slot_id']}` | `{c['operation_id']}` | `{so['reviewer_name']}` | `{so['reviewer_role']}` | `{so['human_sign_off_decision']}` | `{so['review_date']}` |"
         )
-    lines.extend(["", ""])
+    lines.extend([
+        "",
+        f"> **Provenance Invariant:** {PROVENANCE_STATEMENT}",
+        "",
+        "",
+    ])
 
     return "\n".join(lines)
 

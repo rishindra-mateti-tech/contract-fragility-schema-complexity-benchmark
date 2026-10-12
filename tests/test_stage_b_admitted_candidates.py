@@ -236,9 +236,16 @@ def test_admission_decisions_json_and_review_doc_consistency():
     assert meta["author_review_sign_off"]["reviewer_name"] == "Rishindra Mateti"
     assert meta["author_review_sign_off"]["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
     assert meta["author_review_sign_off"]["review_date"] == "2026-10-12"
+    assert meta["author_review_sign_off"]["reviewed_packet_git_commit"] == "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e"
+    assert meta["author_review_sign_off"]["reviewed_packet_blob_sha"] == "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d"
     assert meta["author_review_sign_off"]["reviewed_packet_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+    assert meta["author_review_sign_off"]["sign_off_recording_commit"] == "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
     assert meta["author_review_sign_off"]["decision"] == "APPROVE"
     assert meta["author_review_sign_off"]["independent_validation_claimed"] is False
+    assert (
+        "The author reviewed the packet snapshot identified above. "
+        "The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256."
+    ) in meta["author_review_sign_off"]["provenance_statement"]
 
     decisions = decisions_data["decisions"]
     assert len(decisions) == 5
@@ -259,8 +266,12 @@ def test_admission_decisions_json_and_review_doc_consistency():
         assert sign_off["reviewer_name"] == "Rishindra Mateti"
         assert sign_off["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
         assert sign_off["review_date"] == "2026-10-12"
-        assert sign_off["reviewed_artifact_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+        assert sign_off["reviewed_packet_git_commit"] == "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e"
+        assert sign_off["reviewed_packet_blob_sha"] == "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d"
+        assert sign_off["reviewed_packet_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+        assert sign_off["sign_off_recording_commit"] == "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
         assert sign_off["human_sign_off_decision"] == "APPROVE"
+        assert "reviewed_artifact_sha256" not in sign_off
 
         # Automated checklist must all be True
         checklist = admitted["automated_static_admission_checklist"]

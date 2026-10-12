@@ -55,7 +55,11 @@ A designated human reviewer must evaluate each of the five admitted operations i
    - **Reviewer Name:** Legal or professional name of the reviewer.
    - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW` (or `INDEPENDENT_REVIEW` if external).
    - **Review Date:** UTC ISO 8601 timestamp.
-   - **Reviewed Artifact SHA-256:** SHA-256 digest of `stage_b_operation_manifest.yaml` and `candidate_admission_decisions.json`.
+   - **Reviewed Packet Git Commit:** Exact commit containing the packet version reviewed prior to sign-off (`bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`).
+   - **Reviewed Packet Git Blob SHA:** Git blob SHA of `HUMAN_ADMISSION_REVIEW_PACKET.md` at that commit (`ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`).
+   - **Reviewed Packet SHA-256:** SHA-256 of the historical reviewed file content (`419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`).
+   - **Sign-Off Recording Commit:** Git commit that records the author approval (`5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`).
+   - **Provenance Note:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
    - **Review Decision:**
      - `APPROVE`: Operation satisfies all criteria and is authorized for canonical extraction.
      - `REQUEST_CHANGES`: Issues identified requiring adjustment or re-ranking.

@@ -92,8 +92,12 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Human Sign-Off Decision:** `APPROVE` (Author manual review confirms provenance and protocol compliance; independent validation NOT claimed)
+- **Provenance Note:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -159,8 +163,12 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Human Sign-Off Decision:** `APPROVE` (Author manual review confirms provenance and protocol compliance; independent validation NOT claimed)
+- **Provenance Note:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -224,8 +232,12 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Human Sign-Off Decision:** `APPROVE` (Author manual review confirms provenance and protocol compliance; independent validation NOT claimed)
+- **Provenance Note:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -289,8 +301,12 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Human Sign-Off Decision:** `APPROVE` (Author manual review confirms provenance and protocol compliance; independent validation NOT claimed)
+- **Provenance Note:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 #### Evaluated & Rejected Competing Candidates
 
@@ -354,8 +370,12 @@ To prevent conflating schema-level single-turn constructibility with runtime sta
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Human Sign-Off Decision:** `APPROVE` (Author manual review confirms provenance and protocol compliance; independent validation NOT claimed)
+- **Provenance Note:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 #### Evaluated & Rejected Competing Candidates
 

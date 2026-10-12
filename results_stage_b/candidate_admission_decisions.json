@@ -29,9 +29,12 @@
         "human_sign_off_record": {
           "human_sign_off_decision": "APPROVE",
           "review_date": "2026-10-12",
-          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewed_packet_blob_sha": "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d",
+          "reviewed_packet_git_commit": "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e",
+          "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
           "reviewer_name": "Rishindra Mateti",
-          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+          "sign_off_recording_commit": "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
         },
         "input_surfaces": [
           "body",
@@ -130,9 +133,12 @@
         "human_sign_off_record": {
           "human_sign_off_decision": "APPROVE",
           "review_date": "2026-10-12",
-          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewed_packet_blob_sha": "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d",
+          "reviewed_packet_git_commit": "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e",
+          "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
           "reviewer_name": "Rishindra Mateti",
-          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+          "sign_off_recording_commit": "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
         },
         "input_surfaces": [
           "body"
@@ -228,9 +234,12 @@
         "human_sign_off_record": {
           "human_sign_off_decision": "APPROVE",
           "review_date": "2026-10-12",
-          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewed_packet_blob_sha": "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d",
+          "reviewed_packet_git_commit": "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e",
+          "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
           "reviewer_name": "Rishindra Mateti",
-          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+          "sign_off_recording_commit": "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
         },
         "input_surfaces": [
           "body"
@@ -322,9 +331,12 @@
         "human_sign_off_record": {
           "human_sign_off_decision": "APPROVE",
           "review_date": "2026-10-12",
-          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewed_packet_blob_sha": "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d",
+          "reviewed_packet_git_commit": "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e",
+          "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
           "reviewer_name": "Rishindra Mateti",
-          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+          "sign_off_recording_commit": "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
         },
         "input_surfaces": [
           "body",
@@ -419,9 +431,12 @@
         "human_sign_off_record": {
           "human_sign_off_decision": "APPROVE",
           "review_date": "2026-10-12",
-          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewed_packet_blob_sha": "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d",
+          "reviewed_packet_git_commit": "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e",
+          "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
           "reviewer_name": "Rishindra Mateti",
-          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+          "sign_off_recording_commit": "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
         },
         "input_surfaces": [
           "body"
@@ -488,15 +503,19 @@
   ],
   "metadata": {
     "admission_script": "src/admit_stage_b_candidates.py",
-    "admission_script_sha256": "2f25237902aaab05d8e0ae0ded1be381774e09f5a7403e28ccdf7611e0bcc0c8",
+    "admission_script_sha256": "0a9ff8e5fda1292f578e73150c723a65bd685ca27872fc36be0808dc6d0259fa",
     "author_review_instructions": "results_stage_b/AUTHOR_REVIEW_INSTRUCTIONS.md",
     "author_review_sign_off": {
       "decision": "APPROVE",
       "independent_validation_claimed": false,
+      "provenance_statement": "The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.",
       "review_date": "2026-10-12",
+      "reviewed_packet_blob_sha": "ac7a02cf8543e3ec310bcf3928a44b7c66b7031d",
+      "reviewed_packet_git_commit": "bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e",
       "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
       "reviewer_name": "Rishindra Mateti",
-      "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+      "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+      "sign_off_recording_commit": "5175e6f7f4049dbbbd3f94ed7e04c932b3d68066"
     },
     "classification_framework": "conservative, protocol-defined pre-extraction classifications subject to extraction validation and human review",
     "generated_at_utc": "2026-10-12T18:15:00Z",

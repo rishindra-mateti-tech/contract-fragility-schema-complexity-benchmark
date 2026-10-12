@@ -5,8 +5,11 @@
 **Governing Specification:** `STAGE_B_EXTRACTION_SPEC.md`  
 **Review Instructions:** [AUTHOR_REVIEW_INSTRUCTIONS.md](AUTHOR_REVIEW_INSTRUCTIONS.md)  
 **Operation Manifest SHA-256:** `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326`  
-**Decisions Artifact SHA-256:** `2b9668fdbe8c84e53303228dc9b60240250bf732382087fc73945987c03b563d`  
-**Reviewed Packet Base SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`  
+**Decisions Artifact SHA-256:** `8c19889d3f5a4692ac26aaf44f4cd9d0aecea7ddafd9bd1a1437bd8e3aa4c8f2`  
+**Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`  
+**Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`  
+**Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`  
+**Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`  
 **Date (UTC):** `2026-10-12T18:15:00Z`  
 
 ---
@@ -14,6 +17,8 @@
 ## 1. Review Packet Protocol & Reviewer Guidance
 
 This review packet compiles the five replacement candidate operations admitted into Stage B under status `ADMITTED_PENDING_EXTRACTION`. Author manual review (`AUTHOR_MANUAL_REVIEW`) has been completed and approved by Rishindra Mateti.
+
+> **Provenance Clarification:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 ### Reviewer Roles & Independence Boundary:
 - **`AUTHOR_MANUAL_REVIEW` (COMPLETED)**: Conducted by benchmark author Rishindra Mateti on 2026-10-12 to confirm cryptographic provenance, protocol compliance, and domain engineering rationale. *Author review confirms provenance and authorial design decisions but DOES NOT constitute independent third-party validation.*
@@ -45,7 +50,7 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Raw Source Git Blob SHA:** `a91fa76a34558f5ed28e245cb1a6c46a44a61f4d`
 - **Raw Source File SHA-256:** `ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194`
 - **Reviewed Operation Manifest SHA-256:** `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326`
-- **Reviewed Decisions Artifact SHA-256:** `2b9668fdbe8c84e53303228dc9b60240250bf732382087fc73945987c03b563d`
+- **Reviewed Decisions Artifact SHA-256:** `8c19889d3f5a4692ac26aaf44f4cd9d0aecea7ddafd9bd1a1437bd8e3aa4c8f2`
 
 #### C. Selection Rationale (Why Selected)
 - **Rationale:** High-fidelity developer platform operation. Cleanly bounded at recursion depth 2 with 10 properties (4 required: 2 path parameters '{owner}', '{repo}', plus 2 body fields 'head', 'base'). Schema parameters can be formulated in a single turn without inspecting prior responses (SINGLE_TURN_CONSTRUCTIBLE), but execution is not state-independent: mock execution requires pre-configured repository and base/head branch fixtures (FIXTURE_REQUIRED). Avoids structural bloat and polymorphic object unions of issues/create.
@@ -92,9 +97,12 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Review Decision:** `APPROVE`
-- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation.
+- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation. The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 ---
 
@@ -116,7 +124,7 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Raw Source Git Blob SHA:** `f1cedf38e0178538a3c72e750da80226df41e28c`
 - **Raw Source File SHA-256:** `7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776`
 - **Reviewed Operation Manifest SHA-256:** `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326`
-- **Reviewed Decisions Artifact SHA-256:** `2b9668fdbe8c84e53303228dc9b60240250bf732382087fc73945987c03b563d`
+- **Reviewed Decisions Artifact SHA-256:** `8c19889d3f5a4692ac26aaf44f4cd9d0aecea7ddafd9bd1a1437bd8e3aa4c8f2`
 
 #### C. Selection Rationale (Why Selected)
 - **Rationale:** Core merchant balance routing operation. Cleanly bounded at depth 3 with 10 properties (2 required: 'amount' and 'currency'). Schema parameters can be formulated in a single turn without prior entity outputs (SINGLE_TURN_CONSTRUCTIBLE), but execution is not state-independent: mock execution requires active merchant account capability and a sufficient available ledger-balance fixture (FIXTURE_REQUIRED). Avoids recursive depth bloat (depth 6) and polymorphic address objects of PostCustomers.
@@ -163,9 +171,12 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Review Decision:** `APPROVE`
-- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation.
+- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation. The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 ---
 
@@ -187,7 +198,7 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Raw Source Git Blob SHA:** `f1cedf38e0178538a3c72e750da80226df41e28c`
 - **Raw Source File SHA-256:** `7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776`
 - **Reviewed Operation Manifest SHA-256:** `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326`
-- **Reviewed Decisions Artifact SHA-256:** `2b9668fdbe8c84e53303228dc9b60240250bf732382087fc73945987c03b563d`
+- **Reviewed Decisions Artifact SHA-256:** `8c19889d3f5a4692ac26aaf44f4cd9d0aecea7ddafd9bd1a1437bd8e3aa4c8f2`
 
 #### C. Selection Rationale (Why Selected)
 - **Rationale:** Highly representative commerce and checkout configuration operation. Exhibits rich nested object architecture (depth 4 with nested 'delivery_estimate' and 'fixed_amount' objects containing currency and duration units) while strictly complying with the frozen bound d <= 5. Schema parameters can be formulated in a single turn (SINGLE_TURN_CONSTRUCTIBLE); runtime execution requires an authenticated merchant account context fixture (FIXTURE_REQUIRED). Replaces the extreme bloat and 492-property depth-9 explosion of PostPaymentIntents with a rigorous, tractable complex contract.
@@ -232,9 +243,12 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Review Decision:** `APPROVE`
-- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation.
+- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation. The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 ---
 
@@ -256,7 +270,7 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Raw Source Git Blob SHA:** `b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589`
 - **Raw Source File SHA-256:** `c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43`
 - **Reviewed Operation Manifest SHA-256:** `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326`
-- **Reviewed Decisions Artifact SHA-256:** `2b9668fdbe8c84e53303228dc9b60240250bf732382087fc73945987c03b563d`
+- **Reviewed Decisions Artifact SHA-256:** `8c19889d3f5a4692ac26aaf44f4cd9d0aecea7ddafd9bd1a1437bd8e3aa4c8f2`
 
 #### C. Selection Rationale (Why Selected)
 - **Rationale:** Standard event automation integration in customer support systems. Combines path routing ('account_id') with a structured JSON body containing an array of 10 distinct event enums ('subscriptions'). Schema parameters are constructible in a single turn without prior entity outputs (SINGLE_TURN_CONSTRUCTIBLE); runtime execution requires an existing account fixture corresponding to the path parameter (FIXTURE_REQUIRED). Avoids the multipart/form-data binary upload violation that disqualified create-a-contact.
@@ -301,9 +315,12 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Review Decision:** `APPROVE`
-- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation.
+- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation. The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 ---
 
@@ -325,7 +342,7 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Raw Source Git Blob SHA:** `11f1fdb91092246f881edd1a9457cb37327a6c5d`
 - **Raw Source File SHA-256:** `41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc`
 - **Reviewed Operation Manifest SHA-256:** `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326`
-- **Reviewed Decisions Artifact SHA-256:** `2b9668fdbe8c84e53303228dc9b60240250bf732382087fc73945987c03b563d`
+- **Reviewed Decisions Artifact SHA-256:** `8c19889d3f5a4692ac26aaf44f4cd9d0aecea7ddafd9bd1a1437bd8e3aa4c8f2`
 
 #### C. Selection Rationale (Why Selected)
 - **Rationale:** Authentic messaging interaction endpoint in the LINE bot ecosystem ('/v2/bot/chat/loading/start'). Schema arguments ('chatId' and bounded integer 'loadingSeconds' [5-60s]) can be formulated in a single turn without inspecting prior responses (SINGLE_TURN_CONSTRUCTIBLE). Crucially, external prerequisite state is classified as FIXTURE_REQUIRED (not NONE) because the pinned LINE OpenAPI specification explicitly models response 400 for 'An invalid chat ID is specified', confirming that server-side chat/user identity validation is represented in the contract semantics. Avoids depth-13 recursion and polymorphic discriminated message unions of replyMessage.
@@ -370,9 +387,12 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 - **Reviewer Name:** `Rishindra Mateti`
 - **Reviewer Role:** `AUTHOR_MANUAL_REVIEW`
 - **Review Date:** `2026-10-12`
-- **Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Reviewed Packet Git Commit:** `bafc6f554e24f8f50346b8fff2afbdfc7acfdb5e`
+- **Reviewed Packet Git Blob SHA:** `ac7a02cf8543e3ec310bcf3928a44b7c66b7031d`
+- **Reviewed Packet SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`
+- **Sign-Off Recording Commit:** `5175e6f7f4049dbbbd3f94ed7e04c932b3d68066`
 - **Review Decision:** `APPROVE`
-- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation.
+- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation. The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
 ---
 
@@ -385,4 +405,6 @@ Zero extraction code, derived schemas, mutations, mock runtime harnesses, or mod
 | `SLOT_STRIPE_02` | `PostShippingRates` | `Rishindra Mateti` | `AUTHOR_MANUAL_REVIEW` | `APPROVE` | `2026-10-12` |
 | `SLOT_CHATWOOT_01` | `create-a-webhook` | `Rishindra Mateti` | `AUTHOR_MANUAL_REVIEW` | `APPROVE` | `2026-10-12` |
 | `SLOT_LINE_01` | `showLoadingAnimation` | `Rishindra Mateti` | `AUTHOR_MANUAL_REVIEW` | `APPROVE` | `2026-10-12` |
+
+> **Provenance Invariant:** The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.
 
