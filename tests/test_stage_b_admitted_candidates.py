@@ -231,7 +231,14 @@ def test_admission_decisions_json_and_review_doc_consistency():
     assert meta["total_admitted"] == 5
     assert meta["total_open_slots"] == 0
     assert meta["governing_policy"] == "STAGE_B_CANDIDATE_ADMISSION_GATE"
-    assert meta["human_review_status"] == "PENDING"
+    assert meta["human_review_status"] == "AUTHOR_MANUAL_REVIEW_COMPLETED"
+    assert meta["independent_review_conducted"] is False
+    assert meta["author_review_sign_off"]["reviewer_name"] == "Rishindra Mateti"
+    assert meta["author_review_sign_off"]["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
+    assert meta["author_review_sign_off"]["review_date"] == "2026-10-12"
+    assert meta["author_review_sign_off"]["reviewed_packet_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+    assert meta["author_review_sign_off"]["decision"] == "APPROVE"
+    assert meta["author_review_sign_off"]["independent_validation_claimed"] is False
 
     decisions = decisions_data["decisions"]
     assert len(decisions) == 5
@@ -239,21 +246,21 @@ def test_admission_decisions_json_and_review_doc_consistency():
     with open(REVIEW_MD_PATH, "r", encoding="utf-8") as f:
         review_md = f.read()
 
-    assert "Human Review Status: `PENDING`" in review_md or "**Human Review Status:** `PENDING`" in review_md
+    assert "**Human Review Status:** `AUTHOR_MANUAL_REVIEW_COMPLETED` (Independent Review: `NOT_CONDUCTED`)" in review_md
 
     for d in decisions:
         assert d["admission_decision"] == "ADMITTED_PENDING_EXTRACTION"
         admitted = d["admitted_candidate"]
         assert admitted["mock_feasibility_status"] == "PENDING"
-        assert admitted["human_review_status"] == "PENDING"
+        assert admitted["human_review_status"] == "AUTHOR_MANUAL_REVIEW_COMPLETED"
 
-        # Human sign-off record keys
+        # Human sign-off record keys and values
         sign_off = admitted["human_sign_off_record"]
-        assert "reviewer_name" in sign_off
-        assert "reviewer_role" in sign_off
-        assert "review_date" in sign_off
-        assert "reviewed_artifact_sha256" in sign_off
-        assert "human_sign_off_decision" in sign_off
+        assert sign_off["reviewer_name"] == "Rishindra Mateti"
+        assert sign_off["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
+        assert sign_off["review_date"] == "2026-10-12"
+        assert sign_off["reviewed_artifact_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+        assert sign_off["human_sign_off_decision"] == "APPROVE"
 
         # Automated checklist must all be True
         checklist = admitted["automated_static_admission_checklist"]

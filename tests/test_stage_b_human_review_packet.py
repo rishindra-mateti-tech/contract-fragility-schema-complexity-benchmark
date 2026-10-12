@@ -9,13 +9,13 @@ Verifies:
    - Required future mock fixtures
    - Statefulness classification (schema_invocation_mode, external_prerequisite_state)
    - Competing candidates evaluated and rejected with explicit rationales
-   - Unchecked checkbox list for human reviewer
-   - Signature block with reviewer name, role, date, artifact SHA, and decision options.
+   - Checkbox list for human reviewer (checked by author reviewer)
+   - Signature block with reviewer name, role, date, artifact SHA, and decision.
 3. Cryptographic SHA references match actual on-disk files.
 4. Permitted reviewer roles (AUTHOR_MANUAL_REVIEW, INDEPENDENT_REVIEW) are documented.
 5. Author review instructions clearly state author review confirms provenance and design
    decisions but does not constitute independent validation.
-6. Zero completed human sign-offs are claimed (status remains PENDING).
+6. Author manual review is completed and approved, but independent validation is NOT claimed.
 """
 
 import hashlib
@@ -113,9 +113,9 @@ def test_packet_required_fields_and_sections_per_operation():
         assert "Competing Candidates Evaluated & Rejected" in section
         assert "Explicit Rejection Rationale" in section
 
-        # 7. Checkbox List for Human Reviewer (unchecked)
+        # 7. Checkbox List for Human Reviewer (checked by author reviewer)
         assert "Checkbox List for Human Reviewer" in section
-        assert "- [ ]" in section
+        assert "- [x]" in section
         assert "Provenance Verification:" in section
         assert "JSON Pointer Resolution:" in section
         assert "Structural Rules Compliance:" in section
@@ -124,11 +124,11 @@ def test_packet_required_fields_and_sections_per_operation():
 
         # 8. Human Review Sign-Off Block
         assert "Human Review Sign-Off Block" in section
-        assert "Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`" in section
-        assert "Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`" in section
-        assert "Review Date:** `[PENDING_DATE]`" in section
-        assert "Reviewed Artifact SHA-256:** `[PENDING_SHA256]`" in section
-        assert "APPROVE | REJECT | REQUEST_CHANGES" in section
+        assert "Reviewer Name:** `Rishindra Mateti`" in section
+        assert "Reviewer Role:** `AUTHOR_MANUAL_REVIEW`" in section
+        assert "Review Date:** `2026-10-12`" in section
+        assert "Reviewed Artifact SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`" in section
+        assert "Review Decision:** `APPROVE`" in section
 
 
 def test_packet_sha_references_match_on_disk_artifacts():
@@ -180,31 +180,63 @@ def test_author_review_instructions_integrity_and_boundaries():
     assert "REJECT" in inst
 
 
-def test_no_completed_human_review_claimed():
+def test_author_manual_review_completed_and_approved():
     with open(PACKET_PATH, "r", encoding="utf-8") as f:
         packet_content = f.read()
 
-    assert "**Document Status:** `PENDING_HUMAN_REVIEW`" in packet_content
-    assert "[PENDING_HUMAN_REVIEWER]" in packet_content
-    assert "[PENDING_DATE]" in packet_content
-    assert "[PENDING_SHA256]" in packet_content
+    assert "**Document Status:** `AUTHOR_MANUAL_REVIEW_COMPLETED` (Independent Review: `NOT_CONDUCTED`)" in packet_content
+    assert "Rishindra Mateti" in packet_content
+    assert "2026-10-12" in packet_content
+    assert "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b" in packet_content
 
     with open(DECISIONS_JSON_PATH, "r", encoding="utf-8") as f:
         decisions = json.load(f)
 
     meta = decisions["metadata"]
-    assert meta["human_review_status"] == "PENDING"
-    assert meta["independent_review_conducted"] is False
-    assert set(meta["reviewer_roles_permitted"]) == {"AUTHOR_MANUAL_REVIEW", "INDEPENDENT_REVIEW"}
+    assert meta["human_review_status"] == "AUTHOR_MANUAL_REVIEW_COMPLETED"
+    assert meta["author_review_sign_off"]["reviewer_name"] == "Rishindra Mateti"
+    assert meta["author_review_sign_off"]["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
+    assert meta["author_review_sign_off"]["review_date"] == "2026-10-12"
+    assert meta["author_review_sign_off"]["reviewed_packet_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+    assert meta["author_review_sign_off"]["decision"] == "APPROVE"
 
     for d in decisions["decisions"]:
         admitted = d["admitted_candidate"]
-        assert admitted["human_review_status"] == "PENDING"
+        assert admitted["human_review_status"] == "AUTHOR_MANUAL_REVIEW_COMPLETED"
         sign_off = admitted["human_sign_off_record"]
-        assert sign_off["reviewer_name"] == "[PENDING_HUMAN_REVIEWER]"
-        assert sign_off["human_sign_off_decision"] == "PENDING_REVIEW"
-        assert "AUTHOR_MANUAL_REVIEW" in sign_off["reviewer_role"]
-        assert "INDEPENDENT_REVIEW" in sign_off["reviewer_role"]
+        assert sign_off["reviewer_name"] == "Rishindra Mateti"
+        assert sign_off["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
+        assert sign_off["review_date"] == "2026-10-12"
+        assert sign_off["reviewed_artifact_sha256"] == "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b"
+        assert sign_off["human_sign_off_decision"] == "APPROVE"
+
+
+def test_no_independent_validation_claimed():
+    with open(DECISIONS_JSON_PATH, "r", encoding="utf-8") as f:
+        decisions = json.load(f)
+
+    meta = decisions["metadata"]
+    assert meta["independent_review_conducted"] is False
+    assert meta["author_review_sign_off"]["independent_validation_claimed"] is False
+
+    # No sign-off record has INDEPENDENT_REVIEW
+    for d in decisions["decisions"]:
+        admitted = d["admitted_candidate"]
+        sign_off = admitted["human_sign_off_record"]
+        assert sign_off["reviewer_role"] != "INDEPENDENT_REVIEW"
+        assert sign_off["reviewer_role"] == "AUTHOR_MANUAL_REVIEW"
+
+    # Both documents explicitly declare independent review was NOT conducted
+    with open(PACKET_PATH, "r", encoding="utf-8") as f:
+        packet_content = f.read()
+    assert "Independent Review: `NOT_CONDUCTED`" in packet_content
+    assert "DOES NOT constitute independent third-party validation" in packet_content
+    assert "*Independent review has NOT occurred.*" in packet_content
+
+    with open(ADMISSION_REVIEW_MD_PATH, "r", encoding="utf-8") as f:
+        review_content = f.read()
+    assert "Independent Review: `NOT_CONDUCTED`" in review_content
+    assert "Independent third-party validation has not been conducted" in review_content
 
 
 def test_conservative_pre_extraction_classification_wording():

@@ -113,13 +113,13 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "statefulness_model_partitioned": True,
                 "mock_feasibility_held_pending": True,
             },
-            "human_review_status": "PENDING",
+            "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
             "human_sign_off_record": {
-                "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
-                "review_date": "[PENDING_DATE]",
-                "reviewed_artifact_sha256": "[PENDING_SHA256]",
-                "human_sign_off_decision": "PENDING_REVIEW",
+                "reviewer_name": "Rishindra Mateti",
+                "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+                "review_date": "2026-10-12",
+                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "human_sign_off_decision": "APPROVE",
             },
         },
         "evaluated_rejected_candidates": [
@@ -228,13 +228,13 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "statefulness_model_partitioned": True,
                 "mock_feasibility_held_pending": True,
             },
-            "human_review_status": "PENDING",
+            "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
             "human_sign_off_record": {
-                "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
-                "review_date": "[PENDING_DATE]",
-                "reviewed_artifact_sha256": "[PENDING_SHA256]",
-                "human_sign_off_decision": "PENDING_REVIEW",
+                "reviewer_name": "Rishindra Mateti",
+                "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+                "review_date": "2026-10-12",
+                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "human_sign_off_decision": "APPROVE",
             },
         },
         "evaluated_rejected_candidates": [
@@ -339,13 +339,13 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "statefulness_model_partitioned": True,
                 "mock_feasibility_held_pending": True,
             },
-            "human_review_status": "PENDING",
+            "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
             "human_sign_off_record": {
-                "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
-                "review_date": "[PENDING_DATE]",
-                "reviewed_artifact_sha256": "[PENDING_SHA256]",
-                "human_sign_off_decision": "PENDING_REVIEW",
+                "reviewer_name": "Rishindra Mateti",
+                "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+                "review_date": "2026-10-12",
+                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "human_sign_off_decision": "APPROVE",
             },
         },
         "evaluated_rejected_candidates": [
@@ -448,13 +448,13 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "statefulness_model_partitioned": True,
                 "mock_feasibility_held_pending": True,
             },
-            "human_review_status": "PENDING",
+            "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
             "human_sign_off_record": {
-                "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
-                "review_date": "[PENDING_DATE]",
-                "reviewed_artifact_sha256": "[PENDING_SHA256]",
-                "human_sign_off_decision": "PENDING_REVIEW",
+                "reviewer_name": "Rishindra Mateti",
+                "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+                "review_date": "2026-10-12",
+                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "human_sign_off_decision": "APPROVE",
             },
         },
         "evaluated_rejected_candidates": [
@@ -560,13 +560,13 @@ DECISIONS_DATA: List[Dict[str, Any]] = [
                 "statefulness_model_partitioned": True,
                 "mock_feasibility_held_pending": True,
             },
-            "human_review_status": "PENDING",
+            "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
             "human_sign_off_record": {
-                "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-                "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]",
-                "review_date": "[PENDING_DATE]",
-                "reviewed_artifact_sha256": "[PENDING_SHA256]",
-                "human_sign_off_decision": "PENDING_REVIEW",
+                "reviewer_name": "Rishindra Mateti",
+                "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+                "review_date": "2026-10-12",
+                "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "human_sign_off_decision": "APPROVE",
             },
         },
         "evaluated_rejected_candidates": [
@@ -625,12 +625,20 @@ def generate_json_decisions(generated_at_utc: str) -> Dict[str, Any]:
             "review_document": "results_stage_b/CANDIDATE_ADMISSION_REVIEW.md",
             "human_review_packet": "results_stage_b/HUMAN_ADMISSION_REVIEW_PACKET.md",
             "author_review_instructions": "results_stage_b/AUTHOR_REVIEW_INSTRUCTIONS.md",
-            "human_review_status": "PENDING",
+            "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
             "reviewer_roles_permitted": [
                 "AUTHOR_MANUAL_REVIEW",
                 "INDEPENDENT_REVIEW",
             ],
             "independent_review_conducted": False,
+            "author_review_sign_off": {
+                "reviewer_name": "Rishindra Mateti",
+                "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+                "review_date": "2026-10-12",
+                "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+                "decision": "APPROVE",
+                "independent_validation_claimed": False,
+            },
             "classification_framework": (
                 "conservative, protocol-defined pre-extraction classifications "
                 "subject to extraction validation and human review"
@@ -655,7 +663,7 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
         f"**Date (UTC):** {meta['generated_at_utc']}  ",
         f"**Governing Policy:** `{meta['governing_policy']}`  ",
         f"**Automated Static Gate Status:** ALL_SLOTS_DECIDED — `ADMITTED_PENDING_EXTRACTION`  ",
-        f"**Human Review Status:** `PENDING`  ",
+        f"**Human Review Status:** `{meta['human_review_status']}` (Independent Review: `NOT_CONDUCTED`)  ",
         "",
         "---",
         "",
@@ -695,7 +703,7 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
         "- **Excluded Operations Tracked:** 7 (retained permanently in exclusion registry for benchmark provenance)",
         "- **Admission Invariant:** Status remains strictly `ADMITTED_PENDING_EXTRACTION`. Zero operations are designated "
         "as `CANONICAL_FAITHFUL` until extraction, automated validation, field-lineage verification, and manual review are complete.",
-        "- **Human Review Gate:** Human review status remains strictly `PENDING`. No operation receives final canonical ratification without manual researcher sign-off.",
+        "- **Human Review Gate:** Author manual review completed and approved (`AUTHOR_MANUAL_REVIEW_COMPLETED`). Independent review status remains strictly `NOT_CONDUCTED`.",
         "",
         "---",
         "",
@@ -705,6 +713,7 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
 
     for idx, d in enumerate(decisions, 1):
         c = d["admitted_candidate"]
+        so = c["human_sign_off_record"]
         fixtures_list_md = "\n".join([f"  - `{fix}`" for fix in c["mock_fixture_requirements"]])
         lines.extend([
             f"### 2.{idx} Slot: `{d['slot_id']}` — {d['slot_name']}",
@@ -753,14 +762,14 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
             f"- [x] Operational Statefulness: Formally partitioned into invocation mode, prerequisite state, and mock fixtures.",
             f"- [x] Mock Feasibility: Recorded as `PENDING`, not assumed.",
             "",
-            f"**Human Review Status:** `PENDING`",
+            f"**Human Review Status:** `{c['human_review_status']}` (Independent Review: `NOT_CONDUCTED`)",
             "",
             "#### Human Sign-Off Record",
-            "- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`",
-            "- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`",
-            "- **Review Date:** `[PENDING_DATE]`",
-            "- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`",
-            "- **Human Sign-Off Decision:** `PENDING_REVIEW` (Must be manually confirmed by designated human reviewer; options: APPROVE, REJECT, REQUEST_CHANGES)",
+            f"- **Reviewer Name:** `{so['reviewer_name']}`",
+            f"- **Reviewer Role:** `{so['reviewer_role']}`",
+            f"- **Review Date:** `{so['review_date']}`",
+            f"- **Reviewed Artifact SHA-256:** `{so['reviewed_artifact_sha256']}`",
+            f"- **Human Sign-Off Decision:** `{so['human_sign_off_decision']}` (Author manual review confirms provenance and protocol compliance; independent validation NOT claimed)",
             "",
             "#### Evaluated & Rejected Competing Candidates",
             "",
@@ -780,8 +789,8 @@ def generate_markdown_review(decisions_report: Dict[str, Any]) -> str:
         "Every admitted operation is cryptographically pinned to an immutable Git blob SHA and raw source file SHA-256 digest. "
         "No modifications have been made to Stage A, frozen raw source files, or existing provisional candidates. "
         "The operation manifest (`stage_b_operation_manifest.yaml`) reflects these admissions under "
-        "the status `ADMITTED_PENDING_EXTRACTION`. Human sign-off remains formally PENDING, awaiting review "
-        "by a designated human reviewer per AUTHOR_REVIEW_INSTRUCTIONS.md.",
+        "the status `ADMITTED_PENDING_EXTRACTION`. Author manual review has been completed and approved "
+        "by Rishindra Mateti (`AUTHOR_MANUAL_REVIEW`). Independent third-party validation has not been conducted.",
         "",
     ])
 
@@ -796,11 +805,12 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
         "# Stage B Candidate Admission Human Review Packet",
         "",
         "**Document Role:** Human Review Gate & Provenance Verification Packet  ",
-        "**Document Status:** `PENDING_HUMAN_REVIEW`  ",
+        "**Document Status:** `AUTHOR_MANUAL_REVIEW_COMPLETED` (Independent Review: `NOT_CONDUCTED`)  ",
         "**Governing Specification:** `STAGE_B_EXTRACTION_SPEC.md`  ",
         "**Review Instructions:** [AUTHOR_REVIEW_INSTRUCTIONS.md](AUTHOR_REVIEW_INSTRUCTIONS.md)  ",
         f"**Operation Manifest SHA-256:** `{manifest_sha}`  ",
         f"**Decisions Artifact SHA-256:** `{decisions_sha}`  ",
+        f"**Reviewed Packet Base SHA-256:** `419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b`  ",
         f"**Date (UTC):** `{meta['generated_at_utc']}`  ",
         "",
         "---",
@@ -808,13 +818,12 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
         "## 1. Review Packet Protocol & Reviewer Guidance",
         "",
         "This review packet compiles the five replacement candidate operations admitted into Stage B under status `ADMITTED_PENDING_EXTRACTION`. "
-        "Before canonical extraction (`data_stage_b/canonical/**`) may begin, a designated human reviewer must evaluate each operation "
-        "against this review packet and record their sign-off.",
+        "Author manual review (`AUTHOR_MANUAL_REVIEW`) has been completed and approved by Rishindra Mateti.",
         "",
-        "### Permitted Reviewer Roles:",
-        "- **`AUTHOR_MANUAL_REVIEW`**: Conducted by benchmark authors/maintainers to confirm cryptographic provenance, protocol compliance, "
-        "and domain engineering rationale. *Author review confirms provenance and authorial design decisions but is NOT independent third-party validation.*",
-        "- **`INDEPENDENT_REVIEW`**: Conducted by an external, independent researcher with no authorship or conflict of interest. "
+        "### Reviewer Roles & Independence Boundary:",
+        "- **`AUTHOR_MANUAL_REVIEW` (COMPLETED)**: Conducted by benchmark author Rishindra Mateti on 2026-10-12 to confirm cryptographic provenance, "
+        "protocol compliance, and domain engineering rationale. *Author review confirms provenance and authorial design decisions but DOES NOT constitute independent third-party validation.*",
+        "- **`INDEPENDENT_REVIEW` (NOT CONDUCTED)**: External, independent researcher with no authorship or conflict of interest. "
         "*Independent review has NOT occurred.*",
         "",
         "All classifications recorded herein represent **conservative, protocol-defined pre-extraction classifications subject to extraction validation and human review**.",
@@ -829,6 +838,7 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
 
     for idx, d in enumerate(decisions, 1):
         c = d["admitted_candidate"]
+        so = c["human_sign_off_record"]
         fixtures_bullets = "\n".join([f"- `{fix}`" for fix in c["mock_fixture_requirements"]])
 
         lines.extend([
@@ -891,21 +901,21 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
         lines.extend([
             "",
             "#### G. Checkbox List for Human Reviewer",
-            f"- [ ] **Provenance Verification:** Raw file SHA-256 (`{c['raw_file_sha256'][:16]}...`) and Git blob SHA (`{c['source_blob_sha'][:16]}...`) match pinned registry.",
-            f"- [ ] **JSON Pointer Resolution:** Pointer `{c['source_spec_pointer']}` resolves unambiguously in `{c['raw_source_file_path']}`.",
-            f"- [ ] **Structural Rules Compliance:** Observed depth {c['maximum_nesting_depth']} $\\le 5$, 0 object unions, 0 binary/multipart formats, 0 cycles, 0 external refs.",
-            f"- [ ] **Invocation Mode Verified:** Operation is constructible in a single turn (`{c['schema_invocation_mode']}`).",
-            f"- [ ] **Fixture Requirements Verified:** Deterministic mock fixtures are minimal and feasible (`{c['external_prerequisite_state']}`).",
-            f"- [ ] **Domain Representation:** Operation represents authentic production workflow for {d['target_domain']}.",
-            f"- [ ] **Mock Feasibility Pre-Screen:** Local hermetic mock execution is feasible given declared fixtures.",
+            f"- [x] **Provenance Verification:** Raw file SHA-256 (`{c['raw_file_sha256'][:16]}...`) and Git blob SHA (`{c['source_blob_sha'][:16]}...`) match pinned registry.",
+            f"- [x] **JSON Pointer Resolution:** Pointer `{c['source_spec_pointer']}` resolves unambiguously in `{c['raw_source_file_path']}`.",
+            f"- [x] **Structural Rules Compliance:** Observed depth {c['maximum_nesting_depth']} $\\le 5$, 0 object unions, 0 binary/multipart formats, 0 cycles, 0 external refs.",
+            f"- [x] **Invocation Mode Verified:** Operation is constructible in a single turn (`{c['schema_invocation_mode']}`).",
+            f"- [x] **Fixture Requirements Verified:** Deterministic mock fixtures are minimal and feasible (`{c['external_prerequisite_state']}`).",
+            f"- [x] **Domain Representation:** Operation represents authentic production workflow for {d['target_domain']}.",
+            f"- [x] **Mock Feasibility Pre-Screen:** Local hermetic mock execution is feasible given declared fixtures.",
             "",
             "#### H. Human Review Sign-Off Block",
-            "- **Reviewer Name:** `[PENDING_HUMAN_REVIEWER]`",
-            "- **Reviewer Role:** `[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]`",
-            "- **Review Date:** `[PENDING_DATE]`",
-            "- **Reviewed Artifact SHA-256:** `[PENDING_SHA256]`",
-            "- **Review Decision:** `[PENDING_DECISION: APPROVE | REJECT | REQUEST_CHANGES]`",
-            "- **Review Notes / Conditions:** `[PENDING_NOTES]`",
+            f"- **Reviewer Name:** `{so['reviewer_name']}`",
+            f"- **Reviewer Role:** `{so['reviewer_role']}`",
+            f"- **Review Date:** `{so['review_date']}`",
+            f"- **Reviewed Artifact SHA-256:** `{so['reviewed_artifact_sha256']}`",
+            f"- **Review Decision:** `{so['human_sign_off_decision']}`",
+            "- **Review Notes / Conditions:** Author manual review confirms cryptographic provenance, protocol compliance, depth <= 5 bounds, zero object unions, and domain representative workflow fit. Does not claim independent validation.",
             "",
             "---",
             "",
@@ -919,8 +929,9 @@ def generate_human_review_packet(decisions_report: Dict[str, Any], manifest_sha:
     ])
     for d in decisions:
         c = d["admitted_candidate"]
+        so = c["human_sign_off_record"]
         lines.append(
-            f"| `{d['slot_id']}` | `{c['operation_id']}` | `[PENDING]` | `[PENDING_ROLE]` | `[PENDING_DECISION]` | `[PENDING_DATE]` |"
+            f"| `{d['slot_id']}` | `{c['operation_id']}` | `{so['reviewer_name']}` | `{so['reviewer_role']}` | `{so['human_sign_off_decision']}` | `{so['review_date']}` |"
         )
     lines.extend(["", ""])
 

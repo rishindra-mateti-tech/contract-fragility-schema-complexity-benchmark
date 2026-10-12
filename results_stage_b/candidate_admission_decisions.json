@@ -25,13 +25,13 @@
         "estimated_token_footprint": 179,
         "external_prerequisite_state": "FIXTURE_REQUIRED",
         "http_method": "POST",
-        "human_review_status": "PENDING",
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
         "human_sign_off_record": {
-          "human_sign_off_decision": "PENDING_REVIEW",
-          "review_date": "[PENDING_DATE]",
-          "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
+          "human_sign_off_decision": "APPROVE",
+          "review_date": "2026-10-12",
+          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewer_name": "Rishindra Mateti",
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
         },
         "input_surfaces": [
           "body",
@@ -126,13 +126,13 @@
         "estimated_token_footprint": 186,
         "external_prerequisite_state": "FIXTURE_REQUIRED",
         "http_method": "POST",
-        "human_review_status": "PENDING",
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
         "human_sign_off_record": {
-          "human_sign_off_decision": "PENDING_REVIEW",
-          "review_date": "[PENDING_DATE]",
-          "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
+          "human_sign_off_decision": "APPROVE",
+          "review_date": "2026-10-12",
+          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewer_name": "Rishindra Mateti",
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
         },
         "input_surfaces": [
           "body"
@@ -224,13 +224,13 @@
         "estimated_token_footprint": 280,
         "external_prerequisite_state": "FIXTURE_REQUIRED",
         "http_method": "POST",
-        "human_review_status": "PENDING",
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
         "human_sign_off_record": {
-          "human_sign_off_decision": "PENDING_REVIEW",
-          "review_date": "[PENDING_DATE]",
-          "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
+          "human_sign_off_decision": "APPROVE",
+          "review_date": "2026-10-12",
+          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewer_name": "Rishindra Mateti",
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
         },
         "input_surfaces": [
           "body"
@@ -318,13 +318,13 @@
         "estimated_token_footprint": 126,
         "external_prerequisite_state": "FIXTURE_REQUIRED",
         "http_method": "POST",
-        "human_review_status": "PENDING",
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
         "human_sign_off_record": {
-          "human_sign_off_decision": "PENDING_REVIEW",
-          "review_date": "[PENDING_DATE]",
-          "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
+          "human_sign_off_decision": "APPROVE",
+          "review_date": "2026-10-12",
+          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewer_name": "Rishindra Mateti",
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
         },
         "input_surfaces": [
           "body",
@@ -415,13 +415,13 @@
         "estimated_token_footprint": 89,
         "external_prerequisite_state": "FIXTURE_REQUIRED",
         "http_method": "POST",
-        "human_review_status": "PENDING",
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
         "human_sign_off_record": {
-          "human_sign_off_decision": "PENDING_REVIEW",
-          "review_date": "[PENDING_DATE]",
-          "reviewed_artifact_sha256": "[PENDING_SHA256]",
-          "reviewer_name": "[PENDING_HUMAN_REVIEWER]",
-          "reviewer_role": "[PENDING_ROLE: AUTHOR_MANUAL_REVIEW | INDEPENDENT_REVIEW]"
+          "human_sign_off_decision": "APPROVE",
+          "review_date": "2026-10-12",
+          "reviewed_artifact_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+          "reviewer_name": "Rishindra Mateti",
+          "reviewer_role": "AUTHOR_MANUAL_REVIEW"
         },
         "input_surfaces": [
           "body"
@@ -488,13 +488,21 @@
   ],
   "metadata": {
     "admission_script": "src/admit_stage_b_candidates.py",
-    "admission_script_sha256": "6102a5884b89953d78e4d15d5809bd97e1989e6a892f3149019797f654bf2a7b",
+    "admission_script_sha256": "2f25237902aaab05d8e0ae0ded1be381774e09f5a7403e28ccdf7611e0bcc0c8",
     "author_review_instructions": "results_stage_b/AUTHOR_REVIEW_INSTRUCTIONS.md",
+    "author_review_sign_off": {
+      "decision": "APPROVE",
+      "independent_validation_claimed": false,
+      "review_date": "2026-10-12",
+      "reviewed_packet_sha256": "419888285e54568e96244728cf9c05f04c099e2f9de8ff51d8dbd51419774f1b",
+      "reviewer_name": "Rishindra Mateti",
+      "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+    },
     "classification_framework": "conservative, protocol-defined pre-extraction classifications subject to extraction validation and human review",
     "generated_at_utc": "2026-10-12T18:15:00Z",
     "governing_policy": "STAGE_B_CANDIDATE_ADMISSION_GATE",
     "human_review_packet": "results_stage_b/HUMAN_ADMISSION_REVIEW_PACKET.md",
-    "human_review_status": "PENDING",
+    "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
     "independent_review_conducted": false,
     "review_document": "results_stage_b/CANDIDATE_ADMISSION_REVIEW.md",
     "reviewer_roles_permitted": [
