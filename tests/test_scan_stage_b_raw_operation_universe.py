@@ -23,6 +23,8 @@ from src.scan_stage_b_raw_operation_universe import (
     resolve_local_ref,
     count_properties_and_required,
     estimate_token_footprint,
+    parse_mcp_sqlite_tools_ast,
+    inspect_mcp_github_ts_ast,
     scan_raw_operation_universe,
     generate_markdown_report,
     git_blob_sha,
@@ -31,6 +33,152 @@ from src.scan_stage_b_raw_operation_universe import (
     MD_OUTPUT_PATH,
     ROOT_DIR,
 )
+
+
+def test_mcp_sqlite_ast_parsing_reads_source_structure_not_dictionary(tmp_path):
+    """Proves that SQLite MCP scanner parses actual Python AST, not hardcoded dictionaries."""
+    raw_sqlite_path = os.path.join(ROOT_DIR, "data_stage_b", "raw", "CAND-009", "1b97a6a4903bd8961941cdff43df3b059e610e5f.py")
+    raw_sha = sha256_file(raw_sqlite_path)
+    blob_sha = "1b97a6a4903bd8961941cdff43df3b059e610e5f"
+
+    # 1. Parse real raw source file
+    tools = parse_mcp_sqlite_tools_ast(raw_sqlite_path, raw_sha, blob_sha)
+    assert len(tools) == 6
+    op_ids = [t["operation_id"] for t in tools]
+    assert op_ids == ["append_insight", "create_table", "describe_table", "list_tables", "read_query", "write_query"]
+
+    # Verify source span line numbers are parsed directly from AST
+    for t in tools:
+        assert "source_ast_span" in t
+        assert 230 <= t["source_ast_span"]["start_line"] <= 300
+        assert 230 <= t["source_ast_span"]["end_line"] <= 300
+        assert "parsed_input_schema_shape" in t
+
+    read_query = next(t for t in tools if t["operation_id"] == "read_query")
+    assert read_query["parsed_input_schema_shape"]["property_names"] == ["query"]
+    assert read_query["parsed_input_schema_shape"]["required_names"] == ["query"]
+    assert read_query["property_count"] == 1
+    assert read_query["required_count"] == 1
+
+    # 2. Dynamic AST test: create modified Python file with custom tool and verify dynamic AST extraction
+    custom_py = tmp_path / "custom_server.py"
+    custom_code = """
+import mcp.types as types
+
+class DummyServer:
+    @server.list_tools()
+    async def handle_list_tools():
+        return [
+            types.Tool(
+                name="dynamic-ast-diagnostic-tool",
+                description="Dynamically created tool to prove AST parsing",
+                inputSchema={
+                    "type": "object",
+                    "properties": {
+                        "alpha_param": {"type": "string"},
+                        "beta_param": {"type": "integer"}
+                    },
+                    "required": ["alpha_param"]
+                }
+            )
+        ]
+"""
+    custom_py.write_text(custom_code, encoding="utf-8")
+    custom_sha = sha256_file(str(custom_py))
+    custom_tools = parse_mcp_sqlite_tools_ast(str(custom_py), custom_sha, "dummy_blob_sha")
+    assert len(custom_tools) == 1
+    c_tool = custom_tools[0]
+    assert c_tool["operation_id"] == "dynamic_ast_diagnostic_tool"
+    assert c_tool["property_count"] == 2
+    assert c_tool["required_count"] == 1
+    assert c_tool["parsed_input_schema_shape"]["property_names"] == ["alpha_param", "beta_param"]
+    assert c_tool["parsed_input_schema_shape"]["required_names"] == ["alpha_param"]
+    # This conclusively proves the scanner reads AST node structures, not embedded constant dictionaries.
+
+
+def test_mcp_github_unresolved_external_import_detection():
+    """Verifies that GitHub MCP source is inspected and flagged for unresolved external schema imports."""
+    raw_ts_path = os.path.join(ROOT_DIR, "data_stage_b", "raw", "CAND-010", "0676a34c85537e610f911fbd73a5a079f38be18e.ts")
+    raw_sha = sha256_file(raw_ts_path)
+    blob_sha = "0676a34c85537e610f911fbd73a5a079f38be18e"
+
+    inspection = inspect_mcp_github_ts_ast(raw_ts_path, raw_sha, blob_sha)
+    assert inspection["has_external_schemas_import"] is True
+    assert "CreateOrUpdateFileSchema" in inspection["referenced_external_zod_schemas"]
+    assert "SearchRepositoriesSchema" in inspection["referenced_external_zod_schemas"]
+    assert inspection["exclusion_status"] == "EXCLUDED_FROM_UNIVERSE"
+    assert inspection["exclusion_reason"] == "UNRESOLVED_EXTERNAL_SCHEMA_IMPORTS"
+
+
+def test_static_eligibility_vocabulary_and_governing_policy():
+    """Verifies that universe scanner outputs strictly adhere to STATICALLY_ELIGIBLE vocabulary."""
+    rep = scan_raw_operation_universe(generated_at_utc="2026-10-12T04:30:00Z")
+    summ = rep["summary"]
+
+    assert "statically_eligible_candidates" in summ
+    assert "statically_eligible_faithful_union_candidates" in summ
+    assert "disqualified_candidates" in summ
+    assert "governing_policy_statement" in summ
+
+    # Policy statement must explicitly state that static eligibility is not canonical admission
+    policy = summ["governing_policy_statement"]
+    assert "does NOT constitute canonical-contract admission" in policy
+    assert "provisional finite-union candidate" in policy
+
+    # Check each operation's static_eligibility field
+    valid_verdicts = {
+        "STATICALLY_ELIGIBLE_CANDIDATE",
+        "STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE",
+        "DISQUALIFIED"
+    }
+    for op in rep["operations"]:
+        assert op["static_eligibility"] in valid_verdicts
+        # Backward compatibility field also populated
+        assert op["canonical_eligibility"] in valid_verdicts
+
+    # Verify excluded_sources records
+    assert len(rep["metadata"]["excluded_sources"]) == 2
+    excluded_ids = [ex["candidate_source_id"] for ex in rep["metadata"]["excluded_sources"]]
+    assert "CAND-009" in excluded_ids
+    assert "CAND-010" in excluded_ids
+
+
+def test_universe_scanner_runner_and_summary_invariants():
+    rep = scan_raw_operation_universe(generated_at_utc="2026-10-12T04:30:00Z")
+    summ = rep["summary"]
+
+    # Verify universe scale across 8 active OpenAPI sources
+    assert summ["total_operations_scanned"] == 1346, "Total active universe operations must equal 1346"
+    assert summ["statically_eligible_candidates"] == 1109
+    assert summ["statically_eligible_faithful_union_candidates"] == 1
+    assert summ["statically_eligible_combined"] == 1110
+    assert summ["disqualified_candidates"] == 236
+    assert summ["mcp_sources_excluded_count"] == 2
+
+    # Verify all 8 active OpenAPI clusters exist in cluster_breakdown
+    assert len(summ["cluster_breakdown"]) == 8
+    expected_clusters = [
+        "CLUSTER_GITHUB", "CLUSTER_STRIPE", "CLUSTER_DIGITALOCEAN",
+        "CLUSTER_TWILIO", "CLUSTER_BOX", "CLUSTER_SLACK",
+        "CLUSTER_CHATWOOT", "CLUSTER_LINE"
+    ]
+    for c in expected_clusters:
+        assert c in summ["cluster_breakdown"], f"Missing cluster {c}"
+
+    # Verify Stripe PostRefunds is recognized as STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE
+    post_refunds = next(op for op in rep["operations"] if op["operation_id"] == "PostRefunds")
+    assert post_refunds["static_eligibility"] == "STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE"
+    assert post_refunds["maximum_nesting_depth"] == 3
+    assert post_refunds["has_object_level_union"] is True
+
+    # Verify metadata fields exist
+    meta = rep["metadata"]
+    assert meta["scanner_script_sha256"]
+    assert meta["manifest_sha256"]
+    assert meta["registry_sha256"]
+    assert meta["generated_at_utc"] == "2026-10-12T04:30:00Z"
+    assert len(meta["sources"]) == 10
+    assert len(meta["excluded_sources"]) == 2
 
 
 def test_pointer_resolution():
@@ -404,38 +552,4 @@ def test_source_hash_and_blob_mismatch_detection():
     assert blob == "d670460b4b4aece5915caf5c68d12f560a9fe3e4"
 
 
-def test_universe_scanner_runner_and_summary_invariants():
-    rep = scan_raw_operation_universe(generated_at_utc="2026-10-12T04:30:00Z")
-    summ = rep["summary"]
 
-    # Verify universe scale
-    assert summ["total_operations_scanned"] == 1361, "Total universe operations must equal 1361"
-    assert summ["total_eligible_clean"] == 1124
-    assert summ["total_eligible_faithful_union"] == 1
-    assert summ["total_eligible_combined"] == 1125
-    assert summ["total_disqualified"] == 236
-
-    # Verify all 10 clusters exist
-    assert len(summ["cluster_breakdown"]) == 10
-    expected_clusters = [
-        "CLUSTER_GITHUB", "CLUSTER_STRIPE", "CLUSTER_DIGITALOCEAN",
-        "CLUSTER_TWILIO", "CLUSTER_BOX", "CLUSTER_SLACK",
-        "CLUSTER_MCP_SQLITE", "CLUSTER_MCP_GITHUB",
-        "CLUSTER_CHATWOOT", "CLUSTER_LINE"
-    ]
-    for c in expected_clusters:
-        assert c in summ["cluster_breakdown"], f"Missing cluster {c}"
-
-    # Verify Stripe PostRefunds is recognized as ELIGIBLE_FAITHFUL_UNION
-    post_refunds = next(op for op in rep["operations"] if op["operation_id"] == "PostRefunds")
-    assert post_refunds["canonical_eligibility"] == "ELIGIBLE_FAITHFUL_UNION"
-    assert post_refunds["maximum_nesting_depth"] == 3
-    assert post_refunds["has_object_level_union"] is True
-
-    # Verify metadata fields exist
-    meta = rep["metadata"]
-    assert meta["scanner_script_sha256"]
-    assert meta["manifest_sha256"]
-    assert meta["registry_sha256"]
-    assert meta["generated_at_utc"] == "2026-10-12T04:30:00Z"
-    assert len(meta["sources"]) == 10
