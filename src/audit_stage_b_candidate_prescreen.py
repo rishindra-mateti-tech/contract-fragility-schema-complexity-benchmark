@@ -400,7 +400,7 @@ def run_candidate_prescreen(generated_at_utc: str | None = None) -> dict:
         "clean_provisional_candidates_passed": sum(1 for r in audit_records if r["audit_verdict"] == "PASS_PROVISIONAL_CANONICAL"),
         "provisional_pending_union_amendment": sum(1 for r in audit_records if r["audit_verdict"] == "FLAGGED_PENDING_UNION_AMENDMENT"),
         "flagged_exclude_pending": sum(1 for r in audit_records if r["audit_verdict"] in ["EXCLUDE_PENDING", "FLAGGED_EXCLUDE_PENDING"]),
-        "replacement_slots_required": 3,
+        "replacement_slots_required": 5,
     }
 
     report = {
@@ -451,9 +451,9 @@ def generate_markdown_report(report_data: dict) -> str:
         "",
         f"- **Total Operations Audited:** {summ['total_operations_audited']} operations across 10 source clusters.",
         f"- **Clean Provisional Candidates (`PASS`):** **{summ['clean_provisional_candidates_passed']} operations** (Pass all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, no conflicting allOf).",
-        f"- **Provisional Candidates Pending Union Amendment:** **{summ['provisional_pending_union_amendment']} operations** (`Stripe PostRefunds`, `Stripe PostCustomers`, `Stripe PostPaymentIntents` — flagged solely due to finite object-level `anyOf` unsetting semantics, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).",
-        f"- **Excluded Operations (`EXCLUDE_PENDING`):** **{summ['flagged_exclude_pending']} operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`).",
-        f"- **Replacement Slots Still Required:** **{summ['replacement_slots_required']} operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support, 1 slot for GitHub Developer Platforms).",
+        f"- **Provisional Candidates Pending Union Amendment:** **{summ['provisional_pending_union_amendment']} operation** (`Stripe PostRefunds` — flagged solely due to finite metadata object/string anyOf unsetting semantics, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).",
+        f"- **Excluded Operations (`EXCLUDE_PENDING`):** **{summ['flagged_exclude_pending']} operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`, Stripe `PostCustomers`, Stripe `PostPaymentIntents`).",
+        f"- **Replacement Slots Still Required:** **{summ['replacement_slots_required']} operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support, 1 slot for GitHub Developer Platforms, 2 slots for Stripe Payments).",
         "",
         "---",
         "",

@@ -1,14 +1,14 @@
 {
   "metadata": {
     "audit_script": "src/audit_stage_b_candidate_prescreen.py",
-    "audit_script_sha256": "70168ac8c5aaae401564ebd16dbe87bec1185d7e70415b6f39e3461da030da1e",
+    "audit_script_sha256": "269188c7f4a300a474bc49ff89abe845960553cafc9693834817608a47d1c155",
     "command": "python src/audit_stage_b_candidate_prescreen.py --generated-at 2026-10-12T03:30:00Z",
     "dependencies": {
       "pyyaml": "6.0.3"
     },
     "generated_at_utc": "2026-10-12T03:30:00Z",
     "manifest_file": "results_stage_b/stage_b_operation_manifest.yaml",
-    "manifest_sha256": "b5e186799aa317b2c7e2e2415199ec032b6317ab61f5708b5eee590ba1d79fdd",
+    "manifest_sha256": "ff87dd91427ec2fb09410d82dbbe202ca325a4672789e8ae67a354dfaa1f62b9",
     "platform": "win32",
     "python_version": "3.13.2",
     "reproducibility_note": "When executed with --generated-at <TIMESTAMP>, outputs are 100% byte-stable. Normal runtime execution without this argument is expected to vary only in timestamp metadata."
@@ -801,7 +801,7 @@
       "source_spec_pointer": "#/paths/~1users.profile.set/post"
     },
     {
-      "audit_verdict": "FLAGGED_PENDING_UNION_AMENDMENT",
+      "audit_verdict": "EXCLUDE_PENDING",
       "blocking_failures": [
         "DEPTH_6",
         "OBJECT_UNION"
@@ -815,7 +815,7 @@
         "Object-level anyOf variant[0] at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/shipping/anyOf"
       ],
       "http_method": "POST",
-      "manifest_status": "PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT",
+      "manifest_status": "EXCLUDE_PENDING",
       "max_depth_allowed": 5,
       "max_depth_observed": 6,
       "operation_id": "PostCustomers",
@@ -839,7 +839,7 @@
       "source_spec_pointer": "#/paths/~1v1~1customers/post"
     },
     {
-      "audit_verdict": "FLAGGED_PENDING_UNION_AMENDMENT",
+      "audit_verdict": "EXCLUDE_PENDING",
       "blocking_failures": [
         "DEPTH_9",
         "OBJECT_UNION"
@@ -916,7 +916,7 @@
         "Object-level anyOf variant[0] at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/transfer_data/properties/payment_data/properties/metadata/anyOf"
       ],
       "http_method": "POST",
-      "manifest_status": "PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT",
+      "manifest_status": "EXCLUDE_PENDING",
       "max_depth_allowed": 5,
       "max_depth_observed": 9,
       "operation_id": "PostPaymentIntents",
@@ -1062,9 +1062,9 @@
   ],
   "summary": {
     "clean_provisional_candidates_passed": 24,
-    "flagged_exclude_pending": 5,
-    "provisional_pending_union_amendment": 3,
-    "replacement_slots_required": 3,
+    "flagged_exclude_pending": 7,
+    "provisional_pending_union_amendment": 1,
+    "replacement_slots_required": 5,
     "total_operations_audited": 32
   }
 }

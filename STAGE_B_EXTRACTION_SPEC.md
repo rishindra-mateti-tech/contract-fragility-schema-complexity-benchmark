@@ -341,9 +341,9 @@ Every operation in the benchmark catalog receives one of five immutable admissio
 
 ### Status Summary
 - **`PROVISIONAL_CANONICAL_CANDIDATE` (Clean)**: **24 operations** (Cleanly passing all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, and no conflicting allOf).
-- **`PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT`**: **3 operations** (Stripe `PostRefunds`, `PostCustomers`, `PostPaymentIntents` — retained pending ratification of `PROTOCOL_AMENDMENT_003.md`).
-- **`EXCLUDE_PENDING`**: **5 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`).
-- **Pending Replacement Operations**: **3 operations** (1 replacement required for LINE Logistics/Communications, 1 replacement required for Chatwoot CRM/Support, 1 replacement required for GitHub Developer Platforms).
+- **`PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT`**: **1 operation** (Stripe `PostRefunds` — retained pending ratification of `PROTOCOL_AMENDMENT_003.md`).
+- **`EXCLUDE_PENDING`**: **7 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`, Stripe `PostCustomers`, Stripe `PostPaymentIntents`).
+- **Pending Replacement Operations**: **5 operations** (1 for LINE Logistics/Communications, 1 for Chatwoot CRM/Support, 1 for GitHub Developer Platforms, 2 for Stripe Payments).
 - **`CANONICAL_FAITHFUL`**: **0 operations** (Zero operations admitted until the extraction, automated validation, field-lineage verification, and mandatory manual review gate completes).
 
 ### Complete 30-Operation Decision Table
@@ -354,8 +354,8 @@ Every operation in the benchmark catalog receives one of five immutable admissio
 | `CLUSTER_GITHUB` | GitHub | `issues/create` | POST | Path + Body | 6 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** Observed recursion depth 6 exceeds MAX_RECURSION_DEPTH=5 and `labels.items` contains object-level `oneOf` union. Amendment 003 governs finite object unions but does not alter depth limits. Excluded pending independent depth-limit review. |
 | `CLUSTER_GITHUB` | GitHub | `repos/create-for-authenticated-user` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | 16 body properties wrapped in `body`; boolean defaults preserved verbatim. |
 | `CLUSTER_STRIPE` | Stripe | `PostRefunds` | POST | Body only | 3 | **PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT** | MEDIUM | `metadata` uses anyOf [object, string enum '']; pending ratification under `PROTOCOL_AMENDMENT_003.md`. |
-| `CLUSTER_STRIPE` | Stripe | `PostCustomers` | POST | Body only | 6 | **PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT** | MEDIUM | `address` and `metadata` use anyOf [object, string enum '']; pending ratification under `PROTOCOL_AMENDMENT_003.md`. |
-| `CLUSTER_STRIPE` | Stripe | `PostPaymentIntents` | POST | Body only | 9 | **PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT** | MEDIUM | `payment_method_options` and `metadata` use anyOf; pending ratification under `PROTOCOL_AMENDMENT_003.md`. |
+| `CLUSTER_STRIPE` | Stripe | `PostCustomers` | POST | Body only | 6 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** Observed recursion depth 6 exceeds MAX_RECURSION_DEPTH=5 and address/metadata contain object-level anyOf unions. Amendment 003 does not alter depth limits. Excluded pending independent depth-limit review. |
+| `CLUSTER_STRIPE` | Stripe | `PostPaymentIntents` | POST | Body only | 9 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** Observed recursion depth 9 exceeds MAX_RECURSION_DEPTH=5 and wide payment_method_options anyOf unions. Amendment 003 does not alter depth limits. Excluded pending independent depth-limit review. |
 | `CLUSTER_DIGITALOCEAN` | DigitalOcean | `floating_ips_create` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Ultra-flat `$ref` resolution (`droplet_id`, `region`) inside `body`. |
 | `CLUSTER_DIGITALOCEAN` | DigitalOcean | `domains_create` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Flat 2-parameter resource constructor inside `body`. |
 | `CLUSTER_DIGITALOCEAN` | DigitalOcean | `droplets_create` | POST | Body only | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | `image` parameter uses primitive `oneOf` (slug string vs integer ID); wrapped in `body`. |

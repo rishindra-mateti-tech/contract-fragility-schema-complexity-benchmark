@@ -3,16 +3,16 @@ manifest_role: DRAFT_OPERATION_SELECTION
 created_at: '2026-10-09T17:55:00Z'
 corpus_composition:
   clean_provisional_candidates: 24
-  provisional_candidates_pending_union_amendment: 3
-  total_provisional_operations_cohort: 27
-  excluded_operations_cohort: 5
-  pending_replacement_cohort: 3
+  provisional_candidates_pending_union_amendment: 1
+  total_provisional_operations_cohort: 25
+  excluded_operations_cohort: 7
+  pending_replacement_cohort: 5
   canonical_target_size: 30
   synthetic_schemas_cohort: 20
   active_benchmark_target_size: 50
   note_on_corpus_size: The 30 canonical real-schema candidate slots (currently 24 clean provisional
-    candidates, 3 candidates pending union amendment under Amendment 003, and 3 pending replacements,
-    with 5 excluded operations tracked) combine with 20 synthetic schemas to form the valid
+    candidates, 1 candidate pending union amendment under Amendment 003, and 5 pending replacements,
+    with 7 excluded operations tracked) combine with 20 synthetic schemas to form the valid
     50-schema benchmark minimum. Zero operations are designated as approved until extraction,
     automated validation, lineage verification, and mandatory manual review are complete.
 authentication_handling_policy:
@@ -33,12 +33,12 @@ cluster_aware_analysis_plan:
     evaluations must cluster standard errors or use clustered bootstrap resampling
     at the source_cluster_id level.
 total_clean_provisional_operations: 24
-total_pending_union_amendment_operations: 3
-total_operations_excluded: 5
-total_pending_replacements: 3
+total_pending_union_amendment_operations: 1
+total_operations_excluded: 7
+total_pending_replacements: 5
 domain_distribution_provisional:
   Developer Platforms: 5
-  Payments: 3
+  Payments: 1
   Cloud/Infra: 3
   Logistics/Communications: 5
   Data/Identity: 6
@@ -135,70 +135,6 @@ operations:
     Stripe refund tool; validates real-world transferability.
   exclusion_reason_nearby_operations: Excluded GET /v1/refunds (listing) and POST
     /v1/refunds/{refund}/cancel (lifecycle cancellation) to focus on primary execution.
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
-  usage_role: CANDIDATE_CANONICAL_REFERENCE
-  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
-  mock_safety_rationale: Awaiting concrete local mock executor specification and test
-    suite verification before declaring mock evaluation safe.
-- operation_id: PostCustomers
-  candidate_source_id: CAND-002
-  source_cluster_id: CLUSTER_STRIPE
-  source_project: Stripe (stripe/openapi)
-  source_file_path: openapi/spec3.json
-  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
-  http_method: POST
-  endpoint_path: /v1/customers
-  source_spec_pointer: '#/paths/~1v1~1customers/post'
-  intended_benchmark_domain: Payments
-  complexity_tier: DEEP_BLOATED
-  input_surface:
-    path_parameters_present: false
-    query_parameters_present: false
-    request_body_present: true
-    full_input_extraction_required: true
-  metrics:
-    estimated_parameter_count: 7
-    estimated_nesting_depth: 3
-    estimated_optional_field_ratio: 1.0
-    estimated_enum_density: 0.0
-    description_length_chars: 348
-    estimated_token_length: 218
-  reason_for_selection: Multi-level nesting stress test featuring identical field
-    names (address, city, phone) at different structural levels.
-  exclusion_reason_nearby_operations: Excluded POST /v1/customers/{customer} (update
-    endpoint) due to ambiguous sentinel clearing syntax (e.g. empty strings to unset).
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
-  usage_role: CANDIDATE_CANONICAL_REFERENCE
-  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
-  mock_safety_rationale: Awaiting concrete local mock executor specification and test
-    suite verification before declaring mock evaluation safe.
-- operation_id: PostPaymentIntents
-  candidate_source_id: CAND-002
-  source_cluster_id: CLUSTER_STRIPE
-  source_project: Stripe (stripe/openapi)
-  source_file_path: openapi/spec3.json
-  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
-  http_method: POST
-  endpoint_path: /v1/payment_intents
-  source_spec_pointer: '#/paths/~1v1~1payment_intents/post'
-  intended_benchmark_domain: Payments
-  complexity_tier: MODERATE
-  input_surface:
-    path_parameters_present: false
-    query_parameters_present: false
-    request_body_present: true
-    full_input_extraction_required: true
-  metrics:
-    estimated_parameter_count: 7
-    estimated_nesting_depth: 2
-    estimated_optional_field_ratio: 0.714
-    estimated_enum_density: 0.0
-    description_length_chars: 312
-    estimated_token_length: 146
-  reason_for_selection: Represents essential payment state initialization with strict
-    required financial parameters alongside sub-object configurations.
-  exclusion_reason_nearby_operations: Excluded POST /v1/payment_intents/{intent}/capture
-    to focus on intent declaration rather than post-auth capture.
   candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
@@ -1045,3 +981,59 @@ excluded_operations:
   usage_role: EXCLUDED_REFERENCE
   safe_for_local_mock_evaluation: NOT_APPLICABLE
   mock_safety_rationale: Excluded from canonical benchmark evaluation due to recursion depth 6 exceeding MAX_RECURSION_DEPTH=5 and union structure without approved depth amendment.
+- operation_id: PostCustomers
+  candidate_source_id: CAND-002
+  source_cluster_id: CLUSTER_STRIPE
+  source_project: Stripe (stripe/openapi)
+  source_file_path: openapi/spec3.json
+  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
+  http_method: POST
+  endpoint_path: /v1/customers
+  source_spec_pointer: '#/paths/~1v1~1customers/post'
+  intended_benchmark_domain: Payments
+  complexity_tier: DEEP_BLOATED
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 7
+    estimated_nesting_depth: 6
+    estimated_optional_field_ratio: 1.0
+    estimated_enum_density: 0.0
+    description_length_chars: 348
+    estimated_token_length: 218
+  reason_for_exclusion: "Disqualified from canonical cohort due to observed recursion depth 6 exceeding MAX_RECURSION_DEPTH=5 and address/metadata containing object-level anyOf unions. Amendment 003 governs finite object unions but does not alter recursion depth limits. Excluded pending independent depth-limit review."
+  candidate_status: EXCLUDE_PENDING
+  usage_role: EXCLUDED_REFERENCE
+  safe_for_local_mock_evaluation: NOT_APPLICABLE
+  mock_safety_rationale: Excluded from canonical benchmark evaluation due to recursion depth 6 exceeding MAX_RECURSION_DEPTH=5.
+- operation_id: PostPaymentIntents
+  candidate_source_id: CAND-002
+  source_cluster_id: CLUSTER_STRIPE
+  source_project: Stripe (stripe/openapi)
+  source_file_path: openapi/spec3.json
+  source_file_blob_sha: f1cedf38e0178538a3c72e750da80226df41e28c
+  http_method: POST
+  endpoint_path: /v1/payment_intents
+  source_spec_pointer: '#/paths/~1v1~1payment_intents/post'
+  intended_benchmark_domain: Payments
+  complexity_tier: MODERATE
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 7
+    estimated_nesting_depth: 9
+    estimated_optional_field_ratio: 0.714
+    estimated_enum_density: 0.0
+    description_length_chars: 312
+    estimated_token_length: 146
+  reason_for_exclusion: "Disqualified from canonical cohort due to observed recursion depth 9 exceeding MAX_RECURSION_DEPTH=5 and wide payment_method_options anyOf unions. Amendment 003 governs finite object unions but does not alter recursion depth limits. Excluded pending independent depth-limit review."
+  candidate_status: EXCLUDE_PENDING
+  usage_role: EXCLUDED_REFERENCE
+  safe_for_local_mock_evaluation: NOT_APPLICABLE
+  mock_safety_rationale: Excluded from canonical benchmark evaluation due to recursion depth 9 exceeding MAX_RECURSION_DEPTH=5.

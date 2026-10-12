@@ -1,8 +1,8 @@
 # Stage B Candidate Pre-Screen Static Audit Report
 
 **Document Type:** Reproducible Pre-Extraction Empirical Audit  
-**Audit Script SHA-256:** `70168ac8c5aaae401564ebd16dbe87bec1185d7e70415b6f39e3461da030da1e`  
-**Operation Manifest SHA-256:** `b5e186799aa317b2c7e2e2415199ec032b6317ab61f5708b5eee590ba1d79fdd`  
+**Audit Script SHA-256:** `269188c7f4a300a474bc49ff89abe845960553cafc9693834817608a47d1c155`  
+**Operation Manifest SHA-256:** `ff87dd91427ec2fb09410d82dbbe202ca325a4672789e8ae67a354dfaa1f62b9`  
 **Generated At (UTC):** `2026-10-12T03:30:00Z`  
 **Environment:** Python `3.13.2` (win32) | PyYAML `6.0.3`  
 **Execution Command:** `python src/audit_stage_b_candidate_prescreen.py --generated-at 2026-10-12T03:30:00Z`  
@@ -15,9 +15,9 @@
 
 - **Total Operations Audited:** 32 operations across 10 source clusters.
 - **Clean Provisional Candidates (`PASS`):** **24 operations** (Pass all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, no conflicting allOf).
-- **Provisional Candidates Pending Union Amendment:** **3 operations** (`Stripe PostRefunds`, `Stripe PostCustomers`, `Stripe PostPaymentIntents` — flagged solely due to finite object-level `anyOf` unsetting semantics, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).
-- **Excluded Operations (`EXCLUDE_PENDING`):** **5 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`).
-- **Replacement Slots Still Required:** **3 operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support, 1 slot for GitHub Developer Platforms).
+- **Provisional Candidates Pending Union Amendment:** **1 operation** (`Stripe PostRefunds` — flagged solely due to finite metadata object/string anyOf unsetting semantics, awaiting formal ratification under `PROTOCOL_AMENDMENT_003.md`).
+- **Excluded Operations (`EXCLUDE_PENDING`):** **7 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`, GitHub `issues/create`, Stripe `PostCustomers`, Stripe `PostPaymentIntents`).
+- **Replacement Slots Still Required:** **5 operations** (1 slot for LINE Logistics/Communications, 1 slot for Chatwoot CRM/Support, 1 slot for GitHub Developer Platforms, 2 slots for Stripe Payments).
 
 ---
 
@@ -51,8 +51,8 @@
 | `CLUSTER_SLACK` | `conversations.create` | POST | `#/paths/~1conversations.create/post` | 1 | PASS | PASS | PASS | PASS | PASS | `header.token` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_SLACK` | `reminders.add` | POST | `#/paths/~1reminders.add/post` | 1 | PASS | PASS | PASS | PASS | PASS | `header.token` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_SLACK` | `users.profile.set` | POST | `#/paths/~1users.profile.set/post` | 1 | PASS | PASS | PASS | PASS | PASS | `header.token` | **PASS_PROVISIONAL_CANONICAL** |
-| `CLUSTER_STRIPE` | `PostCustomers` | POST | `#/paths/~1v1~1customers/post` | 6 | PASS | PASS | FAIL | PASS | PASS | `None` | **FLAGGED_PENDING_UNION_AMENDMENT** |
-| `CLUSTER_STRIPE` | `PostPaymentIntents` | POST | `#/paths/~1v1~1payment_intents/post` | 9 | PASS | PASS | FAIL | PASS | PASS | `None` | **FLAGGED_PENDING_UNION_AMENDMENT** |
+| `CLUSTER_STRIPE` | `PostCustomers` | POST | `#/paths/~1v1~1customers/post` | 6 | PASS | PASS | FAIL | PASS | PASS | `None` | **EXCLUDE_PENDING** |
+| `CLUSTER_STRIPE` | `PostPaymentIntents` | POST | `#/paths/~1v1~1payment_intents/post` | 9 | PASS | PASS | FAIL | PASS | PASS | `None` | **EXCLUDE_PENDING** |
 | `CLUSTER_STRIPE` | `PostRefunds` | POST | `#/paths/~1v1~1refunds/post` | 3 | PASS | PASS | FAIL | PASS | PASS | `None` | **FLAGGED_PENDING_UNION_AMENDMENT** |
 | `CLUSTER_TWILIO` | `CreateCall` | POST | `#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post` | 3 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
 | `CLUSTER_TWILIO` | `CreateMessage` | POST | `#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post` | 3 | PASS | PASS | PASS | PASS | PASS | `None` | **PASS_PROVISIONAL_CANONICAL** |
@@ -102,7 +102,7 @@
 ### `CLUSTER_STRIPE` : `PostCustomers`
 - **Pointer:** `#/paths/~1v1~1customers/post`
 - **Blob SHA:** `f1cedf38e0178538a3c72e750da80226df41e28c`
-- **Audit Verdict:** `FLAGGED_PENDING_UNION_AMENDMENT`
+- **Audit Verdict:** `EXCLUDE_PENDING`
 - **Blocking Rules:** DEPTH_6, OBJECT_UNION
 - **Failure Rationale:**
   - Observed depth 6 exceeds maximum recursion depth limit of 5
@@ -114,7 +114,7 @@
 ### `CLUSTER_STRIPE` : `PostPaymentIntents`
 - **Pointer:** `#/paths/~1v1~1payment_intents/post`
 - **Blob SHA:** `f1cedf38e0178538a3c72e750da80226df41e28c`
-- **Audit Verdict:** `FLAGGED_PENDING_UNION_AMENDMENT`
+- **Audit Verdict:** `EXCLUDE_PENDING`
 - **Blocking Rules:** DEPTH_9, OBJECT_UNION
 - **Failure Rationale:**
   - Observed depth 9 exceeds maximum recursion depth limit of 5

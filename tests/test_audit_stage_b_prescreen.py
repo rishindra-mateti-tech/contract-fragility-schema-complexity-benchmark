@@ -310,9 +310,9 @@ def test_candidate_prescreen_runner_and_artifacts():
     report = run_candidate_prescreen(generated_at_utc="2026-10-12T03:30:00Z")
     assert report["summary"]["total_operations_audited"] == 32
     assert report["summary"]["clean_provisional_candidates_passed"] == 24
-    assert report["summary"]["provisional_pending_union_amendment"] == 3
-    assert report["summary"]["flagged_exclude_pending"] == 5
-    assert report["summary"]["replacement_slots_required"] == 3
+    assert report["summary"]["provisional_pending_union_amendment"] == 1
+    assert report["summary"]["flagged_exclude_pending"] == 7
+    assert report["summary"]["replacement_slots_required"] == 5
     assert "operations" in report
     assert len(report["operations"]) == 32
     # Verify metadata fields exist
@@ -379,3 +379,40 @@ def test_audit_and_manifest_hashes_remain_correct():
 
     assert rep["metadata"]["audit_script_sha256"] == expected_script_sha
     assert rep["metadata"]["manifest_sha256"] == expected_manifest_sha
+
+
+def test_depth_overflow_with_object_unions_regression():
+    report = run_candidate_prescreen(generated_at_utc="2026-10-12T03:30:00Z")
+    ops_by_id = {op["operation_id"]: op for op in report["operations"]}
+
+    # 1. Depth-6 object-union operations (PostCustomers, issues/create) remain EXCLUDE_PENDING
+    # even when Amendment 003 exists, because Amendment 003 does not alter MAX_RECURSION_DEPTH=5.
+    post_customers = ops_by_id["PostCustomers"]
+    assert post_customers["max_depth_observed"] == 6
+    assert post_customers["rule_checks"]["object_union_restricted"] == "FAIL"
+    assert post_customers["rule_checks"]["recursion_depth_bounded"] == "FAIL"
+    assert post_customers["audit_verdict"] == "EXCLUDE_PENDING"
+    assert "DEPTH_6" in post_customers["blocking_failures"]
+
+    issues_create = ops_by_id["issues/create"]
+    assert issues_create["max_depth_observed"] == 6
+    assert issues_create["rule_checks"]["object_union_restricted"] == "FAIL"
+    assert issues_create["rule_checks"]["recursion_depth_bounded"] == "FAIL"
+    assert issues_create["audit_verdict"] == "EXCLUDE_PENDING"
+    assert "DEPTH_6" in issues_create["blocking_failures"]
+
+    # 2. Depth-9 object-union operation (PostPaymentIntents) remains EXCLUDE_PENDING
+    post_payment_intents = ops_by_id["PostPaymentIntents"]
+    assert post_payment_intents["max_depth_observed"] == 9
+    assert post_payment_intents["rule_checks"]["object_union_restricted"] == "FAIL"
+    assert post_payment_intents["rule_checks"]["recursion_depth_bounded"] == "FAIL"
+    assert post_payment_intents["audit_verdict"] == "EXCLUDE_PENDING"
+    assert "DEPTH_9" in post_payment_intents["blocking_failures"]
+
+    # 3. Depth-3 finite object-union operation (PostRefunds) is eligible only for PENDING_UNION_AMENDMENT status
+    post_refunds = ops_by_id["PostRefunds"]
+    assert post_refunds["max_depth_observed"] == 3
+    assert post_refunds["rule_checks"]["recursion_depth_bounded"] == "PASS"
+    assert post_refunds["rule_checks"]["object_union_restricted"] == "FAIL"
+    assert post_refunds["audit_verdict"] == "FLAGGED_PENDING_UNION_AMENDMENT"
+    assert post_refunds["blocking_failures"] == ["OBJECT_UNION"]
