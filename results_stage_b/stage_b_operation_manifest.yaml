@@ -2,17 +2,19 @@ manifest_version: 1.1.0
 manifest_role: DRAFT_OPERATION_SELECTION
 created_at: '2026-10-09T17:55:00Z'
 corpus_composition:
-  provisional_real_operations_candidate_cohort: 29
-  excluded_operations_cohort: 3
-  pending_replacement_cohort: 1
+  clean_provisional_candidates: 24
+  provisional_candidates_pending_union_amendment: 4
+  total_provisional_operations_cohort: 28
+  excluded_operations_cohort: 4
+  pending_replacement_cohort: 2
   canonical_target_size: 30
   synthetic_schemas_cohort: 20
   active_benchmark_target_size: 50
-  note_on_corpus_size: The 30 canonical real-schema candidate slots (currently 29 provisional
-    candidates and 1 pending replacement, with 3 excluded operations tracked) combine with
-    20 synthetic schemas to form the valid 50-schema benchmark minimum. Zero operations are
-    designated as approved until extraction, automated validation, lineage verification,
-    and mandatory manual review are complete.
+  note_on_corpus_size: The 30 canonical real-schema candidate slots (currently 24 clean provisional
+    candidates, 4 candidates pending union amendment under Amendment 003, and 2 pending replacements,
+    with 4 excluded operations tracked) combine with 20 synthetic schemas to form the valid
+    50-schema benchmark minimum. Zero operations are designated as approved until extraction,
+    automated validation, lineage verification, and mandatory manual review are complete.
 authentication_handling_policy:
   policy_role: UNIVERSAL_EXECUTOR_BOUND_CREDENTIAL_POLICY
   principles:
@@ -30,20 +32,17 @@ cluster_aware_analysis_plan:
     source as independent samples introduces cluster autocorrelation. Statistical
     evaluations must cluster standard errors or use clustered bootstrap resampling
     at the source_cluster_id level.
-total_provisional_operations_selected: 29
-total_operations_excluded: 3
-total_pending_replacements: 1
+total_clean_provisional_operations: 24
+total_pending_union_amendment_operations: 4
+total_operations_excluded: 4
+total_pending_replacements: 2
 domain_distribution_provisional:
   Developer Platforms: 6
   Payments: 3
   Cloud/Infra: 3
   Logistics/Communications: 5
   Data/Identity: 6
-  CRM/Support: 6
-complexity_distribution_provisional:
-  FLAT: 10
-  MODERATE: 14
-  DEEP_BLOATED: 5
+  CRM/Support: 5
 operations:
 - operation_id: repos/create-commit-status
   candidate_source_id: CAND-001
@@ -104,7 +103,7 @@ operations:
     enables backward comparison while introducing array parameters.
   exclusion_reason_nearby_operations: Excluded PATCH /repos/{owner}/{repo}/issues/{issue_number}
     due to ambiguous state update semantics compared to clean creation.
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -168,7 +167,7 @@ operations:
     Stripe refund tool; validates real-world transferability.
   exclusion_reason_nearby_operations: Excluded GET /v1/refunds (listing) and POST
     /v1/refunds/{refund}/cancel (lifecycle cancellation) to focus on primary execution.
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -200,7 +199,7 @@ operations:
     names (address, city, phone) at different structural levels.
   exclusion_reason_nearby_operations: Excluded POST /v1/customers/{customer} (update
     endpoint) due to ambiguous sentinel clearing syntax (e.g. empty strings to unset).
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -232,7 +231,7 @@ operations:
     required financial parameters alongside sub-object configurations.
   exclusion_reason_nearby_operations: Excluded POST /v1/payment_intents/{intent}/capture
     to focus on intent declaration rather than post-auth capture.
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
+  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT
   usage_role: CANDIDATE_CANONICAL_REFERENCE
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
@@ -842,38 +841,6 @@ operations:
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
     suite verification before declaring mock evaluation safe.
-- operation_id: create-a-contact
-  candidate_source_id: CAND-011
-  source_cluster_id: CLUSTER_CHATWOOT
-  source_project: Chatwoot (chatwoot/chatwoot)
-  source_file_path: swagger/swagger.json
-  source_file_blob_sha: b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589
-  http_method: POST
-  endpoint_path: /public/api/v1/inboxes/{inbox_identifier}/contacts
-  source_spec_pointer: '#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts/post'
-  intended_benchmark_domain: CRM/Support
-  complexity_tier: MODERATE
-  input_surface:
-    path_parameters_present: true
-    query_parameters_present: false
-    request_body_present: true
-    full_input_extraction_required: true
-  metrics:
-    estimated_parameter_count: 5
-    estimated_nesting_depth: 2
-    estimated_optional_field_ratio: 1.0
-    estimated_enum_density: 0.0
-    description_length_chars: 204
-    estimated_token_length: 112
-  reason_for_selection: CRM contact creation pattern with optional metadata and mixed
-    communication channels.
-  exclusion_reason_nearby_operations: Excluded GET /public/api/v1/inboxes/{inbox_identifier}/contacts/{contact_identifier}
-    (retrieval only).
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
-  usage_role: CANDIDATE_CANONICAL_REFERENCE
-  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
-  mock_safety_rationale: Awaiting concrete local mock executor specification and test
-    suite verification before declaring mock evaluation safe.
 - operation_id: create-a-conversation
   candidate_source_id: CAND-011
   source_cluster_id: CLUSTER_CHATWOOT
@@ -1054,3 +1021,31 @@ excluded_operations:
   usage_role: EXCLUDED_REFERENCE
   safe_for_local_mock_evaluation: NOT_APPLICABLE
   mock_safety_rationale: Excluded from canonical benchmark evaluation pending protocol amendment for object unions.
+- operation_id: create-a-contact
+  candidate_source_id: CAND-011
+  source_cluster_id: CLUSTER_CHATWOOT
+  source_project: Chatwoot (chatwoot/chatwoot)
+  source_file_path: swagger/swagger.json
+  source_file_blob_sha: b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589
+  http_method: POST
+  endpoint_path: /public/api/v1/inboxes/{inbox_identifier}/contacts
+  source_spec_pointer: '#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts/post'
+  intended_benchmark_domain: CRM/Support
+  complexity_tier: MODERATE
+  input_surface:
+    path_parameters_present: true
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 5
+    estimated_nesting_depth: 2
+    estimated_optional_field_ratio: 1.0
+    estimated_enum_density: 0.0
+    description_length_chars: 204
+    estimated_token_length: 112
+  reason_for_exclusion: "Disqualified from canonical cohort due to format: binary on avatar property, violating Section 2.2 strict multipart/binary exclusion rule."
+  candidate_status: EXCLUDE_PENDING
+  usage_role: EXCLUDED_REFERENCE
+  safe_for_local_mock_evaluation: NOT_APPLICABLE
+  mock_safety_rationale: Excluded from canonical benchmark evaluation due to binary input surface.

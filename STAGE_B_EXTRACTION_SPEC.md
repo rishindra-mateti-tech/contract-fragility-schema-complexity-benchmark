@@ -321,11 +321,12 @@ Reviewers must inspect the lineage record, compare with raw source bytes, and re
 ## 7. Cohort Isolation & Dataset Rules
 
 ### 7.1 Operation-Level Admission Decisions
-Every operation in the benchmark catalog receives one of four immutable admission decisions:
+Every operation in the benchmark catalog receives one of five immutable admission decisions:
 1. **`CANONICAL_FAITHFUL`**: Full, faithful representation of the upstream API contract without lossy pruning, subjective simplification, or dropped variants. Eligible for main Stage B benchmark evaluation and causal claims. Assigned strictly and solely after extraction, automated validation, field-lineage verification, and mandatory manual review are complete.
 2. **`PROVISIONAL_CANONICAL_CANDIDATE`**: Operations provisionally selected for extraction without anticipated need for lossy pruning. Subject to extraction, automated verification, lineage logging, and manual sign-off before admission as `CANONICAL_FAITHFUL`.
-3. **`LOSSY_DERIVED_EXPLORATORY`**: Operations requiring heuristic pruning, bounding, or simplification to evaluate. Strictly quarantined in a separate cohort.
-4. **`EXCLUDE_PENDING`**: Operations that cannot be extracted faithfully, exhibit cyclic references, exceed recursion depth limits, require wide polymorphic unions, contain conflicting `allOf` schemas, or require `multipart/form-data` or binary file inputs, and are disqualified from canonical evaluation.
+3. **`PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT`**: Operations provisionally selected that exhibit finite object-level unions or associated recursion depth bounds, pending formal ratification under `PROTOCOL_AMENDMENT_003.md`.
+4. **`LOSSY_DERIVED_EXPLORATORY`**: Operations requiring heuristic pruning, bounding, or simplification to evaluate. Strictly quarantined in a separate cohort.
+5. **`EXCLUDE_PENDING`**: Operations that cannot be extracted faithfully, exhibit cyclic references, exceed recursion depth limits, require wide polymorphic unions without source-faithful bounds, contain conflicting `allOf` schemas, or require `multipart/form-data` or binary file inputs, and are disqualified from canonical evaluation.
 
 ### 7.2 Strict Cohort Isolation Rules
 - **No Pooling**: `LOSSY_DERIVED_EXPLORATORY` data must **never** be pooled with `CANONICAL_REAL_WORLD` or `SYNTHETIC` results in primary paper tables, causal effect estimates, or headline metrics.
@@ -339,9 +340,10 @@ Every operation in the benchmark catalog receives one of four immutable admissio
 ## 8. Operation Extraction Risk & Decision Matrix (30 Selected Operations)
 
 ### Status Summary
-- **`PROVISIONAL_CANONICAL_CANDIDATE`**: **29 operations** (Provisionally selected for extraction without anticipated need for lossy pruning; pending extraction, validation, lineage verification, and manual review).
-- **`EXCLUDE_PENDING`**: **3 operations** (Disqualified from canonical cohort: Slack `chat.postMessage`, LINE `pushMessage`, and LINE `replyMessage` due to polymorphic object unions).
-- **Pending Replacement Operations**: **1 operation** (1 replacement required for LINE Communications cluster, to be selected after static pre-screen review).
+- **`PROVISIONAL_CANONICAL_CANDIDATE` (Clean)**: **24 operations** (Cleanly passing all 7 frozen canonical rules without cycles, depth <= 5, no binary inputs, no object unions, and no conflicting allOf).
+- **`PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT`**: **4 operations** (GitHub `issues/create`, Stripe `PostRefunds`, `PostCustomers`, `PostPaymentIntents` — retained pending ratification of `PROTOCOL_AMENDMENT_003.md`).
+- **`EXCLUDE_PENDING`**: **4 operations** (Slack `chat.postMessage`, LINE `pushMessage`, LINE `replyMessage`, Chatwoot `create-a-contact`).
+- **Pending Replacement Operations**: **2 operations** (1 replacement required for LINE Logistics/Communications, 1 replacement required for Chatwoot CRM/Support).
 - **`CANONICAL_FAITHFUL`**: **0 operations** (Zero operations admitted until the extraction, automated validation, field-lineage verification, and mandatory manual review gate completes).
 
 ### Complete 30-Operation Decision Table
@@ -349,11 +351,11 @@ Every operation in the benchmark catalog receives one of four immutable admissio
 | Cluster ID | Source Project | Operation ID | HTTP / RPC | Input Surfaces | Nesting Depth | Admission Decision | Extraction Risk | Technical Rationale & Exclusion Criteria |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | `CLUSTER_GITHUB` | GitHub | `repos/create-commit-status` | POST | Path + Body | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Flat status payload; path params `owner`, `repo`, `sha` wrapped in `path`; body wrapped in `body`. |
-| `CLUSTER_GITHUB` | GitHub | `issues/create` | POST | Path + Body | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Path params `owner`, `repo` wrapped in `path`; body wrapped in `body`; string arrays preserved. |
+| `CLUSTER_GITHUB` | GitHub | `issues/create` | POST | Path + Body | 6 | **PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT** | MEDIUM | `labels.items` contains object-level oneOf union; pending ratification under `PROTOCOL_AMENDMENT_003.md`. |
 | `CLUSTER_GITHUB` | GitHub | `repos/create-for-authenticated-user` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | 16 body properties wrapped in `body`; boolean defaults preserved verbatim. |
-| `CLUSTER_STRIPE` | Stripe | `PostRefunds` | POST | Body only | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Clean `$ref` resolution to standard refund parameters and enum wrapped in `body`. |
-| `CLUSTER_STRIPE` | Stripe | `PostCustomers` | POST | Body only | 3 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | Multi-level `$ref` resolution for `address` and `shipping` objects inside `body`. |
-| `CLUSTER_STRIPE` | Stripe | `PostPaymentIntents` | POST | Body only | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | Resolving `automatic_payment_methods` and required bounds inside `body`. |
+| `CLUSTER_STRIPE` | Stripe | `PostRefunds` | POST | Body only | 3 | **PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT** | MEDIUM | `metadata` uses anyOf [object, string enum '']; pending ratification under `PROTOCOL_AMENDMENT_003.md`. |
+| `CLUSTER_STRIPE` | Stripe | `PostCustomers` | POST | Body only | 6 | **PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT** | MEDIUM | `address` and `metadata` use anyOf [object, string enum '']; pending ratification under `PROTOCOL_AMENDMENT_003.md`. |
+| `CLUSTER_STRIPE` | Stripe | `PostPaymentIntents` | POST | Body only | 9 | **PROVISIONAL_CANONICAL_CANDIDATE_PENDING_UNION_AMENDMENT** | MEDIUM | `payment_method_options` and `metadata` use anyOf; pending ratification under `PROTOCOL_AMENDMENT_003.md`. |
 | `CLUSTER_DIGITALOCEAN` | DigitalOcean | `floating_ips_create` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Ultra-flat `$ref` resolution (`droplet_id`, `region`) inside `body`. |
 | `CLUSTER_DIGITALOCEAN` | DigitalOcean | `domains_create` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Flat 2-parameter resource constructor inside `body`. |
 | `CLUSTER_DIGITALOCEAN` | DigitalOcean | `droplets_create` | POST | Body only | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | `image` parameter uses primitive `oneOf` (slug string vs integer ID); wrapped in `body`. |
@@ -374,7 +376,7 @@ Every operation in the benchmark catalog receives one of four immutable admissio
 | `CLUSTER_MCP_GITHUB` | MCP GitHub | `create_issue` | RPC | Tool Schema | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | Static TypeScript AST extraction of arrays (`assignees`, `labels`); wrapped in `arguments`. |
 | `CLUSTER_MCP_GITHUB` | MCP GitHub | `create_or_update_file` | RPC | Tool Schema | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | Static TypeScript AST extraction of required file parameters; wrapped in `arguments`. |
 | `CLUSTER_CHATWOOT` | Chatwoot | `create-an-account-user` | POST | Path + Body | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Path param `account_id` in `path`; body params in `body`; role enum preserved. |
-| `CLUSTER_CHATWOOT` | Chatwoot | `create-a-contact` | POST | Path + Body | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | Path param `inbox_identifier` in `path`; contact properties in `body`. |
+| `CLUSTER_CHATWOOT` | Chatwoot | `create-a-contact` | POST | Path + Body | 3 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** `avatar` property has `format: binary`, violating Section 2.2 strict binary/multipart exclusion rule. |
 | `CLUSTER_CHATWOOT` | Chatwoot | `create-a-conversation` | POST | Path + Body | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Path params in `path`; custom attributes in `body`. |
 | `CLUSTER_LINE` | LINE | `setWebhookEndpoint` | PUT | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Flat single-URL property constructor inside `body`. |
 | `CLUSTER_LINE` | LINE | `replyMessage` | POST | Body only | 3 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** `messages` array contains an 11-variant discriminated object union (`Message`), violating Section 3.3 primitive-only choice restriction. Excluded pending protocol amendment for faithful object unions. |
