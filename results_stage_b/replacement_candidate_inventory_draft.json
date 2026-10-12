@@ -1,0 +1,401 @@
+{
+  "metadata": {
+    "candidates_evaluated_per_slot": 3,
+    "document_type": "DRAFT_REPLACEMENT_CANDIDATE_INVENTORY",
+    "generated_at_utc": "2026-10-12T04:00:00Z",
+    "governing_rules": "STAGE_B_EXTRACTION_SPEC.md (Sections 2, 3, 8), PROTOCOL_AMENDMENT_003.md",
+    "manifest_modification_status": "UNMODIFIED (Discovery Draft Only - No Manifest Mutations Permitted)",
+    "selection_status": "PROVISIONAL_EVALUATION_ONLY (Zero Final Selections Made)",
+    "total_candidates_evaluated": 15,
+    "total_disqualified_contrast_candidates": 1,
+    "total_eligible_candidates": 14,
+    "total_missing_slots": 5,
+    "version": "1.0.0"
+  },
+  "slots": [
+    {
+      "candidate_source_id": "CAND-001",
+      "candidates": [
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 1,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body",
+            "path"
+          ],
+          "max_nesting_depth": 2,
+          "notes": "Direct complement to issue lifecycle; adds issue comments. Compact, high-signal developer action.",
+          "object_union": "no",
+          "operation_id": "issues/create-comment",
+          "pointer": "#/paths/~1repos~1{owner}~1{repo}~1issues~1{issue_number}~1comments/post",
+          "property_count": 4,
+          "rejection_reason": "None",
+          "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 2,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body",
+            "path"
+          ],
+          "max_nesting_depth": 2,
+          "notes": "Core code lifecycle primitive. Highly realistic multi-parameter pull request creation payload.",
+          "object_union": "no",
+          "operation_id": "pulls/create",
+          "pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post",
+          "property_count": 10,
+          "rejection_reason": "None",
+          "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 3,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body",
+            "path"
+          ],
+          "max_nesting_depth": 2,
+          "notes": "Repository automation event trigger. Compact custom event dispatcher payload.",
+          "object_union": "no",
+          "operation_id": "repos/create-dispatch-event",
+          "pointer": "#/paths/~1repos~1{owner}~1{repo}~1dispatches/post",
+          "property_count": 4,
+          "rejection_reason": "None",
+          "source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d"
+        }
+      ],
+      "disqualification_cause_of_replaced_op": "Observed recursion depth 6 exceeds MAX_RECURSION_DEPTH=5; contains polymorphic object-level oneOf union in labels.items.",
+      "pinned_source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-001/a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "replaced_operation": "issues/create",
+      "slot_id": "SLOT_GITHUB_01",
+      "slot_name": "GitHub Developer Platforms Replacement Slot",
+      "source_cluster_id": "CLUSTER_GITHUB",
+      "target_domain": "Developer Platforms"
+    },
+    {
+      "candidate_source_id": "CAND-002",
+      "candidates": [
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 1,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 3,
+          "notes": "Outbound merchant fund settlement. Highly realistic financial primitive with 10 cleanly bounded properties.",
+          "object_union": "no",
+          "operation_id": "PostPayouts",
+          "pointer": "#/paths/~1v1~1payouts/post",
+          "property_count": 10,
+          "rejection_reason": "None",
+          "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 2,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 3,
+          "notes": "Internal balance routing primitive across connected accounts. Compact depth-3 parameter schema.",
+          "object_union": "no",
+          "operation_id": "PostTransfers",
+          "pointer": "#/paths/~1v1~1transfers/post",
+          "property_count": 9,
+          "rejection_reason": "None",
+          "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 3,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 3,
+          "notes": "Connected account onboarding link generator. Depth 3 with clean enum parameters.",
+          "object_union": "no",
+          "operation_id": "PostAccountLinks",
+          "pointer": "#/paths/~1v1~1account_links/post",
+          "property_count": 9,
+          "rejection_reason": "None",
+          "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c"
+        }
+      ],
+      "disqualification_cause_of_replaced_op": "Observed recursion depth 6 exceeds MAX_RECURSION_DEPTH=5; contains polymorphic anyOf unions in address/metadata.",
+      "pinned_source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "replaced_operation": "PostCustomers",
+      "slot_id": "SLOT_STRIPE_01",
+      "slot_name": "Stripe Payments Replacement Slot A",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "target_domain": "Payments & Financial Infrastructure"
+    },
+    {
+      "candidate_source_id": "CAND-002",
+      "candidates": [
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 1,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 4,
+          "notes": "Catalog product creation. Rich production payload (37 properties, depth 4) without exceeding depth limit or union constraints.",
+          "object_union": "no",
+          "operation_id": "PostProducts",
+          "pointer": "#/paths/~1v1~1products/post",
+          "property_count": 37,
+          "rejection_reason": "None",
+          "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 2,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 5,
+          "notes": "Catalog pricing tier primitive. High structural complexity (44 properties, depth 5) cleanly operating at the maximum allowable bound.",
+          "object_union": "no",
+          "operation_id": "PostPrices",
+          "pointer": "#/paths/~1v1~1prices/post",
+          "property_count": 44,
+          "rejection_reason": "None",
+          "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 3,
+          "canonical_eligibility": "DISQUALIFIED",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 5,
+          "notes": "Evaluated boundary contrast candidate. DISQUALIFIED due to non-finite source/destination polymorphic object unions.",
+          "object_union": "yes",
+          "operation_id": "PostCharges",
+          "pointer": "#/paths/~1v1~1charges/post",
+          "property_count": 54,
+          "rejection_reason": "OBJECT_UNION",
+          "source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c"
+        }
+      ],
+      "disqualification_cause_of_replaced_op": "Observed recursion depth 9 exceeds MAX_RECURSION_DEPTH=5; contains wide polymorphic payment_method_options unions.",
+      "pinned_source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "replaced_operation": "PostPaymentIntents",
+      "slot_id": "SLOT_STRIPE_02",
+      "slot_name": "Stripe Payments Replacement Slot B",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "target_domain": "Payments & Financial Infrastructure"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "candidates": [
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 1,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 3,
+          "notes": "Agent macro creation. Fast, canonical text-only CRM payload without binary or multipart attachments.",
+          "object_union": "no",
+          "operation_id": "add-new-canned-response-to-account",
+          "pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1canned_responses/post",
+          "property_count": 2,
+          "rejection_reason": "None",
+          "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 2,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body",
+            "path"
+          ],
+          "max_nesting_depth": 4,
+          "notes": "CRM event subscription webhook configuration. Path and body parameters with URL validation.",
+          "object_union": "no",
+          "operation_id": "create-a-webhook",
+          "pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+          "property_count": 4,
+          "rejection_reason": "None",
+          "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 3,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 4,
+          "notes": "Custom CRM field schema builder. Depth 4 with clean attribute validation rules.",
+          "object_union": "no",
+          "operation_id": "add-new-custom-attribute-to-account",
+          "pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1custom_attribute_definitions/post",
+          "property_count": 8,
+          "rejection_reason": "None",
+          "source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589"
+        }
+      ],
+      "disqualification_cause_of_replaced_op": "Declared multipart/form-data with binary file upload parameter ('avatar').",
+      "pinned_source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+      "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "replaced_operation": "create-a-contact",
+      "slot_id": "SLOT_CHATWOOT_01",
+      "slot_name": "Chatwoot CRM Replacement Slot",
+      "source_cluster_id": "CLUSTER_CHATWOOT",
+      "target_domain": "CRM & Customer Support"
+    },
+    {
+      "candidate_source_id": "CAND-013",
+      "candidates": [
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 1,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 3,
+          "notes": "Operational endpoint verification webhook test. Depth 3 with clean single property endpoint payload.",
+          "object_union": "no",
+          "operation_id": "testWebhookEndpoint",
+          "pointer": "#/paths/~1v2~1bot~1channel~1webhook~1test/post",
+          "property_count": 1,
+          "rejection_reason": "None",
+          "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 2,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "body"
+          ],
+          "max_nesting_depth": 3,
+          "notes": "User visual feedback action. Compact depth 3 payload with chatId and loadingSeconds.",
+          "object_union": "no",
+          "operation_id": "showLoadingAnimation",
+          "pointer": "#/paths/~1v2~1bot~1chat~1loading~1start/post",
+          "property_count": 2,
+          "rejection_reason": "None",
+          "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d"
+        },
+        {
+          "allof_merge_conflict": "no",
+          "binary_multipart": "no",
+          "candidate_rank": 3,
+          "canonical_eligibility": "ELIGIBLE",
+          "credential_handling_required": "UNIVERSAL_EXECUTOR_BOUND",
+          "cyclic_ref": "no",
+          "external_ref": "no",
+          "http_method": "POST",
+          "input_surfaces": [
+            "path"
+          ],
+          "max_nesting_depth": 1,
+          "notes": "User-level navigation menu binding. Flat path-parameter primitive linking menu to subscriber.",
+          "object_union": "no",
+          "operation_id": "linkRichMenuIdToUser",
+          "pointer": "#/paths/~1v2~1bot~1user~1{userId}~1richmenu~1{richMenuId}/post",
+          "property_count": 2,
+          "rejection_reason": "None",
+          "source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d"
+        }
+      ],
+      "disqualification_cause_of_replaced_op": "Observed recursion depth 13 exceeds MAX_RECURSION_DEPTH=5; messages array contains polymorphic 15-variant object union.",
+      "pinned_source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "replaced_operation": "replyMessage",
+      "slot_id": "SLOT_LINE_01",
+      "slot_name": "LINE Communications Replacement Slot",
+      "source_cluster_id": "CLUSTER_LINE",
+      "target_domain": "Logistics & Communications"
+    }
+  ]
+}
