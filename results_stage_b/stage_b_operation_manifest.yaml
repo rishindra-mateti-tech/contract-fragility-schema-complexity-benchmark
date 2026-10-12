@@ -2,13 +2,26 @@ manifest_version: 1.1.0
 manifest_role: DRAFT_OPERATION_SELECTION
 created_at: '2026-10-09T17:55:00Z'
 corpus_composition:
-  approved_real_operations_cohort: 30
+  provisional_real_operations_candidate_cohort: 29
+  excluded_operations_cohort: 3
+  pending_replacement_cohort: 1
+  canonical_target_size: 30
   synthetic_schemas_cohort: 20
   active_benchmark_target_size: 50
-  note_on_corpus_size: The 30 approved real-schema operations combine with 20 synthetic
-    schemas to form the valid 50-schema benchmark minimum. An 80-schema corpus will
-    only be claimed if 30 additional approved real operations are admitted in a future
-    expansion.
+  note_on_corpus_size: The 30 canonical real-schema candidate slots (currently 29 provisional
+    candidates and 1 pending replacement, with 3 excluded operations tracked) combine with
+    20 synthetic schemas to form the valid 50-schema benchmark minimum. Zero operations are
+    designated as approved until extraction, automated validation, lineage verification,
+    and mandatory manual review are complete.
+authentication_handling_policy:
+  policy_role: UNIVERSAL_EXECUTOR_BOUND_CREDENTIAL_POLICY
+  principles:
+    - Authentication credentials, API keys, bearer tokens, and secret-bearing headers are execution-environment bindings, not model-generated task arguments.
+    - Models are never evaluated or scored on inventing or formatting API credentials.
+    - The local mock executor injects deterministic placeholder credentials wherever upstream specifications mandate them for transport validity.
+    - Authentication fields are recorded in provenance metadata (x-benchmark-metadata.authentication_fields) but strictly excluded from model syntax/semantic correctness scoring, mutation targets, parameter counts, and complexity metrics.
+    - Applied universally across all clusters and operations, including Slack header.token.
+    - Clear separation maintained between model-facing transport arguments and executor-supplied authentication bindings.
 cluster_aware_analysis_plan:
   approach: Hierarchical / Clustered Bootstrap & Mixed-Effects Modeling
   clustering_variable: source_cluster_id (10 distinct source clusters)
@@ -17,19 +30,20 @@ cluster_aware_analysis_plan:
     source as independent samples introduces cluster autocorrelation. Statistical
     evaluations must cluster standard errors or use clustered bootstrap resampling
     at the source_cluster_id level.
-total_operations_selected: 30
-domain_distribution:
+total_provisional_operations_selected: 29
+total_operations_excluded: 3
+total_pending_replacements: 1
+domain_distribution_provisional:
   Developer Platforms: 6
   Payments: 3
   Cloud/Infra: 3
-  Logistics/Communications: 6
+  Logistics/Communications: 5
   Data/Identity: 6
   CRM/Support: 6
-complexity_distribution:
+complexity_distribution_provisional:
   FLAT: 10
-  MODERATE: 15
+  MODERATE: 14
   DEEP_BLOATED: 5
-total_operations_excluded: 2
 operations:
 - operation_id: repos/create-commit-status
   candidate_source_id: CAND-001
@@ -924,38 +938,6 @@ operations:
   safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
   mock_safety_rationale: Awaiting concrete local mock executor specification and test
     suite verification before declaring mock evaluation safe.
-- operation_id: replyMessage
-  candidate_source_id: CAND-013
-  source_cluster_id: CLUSTER_LINE
-  source_project: LINE (line/line-openapi)
-  source_file_path: messaging-api.yml
-  source_file_blob_sha: 11f1fdb91092246f881edd1a9457cb37327a6c5d
-  http_method: POST
-  endpoint_path: /v2/bot/message/reply
-  source_spec_pointer: '#/paths/~1v2~1bot~1message~1reply/post'
-  intended_benchmark_domain: Logistics/Communications
-  complexity_tier: MODERATE
-  input_surface:
-    path_parameters_present: false
-    query_parameters_present: false
-    request_body_present: true
-    full_input_extraction_required: true
-  metrics:
-    estimated_parameter_count: 3
-    estimated_nesting_depth: 3
-    estimated_optional_field_ratio: 0.333
-    estimated_enum_density: 0.333
-    description_length_chars: 196
-    estimated_token_length: 136
-  reason_for_selection: Standard bot reply contract featuring array payloads with
-    type discriminator enums.
-  exclusion_reason_nearby_operations: Excluded POST /v2/bot/message/multicast to avoid
-    redundancy with replyMessage and pushMessage.
-  candidate_status: PROVISIONAL_CANONICAL_CANDIDATE
-  usage_role: CANDIDATE_CANONICAL_REFERENCE
-  safe_for_local_mock_evaluation: MOCK_SAFETY_REVIEW_PENDING
-  mock_safety_rationale: Awaiting concrete local mock executor specification and test
-    suite verification before declaring mock evaluation safe.
 - operation_id: markMessagesAsRead
   candidate_source_id: CAND-013
   source_cluster_id: CLUSTER_LINE
@@ -1044,3 +1026,31 @@ excluded_operations:
   usage_role: EXCLUDED_REFERENCE
   safe_for_local_mock_evaluation: NOT_APPLICABLE
   mock_safety_rationale: Excluded from canonical benchmark evaluation.
+- operation_id: replyMessage
+  candidate_source_id: CAND-013
+  source_cluster_id: CLUSTER_LINE
+  source_project: LINE (line/line-openapi)
+  source_file_path: messaging-api.yml
+  source_file_blob_sha: 11f1fdb91092246f881edd1a9457cb37327a6c5d
+  http_method: POST
+  endpoint_path: /v2/bot/message/reply
+  source_spec_pointer: '#/paths/~1v2~1bot~1message~1reply/post'
+  intended_benchmark_domain: Logistics/Communications
+  complexity_tier: MODERATE
+  input_surface:
+    path_parameters_present: false
+    query_parameters_present: false
+    request_body_present: true
+    full_input_extraction_required: true
+  metrics:
+    estimated_parameter_count: 3
+    estimated_nesting_depth: 3
+    estimated_optional_field_ratio: 0.333
+    estimated_enum_density: 0.333
+    description_length_chars: 196
+    estimated_token_length: 136
+  reason_for_exclusion: Disqualified from canonical cohort due to 11-variant discriminated object union (Message) in messages array, violating Section 3.3 primitive-only choice restriction.
+  candidate_status: EXCLUDE_PENDING
+  usage_role: EXCLUDED_REFERENCE
+  safe_for_local_mock_evaluation: NOT_APPLICABLE
+  mock_safety_rationale: Excluded from canonical benchmark evaluation pending protocol amendment for object unions.

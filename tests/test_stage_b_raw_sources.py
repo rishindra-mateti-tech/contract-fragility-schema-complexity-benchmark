@@ -127,15 +127,17 @@ def test_sidecar_provenance_files():
     if errors:
         pytest.fail(f"Sidecar provenance check failed with {len(errors)} errors:\n" + "\n".join(errors))
 
-def test_all_30_operations_resolve_deterministic_pointers():
+def test_all_provisional_operations_resolve_deterministic_pointers():
     assert os.path.exists(MANIFEST_PATH), "Operation manifest must exist"
     with open(MANIFEST_PATH, "r", encoding="utf-8") as f:
         manifest = yaml.safe_load(f)
         
-    assert len(manifest["operations"]) == 30, "Expected exactly 30 approved operations"
+    assert len(manifest["operations"]) == 29, "Expected exactly 29 provisional candidate operations"
+    assert len(manifest.get("excluded_operations", [])) == 3, "Expected exactly 3 excluded operations"
     
+    all_ops_to_test = manifest["operations"] + manifest.get("excluded_operations", [])
     errors = []
-    for op in manifest["operations"]:
+    for op in all_ops_to_test:
         cid = op["candidate_source_id"]
         op_id = op["operation_id"]
         blob_sha = op["source_file_blob_sha"]
