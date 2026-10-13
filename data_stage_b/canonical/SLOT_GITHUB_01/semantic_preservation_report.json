@@ -1,0 +1,276 @@
+{
+  "evaluation_status": "PASS",
+  "explicitly_approved_transformations": {
+    "status": "PASS",
+    "total_approved_transformations": 3,
+    "transformations": [
+      {
+        "canonical_pointer": "/",
+        "canonical_value": [
+          "body",
+          "header",
+          "path",
+          "query"
+        ],
+        "is_strictly_lossless": false,
+        "rationale": "HTTP operations accept inputs across URI path templates, query parameters, headers, and request bodies. The canonical representation wraps these disjoint surfaces into a single Draft-07 object with four discrete transport containers (path, query, header, body).",
+        "raw_value": null,
+        "transformation_category": "BENCHMARK_WRAPPER_NORMALIZATION",
+        "transformation_id": "TRANSFORM_ROOT_WRAPPER_SYNTHESIS"
+      },
+      {
+        "canonical_pointer": "/additionalProperties",
+        "canonical_value": false,
+        "is_strictly_lossless": false,
+        "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. Raw OpenAPI specification omitted additionalProperties (defaulting to open validation). This normalization tightens schema permissiveness and is explicitly classified as a non-lossless wrapper policy.",
+        "raw_value": null,
+        "transformation_category": "BENCHMARK_WRAPPER_NORMALIZATION",
+        "transformation_id": "TRANSFORM_WRAPPER_CLOSED_OBJECT"
+      },
+      {
+        "canonical_pointer": "/description",
+        "canonical_value": "Create a pull request",
+        "is_strictly_lossless": true,
+        "rationale": "Selected raw operation summary per deterministic precedence hierarchy (Step 1: summary, Step 2: description, Step 3: template fallback).",
+        "raw_value": "Create a pull request",
+        "transformation_category": "DETERMINISTIC_METADATA_MAPPING",
+        "transformation_id": "TRANSFORM_TOOL_DESCRIPTION_SELECTION"
+      }
+    ]
+  },
+  "field_coverage": {
+    "coverage_ratio": 1.0,
+    "covered_fields": [
+      "base",
+      "body",
+      "draft",
+      "head",
+      "head_repo",
+      "issue",
+      "maintainer_can_modify",
+      "owner",
+      "repo",
+      "title"
+    ],
+    "covered_fields_count": 10,
+    "extraneous_fields": [],
+    "extraneous_fields_count": 0,
+    "missing_fields": [],
+    "missing_fields_count": 0,
+    "status": "PASS",
+    "total_canonical_fields": 10,
+    "total_raw_fields": 10
+  },
+  "keyword_equivalence": {
+    "checks": [
+      {
+        "canonical_value": "The account owner of the repository. The name is not case sensitive.",
+        "keyword": "description",
+        "pointer": "/properties/path/properties/owner/description",
+        "raw_value": "The account owner of the repository. The name is not case sensitive.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/path/properties/owner/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The name of the repository without the `.git` extension. The name is not case sensitive.",
+        "keyword": "description",
+        "pointer": "/properties/path/properties/repo/description",
+        "raw_value": "The name of the repository without the `.git` extension. The name is not case sensitive.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/path/properties/repo/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The name of the branch you want the changes pulled into. This should be an existing branch on the current repository. You cannot submit a pull request to one repository that requests a merge to a base of another repository.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/base/description",
+        "raw_value": "The name of the branch you want the changes pulled into. This should be an existing branch on the current repository. You cannot submit a pull request to one repository that requests a merge to a base of another repository.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/base/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The contents of the pull request.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/body/description",
+        "raw_value": "The contents of the pull request.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/body/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "Indicates whether the pull request is a draft. See \"[Draft Pull Requests](https://docs.github.com/articles/about-pull-requests#draft-pull-requests)\" in the GitHub Help documentation to learn more.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/draft/description",
+        "raw_value": "Indicates whether the pull request is a draft. See \"[Draft Pull Requests](https://docs.github.com/articles/about-pull-requests#draft-pull-requests)\" in the GitHub Help documentation to learn more.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "boolean",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/draft/type",
+        "raw_value": "boolean",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The name of the branch where your changes are implemented. For cross-repository pull requests in the same network, namespace `head` with a user like this: `username:branch`.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/head/description",
+        "raw_value": "The name of the branch where your changes are implemented. For cross-repository pull requests in the same network, namespace `head` with a user like this: `username:branch`.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/head/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The name of the repository where the changes in the pull request were made. This field is required for cross-repository pull requests if both repositories are owned by the same organization.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/head_repo/description",
+        "raw_value": "The name of the repository where the changes in the pull request were made. This field is required for cross-repository pull requests if both repositories are owned by the same organization.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "octo-org/octo-repo",
+        "keyword": "example",
+        "pointer": "/properties/body/properties/head_repo/example",
+        "raw_value": "octo-org/octo-repo",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "repo.nwo",
+        "keyword": "format",
+        "pointer": "/properties/body/properties/head_repo/format",
+        "raw_value": "repo.nwo",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/head_repo/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "An issue in the repository to convert to a pull request. The issue title, body, and comments will become the title, body, and comments on the new pull request. Required unless `title` is specified.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/issue/description",
+        "raw_value": "An issue in the repository to convert to a pull request. The issue title, body, and comments will become the title, body, and comments on the new pull request. Required unless `title` is specified.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": 1,
+        "keyword": "example",
+        "pointer": "/properties/body/properties/issue/example",
+        "raw_value": 1,
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "int64",
+        "keyword": "format",
+        "pointer": "/properties/body/properties/issue/format",
+        "raw_value": "int64",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "integer",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/issue/type",
+        "raw_value": "integer",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "Indicates whether [maintainers can modify](https://docs.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/) the pull request.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/maintainer_can_modify/description",
+        "raw_value": "Indicates whether [maintainers can modify](https://docs.github.com/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork/) the pull request.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "boolean",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/maintainer_can_modify/type",
+        "raw_value": "boolean",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The title of the new pull request. Required unless `issue` is specified.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/title/description",
+        "raw_value": "The title of the new pull request. Required unless `issue` is specified.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/title/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "owner",
+          "repo"
+        ],
+        "keyword": "required",
+        "pointer": "/properties/path/required",
+        "raw_value": [
+          "owner",
+          "repo"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "base",
+          "head"
+        ],
+        "keyword": "required",
+        "pointer": "/properties/body/required",
+        "raw_value": [
+          "base",
+          "head"
+        ],
+        "status": "EQUIVALENT"
+      }
+    ],
+    "dropped_keywords_count": 0,
+    "equivalent_keywords_count": 26,
+    "mismatched_keywords_count": 0,
+    "status": "PASS",
+    "total_evaluated_keywords": 26
+  },
+  "lossless_classification": "SEMANTICALLY_EQUIVALENT_MODULO_WRAPPER_POLICY",
+  "operation_id": "pulls/create",
+  "semantic_validation_decision": "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW",
+  "slot_id": "SLOT_GITHUB_01",
+  "unsupported_constructs": {
+    "constructs": [],
+    "status": "PASS",
+    "unsupported_constructs_count": 0
+  }
+}

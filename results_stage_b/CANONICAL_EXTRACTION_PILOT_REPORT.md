@@ -1,19 +1,21 @@
 # Stage B Canonical Extraction Pilot Report: SLOT_GITHUB_01 (pulls/create)
 
-## 1. Executive Summary
+## 1. Executive Summary & Semantic Decision
 
-This report documents the execution and validation of the **Stage B Canonical Contract Extraction Pilot** for the single admitted operation:
+This report documents the refined extraction and validation of the **Stage B Canonical Contract Extraction Pilot** for:
 - **Slot Identifier:** `SLOT_GITHUB_01`
 - **Operation Identifier:** `pulls/create` (`POST /repos/{owner}/{repo}/pulls`)
 - **Raw Candidate Source:** `CAND-001` (GitHub REST API OpenAPI 3.0 description)
 - **Governing Specification:** `STAGE_B_EXTRACTION_SPEC.md` (Extraction Rule Version `1.2.0`)
-- **Current Canonical Lifecycle Status:** `EXTRACTED_PENDING_HUMAN_VALIDATION`
+- **Evaluated Semantic Decision:** **`SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW`**
+- **Lifecycle Status:** `EXTRACTED_PENDING_HUMAN_VALIDATION` (strictly **not** elevated to `CANONICAL_FAITHFUL`)
+- **Lossless Classification:** **`SEMANTICALLY_EQUIVALENT_MODULO_WRAPPER_POLICY`**
 
-In strict compliance with benchmark research integrity boundaries:
-1. **Single-Operation Isolation:** No other operation was extracted, converted, or mutated.
-2. **Zero Downstream Mutation / Execution Artifacts:** No mutations, mock handlers, model calls, benchmark results, or empirical claims were generated.
-3. **No Unwarranted Elevation:** The operation is explicitly classified as `EXTRACTED_PENDING_HUMAN_VALIDATION` and is **not** labeled `CANONICAL_FAITHFUL`.
-4. **Frozen Boundary Invariants:** Pinned raw source files, Git blob SHAs, and Stage A benchmarks remain unaltered.
+### Research Integrity Invariants Preserved
+1. **Single-Operation Boundary:** Strictly extracted and audited only `SLOT_GITHUB_01`. No additional operations were admitted or converted.
+2. **Zero Downstream Mutation / Execution Artifacts:** No mutations, mock executors, model calls, benchmark results, or empirical claims were generated.
+3. **No Unqualified "Lossless" Claims:** The extraction is **not** claimed to be unconditionally lossless. While 100% of defined schema keywords and fields are preserved identically, the canonical contract enforces an explicit, non-lossless benchmark wrapper policy (`additionalProperties: false` across surface containers) to restrict tool-argument permissiveness for LLM evaluation.
+4. **Elimination of Static Assumptions:** Fixed property-copy whitelists and fabricated line number maps were completely removed in favor of recursive schema extraction and programmatic lineage derivation.
 
 ---
 
@@ -28,7 +30,6 @@ In strict compliance with benchmark research integrity boundaries:
 | **Raw Source Git Blob SHA** | `a91fa76a34558f5ed28e245cb1a6c46a44a61f4d` |
 | **Raw Source File SHA-256** | `ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194` |
 | **Raw JSON Pointer** | `#/paths/~1repos~1{owner}~1{repo}~1pulls/post` |
-| **Source AST Line Span** | Lines 70801–70865 (65 lines) |
 | **HTTP Method & Path** | `POST /repos/{owner}/{repo}/pulls` |
 | **Request Content-Type** | `application/json` |
 
@@ -36,116 +37,97 @@ In strict compliance with benchmark research integrity boundaries:
 
 ## 3. Extracted Canonical Artifact Inventory
 
-The extraction engine (`src/extract_stage_b_canonical_contract.py`) generated the following deterministic artifacts under `data_stage_b/canonical/SLOT_GITHUB_01/`:
+The extraction engine (`src/extract_stage_b_canonical_contract.py`) and multi-suite validator (`src/validate_stage_b_canonical_contract.py`) emitted the following deterministic artifacts under `data_stage_b/canonical/SLOT_GITHUB_01/`:
 
 | Artifact File | Format | SHA-256 Checksum | Description |
 |---|---|---|---|
-| `canonical_contract.json` | JSON (Draft-07) | `8b7721b33ec204bf88667de03eb48cbf44a73c485f5dc11cc97d186c0ffaa6d7` | Canonical Draft-07 tool schema with strict single-column surface containers |
-| `field_lineage.jsonl` | JSON Lines | `d61d41c684d6debbb30c38dcc66c6b6a018ae429306a10d7a0faa0e5f71a980c` | 15 deterministic property lineage records linking canonical fields to raw source |
-| `extraction_manifest.json` | JSON | `10e0aa8b261b0c0344d5c4115162a4df8ddaf27be63969ee73507304f56860ca` | Cryptographic provenance manifest with raw, script, and artifact hashes |
-| `validation_report.json` | JSON | `0e3860bb63273eef078ea2753aee246e7fca6dcfae89c6760b7b1d9bf5c1ce8c` | Automated validation report containing results for 39 invariant checks |
+| `canonical_contract.json` | JSON (Draft-07) | `54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1` | Canonical Draft-07 tool schema with single-column surface containers |
+| `field_lineage.jsonl` | JSON Lines | `294066ce9cf0589645b2fed5fbe229c01c91f7e0042baf9bff801c50003c7da1` | 15 deterministic property lineage records (10 leaf + 4 surface + 1 description) |
+| `extraction_manifest.json` | JSON | `ba888725b40e9d328f6cd662123bc6b33a7b1708a1e0ff7909ff0e45989549ef` | Cryptographic provenance manifest with raw, script, and artifact hashes |
+| `validation_report.json` | JSON | `cdc218c4a2a035de58d2105d73a00763a995ff5013be590247b077c642f33279` | Multi-suite validation report (43 / 43 checks PASS) |
+| `semantic_preservation_report.json` | JSON | `e11f72543e885bc901ef2587095491703f86c8ee83ca9b2a22883a486f0e32c9` | Recursive keyword-by-keyword semantic equivalence audit |
 
-In addition, `results_stage_b/canonical_field_lineage.jsonl` was synchronized with the slot's lineage records.
-
----
-
-## 4. Input Surface & Field Preservation Accounting
-
-### 4.1 Structural Metrics
-- **Total Leaf Properties Extracted:** 10
-- **Path Parameters:** 2 (`owner`, `repo`)
-- **Query Parameters:** 0 (container present with `additionalProperties: false`)
-- **Header Parameters:** 0 (container present with `additionalProperties: false`)
-- **Body Properties:** 8 (`base`, `body`, `draft`, `head`, `head_repo`, `issue`, `maintainer_can_modify`, `title`)
-- **Excluded Fields:** 0
-- **Dropped Properties:** 0
-- **Invented / Phantom Fields:** 0
-- **Type Coercions:** 0
-- **Maximum Observed Schema Depth:** 2 (Strictly within benchmark limit $\le 5$)
-- **Object Unions Present:** 0
-
-### 4.2 Detailed Field Roster & Lineage Mapping
-
-| Canonical Field Path | JSON Type | Required | Raw Source AST Line | Transformation Category | Reversible |
-|---|---|---|---|---|---|
-| `/description` | string | N/A | 70802–70803 | `RAW_SUMMARY` | Yes |
-| `/properties/path` | object | Yes (`["body", "path"]`) | 70801–70865 | `SURFACE_WRAPPING` | Yes |
-| `/properties/path/properties/owner` | string | Yes (`path.required`) | 70814–70815 | `SURFACE_WRAPPING` | Yes |
-| `/properties/path/properties/repo` | string | Yes (`path.required`) | 70817–70818 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body` | object | Yes (`["body", "path"]`) | 70801–70865 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/base` | string | Yes (`body.required`) | 70841–70844 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/body` | string | No | 70845–70848 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/draft` | boolean | No | 70853–70856 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/head` | string | Yes (`body.required`) | 70831–70834 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/head_repo` | string | No | 70835–70838 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/issue` | integer | No | 70857–70860 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/maintainer_can_modify` | boolean | No | 70849–70852 | `SURFACE_WRAPPING` | Yes |
-| `/properties/body/properties/title` | string | No | 70827–70830 | `SURFACE_WRAPPING` | Yes |
-| `/properties/query` | object | No | 70801–70865 | `SURFACE_WRAPPING` | Yes |
-| `/properties/header` | object | No | 70801–70865 | `SURFACE_WRAPPING` | Yes |
+In addition, `results_stage_b/canonical_field_lineage.jsonl` is synchronized with the slot's lineage records.
 
 ---
 
-## 5. Automated Multi-Suite Validation Results
+## 4. Semantic Preservation & Keyword Equivalence Audit
 
-The multi-suite automated validator (`src/validate_stage_b_canonical_contract.py`) executed 39 distinct checks across 7 test suites. All checks passed with zero errors or warnings (`39 / 39 PASS`):
+The enhanced recursive preservation engine audited the operation across four structured dimensions:
 
-1. **Suite A: JSON Schema Draft-07 Meta-Validation**
-   - Declared `$schema` equals `http://json-schema.org/draft-07/schema#` (`PASS`).
-   - Meta-schema syntax validation via `jsonschema.Draft7Validator.check_schema` (`PASS`).
+### 4.1 Field Coverage Audit (10 / 10 = 100%)
+- **Path Parameters (2):** `owner`, `repo`
+- **Body Properties (8):** `base`, `body`, `draft`, `head`, `head_repo`, `issue`, `maintainer_can_modify`, `title`
+- **Missing Raw Fields:** 0
+- **Extraneous / Hallucinated Fields:** 0
+- **Field Coverage Ratio:** `1.0` (100.0%)
 
-2. **Suite B: Root Wrapper Structural Invariants**
-   - Top-level keys strictly match `{ $schema, additionalProperties, description, properties, required, title, type, x-benchmark-metadata }` (`PASS`).
-   - Root `type` is `object` (`PASS`).
-   - Root `additionalProperties` is `false` (`PASS`).
-   - Surface containers are strictly `{ body, header, path, query }` (`PASS`).
-   - Root `required` is sorted subset `["body", "path"]` (`PASS`).
+### 4.2 Keyword Equivalence Audit (26 / 26 Keyword Instances Equivalent)
+Every supported schema keyword present in the raw specification was recursively compared against its canonical counterpart:
+- **`type` (10 instances):** All match identically (e.g. `string`, `boolean`, `integer`).
+- **`description` (10 instances):** All match raw documentation strings verbatim.
+- **`format` (2 instances):** `head_repo.format == "repo.nwo"`, `issue.format == "int64"` preserved identically.
+- **`example` (2 instances):** `head_repo.example == "octo-org/octo-repo"`, `issue.example == 1` preserved identically.
+- **`required` (2 instances):**
+  - Path container required: `["owner", "repo"]` (matches path parameter list).
+  - Body container required: `["base", "head"]` (matches raw `requestBody.schema.required`).
+- **Dropped Keywords:** 0
+- **Mismatched Keywords:** 0
 
-3. **Suite C: Transport Separation & Surface Properties**
-   - All four surface containers are `type: object` with `additionalProperties: false` (`PASS`).
-   - Path surface contains exactly `owner` and `repo` with required array `["owner", "repo"]` (`PASS`).
-   - Transport separation: `owner` and `repo` strictly do not leak into `body` (`PASS`).
-   - Body surface contains exactly 8 declared properties (`PASS`).
-   - Body `required` strictly equals `["base", "head"]` (`PASS`).
-   - Query and header surfaces are strictly empty (`PASS`).
+### 4.3 Explicitly Approved Transformations & Non-Lossless Wrapper Policies
 
-4. **Suite D: Recursion Depth & Additional Properties Bounds**
-   - Maximum schema recursion depth is 2, strictly satisfying $\le 5$ (`PASS`).
-   - Zero object-level unions (`anyOf`/`oneOf`) present across any property (`PASS`).
+| Transformation ID | Category | Canonical Pointer | Rationale & Semantic Impact | Strictly Lossless? |
+|---|---|---|---|---|
+| `TRANSFORM_ROOT_WRAPPER_SYNTHESIS` | `BENCHMARK_WRAPPER_NORMALIZATION` | `/` | HTTP operations accept parameters across URI path templates, query parameters, headers, and request bodies. The canonical representation wraps these disjoint surfaces into a single Draft-07 object with four discrete transport containers (`path`, `query`, `header`, `body`). | **No** (structural wrapper synthesis) |
+| `TRANSFORM_WRAPPER_CLOSED_OBJECT` | `BENCHMARK_WRAPPER_NORMALIZATION` | `/additionalProperties`, `/properties/*/additionalProperties` | Tool-calling parameter interfaces require closed object schemas (`additionalProperties: false`) to constrain LLM argument hallucination and enforce strict validation. Raw OpenAPI specification omitted `additionalProperties` (which in JSON Schema defaults to permissive/open validation). This normalization tightens schema permissiveness. | **No** (tightens permissiveness from open to closed) |
+| `TRANSFORM_TOOL_DESCRIPTION_SELECTION` | `DETERMINISTIC_METADATA_MAPPING` | `/description` | Selected raw operation `summary` ("Create a pull request") per deterministic precedence hierarchy (Step 1: summary, Step 2: description, Step 3: template fallback). | **Yes** (verbatim raw text preservation) |
 
-5. **Suite E: Deterministic Field-Lineage Traceability**
-   - Complete 1:1 coverage: all 15 canonical pointers registered in lineage (`PASS`).
-   - Zero extraneous lineage records (`PASS`).
-   - Cryptographic continuity: all records embed matching canonical schema SHA-256 and raw source blob SHA (`PASS`).
-
-6. **Suite F: Raw Source Lossless Completeness**
-   - Raw source file exists, is valid JSON, and resolves source pointer `#/paths/~1repos~1{owner}~1{repo}~1pulls/post` (`PASS`).
-   - Raw parameters match canonical path properties bijectively (`PASS`).
-   - Raw requestBody properties match canonical body properties bijectively (`PASS`).
-   - Raw requestBody required fields match canonical body required array (`PASS`).
-
-7. **Suite G: Manifest Cryptographic Integrity**
-   - Computed canonical contract SHA-256 matches manifest entry (`PASS`).
-   - Disk raw source file SHA-256 matches manifest entry (`PASS`).
-   - Operational status is confirmed as `EXTRACTED_PENDING_HUMAN_VALIDATION` (`PASS`).
+### 4.4 Unsupported Constructs Audit
+- **Unsupported Keywords Encountered:** 0
+- **Cyclic References:** 0
+- **Object-Level Polymorphic Unions (`anyOf`/`oneOf`):** 0
+- **Recursion Depth:** Observed depth = 2 (strictly $\le 5$)
+- **File / Multipart Uploads:** 0
 
 ---
 
-## 6. Deliberate Drift & Negative Testing Verification
+## 5. Lineage Derivation & Line Span Justification
 
-A dedicated regression suite in `tests/test_stage_b_canonical_extraction_pilot.py` verifies that the pipeline immediately detects and rejects deliberate specification drift:
+Static, hand-coded line maps (e.g. `body_line_map = {"title": 70827, ...}`) have been entirely removed.
+- **Programmatic Derivation:** Lineage records and source pointers are derived programmatically via RFC 6901 navigation of the parsed OpenAPI AST.
+- **Explicit AST Line Span Omission:** Because standard Python JSON decoders parse byte streams into memory structures without preserving token line/column offsets, exact source AST line spans are recorded as `null` with explicit documentation:
+  `"source_ast_span": null`
+  `"source_ast_span_reason": "Standard JSON parser does not preserve token line offsets; exact AST line spans require full JSON AST parsing with source mapping."`
 
-| Drift Scenario Tested | Expected Validation Behavior | Test Result |
+---
+
+## 6. Deliberate Drift & Negative Regression Verification
+
+Automated regression tests in `tests/test_stage_b_canonical_extraction_pilot.py` demonstrate immediate detection and rejection across 11 distinct drift scenarios:
+
+| Drift Regression Scenario | Expected Validator Action | Test Suite Result |
 |---|---|---|
 | **Field Renaming** (e.g. `title` $\to$ `pr_title`) | Fails `body_properties_exact` check | PASS |
 | **Missing Required Field** (dropping `head`) | Fails `body_required_exact` check | PASS |
 | **Phantom / Invented Field** (injecting `phantom_field`) | Fails `body_properties_exact` check | PASS |
-| **Transport Leak** (leaking `owner` into `body`) | Fails `transport_separation_no_path_leak_into_body` check | PASS |
-| **Depth Violation** (nesting depth $> 5$) | Fails `recursion_depth_within_bound` check | PASS |
-| **Out-of-Scope Slot** (attempting extraction on non-pilot slot) | Raises explicit hard-boundary `ValueError` | PASS |
+| **Transport Separation Leak** (leaking `owner` into `body`) | Fails `transport_separation_no_path_leak_into_body` check | PASS |
+| **Recursion Depth Violation** (nesting depth $> 5$) | Fails `recursion_depth_within_bound` check | PASS |
+| **Lost String Pattern Drift** (raw defines `pattern`, canonical drops it) | Fails `semantic_keyword_equivalence_verified` (`DROPPED_KEYWORD`) | PASS |
+| **Lost Numeric Bound Drift** (raw defines `minimum`, canonical drops it) | Fails `semantic_keyword_equivalence_verified` (`DROPPED_KEYWORD`) | PASS |
+| **Lost Array Items Schema Drift** (raw defines `items`, canonical drops it) | Fails `semantic_keyword_equivalence_verified` (`DROPPED_KEYWORD`) | PASS |
+| **`additionalProperties` Difference Drift** (raw specifies schema, canonical alters it) | Fails `semantic_keyword_equivalence_verified` (`MISMATCH`) | PASS |
+| **Nested Keyword Mismatch Drift** (nested `minLength` altered) | Fails `semantic_keyword_equivalence_verified` (`MISMATCH`) | PASS |
+| **Out-of-Scope Slot Boundary** (attempting non-pilot extraction) | Raises explicit hard-boundary `ValueError` | PASS |
 
 ---
 
-## 7. Conclusion & Next Gate
+## 7. Pilot Gate Conclusion
 
-The extraction of `SLOT_GITHUB_01` (`pulls/create`) successfully validates the deterministic canonical extraction architecture under Draft-07 rules. The operation is currently staged at `EXTRACTED_PENDING_HUMAN_VALIDATION`. Advancing to `CANONICAL_FAITHFUL` will occur only after formal human reviewer sign-off following the completion of the canonical pilot gate.
+The pilot extraction for `SLOT_GITHUB_01` (`pulls/create`) is classified as:
+### **`SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW`**
+
+- **Keyword Equivalence:** 100% verified across all raw keywords.
+- **Field Coverage:** 100% verified (10/10).
+- **Wrapper Normalization:** Formally audited, documented, and qualified as non-lossless wrapper policy.
+- **Next Required Step:** Formal human reviewer sign-off prior to canonical cohort promotion.
+- **Boundary Invariant:** The operation remains strictly at `EXTRACTED_PENDING_HUMAN_VALIDATION` and is **not** elevated to `CANONICAL_FAITHFUL`.

@@ -90,11 +90,12 @@
     "endpoint": "/repos/{owner}/{repo}/pulls",
     "extraction_rule_version": "1.2.0",
     "extraction_timestamp": "2026-10-12T18:15:00Z",
-    "extractor_version": "1.0.0",
+    "extractor_version": "1.1.0",
     "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
     "http_method": "POST",
     "operation_id": "pulls/create",
     "request_content_type": "application/json",
+    "semantic_validation_decision": "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW",
     "slot_id": "SLOT_GITHUB_01",
     "source_cluster_id": "CLUSTER_GITHUB",
     "source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
@@ -121,6 +122,12 @@
       ],
       "total_property_count": 10,
       "wrapped_nesting_depth": 2
+    },
+    "wrapper_normalization_policy": {
+      "additional_properties_closed": true,
+      "is_strictly_lossless": false,
+      "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. Raw OpenAPI specification omitted additionalProperties, which in JSON Schema permits arbitrary undefined keys. This normalization tightens schema permissiveness and is explicitly classified as non-lossless wrapper policy."
     }
   }
 }

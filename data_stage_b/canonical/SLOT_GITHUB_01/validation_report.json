@@ -38,7 +38,7 @@
     },
     {
       "check": "surface_containers_exact",
-      "details": "Surface containers must be exactly {'header', 'path', 'query', 'body'}, got {'header', 'path', 'query', 'body'}",
+      "details": "Surface containers must be exactly {'header', 'body', 'query', 'path'}, got {'header', 'body', 'query', 'path'}",
       "passed": true,
       "pointer": "/properties"
     },
@@ -200,25 +200,25 @@
     },
     {
       "check": "raw_parameters_lossless_representation",
-      "details": "Raw parameters {'repo', 'owner'} match canonical path {'repo', 'owner'}",
+      "details": "Raw parameters {'owner', 'repo'} match canonical path {'owner', 'repo'}",
       "passed": true,
       "pointer": "/properties/path"
     },
     {
       "check": "raw_body_properties_lossless_representation",
-      "details": "Raw body properties {'issue', 'draft', 'title', 'base', 'maintainer_can_modify', 'head', 'head_repo', 'body'} match canonical body {'issue', 'draft', 'title', 'base', 'maintainer_can_modify', 'head', 'head_repo', 'body'}",
+      "details": "Raw body properties {'body', 'base', 'maintainer_can_modify', 'head_repo', 'draft', 'title', 'head', 'issue'} match canonical body {'body', 'base', 'maintainer_can_modify', 'head_repo', 'draft', 'title', 'head', 'issue'}",
       "passed": true,
       "pointer": "/properties/body"
     },
     {
       "check": "raw_body_required_exact_match",
-      "details": "Raw required {'base', 'head'} matches canonical body required {'head', 'base'}",
+      "details": "Raw required {'head', 'base'} matches canonical body required {'head', 'base'}",
       "passed": true,
       "pointer": "/properties/body/required"
     },
     {
       "check": "manifest_canonical_sha_match",
-      "details": "Manifest SHA 8b7721b33ec204bf88667de03eb48cbf44a73c485f5dc11cc97d186c0ffaa6d7 matches computed 8b7721b33ec204bf88667de03eb48cbf44a73c485f5dc11cc97d186c0ffaa6d7",
+      "details": "Manifest SHA 54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1 matches computed 54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1",
       "passed": true,
       "pointer": "/canonical_schema_sha256"
     },
@@ -233,12 +233,76 @@
       "details": "Disk raw SHA ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194 matches manifest ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
       "passed": true,
       "pointer": "/raw_source_file_sha256"
+    },
+    {
+      "check": "semantic_field_coverage_100pct",
+      "details": "Field coverage ratio: 1.0 (covered: 10, missing: [])",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "semantic_keyword_equivalence_verified",
+      "details": "Keyword equivalence: 26 equivalent, 0 dropped, 0 mismatched.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "semantic_approved_transformations_verified",
+      "details": "Verified 3 approved transformations with formal rationale.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "semantic_unsupported_constructs_zero",
+      "details": "Unsupported constructs count: 0",
+      "passed": true,
+      "pointer": null
     }
   ],
+  "explicitly_approved_transformations": {
+    "status": "PASS",
+    "total_approved_transformations": 3
+  },
   "failed_checks": 0,
+  "field_coverage": {
+    "coverage_ratio": 1.0,
+    "covered_fields": [
+      "base",
+      "body",
+      "draft",
+      "head",
+      "head_repo",
+      "issue",
+      "maintainer_can_modify",
+      "owner",
+      "repo",
+      "title"
+    ],
+    "covered_fields_count": 10,
+    "extraneous_fields": [],
+    "extraneous_fields_count": 0,
+    "missing_fields": [],
+    "missing_fields_count": 0,
+    "status": "PASS",
+    "total_canonical_fields": 10,
+    "total_raw_fields": 10
+  },
+  "keyword_equivalence": {
+    "dropped_keywords_count": 0,
+    "equivalent_keywords_count": 26,
+    "mismatched_keywords_count": 0,
+    "status": "PASS",
+    "total_evaluated_keywords": 26
+  },
+  "lossless_classification": "SEMANTICALLY_EQUIVALENT_MODULO_WRAPPER_POLICY",
   "operation_id": "pulls/create",
-  "passed_checks": 39,
+  "passed_checks": 43,
+  "semantic_validation_decision": "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW",
   "slot_id": "SLOT_GITHUB_01",
-  "total_checks": 39,
+  "total_checks": 43,
+  "unsupported_constructs": {
+    "status": "PASS",
+    "unsupported_constructs_count": 0
+  },
   "validation_status": "PASS"
 }
