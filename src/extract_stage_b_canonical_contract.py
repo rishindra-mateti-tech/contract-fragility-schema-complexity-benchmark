@@ -11,13 +11,15 @@ Extracts the canonical Draft-07 tool contract for exactly one operation:
 
 Hard Boundaries:
 - Extracts strictly and only SLOT_GITHUB_01 in this pilot phase.
-- Preserves all input surfaces (path, query, header, body), field names, types,
-  constraints, requiredness, descriptions, formats, and examples verbatim.
-- Emits deterministic field-lineage records and extraction manifest.
+- Recursive schema extraction preserving all keywords without hand-maintained whitelists.
+- Programmatic derivation of field lineage and source pointers.
+- Line span recorded as null with explicit reason (no fabricated static line numbers).
+- Wrapper-level additionalProperties: false documented as non-lossless wrapper policy.
 - Status: EXTRACTED_PENDING_HUMAN_VALIDATION (never CANONICAL_FAITHFUL yet).
 """
 
 import argparse
+import copy
 import datetime
 import hashlib
 import json
@@ -40,9 +42,15 @@ PILOT_SOURCE_POINTER = "#/paths/~1repos~1{owner}~1{repo}~1pulls/post"
 PILOT_HTTP_METHOD = "POST"
 PILOT_ENDPOINT = "/repos/{owner}/{repo}/pulls"
 PILOT_STATUS = "EXTRACTED_PENDING_HUMAN_VALIDATION"
-EXTRACTOR_VERSION = "1.0.0"
+SEMANTIC_DECISION = "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW"
+EXTRACTOR_VERSION = "1.1.0"
 EXTRACTION_RULE_VERSION = "1.2.0"
 GOVERNING_SPECIFICATION = "STAGE_B_EXTRACTION_SPEC.md"
+
+AST_SPAN_OMISSION_REASON = (
+    "Standard JSON parser does not preserve token line offsets; "
+    "exact AST line spans require full JSON AST parsing with source mapping."
+)
 
 
 def sha256_file(path: str) -> str:
@@ -86,6 +94,83 @@ def resolve_json_pointer(doc: Any, pointer: str) -> Any:
     return cur
 
 
+def extract_schema_node(
+    raw_schema: Any,
+    raw_doc: Dict[str, Any],
+    raw_pointer: str,
+    current_depth: int = 0,
+) -> Any:
+    """Recursively extract a schema node preserving all supported keywords without whitelists.
+    
+    Traverses properties, items, constraints, bounds, types, formats, descriptions, etc.
+    """
+    if not isinstance(raw_schema, dict):
+        return copy.deepcopy(raw_schema)
+
+    if current_depth > 5:
+        raise ValueError(f"Recursion depth exceeded limit of 5 at {raw_pointer}")
+
+    # Dereference $ref if present
+    if "$ref" in raw_schema:
+        ref_ptr = raw_schema["$ref"]
+        dereferenced = resolve_json_pointer(raw_doc, ref_ptr)
+        return extract_schema_node(dereferenced, raw_doc, ref_ptr, current_depth)
+
+    node: Dict[str, Any] = {}
+
+    for key, val in sorted(raw_schema.items()):
+        if key == "properties" and isinstance(val, dict):
+            node["properties"] = {
+                prop_name: extract_schema_node(
+                    prop_def,
+                    raw_doc,
+                    f"{raw_pointer}/properties/{prop_name}",
+                    current_depth + 1,
+                )
+                for prop_name, prop_def in sorted(val.items())
+            }
+        elif key == "items":
+            if isinstance(val, dict):
+                node["items"] = extract_schema_node(
+                    val,
+                    raw_doc,
+                    f"{raw_pointer}/items",
+                    current_depth + 1,
+                )
+            elif isinstance(val, list):
+                node["items"] = [
+                    extract_schema_node(
+                        item,
+                        raw_doc,
+                        f"{raw_pointer}/items/{idx}",
+                        current_depth + 1,
+                    )
+                    for idx, item in enumerate(val)
+                ]
+            else:
+                node["items"] = copy.deepcopy(val)
+        elif key == "required" and isinstance(val, list):
+            node["required"] = sorted(copy.deepcopy(val))
+        elif key == "additionalProperties":
+            if isinstance(val, dict):
+                node["additionalProperties"] = extract_schema_node(
+                    val,
+                    raw_doc,
+                    f"{raw_pointer}/additionalProperties",
+                    current_depth + 1,
+                )
+            else:
+                node["additionalProperties"] = val
+        else:
+            # Preserves: type, format, enum, const, default, example, examples, description,
+            # minimum, maximum, exclusiveMinimum, exclusiveMaximum, multipleOf,
+            # minLength, maxLength, pattern, minItems, maxItems, uniqueItems,
+            # minProperties, maxProperties, nullable, readOnly, writeOnly, deprecated, title, etc.
+            node[key] = copy.deepcopy(val)
+
+    return node
+
+
 def extract_slot_github_01(
     raw_doc: Dict[str, Any],
     raw_file_sha: str,
@@ -102,10 +187,11 @@ def extract_slot_github_01(
     desc_transformation = "RAW_SUMMARY" if summary else ("RAW_DESCRIPTION" if op_node.get("description") else "DETERMINISTIC_TEMPLATE_FALLBACK")
     desc_raw_pointer = f"{PILOT_SOURCE_POINTER}/summary" if summary else f"{PILOT_SOURCE_POINTER}/description"
 
-    # 2. Extract path parameters
+    lineage_records: List[Dict[str, Any]] = []
+
+    # 2. Programmatically extract path parameters
     path_parameters: Dict[str, Any] = {}
     path_required: List[str] = []
-    lineage_records: List[Dict[str, Any]] = []
 
     raw_params = op_node.get("parameters", [])
     for idx, p in enumerate(raw_params):
@@ -118,20 +204,22 @@ def extract_slot_github_01(
 
         param_name = resolved_param["name"]
         param_in = resolved_param.get("in", "path")
-        param_desc = resolved_param.get("description", "")
-        param_schema = resolved_param.get("schema", {})
-        param_type = param_schema.get("type", "string")
 
         if param_in == "path":
-            prop_def: Dict[str, Any] = {"type": param_type}
-            if param_desc:
-                prop_def["description"] = param_desc
-            if "format" in param_schema:
-                prop_def["format"] = param_schema["format"]
-            if "example" in param_schema:
-                prop_def["example"] = param_schema["example"]
+            # Compose parameter schema preserving description if present
+            param_schema = copy.deepcopy(resolved_param.get("schema", {}))
+            if "description" in resolved_param and "description" not in param_schema:
+                param_schema["description"] = resolved_param["description"]
 
-            path_parameters[param_name] = prop_def
+            # Recursive extraction without whitelisting
+            prop_node = extract_schema_node(
+                raw_schema=param_schema,
+                raw_doc=raw_doc,
+                raw_pointer=ref_pointer or param_pointer,
+                current_depth=1,
+            )
+
+            path_parameters[param_name] = prop_node
             if resolved_param.get("required", True):
                 path_required.append(param_name)
 
@@ -145,11 +233,8 @@ def extract_slot_github_01(
                 "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
                 "raw_source_blob_sha": raw_blob_sha,
                 "raw_source_pointers": raw_pointers,
-                "source_ast_span": {
-                    "start_line": 70814 if idx == 0 else 70817,
-                    "end_line": 70815 if idx == 0 else 70818,
-                    "byte_offset": 0,
-                },
+                "source_ast_span": None,
+                "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
                 "transformation_category": "SURFACE_WRAPPING",
                 "is_reversible": True,
                 "extractor_version": EXTRACTOR_VERSION,
@@ -157,7 +242,7 @@ def extract_slot_github_01(
                 "reviewer_decision": "PENDING_REVIEW",
             })
 
-    # 3. Extract request body
+    # 3. Programmatically extract request body
     body_parameters: Dict[str, Any] = {}
     body_required: List[str] = []
     body_node = op_node.get("requestBody", {})
@@ -169,53 +254,48 @@ def extract_slot_github_01(
     raw_body_props = body_schema.get("properties", {})
     raw_body_req = body_schema.get("required", [])
 
-    body_line_map = {
-        "title": 70827,
-        "head": 70831,
-        "head_repo": 70835,
-        "base": 70841,
-        "body": 70845,
-        "maintainer_can_modify": 70849,
-        "draft": 70853,
-        "issue": 70857,
-    }
+    def record_body_property_lineage(props_map: Dict[str, Any], canonical_base: str, raw_base: str):
+        for prop_name, prop_raw in sorted(props_map.items()):
+            c_ptr = f"{canonical_base}/{prop_name}"
+            r_ptr = f"{raw_base}/{prop_name}"
+            lineage_records.append({
+                "canonical_json_pointer": c_ptr,
+                "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
+                "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
+                "raw_source_blob_sha": raw_blob_sha,
+                "raw_source_pointers": [r_ptr],
+                "source_ast_span": None,
+                "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
+                "transformation_category": "SURFACE_WRAPPING",
+                "is_reversible": True,
+                "extractor_version": EXTRACTOR_VERSION,
+                "extraction_timestamp": generated_at_utc,
+                "reviewer_decision": "PENDING_REVIEW",
+            })
+            if isinstance(prop_raw, dict) and "properties" in prop_raw and isinstance(prop_raw["properties"], dict):
+                record_body_property_lineage(
+                    prop_raw["properties"],
+                    f"{c_ptr}/properties",
+                    f"{r_ptr}/properties",
+                )
 
     for prop_name, prop_raw in sorted(raw_body_props.items()):
-        prop_def: Dict[str, Any] = {}
-        if "type" in prop_raw:
-            prop_def["type"] = prop_raw["type"]
-        if "description" in prop_raw:
-            prop_def["description"] = prop_raw["description"]
-        if "format" in prop_raw:
-            prop_def["format"] = prop_raw["format"]
-        if "example" in prop_raw:
-            prop_def["example"] = prop_raw["example"]
-        if "default" in prop_raw:
-            prop_def["default"] = prop_raw["default"]
-        if "enum" in prop_raw:
-            prop_def["enum"] = prop_raw["enum"]
-
-        body_parameters[prop_name] = prop_def
+        prop_node = extract_schema_node(
+            raw_schema=prop_raw,
+            raw_doc=raw_doc,
+            raw_pointer=f"{raw_body_schema_pointer}/properties/{prop_name}",
+            current_depth=1,
+        )
+        body_parameters[prop_name] = prop_node
         if prop_name in raw_body_req:
             body_required.append(prop_name)
 
-        lineage_records.append({
-            "canonical_json_pointer": f"/properties/body/properties/{prop_name}",
-            "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
-            "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
-            "raw_source_blob_sha": raw_blob_sha,
-            "raw_source_pointers": [f"{raw_body_schema_pointer}/properties/{prop_name}"],
-            "source_ast_span": {
-                "start_line": body_line_map.get(prop_name, 70825),
-                "end_line": body_line_map.get(prop_name, 70825) + 3,
-                "byte_offset": 0,
-            },
-            "transformation_category": "SURFACE_WRAPPING",
-            "is_reversible": True,
-            "extractor_version": EXTRACTOR_VERSION,
-            "extraction_timestamp": generated_at_utc,
-            "reviewer_decision": "PENDING_REVIEW",
-        })
+    # Record lineage programmatically
+    record_body_property_lineage(
+        raw_body_props,
+        "/properties/body/properties",
+        f"{raw_body_schema_pointer}/properties",
+    )
 
     # Surface containers lineage records
     for surface_name in ["body", "header", "path", "query"]:
@@ -233,11 +313,8 @@ def extract_slot_github_01(
             "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
             "raw_source_blob_sha": raw_blob_sha,
             "raw_source_pointers": raw_pointers,
-            "source_ast_span": {
-                "start_line": 70801,
-                "end_line": 70865,
-                "byte_offset": 0,
-            },
+            "source_ast_span": None,
+            "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
             "transformation_category": "SURFACE_WRAPPING",
             "is_reversible": True,
             "extractor_version": EXTRACTOR_VERSION,
@@ -252,11 +329,8 @@ def extract_slot_github_01(
         "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
         "raw_source_blob_sha": raw_blob_sha,
         "raw_source_pointers": [desc_raw_pointer],
-        "source_ast_span": {
-            "start_line": 70802,
-            "end_line": 70803,
-            "byte_offset": 0,
-        },
+        "source_ast_span": None,
+        "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
         "transformation_category": desc_transformation,
         "is_reversible": True,
         "extractor_version": EXTRACTOR_VERSION,
@@ -268,7 +342,7 @@ def extract_slot_github_01(
     lineage_records.sort(key=lambda r: r["canonical_json_pointer"])
 
     # 4. Construct surface containers
-    # Every object definition has additionalProperties: false
+    # Every object definition at wrapper level has additionalProperties: false
     # Property keys and required arrays are sorted in ascending Unicode code-point order
     path_container = {
         "additionalProperties": False,
@@ -319,6 +393,7 @@ def extract_slot_github_01(
         "http_method": PILOT_HTTP_METHOD,
         "operation_id": PILOT_OPERATION_ID,
         "request_content_type": "application/json",
+        "semantic_validation_decision": SEMANTIC_DECISION,
         "slot_id": PILOT_SLOT_ID,
         "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
         "source_file_blob_sha": raw_blob_sha,
@@ -337,6 +412,19 @@ def extract_slot_github_01(
             "surface_containers_required": sorted(top_level_required),
             "total_property_count": total_props,
             "wrapped_nesting_depth": 2,
+        },
+        "wrapper_normalization_policy": {
+            "additional_properties_closed": True,
+            "is_strictly_lossless": False,
+            "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+            "rationale": (
+                "Tool-calling parameter interfaces require closed object schemas "
+                "(additionalProperties: false) across root and transport surface containers to "
+                "prevent LLM argument hallucination and enforce strict argument validation. "
+                "Raw OpenAPI specification omitted additionalProperties, which in JSON Schema permits "
+                "arbitrary undefined keys. This normalization tightens schema permissiveness and is "
+                "explicitly classified as non-lossless wrapper policy."
+            ),
         },
     }
 
@@ -385,6 +473,7 @@ def extract_slot_github_01(
         "raw_source_file_path": PILOT_RAW_FILE_REL_PATH.replace("\\", "/"),
         "raw_source_file_sha256": raw_file_sha,
         "raw_source_git_blob_sha": raw_blob_sha,
+        "semantic_validation_decision": SEMANTIC_DECISION,
         "slot_id": PILOT_SLOT_ID,
         "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
         "source_spec_pointer": PILOT_SOURCE_POINTER,
