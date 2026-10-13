@@ -17,7 +17,7 @@ Validates:
 6. Cryptographic manifest integrity:
    - Verifies raw file SHA-256 and Git blob SHA match pinned constants
    - Extraction rule version is 1.2.0
-   - Status is strictly EXTRACTED_PENDING_HUMAN_VALIDATION (never CANONICAL_FAITHFUL)
+   - Status is strictly CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY (never CANONICAL_FAITHFUL)
 7. Deterministic re-extraction byte stability (identical timestamp => bitwise identical output).
 8. Deliberate drift detection:
    - Renamed field drift -> validation fails
@@ -82,7 +82,7 @@ def test_single_slot_pilot_boundary():
 
 
 def test_status_invariant_not_canonical_faithful():
-    """Verify that pilot extraction strictly sets status to EXTRACTED_PENDING_HUMAN_VALIDATION."""
+    """Verify that pilot extraction strictly sets status to CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY."""
     res = extract_canonical_contract(
         slot_id=PILOT_SLOT_ID,
         generated_at="2026-10-12T18:00:00Z",
@@ -91,12 +91,20 @@ def test_status_invariant_not_canonical_faithful():
     manifest = res["manifest"]
     schema = res["canonical_schema"]
 
-    assert manifest["status"] == "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    assert manifest["status"] == "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
     assert manifest["status"] != "CANONICAL_FAITHFUL"
-    assert schema["x-benchmark-metadata"]["status"] == "EXTRACTED_PENDING_HUMAN_VALIDATION"
-    assert schema["x-benchmark-metadata"]["admission_decision"] == "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    assert schema["x-benchmark-metadata"]["status"] == "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
+    assert schema["x-benchmark-metadata"]["admission_decision"] == "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
     assert schema["x-benchmark-metadata"]["semantic_validation_decision"] == "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW"
     assert schema["x-benchmark-metadata"]["extraction_rule_version"] == EXTRACTION_RULE_VERSION
+
+    # Author review sign-off verification
+    sign_off = manifest.get("author_review_sign_off")
+    assert isinstance(sign_off, dict)
+    assert sign_off.get("reviewer_name") == "Rishindra Mateti"
+    assert sign_off.get("reviewer_role") == "AUTHOR_MANUAL_REVIEW"
+    assert sign_off.get("decision") == "APPROVE_WRAPPER_POLICY"
+    assert sign_off.get("independent_validation_claimed") is False
 
 
 def test_raw_provenance_pinning():

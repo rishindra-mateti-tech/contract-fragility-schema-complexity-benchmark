@@ -806,11 +806,28 @@ class CanonicalContractValidator:
         )
 
         status = manifest.get("status")
+        valid_status = status == "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
+        not_faithful = status != "CANONICAL_FAITHFUL"
         self.record_check(
             "manifest_status_pilot_valid",
-            status == "EXTRACTED_PENDING_HUMAN_VALIDATION",
-            f"Status must be 'EXTRACTED_PENDING_HUMAN_VALIDATION', got '{status}'",
+            valid_status and not_faithful,
+            f"Status must be 'CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY' (and not 'CANONICAL_FAITHFUL'), got '{status}'",
             pointer="/status",
+        )
+
+        sign_off = manifest.get("author_review_sign_off")
+        has_sign_off = (
+            isinstance(sign_off, dict)
+            and sign_off.get("reviewer_name") == "Rishindra Mateti"
+            and sign_off.get("reviewer_role") == "AUTHOR_MANUAL_REVIEW"
+            and sign_off.get("decision") == "APPROVE_WRAPPER_POLICY"
+            and sign_off.get("independent_validation_claimed") is False
+        )
+        self.record_check(
+            "manifest_author_sign_off_valid",
+            has_sign_off,
+            f"Manifest author review sign-off valid: {has_sign_off}",
+            pointer="/author_review_sign_off",
         )
 
         raw_path = self.raw_source_path or os.path.join(ROOT_DIR, manifest["raw_source_file_path"])

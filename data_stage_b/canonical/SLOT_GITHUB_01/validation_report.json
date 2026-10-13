@@ -38,7 +38,7 @@
     },
     {
       "check": "surface_containers_exact",
-      "details": "Surface containers must be exactly {'header', 'body', 'query', 'path'}, got {'header', 'body', 'query', 'path'}",
+      "details": "Surface containers must be exactly {'header', 'query', 'body', 'path'}, got {'header', 'query', 'body', 'path'}",
       "passed": true,
       "pointer": "/properties"
     },
@@ -206,7 +206,7 @@
     },
     {
       "check": "raw_body_properties_lossless_representation",
-      "details": "Raw body properties {'body', 'base', 'maintainer_can_modify', 'head_repo', 'draft', 'title', 'head', 'issue'} match canonical body {'body', 'base', 'maintainer_can_modify', 'head_repo', 'draft', 'title', 'head', 'issue'}",
+      "details": "Raw body properties {'draft', 'head', 'head_repo', 'maintainer_can_modify', 'title', 'body', 'base', 'issue'} match canonical body {'base', 'draft', 'head', 'maintainer_can_modify', 'issue', 'title', 'body', 'head_repo'}",
       "passed": true,
       "pointer": "/properties/body"
     },
@@ -218,15 +218,21 @@
     },
     {
       "check": "manifest_canonical_sha_match",
-      "details": "Manifest SHA 54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1 matches computed 54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1",
+      "details": "Manifest SHA 43c7a75070e310e13499f8128d6d3a061b46de94238cb5c8ca7044ca103b23b9 matches computed 43c7a75070e310e13499f8128d6d3a061b46de94238cb5c8ca7044ca103b23b9",
       "passed": true,
       "pointer": "/canonical_schema_sha256"
     },
     {
       "check": "manifest_status_pilot_valid",
-      "details": "Status must be 'EXTRACTED_PENDING_HUMAN_VALIDATION', got 'EXTRACTED_PENDING_HUMAN_VALIDATION'",
+      "details": "Status must be 'CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY' (and not 'CANONICAL_FAITHFUL'), got 'CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY'",
       "passed": true,
       "pointer": "/status"
+    },
+    {
+      "check": "manifest_author_sign_off_valid",
+      "details": "Manifest author review sign-off valid: True",
+      "passed": true,
+      "pointer": "/author_review_sign_off"
     },
     {
       "check": "manifest_raw_file_sha_match",
@@ -296,10 +302,10 @@
   },
   "lossless_classification": "SEMANTICALLY_EQUIVALENT_MODULO_WRAPPER_POLICY",
   "operation_id": "pulls/create",
-  "passed_checks": 43,
+  "passed_checks": 44,
   "semantic_validation_decision": "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW",
   "slot_id": "SLOT_GITHUB_01",
-  "total_checks": 43,
+  "total_checks": 44,
   "unsupported_constructs": {
     "status": "PASS",
     "unsupported_constructs_count": 0

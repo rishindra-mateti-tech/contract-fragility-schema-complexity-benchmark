@@ -15,7 +15,7 @@ Hard Boundaries:
 - Programmatic derivation of field lineage and source pointers.
 - Line span recorded as null with explicit reason (no fabricated static line numbers).
 - Wrapper-level additionalProperties: false documented as non-lossless wrapper policy.
-- Status: EXTRACTED_PENDING_HUMAN_VALIDATION (never CANONICAL_FAITHFUL yet).
+- Status: CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY (strictly never CANONICAL_FAITHFUL).
 """
 
 import argparse
@@ -41,11 +41,32 @@ PILOT_RAW_FILE_REL_PATH = os.path.join("data_stage_b", "raw", "CAND-001", f"{PIL
 PILOT_SOURCE_POINTER = "#/paths/~1repos~1{owner}~1{repo}~1pulls/post"
 PILOT_HTTP_METHOD = "POST"
 PILOT_ENDPOINT = "/repos/{owner}/{repo}/pulls"
-PILOT_STATUS = "EXTRACTED_PENDING_HUMAN_VALIDATION"
+PILOT_STATUS = "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
 SEMANTIC_DECISION = "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW"
-EXTRACTOR_VERSION = "1.1.0"
+EXTRACTOR_VERSION = "1.2.0"
 EXTRACTION_RULE_VERSION = "1.2.0"
 GOVERNING_SPECIFICATION = "STAGE_B_EXTRACTION_SPEC.md"
+
+AUTHOR_REVIEW_SIGN_OFF = {
+    "decision": "APPROVE_WRAPPER_POLICY",
+    "independent_validation_claimed": False,
+    "policy_note": (
+        "I accept closed transport-surface objects as an explicit benchmark normalization "
+        "for strict tool-argument evaluation. I understand this is not raw-source equivalence "
+        "or independent validation."
+    ),
+    "provenance_statement": (
+        "The author reviewed the packet snapshot identified above. "
+        "The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256."
+    ),
+    "review_date": "2026-10-13",
+    "reviewed_canonical_contract_sha256": "54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1",
+    "reviewed_packet_blob_sha": "96477ae753e787c73ce2985c6b3d55f0f0a75fc6",
+    "reviewed_packet_git_commit": "8f64350009bb232205118d51135e8c876c1a395a",
+    "reviewed_packet_sha256": "5ead04d81df3a1b9c365f03eda9438900932f9e8a896c124be402d1ecb59d380",
+    "reviewer_name": "Rishindra Mateti",
+    "reviewer_role": "AUTHOR_MANUAL_REVIEW",
+}
 
 AST_SPAN_OMISSION_REASON = (
     "Standard JSON parser does not preserve token line offsets; "
@@ -384,6 +405,7 @@ def extract_slot_github_01(
 
     metadata = {
         "admission_decision": PILOT_STATUS,
+        "author_review_sign_off": copy.deepcopy(AUTHOR_REVIEW_SIGN_OFF),
         "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
         "endpoint": PILOT_ENDPOINT,
         "extraction_rule_version": EXTRACTION_RULE_VERSION,
@@ -460,6 +482,7 @@ def extract_slot_github_01(
         "canonical_schema_file": "canonical_contract.json",
         "canonical_schema_sha256": canonical_sha256,
         "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
+        "author_review_sign_off": copy.deepcopy(AUTHOR_REVIEW_SIGN_OFF),
         "extracted_at_utc": generated_at_utc,
         "extraction_rule_version": EXTRACTION_RULE_VERSION,
         "extractor_script": "src/extract_stage_b_canonical_contract.py",

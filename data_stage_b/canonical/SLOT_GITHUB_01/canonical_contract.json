@@ -85,12 +85,25 @@
   "title": "pulls_create",
   "type": "object",
   "x-benchmark-metadata": {
-    "admission_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "admission_decision": "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY",
+    "author_review_sign_off": {
+      "decision": "APPROVE_WRAPPER_POLICY",
+      "independent_validation_claimed": false,
+      "policy_note": "I accept closed transport-surface objects as an explicit benchmark normalization for strict tool-argument evaluation. I understand this is not raw-source equivalence or independent validation.",
+      "provenance_statement": "The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.",
+      "review_date": "2026-10-13",
+      "reviewed_canonical_contract_sha256": "54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1",
+      "reviewed_packet_blob_sha": "96477ae753e787c73ce2985c6b3d55f0f0a75fc6",
+      "reviewed_packet_git_commit": "8f64350009bb232205118d51135e8c876c1a395a",
+      "reviewed_packet_sha256": "5ead04d81df3a1b9c365f03eda9438900932f9e8a896c124be402d1ecb59d380",
+      "reviewer_name": "Rishindra Mateti",
+      "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+    },
     "candidate_source_id": "CAND-001",
     "endpoint": "/repos/{owner}/{repo}/pulls",
     "extraction_rule_version": "1.2.0",
     "extraction_timestamp": "2026-10-12T18:15:00Z",
-    "extractor_version": "1.1.0",
+    "extractor_version": "1.2.0",
     "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
     "http_method": "POST",
     "operation_id": "pulls/create",
@@ -107,7 +120,7 @@
       "raw_optional_ratio": 0.6,
       "raw_parameter_count": 10
     },
-    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "status": "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY",
     "target_domain": "Developer Platforms",
     "wrapped_contract_structural_metrics": {
       "surface_containers_present": [

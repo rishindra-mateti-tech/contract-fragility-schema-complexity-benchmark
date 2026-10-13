@@ -8,7 +8,7 @@ This report documents the refined extraction and validation of the **Stage B Can
 - **Raw Candidate Source:** `CAND-001` (GitHub REST API OpenAPI 3.0 description)
 - **Governing Specification:** `STAGE_B_EXTRACTION_SPEC.md` (Extraction Rule Version `1.2.0`)
 - **Evaluated Semantic Decision:** **`SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW`**
-- **Lifecycle Status:** `EXTRACTED_PENDING_HUMAN_VALIDATION` (strictly **not** elevated to `CANONICAL_FAITHFUL`)
+- **Lifecycle Status:** `CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY` (strictly **not** elevated to `CANONICAL_FAITHFUL`)
 - **Lossless Classification:** **`SEMANTICALLY_EQUIVALENT_MODULO_WRAPPER_POLICY`**
 
 ### Research Integrity Invariants Preserved
@@ -121,13 +121,14 @@ Automated regression tests in `tests/test_stage_b_canonical_extraction_pilot.py`
 
 ---
 
-## 7. Pilot Gate Conclusion
+## 7. Pilot Gate Conclusion & Author Review Record
 
-The pilot extraction for `SLOT_GITHUB_01` (`pulls/create`) is classified as:
-### **`SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW`**
+The pilot extraction for `SLOT_GITHUB_01` (`pulls/create`) is formally validated and recorded as:
+### **`CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY`**
 
-- **Keyword Equivalence:** 100% verified across all raw keywords.
+- **Keyword Equivalence:** 100% verified across all raw keywords (26/26).
 - **Field Coverage:** 100% verified (10/10).
-- **Wrapper Normalization:** Formally audited, documented, and qualified as non-lossless wrapper policy.
-- **Next Required Step:** Formal human reviewer sign-off prior to canonical cohort promotion.
-- **Boundary Invariant:** The operation remains strictly at `EXTRACTED_PENDING_HUMAN_VALIDATION` and is **not** elevated to `CANONICAL_FAITHFUL`.
+- **Wrapper Normalization:** Formally audited, documented, and approved under `WRAPPER_CLOSED_OBJECT_POLICY_001`.
+- **Author Manual Review:** Completed and approved by benchmark author Rishindra Mateti on 2026-10-13 (`APPROVE_WRAPPER_POLICY`).
+- **Independent Third-Party Review:** `NOT_CONDUCTED`. Author manual review confirms provenance and authorial design decisions but strictly does not claim independent validation.
+- **Boundary Invariant:** The operation is formally classified as `CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY` and is **not** elevated to `CANONICAL_FAITHFUL`. No additional operations have been extracted.

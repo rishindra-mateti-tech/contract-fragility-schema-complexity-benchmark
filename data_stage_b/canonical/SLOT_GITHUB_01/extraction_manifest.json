@@ -1,14 +1,27 @@
 {
+  "author_review_sign_off": {
+    "decision": "APPROVE_WRAPPER_POLICY",
+    "independent_validation_claimed": false,
+    "policy_note": "I accept closed transport-surface objects as an explicit benchmark normalization for strict tool-argument evaluation. I understand this is not raw-source equivalence or independent validation.",
+    "provenance_statement": "The author reviewed the packet snapshot identified above. The current packet may contain the subsequent sign-off record and therefore may have a different file SHA-256.",
+    "review_date": "2026-10-13",
+    "reviewed_canonical_contract_sha256": "54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1",
+    "reviewed_packet_blob_sha": "96477ae753e787c73ce2985c6b3d55f0f0a75fc6",
+    "reviewed_packet_git_commit": "8f64350009bb232205118d51135e8c876c1a395a",
+    "reviewed_packet_sha256": "5ead04d81df3a1b9c365f03eda9438900932f9e8a896c124be402d1ecb59d380",
+    "reviewer_name": "Rishindra Mateti",
+    "reviewer_role": "AUTHOR_MANUAL_REVIEW"
+  },
   "candidate_source_id": "CAND-001",
   "canonical_schema_file": "canonical_contract.json",
-  "canonical_schema_sha256": "54f78758f76fcd3a55f2d629f3eb66c7150567a9d4aea759577cafdace8ed1c1",
+  "canonical_schema_sha256": "43c7a75070e310e13499f8128d6d3a061b46de94238cb5c8ca7044ca103b23b9",
   "extracted_at_utc": "2026-10-12T18:15:00Z",
   "extraction_rule_version": "1.2.0",
   "extractor_script": "src/extract_stage_b_canonical_contract.py",
-  "extractor_script_sha256": "6031bc42c197c23b4722e3b3ef1975cf004fe058a7fee20adb238e01a5410602",
+  "extractor_script_sha256": "fcd8983bc7ceb6160ed69fc0b7ea907702621f0668ed7007d6528c7ffc72b8f7",
   "field_lineage_file": "field_lineage.jsonl",
   "field_lineage_records_count": 15,
-  "field_lineage_sha256": "294066ce9cf0589645b2fed5fbe229c01c91f7e0042baf9bff801c50003c7da1",
+  "field_lineage_sha256": "d72da6bfe4e266c5a7d5daedc15a92c6edee90bbd2f8b8ca5f53bd04c40ab4ed",
   "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
   "http_method": "POST",
   "operation_id": "pulls/create",
@@ -19,5 +32,5 @@
   "slot_id": "SLOT_GITHUB_01",
   "source_cluster_id": "CLUSTER_GITHUB",
   "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post",
-  "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  "status": "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
 }
