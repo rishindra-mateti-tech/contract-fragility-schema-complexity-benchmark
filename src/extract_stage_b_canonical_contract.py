@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-"""Stage B Canonical Contract Extraction Engine — Pilot Pipeline.
+"""Stage B Canonical Contract Extraction Engine — Generalization Pipeline.
 
-Extracts the canonical Draft-07 tool contract for exactly one operation:
-- Slot: SLOT_GITHUB_01
-- Operation: pulls/create
-- Raw Source: CAND-001 (GitHub Descriptions)
-- Pinned Blob SHA: a91fa76a34558f5ed28e245cb1a6c46a44a61f4d
-- Raw File SHA-256: ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194
-- JSON Pointer: #/paths/~1repos~1{owner}~1{repo}~1pulls/post
+Extracts canonical Draft-07 tool contracts for admitted Stage B operations:
+- Slot: SLOT_GITHUB_01 (pulls/create, CAND-001)
+- Slot: SLOT_STRIPE_02 (PostShippingRates, CAND-002)
 
 Hard Boundaries:
-- Extracts strictly and only SLOT_GITHUB_01 in this pilot phase.
+- Extracts strictly and only permitted operations (SLOT_GITHUB_01, SLOT_STRIPE_02).
+- Dynamic metadata resolution from admitted manifest / admission decisions registry.
 - Recursive schema extraction preserving all keywords without hand-maintained whitelists.
-- Programmatic derivation of field lineage and source pointers.
+- Explicit form-encoding (application/x-www-form-urlencoded) and style/explode preservation.
+- Programmatic derivation of field lineage and source pointers across nested objects and arrays.
 - Line span recorded as null with explicit reason (no fabricated static line numbers).
 - Wrapper-level additionalProperties: false documented as non-lossless wrapper policy.
-- Status: CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY (strictly never CANONICAL_FAITHFUL).
+- Status invariants strictly preserved:
+  * SLOT_GITHUB_01: CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY
+  * SLOT_STRIPE_02: EXTRACTED_PENDING_HUMAN_VALIDATION (never CANONICAL_FAITHFUL)
 """
 
 import argparse
@@ -25,11 +25,15 @@ import hashlib
 import json
 import os
 import sys
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ADMISSION_DECISIONS_PATH = os.path.join(ROOT_DIR, "results_stage_b", "candidate_admission_decisions.json")
 
-# Pinned provenance constants for SLOT_GITHUB_01
+# Permitted slots for Stage B canonical extraction
+PERMITTED_SLOTS: Set[str] = {"SLOT_GITHUB_01", "SLOT_STRIPE_02"}
+
+# Backward-compatible pinned constants for SLOT_GITHUB_01
 PILOT_SLOT_ID = "SLOT_GITHUB_01"
 PILOT_OPERATION_ID = "pulls/create"
 PILOT_CANDIDATE_SOURCE_ID = "CAND-001"
@@ -43,7 +47,7 @@ PILOT_HTTP_METHOD = "POST"
 PILOT_ENDPOINT = "/repos/{owner}/{repo}/pulls"
 PILOT_STATUS = "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
 SEMANTIC_DECISION = "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW"
-EXTRACTOR_VERSION = "1.2.0"
+EXTRACTOR_VERSION = "1.3.0"
 EXTRACTION_RULE_VERSION = "1.2.0"
 GOVERNING_SPECIFICATION = "STAGE_B_EXTRACTION_SPEC.md"
 
@@ -115,16 +119,88 @@ def resolve_json_pointer(doc: Any, pointer: str) -> Any:
     return cur
 
 
+def compute_schema_depth(schema: Any, current_depth: int = 0) -> int:
+    """Recursively compute maximum nesting depth of a schema."""
+    if not isinstance(schema, dict):
+        return current_depth
+
+    max_d = current_depth
+    if "properties" in schema and isinstance(schema["properties"], dict):
+        for prop_name, prop_schema in schema["properties"].items():
+            max_d = max(max_d, compute_schema_depth(prop_schema, current_depth + 1))
+
+    if "items" in schema and isinstance(schema["items"], dict):
+        max_d = max(max_d, compute_schema_depth(schema["items"], current_depth + 1))
+
+    if "additionalProperties" in schema and isinstance(schema["additionalProperties"], dict):
+        max_d = max(max_d, compute_schema_depth(schema["additionalProperties"], current_depth + 1))
+
+    return max_d
+
+
+def get_admitted_slot_metadata(slot_id: str) -> Dict[str, Any]:
+    """Dynamically resolve admitted candidate metadata for a given slot ID."""
+    if slot_id not in PERMITTED_SLOTS:
+        raise ValueError(
+            f"Hard boundary violation: Slot '{slot_id}' is not permitted for extraction in this phase. "
+            f"Only {sorted(list(PERMITTED_SLOTS))} are permitted."
+        )
+
+    if not os.path.exists(ADMISSION_DECISIONS_PATH):
+        raise FileNotFoundError(f"Admitted candidates decisions artifact missing: {ADMISSION_DECISIONS_PATH}")
+
+    with open(ADMISSION_DECISIONS_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    decision_match = None
+    for dec in data.get("decisions", []):
+        if dec.get("slot_id") == slot_id:
+            decision_match = dec
+            break
+
+    if not decision_match:
+        raise ValueError(f"Slot '{slot_id}' not found in admitted decisions registry: {ADMISSION_DECISIONS_PATH}")
+
+    cand = decision_match["admitted_candidate"]
+
+    # Invariants for lifecycle status and author review
+    if slot_id == "SLOT_GITHUB_01":
+        status = "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY"
+        author_sign_off = copy.deepcopy(AUTHOR_REVIEW_SIGN_OFF)
+    else:
+        # SLOT_STRIPE_02: held strictly at EXTRACTED_PENDING_HUMAN_VALIDATION
+        status = "EXTRACTED_PENDING_HUMAN_VALIDATION"
+        author_sign_off = None
+
+    raw_path = cand["raw_source_file_path"]
+    content_types = cand.get("content_types", ["application/json"])
+
+    return {
+        "slot_id": slot_id,
+        "operation_id": cand["operation_id"],
+        "candidate_source_id": cand["candidate_source_id"],
+        "source_cluster_id": cand["source_cluster_id"],
+        "target_domain": cand.get("intended_benchmark_domain") or cand.get("target_domain", "Unknown"),
+        "source_blob_sha": cand["source_blob_sha"],
+        "raw_file_sha256": cand["raw_file_sha256"],
+        "raw_source_file_path": raw_path,
+        "source_spec_pointer": cand["source_spec_pointer"],
+        "http_method": cand.get("http_method", "POST"),
+        "endpoint": cand.get("endpoint", ""),
+        "content_types": content_types,
+        "request_content_type": content_types[0] if content_types else "application/json",
+        "status": status,
+        "author_review_sign_off": author_sign_off,
+    }
+
+
 def extract_schema_node(
     raw_schema: Any,
     raw_doc: Dict[str, Any],
     raw_pointer: str,
     current_depth: int = 0,
 ) -> Any:
-    """Recursively extract a schema node preserving all supported keywords without whitelists.
-    
-    Traverses properties, items, constraints, bounds, types, formats, descriptions, etc.
-    """
+    """Recursively extract a schema node preserving all supported keywords without whitelists."""
     if not isinstance(raw_schema, dict):
         return copy.deepcopy(raw_schema)
 
@@ -192,31 +268,39 @@ def extract_schema_node(
     return node
 
 
-def extract_slot_github_01(
+def extract_slot_contract(
+    slot_meta: Dict[str, Any],
     raw_doc: Dict[str, Any],
     raw_file_sha: str,
     raw_blob_sha: str,
     extractor_script_sha: str,
     generated_at_utc: str,
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]], Dict[str, Any]]:
-    """Extract canonical contract, lineage records, and manifest for SLOT_GITHUB_01."""
+    """Extract canonical contract, lineage records, and manifest for an admitted slot."""
+    slot_id = slot_meta["slot_id"]
+    source_pointer = slot_meta["source_spec_pointer"]
+
     # 1. Resolve operation node
-    op_node = resolve_json_pointer(raw_doc, PILOT_SOURCE_POINTER)
+    op_node = resolve_json_pointer(raw_doc, source_pointer)
 
     summary = op_node.get("summary", "")
-    op_description = summary if summary else op_node.get("description", f"{PILOT_HTTP_METHOD} {PILOT_ENDPOINT} ({PILOT_OPERATION_ID})")
-    desc_transformation = "RAW_SUMMARY" if summary else ("RAW_DESCRIPTION" if op_node.get("description") else "DETERMINISTIC_TEMPLATE_FALLBACK")
-    desc_raw_pointer = f"{PILOT_SOURCE_POINTER}/summary" if summary else f"{PILOT_SOURCE_POINTER}/description"
+    op_description = summary if summary else op_node.get(
+        "description", f"{slot_meta['http_method']} {slot_meta['endpoint']} ({slot_meta['operation_id']})"
+    )
+    desc_transformation = (
+        "RAW_SUMMARY" if summary else ("RAW_DESCRIPTION" if op_node.get("description") else "DETERMINISTIC_TEMPLATE_FALLBACK")
+    )
+    desc_raw_pointer = f"{source_pointer}/summary" if summary else f"{source_pointer}/description"
 
     lineage_records: List[Dict[str, Any]] = []
 
-    # 2. Programmatically extract path parameters
+    # 2. Extract path parameters
     path_parameters: Dict[str, Any] = {}
     path_required: List[str] = []
 
     raw_params = op_node.get("parameters", [])
     for idx, p in enumerate(raw_params):
-        param_pointer = f"{PILOT_SOURCE_POINTER}/parameters/{idx}"
+        param_pointer = f"{source_pointer}/parameters/{idx}"
         resolved_param = p
         ref_pointer = None
         if "$ref" in p:
@@ -227,12 +311,10 @@ def extract_slot_github_01(
         param_in = resolved_param.get("in", "path")
 
         if param_in == "path":
-            # Compose parameter schema preserving description if present
             param_schema = copy.deepcopy(resolved_param.get("schema", {}))
             if "description" in resolved_param and "description" not in param_schema:
                 param_schema["description"] = resolved_param["description"]
 
-            # Recursive extraction without whitelisting
             prop_node = extract_schema_node(
                 raw_schema=param_schema,
                 raw_doc=raw_doc,
@@ -250,8 +332,8 @@ def extract_slot_github_01(
 
             lineage_records.append({
                 "canonical_json_pointer": f"/properties/path/properties/{param_name}",
-                "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
-                "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
+                "candidate_source_id": slot_meta["candidate_source_id"],
+                "source_cluster_id": slot_meta["source_cluster_id"],
                 "raw_source_blob_sha": raw_blob_sha,
                 "raw_source_pointers": raw_pointers,
                 "source_ast_span": None,
@@ -263,42 +345,36 @@ def extract_slot_github_01(
                 "reviewer_decision": "PENDING_REVIEW",
             })
 
-    # 3. Programmatically extract request body
+    # 3. Extract request body & content type
     body_parameters: Dict[str, Any] = {}
     body_required: List[str] = []
     body_node = op_node.get("requestBody", {})
     body_content = body_node.get("content", {})
-    json_body = body_content.get("application/json", {})
-    body_schema = json_body.get("schema", {})
-    raw_body_schema_pointer = f"{PILOT_SOURCE_POINTER}/requestBody/content/application~1json/schema"
 
-    raw_body_props = body_schema.get("properties", {})
-    raw_body_req = body_schema.get("required", [])
+    target_ct = slot_meta.get("request_content_type")
+    if not target_ct or target_ct not in body_content:
+        if "application/json" in body_content:
+            target_ct = "application/json"
+        elif "application/x-www-form-urlencoded" in body_content:
+            target_ct = "application/x-www-form-urlencoded"
+        elif body_content:
+            target_ct = list(body_content.keys())[0]
+        else:
+            target_ct = "application/json"
 
-    def record_body_property_lineage(props_map: Dict[str, Any], canonical_base: str, raw_base: str):
-        for prop_name, prop_raw in sorted(props_map.items()):
-            c_ptr = f"{canonical_base}/{prop_name}"
-            r_ptr = f"{raw_base}/{prop_name}"
-            lineage_records.append({
-                "canonical_json_pointer": c_ptr,
-                "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
-                "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
-                "raw_source_blob_sha": raw_blob_sha,
-                "raw_source_pointers": [r_ptr],
-                "source_ast_span": None,
-                "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
-                "transformation_category": "SURFACE_WRAPPING",
-                "is_reversible": True,
-                "extractor_version": EXTRACTOR_VERSION,
-                "extraction_timestamp": generated_at_utc,
-                "reviewer_decision": "PENDING_REVIEW",
-            })
-            if isinstance(prop_raw, dict) and "properties" in prop_raw and isinstance(prop_raw["properties"], dict):
-                record_body_property_lineage(
-                    prop_raw["properties"],
-                    f"{c_ptr}/properties",
-                    f"{r_ptr}/properties",
-                )
+    content_item = body_content.get(target_ct, {})
+    raw_body_schema = content_item.get("schema", {})
+    encoding_obj = content_item.get("encoding", {})
+
+    if "$ref" in raw_body_schema:
+        ref_ptr = raw_body_schema["$ref"]
+        raw_body_schema = resolve_json_pointer(raw_doc, ref_ptr)
+
+    encoded_ct = target_ct.replace("~", "~0").replace("/", "~1")
+    raw_body_schema_pointer = f"{source_pointer}/requestBody/content/{encoded_ct}/schema"
+
+    raw_body_props = raw_body_schema.get("properties", {})
+    raw_body_req = raw_body_schema.get("required", [])
 
     for prop_name, prop_raw in sorted(raw_body_props.items()):
         prop_node = extract_schema_node(
@@ -311,27 +387,82 @@ def extract_slot_github_01(
         if prop_name in raw_body_req:
             body_required.append(prop_name)
 
-    # Record lineage programmatically
-    record_body_property_lineage(
-        raw_body_props,
-        "/properties/body/properties",
-        f"{raw_body_schema_pointer}/properties",
-    )
+    # Recursive body lineage tracking for properties, items, and additionalProperties
+    def record_body_lineage(schema_node: Any, canonical_base: str, raw_base: str):
+        if not isinstance(schema_node, dict):
+            return
+        if "properties" in schema_node and isinstance(schema_node["properties"], dict):
+            for p_name, p_schema in sorted(schema_node["properties"].items()):
+                c_ptr = f"{canonical_base}/properties/{p_name}"
+                r_ptr = f"{raw_base}/properties/{p_name}"
+                lineage_records.append({
+                    "canonical_json_pointer": c_ptr,
+                    "candidate_source_id": slot_meta["candidate_source_id"],
+                    "source_cluster_id": slot_meta["source_cluster_id"],
+                    "raw_source_blob_sha": raw_blob_sha,
+                    "raw_source_pointers": [r_ptr],
+                    "source_ast_span": None,
+                    "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
+                    "transformation_category": "SURFACE_WRAPPING",
+                    "is_reversible": True,
+                    "extractor_version": EXTRACTOR_VERSION,
+                    "extraction_timestamp": generated_at_utc,
+                    "reviewer_decision": "PENDING_REVIEW",
+                })
+                record_body_lineage(p_schema, c_ptr, r_ptr)
+        if "items" in schema_node and isinstance(schema_node["items"], dict):
+            c_ptr = f"{canonical_base}/items"
+            r_ptr = f"{raw_base}/items"
+            lineage_records.append({
+                "canonical_json_pointer": c_ptr,
+                "candidate_source_id": slot_meta["candidate_source_id"],
+                "source_cluster_id": slot_meta["source_cluster_id"],
+                "raw_source_blob_sha": raw_blob_sha,
+                "raw_source_pointers": [r_ptr],
+                "source_ast_span": None,
+                "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
+                "transformation_category": "SURFACE_WRAPPING",
+                "is_reversible": True,
+                "extractor_version": EXTRACTOR_VERSION,
+                "extraction_timestamp": generated_at_utc,
+                "reviewer_decision": "PENDING_REVIEW",
+            })
+            record_body_lineage(schema_node["items"], c_ptr, r_ptr)
+        if "additionalProperties" in schema_node and isinstance(schema_node["additionalProperties"], dict):
+            c_ptr = f"{canonical_base}/additionalProperties"
+            r_ptr = f"{raw_base}/additionalProperties"
+            lineage_records.append({
+                "canonical_json_pointer": c_ptr,
+                "candidate_source_id": slot_meta["candidate_source_id"],
+                "source_cluster_id": slot_meta["source_cluster_id"],
+                "raw_source_blob_sha": raw_blob_sha,
+                "raw_source_pointers": [r_ptr],
+                "source_ast_span": None,
+                "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
+                "transformation_category": "SURFACE_WRAPPING",
+                "is_reversible": True,
+                "extractor_version": EXTRACTOR_VERSION,
+                "extraction_timestamp": generated_at_utc,
+                "reviewer_decision": "PENDING_REVIEW",
+            })
+            record_body_lineage(schema_node["additionalProperties"], c_ptr, r_ptr)
+
+    record_body_lineage(raw_body_schema, "/properties/body", raw_body_schema_pointer)
 
     # Surface containers lineage records
     for surface_name in ["body", "header", "path", "query"]:
         raw_pointers = []
         if surface_name == "path":
-            raw_pointers = [f"{PILOT_SOURCE_POINTER}/parameters"]
+            raw_pointers = [f"{source_pointer}/parameters"]
         elif surface_name == "body":
-            raw_pointers = [f"{PILOT_SOURCE_POINTER}/requestBody"]
+            raw_pointers = [f"{source_pointer}/requestBody"]
         else:
-            raw_pointers = [PILOT_SOURCE_POINTER]
+            raw_pointers = [source_pointer]
 
         lineage_records.append({
             "canonical_json_pointer": f"/properties/{surface_name}",
-            "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
-            "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
+            "candidate_source_id": slot_meta["candidate_source_id"],
+            "source_cluster_id": slot_meta["source_cluster_id"],
             "raw_source_blob_sha": raw_blob_sha,
             "raw_source_pointers": raw_pointers,
             "source_ast_span": None,
@@ -346,8 +477,8 @@ def extract_slot_github_01(
     # Tool description lineage record
     lineage_records.append({
         "canonical_json_pointer": "/description",
-        "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
-        "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
+        "candidate_source_id": slot_meta["candidate_source_id"],
+        "source_cluster_id": slot_meta["source_cluster_id"],
         "raw_source_blob_sha": raw_blob_sha,
         "raw_source_pointers": [desc_raw_pointer],
         "source_ast_span": None,
@@ -359,12 +490,10 @@ def extract_slot_github_01(
         "reviewer_decision": "PENDING_REVIEW",
     })
 
-    # Sort lineage records deterministically by canonical_json_pointer
+    # Sort lineage records deterministically
     lineage_records.sort(key=lambda r: r["canonical_json_pointer"])
 
     # 4. Construct surface containers
-    # Every object definition at wrapper level has additionalProperties: false
-    # Property keys and required arrays are sorted in ascending Unicode code-point order
     path_container = {
         "additionalProperties": False,
         "properties": dict(sorted(path_parameters.items())),
@@ -372,12 +501,14 @@ def extract_slot_github_01(
         "type": "object",
     }
 
-    body_container = {
+    body_container: Dict[str, Any] = {
         "additionalProperties": False,
         "properties": dict(sorted(body_parameters.items())),
         "required": sorted(body_required),
         "type": "object",
     }
+    if encoding_obj:
+        body_container["x-openapi-encoding"] = copy.deepcopy(encoding_obj)
 
     query_container = {
         "additionalProperties": False,
@@ -391,7 +522,6 @@ def extract_slot_github_01(
         "type": "object",
     }
 
-    # Top-level required contains surfaces that have required fields
     top_level_required: List[str] = []
     if path_container["required"]:
         top_level_required.append("path")
@@ -402,38 +532,40 @@ def extract_slot_github_01(
     total_props = len(path_parameters) + len(body_parameters)
     raw_opt_count = (len(path_parameters) - len(path_required)) + (len(body_parameters) - len(body_required))
     raw_opt_ratio = round(raw_opt_count / total_props, 2) if total_props else 0.0
+    nesting_depth = compute_schema_depth(raw_body_schema) + 1 if raw_body_schema else 1
 
-    metadata = {
-        "admission_decision": PILOT_STATUS,
-        "author_review_sign_off": copy.deepcopy(AUTHOR_REVIEW_SIGN_OFF),
-        "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
-        "endpoint": PILOT_ENDPOINT,
+    schema_title = "pulls_create" if slot_id == "SLOT_GITHUB_01" else slot_meta["operation_id"].replace("/", "_")
+
+    metadata: Dict[str, Any] = {
+        "admission_decision": slot_meta["status"],
+        "candidate_source_id": slot_meta["candidate_source_id"],
+        "endpoint": slot_meta["endpoint"],
         "extraction_rule_version": EXTRACTION_RULE_VERSION,
         "extraction_timestamp": generated_at_utc,
         "extractor_version": EXTRACTOR_VERSION,
         "governing_specification": GOVERNING_SPECIFICATION,
-        "http_method": PILOT_HTTP_METHOD,
-        "operation_id": PILOT_OPERATION_ID,
-        "request_content_type": "application/json",
+        "http_method": slot_meta["http_method"],
+        "operation_id": slot_meta["operation_id"],
+        "request_content_type": target_ct,
         "semantic_validation_decision": SEMANTIC_DECISION,
-        "slot_id": PILOT_SLOT_ID,
-        "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
+        "slot_id": slot_meta["slot_id"],
+        "source_cluster_id": slot_meta["source_cluster_id"],
         "source_file_blob_sha": raw_blob_sha,
         "source_file_sha256": raw_file_sha,
-        "source_spec_pointer": PILOT_SOURCE_POINTER,
+        "source_spec_pointer": slot_meta["source_spec_pointer"],
         "source_structural_metrics": {
             "raw_enum_density": 0.0,
-            "raw_nesting_depth": 2,
+            "raw_nesting_depth": nesting_depth,
             "raw_optional_ratio": raw_opt_ratio,
             "raw_parameter_count": total_props,
         },
-        "status": PILOT_STATUS,
-        "target_domain": PILOT_TARGET_DOMAIN,
+        "status": slot_meta["status"],
+        "target_domain": slot_meta["target_domain"],
         "wrapped_contract_structural_metrics": {
             "surface_containers_present": ["body", "header", "path", "query"],
             "surface_containers_required": sorted(top_level_required),
             "total_property_count": total_props,
-            "wrapped_nesting_depth": 2,
+            "wrapped_nesting_depth": nesting_depth,
         },
         "wrapper_normalization_policy": {
             "additional_properties_closed": True,
@@ -443,12 +575,23 @@ def extract_slot_github_01(
                 "Tool-calling parameter interfaces require closed object schemas "
                 "(additionalProperties: false) across root and transport surface containers to "
                 "prevent LLM argument hallucination and enforce strict argument validation. "
-                "Raw OpenAPI specification omitted additionalProperties, which in JSON Schema permits "
-                "arbitrary undefined keys. This normalization tightens schema permissiveness and is "
-                "explicitly classified as non-lossless wrapper policy."
+                "Raw OpenAPI specification omitted additionalProperties (or defined closed body schema), "
+                "and canonical envelope enforces closed surface validation. This normalization "
+                "is explicitly classified as a non-lossless wrapper policy."
+            ),
+        },
+        "serialization_metadata": {
+            "content_type": target_ct,
+            "encoding_metadata_present": bool(encoding_obj),
+            "encoding": copy.deepcopy(encoding_obj) if encoding_obj else None,
+            "serialization_strategy": (
+                "FORM_URLENCODED_DEEP_OBJECT" if target_ct == "application/x-www-form-urlencoded" else "STANDARD_JSON_BODY"
             ),
         },
     }
+
+    if slot_meta.get("author_review_sign_off"):
+        metadata["author_review_sign_off"] = copy.deepcopy(slot_meta["author_review_sign_off"])
 
     canonical_schema: Dict[str, Any] = {
         "$schema": "http://json-schema.org/draft-07/schema#",
@@ -461,16 +604,14 @@ def extract_slot_github_01(
             "query": query_container,
         },
         "required": top_level_required,
-        "title": "pulls_create",
+        "title": schema_title,
         "type": "object",
         "x-benchmark-metadata": metadata,
     }
 
-    # Serialization calculation for hashes
     canonical_json_bytes = json.dumps(canonical_schema, indent=2, sort_keys=True).encode("utf-8") + b"\n"
     canonical_sha256 = hashlib.sha256(canonical_json_bytes).hexdigest()
 
-    # Fill canonical_schema_sha256 into all lineage records
     for rec in lineage_records:
         rec["canonical_schema_sha256"] = canonical_sha256
 
@@ -481,8 +622,7 @@ def extract_slot_github_01(
     manifest: Dict[str, Any] = {
         "canonical_schema_file": "canonical_contract.json",
         "canonical_schema_sha256": canonical_sha256,
-        "candidate_source_id": PILOT_CANDIDATE_SOURCE_ID,
-        "author_review_sign_off": copy.deepcopy(AUTHOR_REVIEW_SIGN_OFF),
+        "candidate_source_id": slot_meta["candidate_source_id"],
         "extracted_at_utc": generated_at_utc,
         "extraction_rule_version": EXTRACTION_RULE_VERSION,
         "extractor_script": "src/extract_stage_b_canonical_contract.py",
@@ -491,19 +631,66 @@ def extract_slot_github_01(
         "field_lineage_records_count": len(lineage_records),
         "field_lineage_sha256": lineage_sha256,
         "governing_specification": GOVERNING_SPECIFICATION,
-        "http_method": PILOT_HTTP_METHOD,
-        "operation_id": PILOT_OPERATION_ID,
-        "raw_source_file_path": PILOT_RAW_FILE_REL_PATH.replace("\\", "/"),
+        "http_method": slot_meta["http_method"],
+        "operation_id": slot_meta["operation_id"],
+        "raw_source_file_path": slot_meta["raw_source_file_path"].replace("\\", "/"),
         "raw_source_file_sha256": raw_file_sha,
         "raw_source_git_blob_sha": raw_blob_sha,
+        "request_content_type": target_ct,
         "semantic_validation_decision": SEMANTIC_DECISION,
-        "slot_id": PILOT_SLOT_ID,
-        "source_cluster_id": PILOT_SOURCE_CLUSTER_ID,
-        "source_spec_pointer": PILOT_SOURCE_POINTER,
-        "status": PILOT_STATUS,
+        "slot_id": slot_meta["slot_id"],
+        "source_cluster_id": slot_meta["source_cluster_id"],
+        "source_spec_pointer": slot_meta["source_spec_pointer"],
+        "status": slot_meta["status"],
     }
 
+    if slot_meta.get("author_review_sign_off"):
+        manifest["author_review_sign_off"] = copy.deepcopy(slot_meta["author_review_sign_off"])
+
     return canonical_schema, lineage_records, manifest
+
+
+def extract_slot_github_01(
+    raw_doc: Dict[str, Any],
+    raw_file_sha: str,
+    raw_blob_sha: str,
+    extractor_script_sha: str,
+    generated_at_utc: str,
+) -> Tuple[Dict[str, Any], List[Dict[str, Any]], Dict[str, Any]]:
+    """Backward-compatible delegator for SLOT_GITHUB_01."""
+    slot_meta = get_admitted_slot_metadata("SLOT_GITHUB_01")
+    return extract_slot_contract(
+        slot_meta=slot_meta,
+        raw_doc=raw_doc,
+        raw_file_sha=raw_file_sha,
+        raw_blob_sha=raw_blob_sha,
+        extractor_script_sha=extractor_script_sha,
+        generated_at_utc=generated_at_utc,
+    )
+
+
+def sync_global_lineage_index(slot_lineage_records: List[Dict[str, Any]], slot_source_id: str):
+    """Synchronize slot lineage records with the global results_stage_b/canonical_field_lineage.jsonl."""
+    global_lineage_path = os.path.join(ROOT_DIR, "results_stage_b", "canonical_field_lineage.jsonl")
+    existing_records: List[Dict[str, Any]] = []
+    if os.path.exists(global_lineage_path):
+        with open(global_lineage_path, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    try:
+                        rec = json.loads(line)
+                        if rec.get("candidate_source_id") != slot_source_id:
+                            existing_records.append(rec)
+                    except json.JSONDecodeError:
+                        continue
+
+    all_records = existing_records + copy.deepcopy(slot_lineage_records)
+    all_records.sort(key=lambda r: (r.get("candidate_source_id", ""), r.get("canonical_json_pointer", "")))
+    lines = [json.dumps(r, sort_keys=True) for r in all_records]
+    os.makedirs(os.path.dirname(global_lineage_path), exist_ok=True)
+    with open(global_lineage_path, "w", encoding="utf-8", newline="\n") as f:
+        f.write("\n".join(lines) + "\n")
 
 
 def extract_canonical_contract(
@@ -513,12 +700,11 @@ def extract_canonical_contract(
     dry_run: bool = False,
 ) -> Dict[str, Any]:
     """Execute deterministic extraction pipeline for the given slot."""
-    if slot_id != PILOT_SLOT_ID:
-        raise ValueError(f"Hard boundary violation: Only '{PILOT_SLOT_ID}' is permitted in this pilot phase.")
+    slot_meta = get_admitted_slot_metadata(slot_id)
 
     timestamp = generated_at or datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    raw_file_abs = os.path.join(ROOT_DIR, PILOT_RAW_FILE_REL_PATH)
+    raw_file_abs = os.path.join(ROOT_DIR, slot_meta["raw_source_file_path"])
     if not os.path.exists(raw_file_abs):
         raise FileNotFoundError(f"Pinned raw source file not found: {raw_file_abs}")
 
@@ -526,17 +712,17 @@ def extract_canonical_contract(
         raw_bytes = f.read()
 
     calc_file_sha256 = hashlib.sha256(raw_bytes).hexdigest()
-    if calc_file_sha256 != PILOT_RAW_FILE_SHA256:
+    if calc_file_sha256 != slot_meta["raw_file_sha256"]:
         raise ValueError(
-            f"Raw file SHA-256 mismatch for {PILOT_RAW_FILE_REL_PATH}: "
-            f"expected {PILOT_RAW_FILE_SHA256}, got {calc_file_sha256}"
+            f"Raw file SHA-256 mismatch for {slot_meta['raw_source_file_path']}: "
+            f"expected {slot_meta['raw_file_sha256']}, got {calc_file_sha256}"
         )
 
     calc_blob_sha = git_blob_sha(raw_bytes)
-    if calc_blob_sha != PILOT_RAW_BLOB_SHA:
+    if calc_blob_sha != slot_meta["source_blob_sha"]:
         raise ValueError(
-            f"Raw Git blob SHA mismatch for {PILOT_RAW_FILE_REL_PATH}: "
-            f"expected {PILOT_RAW_BLOB_SHA}, got {calc_blob_sha}"
+            f"Raw Git blob SHA mismatch for {slot_meta['raw_source_file_path']}: "
+            f"expected {slot_meta['source_blob_sha']}, got {calc_blob_sha}"
         )
 
     raw_doc = json.loads(raw_bytes.decode("utf-8"))
@@ -544,7 +730,8 @@ def extract_canonical_contract(
     script_path = os.path.abspath(__file__)
     script_sha256 = sha256_file(script_path) if os.path.exists(script_path) else "PENDING_SCRIPT_SHA"
 
-    canonical_schema, lineage_records, manifest = extract_slot_github_01(
+    canonical_schema, lineage_records, manifest = extract_slot_contract(
+        slot_meta=slot_meta,
         raw_doc=raw_doc,
         raw_file_sha=calc_file_sha256,
         raw_blob_sha=calc_blob_sha,
@@ -553,7 +740,7 @@ def extract_canonical_contract(
     )
 
     if output_dir is None:
-        target_dir = os.path.join(ROOT_DIR, "data_stage_b", "canonical", PILOT_SLOT_ID)
+        target_dir = os.path.join(ROOT_DIR, "data_stage_b", "canonical", slot_id)
     else:
         target_dir = output_dir
 
@@ -575,15 +762,11 @@ def extract_canonical_contract(
             f.write(manifest_str)
 
         if output_dir is None:
-            # Also append/sync to results_stage_b/canonical_field_lineage.jsonl
-            global_lineage_path = os.path.join(ROOT_DIR, "results_stage_b", "canonical_field_lineage.jsonl")
-            os.makedirs(os.path.dirname(global_lineage_path), exist_ok=True)
-            with open(global_lineage_path, "w", encoding="utf-8", newline="\n") as f:
-                f.write(lineage_str)
+            sync_global_lineage_index(lineage_records, slot_meta["candidate_source_id"])
 
     return {
-        "slot_id": PILOT_SLOT_ID,
-        "operation_id": PILOT_OPERATION_ID,
+        "slot_id": slot_meta["slot_id"],
+        "operation_id": slot_meta["operation_id"],
         "canonical_contract_path": schema_path,
         "canonical_schema_sha256": manifest["canonical_schema_sha256"],
         "field_lineage_path": lineage_path,
@@ -597,7 +780,7 @@ def extract_canonical_contract(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Stage B Canonical Contract Extractor — Pilot")
+    parser = argparse.ArgumentParser(description="Stage B Canonical Contract Extractor — Generalization")
     parser.add_argument("--slot-id", type=str, default=PILOT_SLOT_ID, help="Slot ID to extract")
     parser.add_argument("--generated-at", type=str, default=None, help="Explicit UTC ISO8601 timestamp")
     parser.add_argument("--output-dir", type=str, default=None, help="Target output directory")

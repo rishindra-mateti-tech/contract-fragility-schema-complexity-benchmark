@@ -635,4 +635,5 @@ def test_on_disk_artifacts_if_present():
     assert report["failed_checks"] == 0
 
     slots = [d for d in os.listdir(CANONICAL_DIR) if os.path.isdir(os.path.join(CANONICAL_DIR, d))]
-    assert slots == [PILOT_SLOT_ID], f"Only {PILOT_SLOT_ID} should exist under canonical/, found: {slots}"
+    assert PILOT_SLOT_ID in slots
+    assert set(slots).issubset({PILOT_SLOT_ID, "SLOT_STRIPE_02"}), f"Unexpected slots under canonical/: {slots}"
