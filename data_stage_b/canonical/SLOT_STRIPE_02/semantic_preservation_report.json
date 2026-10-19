@@ -1,0 +1,657 @@
+{
+  "closed_wrapper_policy_effects": {
+    "canonical_body_additional_properties": false,
+    "is_strictly_lossless": false,
+    "normalization_type": "PRESERVED_EXPLICIT_FALSE",
+    "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation.",
+    "raw_body_additional_properties": false,
+    "root_additional_properties_false": true,
+    "status": "PASS",
+    "surfaces_additional_properties_false": true
+  },
+  "evaluation_status": "PASS",
+  "explicitly_approved_transformations": {
+    "status": "PASS",
+    "total_approved_transformations": 4,
+    "transformations": [
+      {
+        "canonical_pointer": "/",
+        "canonical_value": [
+          "body",
+          "header",
+          "path",
+          "query"
+        ],
+        "is_strictly_lossless": false,
+        "rationale": "HTTP operations accept inputs across URI path templates, query parameters, headers, and request bodies. The canonical representation wraps these disjoint surfaces into a single Draft-07 object with four discrete transport containers (path, query, header, body).",
+        "raw_value": null,
+        "transformation_category": "BENCHMARK_WRAPPER_NORMALIZATION",
+        "transformation_id": "TRANSFORM_ROOT_WRAPPER_SYNTHESIS"
+      },
+      {
+        "canonical_pointer": "/additionalProperties",
+        "canonical_value": false,
+        "is_strictly_lossless": false,
+        "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. Raw body schema already declared additionalProperties: false; canonical envelope extends closed validation across root and empty transport surfaces.",
+        "raw_value": false,
+        "transformation_category": "BENCHMARK_WRAPPER_NORMALIZATION",
+        "transformation_id": "TRANSFORM_WRAPPER_CLOSED_OBJECT"
+      },
+      {
+        "canonical_pointer": "/description",
+        "canonical_value": "Create a shipping rate",
+        "is_strictly_lossless": true,
+        "rationale": "Selected raw operation summary per deterministic precedence hierarchy (Step 1: summary, Step 2: description, Step 3: template fallback).",
+        "raw_value": "Create a shipping rate",
+        "transformation_category": "DETERMINISTIC_METADATA_MAPPING",
+        "transformation_id": "TRANSFORM_TOOL_DESCRIPTION_SELECTION"
+      },
+      {
+        "canonical_pointer": "/properties/body/x-openapi-encoding",
+        "canonical_value": {
+          "delivery_estimate": {
+            "explode": true,
+            "style": "deepObject"
+          },
+          "expand": {
+            "explode": true,
+            "style": "deepObject"
+          },
+          "fixed_amount": {
+            "explode": true,
+            "style": "deepObject"
+          },
+          "metadata": {
+            "explode": true,
+            "style": "deepObject"
+          }
+        },
+        "is_strictly_lossless": true,
+        "rationale": "Stripe endpoint uses application/x-www-form-urlencoded with OpenAPI 3.0 deepObject encoding style and explode: true for complex parameters (delivery_estimate, expand, fixed_amount, metadata). The canonical contract preserves structured nested Draft-07 objects without lossy string flattening, and embeds explicit x-openapi-encoding metadata so execution drivers can serialize nested arguments faithfully.",
+        "raw_value": {
+          "delivery_estimate": {
+            "explode": true,
+            "style": "deepObject"
+          },
+          "expand": {
+            "explode": true,
+            "style": "deepObject"
+          },
+          "fixed_amount": {
+            "explode": true,
+            "style": "deepObject"
+          },
+          "metadata": {
+            "explode": true,
+            "style": "deepObject"
+          }
+        },
+        "transformation_category": "BENCHMARK_SERIALIZATION_PRESERVATION",
+        "transformation_id": "TRANSFORM_FORM_ENCODING_DEEP_OBJECT_METADATA"
+      }
+    ]
+  },
+  "field_coverage": {
+    "coverage_ratio": 1.0,
+    "covered_fields": [
+      "delivery_estimate",
+      "display_name",
+      "expand",
+      "fixed_amount",
+      "metadata",
+      "tax_behavior",
+      "tax_code",
+      "type"
+    ],
+    "covered_fields_count": 8,
+    "extraneous_fields": [],
+    "extraneous_fields_count": 0,
+    "missing_fields": [],
+    "missing_fields_count": 0,
+    "status": "PASS",
+    "total_canonical_fields": 8,
+    "total_raw_fields": 8
+  },
+  "form_encoding_serialization_preservation": {
+    "canonical_encoding_metadata": {
+      "delivery_estimate": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "expand": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "fixed_amount": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "metadata": {
+        "explode": true,
+        "style": "deepObject"
+      }
+    },
+    "checks": [
+      {
+        "canonical_keys": [
+          "delivery_estimate",
+          "expand",
+          "fixed_amount",
+          "metadata"
+        ],
+        "check": "raw_to_canonical_encoding_match",
+        "pointer": "/properties/body/x-openapi-encoding",
+        "raw_keys": [
+          "delivery_estimate",
+          "expand",
+          "fixed_amount",
+          "metadata"
+        ],
+        "status": "PASS"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "delivery_estimate",
+        "status": "PASS",
+        "style": "deepObject"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "expand",
+        "status": "PASS",
+        "style": "deepObject"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "fixed_amount",
+        "status": "PASS",
+        "style": "deepObject"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "metadata",
+        "status": "PASS",
+        "style": "deepObject"
+      }
+    ],
+    "is_form_encoded": true,
+    "raw_encoding_metadata": {
+      "delivery_estimate": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "expand": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "fixed_amount": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "metadata": {
+        "explode": true,
+        "style": "deepObject"
+      }
+    },
+    "request_content_type": "application/x-www-form-urlencoded",
+    "serialization_strategy": "FORM_URLENCODED_DEEP_OBJECT",
+    "status": "PASS"
+  },
+  "keyword_equivalence": {
+    "checks": [
+      {
+        "canonical_value": "The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/delivery_estimate/description",
+        "raw_value": "The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "delivery_estimate",
+        "keyword": "title",
+        "pointer": "/properties/body/properties/delivery_estimate/title",
+        "raw_value": "delivery_estimate",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "object",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/delivery_estimate/type",
+        "raw_value": "object",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "unit",
+          "value"
+        ],
+        "keyword": "required",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/maximum/required",
+        "raw_value": [
+          "unit",
+          "value"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "delivery_estimate_bound",
+        "keyword": "title",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/maximum/title",
+        "raw_value": "delivery_estimate_bound",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "object",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/maximum/type",
+        "raw_value": "object",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "business_day",
+          "day",
+          "hour",
+          "month",
+          "week"
+        ],
+        "keyword": "enum",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/maximum/properties/unit/enum",
+        "raw_value": [
+          "business_day",
+          "day",
+          "hour",
+          "month",
+          "week"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/maximum/properties/unit/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "integer",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/maximum/properties/value/type",
+        "raw_value": "integer",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "unit",
+          "value"
+        ],
+        "keyword": "required",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/minimum/required",
+        "raw_value": [
+          "unit",
+          "value"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "delivery_estimate_bound",
+        "keyword": "title",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/minimum/title",
+        "raw_value": "delivery_estimate_bound",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "object",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/minimum/type",
+        "raw_value": "object",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "business_day",
+          "day",
+          "hour",
+          "month",
+          "week"
+        ],
+        "keyword": "enum",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/minimum/properties/unit/enum",
+        "raw_value": [
+          "business_day",
+          "day",
+          "hour",
+          "month",
+          "week"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/minimum/properties/unit/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "integer",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/delivery_estimate/properties/minimum/properties/value/type",
+        "raw_value": "integer",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/display_name/description",
+        "raw_value": "The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": 100,
+        "keyword": "maxLength",
+        "pointer": "/properties/body/properties/display_name/maxLength",
+        "raw_value": 100,
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/display_name/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "Specifies which fields in the response should be expanded.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/expand/description",
+        "raw_value": "Specifies which fields in the response should be expanded.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": 5000,
+        "keyword": "maxLength",
+        "pointer": "/properties/body/properties/expand/items/maxLength",
+        "raw_value": 5000,
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/expand/items/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "array",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/expand/type",
+        "raw_value": "array",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "Describes a fixed amount to charge for shipping. Must be present if type is `fixed_amount`.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/fixed_amount/description",
+        "raw_value": "Describes a fixed amount to charge for shipping. Must be present if type is `fixed_amount`.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "amount",
+          "currency"
+        ],
+        "keyword": "required",
+        "pointer": "/properties/body/properties/fixed_amount/required",
+        "raw_value": [
+          "amount",
+          "currency"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "fixed_amount",
+        "keyword": "title",
+        "pointer": "/properties/body/properties/fixed_amount/title",
+        "raw_value": "fixed_amount",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "object",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/fixed_amount/type",
+        "raw_value": "object",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "integer",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/fixed_amount/properties/amount/type",
+        "raw_value": "integer",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "currency",
+        "keyword": "format",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency/format",
+        "raw_value": "currency",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "amount"
+        ],
+        "keyword": "required",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency_options/additionalProperties/required",
+        "raw_value": [
+          "amount"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "currency_option",
+        "keyword": "title",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency_options/additionalProperties/title",
+        "raw_value": "currency_option",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "object",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency_options/additionalProperties/type",
+        "raw_value": "object",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "integer",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency_options/additionalProperties/properties/amount/type",
+        "raw_value": "integer",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "exclusive",
+          "inclusive",
+          "unspecified"
+        ],
+        "keyword": "enum",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency_options/additionalProperties/properties/tax_behavior/enum",
+        "raw_value": [
+          "exclusive",
+          "inclusive",
+          "unspecified"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency_options/additionalProperties/properties/tax_behavior/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "object",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/fixed_amount/properties/currency_options/type",
+        "raw_value": "object",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/metadata/additionalProperties/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/metadata/description",
+        "raw_value": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "object",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/metadata/type",
+        "raw_value": "object",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/tax_behavior/description",
+        "raw_value": "Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "exclusive",
+          "inclusive",
+          "unspecified"
+        ],
+        "keyword": "enum",
+        "pointer": "/properties/body/properties/tax_behavior/enum",
+        "raw_value": [
+          "exclusive",
+          "inclusive",
+          "unspecified"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/tax_behavior/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/tax_code/description",
+        "raw_value": "A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/tax_code/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "The type of calculation to use on the shipping rate.",
+        "keyword": "description",
+        "pointer": "/properties/body/properties/type/description",
+        "raw_value": "The type of calculation to use on the shipping rate.",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "fixed_amount"
+        ],
+        "keyword": "enum",
+        "pointer": "/properties/body/properties/type/enum",
+        "raw_value": [
+          "fixed_amount"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": "string",
+        "keyword": "type",
+        "pointer": "/properties/body/properties/type/type",
+        "raw_value": "string",
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [],
+        "keyword": "required",
+        "pointer": "/properties/path/required",
+        "raw_value": [],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": [
+          "display_name"
+        ],
+        "keyword": "required",
+        "pointer": "/properties/body/required",
+        "raw_value": [
+          "display_name"
+        ],
+        "status": "EQUIVALENT"
+      },
+      {
+        "canonical_value": false,
+        "keyword": "additionalProperties",
+        "pointer": "/properties/body/additionalProperties",
+        "raw_value": false,
+        "status": "EQUIVALENT"
+      }
+    ],
+    "dropped_keywords_count": 0,
+    "equivalent_keywords_count": 50,
+    "mismatched_keywords_count": 0,
+    "status": "PASS",
+    "total_evaluated_keywords": 50
+  },
+  "lossless_classification": "SEMANTICALLY_EQUIVALENT_MODULO_WRAPPER_POLICY",
+  "operation_id": "PostShippingRates",
+  "semantic_validation_decision": "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW",
+  "slot_id": "SLOT_STRIPE_02",
+  "transport_wrapper_synthesis": {
+    "body_properties_count": 8,
+    "header_parameters_count": 0,
+    "path_parameters_count": 0,
+    "query_parameters_count": 0,
+    "status": "PASS",
+    "surface_containers": [
+      "body",
+      "header",
+      "path",
+      "query"
+    ],
+    "total_parameter_count": 8
+  },
+  "unsupported_constructs": {
+    "constructs": [],
+    "status": "PASS",
+    "unsupported_constructs_count": 0
+  }
+}

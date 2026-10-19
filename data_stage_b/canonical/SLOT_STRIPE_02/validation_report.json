@@ -1,0 +1,426 @@
+{
+  "checks": [
+    {
+      "check": "files_exist",
+      "details": "All three artifacts exist on disk.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "meta_schema_declaration",
+      "details": "Expected 'http://json-schema.org/draft-07/schema#', got 'http://json-schema.org/draft-07/schema#'",
+      "passed": true,
+      "pointer": "/$schema"
+    },
+    {
+      "check": "draft7_syntax_validation",
+      "details": "Contract passes Draft7Validator meta-schema check.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "root_wrapper_keys",
+      "details": "Top-level keys mismatch. Extraneous/missing: set()",
+      "passed": true,
+      "pointer": "/"
+    },
+    {
+      "check": "root_type_object",
+      "details": "Root type must be 'object'.",
+      "passed": true,
+      "pointer": "/type"
+    },
+    {
+      "check": "root_additional_properties_false",
+      "details": "Root additionalProperties must be strictly false.",
+      "passed": true,
+      "pointer": "/additionalProperties"
+    },
+    {
+      "check": "surface_containers_exact",
+      "details": "Surface containers must be exactly {'path', 'query', 'header', 'body'}, got {'path', 'header', 'query', 'body'}",
+      "passed": true,
+      "pointer": "/properties"
+    },
+    {
+      "check": "root_required_valid",
+      "details": "Root required must be sorted subset of surfaces: ['body']",
+      "passed": true,
+      "pointer": "/required"
+    },
+    {
+      "check": "surface_path_structure",
+      "details": "Surface 'path' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/path"
+    },
+    {
+      "check": "surface_body_structure",
+      "details": "Surface 'body' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/body"
+    },
+    {
+      "check": "surface_query_structure",
+      "details": "Surface 'query' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/query"
+    },
+    {
+      "check": "surface_header_structure",
+      "details": "Surface 'header' must be object with additionalProperties: false",
+      "passed": true,
+      "pointer": "/properties/header"
+    },
+    {
+      "check": "path_parameters_present",
+      "details": "Path surface for SLOT_STRIPE_02 must be empty, found: []",
+      "passed": true,
+      "pointer": "/properties/path/properties"
+    },
+    {
+      "check": "path_required_exact",
+      "details": "Path required for SLOT_STRIPE_02 must be empty, got: []",
+      "passed": true,
+      "pointer": "/properties/path/required"
+    },
+    {
+      "check": "transport_separation_no_path_leak_into_body",
+      "details": "Path parameters must never leak into body container.",
+      "passed": true,
+      "pointer": "/properties/body/properties"
+    },
+    {
+      "check": "body_properties_exact",
+      "details": "Body properties mismatch for SLOT_STRIPE_02. Diff: set()",
+      "passed": true,
+      "pointer": "/properties/body/properties"
+    },
+    {
+      "check": "body_required_exact",
+      "details": "Body required for SLOT_STRIPE_02 must be ['display_name'], got: ['display_name']",
+      "passed": true,
+      "pointer": "/properties/body/required"
+    },
+    {
+      "check": "absent_surfaces_empty",
+      "details": "Query (0) and header (0) must have empty properties.",
+      "passed": true,
+      "pointer": "/properties"
+    },
+    {
+      "check": "form_encoding_metadata_present",
+      "details": "Stripe form encoding must declare deepObject with explode: true for {'delivery_estimate', 'expand', 'metadata', 'fixed_amount'}",
+      "passed": true,
+      "pointer": "/properties/body/x-openapi-encoding"
+    },
+    {
+      "check": "recursion_depth_within_bound",
+      "details": "Observed depth is 5 (limit: <= 5).",
+      "passed": true,
+      "pointer": "/"
+    },
+    {
+      "check": "no_object_union_body_delivery_estimate",
+      "details": "Property 'body.delivery_estimate' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/delivery_estimate"
+    },
+    {
+      "check": "no_object_union_body_display_name",
+      "details": "Property 'body.display_name' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/display_name"
+    },
+    {
+      "check": "no_object_union_body_expand",
+      "details": "Property 'body.expand' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/expand"
+    },
+    {
+      "check": "no_object_union_body_fixed_amount",
+      "details": "Property 'body.fixed_amount' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/fixed_amount"
+    },
+    {
+      "check": "no_object_union_body_metadata",
+      "details": "Property 'body.metadata' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/metadata"
+    },
+    {
+      "check": "no_object_union_body_tax_behavior",
+      "details": "Property 'body.tax_behavior' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/tax_behavior"
+    },
+    {
+      "check": "no_object_union_body_tax_code",
+      "details": "Property 'body.tax_code' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/tax_code"
+    },
+    {
+      "check": "no_object_union_body_type",
+      "details": "Property 'body.type' must contain zero object-level unions.",
+      "passed": true,
+      "pointer": "/properties/body/properties/type"
+    },
+    {
+      "check": "complete_field_lineage_coverage",
+      "details": "Every canonical property must have a lineage record. Missing: []",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "no_extraneous_lineage_records",
+      "details": "Extraneous lineage records found: []",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "lineage_hash_continuity",
+      "details": "All lineage records have continuous SHA-256 and blob SHA.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "raw_pointer_resolves",
+      "details": "Resolved operation at #/paths/~1v1~1shipping_rates/post",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "raw_parameters_lossless_representation",
+      "details": "Raw parameters set() match canonical path set()",
+      "passed": true,
+      "pointer": "/properties/path"
+    },
+    {
+      "check": "raw_body_properties_lossless_representation",
+      "details": "Raw body properties {'expand', 'display_name', 'type', 'delivery_estimate', 'tax_behavior', 'tax_code', 'metadata', 'fixed_amount'} match canonical body {'expand', 'display_name', 'type', 'delivery_estimate', 'tax_behavior', 'tax_code', 'metadata', 'fixed_amount'}",
+      "passed": true,
+      "pointer": "/properties/body"
+    },
+    {
+      "check": "raw_body_required_exact_match",
+      "details": "Raw required {'display_name'} matches canonical body required {'display_name'}",
+      "passed": true,
+      "pointer": "/properties/body/required"
+    },
+    {
+      "check": "manifest_canonical_sha_match",
+      "details": "Manifest SHA c7e2a3a33078a892ca861684ca963dd00a3ea7cdbd0a9cb2e215b2912547cdbc matches computed c7e2a3a33078a892ca861684ca963dd00a3ea7cdbd0a9cb2e215b2912547cdbc",
+      "passed": true,
+      "pointer": "/canonical_schema_sha256"
+    },
+    {
+      "check": "manifest_status_pilot_valid",
+      "details": "Status for SLOT_STRIPE_02 must be 'EXTRACTED_PENDING_HUMAN_VALIDATION' (and not 'CANONICAL_FAITHFUL'), got 'EXTRACTED_PENDING_HUMAN_VALIDATION'",
+      "passed": true,
+      "pointer": "/status"
+    },
+    {
+      "check": "manifest_author_sign_off_valid",
+      "details": "Manifest for SLOT_STRIPE_02 must NOT have premature author sign-off: None",
+      "passed": true,
+      "pointer": "/author_review_sign_off"
+    },
+    {
+      "check": "manifest_raw_file_sha_match",
+      "details": "Disk raw SHA 7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776 matches manifest 7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "passed": true,
+      "pointer": "/raw_source_file_sha256"
+    },
+    {
+      "check": "semantic_field_coverage_100pct",
+      "details": "Field coverage ratio: 1.0 (covered: 8, missing: [])",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "semantic_keyword_equivalence_verified",
+      "details": "Keyword equivalence: 50 equivalent, 0 dropped, 0 mismatched.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "semantic_approved_transformations_verified",
+      "details": "Verified 4 approved transformations with formal rationale.",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "semantic_unsupported_constructs_zero",
+      "details": "Unsupported constructs count: 0",
+      "passed": true,
+      "pointer": null
+    },
+    {
+      "check": "semantic_form_encoding_preservation_verified",
+      "details": "Form-encoding preservation status: PASS (is_form_encoded=True)",
+      "passed": true,
+      "pointer": null
+    }
+  ],
+  "closed_wrapper_policy_effects": {
+    "canonical_body_additional_properties": false,
+    "is_strictly_lossless": false,
+    "normalization_type": "PRESERVED_EXPLICIT_FALSE",
+    "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation.",
+    "raw_body_additional_properties": false,
+    "root_additional_properties_false": true,
+    "status": "PASS",
+    "surfaces_additional_properties_false": true
+  },
+  "explicitly_approved_transformations": {
+    "status": "PASS",
+    "total_approved_transformations": 4
+  },
+  "failed_checks": 0,
+  "field_coverage": {
+    "coverage_ratio": 1.0,
+    "covered_fields": [
+      "delivery_estimate",
+      "display_name",
+      "expand",
+      "fixed_amount",
+      "metadata",
+      "tax_behavior",
+      "tax_code",
+      "type"
+    ],
+    "covered_fields_count": 8,
+    "extraneous_fields": [],
+    "extraneous_fields_count": 0,
+    "missing_fields": [],
+    "missing_fields_count": 0,
+    "status": "PASS",
+    "total_canonical_fields": 8,
+    "total_raw_fields": 8
+  },
+  "form_encoding_serialization_preservation": {
+    "canonical_encoding_metadata": {
+      "delivery_estimate": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "expand": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "fixed_amount": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "metadata": {
+        "explode": true,
+        "style": "deepObject"
+      }
+    },
+    "checks": [
+      {
+        "canonical_keys": [
+          "delivery_estimate",
+          "expand",
+          "fixed_amount",
+          "metadata"
+        ],
+        "check": "raw_to_canonical_encoding_match",
+        "pointer": "/properties/body/x-openapi-encoding",
+        "raw_keys": [
+          "delivery_estimate",
+          "expand",
+          "fixed_amount",
+          "metadata"
+        ],
+        "status": "PASS"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "delivery_estimate",
+        "status": "PASS",
+        "style": "deepObject"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "expand",
+        "status": "PASS",
+        "style": "deepObject"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "fixed_amount",
+        "status": "PASS",
+        "style": "deepObject"
+      },
+      {
+        "check": "style_and_explode_semantics",
+        "explode": true,
+        "parameter": "metadata",
+        "status": "PASS",
+        "style": "deepObject"
+      }
+    ],
+    "is_form_encoded": true,
+    "raw_encoding_metadata": {
+      "delivery_estimate": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "expand": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "fixed_amount": {
+        "explode": true,
+        "style": "deepObject"
+      },
+      "metadata": {
+        "explode": true,
+        "style": "deepObject"
+      }
+    },
+    "request_content_type": "application/x-www-form-urlencoded",
+    "serialization_strategy": "FORM_URLENCODED_DEEP_OBJECT",
+    "status": "PASS"
+  },
+  "keyword_equivalence": {
+    "dropped_keywords_count": 0,
+    "equivalent_keywords_count": 50,
+    "mismatched_keywords_count": 0,
+    "status": "PASS",
+    "total_evaluated_keywords": 50
+  },
+  "lossless_classification": "SEMANTICALLY_EQUIVALENT_MODULO_WRAPPER_POLICY",
+  "operation_id": "PostShippingRates",
+  "passed_checks": 44,
+  "semantic_validation_decision": "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW",
+  "slot_id": "SLOT_STRIPE_02",
+  "total_checks": 44,
+  "transport_wrapper_synthesis": {
+    "body_properties_count": 8,
+    "header_parameters_count": 0,
+    "path_parameters_count": 0,
+    "query_parameters_count": 0,
+    "status": "PASS",
+    "surface_containers": [
+      "body",
+      "header",
+      "path",
+      "query"
+    ],
+    "total_parameter_count": 8
+  },
+  "unsupported_constructs": {
+    "status": "PASS",
+    "unsupported_constructs_count": 0
+  },
+  "validation_status": "PASS"
+}

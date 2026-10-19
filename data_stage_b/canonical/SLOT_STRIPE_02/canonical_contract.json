@@ -1,0 +1,257 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Create a shipping rate",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "delivery_estimate": {
+          "description": "The estimated range for how long shipping will take, meant to be displayable to the customer. This will appear on CheckoutSessions.",
+          "properties": {
+            "maximum": {
+              "properties": {
+                "unit": {
+                  "enum": [
+                    "business_day",
+                    "day",
+                    "hour",
+                    "month",
+                    "week"
+                  ],
+                  "type": "string"
+                },
+                "value": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "unit",
+                "value"
+              ],
+              "title": "delivery_estimate_bound",
+              "type": "object"
+            },
+            "minimum": {
+              "properties": {
+                "unit": {
+                  "enum": [
+                    "business_day",
+                    "day",
+                    "hour",
+                    "month",
+                    "week"
+                  ],
+                  "type": "string"
+                },
+                "value": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "unit",
+                "value"
+              ],
+              "title": "delivery_estimate_bound",
+              "type": "object"
+            }
+          },
+          "title": "delivery_estimate",
+          "type": "object"
+        },
+        "display_name": {
+          "description": "The name of the shipping rate, meant to be displayable to the customer. This will appear on CheckoutSessions.",
+          "maxLength": 100,
+          "type": "string"
+        },
+        "expand": {
+          "description": "Specifies which fields in the response should be expanded.",
+          "items": {
+            "maxLength": 5000,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fixed_amount": {
+          "description": "Describes a fixed amount to charge for shipping. Must be present if type is `fixed_amount`.",
+          "properties": {
+            "amount": {
+              "type": "integer"
+            },
+            "currency": {
+              "format": "currency",
+              "type": "string"
+            },
+            "currency_options": {
+              "additionalProperties": {
+                "properties": {
+                  "amount": {
+                    "type": "integer"
+                  },
+                  "tax_behavior": {
+                    "enum": [
+                      "exclusive",
+                      "inclusive",
+                      "unspecified"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount"
+                ],
+                "title": "currency_option",
+                "type": "object"
+              },
+              "type": "object"
+            }
+          },
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "title": "fixed_amount",
+          "type": "object"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.",
+          "type": "object"
+        },
+        "tax_behavior": {
+          "description": "Specifies whether the rate is considered inclusive of taxes or exclusive of taxes. One of `inclusive`, `exclusive`, or `unspecified`.",
+          "enum": [
+            "exclusive",
+            "inclusive",
+            "unspecified"
+          ],
+          "type": "string"
+        },
+        "tax_code": {
+          "description": "A [tax code](https://docs.stripe.com/tax/tax-categories) ID. The Shipping tax code is `txcd_92010001`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of calculation to use on the shipping rate.",
+          "enum": [
+            "fixed_amount"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "display_name"
+      ],
+      "type": "object",
+      "x-openapi-encoding": {
+        "delivery_estimate": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "expand": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "fixed_amount": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "metadata": {
+          "explode": true,
+          "style": "deepObject"
+        }
+      }
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "type": "object"
+    }
+  },
+  "required": [
+    "body"
+  ],
+  "title": "PostShippingRates",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "admission_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "candidate_source_id": "CAND-002",
+    "endpoint": "/v1/shipping_rates",
+    "extraction_rule_version": "1.2.0",
+    "extraction_timestamp": "2026-10-19T18:04:16Z",
+    "extractor_version": "1.3.0",
+    "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+    "http_method": "POST",
+    "operation_id": "PostShippingRates",
+    "request_content_type": "application/x-www-form-urlencoded",
+    "semantic_validation_decision": "SEMANTICALLY_VALIDATED_PENDING_HUMAN_REVIEW",
+    "serialization_metadata": {
+      "content_type": "application/x-www-form-urlencoded",
+      "encoding": {
+        "delivery_estimate": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "expand": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "fixed_amount": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "metadata": {
+          "explode": true,
+          "style": "deepObject"
+        }
+      },
+      "encoding_metadata_present": true,
+      "serialization_strategy": "FORM_URLENCODED_DEEP_OBJECT"
+    },
+    "slot_id": "SLOT_STRIPE_02",
+    "source_cluster_id": "CLUSTER_STRIPE",
+    "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+    "source_file_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+    "source_spec_pointer": "#/paths/~1v1~1shipping_rates/post",
+    "source_structural_metrics": {
+      "raw_enum_density": 0.0,
+      "raw_nesting_depth": 5,
+      "raw_optional_ratio": 0.88,
+      "raw_parameter_count": 8
+    },
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "target_domain": "Payments",
+    "wrapped_contract_structural_metrics": {
+      "surface_containers_present": [
+        "body",
+        "header",
+        "path",
+        "query"
+      ],
+      "surface_containers_required": [
+        "body"
+      ],
+      "total_property_count": 8,
+      "wrapped_nesting_depth": 5
+    },
+    "wrapper_normalization_policy": {
+      "additional_properties_closed": true,
+      "is_strictly_lossless": false,
+      "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. Raw OpenAPI specification omitted additionalProperties (or defined closed body schema), and canonical envelope enforces closed surface validation. This normalization is explicitly classified as a non-lossless wrapper policy."
+    }
+  }
+}
