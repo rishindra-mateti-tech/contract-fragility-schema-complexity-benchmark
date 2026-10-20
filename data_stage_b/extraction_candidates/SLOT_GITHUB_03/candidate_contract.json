@@ -1,0 +1,228 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Create a repository for the authenticated user",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "allow_auto_merge": {
+          "default": false,
+          "description": "Whether to allow Auto-merge to be used on pull requests.",
+          "example": false,
+          "type": "boolean"
+        },
+        "allow_merge_commit": {
+          "default": true,
+          "description": "Whether to allow merge commits for pull requests.",
+          "example": true,
+          "type": "boolean"
+        },
+        "allow_rebase_merge": {
+          "default": true,
+          "description": "Whether to allow rebase merges for pull requests.",
+          "example": true,
+          "type": "boolean"
+        },
+        "allow_squash_merge": {
+          "default": true,
+          "description": "Whether to allow squash merges for pull requests.",
+          "example": true,
+          "type": "boolean"
+        },
+        "auto_init": {
+          "default": false,
+          "description": "Whether the repository is initialized with a minimal README.",
+          "type": "boolean"
+        },
+        "delete_branch_on_merge": {
+          "default": false,
+          "description": "Whether to delete head branches when pull requests are merged",
+          "example": false,
+          "type": "boolean"
+        },
+        "description": {
+          "description": "A short description of the repository.",
+          "type": "string"
+        },
+        "gitignore_template": {
+          "description": "The desired language or platform to apply to the .gitignore.",
+          "example": "Haskell",
+          "type": "string"
+        },
+        "has_discussions": {
+          "default": false,
+          "description": "Whether discussions are enabled.",
+          "example": true,
+          "type": "boolean"
+        },
+        "has_downloads": {
+          "default": true,
+          "description": "Whether downloads are enabled.",
+          "example": true,
+          "type": "boolean"
+        },
+        "has_issues": {
+          "default": true,
+          "description": "Whether issues are enabled.",
+          "example": true,
+          "type": "boolean"
+        },
+        "has_projects": {
+          "default": true,
+          "description": "Whether projects are enabled.",
+          "example": true,
+          "type": "boolean"
+        },
+        "has_wiki": {
+          "default": true,
+          "description": "Whether the wiki is enabled.",
+          "example": true,
+          "type": "boolean"
+        },
+        "homepage": {
+          "description": "A URL with more information about the repository.",
+          "type": "string"
+        },
+        "is_template": {
+          "default": false,
+          "description": "Whether this repository acts as a template that can be used to generate new repositories.",
+          "example": true,
+          "type": "boolean"
+        },
+        "license_template": {
+          "description": "The license keyword of the open source license for this repository.",
+          "example": "mit",
+          "type": "string"
+        },
+        "merge_commit_message": {
+          "description": "The default value for a merge commit message.\n\n- `PR_TITLE` - default to the pull request's title.\n- `PR_BODY` - default to the pull request's body.\n- `BLANK` - default to a blank commit message.",
+          "enum": [
+            "PR_BODY",
+            "PR_TITLE",
+            "BLANK"
+          ],
+          "type": "string"
+        },
+        "merge_commit_title": {
+          "description": "Required when using `merge_commit_message`.\n\nThe default value for a merge commit title.\n\n- `PR_TITLE` - default to the pull request's title.\n- `MERGE_MESSAGE` - default to the classic title for a merge message (e.g., Merge pull request #123 from branch-name).",
+          "enum": [
+            "PR_TITLE",
+            "MERGE_MESSAGE"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the repository.",
+          "example": "Team Environment",
+          "type": "string"
+        },
+        "private": {
+          "default": false,
+          "description": "Whether the repository is private.",
+          "type": "boolean"
+        },
+        "squash_merge_commit_message": {
+          "description": "The default value for a squash merge commit message:\n\n- `PR_BODY` - default to the pull request's body.\n- `COMMIT_MESSAGES` - default to the branch's commit messages.\n- `BLANK` - default to a blank commit message.",
+          "enum": [
+            "PR_BODY",
+            "COMMIT_MESSAGES",
+            "BLANK"
+          ],
+          "type": "string"
+        },
+        "squash_merge_commit_title": {
+          "description": "Required when using `squash_merge_commit_message`.\n\nThe default value for a squash merge commit title:\n\n- `PR_TITLE` - default to the pull request's title.\n- `COMMIT_OR_PR_TITLE` - default to the commit's title (if only one commit) or the pull request's title (when more than one commit).",
+          "enum": [
+            "PR_TITLE",
+            "COMMIT_OR_PR_TITLE"
+          ],
+          "type": "string"
+        },
+        "team_id": {
+          "description": "The id of the team that will be granted access to this repository. This is only valid when creating a repository in an organization.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body"
+  ],
+  "title": "repos_create_for_authenticated_user",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "admission_decision": "ADMITTED_PENDING_EXTRACTION",
+    "candidate_source_id": "CAND-001",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "endpoint": "/user/repos",
+    "extraction_rule_version": "2.0.0",
+    "extraction_timestamp": "2026-10-20T08:00:00Z",
+    "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+    "extractor_version": "2.0.0",
+    "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+    "http_method": "POST",
+    "independent_validation_claimed": false,
+    "operation_id": "repos/create-for-authenticated-user",
+    "request_content_type": "application/json",
+    "semantic_validation_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "serialization_metadata": {
+      "content_type": "application/json",
+      "encoding": null,
+      "encoding_metadata_present": false,
+      "serialization_strategy": "STANDARD_JSON_BODY"
+    },
+    "slot_id": "SLOT_GITHUB_03",
+    "source_cluster_id": "CLUSTER_GITHUB",
+    "source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+    "source_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+    "source_spec_pointer": "#/paths/~1user~1repos/post",
+    "source_structural_metrics": {
+      "raw_nesting_depth": 2,
+      "raw_parameter_count": 23
+    },
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "target_domain": "Developer Platforms",
+    "wrapped_contract_structural_metrics": {
+      "surface_containers_present": [
+        "body",
+        "header",
+        "path",
+        "query"
+      ],
+      "surface_containers_required": [
+        "body"
+      ],
+      "total_property_count": 23,
+      "wrapped_nesting_depth": 2
+    },
+    "wrapper_normalization_policy": {
+      "additional_properties_closed": true,
+      "is_strictly_lossless": false,
+      "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. This normalization is explicitly classified as a non-lossless wrapper policy."
+    }
+  }
+}

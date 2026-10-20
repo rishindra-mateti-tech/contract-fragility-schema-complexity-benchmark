@@ -1,0 +1,33 @@
+{
+  "encoding_characterization": {
+    "encoding_details": null,
+    "encoding_metadata_present": false
+  },
+  "epistemic_tier_boundaries": {
+    "boundary_statement": "This characterization models in-process tool-call argument validation only. It makes zero claims regarding live network transmission, HTTP serialization wire identity (Tier 3), or upstream provider server conformance (Tier 4).",
+    "http_wire_conformance_claimed": false,
+    "in_process_structural_modeling": "TIER_1_AND_2_SUPPORTED",
+    "live_server_endpoint_conformance_claimed": false
+  },
+  "in_process_representation": {
+    "property_counts": {
+      "body": 23,
+      "header": 0,
+      "path": 0,
+      "query": 0
+    },
+    "root_container": "object (closed via additionalProperties: false)",
+    "surfaces_present": [
+      "body",
+      "header",
+      "path",
+      "query"
+    ],
+    "surfaces_required": [
+      "body"
+    ]
+  },
+  "operation_id": "repos/create-for-authenticated-user",
+  "request_content_type": "application/json",
+  "slot_id": "SLOT_GITHUB_03"
+}

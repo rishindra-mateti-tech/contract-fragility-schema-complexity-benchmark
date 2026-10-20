@@ -1,0 +1,32 @@
+{
+  "candidate_source_id": "CAND-013",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extracted_at_utc": "2026-10-20T08:00:00Z",
+  "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+  "extractor_script": "src/stage_b_candidate_pipeline.py",
+  "extractor_script_sha256": "e20b33d04504aa10350f26e3eece856d2a86eae3d640eec28968dfea944b8a3c",
+  "extractor_version": "2.0.0",
+  "generated_artifact_hashes": {
+    "candidate_contract.json": "07f4391de9c635028346d35d276bf7002dab3e7767bfbe79ae2854bf601f22a9",
+    "candidate_validation_report.md": "37211646c90a1afea0b5f4921c27a89a1278d78fcf50d30cea00cb1d0c3d39c4",
+    "difference_register.json": "5698c6d3885c0693480738257a9bee1120232ded073d14fd2da6a088435c9674",
+    "feature_inventory.json": "33e5485e263813615ce21cb30e0bc1080d942e3d4796f49eefc327152882ad74",
+    "field_lineage.jsonl": "0878dfa802d39f175bef32e8e8c1db0261faaeb6c952fcc3bc48f49c353c2fe5",
+    "review_packet.md": "9aba87c1c8f9e7732e0d2d836bd9a9efd83c8055174d9539f301e9e8b1d28399",
+    "serialization_characterization.json": "da3123eb540f86feb937a87ff6fb29e6fd13b3223d38de714ab82fd6dd44c325"
+  },
+  "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+  "immutable_source_pin": {
+    "blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+    "file_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc"
+  },
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "raw_source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+  "raw_source_file_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+  "raw_source_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+  "slot_id": "SLOT_LINE_02",
+  "source_operation_pointer": "#/paths/~1v2~1bot~1channel~1webhook~1endpoint/put",
+  "support_registry_hash": "65c8ad76a778c7c0f6fd87e608f9806706c19743147684b8738f9a482538ceef",
+  "wrapper_policy_identifier": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

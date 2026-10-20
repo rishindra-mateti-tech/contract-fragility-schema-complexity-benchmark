@@ -1,0 +1,32 @@
+{
+  "candidate_source_id": "CAND-004",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extracted_at_utc": "2026-10-20T08:00:00Z",
+  "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+  "extractor_script": "src/stage_b_candidate_pipeline.py",
+  "extractor_script_sha256": "e20b33d04504aa10350f26e3eece856d2a86eae3d640eec28968dfea944b8a3c",
+  "extractor_version": "2.0.0",
+  "generated_artifact_hashes": {
+    "candidate_contract.json": "48d89a8987d94495d1ecb58e66e296380a659853186bd32951a93eedccffd02a",
+    "candidate_validation_report.md": "d8985d205324d0eab1c747401e6cff5326b6cdcde054c617dae13512bae200d9",
+    "difference_register.json": "d3deb0477724af7d4abaae7935fdbaacdaa758f983489cc70908e409909be319",
+    "feature_inventory.json": "f00e282b8b73f741df173a78d02e18baafb61041f3461a417203fc82b8075cd7",
+    "field_lineage.jsonl": "88ab8e660be6fca87c1741d7e7ff83888ade840b3af62f1222c04724306b0e22",
+    "review_packet.md": "f7bc9525abf73403627147d6d26e3aee8ba7ea8a6cf81e9b8000ec4a274885e2",
+    "serialization_characterization.json": "433620541c128a59f04615d89fa74d9085dbcded1f703a1a3c23854b53428c40"
+  },
+  "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+  "immutable_source_pin": {
+    "blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+    "file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339"
+  },
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "raw_source_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+  "raw_source_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+  "raw_source_path": "data_stage_b/raw/CAND-004/5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+  "slot_id": "SLOT_TWILIO_03",
+  "source_operation_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post",
+  "support_registry_hash": "65c8ad76a778c7c0f6fd87e608f9806706c19743147684b8738f9a482538ceef",
+  "wrapper_policy_identifier": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

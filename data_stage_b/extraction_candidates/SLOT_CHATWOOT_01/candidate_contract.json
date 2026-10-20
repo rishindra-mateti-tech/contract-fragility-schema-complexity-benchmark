@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Add a webhook",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "The name of the webhook",
+          "type": "string"
+        },
+        "subscriptions": {
+          "description": "The events you want to subscribe to.",
+          "example": [
+            "conversation_created",
+            "conversation_status_changed"
+          ],
+          "items": {
+            "enum": [
+              "conversation_created",
+              "conversation_status_changed",
+              "conversation_updated",
+              "message_created",
+              "message_updated",
+              "contact_created",
+              "contact_updated",
+              "webwidget_triggered",
+              "conversation_typing_on",
+              "conversation_typing_off"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "The url where the events should be sent",
+          "example": "https://example.com/webhook",
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {
+        "account_id": {
+          "description": "The numeric ID of the account",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "account_id"
+      ],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body",
+    "path"
+  ],
+  "title": "create_a_webhook",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "admission_decision": "ADMITTED_PENDING_EXTRACTION",
+    "candidate_source_id": "CAND-011",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "endpoint": "/api/v1/accounts/{account_id}/webhooks",
+    "extraction_rule_version": "2.0.0",
+    "extraction_timestamp": "2026-10-20T08:00:00Z",
+    "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+    "extractor_version": "2.0.0",
+    "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+    "http_method": "POST",
+    "independent_validation_claimed": false,
+    "operation_id": "create-a-webhook",
+    "request_content_type": "application/json",
+    "semantic_validation_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "serialization_metadata": {
+      "content_type": "application/json",
+      "encoding": null,
+      "encoding_metadata_present": false,
+      "serialization_strategy": "STANDARD_JSON_BODY"
+    },
+    "slot_id": "SLOT_CHATWOOT_01",
+    "source_cluster_id": "CLUSTER_CHATWOOT",
+    "source_file_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+    "source_file_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+    "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+    "source_structural_metrics": {
+      "raw_nesting_depth": 3,
+      "raw_parameter_count": 4
+    },
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "target_domain": "CRM/Support",
+    "wrapped_contract_structural_metrics": {
+      "surface_containers_present": [
+        "body",
+        "header",
+        "path",
+        "query"
+      ],
+      "surface_containers_required": [
+        "body",
+        "path"
+      ],
+      "total_property_count": 4,
+      "wrapped_nesting_depth": 3
+    },
+    "wrapper_normalization_policy": {
+      "additional_properties_closed": true,
+      "is_strictly_lossless": false,
+      "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. This normalization is explicitly classified as a non-lossless wrapper policy."
+    }
+  }
+}

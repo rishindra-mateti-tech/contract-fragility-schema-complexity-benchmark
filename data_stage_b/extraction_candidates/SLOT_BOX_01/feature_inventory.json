@@ -1,0 +1,23 @@
+[
+  {
+    "category": "OBJECT_CONTAINERS",
+    "current_benchmark_status": "SUPPORTED",
+    "extraction_behavior": "EXPLICIT_NORMALIZATION",
+    "feature_id": "FEAT_WRAPPER_CLOSED_OBJECT",
+    "name": "Root and Transport Wrapper Object Closure"
+  },
+  {
+    "category": "TRANSPORT_SURFACES",
+    "current_benchmark_status": "SUPPORTED",
+    "extraction_behavior": "EXPLICIT_NORMALIZATION",
+    "feature_id": "FEAT_SURF_BODY_JSON",
+    "name": "JSON Body Transport Surface"
+  },
+  {
+    "category": "TRANSPORT_SURFACES",
+    "current_benchmark_status": "EXPERIMENTAL",
+    "extraction_behavior": "EXPLICIT_NORMALIZATION",
+    "feature_id": "FEAT_SURF_QUERY_PARAMS",
+    "name": "Query Parameter Transport Surface"
+  }
+]

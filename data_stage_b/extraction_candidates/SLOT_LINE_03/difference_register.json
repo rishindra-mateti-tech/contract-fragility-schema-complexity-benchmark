@@ -1,0 +1,86 @@
+[
+  {
+    "candidate_json_pointer": "/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Enforced additionalProperties: false at root schema under WRAPPER_CLOSED_OBJECT_POLICY_001 for strict tool-call argument evaluation.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/description",
+    "candidate_value_or_type": "Mark messages from users as read",
+    "classification": "INTENTIONAL_REPRESENTATION_CHANGE",
+    "difference_category": "DESCRIPTION_ROUTING",
+    "field_path": "description",
+    "human_validation_required": true,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Description extracted using transformation category RAW_DESCRIPTION.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post/description",
+    "source_value_or_type": "Mark messages from users as read"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "body.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed body transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post/requestBody",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/chat",
+    "candidate_value_or_type": "object",
+    "classification": "PRESERVED",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.chat",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved request body property 'chat' verbatim into canonical body container.",
+    "source_json_pointer": "#/components/schemas/MarkMessagesAsReadRequest/properties/chat",
+    "source_value_or_type": "object"
+  },
+  {
+    "candidate_json_pointer": "/properties/header/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "header.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed header transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "path.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed path transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  },
+  {
+    "candidate_json_pointer": "/properties/query/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "query.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed query transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  }
+]

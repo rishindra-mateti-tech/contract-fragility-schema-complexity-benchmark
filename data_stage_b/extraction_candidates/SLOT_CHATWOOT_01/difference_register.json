@@ -1,0 +1,122 @@
+[
+  {
+    "candidate_json_pointer": "/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Enforced additionalProperties: false at root schema under WRAPPER_CLOSED_OBJECT_POLICY_001 for strict tool-call argument evaluation.",
+    "source_json_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/description",
+    "candidate_value_or_type": "Add a webhook",
+    "classification": "PRESERVED",
+    "difference_category": "DESCRIPTION_ROUTING",
+    "field_path": "description",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Description extracted using transformation category RAW_SUMMARY.",
+    "source_json_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post/summary",
+    "source_value_or_type": "Add a webhook"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "body.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed body transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post/requestBody",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/name",
+    "candidate_value_or_type": "string",
+    "classification": "PRESERVED",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.name",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved request body property 'name' verbatim into canonical body container.",
+    "source_json_pointer": "#/components/schemas/webhook_create_update_payload/properties/name",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/subscriptions",
+    "candidate_value_or_type": "array",
+    "classification": "PRESERVED",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.subscriptions",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved request body property 'subscriptions' verbatim into canonical body container.",
+    "source_json_pointer": "#/components/schemas/webhook_create_update_payload/properties/subscriptions",
+    "source_value_or_type": "array"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/url",
+    "candidate_value_or_type": "string",
+    "classification": "PRESERVED",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.url",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved request body property 'url' verbatim into canonical body container.",
+    "source_json_pointer": "#/components/schemas/webhook_create_update_payload/properties/url",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/header/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "header.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed header transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "path.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed path transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/properties/account_id",
+    "candidate_value_or_type": "integer",
+    "classification": "PRESERVED",
+    "difference_category": "TRANSPORT_SURFACE_PARAMETER",
+    "field_path": "path.account_id",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved path parameter 'account_id' verbatim into canonical surface container.",
+    "source_json_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post/parameters/0",
+    "source_value_or_type": "integer"
+  },
+  {
+    "candidate_json_pointer": "/properties/query/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "query.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Closed query transport surface container with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001 to prevent unconstrained argument injection.",
+    "source_json_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+    "source_value_or_type": "omitted (permissive in JSON Schema)"
+  }
+]

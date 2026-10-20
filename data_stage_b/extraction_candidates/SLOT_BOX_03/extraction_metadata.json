@@ -1,0 +1,32 @@
+{
+  "candidate_source_id": "CAND-005",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extracted_at_utc": "2026-10-20T08:00:00Z",
+  "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+  "extractor_script": "src/stage_b_candidate_pipeline.py",
+  "extractor_script_sha256": "e20b33d04504aa10350f26e3eece856d2a86eae3d640eec28968dfea944b8a3c",
+  "extractor_version": "2.0.0",
+  "generated_artifact_hashes": {
+    "candidate_contract.json": "9754feb5f3df7518202cdb16e66c02ea19c7c5e66fcc718244ab62a43b8bf45d",
+    "candidate_validation_report.md": "1a74122e7aa9be23660e7389b92bd43fd5b7ea52ea1729aa32d557df58057de2",
+    "difference_register.json": "68b7ac58d75547b2817de9661e3d1d61a5c7d3c80a4bf690f7f6afc802926696",
+    "feature_inventory.json": "1bcfff8e0bc1f25c1d6e3e14c79df1e0ea6815bd6d9c81c871c76e156bf739be",
+    "field_lineage.jsonl": "8e288308669fdcd7c60e4e7a1c0213d992fccf2fb857444bddb1f0c84e25adb6",
+    "review_packet.md": "102daa4c8d37b56b75c39e3b9cc12f5320b4217a4c0d0960b0b20c37a642bdc4",
+    "serialization_characterization.json": "a38a48d74fcb8d393c18641de69ce1aa99136838e53b520f97621d0ba3e5c30a"
+  },
+  "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+  "immutable_source_pin": {
+    "blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+    "file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4"
+  },
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "raw_source_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+  "raw_source_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+  "raw_source_path": "data_stage_b/raw/CAND-005/e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+  "slot_id": "SLOT_BOX_03",
+  "source_operation_pointer": "#/paths/~1users/post",
+  "support_registry_hash": "65c8ad76a778c7c0f6fd87e608f9806706c19743147684b8738f9a482538ceef",
+  "wrapper_policy_identifier": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

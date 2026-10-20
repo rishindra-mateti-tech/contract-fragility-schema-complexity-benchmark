@@ -1,0 +1,32 @@
+{
+  "candidate_source_id": "CAND-004",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extracted_at_utc": "2026-10-20T08:00:00Z",
+  "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+  "extractor_script": "src/stage_b_candidate_pipeline.py",
+  "extractor_script_sha256": "e20b33d04504aa10350f26e3eece856d2a86eae3d640eec28968dfea944b8a3c",
+  "extractor_version": "2.0.0",
+  "generated_artifact_hashes": {
+    "candidate_contract.json": "d181c6508995aba153687cff7f46cfe6c3472f966bbdb776fbbf50df0454aade",
+    "candidate_validation_report.md": "2d1bb4ca39b55eaa7a7c1c92dfefef73681f60af99c173f402be7b90a2304b5c",
+    "difference_register.json": "d3e7510a476b5115e785b8420e113bee27b5c76618b940673782affc06792a9c",
+    "feature_inventory.json": "f00e282b8b73f741df173a78d02e18baafb61041f3461a417203fc82b8075cd7",
+    "field_lineage.jsonl": "9ec3c7a41d6742c2e3be88b128147a42f6e61be548907123140b56222a9c3fe3",
+    "review_packet.md": "e0f794f0104c2062fe51e7f1ef59a48e5258d05e7283afac0edb2cd0d95b873f",
+    "serialization_characterization.json": "6a0f0d8125adfe2167302f195acc499c4ee28e93caf30a70e1dea616dfc0bd1a"
+  },
+  "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+  "immutable_source_pin": {
+    "blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+    "file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339"
+  },
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "raw_source_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+  "raw_source_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+  "raw_source_path": "data_stage_b/raw/CAND-004/5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+  "slot_id": "SLOT_TWILIO_02",
+  "source_operation_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post",
+  "support_registry_hash": "65c8ad76a778c7c0f6fd87e608f9806706c19743147684b8738f9a482538ceef",
+  "wrapper_policy_identifier": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

@@ -1,0 +1,32 @@
+{
+  "candidate_source_id": "CAND-001",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extracted_at_utc": "2026-10-20T08:00:00Z",
+  "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+  "extractor_script": "src/stage_b_candidate_pipeline.py",
+  "extractor_script_sha256": "e20b33d04504aa10350f26e3eece856d2a86eae3d640eec28968dfea944b8a3c",
+  "extractor_version": "2.0.0",
+  "generated_artifact_hashes": {
+    "candidate_contract.json": "3973071573736aa3213c07bb421b5effb37c38b975d2ef0d774fcc1478a9be36",
+    "candidate_validation_report.md": "27865d2f93a3811ece46375125eefa6f6e26826f0653434c981fe2cbbb9fdeab",
+    "difference_register.json": "f9eba995ef85d4f0fdfca896ae6e6719bc5289e912d8dddc2cfd34fd4cd93202",
+    "feature_inventory.json": "622c9ee52f60ea1125c7dbb35ae063069391f6eb76c5ddff64dcef7639c4e834",
+    "field_lineage.jsonl": "4866f9f42d388146e1a4c294a77e01c0fe30a52cb099e8310213c4e605d55b3d",
+    "review_packet.md": "cd0028b33d95425712dfc02663a16e07b3fd0172c4ef037a784b1326c8638f25",
+    "serialization_characterization.json": "58e15d43ed8d5017463fe8524ee025c327971ed38d2c5682fe42288fab12e6da"
+  },
+  "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+  "immutable_source_pin": {
+    "blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+    "file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194"
+  },
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "raw_source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+  "raw_source_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+  "raw_source_path": "data_stage_b/raw/CAND-001/a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+  "slot_id": "SLOT_GITHUB_02",
+  "source_operation_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+  "support_registry_hash": "65c8ad76a778c7c0f6fd87e608f9806706c19743147684b8738f9a482538ceef",
+  "wrapper_policy_identifier": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

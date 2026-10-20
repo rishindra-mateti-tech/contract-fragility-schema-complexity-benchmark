@@ -1,0 +1,32 @@
+{
+  "candidate_source_id": "CAND-004",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extracted_at_utc": "2026-10-20T08:00:00Z",
+  "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+  "extractor_script": "src/stage_b_candidate_pipeline.py",
+  "extractor_script_sha256": "e20b33d04504aa10350f26e3eece856d2a86eae3d640eec28968dfea944b8a3c",
+  "extractor_version": "2.0.0",
+  "generated_artifact_hashes": {
+    "candidate_contract.json": "4f8b03812bccc53d6b81bc77bf5c2b6d69bc0a8d3aa7f5e6effacc7d681adc23",
+    "candidate_validation_report.md": "fca8d13c95d04adbe8bd10d04afd412d6b71fa41120f7bbf2a9e2cc324c5e69d",
+    "difference_register.json": "98e7f6b6fdb2bcea7693a70027e06cb5cdfc85182a3a34dc2279ac94a68f749c",
+    "feature_inventory.json": "f00e282b8b73f741df173a78d02e18baafb61041f3461a417203fc82b8075cd7",
+    "field_lineage.jsonl": "d8a5b7132092c650b16fa34c3b80ba528581a2cd095b64ca8ac02823ba172e3a",
+    "review_packet.md": "5494a83fa1981549c1ae9de0026013f59dc9963575f5fb2d64a4bb59762fdb9b",
+    "serialization_characterization.json": "74bcbb50d4b4e625f1f1c1af2e9da4a247dd0860100de151b29bdc52c7d4876a"
+  },
+  "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+  "immutable_source_pin": {
+    "blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+    "file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339"
+  },
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "raw_source_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+  "raw_source_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+  "raw_source_path": "data_stage_b/raw/CAND-004/5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+  "slot_id": "SLOT_TWILIO_01",
+  "source_operation_pointer": "#/paths/~12010-04-01~1Accounts~1{Sid}.json/post",
+  "support_registry_hash": "65c8ad76a778c7c0f6fd87e608f9806706c19743147684b8738f9a482538ceef",
+  "wrapper_policy_identifier": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

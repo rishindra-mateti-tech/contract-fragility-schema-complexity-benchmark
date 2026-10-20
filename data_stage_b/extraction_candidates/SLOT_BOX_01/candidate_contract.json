@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Create folder",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "folder_upload_email": {
+          "allOf": [
+            {
+              "description": "The Write Folder Upload Email object.",
+              "properties": {
+                "access": {
+                  "description": "When this parameter has been set, users can email files\nto the email address that has been automatically\ncreated for this folder.\n\nTo create an email address, set this property either when\ncreating or updating the folder.\n\nWhen set to `collaborators`, only emails from registered email\naddresses for collaborators will be accepted. This includes\nany email aliases a user might have registered.\n\nWhen set to `open` it will accept emails from any email\naddress.",
+                  "enum": [
+                    "open",
+                    "collaborators"
+                  ],
+                  "example": "open",
+                  "nullable": false,
+                  "type": "string"
+                }
+              },
+              "title": "Folder upload email",
+              "type": "object"
+            },
+            {
+              "description": "Setting this object enables the upload email address.\n\nThis email address can be used by users to directly\nupload files directly to the folder via email."
+            }
+          ]
+        },
+        "name": {
+          "description": "The name for the new folder.\n\nThe following restrictions to folder names apply: names containing\nnon-printable ASCII characters, forward and backward slashes\n(`/`, `\\`), names with trailing spaces, and names `.` and `..` are\nnot allowed.\n\nFolder names must be unique within their parent folder. The name check is case-insensitive,\nso a folder named `New Folder` cannot be created in a parent folder that already contains\na folder named `new folder`.",
+          "example": "New Folder",
+          "maxLength": 255,
+          "minLength": 1,
+          "type": "string"
+        },
+        "parent": {
+          "description": "The parent folder to create the new folder within.",
+          "properties": {
+            "id": {
+              "description": "The ID of parent folder.",
+              "example": "0",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "sync_state": {
+          "description": "Specifies whether a folder should be synced to a\nuser's device or not. This is used by Box Sync\n(discontinued) and is not used by Box Drive.",
+          "enum": [
+            "synced",
+            "not_synced",
+            "partially_synced"
+          ],
+          "example": "synced",
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "parent"
+      ],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body"
+  ],
+  "title": "post_folders",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "admission_decision": "ADMITTED_PENDING_EXTRACTION",
+    "candidate_source_id": "CAND-005",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "endpoint": "/folders",
+    "extraction_rule_version": "2.0.0",
+    "extraction_timestamp": "2026-10-20T08:00:00Z",
+    "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+    "extractor_version": "2.0.0",
+    "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+    "http_method": "POST",
+    "independent_validation_claimed": false,
+    "operation_id": "post_folders",
+    "request_content_type": "application/json",
+    "semantic_validation_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "serialization_metadata": {
+      "content_type": "application/json",
+      "encoding": null,
+      "encoding_metadata_present": false,
+      "serialization_strategy": "STANDARD_JSON_BODY"
+    },
+    "slot_id": "SLOT_BOX_01",
+    "source_cluster_id": "CLUSTER_BOX",
+    "source_file_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+    "source_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+    "source_spec_pointer": "#/paths/~1folders/post",
+    "source_structural_metrics": {
+      "raw_nesting_depth": 3,
+      "raw_parameter_count": 5
+    },
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "target_domain": "Data/Identity",
+    "wrapped_contract_structural_metrics": {
+      "surface_containers_present": [
+        "body",
+        "header",
+        "path",
+        "query"
+      ],
+      "surface_containers_required": [
+        "body"
+      ],
+      "total_property_count": 5,
+      "wrapped_nesting_depth": 3
+    },
+    "wrapper_normalization_policy": {
+      "additional_properties_closed": true,
+      "is_strictly_lossless": false,
+      "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. This normalization is explicitly classified as a non-lossless wrapper policy."
+    }
+  }
+}

@@ -632,12 +632,14 @@ class GenericCandidateExtractor:
         raw_body_schema = content_item.get("schema", {})
         encoding_obj = content_item.get("encoding", {})
 
+        ref_ptr = None
         if isinstance(raw_body_schema, dict) and "$ref" in raw_body_schema:
             ref_ptr = raw_body_schema["$ref"]
             raw_body_schema = resolve_json_pointer(raw_doc, ref_ptr)
 
         encoded_ct = target_ct.replace("~", "~0").replace("/", "~1")
-        raw_body_schema_pointer = f"{source_pointer}/requestBody/content/{encoded_ct}/schema"
+        content_schema_pointer = f"{source_pointer}/requestBody/content/{encoded_ct}/schema"
+        raw_body_schema_pointer = ref_ptr if ref_ptr else content_schema_pointer
 
         raw_body_props = raw_body_schema.get("properties", {}) if isinstance(raw_body_schema, dict) else {}
         raw_body_req = raw_body_schema.get("required", []) if isinstance(raw_body_schema, dict) else []
@@ -735,9 +737,25 @@ class GenericCandidateExtractor:
         for surface_name in ["body", "header", "path", "query"]:
             raw_pointers = []
             if surface_name == "path":
-                raw_pointers = [f"{source_pointer}/parameters"]
+                if "parameters" in op_node and any(p.get("in") == "path" for p in raw_params if isinstance(p, dict)):
+                    raw_pointers = [f"{source_pointer}/parameters"]
+                else:
+                    raw_pointers = [source_pointer]
+            elif surface_name == "query":
+                if "parameters" in op_node and any(p.get("in") == "query" for p in raw_params if isinstance(p, dict)):
+                    raw_pointers = [f"{source_pointer}/parameters"]
+                else:
+                    raw_pointers = [source_pointer]
+            elif surface_name == "header":
+                if "parameters" in op_node and any(p.get("in") == "header" for p in raw_params if isinstance(p, dict)):
+                    raw_pointers = [f"{source_pointer}/parameters"]
+                else:
+                    raw_pointers = [source_pointer]
             elif surface_name == "body":
-                raw_pointers = [f"{source_pointer}/requestBody"]
+                if "requestBody" in op_node:
+                    raw_pointers = [f"{source_pointer}/requestBody"]
+                else:
+                    raw_pointers = [source_pointer]
             else:
                 raw_pointers = [source_pointer]
 

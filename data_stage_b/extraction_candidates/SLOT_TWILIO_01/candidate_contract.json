@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Modify the properties of a given Account",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "FriendlyName": {
+          "description": "Update the human-readable description of this Account",
+          "type": "string"
+        },
+        "Status": {
+          "description": "The status of this account. Usually `active`, but can be `suspended` or `closed`.",
+          "enum": [
+            "active",
+            "suspended",
+            "closed"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {
+        "Sid": {
+          "description": "The Account Sid that uniquely identifies the account to update",
+          "maxLength": 34,
+          "minLength": 34,
+          "pattern": "^AC[0-9a-fA-F]{32}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Sid"
+      ],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "path"
+  ],
+  "title": "UpdateAccount",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "admission_decision": "ADMITTED_PENDING_EXTRACTION",
+    "candidate_source_id": "CAND-004",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "endpoint": "/2010-04-01/Accounts/{Sid}.json",
+    "extraction_rule_version": "2.0.0",
+    "extraction_timestamp": "2026-10-20T08:00:00Z",
+    "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+    "extractor_version": "2.0.0",
+    "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+    "http_method": "POST",
+    "independent_validation_claimed": false,
+    "operation_id": "UpdateAccount",
+    "request_content_type": "application/x-www-form-urlencoded",
+    "semantic_validation_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "serialization_metadata": {
+      "content_type": "application/x-www-form-urlencoded",
+      "encoding": null,
+      "encoding_metadata_present": false,
+      "serialization_strategy": "FORM_URLENCODED_DEEP_OBJECT"
+    },
+    "slot_id": "SLOT_TWILIO_01",
+    "source_cluster_id": "CLUSTER_TWILIO",
+    "source_file_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+    "source_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+    "source_spec_pointer": "#/paths/~12010-04-01~1Accounts~1{Sid}.json/post",
+    "source_structural_metrics": {
+      "raw_nesting_depth": 2,
+      "raw_parameter_count": 3
+    },
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "target_domain": "Logistics/Communications",
+    "wrapped_contract_structural_metrics": {
+      "surface_containers_present": [
+        "body",
+        "header",
+        "path",
+        "query"
+      ],
+      "surface_containers_required": [
+        "path"
+      ],
+      "total_property_count": 3,
+      "wrapped_nesting_depth": 2
+    },
+    "wrapper_normalization_policy": {
+      "additional_properties_closed": true,
+      "is_strictly_lossless": false,
+      "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. This normalization is explicitly classified as a non-lossless wrapper policy."
+    }
+  }
+}

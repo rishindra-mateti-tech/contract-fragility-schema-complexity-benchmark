@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Create a payout",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "description": "A positive integer in cents representing how much to pay out.",
+          "type": "integer"
+        },
+        "currency": {
+          "description": "Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).",
+          "format": "currency",
+          "type": "string"
+        },
+        "description": {
+          "description": "An arbitrary string attached to the object. Often useful for displaying to users.",
+          "maxLength": 5000,
+          "type": "string"
+        },
+        "destination": {
+          "description": "The ID of a bank account or a card to send the payout to. If you don't provide a destination, we use the default external account for the specified currency.",
+          "type": "string"
+        },
+        "expand": {
+          "description": "Specifies which fields in the response should be expanded.",
+          "items": {
+            "maxLength": 5000,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.",
+          "type": "object"
+        },
+        "method": {
+          "description": "The method used to send this payout, which is `standard` or `instant`. We support `instant` for payouts to debit cards and bank accounts in certain countries. Learn more about [bank support for Instant Payouts](https://stripe.com/docs/payouts/instant-payouts-banks).",
+          "enum": [
+            "instant",
+            "standard"
+          ],
+          "maxLength": 5000,
+          "type": "string",
+          "x-stripeBypassValidation": true
+        },
+        "payout_method": {
+          "description": "The ID of a v2 FinancialAccount to send funds to.",
+          "type": "string"
+        },
+        "source_type": {
+          "description": "The balance type of your Stripe balance to draw this payout from. Balances for different payment sources are kept separately. You can find the amounts with the Balances API. One of `bank_account`, `card`, or `fpx`.",
+          "enum": [
+            "bank_account",
+            "card",
+            "fpx"
+          ],
+          "maxLength": 5000,
+          "type": "string",
+          "x-stripeBypassValidation": true
+        },
+        "statement_descriptor": {
+          "description": "A string that displays on the recipient's bank or card statement (up to 22 characters). A `statement_descriptor` that's longer than 22 characters return an error. Most banks truncate this information and display it inconsistently. Some banks might not display it at all. For US ACH payouts, this maps to the ACH Company Entry Description field, which the NACHA standard limits to 10 characters. Stripe truncates descriptors longer than 10 characters for US ACH payouts.",
+          "maxLength": 22,
+          "type": "string",
+          "x-stripeBypassValidation": true
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "type": "object",
+      "x-openapi-encoding": {
+        "expand": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "metadata": {
+          "explode": true,
+          "style": "deepObject"
+        }
+      }
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body"
+  ],
+  "title": "PostPayouts",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "admission_decision": "ADMITTED_PENDING_EXTRACTION",
+    "candidate_source_id": "CAND-002",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "endpoint": "/v1/payouts",
+    "extraction_rule_version": "2.0.0",
+    "extraction_timestamp": "2026-10-20T08:00:00Z",
+    "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+    "extractor_version": "2.0.0",
+    "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
+    "http_method": "POST",
+    "independent_validation_claimed": false,
+    "operation_id": "PostPayouts",
+    "request_content_type": "application/x-www-form-urlencoded",
+    "semantic_validation_decision": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "serialization_metadata": {
+      "content_type": "application/x-www-form-urlencoded",
+      "encoding": {
+        "expand": {
+          "explode": true,
+          "style": "deepObject"
+        },
+        "metadata": {
+          "explode": true,
+          "style": "deepObject"
+        }
+      },
+      "encoding_metadata_present": true,
+      "serialization_strategy": "FORM_URLENCODED_DEEP_OBJECT"
+    },
+    "slot_id": "SLOT_STRIPE_01",
+    "source_cluster_id": "CLUSTER_STRIPE",
+    "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+    "source_file_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+    "source_spec_pointer": "#/paths/~1v1~1payouts/post",
+    "source_structural_metrics": {
+      "raw_nesting_depth": 3,
+      "raw_parameter_count": 10
+    },
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "target_domain": "Payments",
+    "wrapped_contract_structural_metrics": {
+      "surface_containers_present": [
+        "body",
+        "header",
+        "path",
+        "query"
+      ],
+      "surface_containers_required": [
+        "body"
+      ],
+      "total_property_count": 10,
+      "wrapped_nesting_depth": 3
+    },
+    "wrapper_normalization_policy": {
+      "additional_properties_closed": true,
+      "is_strictly_lossless": false,
+      "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "rationale": "Tool-calling parameter interfaces require closed object schemas (additionalProperties: false) across root and transport surface containers to prevent LLM argument hallucination and enforce strict argument validation. This normalization is explicitly classified as a non-lossless wrapper policy."
+    }
+  }
+}
