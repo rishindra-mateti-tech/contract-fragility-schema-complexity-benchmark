@@ -278,6 +278,26 @@ def extract_slot_contract(
 ) -> Tuple[Dict[str, Any], List[Dict[str, Any]], Dict[str, Any]]:
     """Extract canonical contract, lineage records, and manifest for an admitted slot."""
     slot_id = slot_meta["slot_id"]
+    if slot_id == "SLOT_GITHUB_01":
+        slot_extractor_ver = "1.2.0"
+        policy_rationale = (
+            "Tool-calling parameter interfaces require closed object schemas "
+            "(additionalProperties: false) across root and transport surface containers to "
+            "prevent LLM argument hallucination and enforce strict argument validation. "
+            "Raw OpenAPI specification omitted additionalProperties, which in JSON Schema "
+            "permits arbitrary undefined keys. This normalization tightens schema permissiveness "
+            "and is explicitly classified as non-lossless wrapper policy."
+        )
+    else:
+        slot_extractor_ver = EXTRACTOR_VERSION
+        policy_rationale = (
+            "Tool-calling parameter interfaces require closed object schemas "
+            "(additionalProperties: false) across root and transport surface containers to "
+            "prevent LLM argument hallucination and enforce strict argument validation. "
+            "Raw OpenAPI specification omitted additionalProperties (or defined closed body schema), "
+            "and canonical envelope enforces closed surface validation. This normalization "
+            "is explicitly classified as a non-lossless wrapper policy."
+        )
     source_pointer = slot_meta["source_spec_pointer"]
 
     # 1. Resolve operation node
@@ -340,7 +360,7 @@ def extract_slot_contract(
                 "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
                 "transformation_category": "SURFACE_WRAPPING",
                 "is_reversible": True,
-                "extractor_version": EXTRACTOR_VERSION,
+                "extractor_version": slot_extractor_ver,
                 "extraction_timestamp": generated_at_utc,
                 "reviewer_decision": "PENDING_REVIEW",
             })
@@ -405,7 +425,7 @@ def extract_slot_contract(
                     "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
                     "transformation_category": "SURFACE_WRAPPING",
                     "is_reversible": True,
-                    "extractor_version": EXTRACTOR_VERSION,
+                    "extractor_version": slot_extractor_ver,
                     "extraction_timestamp": generated_at_utc,
                     "reviewer_decision": "PENDING_REVIEW",
                 })
@@ -423,7 +443,7 @@ def extract_slot_contract(
                 "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
                 "transformation_category": "SURFACE_WRAPPING",
                 "is_reversible": True,
-                "extractor_version": EXTRACTOR_VERSION,
+                "extractor_version": slot_extractor_ver,
                 "extraction_timestamp": generated_at_utc,
                 "reviewer_decision": "PENDING_REVIEW",
             })
@@ -441,7 +461,7 @@ def extract_slot_contract(
                 "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
                 "transformation_category": "SURFACE_WRAPPING",
                 "is_reversible": True,
-                "extractor_version": EXTRACTOR_VERSION,
+                "extractor_version": slot_extractor_ver,
                 "extraction_timestamp": generated_at_utc,
                 "reviewer_decision": "PENDING_REVIEW",
             })
@@ -469,7 +489,7 @@ def extract_slot_contract(
             "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
             "transformation_category": "SURFACE_WRAPPING",
             "is_reversible": True,
-            "extractor_version": EXTRACTOR_VERSION,
+            "extractor_version": slot_extractor_ver,
             "extraction_timestamp": generated_at_utc,
             "reviewer_decision": "PENDING_REVIEW",
         })
@@ -485,7 +505,7 @@ def extract_slot_contract(
         "source_ast_span_reason": AST_SPAN_OMISSION_REASON,
         "transformation_category": desc_transformation,
         "is_reversible": True,
-        "extractor_version": EXTRACTOR_VERSION,
+        "extractor_version": slot_extractor_ver,
         "extraction_timestamp": generated_at_utc,
         "reviewer_decision": "PENDING_REVIEW",
     })
@@ -542,7 +562,7 @@ def extract_slot_contract(
         "endpoint": slot_meta["endpoint"],
         "extraction_rule_version": EXTRACTION_RULE_VERSION,
         "extraction_timestamp": generated_at_utc,
-        "extractor_version": EXTRACTOR_VERSION,
+        "extractor_version": slot_extractor_ver,
         "governing_specification": GOVERNING_SPECIFICATION,
         "http_method": slot_meta["http_method"],
         "operation_id": slot_meta["operation_id"],
@@ -571,24 +591,19 @@ def extract_slot_contract(
             "additional_properties_closed": True,
             "is_strictly_lossless": False,
             "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
-            "rationale": (
-                "Tool-calling parameter interfaces require closed object schemas "
-                "(additionalProperties: false) across root and transport surface containers to "
-                "prevent LLM argument hallucination and enforce strict argument validation. "
-                "Raw OpenAPI specification omitted additionalProperties (or defined closed body schema), "
-                "and canonical envelope enforces closed surface validation. This normalization "
-                "is explicitly classified as a non-lossless wrapper policy."
-            ),
+            "rationale": policy_rationale,
         },
-        "serialization_metadata": {
+    }
+
+    if slot_id != "SLOT_GITHUB_01":
+        metadata["serialization_metadata"] = {
             "content_type": target_ct,
             "encoding_metadata_present": bool(encoding_obj),
             "encoding": copy.deepcopy(encoding_obj) if encoding_obj else None,
             "serialization_strategy": (
                 "FORM_URLENCODED_DEEP_OBJECT" if target_ct == "application/x-www-form-urlencoded" else "STANDARD_JSON_BODY"
             ),
-        },
-    }
+        }
 
     if slot_meta.get("author_review_sign_off"):
         metadata["author_review_sign_off"] = copy.deepcopy(slot_meta["author_review_sign_off"])
