@@ -103,9 +103,8 @@ HIGH_RISK_TERMS = [
         "risk_level": "CRITICAL",
         "scoping_patterns": [
             r"\b(do not|does not|not|never|neither|nor|without|zero|0|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b",
-            r"\b(author review vs|boundary|author manual review|not claim|cannot claim|claimed\s*[:=]\s*`?false`?)\b",
-            r"\"independent (?:validation|review)\"",
-            r"'independent (?:validation|review)'",
+            r"\b(author review vs|boundary|author manual review|not claim|cannot claim|claimed\s*[:=]\s*`?false`?|disqualified|mislabeled|panels?)\b",
+            r"(`INDEPENDENT_REVIEW`|\"independent (?:validation|review)\"|'independent (?:validation|review)')",
         ],
     },
     {
