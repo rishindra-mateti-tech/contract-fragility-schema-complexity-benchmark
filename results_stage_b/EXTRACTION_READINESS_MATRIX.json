@@ -1,0 +1,2982 @@
+{
+  "operations": [
+    {
+      "blob_sha_verified": true,
+      "blockers": [],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/repos/{owner}/{repo}/statuses/{sha}",
+      "extractor_support": {
+        "supported_by_current_extractor": true,
+        "unsupported_constructs": []
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 2,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "repos/create-commit-status",
+      "raw_source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-001/a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "raw_source_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+      "readiness_state": "READY_WITH_EXPLICIT_WRAPPER_POLICY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 4,
+        "enums_count": 1,
+        "map_count": 0,
+        "max_nesting_depth": 2,
+        "object_count": 1,
+        "optional_field_ratio": 0.75,
+        "required_field_count": 1,
+        "total_property_count": 4
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_GITHUB_02",
+      "source_cluster_id": "CLUSTER_GITHUB",
+      "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 3,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/user/repos",
+      "extractor_support": {
+        "supported_by_current_extractor": true,
+        "unsupported_constructs": []
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "repos/create-for-authenticated-user",
+      "raw_source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-001/a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "raw_source_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+      "readiness_state": "READY_WITH_EXPLICIT_WRAPPER_POLICY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 10,
+        "enums_count": 4,
+        "map_count": 0,
+        "max_nesting_depth": 2,
+        "object_count": 1,
+        "optional_field_ratio": 0.9565,
+        "required_field_count": 1,
+        "total_property_count": 23
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_GITHUB_03",
+      "source_cluster_id": "CLUSTER_GITHUB",
+      "source_spec_pointer": "#/paths/~1user~1repos/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares polymorphic unions (oneOf=0, anyOf=2, discriminator=0).",
+        "Candidate declared as faithful union under Amendment 003; requires ratified multi-schema extraction protocol."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 2,
+        "composition_details": [
+          "anyOf(2) at #/paths/~1v1~1refunds/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/metadata"
+        ],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v1/refunds",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "POLYMORPHIC_OBJECT_UNION_UNSUPPORTED_IN_CANONICAL_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "PostRefunds",
+      "raw_source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "raw_source_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "readiness_state": "REQUIRES_PROTOCOL_AMENDMENT",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 1,
+        "enum_values_count": 5,
+        "enums_count": 3,
+        "map_count": 1,
+        "max_nesting_depth": 4,
+        "object_count": 2,
+        "optional_field_ratio": 1.0,
+        "required_field_count": 0,
+        "total_property_count": 12
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [
+          "expand",
+          "metadata"
+        ],
+        "explode_params": [
+          "expand",
+          "metadata"
+        ],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {
+          "expand": "deepObject",
+          "metadata": "deepObject"
+        }
+      },
+      "slot_id": "SLOT_STRIPE_03",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_spec_pointer": "#/paths/~1v1~1refunds/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/floating_ips",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "floating_ips_create",
+      "raw_source_blob_sha": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95",
+      "raw_source_file_path": "data_stage_b/raw/CAND-003/a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+      "raw_source_sha256": "e18ad525a336da3dd83776659d5b574e30748b1d59efc53a42c86115b290a76a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 0,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 0,
+        "total_property_count": 0
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_DO_01",
+      "source_cluster_id": "CLUSTER_DIGITALOCEAN",
+      "source_spec_pointer": "#/paths/~1v2~1floating_ips/post",
+      "surface_counts": {
+        "body_count": 0,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/domains",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "domains_create",
+      "raw_source_blob_sha": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95",
+      "raw_source_file_path": "data_stage_b/raw/CAND-003/a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+      "raw_source_sha256": "e18ad525a336da3dd83776659d5b574e30748b1d59efc53a42c86115b290a76a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 0,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 0,
+        "total_property_count": 0
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_DO_02",
+      "source_cluster_id": "CLUSTER_DIGITALOCEAN",
+      "source_spec_pointer": "#/paths/~1v2~1domains/post",
+      "surface_counts": {
+        "body_count": 0,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/droplets",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "droplets_create",
+      "raw_source_blob_sha": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95",
+      "raw_source_file_path": "data_stage_b/raw/CAND-003/a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+      "raw_source_sha256": "e18ad525a336da3dd83776659d5b574e30748b1d59efc53a42c86115b290a76a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 0,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 0,
+        "total_property_count": 0
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_DO_03",
+      "source_cluster_id": "CLUSTER_DIGITALOCEAN",
+      "source_spec_pointer": "#/paths/~1v2~1droplets/post",
+      "surface_counts": {
+        "body_count": 0,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/2010-04-01/Accounts/{Sid}.json",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "UpdateAccount",
+      "raw_source_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+      "raw_source_file_path": "data_stage_b/raw/CAND-004/5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+      "raw_source_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 3,
+        "enums_count": 1,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 1,
+        "optional_field_ratio": 1.0,
+        "required_field_count": 0,
+        "total_property_count": 2
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_TWILIO_01",
+      "source_cluster_id": "CLUSTER_TWILIO",
+      "source_spec_pointer": "#/paths/~12010-04-01~1Accounts~1{Sid}.json/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 1,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/2010-04-01/Accounts/{AccountSid}/Messages.json",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "CreateMessage",
+      "raw_source_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+      "raw_source_file_path": "data_stage_b/raw/CAND-004/5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+      "raw_source_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 5,
+        "ref_details": [],
+        "total_ref_count": 5,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 2,
+        "enum_values_count": 8,
+        "enums_count": 5,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 1,
+        "optional_field_ratio": 0.9615,
+        "required_field_count": 1,
+        "total_property_count": 26
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_TWILIO_02",
+      "source_cluster_id": "CLUSTER_TWILIO",
+      "source_spec_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 1,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/2010-04-01/Accounts/{AccountSid}/Calls.json",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "CreateCall",
+      "raw_source_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+      "raw_source_file_path": "data_stage_b/raw/CAND-004/5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+      "raw_source_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 2,
+        "enum_values_count": 10,
+        "enums_count": 5,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 1,
+        "optional_field_ratio": 0.9474,
+        "required_field_count": 2,
+        "total_property_count": 38
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_TWILIO_03",
+      "source_cluster_id": "CLUSTER_TWILIO",
+      "source_spec_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 1,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares 1 query parameters; extractor currently produces empty query containers."
+      ],
+      "composition_metrics": {
+        "allOf_count": 2,
+        "anyOf_count": 0,
+        "composition_details": [
+          "allOf(2) at #/paths/~1folders/post/requestBody/content/application~1json/schema/properties/folder_upload_email"
+        ],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/folders",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "QUERY_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "post_folders",
+      "raw_source_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+      "raw_source_file_path": "data_stage_b/raw/CAND-005/e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+      "raw_source_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 1,
+        "enum_values_count": 5,
+        "enums_count": 2,
+        "map_count": 0,
+        "max_nesting_depth": 4,
+        "object_count": 3,
+        "optional_field_ratio": 0.5,
+        "required_field_count": 3,
+        "total_property_count": 6
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_BOX_01",
+      "source_cluster_id": "CLUSTER_BOX",
+      "source_spec_pointer": "#/paths/~1folders/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 1
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares 2 query parameters; extractor currently produces empty query containers."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/collaborations",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "QUERY_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "post_collaborations",
+      "raw_source_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+      "raw_source_file_path": "data_stage_b/raw/CAND-005/e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+      "raw_source_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 1,
+        "enum_values_count": 11,
+        "enums_count": 3,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 3,
+        "optional_field_ratio": 0.6364,
+        "required_field_count": 4,
+        "total_property_count": 11
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_BOX_02",
+      "source_cluster_id": "CLUSTER_BOX",
+      "source_spec_pointer": "#/paths/~1collaborations/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 2
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares 1 query parameters; extractor currently produces empty query containers."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/users",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "QUERY_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "post_users",
+      "raw_source_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+      "raw_source_file_path": "data_stage_b/raw/CAND-005/e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+      "raw_source_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 2,
+        "enum_values_count": 7,
+        "enums_count": 3,
+        "map_count": 0,
+        "max_nesting_depth": 5,
+        "object_count": 2,
+        "optional_field_ratio": 0.9524,
+        "required_field_count": 1,
+        "total_property_count": 21
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_BOX_03",
+      "source_cluster_id": "CLUSTER_BOX",
+      "source_spec_pointer": "#/paths/~1users/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 1
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares 1 header parameters; extractor currently produces empty header containers.",
+        "Operation declares Swagger 2.0 in:formData parameters; extractor currently requires requestBody.content."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/conversations.create",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "HEADER_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED",
+          "SWAGGER_2_FORMDATA_PARAMETER_SYNTAX_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "conversations.create",
+      "raw_source_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+      "raw_source_file_path": "data_stage_b/raw/CAND-006/f7b1affd1fb34f9473cd87980428883019b29c07.json",
+      "raw_source_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json",
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 0,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 0,
+        "total_property_count": 0
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": true,
+        "is_form_encoded": true,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_SLACK_01",
+      "source_cluster_id": "CLUSTER_SLACK",
+      "source_spec_pointer": "#/paths/~1conversations.create/post",
+      "surface_counts": {
+        "body_count": 0,
+        "formData_count": 2,
+        "header_count": 1,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares 1 header parameters; extractor currently produces empty header containers.",
+        "Operation declares Swagger 2.0 in:formData parameters; extractor currently requires requestBody.content."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/users.profile.set",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "HEADER_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED",
+          "SWAGGER_2_FORMDATA_PARAMETER_SYNTAX_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "users.profile.set",
+      "raw_source_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+      "raw_source_file_path": "data_stage_b/raw/CAND-006/f7b1affd1fb34f9473cd87980428883019b29c07.json",
+      "raw_source_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json",
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 0,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 0,
+        "total_property_count": 0
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": true,
+        "is_form_encoded": true,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_SLACK_02",
+      "source_cluster_id": "CLUSTER_SLACK",
+      "source_spec_pointer": "#/paths/~1users.profile.set/post",
+      "surface_counts": {
+        "body_count": 0,
+        "formData_count": 4,
+        "header_count": 1,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares 1 header parameters; extractor currently produces empty header containers.",
+        "Operation declares Swagger 2.0 in:formData parameters; extractor currently requires requestBody.content."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/reminders.add",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "HEADER_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED",
+          "SWAGGER_2_FORMDATA_PARAMETER_SYNTAX_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "reminders.add",
+      "raw_source_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+      "raw_source_file_path": "data_stage_b/raw/CAND-006/f7b1affd1fb34f9473cd87980428883019b29c07.json",
+      "raw_source_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json",
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 0,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 0,
+        "total_property_count": 0
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": true,
+        "is_form_encoded": true,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_SLACK_03",
+      "source_cluster_id": "CLUSTER_SLACK",
+      "source_spec_pointer": "#/paths/~1reminders.add/post",
+      "surface_counts": {
+        "body_count": 0,
+        "formData_count": 3,
+        "header_count": 1,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Source file is code (.py); current extractor script only traverses OpenAPI/Swagger specifications, not Python/TypeScript ASTs."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "tools/call:read_query",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "MCP_CODEBASE_AST_EXTRACTION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "RPC_TOOL",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "read_query",
+      "raw_source_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
+      "raw_source_file_path": "data_stage_b/raw/CAND-009/1b97a6a4903bd8961941cdff43df3b059e610e5f.py",
+      "raw_source_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 1,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 1,
+        "total_property_count": 1
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_MCP_SQLITE_01",
+      "source_cluster_id": "CLUSTER_MCP_SQLITE",
+      "source_spec_pointer": "server.py:list_tools:read-query",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Source file is code (.py); current extractor script only traverses OpenAPI/Swagger specifications, not Python/TypeScript ASTs."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "tools/call:describe_table",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "MCP_CODEBASE_AST_EXTRACTION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "RPC_TOOL",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "describe_table",
+      "raw_source_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
+      "raw_source_file_path": "data_stage_b/raw/CAND-009/1b97a6a4903bd8961941cdff43df3b059e610e5f.py",
+      "raw_source_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 1,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 1,
+        "total_property_count": 1
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_MCP_SQLITE_02",
+      "source_cluster_id": "CLUSTER_MCP_SQLITE",
+      "source_spec_pointer": "server.py:list_tools:describe-table",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Source file is code (.py); current extractor script only traverses OpenAPI/Swagger specifications, not Python/TypeScript ASTs."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "tools/call:write_query",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "MCP_CODEBASE_AST_EXTRACTION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "RPC_TOOL",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "write_query",
+      "raw_source_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
+      "raw_source_file_path": "data_stage_b/raw/CAND-009/1b97a6a4903bd8961941cdff43df3b059e610e5f.py",
+      "raw_source_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 1,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 1,
+        "total_property_count": 1
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_MCP_SQLITE_03",
+      "source_cluster_id": "CLUSTER_MCP_SQLITE",
+      "source_spec_pointer": "server.py:list_tools:write-query",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Source file is code (.ts); current extractor script only traverses OpenAPI/Swagger specifications, not Python/TypeScript ASTs."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "tools/call:search_repositories",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "MCP_CODEBASE_AST_EXTRACTION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "RPC_TOOL",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "search_repositories",
+      "raw_source_blob_sha": "0676a34c85537e610f911fbd73a5a079f38be18e",
+      "raw_source_file_path": "data_stage_b/raw/CAND-010/0676a34c85537e610f911fbd73a5a079f38be18e.ts",
+      "raw_source_sha256": "bb964ea5a47c00205805317a5a8066a955c59f500073a7c2cf0c2b4020ddeb3a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 1,
+        "optional_field_ratio": 0.6667,
+        "required_field_count": 1,
+        "total_property_count": 3
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_MCP_GITHUB_01",
+      "source_cluster_id": "CLUSTER_MCP_GITHUB",
+      "source_spec_pointer": "src/github/index.ts:search_repositories",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Source file is code (.ts); current extractor script only traverses OpenAPI/Swagger specifications, not Python/TypeScript ASTs."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "tools/call:create_issue",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "MCP_CODEBASE_AST_EXTRACTION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "RPC_TOOL",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "create_issue",
+      "raw_source_blob_sha": "0676a34c85537e610f911fbd73a5a079f38be18e",
+      "raw_source_file_path": "data_stage_b/raw/CAND-010/0676a34c85537e610f911fbd73a5a079f38be18e.ts",
+      "raw_source_sha256": "bb964ea5a47c00205805317a5a8066a955c59f500073a7c2cf0c2b4020ddeb3a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 2,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 2,
+        "object_count": 1,
+        "optional_field_ratio": 0.5714,
+        "required_field_count": 3,
+        "total_property_count": 7
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_MCP_GITHUB_02",
+      "source_cluster_id": "CLUSTER_MCP_GITHUB",
+      "source_spec_pointer": "src/github/index.ts:create_issue",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Source file is code (.ts); current extractor script only traverses OpenAPI/Swagger specifications, not Python/TypeScript ASTs."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "tools/call:create_or_update_file",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "MCP_CODEBASE_AST_EXTRACTION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "RPC_TOOL",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "create_or_update_file",
+      "raw_source_blob_sha": "0676a34c85537e610f911fbd73a5a079f38be18e",
+      "raw_source_file_path": "data_stage_b/raw/CAND-010/0676a34c85537e610f911fbd73a5a079f38be18e.ts",
+      "raw_source_sha256": "bb964ea5a47c00205805317a5a8066a955c59f500073a7c2cf0c2b4020ddeb3a",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 1,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 5,
+        "total_property_count": 5
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_MCP_GITHUB_03",
+      "source_cluster_id": "CLUSTER_MCP_GITHUB",
+      "source_spec_pointer": "src/github/index.ts:create_or_update_file",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation defines 1 path-level parameter(s) on parent path item not inherited in operation parameters."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/platform/api/v1/accounts/{account_id}/account_users",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "PATH_LEVEL_PARAMETER_INHERITANCE_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "create-an-account-user",
+      "raw_source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+      "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "raw_source_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 1,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 2,
+        "total_property_count": 2
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CHATWOOT_02",
+      "source_cluster_id": "CLUSTER_CHATWOOT",
+      "source_spec_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation defines 2 path-level parameter(s) on parent path item not inherited in operation parameters."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/public/api/v1/inboxes/{inbox_identifier}/contacts/{contact_identifier}/conversations",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "PATH_LEVEL_PARAMETER_INHERITANCE_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "create-a-conversation",
+      "raw_source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+      "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "raw_source_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 2,
+        "optional_field_ratio": 1.0,
+        "required_field_count": 0,
+        "total_property_count": 1
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CHATWOOT_03",
+      "source_cluster_id": "CLUSTER_CHATWOOT",
+      "source_spec_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/bot/channel/webhook/endpoint",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "PUT",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "setWebhookEndpoint",
+      "raw_source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "raw_source_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 1,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 1,
+        "total_property_count": 1
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_LINE_02",
+      "source_cluster_id": "CLUSTER_LINE",
+      "source_spec_pointer": "#/paths/~1v2~1bot~1channel~1webhook~1endpoint/put",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/bot/message/markAsRead",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "markMessagesAsRead",
+      "raw_source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "raw_source_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 2,
+        "ref_details": [],
+        "total_ref_count": 2,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 5,
+        "object_count": 2,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 2,
+        "total_property_count": 2
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_LINE_03",
+      "source_cluster_id": "CLUSTER_LINE",
+      "source_spec_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/repos/{owner}/{repo}/pulls",
+      "extractor_support": {
+        "supported_by_current_extractor": true,
+        "unsupported_constructs": []
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "pulls/create",
+      "raw_source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-001/a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "raw_source_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+      "readiness_state": "READY_WITH_EXPLICIT_WRAPPER_POLICY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 2,
+        "object_count": 1,
+        "optional_field_ratio": 0.75,
+        "required_field_count": 2,
+        "total_property_count": 8
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_GITHUB_01",
+      "source_cluster_id": "CLUSTER_GITHUB",
+      "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 2,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v1/payouts",
+      "extractor_support": {
+        "supported_by_current_extractor": true,
+        "unsupported_constructs": []
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "PostPayouts",
+      "raw_source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "raw_source_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "readiness_state": "READY_WITH_EXPLICIT_WRAPPER_POLICY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 1,
+        "enum_values_count": 5,
+        "enums_count": 2,
+        "map_count": 1,
+        "max_nesting_depth": 3,
+        "object_count": 2,
+        "optional_field_ratio": 0.8,
+        "required_field_count": 2,
+        "total_property_count": 10
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [
+          "expand",
+          "metadata"
+        ],
+        "explode_params": [
+          "expand",
+          "metadata"
+        ],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {
+          "expand": "deepObject",
+          "metadata": "deepObject"
+        }
+      },
+      "slot_id": "SLOT_STRIPE_01",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_spec_pointer": "#/paths/~1v1~1payouts/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v1/shipping_rates",
+      "extractor_support": {
+        "supported_by_current_extractor": true,
+        "unsupported_constructs": []
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "PostShippingRates",
+      "raw_source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "raw_source_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "readiness_state": "READY_WITH_EXPLICIT_WRAPPER_POLICY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 1,
+        "enum_values_count": 17,
+        "enums_count": 5,
+        "map_count": 2,
+        "max_nesting_depth": 5,
+        "object_count": 8,
+        "optional_field_ratio": 0.5789,
+        "required_field_count": 8,
+        "total_property_count": 19
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [
+          "delivery_estimate",
+          "expand",
+          "fixed_amount",
+          "metadata"
+        ],
+        "explode_params": [
+          "delivery_estimate",
+          "expand",
+          "fixed_amount",
+          "metadata"
+        ],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {
+          "delivery_estimate": "deepObject",
+          "expand": "deepObject",
+          "fixed_amount": "deepObject",
+          "metadata": "deepObject"
+        }
+      },
+      "slot_id": "SLOT_STRIPE_02",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_spec_pointer": "#/paths/~1v1~1shipping_rates/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/api/v1/accounts/{account_id}/webhooks",
+      "extractor_support": {
+        "supported_by_current_extractor": true,
+        "unsupported_constructs": []
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "create-a-webhook",
+      "raw_source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+      "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "raw_source_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+      "readiness_state": "READY_WITH_EXPLICIT_WRAPPER_POLICY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 1,
+        "enum_values_count": 10,
+        "enums_count": 1,
+        "map_count": 0,
+        "max_nesting_depth": 4,
+        "object_count": 1,
+        "optional_field_ratio": 1.0,
+        "required_field_count": 0,
+        "total_property_count": 3
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CHATWOOT_01",
+      "source_cluster_id": "CLUSTER_CHATWOOT",
+      "source_spec_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 1,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/bot/chat/loading/start",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": true,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "showLoadingAnimation",
+      "raw_source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "raw_source_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+      "readiness_state": "REQUIRES_EXTRACTOR_CAPABILITY",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 1,
+        "optional_field_ratio": 0.5,
+        "required_field_count": 1,
+        "total_property_count": 2
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_LINE_01",
+      "source_cluster_id": "CLUSTER_LINE",
+      "source_spec_pointer": "#/paths/~1v2~1bot~1chat~1loading~1start/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares 1 header parameters; extractor currently produces empty header containers.",
+        "Operation declares Swagger 2.0 in:formData parameters; extractor currently requires requestBody.content."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/chat.postMessage",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "HEADER_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED",
+          "SWAGGER_2_FORMDATA_PARAMETER_SYNTAX_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": false,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "chat.postMessage",
+      "raw_source_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+      "raw_source_file_path": "data_stage_b/raw/CAND-006/f7b1affd1fb34f9473cd87980428883019b29c07.json",
+      "raw_source_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
+      "readiness_state": "EXCLUDED",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json",
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 1,
+        "object_count": 0,
+        "optional_field_ratio": 0.0,
+        "required_field_count": 0,
+        "total_property_count": 0
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": true,
+        "is_form_encoded": true,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CAND-006_chat.postMessage",
+      "source_cluster_id": "CLUSTER_SLACK",
+      "source_spec_pointer": "#/paths/~1chat.postMessage/post",
+      "surface_counts": {
+        "body_count": 0,
+        "formData_count": 15,
+        "header_count": 1,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration.",
+        "Operation declares 1 header parameters; extractor currently produces empty header containers.",
+        "Operation declares polymorphic unions (oneOf=0, anyOf=0, discriminator=2)."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [
+          "discriminator at #/paths/~1v2~1bot~1message~1push/post/requestBody/content/application~1json/schema->#/components/schemas/PushMessageRequest/properties/messages/items->#/components/schemas/Message",
+          "discriminator at #/paths/~1v2~1bot~1message~1push/post/requestBody/content/application~1json/schema->#/components/schemas/PushMessageRequest/properties/messages/items->#/components/schemas/Message/properties/quickReply->#/components/schemas/QuickReply/properties/items/items->#/components/schemas/QuickReplyItem/properties/action->#/components/schemas/Action"
+        ],
+        "discriminator_count": 2,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/bot/message/push",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR",
+          "HEADER_PARAMETER_SURFACE_EXTRACTION_UNSUPPORTED",
+          "POLYMORPHIC_OBJECT_UNION_UNSUPPORTED_IN_CANONICAL_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": false,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "pushMessage",
+      "raw_source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "raw_source_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+      "readiness_state": "EXCLUDED",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 7,
+        "ref_details": [],
+        "total_ref_count": 7,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 3,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 13,
+        "object_count": 6,
+        "optional_field_ratio": 0.8,
+        "required_field_count": 3,
+        "total_property_count": 15
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": true,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CAND-013_pushMessage",
+      "source_cluster_id": "CLUSTER_LINE",
+      "source_spec_pointer": "#/paths/~1v2~1bot~1message~1push/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 1,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Raw file is YAML (.yaml/.yml); current extractor script requires JSON parser integration.",
+        "Operation declares polymorphic unions (oneOf=0, anyOf=0, discriminator=2)."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [
+          "discriminator at #/paths/~1v2~1bot~1message~1reply/post/requestBody/content/application~1json/schema->#/components/schemas/ReplyMessageRequest/properties/messages/items->#/components/schemas/Message",
+          "discriminator at #/paths/~1v2~1bot~1message~1reply/post/requestBody/content/application~1json/schema->#/components/schemas/ReplyMessageRequest/properties/messages/items->#/components/schemas/Message/properties/quickReply->#/components/schemas/QuickReply/properties/items/items->#/components/schemas/QuickReplyItem/properties/action->#/components/schemas/Action"
+        ],
+        "discriminator_count": 2,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v2/bot/message/reply",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "YAML_RAW_SPECIFICATION_NOT_SUPPORTED_IN_EXTRACTOR",
+          "POLYMORPHIC_OBJECT_UNION_UNSUPPORTED_IN_CANONICAL_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": false,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "replyMessage",
+      "raw_source_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "raw_source_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+      "readiness_state": "EXCLUDED",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 7,
+        "ref_details": [],
+        "total_ref_count": 7,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 2,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 13,
+        "object_count": 6,
+        "optional_field_ratio": 0.7857,
+        "required_field_count": 3,
+        "total_property_count": 14
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CAND-013_replyMessage",
+      "source_cluster_id": "CLUSTER_LINE",
+      "source_spec_pointer": "#/paths/~1v2~1bot~1message~1reply/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation defines 1 path-level parameter(s) on parent path item not inherited in operation parameters."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/public/api/v1/inboxes/{inbox_identifier}/contacts",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "PATH_LEVEL_PARAMETER_INHERITANCE_UNSUPPORTED"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": false,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "create-a-contact",
+      "raw_source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+      "raw_source_file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "raw_source_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+      "readiness_state": "EXCLUDED",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 1,
+        "ref_details": [],
+        "total_ref_count": 1,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 0,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 3,
+        "object_count": 2,
+        "optional_field_ratio": 1.0,
+        "required_field_count": 0,
+        "total_property_count": 7
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CAND-011_create-a-contact",
+      "source_cluster_id": "CLUSTER_CHATWOOT",
+      "source_spec_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares polymorphic unions (oneOf=9, anyOf=0, discriminator=0)."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 0,
+        "composition_details": [
+          "oneOf(2) at #/paths/~1repos~1{owner}~1{repo}~1issues/post/requestBody/content/application~1json/schema/properties/title",
+          "oneOf(2) at #/paths/~1repos~1{owner}~1{repo}~1issues/post/requestBody/content/application~1json/schema/properties/milestone",
+          "oneOf(2) at #/paths/~1repos~1{owner}~1{repo}~1issues/post/requestBody/content/application~1json/schema/properties/labels/items",
+          "oneOf(3) at #/paths/~1repos~1{owner}~1{repo}~1issues/post/requestBody/content/application~1json/schema/properties/issue_field_values/items/properties/value"
+        ],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 9
+      },
+      "endpoint": "/repos/{owner}/{repo}/issues",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "POLYMORPHIC_OBJECT_UNION_UNSUPPORTED_IN_CANONICAL_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": false,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 5,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "issues/create",
+      "raw_source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+      "raw_source_file_path": "data_stage_b/raw/CAND-001/a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "raw_source_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+      "readiness_state": "EXCLUDED",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/json"
+      ],
+      "schema_metrics": {
+        "array_count": 4,
+        "enum_values_count": 0,
+        "enums_count": 0,
+        "map_count": 0,
+        "max_nesting_depth": 6,
+        "object_count": 3,
+        "optional_field_ratio": 0.8,
+        "required_field_count": 3,
+        "total_property_count": 15
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [],
+        "explode_params": [],
+        "headers_present": false,
+        "is_form_encoded": false,
+        "style_params": {}
+      },
+      "slot_id": "SLOT_CAND-001_issues/create",
+      "source_cluster_id": "CLUSTER_GITHUB",
+      "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1issues/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 2,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares polymorphic unions (oneOf=0, anyOf=16, discriminator=0)."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 16,
+        "composition_details": [
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/address",
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/business_name",
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/individual_name",
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/invoice_settings/properties/custom_fields",
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/invoice_settings/properties/rendering_options",
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/metadata",
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/shipping",
+          "anyOf(2) at #/paths/~1v1~1customers/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/tax/properties/ip_address"
+        ],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v1/customers",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "POLYMORPHIC_OBJECT_UNION_UNSUPPORTED_IN_CANONICAL_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": false,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "PostCustomers",
+      "raw_source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "raw_source_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "readiness_state": "EXCLUDED",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 4,
+        "enum_values_count": 137,
+        "enums_count": 13,
+        "map_count": 1,
+        "max_nesting_depth": 6,
+        "object_count": 12,
+        "optional_field_ratio": 0.8824,
+        "required_field_count": 6,
+        "total_property_count": 51
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [
+          "address",
+          "business_name",
+          "cash_balance",
+          "expand",
+          "individual_name",
+          "invoice_settings",
+          "metadata",
+          "preferred_locales",
+          "shipping",
+          "tax",
+          "tax_id_data"
+        ],
+        "explode_params": [
+          "address",
+          "business_name",
+          "cash_balance",
+          "expand",
+          "individual_name",
+          "invoice_settings",
+          "metadata",
+          "preferred_locales",
+          "shipping",
+          "tax",
+          "tax_id_data"
+        ],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {
+          "address": "deepObject",
+          "business_name": "deepObject",
+          "cash_balance": "deepObject",
+          "expand": "deepObject",
+          "individual_name": "deepObject",
+          "invoice_settings": "deepObject",
+          "metadata": "deepObject",
+          "preferred_locales": "deepObject",
+          "shipping": "deepObject",
+          "tax": "deepObject",
+          "tax_id_data": "deepObject"
+        }
+      },
+      "slot_id": "SLOT_CAND-002_PostCustomers",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_spec_pointer": "#/paths/~1v1~1customers/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    },
+    {
+      "blob_sha_verified": true,
+      "blockers": [
+        "Operation declares polymorphic unions (oneOf=0, anyOf=188, discriminator=0)."
+      ],
+      "composition_metrics": {
+        "allOf_count": 0,
+        "anyOf_count": 188,
+        "composition_details": [
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/amount_details/properties/discount_amount",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/amount_details/properties/line_items",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/amount_details/properties/shipping",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/amount_details/properties/shipping/anyOf/0/properties/amount",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/amount_details/properties/shipping/anyOf/0/properties/from_postal_code",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/amount_details/properties/shipping/anyOf/0/properties/to_postal_code",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/amount_details/properties/tax",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/hooks/properties/inputs/properties/tax/properties/calculation",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/mandate_data",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/off_session",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_details/properties/customer_reference",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_details/properties/order_reference",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_data/properties/billing_details/properties/address",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_data/properties/billing_details/properties/email",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_data/properties/billing_details/properties/name",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_data/properties/billing_details/properties/phone",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/acss_debit",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/acss_debit/anyOf/0/properties/mandate_options/properties/custom_mandate_url",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/affirm",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/afterpay_clearpay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/alipay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/alma",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/amazon_pay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/au_becs_debit",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/bacs_debit",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/bacs_debit/anyOf/0/properties/mandate_options/properties/reference_prefix",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/bancontact",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/billie",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/billie/anyOf/0/properties/company_details",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/billie/anyOf/0/properties/company_details/anyOf/0/properties/registered_address",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/bizum",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/blik",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/boleto",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/card",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/card/anyOf/0/properties/installments/properties/plan",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/card/anyOf/0/properties/statement_descriptor_suffix_kana",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/card/anyOf/0/properties/statement_descriptor_suffix_kanji",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/card_present",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/cashapp",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/crypto",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/customer_balance",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/eps",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/fpx",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/giropay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/grabpay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/ideal",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/interac_present",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/kakao_pay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/klarna",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/klarna/anyOf/0/properties/subscriptions",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/konbini",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/konbini/anyOf/0/properties/confirmation_number",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/konbini/anyOf/0/properties/expires_after_days",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/konbini/anyOf/0/properties/expires_at",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/konbini/anyOf/0/properties/product_description",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/kr_card",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/link",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/mb_way",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/mobilepay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/multibanco",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/naver_pay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/nz_bank_account",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/oxxo",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/p24",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/pay_by_bank",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/payco",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/paynow",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/paypal",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/paypay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/payto",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/payto/anyOf/0/properties/mandate_options/properties/amount",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/payto/anyOf/0/properties/mandate_options/properties/end_date",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/payto/anyOf/0/properties/mandate_options/properties/payments_per_period",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/pix",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/promptpay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/revolut_pay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/samsung_pay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/satispay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/scalapay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/sepa_debit",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/sepa_debit/anyOf/0/properties/mandate_options/properties/reference_prefix",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/sequra",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/sofort",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/sunbit",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/swish",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/swish/anyOf/0/properties/reference",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/twint",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/upi",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/us_bank_account",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/wechat_pay",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/payment_method_options/properties/zip",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/radar_options/properties/referrer",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/transfer_data/properties/metadata",
+          "anyOf(2) at #/paths/~1v1~1payment_intents/post/requestBody/content/application~1x-www-form-urlencoded/schema/properties/transfer_data/properties/payment_data/properties/metadata"
+        ],
+        "discriminator_count": 0,
+        "not_count": 0,
+        "oneOf_count": 0
+      },
+      "endpoint": "/v1/payment_intents",
+      "extractor_support": {
+        "supported_by_current_extractor": false,
+        "unsupported_constructs": [
+          "POLYMORPHIC_OBJECT_UNION_UNSUPPORTED_IN_CANONICAL_EXTRACTOR"
+        ]
+      },
+      "http_method": "POST",
+      "is_active_cohort": false,
+      "modifier_metrics": {
+        "deprecated_count": 0,
+        "nullable_count": 0,
+        "readOnly_count": 0,
+        "writeOnly_count": 0
+      },
+      "operation_id": "PostPaymentIntents",
+      "raw_source_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "raw_source_file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "raw_source_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "readiness_state": "EXCLUDED",
+      "reference_metrics": {
+        "cyclic_ref_count": 0,
+        "external_ref_count": 0,
+        "local_ref_count": 0,
+        "ref_details": [],
+        "total_ref_count": 0,
+        "unresolved_ref_count": 0
+      },
+      "request_content_types": [
+        "application/x-www-form-urlencoded"
+      ],
+      "schema_metrics": {
+        "array_count": 11,
+        "enum_values_count": 838,
+        "enums_count": 231,
+        "map_count": 4,
+        "max_nesting_depth": 9,
+        "object_count": 175,
+        "optional_field_ratio": 0.9004,
+        "required_field_count": 49,
+        "total_property_count": 492
+      },
+      "serialization_requirements": {
+        "allow_reserved_params": [],
+        "deep_object_params": [
+          "allowed_payment_method_types",
+          "amount_details",
+          "automatic_payment_methods",
+          "excluded_payment_method_types",
+          "expand",
+          "hooks",
+          "mandate_data",
+          "metadata",
+          "off_session",
+          "payment_details",
+          "payment_method_data",
+          "payment_method_options",
+          "radar_options",
+          "shipping",
+          "transfer_data"
+        ],
+        "explode_params": [
+          "allowed_payment_method_types",
+          "amount_details",
+          "automatic_payment_methods",
+          "excluded_payment_method_types",
+          "expand",
+          "hooks",
+          "mandate_data",
+          "metadata",
+          "off_session",
+          "payment_details",
+          "payment_method_data",
+          "payment_method_options",
+          "radar_options",
+          "shipping",
+          "transfer_data"
+        ],
+        "headers_present": false,
+        "is_form_encoded": true,
+        "style_params": {
+          "allowed_payment_method_types": "deepObject",
+          "amount_details": "deepObject",
+          "automatic_payment_methods": "deepObject",
+          "excluded_payment_method_types": "deepObject",
+          "expand": "deepObject",
+          "hooks": "deepObject",
+          "mandate_data": "deepObject",
+          "metadata": "deepObject",
+          "off_session": "deepObject",
+          "payment_details": "deepObject",
+          "payment_method_data": "deepObject",
+          "payment_method_options": "deepObject",
+          "radar_options": "deepObject",
+          "shipping": "deepObject",
+          "transfer_data": "deepObject"
+        }
+      },
+      "slot_id": "SLOT_CAND-002_PostPaymentIntents",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_spec_pointer": "#/paths/~1v1~1payment_intents/post",
+      "surface_counts": {
+        "body_count": 1,
+        "formData_count": 0,
+        "header_count": 0,
+        "path_count": 0,
+        "query_count": 0
+      }
+    }
+  ],
+  "summary": {
+    "active_cohort_size": 30,
+    "audit_version": "1.0.0",
+    "audited_at_utc": "2026-10-20T04:01:41Z",
+    "current_extractor_supported_active_count": 6,
+    "current_extractor_unsupported_active_count": 24,
+    "excluded_cohort_size": 7,
+    "readiness_distribution": {
+      "EXCLUDED": 7,
+      "READY_WITH_EXPLICIT_WRAPPER_POLICY": 6,
+      "REQUIRES_EXTRACTOR_CAPABILITY": 23,
+      "REQUIRES_PROTOCOL_AMENDMENT": 1
+    },
+    "total_operations_audited": 37
+  }
+}
