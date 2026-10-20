@@ -10,11 +10,11 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `60` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `64` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
-| **Total Pattern Matches** | `116` | All occurrences of monitored high-risk stems. |
+| **Total Pattern Matches** | `127` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `12` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
-| **Scoped Acceptable Claims** | `104` | Contextually constrained by negative disclaimers or definitions. |
+| **Scoped Acceptable Claims** | `115` | Contextually constrained by negative disclaimers or definitions. |
 | **Un-scoped Violations** | **`0`** | Absolutist or ungrounded claims requiring remediation. |
 
 ---
@@ -23,12 +23,12 @@
 
 | High-Risk Term | Total Matches | Scoped Acceptable | Allowlisted | Violations |
 | :--- | :---: | :---: | :---: | :---: |
-| `CANONICAL_FAITHFUL promotion` | 39 | 35 | 4 | 0 |
+| `CANONICAL_FAITHFUL promotion` | 41 | 37 | 4 | 0 |
 | `guarantee / guaranteed` | 4 | 4 | 0 | 0 |
-| `independent validation / review` | 45 | 43 | 2 | 0 |
-| `lossless` | 15 | 13 | 2 | 0 |
-| `proves / proven` | 4 | 3 | 1 | 0 |
-| `statistical significance` | 9 | 6 | 3 | 0 |
+| `independent validation / review` | 47 | 45 | 2 | 0 |
+| `lossless` | 17 | 15 | 2 | 0 |
+| `proves / proven` | 5 | 4 | 1 | 0 |
+| `statistical significance` | 13 | 10 | 3 | 0 |
 
 ---
 
@@ -44,13 +44,13 @@
 | `CANONICAL_CONTRACT_VALIDATION_SPEC.md` | 224 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | LIFECYCLE_SPECIFICATION_TABLE |
 | `CANONICAL_CONTRACT_VALIDATION_SPEC.md` | 228 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `CLAIM_EVIDENCE_LEDGER.md` | 119 | `SCOPED_ACCEPTABLE` | `guarantees` | SCOPED_BY_PATTERN: \b(syntactic|grammar|FSM|schema validation|jsonschema)\b |
-| `CLAIM_EVIDENCE_LEDGER.md` | 204 | `SCOPED_ACCEPTABLE` | `statistical significance` | SCOPED_BY_PATTERN: \b(not|insufficient|too small|small sample|exploratory|cannot|without|unverified|do not claim|does not claim|N\s*=\s*5|pilot)\b |
+| `CLAIM_EVIDENCE_LEDGER.md` | 204 | `SCOPED_ACCEPTABLE` | `statistical significance` | SCOPED_BY_PATTERN: \b(not|insufficient|too small|small sample|exploratory|cannot|without|until|before|unverified|do not claim|does not claim|N\s*=\s*5|pilot)\b |
 | `EXTRACTION_IMPLEMENTATION_CHECKLIST.md` | 20 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `EXTRACTION_IMPLEMENTATION_CHECKLIST.md` | 210 | `SCOPED_ACCEPTABLE` | `guarantee` | SCOPED_BY_PATTERN: \b(to guarantee|does not guarantee|cannot guarantee|no guarantee)\b |
 | `EXTRACTION_IMPLEMENTATION_CHECKLIST.md` | 224 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SECTION_TITLE_OR_BOUNDARY_HEADING |
 | `EXTRACTION_IMPLEMENTATION_CHECKLIST.md` | 226 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `LONG_BLOCK_HANDOFF.md` | 55 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(gate|promotion|lifecycle|state|transition|status|criterion|criteria|header|column)\b |
-| `PAPER_EVIDENCE_LEDGER.md` | 46 | `SCOPED_ACCEPTABLE` | `statistical significance` | SCOPED_BY_PATTERN: \b(not|insufficient|too small|small sample|exploratory|cannot|without|unverified|do not claim|does not claim|N\s*=\s*5|pilot)\b |
+| `PAPER_EVIDENCE_LEDGER.md` | 46 | `SCOPED_ACCEPTABLE` | `statistical significance` | SCOPED_BY_PATTERN: \b(not|insufficient|too small|small sample|exploratory|cannot|without|until|before|unverified|do not claim|does not claim|N\s*=\s*5|pilot)\b |
 | `README.md` | 31 | `ALLOWLISTED` | `proven` | Explicitly registered and permitted under CLAIM-001 |
 | `README.md` | 31 | `ALLOWLISTED` | `statistical significance` | Explicitly registered and permitted under CLAIM-001 |
 | `README.md` | 33 | `ALLOWLISTED` | `statistically significant` | Explicitly registered and permitted under CLAIM-001 |
@@ -61,7 +61,7 @@
 | `STAGE_B_EXTRACTION_SPEC.md` | 20 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 197 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 210 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: `CANONICAL_FAITHFUL` |
-| ... | ... | ... | ... | *(91 additional scoped occurrences verified)* |
+| ... | ... | ... | ... | *(102 additional scoped occurrences verified)* |
 
 ---
 

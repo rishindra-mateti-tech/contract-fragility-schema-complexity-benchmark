@@ -124,7 +124,7 @@ HIGH_RISK_TERMS = [
         "name": "statistical significance",
         "risk_level": "HIGH",
         "scoping_patterns": [
-            r"\b(not|insufficient|too small|small sample|exploratory|cannot|without|unverified|do not claim|does not claim|N\s*=\s*5|pilot)\b",
+            r"\b(not|insufficient|too small|small sample|exploratory|cannot|without|until|before|unverified|do not claim|does not claim|N\s*=\s*5|pilot)\b",
             r"\b(pending full-scale|requires full-scale|required to test|testing across|future gate)\b",
             r"\"statistical",
             r"'statistical",
