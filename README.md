@@ -15,7 +15,7 @@
 
 Tool-augmented Large Language Models (LLMs) and autonomous agent frameworks (e.g., Anthropic's Model Context Protocol, OpenAI Function Calling, Google Agent Development Kit) rely fundamentally on **JSON Schema (Draft-07)** contracts to interface with external databases, APIs, and execution environments.
 
-While recent literature has extensively addressed context-window exhaustion via tool retrieval (ToolBench, AnyTool, RAG-MCP), the causal impact of **internal contract structural design**—specifically object nesting depth, optionality density, enum constraint specificity, and identifier ambiguity—remains an unstandardized empirical question.
+While recent literature has extensively addressed context-window exhaustion via tool retrieval (ToolBench, AnyTool, RAG-MCP), the causal impact of **internal contract structural design** (specifically object nesting depth, optionality density, enum constraint specificity, and identifier ambiguity) remains an unstandardized empirical question.
 
 This repository provides an open-source, reproducible **experimental benchmark protocol, evaluation specification, and testbed**. It is designed to evaluate contract fragility across **20 synthetic API-inspired tool specifications** and **80 systematically mutated schema conditions**, accompanied by property-based mutation isolation tests and a pre-deployment static schema linter.
 
@@ -73,7 +73,7 @@ Each base schema undergoes four controlled programmatic mutations holding user i
 * **`ambiguous_identifiers`:** Both tool-level names and parameter descriptors are replaced with generic abbreviations and tokens (`process_action`, `target_id`, `qty`, `spec`, `val`).
 
 ### Mutation Isolation Verification
-To prove that each mutation alters **only its intended property** and leaves all other schema dimensions invariant, the repository includes comprehensive unit tests in [`tests/test_mutations.py`](tests/test_mutations.py):
+To verify that each mutation alters **only its intended property** and leaves all other schema dimensions invariant, the repository includes comprehensive unit tests in [`tests/test_mutations.py`](tests/test_mutations.py):
 * `test_canonical_invariance`: Asserts Draft-07 syntax validity and exact parameter replication.
 * `test_nested_hierarchy_isolation`: Asserts that `request_payload` is the sole root property and sub-properties retain exact original types and enums.
 * `test_optionality_bloat_isolation`: Asserts that all required fields remain 100% unchanged and only non-required metadata fields are appended.

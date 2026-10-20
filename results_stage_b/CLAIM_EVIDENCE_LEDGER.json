@@ -1,0 +1,269 @@
+{
+  "ledger_version": "1.0.0",
+  "governing_document": "docs/RESEARCH_CLAIM_STYLE_GUIDE.md",
+  "last_updated_utc": "2026-10-20T00:05:00Z",
+  "total_claims": 16,
+  "claims": [
+    {
+      "claim_id": "CLAIM-001",
+      "document_path": "README.md",
+      "line_range": "28-34",
+      "category": "EMPIRICAL",
+      "status": "SCOPE_RESTRICTED",
+      "exact_quoted_text": "The current pilot (N=5) shows 100% syntax and selection accuracy. While semantic exact match dropped from 60% (canonical) to 20% (ambiguous), this sample size is too small for statistical significance. We do not claim proven model degradation yet.",
+      "evidence_artifacts": [
+        "results/raw_responses.jsonl",
+        "results/summary_metrics.json"
+      ],
+      "permitted_wording": "Exploratory pilot execution indicates semantic exact match reduction in small sample (N=5); statistical significance unverified.",
+      "prohibited_stronger_wording": "Proves model degradation or statistically significant failure under contract complexity.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Sample size is explicitly identified as insufficient for statistical significance."
+    },
+    {
+      "claim_id": "CLAIM-002",
+      "document_path": "README.md",
+      "line_range": "37-63",
+      "category": "METHODOLOGICAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "To isolate cause and effect, the evaluation harness decouples tool calling into three orthogonal benchmarks: Task 1: Argument Construction, Task 2: Tool Selection, Task 3: Execution Semantics.",
+      "evidence_artifacts": [
+        "src/runner.py",
+        "src/evaluator.py",
+        "tests/test_runner.py"
+      ],
+      "permitted_wording": "Three-task decoupled framework isolates parameter hierarchy, identifier ambiguity, and execution grounding.",
+      "prohibited_stronger_wording": "Guarantees comprehensive evaluation of all agent failure modes.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Methodological architecture implemented in runner.py and validated by unit tests."
+    },
+    {
+      "claim_id": "CLAIM-003",
+      "document_path": "README.md",
+      "line_range": "65-74",
+      "category": "METHODOLOGICAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "To eliminate operational security hazards while maintaining high structural realism, the dataset uses 20 synthetic tool specifications modeled after established enterprise API patterns across Fintech, Cloud Infrastructure, CRM, and Observability.",
+      "evidence_artifacts": [
+        "data/PROVENANCE.md",
+        "data/tools_canonical.json"
+      ],
+      "permitted_wording": "20 synthetic tool contracts modeled after real-world API design patterns.",
+      "prohibited_stronger_wording": "Production API contracts or exact mirror of live endpoints.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Synthetically constructed to prevent secret leakage and side-effects."
+    },
+    {
+      "claim_id": "CLAIM-004",
+      "document_path": "README.md",
+      "line_range": "75-82",
+      "category": "METHODOLOGICAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "To verify that each mutation alters only its intended property and leaves all other schema dimensions invariant, the repository includes comprehensive unit tests in tests/test_mutations.py.",
+      "evidence_artifacts": [
+        "src/mutations.py",
+        "tests/test_mutations.py"
+      ],
+      "permitted_wording": "Unit tests verify programmatic mutation operator isolation across canonical, nested, bloated, and ambiguous variants.",
+      "prohibited_stronger_wording": "Mathematically proves absolute orthogonality across all conceivable schema dimensions.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Verified by 5 dedicated property isolation tests in test_mutations.py."
+    },
+    {
+      "claim_id": "CLAIM-005",
+      "document_path": "README.md",
+      "line_range": "85-94",
+      "category": "METHODOLOGICAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "Empirical metrics collected through vendor APIs characterize the provider-mediated tool-calling interface, rather than raw, unconstrained transformer attention over JSON schemas.",
+      "evidence_artifacts": [
+        "src/runner.py",
+        "README.md"
+      ],
+      "permitted_wording": "Distinguishes provider-mediated Regime A from unconstrained Regime B.",
+      "prohibited_stronger_wording": "Measures intrinsic model reasoning independent of vendor infrastructure.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Essential threat to validity formally acknowledged."
+    },
+    {
+      "claim_id": "CLAIM-006",
+      "document_path": "STAGE_B_EXTRACTION_SPEC.md",
+      "line_range": "15-35",
+      "category": "FACTUAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "Prescreened 40 candidate operations across 10 API clusters against Section 2.5 admission gates, admitting 30 active benchmark candidates and disqualifying 7 operations.",
+      "evidence_artifacts": [
+        "results_stage_b/candidate_admission_decisions.json",
+        "tests/test_stage_b_admitted_candidates.py"
+      ],
+      "permitted_wording": "Section 2.5 prescreening identified 30 active candidates and 7 disqualified operations.",
+      "prohibited_stronger_wording": "Exhaustive evaluation of entire web API universe.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Evaluated against explicit protocol gates in STAGE_B_EXTRACTION_SPEC.md."
+    },
+    {
+      "claim_id": "CLAIM-007",
+      "document_path": "results_stage_b/HUMAN_ADMISSION_REVIEW_PACKET.md",
+      "line_range": "50-70",
+      "category": "FACTUAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "The author reviewed the packet snapshot identified above. Populate author sign-off fields with Rishindra Mateti, role AUTHOR_MANUAL_REVIEW, decision APPROVE. Do not claim independent review.",
+      "evidence_artifacts": [
+        "results_stage_b/HUMAN_ADMISSION_REVIEW_PACKET.md",
+        "tests/test_stage_b_human_review_packet.py"
+      ],
+      "permitted_wording": "Admission decisions reviewed by author under role AUTHOR_MANUAL_REVIEW with immutable Git provenance.",
+      "prohibited_stronger_wording": "Independent third-party validation or peer validation.",
+      "reviewer_needed": true,
+      "epistemic_notes": "Git commit and blob SHA immutably recorded; tests verify no independent review claimed."
+    },
+    {
+      "claim_id": "CLAIM-008",
+      "document_path": "results_stage_b/CANONICAL_EXTRACTION_PILOT_REPORT.md",
+      "line_range": "10-25",
+      "category": "METHODOLOGICAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "Canonical extraction pilot for SLOT_GITHUB_01 is validated under WRAPPER_CLOSED_OBJECT_POLICY_001 with status CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY. Closing additionalProperties is an explicit benchmark normalization, not raw-source equivalence.",
+      "evidence_artifacts": [
+        "data_stage_b/canonical/SLOT_GITHUB_01/canonical_contract.json",
+        "data_stage_b/canonical/SLOT_GITHUB_01/semantic_preservation_report.md",
+        "results_stage_b/CANONICAL_PILOT_HUMAN_VALIDATION_PACKET.md"
+      ],
+      "permitted_wording": "Extracted contract semantically equivalent modulo explicit closed-object wrapper policy.",
+      "prohibited_stronger_wording": "Unconditionally lossless extraction or raw-source equivalence.",
+      "reviewer_needed": true,
+      "epistemic_notes": "Explicitly disclaimer prevents unconditional lossless claims."
+    },
+    {
+      "claim_id": "CLAIM-009",
+      "document_path": "data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json",
+      "line_range": "240-260",
+      "category": "FACTUAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "SLOT_STRIPE_02 extraction status is EXTRACTED_PENDING_HUMAN_VALIDATION. Author review sign-off is null.",
+      "evidence_artifacts": [
+        "data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json",
+        "tests/test_stage_b_canonical_generalization_stripe.py"
+      ],
+      "permitted_wording": "SLOT_STRIPE_02 extracted and held strictly at EXTRACTED_PENDING_HUMAN_VALIDATION.",
+      "prohibited_stronger_wording": "CANONICAL_FAITHFUL or fully validated.",
+      "reviewer_needed": true,
+      "epistemic_notes": "Invariants enforced by tests preventing premature promotion."
+    },
+    {
+      "claim_id": "CLAIM-010",
+      "document_path": "results_stage_b/EXTRACTION_READINESS_AUDIT.md",
+      "line_range": "10-30",
+      "category": "FACTUAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "Audited all 37 tracked operations across 10 clusters: 6 READY_WITH_EXPLICIT_WRAPPER_POLICY, 1 REQUIRES_PROTOCOL_AMENDMENT, 23 REQUIRES_EXTRACTOR_CAPABILITY, 7 EXCLUDED.",
+      "evidence_artifacts": [
+        "results_stage_b/EXTRACTION_READINESS_MATRIX.json",
+        "tests/test_stage_b_extraction_readiness.py"
+      ],
+      "permitted_wording": "Full-cohort audit classifies 37 tracked operations across 4 readiness states.",
+      "prohibited_stronger_wording": "All 30 active operations ready for immediate canonical extraction.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Identifies exact technical blockers (YAML parsing, path parameters, MCP AST)."
+    },
+    {
+      "claim_id": "CLAIM-011",
+      "document_path": "results_stage_b/SCHEMA_FEATURE_SUPPORT_POLICY.md",
+      "line_range": "10-25",
+      "category": "METHODOLOGICAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "Schema feature support policy maps 38 OpenAPI/JSON Schema constructs into PRESERVE_VERBATIM, EXPLICIT_NORMALIZATION, and REJECT_AND_REPORT with fail-closed validation engine.",
+      "evidence_artifacts": [
+        "results_stage_b/SCHEMA_FEATURE_SUPPORT_REGISTRY.yaml",
+        "src/schema_feature_registry.py",
+        "tests/test_stage_b_schema_feature_registry.py"
+      ],
+      "permitted_wording": "Explicit policy registry and fail-closed validation engine for 38 schema constructs.",
+      "prohibited_stronger_wording": "Universal support for all JSON Schema Draft-07 and Draft 2020-12 constructs.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Unsupported features strictly fail closed."
+    },
+    {
+      "claim_id": "CLAIM-012",
+      "document_path": "tests/test_stage_b_adversarial_feature_corpus.py",
+      "line_range": "10-30",
+      "category": "METHODOLOGICAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "Adversarial test corpus evaluates 28 synthetic fixtures, demonstrating deterministic extraction, zero keyword loss, no field renaming, and no transport surface leakage.",
+      "evidence_artifacts": [
+        "tests/fixtures/schema_feature_corpus/",
+        "src/synthetic_extractor.py",
+        "tests/test_stage_b_adversarial_feature_corpus.py"
+      ],
+      "permitted_wording": "Synthetic adversarial corpus verifies extraction rules across 28 controlled edge-case fixtures.",
+      "prohibited_stronger_wording": "Exhaustive mathematical verification over infinite schema space.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Purely synthetic test fixtures; never benchmark data."
+    },
+    {
+      "claim_id": "CLAIM-013",
+      "document_path": "results_stage_b/SERIALIZATION_CONFORMANCE_SPEC.md",
+      "line_range": "10-40",
+      "category": "METHODOLOGICAL",
+      "status": "SCOPE_RESTRICTED",
+      "exact_quoted_text": "Demonstrated deterministic in-process round-trip under declared representation and encoding policy for SLOT_STRIPE_02 (Tier 2 in-process equivalence; Tier 3 HTTP wire conformance and Tier 4 server-side acceptance remain unvalidated).",
+      "evidence_artifacts": [
+        "src/openapi_serialization.py",
+        "results_stage_b/SERIALIZATION_CONFORMANCE_SPEC.md",
+        "tests/test_openapi_serialization.py"
+      ],
+      "permitted_wording": "Deterministic in-process round-trip under declared representation and supported encoding policy (Tier 2).",
+      "prohibited_stronger_wording": "Proven wire conformance (Tier 3) or live Stripe endpoint semantic acceptance (Tier 4).",
+      "reviewer_needed": false,
+      "epistemic_notes": "Explicit four-tier taxonomy formalizes exact epistemic boundary."
+    },
+    {
+      "claim_id": "CLAIM-014",
+      "document_path": "REPRODUCIBILITY.md",
+      "line_range": "10-35",
+      "category": "FACTUAL",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "7-point hermetic reproducibility verification script executes environment sanity, raw source integrity, full pytest suite, deterministic re-extraction, artifact integrity, directory cleanliness, and status invariants.",
+      "evidence_artifacts": [
+        "requirements.txt",
+        "scripts/verify_reproducibility.py",
+        "results_stage_b/REPRODUCIBILITY_AUDIT.md"
+      ],
+      "permitted_wording": "Automated 7-stage reproducibility script verifies environment, raw provenance, test pass rate, and bitwise re-extraction identity.",
+      "prohibited_stronger_wording": "Guarantees reproducibility across arbitrary unknown future Python versions.",
+      "reviewer_needed": false,
+      "epistemic_notes": "All 7 checks automated and verified."
+    },
+    {
+      "claim_id": "CLAIM-015",
+      "document_path": "results_stage_b/CANONICAL_PROVENANCE_AUDIT.md",
+      "line_range": "35-50",
+      "category": "LIMITATION",
+      "status": "SUPPORTED",
+      "exact_quoted_text": "Finding PROV-LIMIT-001: The raw specification for Stripe PostShippingRates omits parameters key. The extractor recorded a synthetic pointer #/paths/~1v1~1shipping_rates/post/parameters for empty path container, which is unresolvable. Reported honestly as UNRESOLVABLE_SOURCE_POINTER without evidence mutation.",
+      "evidence_artifacts": [
+        "results_stage_b/CANONICAL_PROVENANCE_AUDIT.json",
+        "results_stage_b/CANONICAL_DIFFERENCE_REGISTER.md"
+      ],
+      "permitted_wording": "Identified and documented provenance limitation PROV-LIMIT-001 without altering underlying artifacts.",
+      "prohibited_stronger_wording": "Flawless end-to-end pointer resolution across all empty containers.",
+      "reviewer_needed": true,
+      "epistemic_notes": "Demonstrates honest reporting over silent evidence mutation."
+    },
+    {
+      "claim_id": "CLAIM-016",
+      "document_path": "results_stage_b/NEXT_GATES.md",
+      "line_range": "1-30",
+      "category": "FUTURE_WORK",
+      "status": "PENDING",
+      "exact_quoted_text": "Subsequent work structured into 10 sequential gates: Gate 1 Stripe review, Gate 2 union amendment, Gate 3 YAML parser, Gate 4 path inheritance, Gate 5 query/header surfaces, Gate 6 MCP AST, Gate 7 mutations, Gate 8 mocks, Gate 9 model evaluation, Gate 10 replication.",
+      "evidence_artifacts": [
+        "results_stage_b/NEXT_GATES.md"
+      ],
+      "permitted_wording": "Roadmap outlines 10 planned sequential engineering and validation gates.",
+      "prohibited_stronger_wording": "Completed Stage B benchmark or validated model evaluations.",
+      "reviewer_needed": false,
+      "epistemic_notes": "Designates future gates with explicit stop conditions."
+    }
+  ]
+}

@@ -116,4 +116,4 @@ This section highlights candidate operations across the four clusters containing
 
 ## 5. Provenance & Reproducibility Certification
 
-All 10 raw source files are verified against immutable Git blob hashes and SHA-256 digests. This scanner operates strictly read-only and guarantees byte-stable deterministic outputs when invoked with an explicit `--generated-at` timestamp.
+All 10 raw source files are verified against immutable Git blob hashes and SHA-256 digests. This scanner operates strictly read-only and enforces byte-stable deterministic outputs when invoked with an explicit `--generated-at` timestamp.

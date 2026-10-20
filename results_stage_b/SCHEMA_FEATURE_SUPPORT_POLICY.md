@@ -71,8 +71,8 @@ A schema feature is designated `REJECT_AND_REPORT` when it introduces semantic a
 
 ### Category 5: Schema References ($ref)
 - `FEAT_REF_LOCAL_COMPONENTS` (PRESERVE_VERBATIM): Intra-document JSON pointers (e.g. `#/components/schemas/...` or `#/definitions/...`) dereferenced deterministically into canonical contract; origin pointer tracked in lineage records.
-- `FEAT_REF_EXTERNAL_FILE` (REJECT_AND_REPORT): References targeting relative or absolute external file paths fail closed to preserve hermetic blob SHA guarantees.
-- `FEAT_REF_REMOTE_URL` (REJECT_AND_REPORT): Network URL references fail closed to guarantee offline reproducibility.
+- `FEAT_REF_EXTERNAL_FILE` (REJECT_AND_REPORT): References targeting relative or absolute external file paths fail closed to preserve hermetic blob SHA constraints.
+- `FEAT_REF_REMOTE_URL` (REJECT_AND_REPORT): Network URL references fail closed to ensure offline reproducibility.
 
 ### Category 6: Composition and Polymorphism
 - `FEAT_COMP_ALLOF` (PRESERVE_VERBATIM / EXPERIMENTAL): AllOf schema conjunctions preserved in contract tree.

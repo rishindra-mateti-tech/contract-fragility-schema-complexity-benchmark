@@ -367,7 +367,7 @@ Every operation in the benchmark catalog receives one of five immutable admissio
 | `CLUSTER_BOX` | Box | `post_users` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | 10 properties with enterprise role and status enums inside `body`. |
 | `CLUSTER_SLACK` | Slack | `conversations.create` | POST | Body only | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Flat 2-parameter channel constructor inside `body`. |
 | `CLUSTER_SLACK` | Slack | `users.profile.set` | POST | Body only | 2 | **PROVISIONAL_CANONICAL_CANDIDATE** | MEDIUM | Nested `profile` key-value collection inside `body`. |
-| `CLUSTER_SLACK` | Slack | `reminders.add` | POST | Header + Body | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Standard reminder creation with header auth and 3 form body properties; lossless replacement for chat.postMessage. |
+| `CLUSTER_SLACK` | Slack | `reminders.add` | POST | Header + Body | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Standard reminder creation with header auth and 3 form body properties; monomorphic replacement for chat.postMessage. |
 | `CLUSTER_SLACK` | Slack | `chat.postMessage` | POST | Body only | 4 | **EXCLUDE_PENDING** | HIGH | **DISQUALIFIED FROM CANONICAL COHORT.** `blocks` requires lossy pruning of polymorphic Block Kit union. |
 | `CLUSTER_MCP_SQLITE` | MCP SQLite | `read_query` | RPC | Tool Schema | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Static AST extraction of `query` parameter from Python AST node; wrapped in `arguments`. |
 | `CLUSTER_MCP_SQLITE` | MCP SQLite | `describe_table` | RPC | Tool Schema | 1 | **PROVISIONAL_CANONICAL_CANDIDATE** | LOW | Static AST extraction of `table_name` parameter; wrapped in `arguments`. |

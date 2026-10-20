@@ -5,7 +5,7 @@
 This guide provides an end-to-end protocol for verifying the reproducibility, cryptographic integrity, and deterministic execution of the Stage B Contract Fragility and Schema Complexity Benchmark from a clean repository clone.
 
 Every benchmark artifact, canonical contract, and provenance record is subject to:
-1. Pinned dependencies: Guaranteed execution under Python 3.10+ with exact pinned packages in `requirements.txt`.
+1. Pinned dependencies: Verified execution under Python 3.10+ with exact pinned packages in `requirements.txt`.
 2. Raw specification immutability: Cryptographic SHA-256 and Git blob SHA checks against `data_stage_b/provenance/raw_source_registry.json`.
 3. Deterministic re-extraction: Bit-for-bit byte identity when extracting canonical contracts under identical timestamps.
 4. Fail-closed schema enforcement: Strict rejection of unsupported OpenAPI/JSON Schema constructs.
