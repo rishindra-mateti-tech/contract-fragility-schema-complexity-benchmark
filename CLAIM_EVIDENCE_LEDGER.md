@@ -217,6 +217,7 @@
 | `CLAIM-014` | `FACTUAL` | `SUPPORTED` | `REPRODUCIBILITY.md:10-35` | Automated 7-stage reproducibility script verifies environment, raw provenance, test pass rate, and bitwise re-extraction identity. | `requirements.txt`, `scripts/verify_reproducibility.py`, `results_stage_b/REPRODUCIBILITY_AUDIT.md` |
 | `CLAIM-015` | `LIMITATION` | `SUPPORTED` | `results_stage_b/CANONICAL_PROVENANCE_AUDIT.md:35-50` | Identified and documented provenance limitation PROV-LIMIT-001 without altering underlying artifacts. | `results_stage_b/CANONICAL_PROVENANCE_AUDIT.json`, `results_stage_b/CANONICAL_DIFFERENCE_REGISTER.md` |
 | `CLAIM-016` | `FUTURE_WORK` | `PENDING` | `results_stage_b/NEXT_GATES.md:1-30` | Roadmap outlines 10 planned sequential engineering and validation gates. | `results_stage_b/NEXT_GATES.md` |
+| `CLAIM-017` | `METHODOLOGICAL` | `SUPPORTED` | `results_stage_b/BATCH_EXTRACTION_RESULTS.md:1-40` | Deterministic batch pipeline extracted 13 quarantined candidates held at EXTRACTED_PENDING_HUMAN_VALIDATION and rejected 14 candidates fail-closed. | `data_stage_b/extraction_candidates/`, `results_stage_b/BATCH_EXTRACTION_RESULTS.json`, `tests/test_stage_b_batch_candidate_pipeline.py` |
 
 ---
 

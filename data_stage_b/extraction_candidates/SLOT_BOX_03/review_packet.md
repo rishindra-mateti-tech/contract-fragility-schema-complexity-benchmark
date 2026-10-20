@@ -8,7 +8,7 @@
 - **Raw Specification Pointer**: `#/paths/~1users/post`
 - **Raw File SHA-256**: `13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4`
 - **Raw File Git Blob SHA**: `e740e641b82d30e398a2a0d1b14b4c052e310422`
-- **Canonical Artifact SHA-256**: `9754feb5f3df7518202cdb16e66c02ea19c7c5e66fcc718244ab62a43b8bf45d`
+- **Canonical Artifact SHA-256**: `2caf9033b14de0c330a70197c49447d57c340413aaf3838d6d863740455a8a09`
 - **Lifecycle Status**: `EXTRACTED_PENDING_HUMAN_VALIDATION`
 - **Creation Mode**: `BATCH_GENERATED_CANDIDATE`
 

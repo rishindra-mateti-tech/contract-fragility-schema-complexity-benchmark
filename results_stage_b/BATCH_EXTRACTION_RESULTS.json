@@ -1,0 +1,794 @@
+{
+  "already_extracted_pilots": [
+    {
+      "admission_slot_id": "SLOT_GITHUB_01",
+      "batch_eligibility": "EXCLUDED_ALREADY_EXTRACTED_PILOT",
+      "candidate_source_id": "CAND-001",
+      "candidate_status": "ADMITTED_PENDING_EXTRACTION",
+      "complexity_tier": "MODERATE",
+      "endpoint_path": "/repos/{owner}/{repo}/pulls",
+      "exclusion_reason_nearby_operations": "Excluded pulls/submit-review (multi-turn dependency on review_id) and pulls/create-review-comment (diff/commit context dependency).",
+      "external_prerequisite_state": "FIXTURE_REQUIRED",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": true,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Developer Platforms",
+      "metrics": {
+        "description_length_chars": 142,
+        "estimated_enum_density": 0.0,
+        "estimated_nesting_depth": 2,
+        "estimated_optional_field_ratio": 0.6,
+        "estimated_parameter_count": 10,
+        "estimated_token_length": 179
+      },
+      "mock_fixture_requirements": [
+        "repository_fixture",
+        "base_branch_fixture",
+        "head_branch_fixture"
+      ],
+      "mock_safety_rationale": "Requires in-memory pull request register and head/base branch validation. Status held as PENDING until post-extraction mock implementation and verification.",
+      "operation_id": "pulls/create",
+      "raw_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+      "reason_for_selection": "High-fidelity developer platform operation admitted to replace issues/create. Cleanly bounded at depth 2 with 10 properties (4 required: 2 path + 2 body). Single-turn constructible constructor requiring standard repository/branch fixtures, avoiding multi-turn review or pull request lifecycle dependencies.",
+      "safe_for_local_mock_evaluation": "MOCK_SAFETY_REVIEW_PENDING",
+      "schema_invocation_mode": "SINGLE_TURN_CONSTRUCTIBLE",
+      "slot_id": "SLOT_GITHUB_01",
+      "source_cluster_id": "CLUSTER_GITHUB",
+      "source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+      "source_file_path": "descriptions/api.github.com/api.github.com.json",
+      "source_project": "GitHub (github/rest-api-description)",
+      "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post",
+      "static_eligibility_status": "STATICALLY_ELIGIBLE_CANDIDATE",
+      "usage_role": "CANDIDATE_CANONICAL_REFERENCE"
+    },
+    {
+      "admission_slot_id": "SLOT_STRIPE_02",
+      "batch_eligibility": "EXCLUDED_ALREADY_EXTRACTED_PILOT",
+      "candidate_source_id": "CAND-002",
+      "candidate_status": "ADMITTED_PENDING_EXTRACTION",
+      "complexity_tier": "COMPLEX_NESTED",
+      "endpoint_path": "/v1/shipping_rates",
+      "exclusion_reason_nearby_operations": "Excluded PostInvoicesInvoiceAttachPayment and PostInvoicesInvoicePay due to multi-turn lifecycle dependency on existing unpaid invoice ID in path.",
+      "external_prerequisite_state": "FIXTURE_REQUIRED",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": false,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Payments",
+      "metrics": {
+        "description_length_chars": 196,
+        "estimated_enum_density": 0.118,
+        "estimated_nesting_depth": 4,
+        "estimated_optional_field_ratio": 0.588,
+        "estimated_parameter_count": 17,
+        "estimated_token_length": 280
+      },
+      "mock_fixture_requirements": [
+        "authenticated_account_context_fixture"
+      ],
+      "mock_safety_rationale": "Deterministic creation endpoint returning shipping_rate resource. Status held as PENDING until post-extraction mock implementation and verification.",
+      "operation_id": "PostShippingRates",
+      "raw_file_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "reason_for_selection": "Rich nested commerce configuration operation admitted to replace PostPaymentIntents. Depth 4 with nested delivery_estimate and fixed_amount structures. Single-turn constructible constructor requiring standard authenticated account context fixtures, avoiding multi-turn invoice dependencies.",
+      "safe_for_local_mock_evaluation": "MOCK_SAFETY_REVIEW_PENDING",
+      "schema_invocation_mode": "SINGLE_TURN_CONSTRUCTIBLE",
+      "slot_id": "SLOT_STRIPE_02",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "source_file_path": "openapi/spec3.json",
+      "source_project": "Stripe (stripe/openapi)",
+      "source_spec_pointer": "#/paths/~1v1~1shipping_rates/post",
+      "static_eligibility_status": "STATICALLY_ELIGIBLE_CANDIDATE",
+      "usage_role": "CANDIDATE_CANONICAL_REFERENCE"
+    }
+  ],
+  "candidates_generated": [
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "0a8f0de40bd47ab356e378f0557d2ab507a3e3787f267c82bf7bb0f19190438c",
+        "candidate_validation_report.md": "d2fc44a6a08f064967b1aae00f698ee89bcb05dfe0f93a9bea335321bff90113",
+        "difference_register.json": "f9eba995ef85d4f0fdfca896ae6e6719bc5289e912d8dddc2cfd34fd4cd93202",
+        "extraction_metadata.json": "713018773029fe1bd4dcb0e2fe0e5b9daba01f95ee3739f3670821559c54843c",
+        "feature_inventory.json": "622c9ee52f60ea1125c7dbb35ae063069391f6eb76c5ddff64dcef7639c4e834",
+        "field_lineage.jsonl": "14d181683ceaeef04e574f672e0f61b4d87d70b6e32c2c19100b709e5236090b",
+        "review_packet.md": "497358b4224e03f9375b8e58c88da289f709cc179d44d3d137c0dd0cde200b8d",
+        "serialization_characterization.json": "58e15d43ed8d5017463fe8524ee025c327971ed38d2c5682fe42288fab12e6da"
+      },
+      "candidate_source_id": "CAND-001",
+      "operation_id": "repos/create-commit-status",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_GITHUB_02",
+      "slot_id": "SLOT_GITHUB_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "4233e31b0f0aa7bb1d8429115b4287f9de991a3a3fb6fcb84c61faf970542cfe",
+        "candidate_validation_report.md": "45a67550ec57b046f02176556677003a5aef6f632fa8c9a272f99bc5b94c28d5",
+        "difference_register.json": "5a41c72578eb86f45ce7294aaf36540c23da0d7e7e3d34b83f812cfc17e348c9",
+        "extraction_metadata.json": "9e804224d6b172c0854612f0eee216061bbf0357a8f88e005fd278cd7e90544b",
+        "feature_inventory.json": "33e5485e263813615ce21cb30e0bc1080d942e3d4796f49eefc327152882ad74",
+        "field_lineage.jsonl": "a22ef3c2b5a092d7c33aec546aaeb2b8fcdab58b207189f4bf08f6654eeb92c7",
+        "review_packet.md": "496870f7313d12a0f60a654dbffbd4a41aba19b0359845e05b24d5efcb26ba1b",
+        "serialization_characterization.json": "6b8f5d6a0371c578193b61fc32f3bd8e9157773b0fdc78bdf71984899b7f5e01"
+      },
+      "candidate_source_id": "CAND-001",
+      "operation_id": "repos/create-for-authenticated-user",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_GITHUB_03",
+      "slot_id": "SLOT_GITHUB_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "7fd9f07e3b03d4defe0560e2db37bfcb8f9b352a335b6dc63d67c35c6147ae6f",
+        "candidate_validation_report.md": "223dd521362efee9ac7a518c7b6c4d2cd7afb4155fc0b68a7b3e815d236ddb58",
+        "difference_register.json": "98e7f6b6fdb2bcea7693a70027e06cb5cdfc85182a3a34dc2279ac94a68f749c",
+        "extraction_metadata.json": "40455c24cb37dc9566ab89a8a886febdd473f553c70f77797d675c61b74e9021",
+        "feature_inventory.json": "f00e282b8b73f741df173a78d02e18baafb61041f3461a417203fc82b8075cd7",
+        "field_lineage.jsonl": "9adcfa75694a4c81bd8ebad685f020363763f5550677e0ccb4651b8f82f4e1c4",
+        "review_packet.md": "a4b1900c00ae3bdf9633bafb9ee9d85f1bdde68eec0204b467c3f45e4ad20d3c",
+        "serialization_characterization.json": "74bcbb50d4b4e625f1f1c1af2e9da4a247dd0860100de151b29bdc52c7d4876a"
+      },
+      "candidate_source_id": "CAND-004",
+      "operation_id": "UpdateAccount",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_TWILIO_01",
+      "slot_id": "SLOT_TWILIO_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "658a49937bfef5b9cad0445523e24b4ddc79a1a9009d2206888c66fa7ad4bb73",
+        "candidate_validation_report.md": "dd135f0d9f9e95ab66a2d074e9223f9856e7ce1bc330aae57d925c3eb2434778",
+        "difference_register.json": "d3e7510a476b5115e785b8420e113bee27b5c76618b940673782affc06792a9c",
+        "extraction_metadata.json": "29b42913049d9fcfa6eaceaaeaa232ce0dabbc47235472c45aa08be4719bba99",
+        "feature_inventory.json": "f00e282b8b73f741df173a78d02e18baafb61041f3461a417203fc82b8075cd7",
+        "field_lineage.jsonl": "86eb72ab018272c3d8402d6acaeadce560b74da47af444d239fd225dd1b50859",
+        "review_packet.md": "e28bd5b12d20212d17d89e0c9c8ef5b0abfa0ef980cbf1c547390a2f355fbf10",
+        "serialization_characterization.json": "6a0f0d8125adfe2167302f195acc499c4ee28e93caf30a70e1dea616dfc0bd1a"
+      },
+      "candidate_source_id": "CAND-004",
+      "operation_id": "CreateMessage",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_TWILIO_02",
+      "slot_id": "SLOT_TWILIO_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "dcf7b746b28e8b2642f76ddd30cfb75f955245f09b861fd34093da0e7f60db2a",
+        "candidate_validation_report.md": "315a316fa3d498929ca60b3ba535379fe033b87cc4911db076ef80e89ad559a6",
+        "difference_register.json": "d3deb0477724af7d4abaae7935fdbaacdaa758f983489cc70908e409909be319",
+        "extraction_metadata.json": "f56fed22721cdae78a07a712add894a881d7d60deffd16b4d657a0c3866fa444",
+        "feature_inventory.json": "f00e282b8b73f741df173a78d02e18baafb61041f3461a417203fc82b8075cd7",
+        "field_lineage.jsonl": "eb05caa062ea7860f62ada72211e456720dcd3199c0978167cc724f2f576c8f9",
+        "review_packet.md": "18cf8d28659f9dd7be7f14a005cf548a023ccc970a1fe9a979c3ed9fbc425362",
+        "serialization_characterization.json": "433620541c128a59f04615d89fa74d9085dbcded1f703a1a3c23854b53428c40"
+      },
+      "candidate_source_id": "CAND-004",
+      "operation_id": "CreateCall",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_TWILIO_03",
+      "slot_id": "SLOT_TWILIO_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "e87f2232cc9e57ba97178ea85008025e9387a9c1cbcdd3257d1941f84a7b6394",
+        "candidate_validation_report.md": "b13e7f8eb1be14d1d643fd0e73a27749a36af81276a24a899143d20e4e4ea8d7",
+        "difference_register.json": "eff4706b38cadf0b990ba8c1be5d44d6acffffd73cdc4fb645b573f448a7463f",
+        "extraction_metadata.json": "bf0007733de5e4514fe4772eabefe6245ecb8e73d6bcae7105d7c0e40c084997",
+        "feature_inventory.json": "1bcfff8e0bc1f25c1d6e3e14c79df1e0ea6815bd6d9c81c871c76e156bf739be",
+        "field_lineage.jsonl": "cb9e7761abb7f40056a393c147b152b0f27d15310bb0a2e7b6f986136ee2c591",
+        "review_packet.md": "31504f221bbb5f00875641df0570abc3dde7b2f511e0e459d08fbae91639d14a",
+        "serialization_characterization.json": "d1bf34076415d2e686c412b4f27cde290fd554ceba2c152043305de3642c08fa"
+      },
+      "candidate_source_id": "CAND-005",
+      "operation_id": "post_folders",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_BOX_01",
+      "slot_id": "SLOT_BOX_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "30b3e0a11aeb52b54af85276986f8c198e1264659743dc2fa1da7c2c80961661",
+        "candidate_validation_report.md": "c141b9bc30510f8b2b08502b34f8bce89b6e9a6bb8da616b259c8bb48b764ab6",
+        "difference_register.json": "1b2c9b5e2a0fd90945429d9bc932effbeaa259f51e537eb32ec69fc7f955f296",
+        "extraction_metadata.json": "97b96e0b9f2a07b1effb3bcf19eb191c84f99a366b13e93eca0b41c515329af7",
+        "feature_inventory.json": "1bcfff8e0bc1f25c1d6e3e14c79df1e0ea6815bd6d9c81c871c76e156bf739be",
+        "field_lineage.jsonl": "97747aa1b57fdbbd7da47071f5811eaa743cbcb3b430f469eba8077c937b156b",
+        "review_packet.md": "3101649fb1516581936d20992fa9977d8f059d5f46b32c88b351082e335c9d80",
+        "serialization_characterization.json": "5b2c4d12575fb814dd39dfb2b2f0c6ff94447b2492e0e6619369075b59605e49"
+      },
+      "candidate_source_id": "CAND-005",
+      "operation_id": "post_collaborations",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_BOX_02",
+      "slot_id": "SLOT_BOX_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "2caf9033b14de0c330a70197c49447d57c340413aaf3838d6d863740455a8a09",
+        "candidate_validation_report.md": "de50c18e0dbdfe5266e3f1b907697c0f8ac6240148b45926eacc41601bd976e0",
+        "difference_register.json": "68b7ac58d75547b2817de9661e3d1d61a5c7d3c80a4bf690f7f6afc802926696",
+        "extraction_metadata.json": "b5b8e12e2f8e4120ac93ecc028c2af30a301c72a511ca9a1147bfc46a0862e93",
+        "feature_inventory.json": "1bcfff8e0bc1f25c1d6e3e14c79df1e0ea6815bd6d9c81c871c76e156bf739be",
+        "field_lineage.jsonl": "8e3318095cad11cc86a1db5ee19de7fd9c567c80f120fc2688662015f8bce06a",
+        "review_packet.md": "a4ab3603640e2779359dbc4f9f4afd44bc858dcbb66d31664ab5df315f988c80",
+        "serialization_characterization.json": "a38a48d74fcb8d393c18641de69ce1aa99136838e53b520f97621d0ba3e5c30a"
+      },
+      "candidate_source_id": "CAND-005",
+      "operation_id": "post_users",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_BOX_03",
+      "slot_id": "SLOT_BOX_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "aa218ffb3db77c15e822c2819510b6255d619676063d19bda68c087f7f011b00",
+        "candidate_validation_report.md": "66361aa4ed9b36ad0f4286624fe15fcf0b1b7d62e52134cfac55973744751167",
+        "difference_register.json": "5698c6d3885c0693480738257a9bee1120232ded073d14fd2da6a088435c9674",
+        "extraction_metadata.json": "864f7cad6dce1aec290c1d1747061d911635e74c1c1cf6707a5326e083e980fd",
+        "feature_inventory.json": "33e5485e263813615ce21cb30e0bc1080d942e3d4796f49eefc327152882ad74",
+        "field_lineage.jsonl": "ff866151edeab31fef60581fe4738747e8b7ec95f6aae6ae50e0e2f7ea775276",
+        "review_packet.md": "75ab5c7a5d2157c01733c15876d7877e6b0f617b5daf40cb6a768e1471e3863b",
+        "serialization_characterization.json": "da3123eb540f86feb937a87ff6fb29e6fd13b3223d38de714ab82fd6dd44c325"
+      },
+      "candidate_source_id": "CAND-013",
+      "operation_id": "setWebhookEndpoint",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_LINE_02",
+      "slot_id": "SLOT_LINE_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "9b89e44f0f2b6ec38a24c4d8fc085d36b83c66da87d09cc6d1d3ae4e6f5dd3e9",
+        "candidate_validation_report.md": "08d79b1af5af1cdf9930e4e1dc75a81c3ae31120625aa89363d4a1257e11038e",
+        "difference_register.json": "1b935b833dfc65a5afc2dd86198ba0292aff19a026c52028ce5703f214899949",
+        "extraction_metadata.json": "d05c98f7b8418e27e35089942e033d77bcb58e56d28ff84f21e0071db1147323",
+        "feature_inventory.json": "33e5485e263813615ce21cb30e0bc1080d942e3d4796f49eefc327152882ad74",
+        "field_lineage.jsonl": "c6f8bc645fe72acc12ec8d5cad64255dcb02da008d57c90654478b6ae5b2a8d8",
+        "review_packet.md": "d61b964e47eb5f624d054deb1ad10dba41b3d78ac4c64692798becf0f445ad52",
+        "serialization_characterization.json": "8b4c2e23d352a6aadc74ed8412191bbf85d4c445bdacd37bdd1058eeb9eb916a"
+      },
+      "candidate_source_id": "CAND-013",
+      "operation_id": "markMessagesAsRead",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_LINE_03",
+      "slot_id": "SLOT_LINE_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "d4328ecc85ef5c5ac90e85aa0f45df6d412ac59efe3b4df5d8df0e2b135d8b0c",
+        "candidate_validation_report.md": "29bf09dea91e891d3b4ad32ae3cc2352d371e06c34d5eec49d778bb62260f74f",
+        "difference_register.json": "429d4e6e7c90b9177a43c09060a4a5c841543b818a29377311fc316b4e6d5367",
+        "extraction_metadata.json": "234ab7f503a62ebc046072c6cc03c50c036b60b85a4f1ac9c756ae158455eb66",
+        "feature_inventory.json": "4fa42e3d462abd671253e9923176857c99a7833aa10337006f989b33df2cbff8",
+        "field_lineage.jsonl": "712fc34ad50bbdafb082ee2831395969210ff33dca2e0cb621a64011a9f787a3",
+        "review_packet.md": "a4ab02f7b0a2623a6b3e5f78a8d42b64b736328c5e0fb8473acb4441a973a9ce",
+        "serialization_characterization.json": "3a87fce4a7023997e53ae5ee2a28f636d023291b37a017843f2a13399ec1f2d8"
+      },
+      "candidate_source_id": "CAND-002",
+      "operation_id": "PostPayouts",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_STRIPE_01",
+      "slot_id": "SLOT_STRIPE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "4df12365bd50238819b1e1ccef9432b3ab229e1844779e0b7a79cddfc739397c",
+        "candidate_validation_report.md": "b4ab90bd69387f9965f67d0278100dee5ae88439285279d8db5e93d27d79c15e",
+        "difference_register.json": "63b3cbeae1514be1ad548c7ddc3821e55e07ab7eb55f840c7b23f4d5b11f9391",
+        "extraction_metadata.json": "5d327f0c4dc6017b86f005a0d42a25c7761acf12bf3324ff8c7361e30ad58710",
+        "feature_inventory.json": "622c9ee52f60ea1125c7dbb35ae063069391f6eb76c5ddff64dcef7639c4e834",
+        "field_lineage.jsonl": "cddfe52a873a2c95186c9b5a1f4242f8347e6fd536d32c107069ec12b7aea01d",
+        "review_packet.md": "3ef6ed2d03cfd74a3bb4737eabe39808a8c2b21bc9b96fb4720c5f45bb9caca5",
+        "serialization_characterization.json": "27cc939af568050f09e4262c281d242dd3703185e407581662e4d767cb3dbcae"
+      },
+      "candidate_source_id": "CAND-011",
+      "operation_id": "create-a-webhook",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_CHATWOOT_01",
+      "slot_id": "SLOT_CHATWOOT_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "artifact_hashes": {
+        "candidate_contract.json": "a2e51cebac9bd90b49d459688233f8ca4be40254558e2201823b6cc68e6c9666",
+        "candidate_validation_report.md": "694f1b2a9b545cc9ba0db5753e47c7d46e5c870d0156bfc5b4719ac3731bc9e4",
+        "difference_register.json": "658fc4c8d24c47d53283d257c6afcd94910266a608998df6dd78730cf587ae2e",
+        "extraction_metadata.json": "8a5e59d37633ad050e36ded1b2c37b41f2bf6bd1e8f26a49a6a6418e4f1b7f7c",
+        "feature_inventory.json": "33e5485e263813615ce21cb30e0bc1080d942e3d4796f49eefc327152882ad74",
+        "field_lineage.jsonl": "9202271f56a47c776dd6d7e246683c5db91322a12bb3288161fc57cc5af9ce42",
+        "review_packet.md": "14ec43f0ef94d5a044ddc1809b2f0771ab08fc83e453ba04754217db24790d4c",
+        "serialization_characterization.json": "703732245291a40277792f3d7b0a54b49037a1ec02728956c4e74c38a04a4351"
+      },
+      "candidate_source_id": "CAND-013",
+      "operation_id": "showLoadingAnimation",
+      "output_directory": "data_stage_b/extraction_candidates/SLOT_LINE_01",
+      "slot_id": "SLOT_LINE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    }
+  ],
+  "candidates_rejected": [
+    {
+      "candidate_source_id": "CAND-003",
+      "evidence": {
+        "pointer": "#/paths/~1v2~1floating_ips/post",
+        "ref": "resources/floating_ips/floatingIPs_create.yml"
+      },
+      "operation_id": "floating_ips_create",
+      "rejection_category": "PROHIBITED_FEATURE",
+      "rejection_code": "FEAT_REF_EXTERNAL_FILE",
+      "rejection_reason": "Operation defines external file reference: resources/floating_ips/floatingIPs_create.yml",
+      "slot_id": "SLOT_DO_01"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "evidence": {
+        "pointer": "#/paths/~1v2~1domains/post",
+        "ref": "resources/domains/domains_create.yml"
+      },
+      "operation_id": "domains_create",
+      "rejection_category": "PROHIBITED_FEATURE",
+      "rejection_code": "FEAT_REF_EXTERNAL_FILE",
+      "rejection_reason": "Operation defines external file reference: resources/domains/domains_create.yml",
+      "slot_id": "SLOT_DO_02"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "evidence": {
+        "pointer": "#/paths/~1v2~1droplets/post",
+        "ref": "resources/droplets/droplets_create.yml"
+      },
+      "operation_id": "droplets_create",
+      "rejection_category": "PROHIBITED_FEATURE",
+      "rejection_code": "FEAT_REF_EXTERNAL_FILE",
+      "rejection_reason": "Operation defines external file reference: resources/droplets/droplets_create.yml",
+      "slot_id": "SLOT_DO_03"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "evidence": {
+        "param": "name",
+        "pointer": "#/paths/~1conversations.create/post/parameters/1"
+      },
+      "operation_id": "conversations.create",
+      "rejection_category": "UNSUPPORTED_SURFACE",
+      "rejection_code": "FEAT_SWAGGER_FORM_DATA_UNSUPPORTED",
+      "rejection_reason": "Operation declares Swagger 2.0 in:formData parameters. Current benchmark extraction requires OpenAPI 3.0 requestBody.",
+      "slot_id": "SLOT_SLACK_01"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "evidence": {
+        "param": "name",
+        "pointer": "#/paths/~1users.profile.set/post/parameters/1"
+      },
+      "operation_id": "users.profile.set",
+      "rejection_category": "UNSUPPORTED_SURFACE",
+      "rejection_code": "FEAT_SWAGGER_FORM_DATA_UNSUPPORTED",
+      "rejection_reason": "Operation declares Swagger 2.0 in:formData parameters. Current benchmark extraction requires OpenAPI 3.0 requestBody.",
+      "slot_id": "SLOT_SLACK_02"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "evidence": {
+        "param": "text",
+        "pointer": "#/paths/~1reminders.add/post/parameters/1"
+      },
+      "operation_id": "reminders.add",
+      "rejection_category": "UNSUPPORTED_SURFACE",
+      "rejection_code": "FEAT_SWAGGER_FORM_DATA_UNSUPPORTED",
+      "rejection_reason": "Operation declares Swagger 2.0 in:formData parameters. Current benchmark extraction requires OpenAPI 3.0 requestBody.",
+      "slot_id": "SLOT_SLACK_03"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "evidence": {
+        "ext": ".py",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-009\\1b97a6a4903bd8961941cdff43df3b059e610e5f.py"
+      },
+      "operation_id": "read_query",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "rejection_reason": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "slot_id": "SLOT_MCP_SQLITE_01"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "evidence": {
+        "ext": ".py",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-009\\1b97a6a4903bd8961941cdff43df3b059e610e5f.py"
+      },
+      "operation_id": "describe_table",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "rejection_reason": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "slot_id": "SLOT_MCP_SQLITE_02"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "evidence": {
+        "ext": ".py",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-009\\1b97a6a4903bd8961941cdff43df3b059e610e5f.py"
+      },
+      "operation_id": "write_query",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "rejection_reason": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "slot_id": "SLOT_MCP_SQLITE_03"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "evidence": {
+        "ext": ".ts",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-010\\0676a34c85537e610f911fbd73a5a079f38be18e.ts"
+      },
+      "operation_id": "search_repositories",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "rejection_reason": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "slot_id": "SLOT_MCP_GITHUB_01"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "evidence": {
+        "ext": ".ts",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-010\\0676a34c85537e610f911fbd73a5a079f38be18e.ts"
+      },
+      "operation_id": "create_issue",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "rejection_reason": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "slot_id": "SLOT_MCP_GITHUB_02"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "evidence": {
+        "ext": ".ts",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-010\\0676a34c85537e610f911fbd73a5a079f38be18e.ts"
+      },
+      "operation_id": "create_or_update_file",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "rejection_reason": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "slot_id": "SLOT_MCP_GITHUB_03"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "evidence": {
+        "path_item": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users",
+        "path_level_params_count": 1
+      },
+      "operation_id": "create-an-account-user",
+      "rejection_category": "SPEC_STRUCTURE_AMBIGUITY",
+      "rejection_code": "UNINHERITED_PATH_PARAMETERS",
+      "rejection_reason": "Operation defines 1 path-level parameter(s) on parent path item not inherited in operation parameters.",
+      "slot_id": "SLOT_CHATWOOT_02"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "evidence": {
+        "path_item": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations",
+        "path_level_params_count": 2
+      },
+      "operation_id": "create-a-conversation",
+      "rejection_category": "SPEC_STRUCTURE_AMBIGUITY",
+      "rejection_code": "UNINHERITED_PATH_PARAMETERS",
+      "rejection_reason": "Operation defines 2 path-level parameter(s) on parent path item not inherited in operation parameters.",
+      "slot_id": "SLOT_CHATWOOT_03"
+    }
+  ],
+  "manifest_excluded": [
+    {
+      "batch_eligibility": "EXCLUDED_MANIFEST_DISQUALIFIED",
+      "candidate_source_id": "CAND-006",
+      "candidate_status": "EXCLUDE_PENDING",
+      "complexity_tier": "DEEP_BLOATED",
+      "endpoint_path": "/chat.postMessage",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": false,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "CRM/Support",
+      "metrics": {
+        "description_length_chars": 476,
+        "estimated_enum_density": 0.286,
+        "estimated_nesting_depth": 4,
+        "estimated_optional_field_ratio": 0.857,
+        "estimated_parameter_count": 7,
+        "estimated_token_length": 258
+      },
+      "mock_safety_rationale": "Excluded from canonical benchmark evaluation.",
+      "operation_id": "chat.postMessage",
+      "reason_for_exclusion": "Disqualified from canonical cohort due to wide polymorphic Block Kit union requiring lossy pruning.",
+      "safe_for_local_mock_evaluation": "NOT_APPLICABLE",
+      "source_cluster_id": "CLUSTER_SLACK",
+      "source_file_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+      "source_file_path": "web-api/slack_web_openapi_v2_without_examples.json",
+      "source_project": "Slack (slackapi/slack-api-specs)",
+      "source_spec_pointer": "#/paths/~1chat.postMessage/post",
+      "usage_role": "EXCLUDED_REFERENCE"
+    },
+    {
+      "batch_eligibility": "EXCLUDED_MANIFEST_DISQUALIFIED",
+      "candidate_source_id": "CAND-013",
+      "candidate_status": "EXCLUDE_PENDING",
+      "complexity_tier": "DEEP_BLOATED",
+      "endpoint_path": "/v2/bot/message/push",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": false,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Logistics/Communications",
+      "metrics": {
+        "description_length_chars": 284,
+        "estimated_enum_density": 0.25,
+        "estimated_nesting_depth": 3,
+        "estimated_optional_field_ratio": 0.5,
+        "estimated_parameter_count": 4,
+        "estimated_token_length": 178
+      },
+      "mock_safety_rationale": "Excluded from canonical benchmark evaluation.",
+      "operation_id": "pushMessage",
+      "reason_for_exclusion": "Disqualified from canonical cohort due to wide polymorphic Message union requiring lossy pruning.",
+      "safe_for_local_mock_evaluation": "NOT_APPLICABLE",
+      "source_cluster_id": "CLUSTER_LINE",
+      "source_file_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "source_file_path": "messaging-api.yml",
+      "source_project": "LINE (line/line-openapi)",
+      "source_spec_pointer": "#/paths/~1v2~1bot~1message~1push/post",
+      "usage_role": "EXCLUDED_REFERENCE"
+    },
+    {
+      "batch_eligibility": "EXCLUDED_MANIFEST_DISQUALIFIED",
+      "candidate_source_id": "CAND-013",
+      "candidate_status": "EXCLUDE_PENDING",
+      "complexity_tier": "MODERATE",
+      "endpoint_path": "/v2/bot/message/reply",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": false,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Logistics/Communications",
+      "metrics": {
+        "description_length_chars": 196,
+        "estimated_enum_density": 0.333,
+        "estimated_nesting_depth": 3,
+        "estimated_optional_field_ratio": 0.333,
+        "estimated_parameter_count": 3,
+        "estimated_token_length": 136
+      },
+      "mock_safety_rationale": "Excluded from canonical benchmark evaluation pending protocol amendment for object unions.",
+      "operation_id": "replyMessage",
+      "reason_for_exclusion": "Disqualified from canonical cohort due to 11-variant discriminated object union (Message) in messages array, violating Section 3.3 primitive-only choice restriction.",
+      "safe_for_local_mock_evaluation": "NOT_APPLICABLE",
+      "source_cluster_id": "CLUSTER_LINE",
+      "source_file_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+      "source_file_path": "messaging-api.yml",
+      "source_project": "LINE (line/line-openapi)",
+      "source_spec_pointer": "#/paths/~1v2~1bot~1message~1reply/post",
+      "usage_role": "EXCLUDED_REFERENCE"
+    },
+    {
+      "batch_eligibility": "EXCLUDED_MANIFEST_DISQUALIFIED",
+      "candidate_source_id": "CAND-011",
+      "candidate_status": "EXCLUDE_PENDING",
+      "complexity_tier": "MODERATE",
+      "endpoint_path": "/public/api/v1/inboxes/{inbox_identifier}/contacts",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": true,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "CRM/Support",
+      "metrics": {
+        "description_length_chars": 204,
+        "estimated_enum_density": 0.0,
+        "estimated_nesting_depth": 2,
+        "estimated_optional_field_ratio": 1.0,
+        "estimated_parameter_count": 5,
+        "estimated_token_length": 112
+      },
+      "mock_safety_rationale": "Excluded from canonical benchmark evaluation due to binary input surface.",
+      "operation_id": "create-a-contact",
+      "reason_for_exclusion": "Disqualified from canonical cohort due to format: binary on avatar property, violating Section 2.2 strict multipart/binary exclusion rule.",
+      "safe_for_local_mock_evaluation": "NOT_APPLICABLE",
+      "source_cluster_id": "CLUSTER_CHATWOOT",
+      "source_file_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+      "source_file_path": "swagger/swagger.json",
+      "source_project": "Chatwoot (chatwoot/chatwoot)",
+      "source_spec_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts/post",
+      "usage_role": "EXCLUDED_REFERENCE"
+    },
+    {
+      "batch_eligibility": "EXCLUDED_MANIFEST_DISQUALIFIED",
+      "candidate_source_id": "CAND-001",
+      "candidate_status": "EXCLUDE_PENDING",
+      "complexity_tier": "MODERATE",
+      "endpoint_path": "/repos/{owner}/{repo}/issues",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": true,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Developer Platforms",
+      "metrics": {
+        "description_length_chars": 268,
+        "estimated_enum_density": 0.0,
+        "estimated_nesting_depth": 6,
+        "estimated_optional_field_ratio": 0.833,
+        "estimated_parameter_count": 6,
+        "estimated_token_length": 134
+      },
+      "mock_safety_rationale": "Excluded from canonical benchmark evaluation due to recursion depth 6 exceeding MAX_RECURSION_DEPTH=5 and union structure without approved depth amendment.",
+      "operation_id": "issues/create",
+      "reason_for_exclusion": "Disqualified from canonical cohort due to observed recursion depth 6 exceeding MAX_RECURSION_DEPTH=5 and labels.items containing object-level oneOf union. Amendment 003 governs finite object unions but does not alter recursion depth limits. Excluded pending independent depth-limit review.",
+      "safe_for_local_mock_evaluation": "NOT_APPLICABLE",
+      "source_cluster_id": "CLUSTER_GITHUB",
+      "source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+      "source_file_path": "descriptions/api.github.com/api.github.com.json",
+      "source_project": "GitHub (github/rest-api-description)",
+      "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1issues/post",
+      "usage_role": "EXCLUDED_REFERENCE"
+    },
+    {
+      "batch_eligibility": "EXCLUDED_MANIFEST_DISQUALIFIED",
+      "candidate_source_id": "CAND-002",
+      "candidate_status": "EXCLUDE_PENDING",
+      "complexity_tier": "DEEP_BLOATED",
+      "endpoint_path": "/v1/customers",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": false,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Payments",
+      "metrics": {
+        "description_length_chars": 348,
+        "estimated_enum_density": 0.0,
+        "estimated_nesting_depth": 6,
+        "estimated_optional_field_ratio": 1.0,
+        "estimated_parameter_count": 7,
+        "estimated_token_length": 218
+      },
+      "mock_safety_rationale": "Excluded from canonical benchmark evaluation due to recursion depth 6 exceeding MAX_RECURSION_DEPTH=5.",
+      "operation_id": "PostCustomers",
+      "reason_for_exclusion": "Disqualified from canonical cohort due to observed recursion depth 6 exceeding MAX_RECURSION_DEPTH=5 and address/metadata containing object-level anyOf unions. Amendment 003 governs finite object unions but does not alter recursion depth limits. Excluded pending independent depth-limit review.",
+      "safe_for_local_mock_evaluation": "NOT_APPLICABLE",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "source_file_path": "openapi/spec3.json",
+      "source_project": "Stripe (stripe/openapi)",
+      "source_spec_pointer": "#/paths/~1v1~1customers/post",
+      "usage_role": "EXCLUDED_REFERENCE"
+    },
+    {
+      "batch_eligibility": "EXCLUDED_MANIFEST_DISQUALIFIED",
+      "candidate_source_id": "CAND-002",
+      "candidate_status": "EXCLUDE_PENDING",
+      "complexity_tier": "MODERATE",
+      "endpoint_path": "/v1/payment_intents",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": false,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Payments",
+      "metrics": {
+        "description_length_chars": 312,
+        "estimated_enum_density": 0.0,
+        "estimated_nesting_depth": 9,
+        "estimated_optional_field_ratio": 0.714,
+        "estimated_parameter_count": 7,
+        "estimated_token_length": 146
+      },
+      "mock_safety_rationale": "Excluded from canonical benchmark evaluation due to recursion depth 9 exceeding MAX_RECURSION_DEPTH=5.",
+      "operation_id": "PostPaymentIntents",
+      "reason_for_exclusion": "Disqualified from canonical cohort due to observed recursion depth 9 exceeding MAX_RECURSION_DEPTH=5 and wide payment_method_options anyOf unions. Amendment 003 governs finite object unions but does not alter recursion depth limits. Excluded pending independent depth-limit review.",
+      "safe_for_local_mock_evaluation": "NOT_APPLICABLE",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "source_file_path": "openapi/spec3.json",
+      "source_project": "Stripe (stripe/openapi)",
+      "source_spec_pointer": "#/paths/~1v1~1payment_intents/post",
+      "usage_role": "EXCLUDED_REFERENCE"
+    }
+  ],
+  "summary": {
+    "already_existing_pilot_slots_skipped": 2,
+    "candidates_rejected": 14,
+    "candidates_successfully_generated": 13,
+    "eligible_operations_attempted": 27,
+    "generated_slots": [
+      "SLOT_GITHUB_02",
+      "SLOT_GITHUB_03",
+      "SLOT_TWILIO_01",
+      "SLOT_TWILIO_02",
+      "SLOT_TWILIO_03",
+      "SLOT_BOX_01",
+      "SLOT_BOX_02",
+      "SLOT_BOX_03",
+      "SLOT_LINE_02",
+      "SLOT_LINE_03",
+      "SLOT_STRIPE_01",
+      "SLOT_CHATWOOT_01",
+      "SLOT_LINE_01"
+    ],
+    "manifest_operations_considered": 30,
+    "rejected_slots": [
+      "SLOT_DO_01",
+      "SLOT_DO_02",
+      "SLOT_DO_03",
+      "SLOT_SLACK_01",
+      "SLOT_SLACK_02",
+      "SLOT_SLACK_03",
+      "SLOT_MCP_SQLITE_01",
+      "SLOT_MCP_SQLITE_02",
+      "SLOT_MCP_SQLITE_03",
+      "SLOT_MCP_GITHUB_01",
+      "SLOT_MCP_GITHUB_02",
+      "SLOT_MCP_GITHUB_03",
+      "SLOT_CHATWOOT_02",
+      "SLOT_CHATWOOT_03"
+    ],
+    "union_slots_excluded": 1
+  },
+  "union_slots_excluded": [
+    {
+      "batch_eligibility": "EXCLUDED_POLYMORPHIC_UNION_SLOT",
+      "candidate_source_id": "CAND-002",
+      "candidate_status": "PROVISIONAL_CANONICAL_CANDIDATE_FAITHFUL_UNION",
+      "complexity_tier": "MODERATE",
+      "endpoint_path": "/v1/refunds",
+      "exclusion_reason_nearby_operations": "Excluded GET /v1/refunds (listing) and POST /v1/refunds/{refund}/cancel (lifecycle cancellation) to focus on primary execution.",
+      "http_method": "POST",
+      "input_surface": {
+        "full_input_extraction_required": true,
+        "path_parameters_present": false,
+        "query_parameters_present": false,
+        "request_body_present": true
+      },
+      "intended_benchmark_domain": "Payments",
+      "metrics": {
+        "description_length_chars": 372,
+        "estimated_enum_density": 0.143,
+        "estimated_nesting_depth": 2,
+        "estimated_optional_field_ratio": 1.0,
+        "estimated_parameter_count": 7,
+        "estimated_token_length": 158
+      },
+      "mock_safety_rationale": "Awaiting concrete local mock executor specification and test suite verification before declaring mock evaluation safe.",
+      "operation_id": "PostRefunds",
+      "reason_for_selection": "Direct real-world production counterpart to Stage A synthetic Stripe refund tool; validates real-world transferability.",
+      "safe_for_local_mock_evaluation": "MOCK_SAFETY_REVIEW_PENDING",
+      "slot_id": "SLOT_STRIPE_03",
+      "source_cluster_id": "CLUSTER_STRIPE",
+      "source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "source_file_path": "openapi/spec3.json",
+      "source_project": "Stripe (stripe/openapi)",
+      "source_spec_pointer": "#/paths/~1v1~1refunds/post",
+      "usage_role": "CANDIDATE_CANONICAL_REFERENCE"
+    }
+  ]
+}

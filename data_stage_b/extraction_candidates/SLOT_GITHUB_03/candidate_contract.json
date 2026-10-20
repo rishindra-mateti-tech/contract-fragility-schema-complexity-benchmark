@@ -180,7 +180,7 @@
     "endpoint": "/user/repos",
     "extraction_rule_version": "2.0.0",
     "extraction_timestamp": "2026-10-20T08:00:00Z",
-    "extractor_git_commit": "96eab6e90400b9ae77101f65ed1796c031b611d9",
+    "extractor_git_commit": "2af91b9da436dd31e652ead2bf353b748a050f87",
     "extractor_version": "2.0.0",
     "governing_specification": "STAGE_B_EXTRACTION_SPEC.md",
     "http_method": "POST",

@@ -8,7 +8,7 @@
 - **Raw Specification Pointer**: `#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post`
 - **Raw File SHA-256**: `ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194`
 - **Raw File Git Blob SHA**: `a91fa76a34558f5ed28e245cb1a6c46a44a61f4d`
-- **Canonical Artifact SHA-256**: `3973071573736aa3213c07bb421b5effb37c38b975d2ef0d774fcc1478a9be36`
+- **Canonical Artifact SHA-256**: `0a8f0de40bd47ab356e378f0557d2ab507a3e3787f267c82bf7bb0f19190438c`
 - **Lifecycle Status**: `EXTRACTED_PENDING_HUMAN_VALIDATION`
 - **Creation Mode**: `BATCH_GENERATED_CANDIDATE`
 

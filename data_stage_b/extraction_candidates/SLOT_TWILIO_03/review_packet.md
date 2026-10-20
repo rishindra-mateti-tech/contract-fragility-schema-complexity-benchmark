@@ -8,7 +8,7 @@
 - **Raw Specification Pointer**: `#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post`
 - **Raw File SHA-256**: `052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339`
 - **Raw File Git Blob SHA**: `5b2e77834f20cbe5d3efeffd27326381fee6b07e`
-- **Canonical Artifact SHA-256**: `48d89a8987d94495d1ecb58e66e296380a659853186bd32951a93eedccffd02a`
+- **Canonical Artifact SHA-256**: `dcf7b746b28e8b2642f76ddd30cfb75f955245f09b861fd34093da0e7f60db2a`
 - **Lifecycle Status**: `EXTRACTED_PENDING_HUMAN_VALIDATION`
 - **Creation Mode**: `BATCH_GENERATED_CANDIDATE`
 

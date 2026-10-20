@@ -1,0 +1,13 @@
+{
+  "candidate_generation_count": 13,
+  "manifest_total_operations": 30,
+  "rejection_categories": {
+    "PROHIBITED_FEATURE": 3,
+    "SPEC_STRUCTURE_AMBIGUITY": 2,
+    "UNSUPPORTED_SPEC_FORMAT": 6,
+    "UNSUPPORTED_SURFACE": 3
+  },
+  "rejection_count": 14,
+  "skipped_pilot_count": 2,
+  "skipped_union_count": 1
+}

@@ -8,7 +8,7 @@
 - **Raw Specification Pointer**: `#/paths/~1v2~1bot~1chat~1loading~1start/post`
 - **Raw File SHA-256**: `41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc`
 - **Raw File Git Blob SHA**: `11f1fdb91092246f881edd1a9457cb37327a6c5d`
-- **Canonical Artifact SHA-256**: `70f4ce188a15209dc5b8c6d4f6dff9c74a36caab651c7c264b98b88c140f3535`
+- **Canonical Artifact SHA-256**: `a2e51cebac9bd90b49d459688233f8ca4be40254558e2201823b6cc68e6c9666`
 - **Lifecycle Status**: `EXTRACTED_PENDING_HUMAN_VALIDATION`
 - **Creation Mode**: `BATCH_GENERATED_CANDIDATE`
 

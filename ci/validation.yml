@@ -36,6 +36,10 @@ jobs:
         run: |
           python src/lint_research_claims.py
 
+      - name: Run Batch Extraction Candidate Self-Test (Dry-Run)
+        run: |
+          python src/extract_stage_b_batch_candidates.py --all --dry-run
+
       - name: Run Adversarial Red-Team Reproducibility Verification
         run: |
           python scripts/red_team_reproducibility.py

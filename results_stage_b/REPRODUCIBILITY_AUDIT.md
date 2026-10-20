@@ -6,7 +6,7 @@
 - **Auditor Role:** AUTHOR_MANUAL_REVIEW
 - **Benchmark Phase:** Stage B Research Infrastructure Hardening
 - **Repository:** `contract-fragility-schema-complexity-benchmark`
-- **Audit Outcome:** PASS (7/7 Integrity Checks Satisfied)
+- **Audit Outcome:** PASS (8/8 Integrity Checks Satisfied)
 - **Status Invariant Compliance:** STRICT (Zero unauthorized slot extractions; zero claims of `CANONICAL_FAITHFUL`)
 
 ---
@@ -66,6 +66,8 @@ The complete pytest test suite was executed across all modules:
 14. `tests/test_stage_b_schema_feature_registry.py`: Schema feature support registry (16 tests)
 15. `tests/test_stage_b_adversarial_feature_corpus.py`: Adversarial feature corpus and metamorphic tests (24 tests)
 16. `tests/test_openapi_serialization.py`: OpenAPI JSON and form-urlencoded serialization (8 tests)
+17. `tests/test_stage_b_batch_candidate_pipeline.py`: Generic batch candidate pipeline and preflight gates (8 tests)
+18. `tests/test_stage_b_candidate_validation.py`: Batch candidate validator and adversarial negative tests (11 tests)
 
 ---
 
@@ -100,3 +102,13 @@ Authoritative hashes for active canonical contracts on disk:
    - Independent Validation Claimed: `False`
 3. Zero Operations marked `CANONICAL_FAITHFUL`: Verified.
 4. Canonical Directory Cleanliness: Strictly contains only `SLOT_GITHUB_01` and `SLOT_STRIPE_02` directories and `global_field_lineage_index.jsonl`.
+
+---
+
+## 8. Batch Candidate Re-Extraction Determinism and Quarantined Invariants
+
+1. Re-extraction of all 13 batch candidate bundles into isolated temporary directories yields 100% bit-for-bit SHA-256 byte identity.
+2. Quarantined Directory Compliance: All 13 candidates reside strictly under `data_stage_b/extraction_candidates/<SLOT_ID>/`, with zero batch candidates placed into `data_stage_b/canonical/`.
+3. Lifecycle Status Invariant: All 13 candidates are strictly assigned `EXTRACTED_PENDING_HUMAN_VALIDATION` under creation mode `BATCH_GENERATED_CANDIDATE`.
+4. Epistemic Boundary: Zero independent validation claimed (`NOT_INDEPENDENTLY_VALIDATED`). Zero designations of `CANONICAL_FAITHFUL`.
+

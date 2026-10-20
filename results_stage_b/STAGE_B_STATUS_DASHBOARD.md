@@ -69,7 +69,14 @@ The following subsystems and artifacts have been fully implemented, validated by
 - Pinned runtime dependencies in `requirements.txt` (`pytest==9.1.1`, `jsonschema==4.25.1`, `pyyaml==6.0.3`).
 - Configured automated Continuous Integration pipeline specification in `ci/validation.yml` (deployable to `.github/workflows/validation.yml`).
 - Documented clean clone replication in `REPRODUCIBILITY.md`.
-- Implemented automated 7-point verification script in `scripts/verify_reproducibility.py` (`results_stage_b/REPRODUCIBILITY_AUDIT.md`).
+- Implemented automated 8-point verification script in `scripts/verify_reproducibility.py` (`results_stage_b/REPRODUCIBILITY_AUDIT.md`).
+
+### 2.9 Quarantined Batch Extraction Candidates
+- Implemented generic batch candidate extraction pipeline in `src/stage_b_candidate_pipeline.py` and runner in `src/extract_stage_b_batch_candidates.py`.
+- Evaluated all 27 remaining monomorphic candidate operations from the active manifest.
+- Successfully generated and quarantined 13 candidate bundles in `data_stage_b/extraction_candidates/<SLOT_ID>/`, each with 8 required artifacts and strictly held at `EXTRACTED_PENDING_HUMAN_VALIDATION`.
+- Rejections: 14 operations cleanly rejected fail-closed with exact scientific evidence in `results_stage_b/BATCH_EXTRACTION_REJECTION_REGISTER.md`.
+- Invariants: Zero operations labeled `CANONICAL_FAITHFUL`; zero independent reviews claimed.
 
 ---
 

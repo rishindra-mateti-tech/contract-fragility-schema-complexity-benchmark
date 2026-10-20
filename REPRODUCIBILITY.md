@@ -51,7 +51,7 @@ Pinned runtime dependencies:
 - `pyyaml==6.0.3`
 
 ### Step 3: Run Automated Hermetic Verification Script
-The repository provides a single executable script that verifies environment sanity, raw source hashes, full pytest execution, deterministic re-extraction, artifact integrity, directory cleanliness, and status invariants:
+The repository provides a single executable script that verifies environment sanity, raw source hashes, full pytest execution, deterministic pilot re-extraction, artifact integrity, directory cleanliness, status invariants, and batch candidate extraction determinism:
 ```bash
 python scripts/verify_reproducibility.py
 ```
@@ -68,8 +68,9 @@ Stage B Benchmark - Reproducibility & Integrity Verification
 [PASS] Check 5: Canonical Artifact Cryptographic Integrity
 [PASS] Check 6: Canonical Directory Cleanliness
 [PASS] Check 7: Lifecycle Status Invariants & Boundaries
+[PASS] Check 8: Batch Candidate Re-Extraction Determinism
 ======================================================================
-RESULT: ALL 7 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
+RESULT: ALL 8 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
 ======================================================================
 ```
 
@@ -93,6 +94,16 @@ python src/extract_stage_b_canonical_contract.py --slot-id SLOT_STRIPE_02 --gene
 
 # Compare byte identity with repository artifact
 diff /tmp/stripe_reextract/canonical_contract.json data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json
+```
+
+### Step 5b: Verify Deterministic Re-Extraction of Quarantined Batch Candidates
+To manually verify that the generic batch extraction candidate pipeline produces bit-for-bit identical outputs for all 13 quarantined candidates:
+```bash
+# Re-extract all candidates into temporary directory
+python src/extract_stage_b_batch_candidates.py --all --output-dir /tmp/candidates_reextract
+
+# Verify byte identity for any candidate slot (e.g. SLOT_GITHUB_02)
+diff -r /tmp/candidates_reextract/SLOT_GITHUB_02 data_stage_b/extraction_candidates/SLOT_GITHUB_02
 ```
 
 ### Step 6: Run Adversarial Red-Team Verification
@@ -121,6 +132,7 @@ Authoritative artifact hashes on disk:
 | `results_stage_b/CLAIM_EVIDENCE_LEDGER.json` | `7546a7c08646bbbe9d35e5c2ebb8ab24c498d92cfbad3b840542253f45bedae5` | Epistemic claim inventory |
 | `results_stage_b/SOURCE_ADMISSION_FORENSIC_AUDIT.json` | `e048be53790b053890f51fb3958371a1eb6e4f6d9cc53b14b4433aa2f8b6a631` | Forensic source admission accounting |
 | `results_stage_b/FEATURE_REGISTRY_COVERAGE_MATRIX.json` | `700f2bb994e1f9672c6ddc7315b6b04e49f6b6f37947ef3ece6e8fdac0114dc7` | 60-feature red-team test matrix |
+| `results_stage_b/BATCH_EXTRACTION_RUN_MANIFEST.json` | `1183129d0b09685545eb96eb83814ebb5bca0623b42810a9a58cf6dd46632c9b` | Batch extraction run manifest and artifact hashes |
 | `results_stage_b/SCHEMA_FEATURE_SUPPORT_REGISTRY.yaml` | `65c8ad76a778c7c0f6fd87e608f9806706c19743147684b8738f9a482538ceef` | Schema feature behavior definitions |
 | `results_stage_b/stage_b_operation_manifest.yaml` | `117b301a4287cdf8458d6c7a34af33342786d5d4113506e8895767764f005326` | 30-operation admitted manifest |
 

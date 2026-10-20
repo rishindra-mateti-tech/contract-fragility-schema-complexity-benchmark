@@ -8,7 +8,7 @@
 - **Raw Specification Pointer**: `#/paths/~1v2~1bot~1channel~1webhook~1endpoint/put`
 - **Raw File SHA-256**: `41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc`
 - **Raw File Git Blob SHA**: `11f1fdb91092246f881edd1a9457cb37327a6c5d`
-- **Canonical Artifact SHA-256**: `07f4391de9c635028346d35d276bf7002dab3e7767bfbe79ae2854bf601f22a9`
+- **Canonical Artifact SHA-256**: `aa218ffb3db77c15e822c2819510b6255d619676063d19bda68c087f7f011b00`
 - **Lifecycle Status**: `EXTRACTED_PENDING_HUMAN_VALIDATION`
 - **Creation Mode**: `BATCH_GENERATED_CANDIDATE`
 

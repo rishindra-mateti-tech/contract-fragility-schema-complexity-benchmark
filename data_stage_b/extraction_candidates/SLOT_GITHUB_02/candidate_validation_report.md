@@ -12,8 +12,8 @@
 ## 2. Automated Integrity Audit
 - **Source File SHA-256**: `ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194`
 - **Source Git Blob SHA**: `a91fa76a34558f5ed28e245cb1a6c46a44a61f4d`
-- **Canonical Schema SHA-256**: `3973071573736aa3213c07bb421b5effb37c38b975d2ef0d774fcc1478a9be36`
-- **Field Lineage SHA-256**: `4866f9f42d388146e1a4c294a77e01c0fe30a52cb099e8310213c4e605d55b3d`
+- **Canonical Schema SHA-256**: `0a8f0de40bd47ab356e378f0557d2ab507a3e3787f267c82bf7bb0f19190438c`
+- **Field Lineage SHA-256**: `14d181683ceaeef04e574f672e0f61b4d87d70b6e32c2c19100b709e5236090b`
 - **Difference Register SHA-256**: `f9eba995ef85d4f0fdfca896ae6e6719bc5289e912d8dddc2cfd34fd4cd93202`
 - **Feature Inventory SHA-256**: `622c9ee52f60ea1125c7dbb35ae063069391f6eb76c5ddff64dcef7639c4e834`
 - **Serialization Characterization SHA-256**: `58e15d43ed8d5017463fe8524ee025c327971ed38d2c5682fe42288fab12e6da`

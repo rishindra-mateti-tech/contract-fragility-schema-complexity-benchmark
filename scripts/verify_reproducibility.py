@@ -252,9 +252,57 @@ def check_status_invariants() -> Tuple[bool, str]:
     return True, "Status invariants strictly preserved (SLOT_STRIPE_02 is EXTRACTED_PENDING_HUMAN_VALIDATION; zero CANONICAL_FAITHFUL designations)"
 
 
+# -----------------------------------------------------------------------------
+# Check 8: Batch candidate extraction determinism and invariants
+# -----------------------------------------------------------------------------
+def check_batch_candidates_reproducibility() -> Tuple[bool, str]:
+    from src.extract_stage_b_batch_candidates import run_batch_extraction
+    from src.stage_b_candidate_validation import CandidateValidator
+
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        res = run_batch_extraction(output_base_dir=tmp_dir)
+        gen = res["candidates_generated"]
+        if len(gen) != 13:
+            return False, f"Expected 13 generated candidates, got {len(gen)}"
+
+        base_candidates_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates")
+        validator = CandidateValidator()
+
+        for c in gen:
+            slot_id = c["slot_id"]
+            tmp_slot_dir = os.path.join(tmp_dir, slot_id)
+            repo_slot_dir = os.path.join(base_candidates_dir, slot_id)
+
+            if not os.path.exists(repo_slot_dir):
+                return False, f"Candidate dir missing in repository: {repo_slot_dir}"
+
+            # Validate in-repo bundle
+            is_valid, errors = validator.validate_candidate_bundle(repo_slot_dir, expected_slot_id=slot_id)
+            if not is_valid:
+                return False, f"Validation failed for repo candidate {slot_id}: {errors}"
+
+            # Compare files byte-for-byte
+            for fname in [
+                "candidate_contract.json",
+                "field_lineage.jsonl",
+                "difference_register.json",
+                "extraction_metadata.json",
+                "feature_inventory.json",
+                "serialization_characterization.json",
+                "candidate_validation_report.md",
+                "review_packet.md",
+            ]:
+                f_tmp = os.path.join(tmp_slot_dir, fname)
+                f_repo = os.path.join(repo_slot_dir, fname)
+                if sha256_file(f_tmp) != sha256_file(f_repo):
+                    return False, f"Byte identity failure for {slot_id}/{fname}"
+
+    return True, "All 13 batch candidates re-extracted deterministically with bit-for-bit identity"
+
+
 def main() -> int:
     print("=" * 70)
-    print("Stage B Benchmark — Reproducibility & Integrity Verification")
+    print("Stage B Benchmark - Reproducibility & Integrity Verification")
     print("=" * 70)
 
     checks = [
@@ -265,6 +313,7 @@ def main() -> int:
         (5, "Canonical Artifact Cryptographic Integrity", check_canonical_artifact_integrity),
         (6, "Canonical Directory Cleanliness", check_directory_structure),
         (7, "Lifecycle Status Invariants & Boundaries", check_status_invariants),
+        (8, "Batch Candidate Re-Extraction Determinism", check_batch_candidates_reproducibility),
     ]
 
     all_passed = True
@@ -276,7 +325,7 @@ def main() -> int:
 
     print("=" * 70)
     if all_passed:
-        print("RESULT: ALL 7 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.")
+        print("RESULT: ALL 8 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.")
         print("=" * 70)
         return 0
     else:

@@ -8,7 +8,7 @@
 - **Raw Specification Pointer**: `#/paths/~1v1~1payouts/post`
 - **Raw File SHA-256**: `7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776`
 - **Raw File Git Blob SHA**: `f1cedf38e0178538a3c72e750da80226df41e28c`
-- **Canonical Artifact SHA-256**: `d136891272efe89605b55d90b914f08fbf285068ef859079b33ce15dae68dfea`
+- **Canonical Artifact SHA-256**: `d4328ecc85ef5c5ac90e85aa0f45df6d412ac59efe3b4df5d8df0e2b135d8b0c`
 - **Lifecycle Status**: `EXTRACTED_PENDING_HUMAN_VALIDATION`
 - **Creation Mode**: `BATCH_GENERATED_CANDIDATE`
 

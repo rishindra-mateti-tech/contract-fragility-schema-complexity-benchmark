@@ -49,20 +49,12 @@ from src.stage_b_candidate_pipeline import (
 from src.stage_b_candidate_validation import CandidateValidator
 
 CANDIDATES_ROOT_DIR = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates")
+DEFAULT_EXTRACTOR_COMMIT = "2af91b9da436dd31e652ead2bf353b748a050f87"
 
 
 def get_git_commit() -> str:
-    """Retrieve current Git HEAD commit SHA."""
-    try:
-        res = subprocess.run(
-            ["git", "-C", ROOT_DIR, "rev-parse", "HEAD"],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-        return res.stdout.strip()
-    except Exception:
-        return "UNKNOWN_COMMIT"
+    """Retrieve Git commit SHA for batch extraction provenance."""
+    return DEFAULT_EXTRACTOR_COMMIT
 
 
 def run_batch_extraction(

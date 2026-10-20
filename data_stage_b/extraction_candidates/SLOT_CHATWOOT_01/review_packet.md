@@ -8,7 +8,7 @@
 - **Raw Specification Pointer**: `#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post`
 - **Raw File SHA-256**: `c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43`
 - **Raw File Git Blob SHA**: `b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589`
-- **Canonical Artifact SHA-256**: `d6fe73560320f90be65fa78122e2198117d127709a44899ca25e25c91c8b07cd`
+- **Canonical Artifact SHA-256**: `4df12365bd50238819b1e1ccef9432b3ab229e1844779e0b7a79cddfc739397c`
 - **Lifecycle Status**: `EXTRACTED_PENDING_HUMAN_VALIDATION`
 - **Creation Mode**: `BATCH_GENERATED_CANDIDATE`
 
