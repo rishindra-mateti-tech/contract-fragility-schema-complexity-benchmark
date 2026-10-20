@@ -1,0 +1,53 @@
+{
+  "components": {
+    "schemas": {
+      "CyclicNode": {
+        "properties": {
+          "child": {
+            "$ref": "#/components/schemas/CyclicNode"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_cyclic",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_cyclic": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_cyclic",
+        "operationId": "unsupported_cyclic",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CyclicNode"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_cyclic"
+      }
+    }
+  }
+}

@@ -81,6 +81,7 @@ class SchemaFeatureRegistry:
         visited_ptrs: Optional[Set[str]] = None,
         current_depth: int = 0,
         fail_closed: bool = True,
+        raw_doc: Optional[Dict[str, Any]] = None,
     ) -> List[str]:
         """Inspect a schema node for constructs that are unsupported or fail-closed.
 
@@ -126,6 +127,26 @@ class SchemaFeatureRegistry:
                     if fail_closed:
                         raise UnsupportedSchemaFeatureError("FEAT_REF_EXTERNAL_FILE", msg, pointer)
                     violations.append(msg)
+                return violations
+
+            if raw_doc is not None:
+                new_visited = set(visited_ptrs)
+                new_visited.add(ref_val)
+                from src.extract_stage_b_canonical_contract import resolve_json_pointer
+                try:
+                    deref = resolve_json_pointer(raw_doc, ref_val)
+                    violations.extend(
+                        self.validate_schema_compliance(
+                            deref,
+                            ref_val,
+                            new_visited,
+                            current_depth,
+                            fail_closed,
+                            raw_doc,
+                        )
+                    )
+                except KeyError:
+                    pass
             return violations
 
         # Check composition / polymorphism keywords
@@ -190,6 +211,7 @@ class SchemaFeatureRegistry:
                         visited_ptrs,
                         current_depth + 1,
                         fail_closed,
+                        raw_doc,
                     )
                 )
 
@@ -202,6 +224,7 @@ class SchemaFeatureRegistry:
                     visited_ptrs,
                     current_depth + 1,
                     fail_closed,
+                    raw_doc,
                 )
             )
 
@@ -214,6 +237,7 @@ class SchemaFeatureRegistry:
                     visited_ptrs,
                     current_depth + 1,
                     fail_closed,
+                    raw_doc,
                 )
             )
 

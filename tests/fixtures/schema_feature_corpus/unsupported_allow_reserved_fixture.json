@@ -1,0 +1,39 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_allow_reserved_fixture",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_allow_reserved_fixture": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_allow_reserved_fixture",
+        "operationId": "unsupported_allow_reserved_fixture",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "allowReserved": true,
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_allow_reserved_fixture"
+      }
+    }
+  }
+}

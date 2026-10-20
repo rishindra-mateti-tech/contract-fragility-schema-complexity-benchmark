@@ -1,0 +1,40 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_not_fixture",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_not_fixture": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_not_fixture",
+        "operationId": "unsupported_not_fixture",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "not": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_not_fixture"
+      }
+    }
+  }
+}

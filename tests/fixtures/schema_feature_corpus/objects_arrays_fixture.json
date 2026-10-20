@@ -1,0 +1,136 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - synthetic_objects_arrays",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/synthetic_objects_arrays": {
+      "post": {
+        "description": "Detailed description for synthetic operation synthetic_objects_arrays",
+        "operationId": "synthetic_objects_arrays",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "123_numeric_leading": {
+                    "type": "string"
+                  },
+                  "arr_of_arrs": {
+                    "items": {
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "type": "array"
+                  },
+                  "arr_of_objs": {
+                    "items": {
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "weight": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "id"
+                      ],
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "arr_of_prims": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "camelCaseProp": {
+                    "type": "string"
+                  },
+                  "closed_object": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "fixed_key": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "empty_desc": {
+                    "description": "",
+                    "type": "string"
+                  },
+                  "kebab-case-prop": {
+                    "type": "boolean"
+                  },
+                  "level1": {
+                    "properties": {
+                      "level2": {
+                        "properties": {
+                          "level3": {
+                            "properties": {
+                              "level4": {
+                                "properties": {
+                                  "level5_leaf": {
+                                    "description": "Max depth leaf",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "markdown_desc": {
+                    "description": "Line 1\nLine 2 with `code` & unicode: \u2713 and symbols <>&'\"",
+                    "type": "string"
+                  },
+                  "open_object": {
+                    "additionalProperties": true,
+                    "type": "object"
+                  },
+                  "schema_map_object": {
+                    "additionalProperties": {
+                      "description": "Dynamic tag value",
+                      "type": "string"
+                    },
+                    "type": "object"
+                  },
+                  "snake_case_prop": {
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation synthetic_objects_arrays"
+      }
+    }
+  }
+}

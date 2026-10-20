@@ -1,0 +1,46 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_tuple_fixture",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_tuple_fixture": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_tuple_fixture",
+        "operationId": "unsupported_tuple_fixture",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "type": "array"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_tuple_fixture"
+      }
+    }
+  }
+}

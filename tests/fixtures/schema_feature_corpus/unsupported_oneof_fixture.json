@@ -1,0 +1,45 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_oneof_fixture",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_oneof_fixture": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_oneof_fixture",
+        "operationId": "unsupported_oneof_fixture",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_oneof_fixture"
+      }
+    }
+  }
+}

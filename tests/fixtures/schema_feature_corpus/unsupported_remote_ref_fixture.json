@@ -1,0 +1,38 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_remote_ref_fixture",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_remote_ref_fixture": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_remote_ref_fixture",
+        "operationId": "unsupported_remote_ref_fixture",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "https://api.example.com/schemas/spec.json"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_remote_ref_fixture"
+      }
+    }
+  }
+}

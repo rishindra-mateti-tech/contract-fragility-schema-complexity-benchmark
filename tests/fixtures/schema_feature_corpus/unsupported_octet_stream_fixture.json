@@ -1,0 +1,38 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_octet_stream_fixture",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_octet_stream_fixture": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_octet_stream_fixture",
+        "operationId": "unsupported_octet_stream_fixture",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_octet_stream_fixture"
+      }
+    }
+  }
+}

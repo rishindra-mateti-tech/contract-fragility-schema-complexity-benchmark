@@ -1,0 +1,88 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - synthetic_enums_defaults",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/synthetic_enums_defaults": {
+      "post": {
+        "description": "Detailed description for synthetic operation synthetic_enums_defaults",
+        "operationId": "synthetic_enums_defaults",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "const_val": {
+                    "const": "CANONICAL_TARGET",
+                    "type": "string"
+                  },
+                  "default_int": {
+                    "default": 42,
+                    "type": "integer"
+                  },
+                  "default_str": {
+                    "default": "fallback_token",
+                    "type": "string"
+                  },
+                  "example_str": {
+                    "example": "sample_account_id",
+                    "type": "string"
+                  },
+                  "examples_map": {
+                    "examples": {
+                      "ex1": {
+                        "value": "first"
+                      },
+                      "ex2": {
+                        "value": "second"
+                      }
+                    },
+                    "type": "string"
+                  },
+                  "int_enum": {
+                    "enum": [
+                      10,
+                      20,
+                      30,
+                      40
+                    ],
+                    "type": "integer"
+                  },
+                  "str_enum": {
+                    "enum": [
+                      "ACTIVE",
+                      "INACTIVE",
+                      "PENDING"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "str_enum",
+                  "const_val"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation synthetic_enums_defaults"
+      }
+    }
+  }
+}

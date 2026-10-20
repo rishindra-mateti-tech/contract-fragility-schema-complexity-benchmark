@@ -1,0 +1,39 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_binary_fixture",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_binary_fixture": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_binary_fixture",
+        "operationId": "unsupported_binary_fixture",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "format": "binary",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_binary_fixture"
+      }
+    }
+  }
+}

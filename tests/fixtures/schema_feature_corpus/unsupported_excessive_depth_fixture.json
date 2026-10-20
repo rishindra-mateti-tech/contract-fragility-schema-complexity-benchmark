@@ -1,0 +1,73 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - unsupported_excessive_depth",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/unsupported_excessive_depth": {
+      "post": {
+        "description": "Detailed description for synthetic operation unsupported_excessive_depth",
+        "operationId": "unsupported_excessive_depth",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "child": {
+                    "properties": {
+                      "child": {
+                        "properties": {
+                          "child": {
+                            "properties": {
+                              "child": {
+                                "properties": {
+                                  "child": {
+                                    "properties": {
+                                      "child": {
+                                        "properties": {
+                                          "leaf": {
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation unsupported_excessive_depth"
+      }
+    }
+  }
+}

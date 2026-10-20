@@ -1,0 +1,74 @@
+{
+  "info": {
+    "title": "Synthetic Fixture Spec - synthetic_bounds_constraints",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/synthetic/synthetic_bounds_constraints": {
+      "post": {
+        "description": "Detailed description for synthetic operation synthetic_bounds_constraints",
+        "operationId": "synthetic_bounds_constraints",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "bounded_arr": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "maxItems": 10,
+                    "minItems": 1,
+                    "type": "array",
+                    "uniqueItems": true
+                  },
+                  "bounded_int": {
+                    "maximum": 100,
+                    "minimum": 1,
+                    "multipleOf": 5,
+                    "type": "integer"
+                  },
+                  "bounded_obj": {
+                    "additionalProperties": {
+                      "type": "string"
+                    },
+                    "maxProperties": 5,
+                    "minProperties": 1,
+                    "type": "object"
+                  },
+                  "bounded_str": {
+                    "maxLength": 64,
+                    "minLength": 3,
+                    "pattern": "^[a-zA-Z0-9_-]+$",
+                    "type": "string"
+                  },
+                  "exclusive_num": {
+                    "exclusiveMaximum": 1.0,
+                    "exclusiveMinimum": 0.0,
+                    "type": "number"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "summary": "Synthetic operation synthetic_bounds_constraints"
+      }
+    }
+  }
+}
