@@ -10,11 +10,11 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `54` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `55` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
-| **Total Pattern Matches** | `99` | All occurrences of monitored high-risk stems. |
+| **Total Pattern Matches** | `104` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `12` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
-| **Scoped Acceptable Claims** | `87` | Contextually constrained by negative disclaimers or definitions. |
+| **Scoped Acceptable Claims** | `92` | Contextually constrained by negative disclaimers or definitions. |
 | **Un-scoped Violations** | **`0`** | Absolutist or ungrounded claims requiring remediation. |
 
 ---
@@ -23,12 +23,12 @@
 
 | High-Risk Term | Total Matches | Scoped Acceptable | Allowlisted | Violations |
 | :--- | :---: | :---: | :---: | :---: |
-| `CANONICAL_FAITHFUL promotion` | 32 | 28 | 4 | 0 |
+| `CANONICAL_FAITHFUL promotion` | 34 | 30 | 4 | 0 |
 | `guarantee / guaranteed` | 4 | 4 | 0 | 0 |
-| `independent validation / review` | 36 | 34 | 2 | 0 |
+| `independent validation / review` | 38 | 36 | 2 | 0 |
 | `lossless` | 15 | 13 | 2 | 0 |
 | `proves / proven` | 4 | 3 | 1 | 0 |
-| `statistical significance` | 8 | 5 | 3 | 0 |
+| `statistical significance` | 9 | 6 | 3 | 0 |
 
 ---
 
@@ -37,8 +37,8 @@
 | File | Line | Status | Term | Scoping Rationale |
 | :--- | :---: | :---: | :--- | :--- |
 | `AUTHOR_REVIEW_INSTRUCTIONS.md` | 24 | `SCOPED_ACCEPTABLE` | `Independent Validation` | SECTION_TITLE_OR_BOUNDARY_HEADING |
-| `AUTHOR_REVIEW_INSTRUCTIONS.md` | 36 | `SCOPED_ACCEPTABLE` | `independent review` | SCOPED_BY_PATTERN: \b(do not|does not|not|never|neither|nor|without|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b |
-| `AUTHOR_REVIEW_INSTRUCTIONS.md` | 37 | `SCOPED_ACCEPTABLE` | `independent validation` | SCOPED_BY_PATTERN: \b(do not|does not|not|never|neither|nor|without|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b |
+| `AUTHOR_REVIEW_INSTRUCTIONS.md` | 36 | `SCOPED_ACCEPTABLE` | `independent review` | SCOPED_BY_PATTERN: \b(do not|does not|not|never|neither|nor|without|zero|0|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b |
+| `AUTHOR_REVIEW_INSTRUCTIONS.md` | 37 | `SCOPED_ACCEPTABLE` | `independent validation` | SCOPED_BY_PATTERN: \b(do not|does not|not|never|neither|nor|without|zero|0|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b |
 | `CANONICAL_CONTRACT_VALIDATION_SPEC.md` | 19 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(gate|promotion|lifecycle|state|transition|status|criterion|criteria|header|column)\b |
 | `CANONICAL_CONTRACT_VALIDATION_SPEC.md` | 220 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | LIFECYCLE_SPECIFICATION_TABLE |
 | `CANONICAL_CONTRACT_VALIDATION_SPEC.md` | 224 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | LIFECYCLE_SPECIFICATION_TABLE |
@@ -56,12 +56,12 @@
 | `README.md` | 33 | `ALLOWLISTED` | `statistically significant` | Explicitly registered and permitted under CLAIM-001 |
 | `README.md` | 165 | `ALLOWLISTED` | `Statistical Significance` | Explicitly registered and permitted under CLAIM-001 |
 | `REPRODUCIBILITY.md` | 12 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-014 |
+| `REPRODUCIBILITY.md` | 137 | `SCOPED_ACCEPTABLE` | `Independent Review` | SCOPED_BY_PATTERN: \b(do not|does not|not|never|neither|nor|without|zero|0|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 19 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 20 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 197 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 210 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: `CANONICAL_FAITHFUL` |
-| `STAGE_B_EXTRACTION_SPEC.md` | 325 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
-| ... | ... | ... | ... | *(74 additional scoped occurrences verified)* |
+| ... | ... | ... | ... | *(79 additional scoped occurrences verified)* |
 
 ---
 

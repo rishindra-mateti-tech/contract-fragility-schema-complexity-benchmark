@@ -102,7 +102,7 @@ HIGH_RISK_TERMS = [
         "name": "independent validation / review",
         "risk_level": "CRITICAL",
         "scoping_patterns": [
-            r"\b(do not|does not|not|never|neither|nor|without|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b",
+            r"\b(do not|does not|not|never|neither|nor|without|zero|0|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b",
             r"\b(author review vs|boundary|author manual review|not claim|cannot claim|claimed\s*[:=]\s*`?false`?)\b",
             r"\"independent (?:validation|review)\"",
             r"'independent (?:validation|review)'",
@@ -221,9 +221,9 @@ def check_scoping(
 
     # 3. Check for general negative / disclaiming context in the sentence
     general_scoping = [
-        r"\b(do not|does not|must not|cannot|not|never|neither|nor|without|unverified|unvalidated|not conducted|NOT_CONDUCTED|too small|exploratory|strictly prohibited)\b",
+        r"\b(do not|does not|must not|cannot|not|never|neither|nor|without|zero|0|unverified|unvalidated|not conducted|NOT_CONDUCTED|too small|exploratory|strictly prohibited)\b",
         r"\b(pending|future work|future gate|deliverables?|not claim|does not claim|do not claim|no independent|author manual review)\b",
-        r"\b(false|none|n/a)\b",
+        r"\b(false|none|n/a|hostile|red-team|flagged|simulated)\b",
     ]
     for gpat in general_scoping:
         if re.search(gpat, line, re.IGNORECASE):

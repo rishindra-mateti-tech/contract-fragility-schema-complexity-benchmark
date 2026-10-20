@@ -32,6 +32,14 @@ jobs:
         run: |
           python scripts/verify_reproducibility.py
 
+      - name: Run Epistemic Research Claim Linter
+        run: |
+          python src/lint_research_claims.py
+
+      - name: Run Adversarial Red-Team Reproducibility Verification
+        run: |
+          python scripts/red_team_reproducibility.py
+
       - name: Run Full Test Suite with Verbose Reporting
         run: |
           python -m pytest -v
