@@ -30,7 +30,7 @@ STRIPE_CANONICAL_PATH = os.path.join(
 # =============================================================================
 
 def test_json_serialization_deterministic_and_round_trip():
-    """Verify JSON serialization is deterministic and lossless."""
+    """Verify JSON serialization is deterministic and in-process reversible."""
     payload = {
         "title": "Fix memory leak",
         "head": "feature/cache",
@@ -212,7 +212,7 @@ def test_stripe_shipping_rate_payload_round_trip():
         "tax_code": "txcd_92010001",
     }
 
-    is_lossless, serialized, round_tripped = round_trip_form_urlencoded(
+    is_equivalent, serialized, round_tripped = round_trip_form_urlencoded(
         payload,
         schema=body_schema,
         style="deepObject",
@@ -220,8 +220,8 @@ def test_stripe_shipping_rate_payload_round_trip():
         items_indexing="bracket",
     )
 
-    # Prove 100% mathematical round-trip equivalence
-    assert is_lossless is True
+    # Prove deterministic in-process round-trip under declared representation and encoding policy
+    assert is_equivalent is True
     assert round_tripped == payload
 
     # Verify expected wire substrings

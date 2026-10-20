@@ -47,8 +47,8 @@ All six tracks were completed sequentially with isolated, dedicated commits and 
 - **Commit:** `fe8f136` (`feat(stage_b): implement form serialization conformance layer and spec (Track 4)`)
 - **Deliverables:**
   * `src/openapi_serialization.py`: Standalone RFC 8259 JSON and RFC 1866 URL-encoded form serializer/deserializer with deepObject bracket nesting, explode semantics, and schema-guided type coercion.
-  * `results_stage_b/SERIALIZATION_CONFORMANCE_SPEC.md`: Conformance specification documenting reversibility and mathematical lossiness limits.
-  * `tests/test_openapi_serialization.py`: 8 unit tests demonstrating 100% bidirectional round-trip reversibility against the `SLOT_STRIPE_02` canonical contract.
+  * `results_stage_b/SERIALIZATION_CONFORMANCE_SPEC.md`: Conformance specification establishing 4-tier taxonomy and documenting reversibility and mathematical lossiness limits.
+  * `tests/test_openapi_serialization.py`: 8 unit tests demonstrating deterministic in-process round-trip under the declared representation and supported encoding policy against the `SLOT_STRIPE_02` canonical contract (Tier 2 in-process equivalence; Tier 3 wire conformance and Tier 4 server acceptance unvalidated).
 
 ### Track 5: Reproducibility and CI Hardening
 - **Commit:** `9af75e8` (`ci(stage_b): harden reproducibility with pinned requirements and CI workflow (Track 5)`)

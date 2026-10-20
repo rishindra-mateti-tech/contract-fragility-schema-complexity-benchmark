@@ -287,9 +287,12 @@ def round_trip_form_urlencoded(
     explode: bool = True,
     items_indexing: str = "bracket",
 ) -> Tuple[bool, str, Dict[str, Any]]:
-    """Perform a serialize -> deserialize round trip and evaluate mathematical equivalence.
+    """Perform an in-process serialize -> deserialize round trip under declared encoding policy.
 
-    Returns (is_lossless, serialized_str, deserialized_payload).
+    Evaluates in-process representation equivalence (Tier 2).
+    Does NOT assert HTTP wire conformance (Tier 3) or server-side acceptance (Tier 4).
+
+    Returns (is_equivalent, serialized_str, deserialized_payload).
     """
     serialized = serialize_form_urlencoded(
         payload,
@@ -299,5 +302,5 @@ def round_trip_form_urlencoded(
         items_indexing=items_indexing,
     )
     deserialized = deserialize_form_urlencoded(serialized, schema=schema)
-    is_lossless = (deserialized == payload)
-    return is_lossless, serialized, deserialized
+    is_equivalent = (deserialized == payload)
+    return is_equivalent, serialized, deserialized

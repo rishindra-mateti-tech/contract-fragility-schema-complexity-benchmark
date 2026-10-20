@@ -62,8 +62,8 @@ The following subsystems and artifacts have been fully implemented, validated by
 
 ### 2.7 Form Serialization Conformance Layer
 - Implemented RFC 8259 JSON and RFC 1866 URL-encoded form serializer/deserializer in `src/openapi_serialization.py`.
-- Formulated specification in `results_stage_b/SERIALIZATION_CONFORMANCE_SPEC.md`.
-- Proved 100% bidirectional round-trip reversibility against the `SLOT_STRIPE_02` canonical contract.
+- Formulated specification in `results_stage_b/SERIALIZATION_CONFORMANCE_SPEC.md` establishing a 4-tier taxonomy separating canonical structural preservation, in-process representation, HTTP wire conformance, and server-side acceptance.
+- Demonstrated deterministic in-process round-trip under the declared representation and supported encoding policy against the `SLOT_STRIPE_02` canonical contract (Tier 2 in-process equivalence; Tier 3 HTTP wire conformance and Tier 4 server-side acceptance remain unvalidated).
 
 ### 2.8 Reproducibility and CI Hardening
 - Pinned runtime dependencies in `requirements.txt` (`pytest==9.1.1`, `jsonschema==4.25.1`, `pyyaml==6.0.3`).
