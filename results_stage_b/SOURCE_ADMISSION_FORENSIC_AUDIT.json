@@ -1,0 +1,479 @@
+{
+  "audit_scope": "STAGE_B_DATASET_UNIVERSE_FORENSICS",
+  "audit_version": "1.0.0",
+  "candidate_inventory_audit": {
+    "admission_breakdown": {
+      "ADMITTED": 10,
+      "PENDING_REVIEW": 3,
+      "REJECTED": 1
+    },
+    "candidates": [
+      {
+        "candidate_id": "CAND-001",
+        "commit_sha": "7dee0622aeecf9df3c5060ca28c7a57ee5007804",
+        "decision": "ADMITTED",
+        "domain": "Developer Platforms",
+        "format": "OpenAPI 3.0",
+        "license": "MIT",
+        "project": "GitHub (github/rest-api-description)"
+      },
+      {
+        "candidate_id": "CAND-002",
+        "commit_sha": "7d487b5e5d8d28cf0613856cc63000b673bce7bc",
+        "decision": "ADMITTED",
+        "domain": "Payments",
+        "format": "OpenAPI 3.0",
+        "license": "MIT",
+        "project": "Stripe (stripe/openapi)"
+      },
+      {
+        "candidate_id": "CAND-003",
+        "commit_sha": "e326f5060794769b6835084e48be7ce4db062d39",
+        "decision": "ADMITTED",
+        "domain": "Cloud/Infra",
+        "format": "OpenAPI 3.0",
+        "license": "Apache-2.0",
+        "project": "DigitalOcean (digitalocean/openapi)"
+      },
+      {
+        "candidate_id": "CAND-004",
+        "commit_sha": "141f1201b55abcc16b3aa8089e71c4a927326975",
+        "decision": "ADMITTED",
+        "domain": "Logistics/Communications",
+        "format": "OpenAPI 3.0",
+        "license": "MIT",
+        "project": "Twilio (twilio/twilio-oai)"
+      },
+      {
+        "candidate_id": "CAND-005",
+        "commit_sha": "5b055e333a802b10b8ca90fcc513643836dd92b4",
+        "decision": "ADMITTED",
+        "domain": "Data/Identity",
+        "format": "OpenAPI 3.0",
+        "license": "Apache-2.0",
+        "project": "Box (box/box-openapi)"
+      },
+      {
+        "candidate_id": "CAND-006",
+        "commit_sha": "bc08db49625630e3585bf2f1322128ea04f2a7f3",
+        "decision": "ADMITTED",
+        "domain": "CRM/Support",
+        "format": "OpenAPI 3.0",
+        "license": "MIT",
+        "project": "Slack (slackapi/slack-api-specs)"
+      },
+      {
+        "candidate_id": "CAND-007",
+        "commit_sha": "UNRESOLVED_PRIVATE_REPO",
+        "decision": "REJECTED",
+        "domain": "Cloud/Infra",
+        "format": "OpenAPI 3.0",
+        "license": "UNVERIFIED_PRIVATE_REPO (presumed Apache-2.0)",
+        "project": "DataDog (DataDog/datadog-api-spec)"
+      },
+      {
+        "candidate_id": "CAND-008",
+        "commit_sha": "90e8041ffe02d80c452d2b476bedd59a8d219bdc",
+        "decision": "PENDING_REVIEW",
+        "domain": "Payments",
+        "format": "OpenAPI 3.0",
+        "license": "Apache-2.0",
+        "project": "PayPal (paypal/paypal-rest-api-specifications)"
+      },
+      {
+        "candidate_id": "CAND-009",
+        "commit_sha": "68b880d96b797a0bddf0322effb29edf67afdc8d",
+        "decision": "ADMITTED",
+        "domain": "Data/Identity",
+        "format": "MCP Tool JSON",
+        "license": "MIT",
+        "project": "Model Context Protocol (modelcontextprotocol/servers - SQLite)"
+      },
+      {
+        "candidate_id": "CAND-010",
+        "commit_sha": "68b880d96b797a0bddf0322effb29edf67afdc8d",
+        "decision": "ADMITTED",
+        "domain": "Developer Platforms",
+        "format": "MCP Tool JSON",
+        "license": "MIT",
+        "project": "Model Context Protocol (modelcontextprotocol/servers - GitHub)"
+      },
+      {
+        "candidate_id": "CAND-011",
+        "commit_sha": "f4bc89957b5e49dab3cd1d1c074248e60ac43d2e",
+        "decision": "ADMITTED",
+        "domain": "CRM/Support",
+        "format": "OpenAPI 3.0",
+        "license": "MIT",
+        "project": "Chatwoot (chatwoot/chatwoot)"
+      },
+      {
+        "candidate_id": "CAND-012",
+        "commit_sha": "deaeeb8de6845cf9b352f51eb0935e80323f172d",
+        "decision": "PENDING_REVIEW",
+        "domain": "Data/Identity (Media)",
+        "format": "OpenAPI 3.0",
+        "license": "Apache-2.0",
+        "project": "New York Times (nytimes/public_api_specs)"
+      },
+      {
+        "candidate_id": "CAND-013",
+        "commit_sha": "fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe",
+        "decision": "ADMITTED",
+        "domain": "Logistics/Communications",
+        "format": "OpenAPI 3.0",
+        "license": "Apache-2.0",
+        "project": "LINE (line/line-openapi)"
+      },
+      {
+        "candidate_id": "CAND-014",
+        "commit_sha": "35b0d4ebb841f2706e1c0aa31c7d47ecdd43c71d",
+        "decision": "PENDING_REVIEW",
+        "domain": "Cloud/Infra (AI)",
+        "format": "OpenAPI 3.0",
+        "license": "MIT",
+        "project": "OpenAI (openai/openai-openapi)"
+      }
+    ],
+    "total_candidate_sources_evaluated": 14
+  },
+  "manifest_and_readiness_audit": {
+    "active_manifest_count": 30,
+    "currently_extracted_slots": {
+      "SLOT_GITHUB_01": "CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY",
+      "SLOT_STRIPE_02": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    "excluded_cohort_count": 7,
+    "readiness_distribution": {
+      "EXCLUDED": 7,
+      "READY_WITH_EXPLICIT_WRAPPER_POLICY": 6,
+      "REQUIRES_EXTRACTOR_CAPABILITY": 23,
+      "REQUIRES_PROTOCOL_AMENDMENT": 1
+    },
+    "total_tracked_operations": 37
+  },
+  "operation_universe_audit": {
+    "cluster_breakdown": {
+      "CLUSTER_BOX": {
+        "disqualified": 26,
+        "statically_eligible_clean": 95,
+        "statically_eligible_faithful_union": 0,
+        "total": 121
+      },
+      "CLUSTER_CHATWOOT": {
+        "disqualified": 14,
+        "statically_eligible_clean": 57,
+        "statically_eligible_faithful_union": 0,
+        "total": 71
+      },
+      "CLUSTER_DIGITALOCEAN": {
+        "disqualified": 0,
+        "statically_eligible_clean": 258,
+        "statically_eligible_faithful_union": 0,
+        "total": 258
+      },
+      "CLUSTER_GITHUB": {
+        "disqualified": 43,
+        "statically_eligible_clean": 357,
+        "statically_eligible_faithful_union": 0,
+        "total": 400
+      },
+      "CLUSTER_LINE": {
+        "disqualified": 18,
+        "statically_eligible_clean": 15,
+        "statically_eligible_faithful_union": 0,
+        "total": 33
+      },
+      "CLUSTER_SLACK": {
+        "disqualified": 0,
+        "statically_eligible_clean": 94,
+        "statically_eligible_faithful_union": 0,
+        "total": 94
+      },
+      "CLUSTER_STRIPE": {
+        "disqualified": 135,
+        "statically_eligible_clean": 171,
+        "statically_eligible_faithful_union": 1,
+        "total": 307
+      },
+      "CLUSTER_TWILIO": {
+        "disqualified": 0,
+        "statically_eligible_clean": 62,
+        "statically_eligible_faithful_union": 0,
+        "total": 62
+      }
+    },
+    "disqualification_cause_overlap_matrix": {
+      "all_three": 2,
+      "depth_and_multipart": 1,
+      "depth_and_union": 90,
+      "depth_only": 44,
+      "multipart_only": 15,
+      "other": 0,
+      "union_and_multipart": 1,
+      "union_only": 83
+    },
+    "disqualification_cause_totals": {
+      "DEPTH": 137,
+      "MULTIPART_BINARY": 19,
+      "OBJECT_UNION": 176
+    },
+    "disqualification_rate": 0.1753,
+    "eligibility_distribution": {
+      "DISQUALIFIED": 236,
+      "STATICALLY_ELIGIBLE_CANDIDATE": 1109,
+      "STATICALLY_ELIGIBLE_FAITHFUL_UNION_CANDIDATE": 1
+    },
+    "total_operations_scanned": 1346
+  },
+  "raw_sources_audit": {
+    "all_cryptographic_hashes_verified": true,
+    "sources": [
+      {
+        "actual_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+        "actual_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+        "actual_size_bytes": 13018090,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-001",
+        "exists": true,
+        "expected_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+        "expected_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+        "expected_size_bytes": 13018090,
+        "file_path": "data_stage_b/raw/CAND-001/a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+        "license_blob_sha": "b50625eb63949013cae604b1cadd42cfa1eaf825",
+        "license_url": "https://github.com/github/rest-api-description/blob/7dee0622aeecf9df3c5060ca28c7a57ee5007804/LICENSE.md",
+        "project": "GitHub (github/rest-api-description)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+        "actual_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+        "actual_size_bytes": 8317513,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-002",
+        "exists": true,
+        "expected_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+        "expected_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+        "expected_size_bytes": 8317513,
+        "file_path": "data_stage_b/raw/CAND-002/f1cedf38e0178538a3c72e750da80226df41e28c.json",
+        "license_blob_sha": "edf2d132d8bb95146e05585c3a782d059298b46b",
+        "license_url": "https://github.com/stripe/openapi/blob/7d487b5e5d8d28cf0613856cc63000b673bce7bc/LICENSE",
+        "project": "Stripe (stripe/openapi)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95",
+        "actual_sha256": "e18ad525a336da3dd83776659d5b574e30748b1d59efc53a42c86115b290a76a",
+        "actual_size_bytes": 124775,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-003",
+        "exists": true,
+        "expected_blob_sha": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95",
+        "expected_sha256": "e18ad525a336da3dd83776659d5b574e30748b1d59efc53a42c86115b290a76a",
+        "expected_size_bytes": 124775,
+        "file_path": "data_stage_b/raw/CAND-003/a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+        "license_blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "license_url": "https://github.com/digitalocean/openapi/blob/e326f5060794769b6835084e48be7ce4db062d39/LICENSE",
+        "project": "DigitalOcean (digitalocean/openapi)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+        "actual_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+        "actual_size_bytes": 1504725,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-004",
+        "exists": true,
+        "expected_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+        "expected_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+        "expected_size_bytes": 1504725,
+        "file_path": "data_stage_b/raw/CAND-004/5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+        "license_blob_sha": "ca16167a61ceca8666680796ee393900289ec6cc",
+        "license_url": "https://github.com/twilio/twilio-oai/blob/141f1201b55abcc16b3aa8089e71c4a927326975/LICENSE",
+        "project": "Twilio (twilio/twilio-oai)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+        "actual_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+        "actual_size_bytes": 1781543,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-005",
+        "exists": true,
+        "expected_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+        "expected_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+        "expected_size_bytes": 1781543,
+        "file_path": "data_stage_b/raw/CAND-005/e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+        "license_blob_sha": "167ec4d66df8f9c0f49d9ba06eb284c8d5ab472d",
+        "license_url": "https://github.com/box/box-openapi/blob/5b055e333a802b10b8ca90fcc513643836dd92b4/LICENSE",
+        "project": "Box (box/box-openapi)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+        "actual_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
+        "actual_size_bytes": 1039581,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-006",
+        "exists": true,
+        "expected_blob_sha": "f7b1affd1fb34f9473cd87980428883019b29c07",
+        "expected_sha256": "8b92da26a3c5b11d20042a9f36d81f1fa6fc9382c5ddc471babb68b91936bc3a",
+        "expected_size_bytes": 1039581,
+        "file_path": "data_stage_b/raw/CAND-006/f7b1affd1fb34f9473cd87980428883019b29c07.json",
+        "license_blob_sha": "4c4907b159ed25001dc9a217cd709dfdafd7e08b",
+        "license_url": "https://github.com/slackapi/slack-api-specs/blob/bc08db49625630e3585bf2f1322128ea04f2a7f3/LICENSE",
+        "project": "Slack (slackapi/slack-api-specs)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
+        "actual_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
+        "actual_size_bytes": 18533,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-009",
+        "exists": true,
+        "expected_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
+        "expected_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
+        "expected_size_bytes": 18533,
+        "file_path": "data_stage_b/raw/CAND-009/1b97a6a4903bd8961941cdff43df3b059e610e5f.py",
+        "license_blob_sha": "3d48435454b105021b4f777c11b6b07d8d2ffea3",
+        "license_url": "https://github.com/modelcontextprotocol/servers/blob/68b880d96b797a0bddf0322effb29edf67afdc8d/LICENSE",
+        "project": "Model Context Protocol (modelcontextprotocol/servers - SQLite)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "0676a34c85537e610f911fbd73a5a079f38be18e",
+        "actual_sha256": "bb964ea5a47c00205805317a5a8066a955c59f500073a7c2cf0c2b4020ddeb3a",
+        "actual_size_bytes": 18123,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-010",
+        "exists": true,
+        "expected_blob_sha": "0676a34c85537e610f911fbd73a5a079f38be18e",
+        "expected_sha256": "bb964ea5a47c00205805317a5a8066a955c59f500073a7c2cf0c2b4020ddeb3a",
+        "expected_size_bytes": 18123,
+        "file_path": "data_stage_b/raw/CAND-010/0676a34c85537e610f911fbd73a5a079f38be18e.ts",
+        "license_blob_sha": "3d48435454b105021b4f777c11b6b07d8d2ffea3",
+        "license_url": "https://github.com/modelcontextprotocol/servers/blob/68b880d96b797a0bddf0322effb29edf67afdc8d/LICENSE",
+        "project": "Model Context Protocol (modelcontextprotocol/servers - GitHub)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+        "actual_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+        "actual_size_bytes": 537652,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-011",
+        "exists": true,
+        "expected_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+        "expected_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+        "expected_size_bytes": 537652,
+        "file_path": "data_stage_b/raw/CAND-011/b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+        "license_blob_sha": "d0425a707ab6f0cf06c9aa3c08e8edf5c64adc61",
+        "license_url": "https://github.com/chatwoot/chatwoot/blob/f4bc89957b5e49dab3cd1d1c074248e60ac43d2e/LICENSE",
+        "project": "Chatwoot (chatwoot/chatwoot)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      },
+      {
+        "actual_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+        "actual_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+        "actual_size_bytes": 190228,
+        "blob_sha_match": true,
+        "candidate_source_id": "CAND-013",
+        "exists": true,
+        "expected_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+        "expected_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc",
+        "expected_size_bytes": 190228,
+        "file_path": "data_stage_b/raw/CAND-013/11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+        "license_blob_sha": "5c515ba9be1536b927961b6c9522d27b1b86a34f",
+        "license_url": "https://github.com/line/line-openapi/blob/fa5577c9ea874d2dbd8fadc85a4cb3a1b29d8cbe/LICENSE",
+        "project": "LINE (line/line-openapi)",
+        "sha256_match": true,
+        "status": "VERIFIED"
+      }
+    ],
+    "total_raw_sources_registered": 10,
+    "total_raw_sources_verified": 10
+  },
+  "reconciliation_summary": {
+    "candidate_sources_admitted": 10,
+    "candidate_sources_evaluated": 14,
+    "candidate_sources_pending": 3,
+    "candidate_sources_rejected": 1,
+    "canonical_extracted_operations": 2,
+    "final_active_manifest_operations": 30,
+    "independent_validations_completed": 0,
+    "initial_audited_operations": 32,
+    "initial_operations_clean_pass": 24,
+    "initial_operations_excluded": 7,
+    "initial_operations_faithful_union": 1,
+    "pinned_raw_files_verified": 10,
+    "raw_openapi_operations_scanned": 1346,
+    "raw_operations_disqualified": 236,
+    "raw_operations_statically_eligible": 1110,
+    "replacement_candidates_admitted": 5,
+    "replacement_candidates_evaluated": 25,
+    "replacement_slots": 5
+  },
+  "replacement_decision_audit": {
+    "admitted_replacements_count": 5,
+    "rejected_replacements_count": 20,
+    "replacement_slots_count": 5,
+    "slots": [
+      {
+        "admitted_operation_id": "pulls/create",
+        "candidate_source_id": "CAND-001",
+        "evaluated_rejected_count": 3,
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
+        "replaced_operation_id": "issues/create",
+        "slot_id": "SLOT_GITHUB_01",
+        "source_cluster_id": "CLUSTER_GITHUB"
+      },
+      {
+        "admitted_operation_id": "PostPayouts",
+        "candidate_source_id": "CAND-002",
+        "evaluated_rejected_count": 3,
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
+        "replaced_operation_id": "PostCustomers",
+        "slot_id": "SLOT_STRIPE_01",
+        "source_cluster_id": "CLUSTER_STRIPE"
+      },
+      {
+        "admitted_operation_id": "PostShippingRates",
+        "candidate_source_id": "CAND-002",
+        "evaluated_rejected_count": 3,
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
+        "replaced_operation_id": "PostPaymentIntents",
+        "slot_id": "SLOT_STRIPE_02",
+        "source_cluster_id": "CLUSTER_STRIPE"
+      },
+      {
+        "admitted_operation_id": "create-a-webhook",
+        "candidate_source_id": "CAND-011",
+        "evaluated_rejected_count": 3,
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
+        "replaced_operation_id": "create-a-contact",
+        "slot_id": "SLOT_CHATWOOT_01",
+        "source_cluster_id": "CLUSTER_CHATWOOT"
+      },
+      {
+        "admitted_operation_id": "showLoadingAnimation",
+        "candidate_source_id": "CAND-013",
+        "evaluated_rejected_count": 3,
+        "human_review_status": "AUTHOR_MANUAL_REVIEW_COMPLETED",
+        "replaced_operation_id": "replyMessage",
+        "slot_id": "SLOT_LINE_01",
+        "source_cluster_id": "CLUSTER_LINE"
+      }
+    ],
+    "total_replacement_candidates_evaluated": 25
+  }
+}

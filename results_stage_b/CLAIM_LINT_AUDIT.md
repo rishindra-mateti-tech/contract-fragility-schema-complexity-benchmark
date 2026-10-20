@@ -10,11 +10,11 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `51` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `53` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
-| **Total Pattern Matches** | `96` | All occurrences of monitored high-risk stems. |
+| **Total Pattern Matches** | `99` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `12` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
-| **Scoped Acceptable Claims** | `84` | Contextually constrained by negative disclaimers or definitions. |
+| **Scoped Acceptable Claims** | `87` | Contextually constrained by negative disclaimers or definitions. |
 | **Un-scoped Violations** | **`0`** | Absolutist or ungrounded claims requiring remediation. |
 
 ---
@@ -25,10 +25,10 @@
 | :--- | :---: | :---: | :---: | :---: |
 | `CANONICAL_FAITHFUL promotion` | 32 | 28 | 4 | 0 |
 | `guarantee / guaranteed` | 4 | 4 | 0 | 0 |
-| `independent validation / review` | 34 | 32 | 2 | 0 |
+| `independent validation / review` | 36 | 34 | 2 | 0 |
 | `lossless` | 15 | 13 | 2 | 0 |
 | `proves / proven` | 4 | 3 | 1 | 0 |
-| `statistical significance` | 7 | 4 | 3 | 0 |
+| `statistical significance` | 8 | 5 | 3 | 0 |
 
 ---
 
@@ -44,6 +44,7 @@
 | `CANONICAL_CONTRACT_VALIDATION_SPEC.md` | 224 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | LIFECYCLE_SPECIFICATION_TABLE |
 | `CANONICAL_CONTRACT_VALIDATION_SPEC.md` | 228 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `CLAIM_EVIDENCE_LEDGER.md` | 119 | `SCOPED_ACCEPTABLE` | `guarantees` | SCOPED_BY_PATTERN: \b(syntactic|grammar|FSM|schema validation|jsonschema)\b |
+| `CLAIM_EVIDENCE_LEDGER.md` | 204 | `SCOPED_ACCEPTABLE` | `statistical significance` | SCOPED_BY_PATTERN: \b(not|insufficient|too small|small sample|exploratory|cannot|without|unverified|do not claim|does not claim|N\s*=\s*5|pilot)\b |
 | `EXTRACTION_IMPLEMENTATION_CHECKLIST.md` | 20 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `EXTRACTION_IMPLEMENTATION_CHECKLIST.md` | 210 | `SCOPED_ACCEPTABLE` | `guarantee` | SCOPED_BY_PATTERN: \b(to guarantee|does not guarantee|cannot guarantee|no guarantee)\b |
 | `EXTRACTION_IMPLEMENTATION_CHECKLIST.md` | 224 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SECTION_TITLE_OR_BOUNDARY_HEADING |
@@ -60,8 +61,7 @@
 | `STAGE_B_EXTRACTION_SPEC.md` | 197 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 210 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: `CANONICAL_FAITHFUL` |
 | `STAGE_B_EXTRACTION_SPEC.md` | 325 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
-| `STAGE_B_EXTRACTION_SPEC.md` | 326 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
-| ... | ... | ... | ... | *(71 additional scoped occurrences verified)* |
+| ... | ... | ... | ... | *(74 additional scoped occurrences verified)* |
 
 ---
 
