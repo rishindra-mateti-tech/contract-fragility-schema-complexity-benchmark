@@ -1,0 +1,29 @@
+{
+  "feature_category": "SCHEMA_REFERENCES",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "relative_external_file": {
+      "expected_violation_code": "FEAT_REF_EXTERNAL_FILE",
+      "schema": {
+        "properties": {
+          "shared_model": {
+            "$ref": "./common_models.yaml#/components/schemas/User"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "remote_http_url": {
+      "expected_violation_code": "FEAT_REF_REMOTE_URL",
+      "schema": {
+        "properties": {
+          "cloud_resource": {
+            "$ref": "https://specs.example.com/v1/resource.json"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "test_type": "FAIL_CLOSED_EXTERNAL_REFERENCES"
+}

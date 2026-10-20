@@ -1,0 +1,631 @@
+{
+  "behavior_distribution": {
+    "EXPLICIT_NORMALIZATION": 7,
+    "PRESERVE_VERBATIM": 34,
+    "REJECT_AND_REPORT": 19
+  },
+  "category_distribution": {
+    "BINARY_MULTIPART": 3,
+    "BOUNDS_CONSTRAINTS": 6,
+    "COMPOSITION_POLYMORPHISM": 5,
+    "CONTENT_TYPES": 5,
+    "ENUMS_CONST_DEFAULTS": 5,
+    "FORM_ENCODING_MODIFIERS": 5,
+    "MODIFIERS_METADATA": 6,
+    "OBJECTS_ARRAYS_MAPS": 8,
+    "PRIMITIVE_TYPES": 5,
+    "RECURSION_CYCLES": 3,
+    "SCHEMA_REFERENCES": 3,
+    "TRANSPORT_SURFACES": 6
+  },
+  "coverage_matrix": [
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/primitives_fixture.json",
+      "category": "PRIMITIVE_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_PRIM_STRING",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Primitive String Type"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/primitives_fixture.json",
+      "category": "PRIMITIVE_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_PRIM_INTEGER",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Primitive Integer Type"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/primitives_fixture.json",
+      "category": "PRIMITIVE_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_PRIM_NUMBER",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Primitive Number Type"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/primitives_fixture.json",
+      "category": "PRIMITIVE_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_PRIM_BOOLEAN",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Primitive Boolean Type"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/primitives_fixture.json",
+      "category": "PRIMITIVE_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_PRIM_NULL",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Primitive Null Type"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/enums_defaults_fixture.json",
+      "category": "ENUMS_CONST_DEFAULTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_ENUM_VALUES",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Enumeration Array"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/enums_defaults_fixture.json",
+      "category": "ENUMS_CONST_DEFAULTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_CONST_VALUE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Constant Value"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/enums_defaults_fixture.json",
+      "category": "ENUMS_CONST_DEFAULTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_DEFAULT_VALUE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Default Value"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/enums_defaults_fixture.json",
+      "category": "ENUMS_CONST_DEFAULTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_EXAMPLE_SINGLE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Singular Example"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/enums_defaults_fixture.json",
+      "category": "ENUMS_CONST_DEFAULTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_EXAMPLES_MULTI",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Multiple Examples"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/bounds_constraints_fixture.json",
+      "category": "BOUNDS_CONSTRAINTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_NUM_MIN_MAX",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Numeric Minimum / Maximum Bounds"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/bounds_constraints_fixture.json",
+      "category": "BOUNDS_CONSTRAINTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_NUM_MULTIPLE_OF",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Numeric MultipleOf Constraint"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/bounds_constraints_fixture.json",
+      "category": "BOUNDS_CONSTRAINTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_STR_LENGTH",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "String Length Bounds"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/bounds_constraints_fixture.json",
+      "category": "BOUNDS_CONSTRAINTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_STR_PATTERN",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Regular Expression Pattern"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/bounds_constraints_fixture.json",
+      "category": "BOUNDS_CONSTRAINTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_ARR_ITEM_BOUNDS",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Array Size Bounds and Uniqueness"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/bounds_constraints_fixture.json",
+      "category": "BOUNDS_CONSTRAINTS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_OBJ_PROP_BOUNDS",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Object Property Count Bounds"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/objects_arrays_fixture.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_OBJ_PROPERTIES",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Object Properties Map"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/objects_arrays_fixture.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_OBJ_REQUIRED",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Object Required Fields Array"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/objects_arrays_fixture.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_ARR_ITEMS_SCHEMA",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Homogeneous Array Items Schema"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_tuple_fixture.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_ARR_ITEMS_TUPLE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Tuple / Heterogeneous Array Items (prefixItems)"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/objects_arrays_fixture.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_ADDITIONAL_PROPS_BOOL_FALSE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_additional_properties.json",
+      "name": "Payload Closed Object (additionalProperties: false)"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/objects_arrays_fixture.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_ADDITIONAL_PROPS_BOOL_TRUE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_additional_properties.json",
+      "name": "Payload Open Object (additionalProperties: true)"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/objects_arrays_fixture.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_ADDITIONAL_PROPS_SCHEMA_MAP",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_additional_properties.json",
+      "name": "Dynamic Map Schema (additionalProperties: {...})"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_GITHUB_01/canonical_contract.json",
+      "category": "OBJECTS_ARRAYS_MAPS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "EXPLICIT_NORMALIZATION",
+      "feature_id": "FEAT_WRAPPER_CLOSED_OBJECT",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_additional_properties.json",
+      "name": "Root and Transport Wrapper Object Closure"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/references_fixture.json",
+      "category": "SCHEMA_REFERENCES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_REF_LOCAL_COMPONENTS",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Local Component Reference (#/components/...)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_external_ref_fixture.json",
+      "category": "SCHEMA_REFERENCES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_REF_EXTERNAL_FILE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_external_refs.json",
+      "name": "External File Reference (file path)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_remote_ref_fixture.json",
+      "category": "SCHEMA_REFERENCES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_REF_REMOTE_URL",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_external_refs.json",
+      "name": "Remote Network Reference (http/https URL)"
+    },
+    {
+      "benchmark_status": "EXPERIMENTAL",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/composition_fixture.json",
+      "category": "COMPOSITION_POLYMORPHISM",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_COMP_ALLOF",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_polymorphism.json",
+      "name": "Schema Intersection (allOf)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_oneof_fixture.json",
+      "category": "COMPOSITION_POLYMORPHISM",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_COMP_ONEOF",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_polymorphism.json",
+      "name": "Exclusive Polymorphism (oneOf)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_anyof_fixture.json",
+      "category": "COMPOSITION_POLYMORPHISM",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_COMP_ANYOF",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_polymorphism.json",
+      "name": "Inclusive Polymorphism (anyOf)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_not_fixture.json",
+      "category": "COMPOSITION_POLYMORPHISM",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_COMP_NOT",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_polymorphism.json",
+      "name": "Schema Negation (not)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_discriminator_fixture.json",
+      "category": "COMPOSITION_POLYMORPHISM",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_COMP_DISCRIMINATOR",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_polymorphism.json",
+      "name": "OpenAPI Discriminator Object"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/modifiers_metadata_fixture.json",
+      "category": "MODIFIERS_METADATA",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_MOD_NULLABLE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Nullable Schema Modifier"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/modifiers_metadata_fixture.json",
+      "category": "MODIFIERS_METADATA",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_MOD_READONLY",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "ReadOnly Schema Modifier"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/modifiers_metadata_fixture.json",
+      "category": "MODIFIERS_METADATA",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_MOD_WRITEONLY",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "WriteOnly Schema Modifier"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/modifiers_metadata_fixture.json",
+      "category": "MODIFIERS_METADATA",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_MOD_DEPRECATED",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Deprecated Schema Modifier"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/modifiers_metadata_fixture.json",
+      "category": "MODIFIERS_METADATA",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_META_TITLE_DESC",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Title and Description Metadata"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/modifiers_metadata_fixture.json",
+      "category": "MODIFIERS_METADATA",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_META_FORMAT",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Semantic Format String"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_GITHUB_01/canonical_contract.json",
+      "category": "TRANSPORT_SURFACES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "EXPLICIT_NORMALIZATION",
+      "feature_id": "FEAT_SURF_PATH_PARAMS",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Path Parameter Transport Surface"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_GITHUB_01/canonical_contract.json",
+      "category": "TRANSPORT_SURFACES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "EXPLICIT_NORMALIZATION",
+      "feature_id": "FEAT_SURF_BODY_JSON",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "JSON Body Transport Surface"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json",
+      "category": "TRANSPORT_SURFACES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "EXPLICIT_NORMALIZATION",
+      "feature_id": "FEAT_SURF_BODY_FORM",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Form-Urlencoded Body Transport Surface"
+    },
+    {
+      "benchmark_status": "EXPERIMENTAL",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/transport_surfaces_fixture.json",
+      "category": "TRANSPORT_SURFACES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "EXPLICIT_NORMALIZATION",
+      "feature_id": "FEAT_SURF_QUERY_PARAMS",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Query Parameter Transport Surface"
+    },
+    {
+      "benchmark_status": "EXPERIMENTAL",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/transport_surfaces_fixture.json",
+      "category": "TRANSPORT_SURFACES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "EXPLICIT_NORMALIZATION",
+      "feature_id": "FEAT_SURF_HEADER_PARAMS",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Header Parameter Transport Surface"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_cookie_fixture.json",
+      "category": "TRANSPORT_SURFACES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_SURF_COOKIE_PARAMS",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Cookie Parameter Transport Surface"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_GITHUB_01/canonical_contract.json",
+      "category": "CONTENT_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_CT_APPLICATION_JSON",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Content-Type application/json"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json",
+      "category": "CONTENT_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_CT_APPLICATION_FORM_URLENCODED",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Content-Type application/x-www-form-urlencoded"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_multipart_fixture.json",
+      "category": "CONTENT_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_CT_MULTIPART_FORM_DATA",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_binary_multipart.json",
+      "name": "Content-Type multipart/form-data"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_text_plain_fixture.json",
+      "category": "CONTENT_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_CT_TEXT_PLAIN",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Content-Type text/plain"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_octet_stream_fixture.json",
+      "category": "CONTENT_TYPES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_CT_APPLICATION_OCTET_STREAM",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Content-Type application/octet-stream"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json",
+      "category": "FORM_ENCODING_MODIFIERS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "EXPLICIT_NORMALIZATION",
+      "feature_id": "FEAT_FORM_DEEP_OBJECT",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Form Modifier deepObject"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/form_modifiers_fixture.json",
+      "category": "FORM_ENCODING_MODIFIERS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_FORM_STYLE_FORM",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Form Modifier style: form"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_allow_reserved_fixture.json",
+      "category": "FORM_ENCODING_MODIFIERS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_FORM_ALLOW_RESERVED",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_binary_multipart.json",
+      "name": "Form Modifier allowReserved"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_pipe_delimited_fixture.json",
+      "category": "FORM_ENCODING_MODIFIERS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_FORM_PIPE_DELIMITED",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Form Modifier pipeDelimited"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_space_delimited_fixture.json",
+      "category": "FORM_ENCODING_MODIFIERS",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_FORM_SPACE_DELIMITED",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_composite_constraints.json",
+      "name": "Form Modifier spaceDelimited"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_binary_fixture.json",
+      "category": "BINARY_MULTIPART",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_BIN_FORMAT_BINARY",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_binary_multipart.json",
+      "name": "Binary File Format (format: binary)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_byte_fixture.json",
+      "category": "BINARY_MULTIPART",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_BIN_FORMAT_BYTE",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_binary_multipart.json",
+      "name": "Base64 Byte Format (format: byte)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_stream_fixture.json",
+      "category": "BINARY_MULTIPART",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_BIN_STREAM",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_binary_multipart.json",
+      "name": "Raw Stream Payload"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_cyclic_fixture.json",
+      "category": "RECURSION_CYCLES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_REC_CYCLIC_SCHEMA",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_cyclic_refs.json",
+      "name": "Cyclical / Recursive Schema References"
+    },
+    {
+      "benchmark_status": "SUPPORTED",
+      "canonical_fixture": "data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json",
+      "category": "RECURSION_CYCLES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "PRESERVE_VERBATIM",
+      "feature_id": "FEAT_REC_BOUNDED_DEPTH",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_depth_progression.json",
+      "name": "Bounded Schema Depth (depth <= 5)"
+    },
+    {
+      "benchmark_status": "UNSUPPORTED_FAIL_CLOSED",
+      "canonical_fixture": "tests/fixtures/schema_feature_corpus/unsupported_excessive_depth_fixture.json",
+      "category": "RECURSION_CYCLES",
+      "coverage_status": "COVERED_VERIFIED",
+      "extraction_behavior": "REJECT_AND_REPORT",
+      "feature_id": "FEAT_REC_EXCESSIVE_DEPTH",
+      "fuzzed_fixture": "tests/fixtures/schema_feature_corpus/generated/fuzzed_depth_progression.json",
+      "name": "Excessive Schema Nesting Depth (depth > 5)"
+    }
+  ],
+  "coverage_version": "1.0.0",
+  "status_distribution": {
+    "EXPERIMENTAL": 3,
+    "SUPPORTED": 38,
+    "UNSUPPORTED_FAIL_CLOSED": 19
+  },
+  "total_covered_features": 60,
+  "total_registered_features": 60
+}

@@ -1,0 +1,51 @@
+{
+  "feature_category": "BOUNDS_CONSTRAINTS",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "bounded_numeric_range": {
+      "properties": {
+        "discount_factor": {
+          "exclusiveMaximum": 1.0,
+          "exclusiveMinimum": 0.0,
+          "type": "number"
+        },
+        "rate_limit": {
+          "default": 100,
+          "maximum": 1000,
+          "minimum": 1,
+          "multipleOf": 5,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "rate_limit"
+      ],
+      "type": "object"
+    },
+    "bounded_string_pattern": {
+      "properties": {
+        "identifier": {
+          "maxLength": 64,
+          "minLength": 3,
+          "pattern": "^[a-z0-9_-]+$",
+          "type": "string"
+        },
+        "status": {
+          "default": "active",
+          "enum": [
+            "active",
+            "inactive",
+            "archived"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "status"
+      ],
+      "type": "object"
+    }
+  },
+  "test_type": "COMPOSITE_CONSTRAINTS_PRESERVATION"
+}

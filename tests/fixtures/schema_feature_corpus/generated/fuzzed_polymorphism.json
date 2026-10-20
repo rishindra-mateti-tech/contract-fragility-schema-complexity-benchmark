@@ -1,0 +1,96 @@
+{
+  "feature_category": "COMPOSITION_POLYMORPHISM",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "anyOf_union": {
+      "expected_violation_code": "FEAT_COMP_ANYOF",
+      "schema": {
+        "properties": {
+          "filter": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      }
+    },
+    "discriminator_mapping": {
+      "expected_violation_code": "FEAT_COMP_DISCRIMINATOR",
+      "schema": {
+        "discriminator": {
+          "mapping": {
+            "pull": "#/components/schemas/PullEvent",
+            "push": "#/components/schemas/PushEvent"
+          },
+          "propertyName": "event_type"
+        },
+        "properties": {
+          "event_type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "not_negation": {
+      "expected_violation_code": "FEAT_COMP_NOT",
+      "schema": {
+        "properties": {
+          "disallowed_field": {
+            "not": {
+              "type": "null"
+            }
+          }
+        },
+        "type": "object"
+      }
+    },
+    "oneOf_union": {
+      "expected_violation_code": "FEAT_COMP_ONEOF",
+      "schema": {
+        "properties": {
+          "payload": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
+          }
+        },
+        "type": "object"
+      }
+    },
+    "tuple_heterogeneous_items": {
+      "expected_violation_code": "FEAT_ARR_ITEMS_TUPLE",
+      "schema": {
+        "properties": {
+          "coordinates": {
+            "items": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "test_type": "FAIL_CLOSED_POLYMORPHISM"
+}

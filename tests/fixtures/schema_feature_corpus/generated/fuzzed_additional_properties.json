@@ -1,0 +1,34 @@
+{
+  "feature_category": "OBJECTS_ARRAYS_MAPS",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "closed_wrapper_object": {
+      "policy": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "schema": {
+        "additionalProperties": false,
+        "properties": {
+          "body": {
+            "additionalProperties": false,
+            "type": "object"
+          },
+          "query": {
+            "additionalProperties": false,
+            "type": "object"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "string_to_string_dynamic_map": {
+      "policy": "FEAT_ADDITIONAL_PROPS_SCHEMA_MAP",
+      "schema": {
+        "additionalProperties": {
+          "description": "Metadata key-value mapping",
+          "type": "string"
+        },
+        "type": "object"
+      }
+    }
+  },
+  "test_type": "ADDITIONAL_PROPERTIES_POLICIES"
+}

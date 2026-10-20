@@ -1,0 +1,43 @@
+{
+  "feature_category": "BINARY_MULTIPART",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "allow_reserved_form_modifier": {
+      "expected_violation_code": "FEAT_FORM_ALLOW_RESERVED",
+      "schema": {
+        "allowReserved": true,
+        "properties": {
+          "query_param": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "binary_format_scalar": {
+      "expected_violation_code": "FEAT_BIN_FORMAT_BINARY",
+      "schema": {
+        "properties": {
+          "file_stream": {
+            "format": "binary",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "byte_base64_scalar": {
+      "expected_violation_code": "FEAT_BIN_FORMAT_BYTE",
+      "schema": {
+        "properties": {
+          "encoded_bytes": {
+            "format": "byte",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "test_type": "FAIL_CLOSED_BINARY_PAYLOADS"
+}

@@ -1,0 +1,17 @@
+{
+  "feature_category": "MODIFIERS_METADATA",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "vendor_extended_schema": {
+      "properties": {
+        "tool_input": {
+          "type": "string",
+          "x-internal-flag": true
+        }
+      },
+      "type": "object",
+      "x-vendor-custom-field": "custom_extension_value"
+    }
+  },
+  "test_type": "CUSTOM_VENDOR_EXTENSIONS"
+}

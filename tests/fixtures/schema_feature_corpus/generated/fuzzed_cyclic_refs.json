@@ -1,0 +1,51 @@
+{
+  "feature_category": "RECURSION_CYCLES",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "direct_cycle": {
+      "entry_pointer": "#/components/schemas/Node",
+      "expected_violation_code": "FEAT_REC_CYCLIC_SCHEMA",
+      "raw_doc": {
+        "components": {
+          "schemas": {
+            "Node": {
+              "properties": {
+                "next": {
+                  "$ref": "#/components/schemas/Node"
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    "indirect_cycle_ab": {
+      "entry_pointer": "#/components/schemas/A",
+      "expected_violation_code": "FEAT_REC_CYCLIC_SCHEMA",
+      "raw_doc": {
+        "components": {
+          "schemas": {
+            "A": {
+              "properties": {
+                "b_ref": {
+                  "$ref": "#/components/schemas/B"
+                }
+              },
+              "type": "object"
+            },
+            "B": {
+              "properties": {
+                "a_ref": {
+                  "$ref": "#/components/schemas/A"
+                }
+              },
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "test_type": "CYCLE_DETECTION"
+}

@@ -1,0 +1,372 @@
+{
+  "feature_category": "RECURSION_CYCLES",
+  "generator": "SchemaFeatureFuzzer",
+  "schemas": {
+    "depth_1": {
+      "expected_valid": true,
+      "expected_violation_code": null,
+      "schema": {
+        "properties": {
+          "p1": {
+            "description": "Leaf at depth 1",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 1
+    },
+    "depth_10": {
+      "expected_valid": false,
+      "expected_violation_code": "FEAT_REC_EXCESSIVE_DEPTH",
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "properties": {
+                      "p4": {
+                        "properties": {
+                          "p5": {
+                            "properties": {
+                              "p6": {
+                                "properties": {
+                                  "p7": {
+                                    "properties": {
+                                      "p8": {
+                                        "properties": {
+                                          "p9": {
+                                            "properties": {
+                                              "p10": {
+                                                "description": "Leaf at depth 10",
+                                                "type": "string"
+                                              }
+                                            },
+                                            "type": "object"
+                                          }
+                                        },
+                                        "type": "object"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 10
+    },
+    "depth_2": {
+      "expected_valid": true,
+      "expected_violation_code": null,
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "description": "Leaf at depth 2",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 2
+    },
+    "depth_3": {
+      "expected_valid": true,
+      "expected_violation_code": null,
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "description": "Leaf at depth 3",
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 3
+    },
+    "depth_4": {
+      "expected_valid": true,
+      "expected_violation_code": null,
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "properties": {
+                      "p4": {
+                        "description": "Leaf at depth 4",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 4
+    },
+    "depth_5": {
+      "expected_valid": true,
+      "expected_violation_code": null,
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "properties": {
+                      "p4": {
+                        "properties": {
+                          "p5": {
+                            "description": "Leaf at depth 5",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 5
+    },
+    "depth_6": {
+      "expected_valid": false,
+      "expected_violation_code": "FEAT_REC_EXCESSIVE_DEPTH",
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "properties": {
+                      "p4": {
+                        "properties": {
+                          "p5": {
+                            "properties": {
+                              "p6": {
+                                "description": "Leaf at depth 6",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 6
+    },
+    "depth_7": {
+      "expected_valid": false,
+      "expected_violation_code": "FEAT_REC_EXCESSIVE_DEPTH",
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "properties": {
+                      "p4": {
+                        "properties": {
+                          "p5": {
+                            "properties": {
+                              "p6": {
+                                "properties": {
+                                  "p7": {
+                                    "description": "Leaf at depth 7",
+                                    "type": "string"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 7
+    },
+    "depth_8": {
+      "expected_valid": false,
+      "expected_violation_code": "FEAT_REC_EXCESSIVE_DEPTH",
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "properties": {
+                      "p4": {
+                        "properties": {
+                          "p5": {
+                            "properties": {
+                              "p6": {
+                                "properties": {
+                                  "p7": {
+                                    "properties": {
+                                      "p8": {
+                                        "description": "Leaf at depth 8",
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 8
+    },
+    "depth_9": {
+      "expected_valid": false,
+      "expected_violation_code": "FEAT_REC_EXCESSIVE_DEPTH",
+      "schema": {
+        "properties": {
+          "p1": {
+            "properties": {
+              "p2": {
+                "properties": {
+                  "p3": {
+                    "properties": {
+                      "p4": {
+                        "properties": {
+                          "p5": {
+                            "properties": {
+                              "p6": {
+                                "properties": {
+                                  "p7": {
+                                    "properties": {
+                                      "p8": {
+                                        "properties": {
+                                          "p9": {
+                                            "description": "Leaf at depth 9",
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      }
+                                    },
+                                    "type": "object"
+                                  }
+                                },
+                                "type": "object"
+                              }
+                            },
+                            "type": "object"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "target_depth": 9
+    }
+  },
+  "test_type": "DEPTH_BOUNDARY_PROGRESSION"
+}
