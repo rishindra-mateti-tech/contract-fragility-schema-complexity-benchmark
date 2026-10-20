@@ -10,11 +10,11 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `64` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `65` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
-| **Total Pattern Matches** | `127` | All occurrences of monitored high-risk stems. |
+| **Total Pattern Matches** | `135` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `12` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
-| **Scoped Acceptable Claims** | `115` | Contextually constrained by negative disclaimers or definitions. |
+| **Scoped Acceptable Claims** | `123` | Contextually constrained by negative disclaimers or definitions. |
 | **Un-scoped Violations** | **`0`** | Absolutist or ungrounded claims requiring remediation. |
 
 ---
@@ -23,11 +23,11 @@
 
 | High-Risk Term | Total Matches | Scoped Acceptable | Allowlisted | Violations |
 | :--- | :---: | :---: | :---: | :---: |
-| `CANONICAL_FAITHFUL promotion` | 41 | 37 | 4 | 0 |
+| `CANONICAL_FAITHFUL promotion` | 44 | 40 | 4 | 0 |
 | `guarantee / guaranteed` | 4 | 4 | 0 | 0 |
-| `independent validation / review` | 47 | 45 | 2 | 0 |
-| `lossless` | 17 | 15 | 2 | 0 |
-| `proves / proven` | 5 | 4 | 1 | 0 |
+| `independent validation / review` | 50 | 48 | 2 | 0 |
+| `lossless` | 18 | 16 | 2 | 0 |
+| `proves / proven` | 6 | 5 | 1 | 0 |
 | `statistical significance` | 13 | 10 | 3 | 0 |
 
 ---
@@ -61,7 +61,7 @@
 | `STAGE_B_EXTRACTION_SPEC.md` | 20 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 197 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 210 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: `CANONICAL_FAITHFUL` |
-| ... | ... | ... | ... | *(102 additional scoped occurrences verified)* |
+| ... | ... | ... | ... | *(110 additional scoped occurrences verified)* |
 
 ---
 

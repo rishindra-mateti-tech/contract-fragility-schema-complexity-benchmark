@@ -76,12 +76,12 @@ HIGH_RISK_TERMS = [
         "name": "lossless",
         "risk_level": "HIGH",
         "scoping_patterns": [
-            r"\b(non-lossless|not lossless|modulo|in-process|representation policy|declared policy|under declared)\b",
+            r"\b(non-lossless|not lossless|modulo|in-process|representation policy|declared policy|under declared|replaced|replaces|superseded)\b",
             r"\b(deliberate non-lossless normalization|lossless round-trip under declared representation policy)\b",
             r"\b(reversible under|Tier 2|representation-level)\b|(SEMANTICALLY_EQUIVALENT|MODULO_WRAPPER_POLICY)",
             r"\b(strictly lossless\s*[:\?]\s*`?false`?|lossless\?)\b",
-            r"\"lossless\"",
-            r"'lossless'",
+            r"\"[^\"]*lossless[^\"]*\"",
+            r"'[^\']*lossless[^\']*'",
         ],
     },
     {
