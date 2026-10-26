@@ -1,0 +1,268 @@
+{
+  "failed_closures_count": 3,
+  "multi_file_operations_count": 3,
+  "operations": [
+    {
+      "candidate_source_id": "CAND-001",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "repos/create-commit-status",
+      "slot_id": "SLOT_GITHUB_02",
+      "source_file": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "source_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post"
+    },
+    {
+      "candidate_source_id": "CAND-001",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "repos/create-for-authenticated-user",
+      "slot_id": "SLOT_GITHUB_03",
+      "source_file": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "source_pointer": "#/paths/~1user~1repos/post"
+    },
+    {
+      "candidate_source_id": "CAND-002",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "PostRefunds",
+      "slot_id": "SLOT_STRIPE_03",
+      "source_file": "f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "source_pointer": "#/paths/~1v1~1refunds/post"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "closure_status": "FAILED",
+      "declared_ref": "resources/floating_ips/floatingIPs_create.yml",
+      "details": {
+        "file_path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-003\\resources\\floating_ips\\floatingIPs_create.yml"
+      },
+      "error_code": "ERR_LOCAL_REF_FILE_NOT_FOUND",
+      "message": "Referenced local file does not exist: C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-003\\resources\\floating_ips\\floatingIPs_create.yml",
+      "operation_id": "floating_ips_create",
+      "slot_id": "SLOT_DO_01",
+      "source_file": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+      "source_pointer": "#/paths/~1v2~1floating_ips/post"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "closure_status": "FAILED",
+      "declared_ref": "resources/domains/domains_create.yml",
+      "details": {
+        "file_path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-003\\resources\\domains\\domains_create.yml"
+      },
+      "error_code": "ERR_LOCAL_REF_FILE_NOT_FOUND",
+      "message": "Referenced local file does not exist: C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-003\\resources\\domains\\domains_create.yml",
+      "operation_id": "domains_create",
+      "slot_id": "SLOT_DO_02",
+      "source_file": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+      "source_pointer": "#/paths/~1v2~1domains/post"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "closure_status": "FAILED",
+      "declared_ref": "resources/droplets/droplets_create.yml",
+      "details": {
+        "file_path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-003\\resources\\droplets\\droplets_create.yml"
+      },
+      "error_code": "ERR_LOCAL_REF_FILE_NOT_FOUND",
+      "message": "Referenced local file does not exist: C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-003\\resources\\droplets\\droplets_create.yml",
+      "operation_id": "droplets_create",
+      "slot_id": "SLOT_DO_03",
+      "source_file": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+      "source_pointer": "#/paths/~1v2~1droplets/post"
+    },
+    {
+      "candidate_source_id": "CAND-004",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "UpdateAccount",
+      "slot_id": "SLOT_TWILIO_01",
+      "source_file": "5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+      "source_pointer": "#/paths/~12010-04-01~1Accounts~1{Sid}.json/post"
+    },
+    {
+      "candidate_source_id": "CAND-004",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "CreateMessage",
+      "slot_id": "SLOT_TWILIO_02",
+      "source_file": "5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+      "source_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post"
+    },
+    {
+      "candidate_source_id": "CAND-004",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "CreateCall",
+      "slot_id": "SLOT_TWILIO_03",
+      "source_file": "5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml",
+      "source_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post"
+    },
+    {
+      "candidate_source_id": "CAND-005",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "post_folders",
+      "slot_id": "SLOT_BOX_01",
+      "source_file": "e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+      "source_pointer": "#/paths/~1folders/post"
+    },
+    {
+      "candidate_source_id": "CAND-005",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "post_collaborations",
+      "slot_id": "SLOT_BOX_02",
+      "source_file": "e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+      "source_pointer": "#/paths/~1collaborations/post"
+    },
+    {
+      "candidate_source_id": "CAND-005",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "post_users",
+      "slot_id": "SLOT_BOX_03",
+      "source_file": "e740e641b82d30e398a2a0d1b14b4c052e310422.json",
+      "source_pointer": "#/paths/~1users/post"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "conversations.create",
+      "slot_id": "SLOT_SLACK_01",
+      "source_file": "f7b1affd1fb34f9473cd87980428883019b29c07.json",
+      "source_pointer": "#/paths/~1conversations.create/post"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "users.profile.set",
+      "slot_id": "SLOT_SLACK_02",
+      "source_file": "f7b1affd1fb34f9473cd87980428883019b29c07.json",
+      "source_pointer": "#/paths/~1users.profile.set/post"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "reminders.add",
+      "slot_id": "SLOT_SLACK_03",
+      "source_file": "f7b1affd1fb34f9473cd87980428883019b29c07.json",
+      "source_pointer": "#/paths/~1reminders.add/post"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "closure_status": "SKIPPED_NON_OPENAPI",
+      "operation_id": "read_query",
+      "reason": "AST source code format '.py' does not use OpenAPI reference resolution.",
+      "slot_id": "SLOT_MCP_SQLITE_01",
+      "spec_format": ".py"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "closure_status": "SKIPPED_NON_OPENAPI",
+      "operation_id": "describe_table",
+      "reason": "AST source code format '.py' does not use OpenAPI reference resolution.",
+      "slot_id": "SLOT_MCP_SQLITE_02",
+      "spec_format": ".py"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "closure_status": "SKIPPED_NON_OPENAPI",
+      "operation_id": "write_query",
+      "reason": "AST source code format '.py' does not use OpenAPI reference resolution.",
+      "slot_id": "SLOT_MCP_SQLITE_03",
+      "spec_format": ".py"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "closure_status": "SKIPPED_NON_OPENAPI",
+      "operation_id": "search_repositories",
+      "reason": "AST source code format '.ts' does not use OpenAPI reference resolution.",
+      "slot_id": "SLOT_MCP_GITHUB_01",
+      "spec_format": ".ts"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "closure_status": "SKIPPED_NON_OPENAPI",
+      "operation_id": "create_issue",
+      "reason": "AST source code format '.ts' does not use OpenAPI reference resolution.",
+      "slot_id": "SLOT_MCP_GITHUB_02",
+      "spec_format": ".ts"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "closure_status": "SKIPPED_NON_OPENAPI",
+      "operation_id": "create_or_update_file",
+      "reason": "AST source code format '.ts' does not use OpenAPI reference resolution.",
+      "slot_id": "SLOT_MCP_GITHUB_03",
+      "spec_format": ".ts"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "create-an-account-user",
+      "slot_id": "SLOT_CHATWOOT_02",
+      "source_file": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "source_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/post"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "create-a-conversation",
+      "slot_id": "SLOT_CHATWOOT_03",
+      "source_file": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "source_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/post"
+    },
+    {
+      "candidate_source_id": "CAND-013",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "setWebhookEndpoint",
+      "slot_id": "SLOT_LINE_02",
+      "source_file": "11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "source_pointer": "#/paths/~1v2~1bot~1channel~1webhook~1endpoint/put"
+    },
+    {
+      "candidate_source_id": "CAND-013",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "markMessagesAsRead",
+      "slot_id": "SLOT_LINE_03",
+      "source_file": "11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "source_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post"
+    },
+    {
+      "candidate_source_id": "CAND-001",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "pulls/create",
+      "slot_id": "SLOT_GITHUB_01",
+      "source_file": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json",
+      "source_pointer": "#/paths/~1repos~1{owner}~1{repo}~1pulls/post"
+    },
+    {
+      "candidate_source_id": "CAND-002",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "PostPayouts",
+      "slot_id": "SLOT_STRIPE_01",
+      "source_file": "f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "source_pointer": "#/paths/~1v1~1payouts/post"
+    },
+    {
+      "candidate_source_id": "CAND-002",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "PostShippingRates",
+      "slot_id": "SLOT_STRIPE_02",
+      "source_file": "f1cedf38e0178538a3c72e750da80226df41e28c.json",
+      "source_pointer": "#/paths/~1v1~1shipping_rates/post"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "create-a-webhook",
+      "slot_id": "SLOT_CHATWOOT_01",
+      "source_file": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "source_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post"
+    },
+    {
+      "candidate_source_id": "CAND-013",
+      "closure_status": "SINGLE_FILE_ROOT",
+      "operation_id": "showLoadingAnimation",
+      "slot_id": "SLOT_LINE_01",
+      "source_file": "11f1fdb91092246f881edd1a9457cb37327a6c5d.yml",
+      "source_pointer": "#/paths/~1v2~1bot~1chat~1loading~1start/post"
+    }
+  ],
+  "policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "single_file_operations_count": 21,
+  "successful_closures_count": 21,
+  "total_operations_audited": 30
+}

@@ -1,0 +1,74 @@
+{
+  "policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "policy_name": "OpenAPI Local Reference Resolution and Closure Policy",
+  "policy_version": "1.0.0",
+  "effective_date": "2026-10-26",
+  "target_dialect": "JSON Schema Draft-07 / OpenAPI 3.0",
+  "governing_benchmark": "Contract Fragility Schema Complexity Benchmark (Stage B)",
+  "epistemic_mandate": "Reference resolution must be deterministic, strictly local, root-bounded, cycle-safe, depth-limited, and fail-closed. No network calls or unbounded traversals are permitted. All resolved targets and source references must be cryptographically recorded in reference closures.",
+  "principles": {
+    "local_confinement": {
+      "rule": "References may only resolve to files located strictly within the pinned candidate source directory root.",
+      "enforcement": "Canonical path resolution followed by relative root confinement assertion.",
+      "error_code": "ERR_PATH_TRAVERSAL_DETECTED"
+    },
+    "zero_remote_calls": {
+      "rule": "Remote URI schemes (http, https, ftp, file) are strictly prohibited.",
+      "enforcement": "Regex check on URI scheme prefix before any resolution.",
+      "error_code": "ERR_REMOTE_REF_PROHIBITED"
+    },
+    "zero_absolute_paths": {
+      "rule": "Absolute filesystem paths (e.g., '/path' or 'C:\\path') are strictly prohibited.",
+      "enforcement": "Check on root prefix before filesystem lookup.",
+      "error_code": "ERR_ABSOLUTE_PATH_PROHIBITED"
+    },
+    "cycle_safety": {
+      "rule": "Circular reference graphs must be detected and rejected fail-closed.",
+      "enforcement": "Call stack tracking of (file_path, json_pointer) pairs.",
+      "error_code": "ERR_REFERENCE_CYCLE_DETECTED"
+    },
+    "bounded_traversal": {
+      "rule": "Transitive reference resolution must not exceed the declared depth bound.",
+      "maximum_depth": 8,
+      "enforcement": "Depth counter incremented on every transitive reference hop.",
+      "error_code": "ERR_REF_DEPTH_EXCEEDED"
+    },
+    "fail_closed_missing_targets": {
+      "rule": "If any referenced local file or fragment pointer does not exist on disk, extraction fails closed immediately.",
+      "enforcement": "Disk existence check and pointer navigation check.",
+      "error_codes": [
+        "ERR_LOCAL_REF_FILE_NOT_FOUND",
+        "ERR_FRAGMENT_NOT_FOUND"
+      ]
+    }
+  },
+  "provenance_requirements": {
+    "lineage_fields": [
+      "declared_source_pointer",
+      "resolved_source_file",
+      "resolved_source_pointer",
+      "resolution_depth",
+      "reference_closure_sha256"
+    ],
+    "closure_artifact": "source_reference_closure.json",
+    "closure_fields": [
+      "policy_id",
+      "bundle_root_dir",
+      "closure_sha256",
+      "accessed_files_count",
+      "accessed_files",
+      "resolution_steps_count",
+      "resolution_log"
+    ]
+  },
+  "error_code_registry": {
+    "ERR_REMOTE_REF_PROHIBITED": "Reference defines a remote URL scheme which violates the zero-network policy.",
+    "ERR_ABSOLUTE_PATH_PROHIBITED": "Reference defines an absolute filesystem path which violates portable relative resolution.",
+    "ERR_PATH_TRAVERSAL_DETECTED": "Reference attempts to navigate outside the pinned candidate source directory root.",
+    "ERR_LOCAL_REF_FILE_NOT_FOUND": "Referenced target file does not exist on disk within the pinned bundle.",
+    "ERR_REFERENCE_CYCLE_DETECTED": "Reference resolution encountered a cyclic reference loop.",
+    "ERR_REF_DEPTH_EXCEEDED": "Transitive reference resolution exceeded the maximum allowed depth bound of 8.",
+    "ERR_FRAGMENT_NOT_FOUND": "JSON Pointer fragment does not exist in the target document.",
+    "ERR_UNSUPPORTED_DOC_FORMAT": "Referenced document is not valid JSON or YAML."
+  }
+}
