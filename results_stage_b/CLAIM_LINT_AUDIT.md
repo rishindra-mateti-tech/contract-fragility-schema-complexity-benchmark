@@ -10,11 +10,11 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `142` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `143` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
-| **Total Pattern Matches** | `201` | All occurrences of monitored high-risk stems. |
+| **Total Pattern Matches** | `204` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `13` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
-| **Scoped Acceptable Claims** | `188` | Contextually constrained by negative disclaimers or definitions. |
+| **Scoped Acceptable Claims** | `191` | Contextually constrained by negative disclaimers or definitions. |
 | **Un-scoped Violations** | **`0`** | Absolutist or ungrounded claims requiring remediation. |
 
 ---
@@ -23,11 +23,11 @@
 
 | High-Risk Term | Total Matches | Scoped Acceptable | Allowlisted | Violations |
 | :--- | :---: | :---: | :---: | :---: |
-| `CANONICAL_FAITHFUL promotion` | 52 | 48 | 4 | 0 |
+| `CANONICAL_FAITHFUL promotion` | 53 | 49 | 4 | 0 |
 | `guarantee / guaranteed` | 4 | 4 | 0 | 0 |
-| `independent validation / review` | 82 | 79 | 3 | 0 |
+| `independent validation / review` | 83 | 80 | 3 | 0 |
 | `lossless` | 44 | 42 | 2 | 0 |
-| `proves / proven` | 6 | 5 | 1 | 0 |
+| `proves / proven` | 7 | 6 | 1 | 0 |
 | `statistical significance` | 13 | 10 | 3 | 0 |
 
 ---
@@ -61,7 +61,7 @@
 | `STAGE_B_EXTRACTION_SPEC.md` | 20 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 197 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 210 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: `CANONICAL_FAITHFUL` |
-| ... | ... | ... | ... | *(176 additional scoped occurrences verified)* |
+| ... | ... | ... | ... | *(179 additional scoped occurrences verified)* |
 
 ---
 
