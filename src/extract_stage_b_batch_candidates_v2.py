@@ -209,7 +209,7 @@ def run_batch_extraction_v2(
         "candidates_rejected": candidates_rejected,
     }
 
-    if not dry_run and not target_slot_id:
+    if not dry_run and not target_slot_id and output_base_dir == CANDIDATES_V2_ROOT_DIR:
         write_v2_reports(results)
 
     return results

@@ -70,13 +70,14 @@ Stage B Benchmark - Reproducibility & Integrity Verification
 [PASS] Check 7: Lifecycle Status Invariants & Boundaries
 [PASS] Check 8: Batch Candidate Re-Extraction Determinism (V1)
 [PASS] Check 9: Batch Candidate Dialect Determinism (V2)
+[PASS] Check 10: Batch Candidate Adapter Determinism (V3)
 ======================================================================
-RESULT: ALL 9 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
+RESULT: ALL 10 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
 ======================================================================
 ```
 
 ### Step 4: Run the Complete Pytest Suite
-To execute the comprehensive automated test suite (including Stage A, prescreen audits, mutations, schema feature registry, adversarial feature corpus, serialization, and pilots):
+To execute the comprehensive automated test suite (including Stage A, prescreen audits, mutations, schema feature registry, adversarial feature corpus, serialization, pilots, and V3 adapters):
 ```bash
 python -m pytest -v
 ```
@@ -115,6 +116,16 @@ python src/extract_stage_b_batch_candidates_v2.py --output-base-dir /tmp/candida
 
 # Verify byte identity for any V2 candidate slot (e.g. SLOT_GITHUB_02)
 diff -r /tmp/candidates_v2_reextract/SLOT_GITHUB_02 data_stage_b/extraction_candidates_v2/SLOT_GITHUB_02
+```
+
+### Step 5d: Verify Deterministic Re-Extraction of Source-Adapted Batch Candidates (V3)
+To manually verify that the V3 batch extraction pipeline produces bit-for-bit identical outputs across all 18 V3 candidate bundles under the 4 governing policies:
+```bash
+# Re-extract all V3 candidates into temporary directory
+python src/extract_stage_b_batch_candidates_v3.py
+
+# Verify byte identity for any V3 candidate slot (e.g. SLOT_CHATWOOT_02 or SLOT_SLACK_01)
+diff -r /tmp/candidates_v3_reextract/SLOT_CHATWOOT_02 data_stage_b/extraction_candidates_v3/SLOT_CHATWOOT_02
 ```
 
 ### Step 6: Run Adversarial Red-Team Verification

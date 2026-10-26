@@ -294,11 +294,28 @@
       "prohibited_stronger_wording": "Claiming zero potential loss or verbatim preservation across heterogeneous schema dialects.",
       "reviewer_needed": false,
       "status": "SCOPE_RESTRICTED"
+    },
+    {
+      "category": "METHODOLOGICAL",
+      "claim_id": "CLAIM-019",
+      "document_path": "results_stage_b/V3_BATCH_EXTRACTION_RESULTS.md",
+      "epistemic_notes": "Unlocks path-item parameter inheritance and form transport surfaces into 18 quarantined V3 candidate bundles.",
+      "evidence_artifacts": [
+        "data_stage_b/extraction_candidates_v3/",
+        "results_stage_b/V3_BATCH_EXTRACTION_RESULTS.json",
+        "tests/test_stage_b_candidate_pipeline_v3.py"
+      ],
+      "exact_quoted_text": "Source-adapter framework unlocks OpenAPI path parameter inheritance and Swagger 2.0 formData transport surfaces, generating 18 quarantined V3 candidate bundles held at EXTRACTED_PENDING_HUMAN_VALIDATION and rejecting 10 operations fail-closed under 4 governing policies.",
+      "line_range": "1-50",
+      "permitted_wording": "Source-adapter framework unlocks OpenAPI path parameter inheritance and Swagger 2.0 formData transport surfaces, generating 18 quarantined V3 candidate bundles held at EXTRACTED_PENDING_HUMAN_VALIDATION and rejecting 10 operations fail-closed under 4 governing policies.",
+      "prohibited_stronger_wording": "Claiming full canonical validation, semantic equivalence, or wire conformance.",
+      "reviewer_needed": false,
+      "status": "SUPPORTED"
     }
   ],
   "governing_document": "docs/RESEARCH_CLAIM_STYLE_GUIDE.md",
-  "last_updated_utc": "2026-10-26T16:00:00Z",
-  "ledger_version": "1.1.0",
-  "total_claims": 18,
-  "total_claims_registered": 18
+  "last_updated_utc": "2026-10-26T20:00:00Z",
+  "ledger_version": "1.2.0",
+  "total_claims": 19,
+  "total_claims_registered": 19
 }

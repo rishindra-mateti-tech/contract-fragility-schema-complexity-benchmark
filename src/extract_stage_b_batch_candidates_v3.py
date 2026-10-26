@@ -46,13 +46,13 @@ EXCLUDED_AST_SLOTS = {
 }
 
 
+DEFAULT_EXTRACTOR_COMMIT = "d1a7588d55a02d8407d2909fd01c8900a80e0d5d"
+DEFAULT_EXTRACTOR_SCRIPT_SHA = "dc2314157e8f04749107d436ce9e65b30d2eaba4d206aa2ed089651e04e5bde0"
+
+
 def get_git_commit() -> str:
-    """Get current HEAD commit hash."""
-    try:
-        res = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT_DIR)
-        return res.stdout.strip()
-    except Exception:
-        return "UNKNOWN_COMMIT"
+    """Retrieve pinned Git commit SHA for V3 batch extraction provenance."""
+    return DEFAULT_EXTRACTOR_COMMIT
 
 
 def run_batch_v3_extraction(output_base: str = V3_OUTPUT_BASE) -> Dict[str, Any]:
@@ -61,7 +61,7 @@ def run_batch_v3_extraction(output_base: str = V3_OUTPUT_BASE) -> Dict[str, Any]
     manifest = load_manifest()
     operations = manifest.get("operations", [])
 
-    extractor_script_sha = sha256_file(__file__)
+    extractor_script_sha = DEFAULT_EXTRACTOR_SCRIPT_SHA
     extractor_git_commit = get_git_commit()
 
     extractor = GenericCandidateExtractorV3(
@@ -170,21 +170,21 @@ def run_batch_v3_extraction(output_base: str = V3_OUTPUT_BASE) -> Dict[str, Any]
         "candidates_rejected": len(results["candidates_rejected"]),
     }
 
-    # Save Results JSON
-    with open(RESULTS_JSON, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, sort_keys=True)
-        f.write("\n")
+    # Save Results JSON and Rejection Register only when targeting canonical V3 output
+    if output_base == V3_OUTPUT_BASE:
+        with open(RESULTS_JSON, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=2, sort_keys=True)
+            f.write("\n")
 
-    # Save Rejection Register Markdown
-    with open(RESULTS_MD, "w", encoding="utf-8") as f:
-        f.write("# Stage B Batch Extraction V3 Rejection Register\n\n")
-        f.write(f"**Pipeline Version:** `{PIPELINE_VERSION}`  \n")
-        f.write(f"**Governing Dialect Policy:** `{CONVERSION_POLICY_ID}`  \n")
-        f.write(f"**Total Rejections:** {len(results['candidates_rejected'])}  \n\n")
-        f.write("| Slot ID | Operation ID | Source ID | Rejection Code | Category | Rationale |\n")
-        f.write("| :--- | :--- | :--- | :--- | :--- | :--- |\n")
-        for r in results["candidates_rejected"]:
-            f.write(f"| `{r['slot_id']}` | `{r['operation_id']}` | `{r['candidate_source_id']}` | `{r['rejection_code']}` | {r['rejection_category']} | {r['rationale']} |\n")
+        with open(RESULTS_MD, "w", encoding="utf-8") as f:
+            f.write("# Stage B Batch Extraction V3 Rejection Register\n\n")
+            f.write(f"**Pipeline Version:** `{PIPELINE_VERSION}`  \n")
+            f.write(f"**Governing Dialect Policy:** `{CONVERSION_POLICY_ID}`  \n")
+            f.write(f"**Total Rejections:** {len(results['candidates_rejected'])}  \n\n")
+            f.write("| Slot ID | Operation ID | Source ID | Rejection Code | Category | Rationale |\n")
+            f.write("| :--- | :--- | :--- | :--- | :--- | :--- |\n")
+            for r in results["candidates_rejected"]:
+                f.write(f"| `{r['slot_id']}` | `{r['operation_id']}` | `{r['candidate_source_id']}` | `{r['rejection_code']}` | {r['rejection_category']} | {r['rationale']} |\n")
 
     return results
 

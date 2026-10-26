@@ -13,6 +13,7 @@ Executes 7 hermetic reproducibility and integrity checks:
 Exit code: 0 on success, non-zero on failure.
 """
 
+import glob
 import hashlib
 import json
 import os
@@ -356,6 +357,80 @@ def check_batch_v2_candidates_reproducibility() -> Tuple[bool, str]:
     return True, "All 13 batch V2 candidates re-extracted deterministically under Policy 001 with bit-for-bit identity"
 
 
+# -----------------------------------------------------------------------------
+# Check 10: Batch V3 candidate extraction determinism and source-adapter invariants
+# -----------------------------------------------------------------------------
+def check_batch_v3_candidates_reproducibility() -> Tuple[bool, str]:
+    from src.extract_stage_b_batch_candidates_v3 import run_batch_v3_extraction
+    from src.stage_b_candidate_validation_v3 import CandidateValidatorV3, REQUIRED_V3_ARTIFACTS
+
+    # 1. Policy verification
+    expected_policies = {
+        "results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.json": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+        "results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.md": "9e3a9c97765796b96d9cb9a0ea6d38e78acf3fa79d2aaa2746027c91e6e9be00",
+        "results_stage_b/OPENAPI_REFERENCE_RESOLUTION_POLICY_001.json": "99b95332d7ae8b6e68f4262eb7671ef5b2abed1cbb9e412eaca181a9d1cd9fd8",
+        "results_stage_b/OPENAPI_REFERENCE_RESOLUTION_POLICY_001.md": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+        "results_stage_b/OPENAPI_PARAMETER_INHERITANCE_POLICY_001.json": "1df932ede99bd9da72522cc00ab98e92ab4dfa3b9999f99a04967406b8ba7ddc",
+        "results_stage_b/OPENAPI_PARAMETER_INHERITANCE_POLICY_001.md": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+        "results_stage_b/OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001.json": "9539cb12b6231a348a20487c9dd7c27a8db5832aad0a39c92be0326706075f41",
+        "results_stage_b/OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001.md": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+    }
+    for pol_path, exp_sha in expected_policies.items():
+        full_pol = os.path.join(ROOT_DIR, pol_path)
+        if not os.path.exists(full_pol):
+            return False, f"Missing governing policy file: {pol_path}"
+        act_sha = sha256_file(full_pol)
+        if act_sha != exp_sha:
+            return False, f"Policy hash drift for {pol_path}: expected {exp_sha}, got {act_sha}"
+
+    # 2. Historical V1 and V2 immutability
+    v1_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates")
+    v2_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates_v2")
+    if len(glob.glob(os.path.join(v1_dir, "*"))) != 13:
+        return False, "Historical V1 candidates count modified"
+    if len(glob.glob(os.path.join(v2_dir, "*"))) != 13:
+        return False, "Historical V2 candidates count modified"
+
+    # 3. Re-extract V3 in temporary directory and check bit-for-bit identity
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        res = run_batch_v3_extraction(output_base=tmp_dir)
+        gen = res["candidates_generated"]
+        if len(gen) != 18:
+            return False, f"Expected 18 generated V3 candidates, got {len(gen)}"
+
+        base_candidates_v3_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates_v3")
+        validator = CandidateValidatorV3()
+
+        for c in gen:
+            slot_id = c["slot_id"]
+            tmp_slot_dir = os.path.join(tmp_dir, slot_id)
+            repo_slot_dir = os.path.join(base_candidates_v3_dir, slot_id)
+
+            if not os.path.exists(repo_slot_dir):
+                return False, f"V3 candidate dir missing in repository: {repo_slot_dir}"
+
+            # Validate bundle
+            is_valid, errors = validator.validate_candidate_bundle(repo_slot_dir, expected_slot_id=slot_id)
+            if not is_valid:
+                return False, f"Validation failed for repo V3 candidate {slot_id}: {errors}"
+
+            # Check raw nullable keyword absent from contract
+            c_file = os.path.join(repo_slot_dir, "candidate_contract.json")
+            with open(c_file, "r", encoding="utf-8") as cf:
+                c_text = cf.read()
+                if '"nullable"' in c_text:
+                    return False, f"Raw 'nullable' keyword found in V3 contract {slot_id}"
+
+            # Compare all 11 artifacts byte-for-byte
+            for fname in REQUIRED_V3_ARTIFACTS:
+                f_tmp = os.path.join(tmp_slot_dir, fname)
+                f_repo = os.path.join(repo_slot_dir, fname)
+                if sha256_file(f_tmp) != sha256_file(f_repo):
+                    return False, f"Byte identity failure for V3 {slot_id}/{fname}"
+
+    return True, "All 18 batch V3 candidates re-extracted deterministically across 4 policies with bit-for-bit identity"
+
+
 def main() -> int:
     print("=" * 70)
     print("Stage B Benchmark - Reproducibility & Integrity Verification")
@@ -371,6 +446,7 @@ def main() -> int:
         (7, "Lifecycle Status Invariants & Boundaries", check_status_invariants),
         (8, "Batch Candidate Re-Extraction Determinism (V1)", check_batch_candidates_reproducibility),
         (9, "Batch Candidate Dialect Determinism (V2)", check_batch_v2_candidates_reproducibility),
+        (10, "Batch Candidate Adapter Determinism (V3)", check_batch_v3_candidates_reproducibility),
     ]
 
     all_passed = True
@@ -382,7 +458,7 @@ def main() -> int:
 
     print("=" * 70)
     if all_passed:
-        print("RESULT: ALL 9 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.")
+        print("RESULT: ALL 10 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.")
         print("=" * 70)
         return 0
     else:

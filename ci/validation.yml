@@ -36,6 +36,14 @@ jobs:
         run: |
           python src/lint_research_claims.py
 
+      - name: Run OpenAPI Reference Closure Audit
+        run: |
+          python src/audit_openapi_reference_closure.py
+
+      - name: Run V3 Candidate Provenance and Difference Audit
+        run: |
+          python src/audit_v3_candidate_provenance.py
+
       - name: Run Batch Extraction Candidate Self-Test (Dry-Run)
         run: |
           python src/extract_stage_b_batch_candidates.py --all --dry-run
