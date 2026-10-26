@@ -1,0 +1,45 @@
+{
+  "policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "policy_name": "OpenAPI 2.0 FormData to Tool Surface Governance Policy",
+  "policy_version": "1.0.0",
+  "effective_date": "2026-10-26",
+  "source_dialect": "Swagger / OpenAPI 2.0 (in: formData)",
+  "target_surface": "form (Discrete Draft-07 Object Container)",
+  "epistemic_mandate": "OpenAPI 2.0 formData parameters must never be converted to application/json body schemas. They must be synthesized into a discrete 'form' surface container under Draft-07 closed-object rules. File uploads and binary payloads are strictly prohibited. All field transformations must be explicitly classified as INTENTIONAL_REPRESENTATION_CHANGE.",
+  "principles": {
+    "surface_separation": {
+      "rule": "formData parameters are collected exclusively into a dedicated 'form' container: properties.form.",
+      "body_prohibition": "formData parameters must NOT be mapped to properties.body."
+    },
+    "ambiguity_rejection": {
+      "rule": "Operations declaring both 'formData' and 'body' parameters must be rejected fail-closed.",
+      "error_code": "ERR_BODY_FORMDATA_AMBIGUITY"
+    },
+    "file_upload_prohibition": {
+      "rule": "Parameters with type: 'file' or binary format are strictly prohibited in benchmark tool contracts.",
+      "error_codes": [
+        "ERR_FILE_UPLOAD_PROHIBITED",
+        "ERR_BINARY_FIELD_PROHIBITED"
+      ]
+    },
+    "closed_object_enforcement": {
+      "rule": "The synthesized 'form' container must enforce additionalProperties: false."
+    },
+    "wire_conformance_boundary": {
+      "rule": "No claim of actual HTTP wire conformance or live server serialization acceptance is made.",
+      "status": "HTTP_WIRE_CONFORMANCE_EXPLICITLY_UNVALIDATED"
+    }
+  },
+  "lineage_classification": {
+    "transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE",
+    "difference_classification": "INTENTIONAL_REPRESENTATION_CHANGE",
+    "rationale": "OpenAPI 2.0 formData parameter mapped to discrete Draft-07 'form' surface container."
+  },
+  "error_codes": {
+    "ERR_FILE_UPLOAD_PROHIBITED": "File upload parameters (type: file) are unsupported in tool contracts.",
+    "ERR_BINARY_FIELD_PROHIBITED": "Binary formatted payloads (format: binary/byte) are prohibited.",
+    "ERR_BODY_FORMDATA_AMBIGUITY": "Operation declares conflicting body and formData parameters simultaneously.",
+    "ERR_UNSUPPORTED_COLLECTION_FORMAT": "Array parameter specifies an unsupported collectionFormat.",
+    "ERR_UNSUPPORTED_FORM_TYPE": "Parameter specifies an unsupported primitive type."
+  }
+}
