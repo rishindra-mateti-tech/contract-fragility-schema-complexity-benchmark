@@ -1,0 +1,1 @@
+{"field_name": "body.chat", "raw_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post/body/chat", "required": true, "schema_type": "object", "surface": "body", "target_pointer": "#/properties/body/properties/chat", "transformation_category": "PRESERVED"}

@@ -1,0 +1,13 @@
+{
+  "features_present": {
+    "has_body_surface": true,
+    "has_form_surface": false,
+    "has_header_parameters": false,
+    "has_inherited_parameters": false,
+    "has_path_parameters": true,
+    "has_query_parameters": false,
+    "has_schema_transformations": true
+  },
+  "operation_id": "repos/create-commit-status",
+  "slot_id": "SLOT_GITHUB_02"
+}

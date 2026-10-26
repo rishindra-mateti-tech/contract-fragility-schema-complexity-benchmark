@@ -1,0 +1,63 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "path",
+      "name": "AccountSid",
+      "op_declared_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "maxLength": 34,
+        "minLength": 34,
+        "pattern": "^AC[0-9a-fA-F]{32}$",
+        "type": "string"
+      }
+    }
+  ],
+  "adapter_decisions_count": 1,
+  "adapters_used": [],
+  "candidate_source_id": "CAND-004",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T20:00:00Z",
+  "extractor_git_commit": "d1a7588d55a02d8407d2909fd01c8900a80e0d5d",
+  "extractor_script_sha256": "dc2314157e8f04749107d436ce9e65b30d2eaba4d206aa2ed089651e04e5bde0",
+  "extractor_version": "3.0.0",
+  "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+  "generated_artifact_hashes": {
+    "adapter_decisions.json": "3956c4207d0e9a9ae2c1e2caa73acdbdb0994f8f9736dd810c73b4bdad665ccb",
+    "candidate_contract.json": "8cc01ffa807e07d7ade48f9e5244e475f8b78a4018948acc398efdbde210a312",
+    "candidate_validation_report.md": "a617c604bc6ac9a9bbe1236164255c78f559613e212020cd5f7fc58fe305ed8f",
+    "difference_register.json": "5bd94012f6ed85e3e840079bc88fc14864bf3b72c003ee3d02e298ceff63bd14",
+    "difference_register.md": "f7554492a801f4a9259b03fcae7c5df025d45c2a06c39498317f7bd4ddc13641",
+    "feature_inventory.json": "8ffe7284bf97a3b3005f018079a3b680a9d97869150fff7f296be0ce2e704873",
+    "field_lineage.jsonl": "4ee1ecc3420f040642b3efd69700836840e241f1015a88dde780c2b7987194b4",
+    "review_packet.md": "6d943b53662cf125fae356173fef3c06d5e3ee7e626d46dc430e15f8923cca5e",
+    "serialization_characterization.json": "e011574e610aa540c6b0445fc622eba3cdcc2071a0eb115b304515e82882101b",
+    "source_reference_closure.json": "2acc33c6d3d6004b64f2c2d5e62da7d628f360f0a17461c6f653f9b97510d0d4"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "CreateCall",
+  "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+  "raw_source_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+  "raw_source_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339",
+  "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_TWILIO_03",
+  "source_cluster_id": "CLUSTER_TWILIO",
+  "source_dialect": "OpenAPI 3.0.1",
+  "source_reference_closure_sha256": "72e9b241b9fe34c9e133c29064d4801561f144d6de92a30b7677741b7be41030",
+  "source_spec_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Calls.json/post",
+  "target_dialect": "JSON Schema Draft-07",
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

@@ -1,0 +1,2 @@
+{"field_name": "body.chatId", "raw_pointer": "#/paths/~1v2~1bot~1chat~1loading~1start/post/body/chatId", "required": true, "schema_type": "string", "surface": "body", "target_pointer": "#/properties/body/properties/chatId", "transformation_category": "PRESERVED"}
+{"field_name": "body.loadingSeconds", "raw_pointer": "#/paths/~1v2~1bot~1chat~1loading~1start/post/body/loadingSeconds", "required": false, "schema_type": "integer", "surface": "body", "target_pointer": "#/properties/body/properties/loadingSeconds", "transformation_category": "PRESERVED"}

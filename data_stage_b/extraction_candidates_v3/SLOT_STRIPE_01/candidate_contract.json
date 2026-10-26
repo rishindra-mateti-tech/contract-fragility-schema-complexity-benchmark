@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "<p>To send funds to your own bank account, create a new payout object. Your <a href=\"#balance\">Stripe balance</a> must cover the payout amount. If it doesn\u2019t, you receive an \u201cInsufficient Funds\u201d error.</p>\n\n<p>If your API key is in test mode, money won\u2019t actually be sent, though every other action occurs as if you\u2019re in live mode.</p>\n\n<p>If you create a manual payout on a Stripe account that uses multiple payment source types, you need to specify the source type balance that the payout draws from. The <a href=\"/api/balances/object\">balance object</a> details available and pending amounts by source type.</p>",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "description": "A positive integer in cents representing how much to pay out.",
+          "type": "integer"
+        },
+        "currency": {
+          "description": "Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).",
+          "format": "currency",
+          "type": "string"
+        },
+        "description": {
+          "description": "An arbitrary string attached to the object. Often useful for displaying to users.",
+          "maxLength": 5000,
+          "type": "string"
+        },
+        "destination": {
+          "description": "The ID of a bank account or a card to send the payout to. If you don't provide a destination, we use the default external account for the specified currency.",
+          "type": "string"
+        },
+        "expand": {
+          "description": "Specifies which fields in the response should be expanded.",
+          "items": {
+            "maxLength": 5000,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.",
+          "type": "object"
+        },
+        "method": {
+          "description": "The method used to send this payout, which is `standard` or `instant`. We support `instant` for payouts to debit cards and bank accounts in certain countries. Learn more about [bank support for Instant Payouts](https://stripe.com/docs/payouts/instant-payouts-banks).",
+          "enum": [
+            "instant",
+            "standard"
+          ],
+          "maxLength": 5000,
+          "type": "string",
+          "x-stripeBypassValidation": true
+        },
+        "payout_method": {
+          "description": "The ID of a v2 FinancialAccount to send funds to.",
+          "type": "string"
+        },
+        "source_type": {
+          "description": "The balance type of your Stripe balance to draw this payout from. Balances for different payment sources are kept separately. You can find the amounts with the Balances API. One of `bank_account`, `card`, or `fpx`.",
+          "enum": [
+            "bank_account",
+            "card",
+            "fpx"
+          ],
+          "maxLength": 5000,
+          "type": "string",
+          "x-stripeBypassValidation": true
+        },
+        "statement_descriptor": {
+          "description": "A string that displays on the recipient's bank or card statement (up to 22 characters). A `statement_descriptor` that's longer than 22 characters return an error. Most banks truncate this information and display it inconsistently. Some banks might not display it at all. For US ACH payouts, this maps to the ACH Company Entry Description field, which the NACHA standard limits to 10 characters. Stripe truncates descriptors longer than 10 characters for US ACH payouts.",
+          "maxLength": 22,
+          "type": "string",
+          "x-stripeBypassValidation": true
+        }
+      },
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body"
+  ],
+  "title": "SLOT_STRIPE_01_PostPayouts_Contract",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "adapters_used": [],
+    "benchmark_stage": "Stage B",
+    "candidate_source_id": "CAND-002",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "PostPayouts",
+    "pipeline_version": "3.0.0",
+    "slot_id": "SLOT_STRIPE_01",
+    "source_cluster_id": "CLUSTER_STRIPE",
+    "target_dialect": "JSON Schema Draft-07",
+    "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+  }
+}

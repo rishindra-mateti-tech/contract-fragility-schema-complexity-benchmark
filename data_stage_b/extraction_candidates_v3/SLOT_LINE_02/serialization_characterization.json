@@ -1,0 +1,11 @@
+{
+  "form_transport_metadata": null,
+  "operation_id": "setWebhookEndpoint",
+  "request_content_type": "application/json",
+  "server_acceptance_claim": "SERVER_ACCEPTANCE_EXPLICITLY_UNVALIDATED",
+  "slot_id": "SLOT_LINE_02",
+  "surfaces_extracted": [
+    "body"
+  ],
+  "wire_conformance_claim": "HTTP_WIRE_CONFORMANCE_EXPLICITLY_UNVALIDATED"
+}

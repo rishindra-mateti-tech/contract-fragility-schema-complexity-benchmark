@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Mark messages from users as read",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "externalDocs": {
+        "url": "https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read"
+      },
+      "properties": {
+        "chat": {
+          "description": "Chat reference",
+          "externalDocs": {
+            "url": "https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read"
+          },
+          "properties": {
+            "userId": {
+              "description": "The target user ID",
+              "type": "string"
+            }
+          },
+          "required": [
+            "userId"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "chat"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body"
+  ],
+  "title": "SLOT_LINE_03_markMessagesAsRead_Contract",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "adapters_used": [],
+    "benchmark_stage": "Stage B",
+    "candidate_source_id": "CAND-013",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "markMessagesAsRead",
+    "pipeline_version": "3.0.0",
+    "slot_id": "SLOT_LINE_03",
+    "source_cluster_id": "CLUSTER_LINE",
+    "target_dialect": "JSON Schema Draft-07",
+    "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+  }
+}

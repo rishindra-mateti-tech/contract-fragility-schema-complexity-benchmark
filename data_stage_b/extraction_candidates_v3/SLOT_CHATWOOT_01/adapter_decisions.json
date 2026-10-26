@@ -1,0 +1,24 @@
+{
+  "adapters_used": [
+    "ParameterInheritanceAdapter"
+  ],
+  "decisions": [
+    {
+      "in": "path",
+      "name": "account_id",
+      "op_declared_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post/parameters/0",
+      "op_resolved_pointer": "#/components/parameters/account_id",
+      "origin": "OPERATION_OVERRIDE",
+      "override_status": "OVERRIDDEN",
+      "path_declared_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/parameters/0",
+      "path_resolved_pointer": "#/components/parameters/account_id",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      }
+    }
+  ],
+  "decisions_count": 1,
+  "operation_id": "create-a-webhook",
+  "slot_id": "SLOT_CHATWOOT_01"
+}

@@ -1,0 +1,94 @@
+{
+  "adapters_used": [
+    "OpenAPI2FormDataAdapter"
+  ],
+  "decisions": [
+    {
+      "in": "formData",
+      "name": "text",
+      "op_declared_pointer": "#/paths/~1reminders.add/post/parameters/1",
+      "op_resolved_pointer": "#/paths/~1reminders.add/post/parameters/1",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": null
+    },
+    {
+      "in": "formData",
+      "name": "time",
+      "op_declared_pointer": "#/paths/~1reminders.add/post/parameters/2",
+      "op_resolved_pointer": "#/paths/~1reminders.add/post/parameters/2",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": null
+    },
+    {
+      "in": "header",
+      "name": "token",
+      "op_declared_pointer": "#/paths/~1reminders.add/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1reminders.add/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": null
+    },
+    {
+      "in": "formData",
+      "name": "user",
+      "op_declared_pointer": "#/paths/~1reminders.add/post/parameters/3",
+      "op_resolved_pointer": "#/paths/~1reminders.add/post/parameters/3",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": null
+    },
+    {
+      "collection_format": null,
+      "declared_pointer": "#/paths/~1reminders.add/post/parameters/formData/text",
+      "declared_type": "string",
+      "field_name": "text",
+      "rationale": "OpenAPI 2.0 formData parameter mapped to discrete Draft-07 'form' surface container.",
+      "required": true,
+      "source_dialect": "Swagger 2.0",
+      "source_location": "formData",
+      "target_surface": "form",
+      "transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE"
+    },
+    {
+      "collection_format": null,
+      "declared_pointer": "#/paths/~1reminders.add/post/parameters/formData/time",
+      "declared_type": "string",
+      "field_name": "time",
+      "rationale": "OpenAPI 2.0 formData parameter mapped to discrete Draft-07 'form' surface container.",
+      "required": true,
+      "source_dialect": "Swagger 2.0",
+      "source_location": "formData",
+      "target_surface": "form",
+      "transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE"
+    },
+    {
+      "collection_format": null,
+      "declared_pointer": "#/paths/~1reminders.add/post/parameters/formData/user",
+      "declared_type": "string",
+      "field_name": "user",
+      "rationale": "OpenAPI 2.0 formData parameter mapped to discrete Draft-07 'form' surface container.",
+      "required": false,
+      "source_dialect": "Swagger 2.0",
+      "source_location": "formData",
+      "target_surface": "form",
+      "transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE"
+    }
+  ],
+  "decisions_count": 7,
+  "operation_id": "reminders.add",
+  "slot_id": "SLOT_SLACK_03"
+}

@@ -1,0 +1,290 @@
+{
+  "adapters_summary": {
+    "LocalReferenceResolver": 0,
+    "OpenAPI2FormDataAdapter": 3,
+    "ParameterInheritanceAdapter": 3,
+    "none": 12
+  },
+  "already_extracted_pilots": [
+    "SLOT_GITHUB_01",
+    "SLOT_STRIPE_02"
+  ],
+  "ast_slots_excluded": [
+    "SLOT_MCP_GITHUB_01",
+    "SLOT_MCP_GITHUB_02",
+    "SLOT_MCP_GITHUB_03",
+    "SLOT_MCP_SQLITE_01",
+    "SLOT_MCP_SQLITE_02",
+    "SLOT_MCP_SQLITE_03"
+  ],
+  "candidates_generated": [
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "e35eff17aeb353d9e751f491e8991bb1b8b559b9667bd2bc3fd777e5f3f83aff",
+      "operation_id": "repos/create-commit-status",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_GITHUB_02",
+      "slot_id": "SLOT_GITHUB_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "4c51d1c6af71ec3de3a19f623fe66f159481ad32a43d73bc953787d76035e2de",
+      "operation_id": "repos/create-for-authenticated-user",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_GITHUB_03",
+      "slot_id": "SLOT_GITHUB_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "992eea5c07ff68d3d010baf43760d0c354cb86f51fbf4a378a7b108387ec85d2",
+      "operation_id": "UpdateAccount",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_TWILIO_01",
+      "slot_id": "SLOT_TWILIO_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "04bb8fd13f43ec9309d4430feb5195e1ab6b0f277d7576a5542bc60db2dfe6fa",
+      "operation_id": "CreateMessage",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_TWILIO_02",
+      "slot_id": "SLOT_TWILIO_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "8cc01ffa807e07d7ade48f9e5244e475f8b78a4018948acc398efdbde210a312",
+      "operation_id": "CreateCall",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_TWILIO_03",
+      "slot_id": "SLOT_TWILIO_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "8a22dec6be48b49cf6e8105f3463fb3b3e9377cc3ad1a4bac5645bcf21cb7374",
+      "operation_id": "post_folders",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_BOX_01",
+      "slot_id": "SLOT_BOX_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "99c906b4518dca95befd116b4e969d28b29c41dfe16798bbd3e2860384e76041",
+      "operation_id": "post_collaborations",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_BOX_02",
+      "slot_id": "SLOT_BOX_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "22857ec966ed1e89d93cb90e8a66be14e366d78092cfbd0ee203a41fa3c4508f",
+      "operation_id": "post_users",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_BOX_03",
+      "slot_id": "SLOT_BOX_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "924f494b9d9d3f8424b0b0d5351b91b4b23719abce085e316705f1f173b6cdb9",
+      "operation_id": "conversations.create",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_SLACK_01",
+      "slot_id": "SLOT_SLACK_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "edf05ae93b7dbf8e9de08eae1d8ebeb16819df7ecf9bc4c01c8a5466247f23fc",
+      "operation_id": "users.profile.set",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_SLACK_02",
+      "slot_id": "SLOT_SLACK_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "20162953a6464e6f05202b114d7d1029e1b5f0e0c4f7bc74be8786f2a54b0a18",
+      "operation_id": "reminders.add",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_SLACK_03",
+      "slot_id": "SLOT_SLACK_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "7d6e754caa98189f85a18ca9d8986ba3de07e36d0440d6ae5ea7ebeacab94261",
+      "operation_id": "create-an-account-user",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_CHATWOOT_02",
+      "slot_id": "SLOT_CHATWOOT_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "20000abf2bc02129a1c7d413657bb5279e51e31803bf87ca50f52cce3d5edfc8",
+      "operation_id": "create-a-conversation",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_CHATWOOT_03",
+      "slot_id": "SLOT_CHATWOOT_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "8cf3a38cb55b3bdf377e163a10279dc0f46f4fa77ffba9f0212a4287ac9ba7a8",
+      "operation_id": "setWebhookEndpoint",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_LINE_02",
+      "slot_id": "SLOT_LINE_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "af5c7ca6116ab9525ad9a4720f80a9c59c8714aa6e1492dd6ddf12e0680a3a26",
+      "operation_id": "markMessagesAsRead",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_LINE_03",
+      "slot_id": "SLOT_LINE_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-002",
+      "contract_sha256": "0a7e360648d54db1e722653d6f7aaeee2abbfc579001d6b9b0cfd091c0804c3a",
+      "operation_id": "PostPayouts",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_STRIPE_01",
+      "slot_id": "SLOT_STRIPE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "b95882f7f0dd841ba9ea409fa5f145c8d11e466ed772d072adbfa8f1f0854463",
+      "operation_id": "create-a-webhook",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_CHATWOOT_01",
+      "slot_id": "SLOT_CHATWOOT_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "4ce3115a1054bb6fb252747644ddce86d36e978677d0e984f5a807733bef0e69",
+      "operation_id": "showLoadingAnimation",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v3\\SLOT_LINE_01",
+      "slot_id": "SLOT_LINE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    }
+  ],
+  "candidates_rejected": [
+    {
+      "candidate_source_id": "CAND-002",
+      "operation_id": "PostRefunds",
+      "rationale": "Polymorphic union schemas require multi-schema extraction protocol (Protocol Amendment 003).",
+      "rejection_category": "UNSUPPORTED_SCHEMA_TOPOLOGY",
+      "rejection_code": "FEAT_POLYMORPHIC_UNION",
+      "slot_id": "SLOT_STRIPE_03"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "operation_id": "floating_ips_create",
+      "rationale": "Referenced local specification file for 'floating_ips_create' does not exist on disk within pinned CAND-003 directory.",
+      "rejection_category": "MISSING_LOCAL_REFERENCE_FILE",
+      "rejection_code": "ERR_LOCAL_REF_FILE_NOT_FOUND",
+      "slot_id": "SLOT_DO_01"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "operation_id": "domains_create",
+      "rationale": "Referenced local specification file for 'domains_create' does not exist on disk within pinned CAND-003 directory.",
+      "rejection_category": "MISSING_LOCAL_REFERENCE_FILE",
+      "rejection_code": "ERR_LOCAL_REF_FILE_NOT_FOUND",
+      "slot_id": "SLOT_DO_02"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "operation_id": "droplets_create",
+      "rationale": "Referenced local specification file for 'droplets_create' does not exist on disk within pinned CAND-003 directory.",
+      "rejection_category": "MISSING_LOCAL_REFERENCE_FILE",
+      "rejection_code": "ERR_LOCAL_REF_FILE_NOT_FOUND",
+      "slot_id": "SLOT_DO_03"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "operation_id": "read_query",
+      "rationale": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "NON_OPENAPI_SPECIFICATION",
+      "rejection_code": "FEAT_AST_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_SQLITE_01"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "operation_id": "describe_table",
+      "rationale": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "NON_OPENAPI_SPECIFICATION",
+      "rejection_code": "FEAT_AST_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_SQLITE_02"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "operation_id": "write_query",
+      "rationale": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "NON_OPENAPI_SPECIFICATION",
+      "rejection_code": "FEAT_AST_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_SQLITE_03"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "operation_id": "search_repositories",
+      "rationale": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "NON_OPENAPI_SPECIFICATION",
+      "rejection_code": "FEAT_AST_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_GITHUB_01"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "operation_id": "create_issue",
+      "rationale": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "NON_OPENAPI_SPECIFICATION",
+      "rejection_code": "FEAT_AST_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_GITHUB_02"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "operation_id": "create_or_update_file",
+      "rationale": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "NON_OPENAPI_SPECIFICATION",
+      "rejection_code": "FEAT_AST_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_GITHUB_03"
+    }
+  ],
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "pipeline_version": "3.0.0",
+  "summary": {
+    "candidates_generated": 18,
+    "candidates_rejected": 10,
+    "extracted_pilots_skipped": 2,
+    "total_manifest": 30
+  },
+  "total_manifest_operations": 30,
+  "union_slots_excluded": [
+    "SLOT_STRIPE_03"
+  ]
+}

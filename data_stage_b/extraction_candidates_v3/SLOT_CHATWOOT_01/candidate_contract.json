@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Add a webhook subscription to the account",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "The name of the webhook",
+          "type": "string"
+        },
+        "subscriptions": {
+          "description": "The events you want to subscribe to.",
+          "example": [
+            "conversation_created",
+            "conversation_status_changed"
+          ],
+          "items": {
+            "enum": [
+              "conversation_created",
+              "conversation_status_changed",
+              "conversation_updated",
+              "message_created",
+              "message_updated",
+              "contact_created",
+              "contact_updated",
+              "webwidget_triggered",
+              "conversation_typing_on",
+              "conversation_typing_off"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "The url where the events should be sent",
+          "example": "https://example.com/webhook",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {
+        "account_id": {
+          "description": "The numeric ID of the account",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "account_id"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body",
+    "path"
+  ],
+  "title": "SLOT_CHATWOOT_01_create-a-webhook_Contract",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "adapters_used": [
+      "ParameterInheritanceAdapter"
+    ],
+    "benchmark_stage": "Stage B",
+    "candidate_source_id": "CAND-011",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "create-a-webhook",
+    "pipeline_version": "3.0.0",
+    "slot_id": "SLOT_CHATWOOT_01",
+    "source_cluster_id": "CLUSTER_CHATWOOT",
+    "target_dialect": "JSON Schema Draft-07",
+    "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1collaborations/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1collaborations/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    {
+      "in": "query",
+      "name": "notify",
+      "op_declared_pointer": "#/paths/~1collaborations/post/parameters/1",
+      "op_resolved_pointer": "#/paths/~1collaborations/post/parameters/1",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "type": "boolean"
+      }
+    }
+  ],
+  "adapter_decisions_count": 2,
+  "adapters_used": [],
+  "candidate_source_id": "CAND-005",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T20:00:00Z",
+  "extractor_git_commit": "d1a7588d55a02d8407d2909fd01c8900a80e0d5d",
+  "extractor_script_sha256": "dc2314157e8f04749107d436ce9e65b30d2eaba4d206aa2ed089651e04e5bde0",
+  "extractor_version": "3.0.0",
+  "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+  "generated_artifact_hashes": {
+    "adapter_decisions.json": "56945db930255c6cec3264f0dfa605f4d3833fcbd0be2addf055e9eceabc3f9c",
+    "candidate_contract.json": "99c906b4518dca95befd116b4e969d28b29c41dfe16798bbd3e2860384e76041",
+    "candidate_validation_report.md": "7720865322e010d290a2655adb4ad81f5573a74282c034eddef526afb68db2b9",
+    "difference_register.json": "36a607e0968855d9a586377777e67a7b10a0c59a107feb7f47d963f40cf66a75",
+    "difference_register.md": "18fbec0823e8ab0e9331a80e9792091934c598dbffc90872379e9ab4a2e997b3",
+    "feature_inventory.json": "2d1b3df2e83621998bec0a2eda396e8e222b8213cd5788495d18c2c831c6473e",
+    "field_lineage.jsonl": "f3e813629847778898ef454a576e0573ca0099243b297e2a8987d9d91f3d6a02",
+    "review_packet.md": "808f837ad39b3242191a576eb44cf3921dd34b1bbf3cb0345844cdba9f2c6ad2",
+    "serialization_characterization.json": "a896a981a953b4952482f245ede792467b3556266a70edfd14d8d7c48631e868",
+    "source_reference_closure.json": "489aaf79607577ebd7819dd55b7f0c90bd622f7f0aa32b38b941453f6ac7f739"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "post_collaborations",
+  "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+  "raw_source_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+  "raw_source_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+  "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_BOX_02",
+  "source_cluster_id": "CLUSTER_BOX",
+  "source_dialect": "OpenAPI 3.0.2",
+  "source_reference_closure_sha256": "8d2ab29efb1df9865a61d6d3a218ac573859e284796cb6c317664b8ed8a21153",
+  "source_spec_pointer": "#/paths/~1collaborations/post",
+  "target_dialect": "JSON Schema Draft-07",
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

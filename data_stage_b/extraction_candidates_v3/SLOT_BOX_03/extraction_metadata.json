@@ -1,0 +1,63 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1users/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1users/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    }
+  ],
+  "adapter_decisions_count": 1,
+  "adapters_used": [],
+  "candidate_source_id": "CAND-005",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T20:00:00Z",
+  "extractor_git_commit": "d1a7588d55a02d8407d2909fd01c8900a80e0d5d",
+  "extractor_script_sha256": "dc2314157e8f04749107d436ce9e65b30d2eaba4d206aa2ed089651e04e5bde0",
+  "extractor_version": "3.0.0",
+  "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+  "generated_artifact_hashes": {
+    "adapter_decisions.json": "4f05fd9c454b2e44289d5873f7d1ac89c469f9ac2c5c360e298c13fb1f273c76",
+    "candidate_contract.json": "22857ec966ed1e89d93cb90e8a66be14e366d78092cfbd0ee203a41fa3c4508f",
+    "candidate_validation_report.md": "0b3752aef1e5c02f2322a7559b5cc4387e77a0fb53f2bdd529170fc88b28068d",
+    "difference_register.json": "5fe441d906beec5a641d2df1bd42194833c831696ae5480fbfb591e537d499e1",
+    "difference_register.md": "90991bb55aff0a6b55a8fcee17c14f4529bf5d7be2bdd97730f07625c90903ca",
+    "feature_inventory.json": "e80e845a9b5d42cecb0c4270a414d3cc5262012b71e6dc5e8a3e80767c573572",
+    "field_lineage.jsonl": "08e7bed839665b44e01b246dfccd3bbf5b18cc89bd42e170a5bb4d8838524a69",
+    "review_packet.md": "d07c555aead6b1f9cecad91d1095626b5d0d45223fa0776dc95d6f678eaaa6c9",
+    "serialization_characterization.json": "84dd1dac55a88c3250a4538927cd2cae25253e949c9478daf25cf1609ad06ec7",
+    "source_reference_closure.json": "9ab672f4fd5f7a13e34417ec52348ea8276b46fe0e119f3cb52a91cac747083c"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "post_users",
+  "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+  "raw_source_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+  "raw_source_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+  "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_BOX_03",
+  "source_cluster_id": "CLUSTER_BOX",
+  "source_dialect": "OpenAPI 3.0.2",
+  "source_reference_closure_sha256": "8d2ab29efb1df9865a61d6d3a218ac573859e284796cb6c317664b8ed8a21153",
+  "source_spec_pointer": "#/paths/~1users/post",
+  "target_dialect": "JSON Schema Draft-07",
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

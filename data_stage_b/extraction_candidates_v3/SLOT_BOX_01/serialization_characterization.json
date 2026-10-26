@@ -1,0 +1,12 @@
+{
+  "form_transport_metadata": null,
+  "operation_id": "post_folders",
+  "request_content_type": "application/json",
+  "server_acceptance_claim": "SERVER_ACCEPTANCE_EXPLICITLY_UNVALIDATED",
+  "slot_id": "SLOT_BOX_01",
+  "surfaces_extracted": [
+    "query",
+    "body"
+  ],
+  "wire_conformance_claim": "HTTP_WIRE_CONFORMANCE_EXPLICITLY_UNVALIDATED"
+}

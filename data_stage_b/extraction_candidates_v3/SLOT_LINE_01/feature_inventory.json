@@ -1,0 +1,13 @@
+{
+  "features_present": {
+    "has_body_surface": true,
+    "has_form_surface": false,
+    "has_header_parameters": false,
+    "has_inherited_parameters": false,
+    "has_path_parameters": false,
+    "has_query_parameters": false,
+    "has_schema_transformations": false
+  },
+  "operation_id": "showLoadingAnimation",
+  "slot_id": "SLOT_LINE_01"
+}

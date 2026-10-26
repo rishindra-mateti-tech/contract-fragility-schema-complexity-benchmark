@@ -1,0 +1,70 @@
+{
+  "adapters_used": [
+    "OpenAPI2FormDataAdapter"
+  ],
+  "decisions": [
+    {
+      "in": "formData",
+      "name": "is_private",
+      "op_declared_pointer": "#/paths/~1conversations.create/post/parameters/2",
+      "op_resolved_pointer": "#/paths/~1conversations.create/post/parameters/2",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": null
+    },
+    {
+      "in": "formData",
+      "name": "name",
+      "op_declared_pointer": "#/paths/~1conversations.create/post/parameters/1",
+      "op_resolved_pointer": "#/paths/~1conversations.create/post/parameters/1",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": null
+    },
+    {
+      "in": "header",
+      "name": "token",
+      "op_declared_pointer": "#/paths/~1conversations.create/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1conversations.create/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": null
+    },
+    {
+      "collection_format": null,
+      "declared_pointer": "#/paths/~1conversations.create/post/parameters/formData/is_private",
+      "declared_type": "boolean",
+      "field_name": "is_private",
+      "rationale": "OpenAPI 2.0 formData parameter mapped to discrete Draft-07 'form' surface container.",
+      "required": false,
+      "source_dialect": "Swagger 2.0",
+      "source_location": "formData",
+      "target_surface": "form",
+      "transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE"
+    },
+    {
+      "collection_format": null,
+      "declared_pointer": "#/paths/~1conversations.create/post/parameters/formData/name",
+      "declared_type": "string",
+      "field_name": "name",
+      "rationale": "OpenAPI 2.0 formData parameter mapped to discrete Draft-07 'form' surface container.",
+      "required": false,
+      "source_dialect": "Swagger 2.0",
+      "source_location": "formData",
+      "target_surface": "form",
+      "transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE"
+    }
+  ],
+  "decisions_count": 5,
+  "operation_id": "conversations.create",
+  "slot_id": "SLOT_SLACK_01"
+}

@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Adds a collaboration for a single user or a single group to a file\nor folder.\n\nCollaborations can be created using email address, user IDs, or a\ngroup IDs.\n\nIf a collaboration is being created with a group, access to\nthis endpoint is dependent on the group's ability to be invited.\n\nIf collaboration is in `pending` status, field `name` is redacted when:\n- a collaboration was created using `user_id`,\n- a collaboration was created using `login`.",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "accessible_by": {
+          "description": "The user or group to give access to the item.",
+          "properties": {
+            "id": {
+              "description": "The ID of the user or group.\n\nAlternatively, use `login` to specify a user by email\naddress.",
+              "example": "23522323",
+              "type": "string"
+            },
+            "login": {
+              "description": "The email address of the user to grant access to the item.\n\nAlternatively, use `id` to specify a user by user ID.",
+              "example": "john@example.com",
+              "type": "string"
+            },
+            "type": {
+              "description": "The type of collaborator to invite.",
+              "enum": [
+                "user",
+                "group"
+              ],
+              "example": "user",
+              "type": "string"
+            }
+          },
+          "required": [
+            "type"
+          ],
+          "type": "object"
+        },
+        "can_view_path": {
+          "description": "Determines if the invited users can see the entire parent path to\nthe associated folder. The user will not gain privileges in any\nparent folder and therefore can not see content the user is not\ncollaborated on.\n\nBe aware that this meaningfully increases the time required to load the\ninvitee's **All Files** page. We recommend you limit the number of\ncollaborations with `can_view_path` enabled to 1,000 per user.\n\nOnly an owner or co-owners can invite collaborators with a `can_view_path` of\n`true`. Only an owner can update `can_view_path` on existing collaborations.\n\n`can_view_path` can only be used for folder collaborations.\n\nWhen you delete a folder with `can_view_path=true`, collaborators may still see the parent path. \nFor instructions on how to remove this, see \n[Even though a folder invited via can_view_path is deleted, the path remains displayed](https://support.box.com/hc/en-us/articles/37472814319891-Even-though-a-folder-invited-via-can-view-path-is-deleted-the-path-remains-displayed).",
+          "example": true,
+          "type": "boolean"
+        },
+        "expires_at": {
+          "description": "Set the expiration date for the collaboration. At this date, the\ncollaboration will be automatically removed from the item.\n\nThis feature will only work if the **Automatically remove invited\ncollaborators: Allow folder owners to extend the expiry date**\nsetting has been enabled in the **Enterprise Settings**\nof the **Admin Console**. When the setting is not enabled,\ncollaborations can not have an expiry date and a value for this\nfield will be result in an error.",
+          "example": "2019-08-29T23:59:00-07:00",
+          "format": "date-time",
+          "type": "string"
+        },
+        "is_access_only": {
+          "description": "If set to `true`, collaborators have access to\nshared items, but such items won't be visible in the\nAll Files list. Additionally, collaborators won't\nsee the path to the root folder for the\nshared item.",
+          "example": true,
+          "type": "boolean"
+        },
+        "item": {
+          "description": "The item to attach the comment to.",
+          "properties": {
+            "id": {
+              "description": "The ID of the item that will be granted access to.",
+              "example": "11446498",
+              "type": "string"
+            },
+            "type": {
+              "description": "The type of the item that this collaboration will be\ngranted access to.",
+              "enum": [
+                "file",
+                "folder"
+              ],
+              "example": "file",
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "role": {
+          "description": "The level of access granted.",
+          "enum": [
+            "editor",
+            "viewer",
+            "previewer",
+            "uploader",
+            "previewer uploader",
+            "viewer uploader",
+            "co-owner"
+          ],
+          "example": "editor",
+          "type": "string"
+        }
+      },
+      "required": [
+        "item",
+        "accessible_by",
+        "role"
+      ],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "description": "A comma-separated list of attributes to include in the\nresponse. This can be used to request fields that are\nnot normally returned in a standard response.\n\nBe aware that specifying this parameter will have the\neffect that none of the standard fields are returned in\nthe response unless explicitly specified, instead only\nfields for the mini representation are returned, additional\nto the fields requested.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notify": {
+          "description": "Determines if users should receive email notification\nfor the action performed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "title": "SLOT_BOX_02_post_collaborations_Contract",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "adapters_used": [],
+    "benchmark_stage": "Stage B",
+    "candidate_source_id": "CAND-005",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "post_collaborations",
+    "pipeline_version": "3.0.0",
+    "slot_id": "SLOT_BOX_02",
+    "source_cluster_id": "CLUSTER_BOX",
+    "target_dialect": "JSON Schema Draft-07",
+    "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Initiates a public or private channel-based conversation",
+  "properties": {
+    "form": {
+      "additionalProperties": false,
+      "properties": {
+        "is_private": {
+          "description": "Create a private channel instead of a public one",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name of the public or private channel to create",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "description": "Authentication token. Requires scope: `conversations:write`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "title": "SLOT_SLACK_01_conversations.create_Contract",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "adapters_used": [
+      "OpenAPI2FormDataAdapter"
+    ],
+    "benchmark_stage": "Stage B",
+    "candidate_source_id": "CAND-006",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "conversations.create",
+    "pipeline_version": "3.0.0",
+    "slot_id": "SLOT_SLACK_01",
+    "source_cluster_id": "CLUSTER_SLACK",
+    "target_dialect": "JSON Schema Draft-07",
+    "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Modify the properties of a given Account",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "FriendlyName": {
+          "description": "Update the human-readable description of this Account",
+          "type": "string"
+        },
+        "Status": {
+          "description": "The status of this account. Usually `active`, but can be `suspended` or `closed`.",
+          "enum": [
+            "active",
+            "suspended",
+            "closed"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "UpdateAccountRequest",
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {
+        "Sid": {
+          "description": "The Account Sid that uniquely identifies the account to update",
+          "maxLength": 34,
+          "minLength": 34,
+          "pattern": "^AC[0-9a-fA-F]{32}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Sid"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "path"
+  ],
+  "title": "SLOT_TWILIO_01_UpdateAccount_Contract",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "adapters_used": [],
+    "benchmark_stage": "Stage B",
+    "candidate_source_id": "CAND-004",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "UpdateAccount",
+    "pipeline_version": "3.0.0",
+    "slot_id": "SLOT_TWILIO_01",
+    "source_cluster_id": "CLUSTER_TWILIO",
+    "target_dialect": "JSON Schema Draft-07",
+    "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+  }
+}

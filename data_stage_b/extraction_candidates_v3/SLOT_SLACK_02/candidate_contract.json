@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Set the profile information for a user.",
+  "properties": {
+    "form": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Name of a single key to set. Usable only if `profile` is not passed.",
+          "type": "string"
+        },
+        "profile": {
+          "description": "Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters.",
+          "type": "string"
+        },
+        "user": {
+          "description": "ID of user to change. This argument may only be specified by team admins on paid teams.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to set a single key to. Usable only if `profile` is not passed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "description": "Authentication token. Requires scope: `users.profile:write`",
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "header"
+  ],
+  "title": "SLOT_SLACK_02_users.profile.set_Contract",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "adapters_used": [
+      "OpenAPI2FormDataAdapter"
+    ],
+    "benchmark_stage": "Stage B",
+    "candidate_source_id": "CAND-006",
+    "creation_mode": "BATCH_GENERATED_CANDIDATE",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "users.profile.set",
+    "pipeline_version": "3.0.0",
+    "slot_id": "SLOT_SLACK_02",
+    "source_cluster_id": "CLUSTER_SLACK",
+    "target_dialect": "JSON Schema Draft-07",
+    "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+  }
+}

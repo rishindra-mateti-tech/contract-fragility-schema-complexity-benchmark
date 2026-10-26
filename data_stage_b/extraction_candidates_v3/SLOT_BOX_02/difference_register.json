@@ -1,0 +1,48 @@
+{
+  "adapter_transformations": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1collaborations/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1collaborations/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    {
+      "in": "query",
+      "name": "notify",
+      "op_declared_pointer": "#/paths/~1collaborations/post/parameters/1",
+      "op_resolved_pointer": "#/paths/~1collaborations/post/parameters/1",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "type": "boolean"
+      }
+    }
+  ],
+  "adapters_invoked": [],
+  "dialect_transformations": [],
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "operation_id": "post_collaborations",
+  "pipeline_version": "3.0.0",
+  "slot_id": "SLOT_BOX_02",
+  "structural_modifications": [
+    {
+      "description": "Constructed closed top-level object container with discrete transport surfaces.",
+      "governing_policy": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "type": "WRAPPER_TOP_LEVEL_CLOSED_OBJECT"
+    }
+  ]
+}

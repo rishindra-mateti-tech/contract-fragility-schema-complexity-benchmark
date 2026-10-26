@@ -1,0 +1,33 @@
+{
+  "adapter_transformations": [
+    {
+      "in": "path",
+      "name": "account_id",
+      "op_declared_pointer": null,
+      "op_resolved_pointer": null,
+      "origin": "PATH_ITEM",
+      "override_status": "INHERITED",
+      "path_declared_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/parameters/0",
+      "path_resolved_pointer": "#/components/parameters/account_id",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      }
+    }
+  ],
+  "adapters_invoked": [
+    "ParameterInheritanceAdapter"
+  ],
+  "dialect_transformations": [],
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "operation_id": "create-an-account-user",
+  "pipeline_version": "3.0.0",
+  "slot_id": "SLOT_CHATWOOT_02",
+  "structural_modifications": [
+    {
+      "description": "Constructed closed top-level object container with discrete transport surfaces.",
+      "governing_policy": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "type": "WRAPPER_TOP_LEVEL_CLOSED_OBJECT"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "form_transport_metadata": {
+    "declared_consumes": [
+      "application/x-www-form-urlencoded",
+      "application/json"
+    ],
+    "fields_count": 3,
+    "inferred_serialization": "application/x-www-form-urlencoded",
+    "policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+    "required_fields_count": 2,
+    "server_acceptance_claim": "SERVER_ACCEPTANCE_EXPLICITLY_UNVALIDATED",
+    "source_dialect": "Swagger 2.0",
+    "source_surface": "formData",
+    "target_surface": "form",
+    "wire_conformance_claim": "HTTP_WIRE_CONFORMANCE_EXPLICITLY_UNVALIDATED"
+  },
+  "operation_id": "reminders.add",
+  "request_content_type": "application/x-www-form-urlencoded",
+  "server_acceptance_claim": "SERVER_ACCEPTANCE_EXPLICITLY_UNVALIDATED",
+  "slot_id": "SLOT_SLACK_03",
+  "surfaces_extracted": [
+    "header",
+    "form"
+  ],
+  "wire_conformance_claim": "HTTP_WIRE_CONFORMANCE_EXPLICITLY_UNVALIDATED"
+}

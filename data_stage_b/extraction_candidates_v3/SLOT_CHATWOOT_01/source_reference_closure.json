@@ -1,0 +1,25 @@
+{
+  "accessed_files": [
+    {
+      "file_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+      "file_size_bytes": 537652,
+      "git_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+      "relative_path": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json"
+    }
+  ],
+  "accessed_files_count": 1,
+  "bundle_root_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-011",
+  "closure_sha256": "a8f280b111fef6d1c7785f2e0e9f6a59519defb9f94d032231ee4ba7a485fa52",
+  "policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "resolution_log": [
+    {
+      "declared_ref": "#/components/schemas/webhook_create_update_payload",
+      "depth": 0,
+      "origin_file": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-011\\b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "resolved_file": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-011\\b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json",
+      "resolved_pointer": "#/components/schemas/webhook_create_update_payload",
+      "status": "RESOLVED"
+    }
+  ],
+  "resolution_steps_count": 1
+}

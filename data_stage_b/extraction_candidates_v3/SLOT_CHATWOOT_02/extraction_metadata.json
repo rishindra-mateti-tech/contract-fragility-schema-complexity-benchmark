@@ -1,0 +1,62 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "path",
+      "name": "account_id",
+      "op_declared_pointer": null,
+      "op_resolved_pointer": null,
+      "origin": "PATH_ITEM",
+      "override_status": "INHERITED",
+      "path_declared_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/parameters/0",
+      "path_resolved_pointer": "#/components/parameters/account_id",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      }
+    }
+  ],
+  "adapter_decisions_count": 1,
+  "adapters_used": [
+    "ParameterInheritanceAdapter"
+  ],
+  "candidate_source_id": "CAND-011",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T20:00:00Z",
+  "extractor_git_commit": "d1a7588d55a02d8407d2909fd01c8900a80e0d5d",
+  "extractor_script_sha256": "dc2314157e8f04749107d436ce9e65b30d2eaba4d206aa2ed089651e04e5bde0",
+  "extractor_version": "3.0.0",
+  "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+  "generated_artifact_hashes": {
+    "adapter_decisions.json": "ee3ffcf3ba6b0fabb750dc890529117578b3aa68c4e43ed647f4aa285cd5657e",
+    "candidate_contract.json": "7d6e754caa98189f85a18ca9d8986ba3de07e36d0440d6ae5ea7ebeacab94261",
+    "candidate_validation_report.md": "a15b20973dff4e9e84bf2a1cd8857e53c733e616fd461ec4124c26fd5fb1c048",
+    "difference_register.json": "70a596ef5ddd3413733bf2f16b019d6d6ccc3fb9a6ad93eafc5ab674e5b12f47",
+    "difference_register.md": "efecaf81c016c0eef0548570a88d899f26b52e072286254c2ab36badd72747df",
+    "feature_inventory.json": "92d76f8c78def7d891f3aa4d213b3bfe90dcb3ab4f021a5b1e87f5bfe4f5d69d",
+    "field_lineage.jsonl": "6b1fe5af84275bfda5867d06385d3da16ce933896c7787242eacbb0bda350ce0",
+    "review_packet.md": "1395c6362764e9cc6cb5766ddf08c7e39720e1cbe83957ff3e53c5e587fc12f6",
+    "serialization_characterization.json": "6d37b3b03f87091bcb7d789b1a681fde34b1adf2054304b9a653b6b8c5456b4a",
+    "source_reference_closure.json": "4d97dfcb9d1874b4ad57973f0cd6585d27b63dfc80ac0a8c3350d86366c193be"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "create-an-account-user",
+  "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+  "raw_source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+  "raw_source_file_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+  "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_CHATWOOT_02",
+  "source_cluster_id": "CLUSTER_CHATWOOT",
+  "source_dialect": "OpenAPI 3.1.0",
+  "source_reference_closure_sha256": "a8f280b111fef6d1c7785f2e0e9f6a59519defb9f94d032231ee4ba7a485fa52",
+  "source_spec_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/post",
+  "target_dialect": "JSON Schema Draft-07",
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

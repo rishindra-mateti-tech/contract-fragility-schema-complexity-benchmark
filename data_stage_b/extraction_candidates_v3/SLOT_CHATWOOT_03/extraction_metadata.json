@@ -1,0 +1,76 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "path",
+      "name": "contact_identifier",
+      "op_declared_pointer": null,
+      "op_resolved_pointer": null,
+      "origin": "PATH_ITEM",
+      "override_status": "INHERITED",
+      "path_declared_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/parameters/1",
+      "path_resolved_pointer": "#/components/parameters/public_contact_identifier",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "inbox_identifier",
+      "op_declared_pointer": null,
+      "op_resolved_pointer": null,
+      "origin": "PATH_ITEM",
+      "override_status": "INHERITED",
+      "path_declared_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/parameters/0",
+      "path_resolved_pointer": "#/components/parameters/public_inbox_identifier",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "adapter_decisions_count": 2,
+  "adapters_used": [
+    "ParameterInheritanceAdapter"
+  ],
+  "candidate_source_id": "CAND-011",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T20:00:00Z",
+  "extractor_git_commit": "d1a7588d55a02d8407d2909fd01c8900a80e0d5d",
+  "extractor_script_sha256": "dc2314157e8f04749107d436ce9e65b30d2eaba4d206aa2ed089651e04e5bde0",
+  "extractor_version": "3.0.0",
+  "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+  "generated_artifact_hashes": {
+    "adapter_decisions.json": "2dccf698a191523bebbfca0dc05e5f2ee12c9c9f400d4032b02f514ae1167f7d",
+    "candidate_contract.json": "20000abf2bc02129a1c7d413657bb5279e51e31803bf87ca50f52cce3d5edfc8",
+    "candidate_validation_report.md": "b2f848ec2dbb1ccbe98a1035ea3017b0b197876bf9cbe7f8d674ca01f04642d3",
+    "difference_register.json": "e8d9c314c2ba0fd24c968612a55111ac9a0e957467a8c481b4b350eae46f1b15",
+    "difference_register.md": "f07eeaa535554f52ad0023ae41c65ac37781052c6166849bb05e27662546074b",
+    "feature_inventory.json": "708d67802d8b2c2f1d7ea37d770271afe334faf1ac5cd35de3d563a53054a36a",
+    "field_lineage.jsonl": "b0c5b0aa2f297afe4c18dab7b24238978da7b8d1b3f6f2dc1ea1b39037eb326f",
+    "review_packet.md": "e7fa0278f968bb4e933658ba693ab9bec5e95d7880aa9387d3f068efd3296b89",
+    "serialization_characterization.json": "841662ea0163422b0858e1ebb9710c2801eccf0904d0bb5cc66396d98f44005d",
+    "source_reference_closure.json": "618fd7a44a3803fc022703c2613902957d425855b6b61761837af7ae4f866010"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "create-a-conversation",
+  "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+  "raw_source_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+  "raw_source_file_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43",
+  "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_CHATWOOT_03",
+  "source_cluster_id": "CLUSTER_CHATWOOT",
+  "source_dialect": "OpenAPI 3.1.0",
+  "source_reference_closure_sha256": "a8f280b111fef6d1c7785f2e0e9f6a59519defb9f94d032231ee4ba7a485fa52",
+  "source_spec_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/post",
+  "target_dialect": "JSON Schema Draft-07",
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

@@ -1,0 +1,47 @@
+{
+  "adapter_transformations": [
+    {
+      "in": "path",
+      "name": "contact_identifier",
+      "op_declared_pointer": null,
+      "op_resolved_pointer": null,
+      "origin": "PATH_ITEM",
+      "override_status": "INHERITED",
+      "path_declared_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/parameters/1",
+      "path_resolved_pointer": "#/components/parameters/public_contact_identifier",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "inbox_identifier",
+      "op_declared_pointer": null,
+      "op_resolved_pointer": null,
+      "origin": "PATH_ITEM",
+      "override_status": "INHERITED",
+      "path_declared_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/parameters/0",
+      "path_resolved_pointer": "#/components/parameters/public_inbox_identifier",
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "adapters_invoked": [
+    "ParameterInheritanceAdapter"
+  ],
+  "dialect_transformations": [],
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "operation_id": "create-a-conversation",
+  "pipeline_version": "3.0.0",
+  "slot_id": "SLOT_CHATWOOT_03",
+  "structural_modifications": [
+    {
+      "description": "Constructed closed top-level object container with discrete transport surfaces.",
+      "governing_policy": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+      "type": "WRAPPER_TOP_LEVEL_CLOSED_OBJECT"
+    }
+  ]
+}

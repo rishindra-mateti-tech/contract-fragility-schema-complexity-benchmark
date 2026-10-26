@@ -1,0 +1,1 @@
+{"field_name": "body.endpoint", "raw_pointer": "#/paths/~1v2~1bot~1channel~1webhook~1endpoint/put/body/endpoint", "required": true, "schema_type": "string", "surface": "body", "target_pointer": "#/properties/body/properties/endpoint", "transformation_category": "PRESERVED"}

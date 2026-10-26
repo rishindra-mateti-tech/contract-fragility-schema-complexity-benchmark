@@ -1,0 +1,25 @@
+{
+  "adapters_used": [],
+  "decisions": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1users/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1users/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    }
+  ],
+  "decisions_count": 1,
+  "operation_id": "post_users",
+  "slot_id": "SLOT_BOX_03"
+}

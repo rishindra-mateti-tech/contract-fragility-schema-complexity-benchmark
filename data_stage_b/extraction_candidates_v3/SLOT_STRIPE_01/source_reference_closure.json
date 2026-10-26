@@ -1,0 +1,16 @@
+{
+  "accessed_files": [
+    {
+      "file_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776",
+      "file_size_bytes": 8317513,
+      "git_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+      "relative_path": "f1cedf38e0178538a3c72e750da80226df41e28c.json"
+    }
+  ],
+  "accessed_files_count": 1,
+  "bundle_root_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-002",
+  "closure_sha256": "c318d5128348cc5247adf4df57727e0993c5a4529275ecd3fb25420842686db0",
+  "policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "resolution_log": [],
+  "resolution_steps_count": 0
+}

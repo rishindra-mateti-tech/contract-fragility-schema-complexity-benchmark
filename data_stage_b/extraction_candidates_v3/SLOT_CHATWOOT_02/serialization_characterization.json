@@ -1,0 +1,12 @@
+{
+  "form_transport_metadata": null,
+  "operation_id": "create-an-account-user",
+  "request_content_type": "application/json",
+  "server_acceptance_claim": "SERVER_ACCEPTANCE_EXPLICITLY_UNVALIDATED",
+  "slot_id": "SLOT_CHATWOOT_02",
+  "surfaces_extracted": [
+    "path",
+    "body"
+  ],
+  "wire_conformance_claim": "HTTP_WIRE_CONFORMANCE_EXPLICITLY_UNVALIDATED"
+}
