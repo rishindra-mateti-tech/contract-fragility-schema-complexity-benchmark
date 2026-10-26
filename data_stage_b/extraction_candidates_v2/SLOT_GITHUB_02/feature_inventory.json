@@ -1,0 +1,33 @@
+{
+  "body_parameters_count": 4,
+  "conversion_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "depth": 2,
+  "header_parameters_count": 0,
+  "operation_id": "repos/create-commit-status",
+  "path_parameters_count": 3,
+  "pipeline_version": "2.0.0",
+  "query_parameters_count": 0,
+  "schema_transformations": [
+    {
+      "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/description",
+      "source_type": "string",
+      "target_type": [
+        "string",
+        "null"
+      ],
+      "type": "NULLABLE_TO_TYPE_UNION"
+    },
+    {
+      "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/target_url",
+      "source_type": "string",
+      "target_type": [
+        "string",
+        "null"
+      ],
+      "type": "NULLABLE_TO_TYPE_UNION"
+    }
+  ],
+  "schema_transformations_count": 2,
+  "slot_id": "SLOT_GITHUB_02",
+  "total_target_parameters": 7
+}

@@ -1,0 +1,152 @@
+[
+  {
+    "candidate_json_pointer": "/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Enforced additionalProperties: false at root schema under WRAPPER_CLOSED_OBJECT_POLICY_001 for strict tool-argument evaluation.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "body.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'body' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/context",
+    "candidate_value_or_type": "string",
+    "classification": "PRESERVED",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.context",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved request body property 'context' verbatim into canonical body container.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/context",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/description",
+    "candidate_value_or_type": [
+      "string",
+      "null"
+    ],
+    "classification": "INTENTIONAL_REPRESENTATION_CHANGE",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.description",
+    "human_validation_required": true,
+    "policy_pointer": "results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.md",
+    "rationale": "Converted OpenAPI 3.0 'nullable: true' with type 'string' to Draft-07 null-inclusive type array ['string', 'null'] under Policy 001.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/description",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/state",
+    "candidate_value_or_type": "string",
+    "classification": "PRESERVED",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.state",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved request body property 'state' verbatim into canonical body container.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/state",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/target_url",
+    "candidate_value_or_type": [
+      "string",
+      "null"
+    ],
+    "classification": "INTENTIONAL_REPRESENTATION_CHANGE",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.target_url",
+    "human_validation_required": true,
+    "policy_pointer": "results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.md",
+    "rationale": "Converted OpenAPI 3.0 'nullable: true' with type 'string' to Draft-07 null-inclusive type array ['string', 'null'] under Policy 001.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/target_url",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/header/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "header.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'header' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "path.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'path' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/properties/owner",
+    "candidate_value_or_type": "string",
+    "classification": "PRESERVED",
+    "difference_category": "PATH_PARAMETER",
+    "field_path": "path.owner",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved parameter 'owner' verbatim into canonical path container.",
+    "source_json_pointer": "#/components/parameters/owner",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/properties/repo",
+    "candidate_value_or_type": "string",
+    "classification": "PRESERVED",
+    "difference_category": "PATH_PARAMETER",
+    "field_path": "path.repo",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved parameter 'repo' verbatim into canonical path container.",
+    "source_json_pointer": "#/components/parameters/repo",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/properties/sha",
+    "candidate_value_or_type": "string",
+    "classification": "PRESERVED",
+    "difference_category": "PATH_PARAMETER",
+    "field_path": "path.sha",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved parameter 'sha' verbatim into canonical path container.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/2",
+    "source_value_or_type": "string"
+  },
+  {
+    "candidate_json_pointer": "/properties/query/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "query.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'query' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+    "source_value_or_type": "omitted"
+  }
+]

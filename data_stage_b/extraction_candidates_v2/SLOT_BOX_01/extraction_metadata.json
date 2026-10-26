@@ -1,0 +1,47 @@
+{
+  "candidate_source_id": "CAND-005",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T16:00:00Z",
+  "extractor_git_commit": "5b7e020a91b09066fc38d5e23fbe9cab157a99b1",
+  "extractor_script_sha256": "a905cd2b6ad365ad026c3f82603b6828c5573a95b70c1c121e7c44826b300f49",
+  "extractor_version": "2.0.0",
+  "generated_artifact_hashes": {
+    "candidate_contract.json": "7593d0ffb8a83df44ffa3430be9b8d7f6928eeb22925c874ce8100b6b4997de8",
+    "candidate_validation_report.md": "514b5c32da48411b82f11226b8d8c56aa5099f5a5bd67aceb4697802359e12bd",
+    "difference_register.json": "c5fe45ca1597d9f7fb2a73d372259bf8be0a47d5684f710a1be092b457e493d7",
+    "difference_register.md": "769c91dd5f0d75bac5e1025df164e39af710304e65e84d2ef623b4b31ddb9e7d",
+    "feature_inventory.json": "d4bf544ba4055ebf10cc024f7734296e3a04b8fcd6891ad5c794afa454d5a5e6",
+    "field_lineage.jsonl": "e8afa9b624a9cf62ebe27beedfce1677e46dd4b4b00c182062784df7d15bbb57",
+    "review_packet.md": "73f6ab4cd0f65f69680ed24e83aa02572b50f88c14f136b018e751900f93d35d",
+    "serialization_characterization.json": "ae3dd257e0b791ae16c5bf61eee8ff9046ebfb1b0ac88001721fd85ee8bd6bc5"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "post_folders",
+  "raw_source_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+  "raw_source_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4",
+  "schema_transformations": [
+    {
+      "pointer": "#/paths/~1folders/post/requestBody/content/application~1json/schema/properties/folder_upload_email/allOf/0/properties/access",
+      "source_type": "string",
+      "target_type": "string",
+      "type": "QUARANTINE_REDUNDANT_NULLABLE"
+    },
+    {
+      "pointer": "#/paths/~1folders/post/requestBody/content/application~1json/schema/properties/sync_state",
+      "source_type": "string",
+      "target_type": "string",
+      "type": "QUARANTINE_REDUNDANT_NULLABLE"
+    }
+  ],
+  "schema_transformations_count": 2,
+  "slot_id": "SLOT_BOX_01",
+  "source_cluster_id": "CLUSTER_BOX",
+  "source_dialect": "OpenAPI 3.0.2",
+  "source_spec_pointer": "#/paths/~1folders/post",
+  "target_dialect": "JSON Schema Draft-07",
+  "unresolved_semantic_risks": [],
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Display a loading animation in one-on-one chats between users and LINE Official Accounts.",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "chatId": {
+          "description": "User ID of the target user for whom the loading animation is to be displayed.",
+          "type": "string"
+        },
+        "loadingSeconds": {
+          "description": "The number of seconds to display the loading indicator.\nIt must be a multiple of 5. The maximum value is 60 seconds.\n",
+          "format": "int32",
+          "maximum": 60,
+          "minimum": 5,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "chatId"
+      ],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body",
+    "header",
+    "path",
+    "query"
+  ],
+  "title": "showLoadingAnimation",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "candidate_source_id": "CAND-013",
+    "conversion_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "conversion_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "endpoint_path": "/v2/bot/chat/loading/start",
+    "http_method": "POST",
+    "operation_id": "showLoadingAnimation",
+    "pipeline_version": "2.0.0",
+    "schema_transformations": [],
+    "serialization_metadata": {
+      "content_type": "application/json",
+      "encoding": null
+    },
+    "slot_id": "SLOT_LINE_01",
+    "source_dialect": "OpenAPI 3.0.0",
+    "target_dialect": "JSON Schema Draft-07",
+    "unresolved_semantic_risks": []
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "content_type": "application/x-www-form-urlencoded",
+  "encoding": {
+    "expand": {
+      "explode": true,
+      "style": "deepObject"
+    },
+    "metadata": {
+      "explode": true,
+      "style": "deepObject"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "body_parameters_count": 23,
+  "conversion_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "depth": 2,
+  "header_parameters_count": 0,
+  "operation_id": "repos/create-for-authenticated-user",
+  "path_parameters_count": 0,
+  "pipeline_version": "2.0.0",
+  "query_parameters_count": 0,
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_GITHUB_03",
+  "total_target_parameters": 23
+}

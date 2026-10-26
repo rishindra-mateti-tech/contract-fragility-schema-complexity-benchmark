@@ -1,0 +1,74 @@
+[
+  {
+    "candidate_json_pointer": "/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Enforced additionalProperties: false at root schema under WRAPPER_CLOSED_OBJECT_POLICY_001 for strict tool-argument evaluation.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "body.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'body' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/body/properties/chat",
+    "candidate_value_or_type": "object",
+    "classification": "PRESERVED",
+    "difference_category": "REQUEST_BODY_PROPERTY",
+    "field_path": "body.chat",
+    "human_validation_required": false,
+    "policy_pointer": "STAGE_B_EXTRACTION_SPEC.md",
+    "rationale": "Preserved request body property 'chat' verbatim into canonical body container.",
+    "source_json_pointer": "#/components/schemas/MarkMessagesAsReadRequest/properties/chat",
+    "source_value_or_type": "object"
+  },
+  {
+    "candidate_json_pointer": "/properties/header/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "header.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'header' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/path/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "path.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'path' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted"
+  },
+  {
+    "candidate_json_pointer": "/properties/query/additionalProperties",
+    "candidate_value_or_type": false,
+    "classification": "WRAPPER_NORMALIZATION",
+    "difference_category": "WRAPPER_NORMALIZATION",
+    "field_path": "query.additionalProperties",
+    "human_validation_required": true,
+    "policy_pointer": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+    "rationale": "Synthesized canonical 'query' transport wrapper with additionalProperties: false under WRAPPER_CLOSED_OBJECT_POLICY_001.",
+    "source_json_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_value_or_type": "omitted"
+  }
+]

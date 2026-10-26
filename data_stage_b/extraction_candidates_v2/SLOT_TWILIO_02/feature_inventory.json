@@ -1,0 +1,14 @@
+{
+  "body_parameters_count": 26,
+  "conversion_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "depth": 3,
+  "header_parameters_count": 0,
+  "operation_id": "CreateMessage",
+  "path_parameters_count": 1,
+  "pipeline_version": "2.0.0",
+  "query_parameters_count": 0,
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_TWILIO_02",
+  "total_target_parameters": 27
+}

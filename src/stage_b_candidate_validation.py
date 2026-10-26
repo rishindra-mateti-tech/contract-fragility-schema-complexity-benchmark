@@ -190,6 +190,15 @@ class CandidateValidator:
         if "anyOf" in contract:
             errors.append("PROHIBITED_FEATURE_EMITTED: Contract contains prohibited 'anyOf' construct")
 
+        is_v2 = (metadata.get("governing_policy_id") == "OAS30_TO_DRAFT07_CONVERSION_POLICY_001" or "extraction_candidates_v2" in norm_dir)
+        if is_v2:
+            if '"nullable"' in contract_str:
+                errors.append("OAS_KEYWORD_NOT_QUARANTINED: Draft-07 contract contains raw 'nullable' keyword")
+            if metadata.get("governing_policy_id") != "OAS30_TO_DRAFT07_CONVERSION_POLICY_001":
+                errors.append(f"INVALID_GOVERNING_POLICY: V2 candidate must declare OAS30_TO_DRAFT07_CONVERSION_POLICY_001")
+            if metadata.get("governing_policy_sha256") != "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290":
+                errors.append("POLICY_HASH_MISMATCH: V2 candidate policy hash does not match baseline")
+
         def check_node_safety(node: Any, path: str):
             if not isinstance(node, dict):
                 return

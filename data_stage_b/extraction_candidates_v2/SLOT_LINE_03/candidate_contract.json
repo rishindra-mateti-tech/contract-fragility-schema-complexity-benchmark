@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Mark messages from users as read",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "chat": {
+          "description": "Chat reference",
+          "externalDocs": {
+            "url": "https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read"
+          },
+          "properties": {
+            "userId": {
+              "description": "The target user ID",
+              "type": "string"
+            }
+          },
+          "required": [
+            "userId"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "chat"
+      ],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body",
+    "header",
+    "path",
+    "query"
+  ],
+  "title": "markMessagesAsRead",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "candidate_source_id": "CAND-013",
+    "conversion_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "conversion_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "endpoint_path": "/v2/bot/message/markAsRead",
+    "http_method": "POST",
+    "operation_id": "markMessagesAsRead",
+    "pipeline_version": "2.0.0",
+    "schema_transformations": [],
+    "serialization_metadata": {
+      "content_type": "application/json",
+      "encoding": null
+    },
+    "slot_id": "SLOT_LINE_03",
+    "source_dialect": "OpenAPI 3.0.0",
+    "target_dialect": "JSON Schema Draft-07",
+    "unresolved_semantic_risks": []
+  }
+}

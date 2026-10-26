@@ -1,0 +1,303 @@
+{
+  "already_extracted_pilots_skipped": 2,
+  "candidates_generated": [
+    {
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "d667b773cc16ae2cae5647b18dacb9c893a0df91a91a75abd4d770300b5030a0",
+      "operation_id": "repos/create-commit-status",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_GITHUB_02",
+      "schema_transformations_count": 2,
+      "slot_id": "SLOT_GITHUB_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "246edcff0b3c66400fe36b3afac5275efb465f2169b85f361d7b768fa9db3c75",
+      "operation_id": "repos/create-for-authenticated-user",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_GITHUB_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_GITHUB_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "e8e5122dbc2b045471f08f23af5ba922f6c3c4f02e51bd6cba9721faab246a41",
+      "operation_id": "UpdateAccount",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_TWILIO_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_TWILIO_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "0563e376b5337ff0fbbf430878c7a486bf5025e70c9d0447fb1f1d60032744d4",
+      "operation_id": "CreateMessage",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_TWILIO_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_TWILIO_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "80bf173ce6192a1872218c9013327318d3d9f36117967ae52c5f2ebafb7d5026",
+      "operation_id": "CreateCall",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_TWILIO_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_TWILIO_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "7593d0ffb8a83df44ffa3430be9b8d7f6928eeb22925c874ce8100b6b4997de8",
+      "operation_id": "post_folders",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_BOX_01",
+      "schema_transformations_count": 2,
+      "slot_id": "SLOT_BOX_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "32b498d4c8b225bfaee538ecb3e766a377c2d72e89b487856cba1cbbe1ab41fd",
+      "operation_id": "post_collaborations",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_BOX_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_BOX_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "e99c16134a0b962253e59541b61949b5be262b9b8c26d3fe025191b6db7fe84c",
+      "operation_id": "post_users",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_BOX_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_BOX_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "d69f90a00a35c8b4bd1eff3d747a4f9a0bdf8853078a5b6246e05e6e5429424b",
+      "operation_id": "setWebhookEndpoint",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_LINE_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_LINE_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "5761ccd6daa16fa96c60e84a8b47ce6af659ed1ac8abf8f0565a1e1493d980f8",
+      "operation_id": "markMessagesAsRead",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_LINE_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_LINE_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-002",
+      "contract_sha256": "f198b8755a0d9c3d8a36332af703311de412968a3f7d5ac42252cd0dd9763c2b",
+      "operation_id": "PostPayouts",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_STRIPE_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_STRIPE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "22fe1ec67ddbdd6383276b381b7e8a3f9a92ae9bcdd09268dd4677e18a128cc9",
+      "operation_id": "create-a-webhook",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_CHATWOOT_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_CHATWOOT_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "e1b3b1ea6866684cee78a9c0508738ea8d5b8e3a85718f75a89343a3a81d56a9",
+      "operation_id": "showLoadingAnimation",
+      "output_dir": "C:\\Users\\rishi\\AppData\\Local\\Temp\\tmpdnrt0b0g\\SLOT_LINE_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_LINE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    }
+  ],
+  "candidates_generated_count": 13,
+  "candidates_rejected": [
+    {
+      "candidate_source_id": "CAND-003",
+      "evidence": {
+        "pointer": "#/paths/~1v2~1floating_ips/post",
+        "ref": "resources/floating_ips/floatingIPs_create.yml"
+      },
+      "operation_id": "floating_ips_create",
+      "rationale": "Operation defines external file reference: resources/floating_ips/floatingIPs_create.yml",
+      "rejection_category": "PROHIBITED_FEATURE",
+      "rejection_code": "FEAT_REF_EXTERNAL_FILE",
+      "slot_id": "SLOT_DO_01"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "evidence": {
+        "pointer": "#/paths/~1v2~1domains/post",
+        "ref": "resources/domains/domains_create.yml"
+      },
+      "operation_id": "domains_create",
+      "rationale": "Operation defines external file reference: resources/domains/domains_create.yml",
+      "rejection_category": "PROHIBITED_FEATURE",
+      "rejection_code": "FEAT_REF_EXTERNAL_FILE",
+      "slot_id": "SLOT_DO_02"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "evidence": {
+        "pointer": "#/paths/~1v2~1droplets/post",
+        "ref": "resources/droplets/droplets_create.yml"
+      },
+      "operation_id": "droplets_create",
+      "rationale": "Operation defines external file reference: resources/droplets/droplets_create.yml",
+      "rejection_category": "PROHIBITED_FEATURE",
+      "rejection_code": "FEAT_REF_EXTERNAL_FILE",
+      "slot_id": "SLOT_DO_03"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "evidence": {
+        "param": "name",
+        "pointer": "#/paths/~1conversations.create/post/parameters/1"
+      },
+      "operation_id": "conversations.create",
+      "rationale": "Operation declares Swagger 2.0 in:formData parameters. Current benchmark extraction requires OpenAPI 3.0 requestBody.",
+      "rejection_category": "UNSUPPORTED_SURFACE",
+      "rejection_code": "FEAT_SWAGGER_FORM_DATA_UNSUPPORTED",
+      "slot_id": "SLOT_SLACK_01"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "evidence": {
+        "param": "name",
+        "pointer": "#/paths/~1users.profile.set/post/parameters/1"
+      },
+      "operation_id": "users.profile.set",
+      "rationale": "Operation declares Swagger 2.0 in:formData parameters. Current benchmark extraction requires OpenAPI 3.0 requestBody.",
+      "rejection_category": "UNSUPPORTED_SURFACE",
+      "rejection_code": "FEAT_SWAGGER_FORM_DATA_UNSUPPORTED",
+      "slot_id": "SLOT_SLACK_02"
+    },
+    {
+      "candidate_source_id": "CAND-006",
+      "evidence": {
+        "param": "text",
+        "pointer": "#/paths/~1reminders.add/post/parameters/1"
+      },
+      "operation_id": "reminders.add",
+      "rationale": "Operation declares Swagger 2.0 in:formData parameters. Current benchmark extraction requires OpenAPI 3.0 requestBody.",
+      "rejection_category": "UNSUPPORTED_SURFACE",
+      "rejection_code": "FEAT_SWAGGER_FORM_DATA_UNSUPPORTED",
+      "slot_id": "SLOT_SLACK_03"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "evidence": {
+        "ext": ".py",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-009\\1b97a6a4903bd8961941cdff43df3b059e610e5f.py"
+      },
+      "operation_id": "read_query",
+      "rationale": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_SQLITE_01"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "evidence": {
+        "ext": ".py",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-009\\1b97a6a4903bd8961941cdff43df3b059e610e5f.py"
+      },
+      "operation_id": "describe_table",
+      "rationale": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_SQLITE_02"
+    },
+    {
+      "candidate_source_id": "CAND-009",
+      "evidence": {
+        "ext": ".py",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-009\\1b97a6a4903bd8961941cdff43df3b059e610e5f.py"
+      },
+      "operation_id": "write_query",
+      "rationale": "Source file format '.py' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_SQLITE_03"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "evidence": {
+        "ext": ".ts",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-010\\0676a34c85537e610f911fbd73a5a079f38be18e.ts"
+      },
+      "operation_id": "search_repositories",
+      "rationale": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_GITHUB_01"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "evidence": {
+        "ext": ".ts",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-010\\0676a34c85537e610f911fbd73a5a079f38be18e.ts"
+      },
+      "operation_id": "create_issue",
+      "rationale": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_GITHUB_02"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "evidence": {
+        "ext": ".ts",
+        "path": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\raw\\CAND-010\\0676a34c85537e610f911fbd73a5a079f38be18e.ts"
+      },
+      "operation_id": "create_or_update_file",
+      "rationale": "Source file format '.ts' is source code AST, not an OpenAPI specification.",
+      "rejection_category": "UNSUPPORTED_SPEC_FORMAT",
+      "rejection_code": "NON_OPENAPI_SPEC_SOURCE_CODE",
+      "slot_id": "SLOT_MCP_GITHUB_03"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "evidence": {
+        "path_item": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users",
+        "path_level_params_count": 1
+      },
+      "operation_id": "create-an-account-user",
+      "rationale": "Operation defines 1 path-level parameter(s) on parent path item not inherited in operation parameters.",
+      "rejection_category": "SPEC_STRUCTURE_AMBIGUITY",
+      "rejection_code": "UNINHERITED_PATH_PARAMETERS",
+      "slot_id": "SLOT_CHATWOOT_02"
+    },
+    {
+      "candidate_source_id": "CAND-011",
+      "evidence": {
+        "path_item": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations",
+        "path_level_params_count": 2
+      },
+      "operation_id": "create-a-conversation",
+      "rationale": "Operation defines 2 path-level parameter(s) on parent path item not inherited in operation parameters.",
+      "rejection_category": "SPEC_STRUCTURE_AMBIGUITY",
+      "rejection_code": "UNINHERITED_PATH_PARAMETERS",
+      "slot_id": "SLOT_CHATWOOT_03"
+    }
+  ],
+  "candidates_rejected_count": 14,
+  "eligible_operations_attempted": 27,
+  "execution_date": "2026-10-26",
+  "extractor_git_commit": "5b7e020a91b09066fc38d5e23fbe9cab157a99b1",
+  "extractor_script_sha256": "a905cd2b6ad365ad026c3f82603b6828c5573a95b70c1c121e7c44826b300f49",
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "pipeline_version": "2.0.0",
+  "polymorphic_union_slots_excluded": 1,
+  "total_considered_manifest_operations": 30
+}

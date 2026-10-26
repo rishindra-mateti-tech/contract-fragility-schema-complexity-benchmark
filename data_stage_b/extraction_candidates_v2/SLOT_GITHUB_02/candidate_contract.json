@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Users with push access in a repository can create commit statuses for a given SHA.\n\nNote: there is a limit of 1000 statuses per `sha` and `context` within a repository. Attempts to create more than 1000 statuses will result in a validation error.",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "context": {
+          "default": "default",
+          "description": "A string label to differentiate this status from the status of other systems. This field is case-insensitive.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A short description of the status.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "description": "The state of the status.",
+          "enum": [
+            "error",
+            "failure",
+            "pending",
+            "success"
+          ],
+          "type": "string"
+        },
+        "target_url": {
+          "description": "The target URL to associate with this status. This URL will be linked from the GitHub UI to allow users to easily see the source of the status.  \nFor example, if your continuous integration system is posting build status, you would want to provide the deep link for the build output for this specific SHA:  \n`http://ci.example.com/user/repo/build/sha`",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {
+        "owner": {
+          "description": "The account owner of the repository. The name is not case sensitive.",
+          "type": "string"
+        },
+        "repo": {
+          "description": "The name of the repository without the `.git` extension. The name is not case sensitive.",
+          "type": "string"
+        },
+        "sha": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "owner",
+        "repo",
+        "sha"
+      ],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {},
+      "required": [],
+      "type": "object"
+    }
+  },
+  "required": [
+    "body",
+    "header",
+    "path",
+    "query"
+  ],
+  "title": "repos_create_commit_status",
+  "type": "object",
+  "x-benchmark-metadata": {
+    "candidate_source_id": "CAND-001",
+    "conversion_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "conversion_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "endpoint_path": "/repos/{owner}/{repo}/statuses/{sha}",
+    "http_method": "POST",
+    "operation_id": "repos/create-commit-status",
+    "pipeline_version": "2.0.0",
+    "schema_transformations": [
+      {
+        "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/description",
+        "source_type": "string",
+        "target_type": [
+          "string",
+          "null"
+        ],
+        "type": "NULLABLE_TO_TYPE_UNION"
+      },
+      {
+        "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application~1json/schema/properties/target_url",
+        "source_type": "string",
+        "target_type": [
+          "string",
+          "null"
+        ],
+        "type": "NULLABLE_TO_TYPE_UNION"
+      }
+    ],
+    "serialization_metadata": {
+      "content_type": "application/json",
+      "encoding": null
+    },
+    "slot_id": "SLOT_GITHUB_02",
+    "source_dialect": "OpenAPI 3.0.3",
+    "target_dialect": "JSON Schema Draft-07",
+    "unresolved_semantic_risks": []
+  }
+}
