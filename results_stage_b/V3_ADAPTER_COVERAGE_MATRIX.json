@@ -1,0 +1,279 @@
+{
+  "SLOT_BOX_01": {
+    "adapter_decisions_count": 1,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-005",
+    "field_count": 5,
+    "operation_id": "post_folders",
+    "source_dialect": "OpenAPI 3.0.2",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "query"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 2
+  },
+  "SLOT_BOX_02": {
+    "adapter_decisions_count": 2,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-005",
+    "field_count": 8,
+    "operation_id": "post_collaborations",
+    "source_dialect": "OpenAPI 3.0.2",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "query"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_BOX_03": {
+    "adapter_decisions_count": 1,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-005",
+    "field_count": 19,
+    "operation_id": "post_users",
+    "source_dialect": "OpenAPI 3.0.2",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "query"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_CHATWOOT_01": {
+    "adapter_decisions_count": 1,
+    "adapters_used": [
+      "ParameterInheritanceAdapter"
+    ],
+    "candidate_source_id": "CAND-011",
+    "field_count": 4,
+    "operation_id": "create-a-webhook",
+    "source_dialect": "OpenAPI 3.1.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "path"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_CHATWOOT_02": {
+    "adapter_decisions_count": 1,
+    "adapters_used": [
+      "ParameterInheritanceAdapter"
+    ],
+    "candidate_source_id": "CAND-011",
+    "field_count": 3,
+    "operation_id": "create-an-account-user",
+    "source_dialect": "OpenAPI 3.1.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "path"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_CHATWOOT_03": {
+    "adapter_decisions_count": 2,
+    "adapters_used": [
+      "ParameterInheritanceAdapter"
+    ],
+    "candidate_source_id": "CAND-011",
+    "field_count": 3,
+    "operation_id": "create-a-conversation",
+    "source_dialect": "OpenAPI 3.1.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "path"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_GITHUB_02": {
+    "adapter_decisions_count": 3,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-001",
+    "field_count": 7,
+    "operation_id": "repos/create-commit-status",
+    "source_dialect": "OpenAPI 3.0.3",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "path"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 2
+  },
+  "SLOT_GITHUB_03": {
+    "adapter_decisions_count": 0,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-001",
+    "field_count": 23,
+    "operation_id": "repos/create-for-authenticated-user",
+    "source_dialect": "OpenAPI 3.0.3",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_LINE_01": {
+    "adapter_decisions_count": 0,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-013",
+    "field_count": 2,
+    "operation_id": "showLoadingAnimation",
+    "source_dialect": "OpenAPI 3.0.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_LINE_02": {
+    "adapter_decisions_count": 0,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-013",
+    "field_count": 1,
+    "operation_id": "setWebhookEndpoint",
+    "source_dialect": "OpenAPI 3.0.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_LINE_03": {
+    "adapter_decisions_count": 0,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-013",
+    "field_count": 1,
+    "operation_id": "markMessagesAsRead",
+    "source_dialect": "OpenAPI 3.0.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_SLACK_01": {
+    "adapter_decisions_count": 5,
+    "adapters_used": [
+      "OpenAPI2FormDataAdapter"
+    ],
+    "candidate_source_id": "CAND-006",
+    "field_count": 3,
+    "operation_id": "conversations.create",
+    "source_dialect": "Swagger 2.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "form",
+      "header"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_SLACK_02": {
+    "adapter_decisions_count": 9,
+    "adapters_used": [
+      "OpenAPI2FormDataAdapter"
+    ],
+    "candidate_source_id": "CAND-006",
+    "field_count": 5,
+    "operation_id": "users.profile.set",
+    "source_dialect": "Swagger 2.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "form",
+      "header"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_SLACK_03": {
+    "adapter_decisions_count": 7,
+    "adapters_used": [
+      "OpenAPI2FormDataAdapter"
+    ],
+    "candidate_source_id": "CAND-006",
+    "field_count": 4,
+    "operation_id": "reminders.add",
+    "source_dialect": "Swagger 2.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "form",
+      "header"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_STRIPE_01": {
+    "adapter_decisions_count": 0,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-002",
+    "field_count": 10,
+    "operation_id": "PostPayouts",
+    "source_dialect": "OpenAPI 3.0.0",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_TWILIO_01": {
+    "adapter_decisions_count": 1,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-004",
+    "field_count": 3,
+    "operation_id": "UpdateAccount",
+    "source_dialect": "OpenAPI 3.0.1",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "path"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_TWILIO_02": {
+    "adapter_decisions_count": 1,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-004",
+    "field_count": 27,
+    "operation_id": "CreateMessage",
+    "source_dialect": "OpenAPI 3.0.1",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "path"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  },
+  "SLOT_TWILIO_03": {
+    "adapter_decisions_count": 1,
+    "adapters_used": [],
+    "candidate_source_id": "CAND-004",
+    "field_count": 39,
+    "operation_id": "CreateCall",
+    "source_dialect": "OpenAPI 3.0.1",
+    "status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "surfaces": [
+      "body",
+      "path"
+    ],
+    "target_dialect": "JSON Schema Draft-07",
+    "transformations_count": 0
+  }
+}
