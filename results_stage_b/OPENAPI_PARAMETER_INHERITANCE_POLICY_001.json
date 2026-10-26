@@ -1,0 +1,58 @@
+{
+  "policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "policy_name": "OpenAPI Path-Item Parameter Inheritance and Merging Governance Policy",
+  "policy_version": "1.0.0",
+  "effective_date": "2026-10-26",
+  "governing_specification": "OpenAPI 3.0.x (Sections 4.7.9 and 4.7.10)",
+  "target_dialect": "JSON Schema Draft-07 / Benchmark Tool Contract",
+  "epistemic_mandate": "Parameters declared on Path Item objects apply to all sibling operation objects. Operation-level parameters override inherited parameters by unique (name, in) key, but cannot remove them. Every inherited parameter must retain explicit provenance.",
+  "rules": {
+    "key_uniqueness": {
+      "definition": "A parameter is uniquely identified by the tuple (name, in).",
+      "override_behavior": "When an Operation defines a parameter with the same (name, in) as an inherited Path-Item parameter, the Operation-level definition takes precedence."
+    },
+    "path_template_consistency": {
+      "rule": "Every template variable {var} in the path URI must correspond to exactly one in:path parameter in the merged parameter set, and vice versa.",
+      "error_code": "ERR_PATH_PARAM_MISMATCH"
+    },
+    "required_path_parameters": {
+      "rule": "All in:path parameters must explicitly declare required: true.",
+      "error_code": "ERR_PARAM_MISSING_SCHEMA"
+    },
+    "prohibition_of_duplicate_operation_params": {
+      "rule": "An operation or path-item cannot define multiple parameters with identical (name, in) keys.",
+      "error_code": "ERR_DUPLICATE_OPERATION_PARAM"
+    }
+  },
+  "provenance_tracking": {
+    "required_fields_per_decision": [
+      "name",
+      "in",
+      "origin",
+      "override_status",
+      "path_declared_pointer",
+      "path_resolved_pointer",
+      "op_declared_pointer",
+      "op_resolved_pointer",
+      "required",
+      "schema"
+    ],
+    "origin_categories": [
+      "PATH_ITEM",
+      "OPERATION",
+      "OPERATION_OVERRIDE"
+    ],
+    "override_status_values": [
+      "INHERITED",
+      "OPERATION_LEVEL",
+      "OVERRIDDEN"
+    ]
+  },
+  "error_codes": {
+    "ERR_UNRESOLVED_PARAM_REF": "Parameter $ref failed to resolve within the document.",
+    "ERR_PARAM_MISSING_SCHEMA": "Parameter is missing schema definition or has invalid structure.",
+    "ERR_PARAM_OVERRIDE_CONFLICT": "Ambiguous or conflicting parameter definitions at Path-Item level.",
+    "ERR_PATH_PARAM_MISMATCH": "Mismatch between path URI template variables and in:path parameters.",
+    "ERR_DUPLICATE_OPERATION_PARAM": "Duplicate parameter declared within the same scope."
+  }
+}
