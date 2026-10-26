@@ -1,0 +1,131 @@
+{
+  "policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "policy_name": "OpenAPI 3.0 to JSON Schema Draft-07 Conversion and Dialect Governance Policy",
+  "policy_version": "1.0.0",
+  "effective_date": "2026-10-26",
+  "source_dialect": "OpenAPI 3.0.x Schema Object",
+  "target_dialect": "JSON Schema Draft-07",
+  "governing_benchmark": "Contract Fragility Schema Complexity Benchmark (Stage B)",
+  "epistemic_mandate": "Copying OpenAPI 3.0 modifiers verbatim into Draft-07 without dialect transformation alters validation semantics. All dialect transformations must be explicitly categorized, executed deterministically, and never classified as verbatim syntactic preservation.",
+  "categories": {
+    "A_SAFE_SYNTACTIC_PRESERVATION": {
+      "description": "Keywords with identical syntax and identical validation semantics in both OpenAPI 3.0 and JSON Schema Draft-07.",
+      "classification_label": "PRESERVED",
+      "permitted_keywords": [
+        "additionalProperties",
+        "allOf",
+        "const",
+        "default",
+        "description",
+        "enum",
+        "format",
+        "items",
+        "maxItems",
+        "maxLength",
+        "maxProperties",
+        "maximum",
+        "minItems",
+        "minLength",
+        "minProperties",
+        "minimum",
+        "multipleOf",
+        "pattern",
+        "properties",
+        "required",
+        "title",
+        "type",
+        "uniqueItems"
+      ],
+      "governance_rule": "Preserved verbatim only when the keyword is not modified by dialect-sensitive sibling keywords."
+    },
+    "B_EXPLICIT_SEMANTIC_PRESERVING_CONVERSION": {
+      "description": "OpenAPI 3.0 constructs that require syntactic conversion to retain equivalent validation semantics under JSON Schema Draft-07.",
+      "classification_label": "INTENTIONAL_REPRESENTATION_CHANGE",
+      "conversions": {
+        "nullable_true": {
+          "source_syntax": "type: <T>, nullable: true",
+          "target_syntax": "type: [<T>, \"null\"]",
+          "constraint_retention_rule": "All other schema constraints (e.g., minimum, maximum, minLength, pattern) are retained verbatim. If an enum is defined, null is only valid if explicitly included in the enum array; nullability does not relax enum membership constraints.",
+          "post_conversion_cleanup": "The OpenAPI-only 'nullable' keyword must be removed from the generated Draft-07 schema contract.",
+          "lineage_transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE",
+          "difference_classification": "INTENTIONAL_REPRESENTATION_CHANGE",
+          "rationale": "JSON Schema Draft-07 ignores 'nullable: true'. Translating to a multi-type array [T, 'null'] faithfully preserves the source specification allowance for null values."
+        },
+        "nullable_false": {
+          "source_syntax": "type: <T>, nullable: false",
+          "target_syntax": "type: <T>",
+          "constraint_retention_rule": "Retain primitive type <T>. Draft-07 primitive types exclude null by default.",
+          "post_conversion_cleanup": "Remove redundant 'nullable: false' keyword from Draft-07 contract.",
+          "lineage_transformation_category": "REPRESENTATION_NORMALIZATION",
+          "difference_classification": "WRAPPER_NORMALIZATION",
+          "rationale": "Draft-07 primitive types are non-nullable by definition; removing nullable: false is a lossless normalization."
+        },
+        "exclusiveMinimum_boolean": {
+          "source_syntax": "minimum: <N>, exclusiveMinimum: true",
+          "target_syntax": "exclusiveMinimum: <N>",
+          "constraint_retention_rule": "Remove 'minimum' and assign numeric bound to 'exclusiveMinimum'.",
+          "post_conversion_cleanup": "Remove boolean exclusiveMinimum and minimum keywords.",
+          "lineage_transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE",
+          "difference_classification": "INTENTIONAL_REPRESENTATION_CHANGE",
+          "rationale": "Draft-07 requires numeric bounds for exclusiveMinimum; boolean values cause validator SchemaError."
+        },
+        "exclusiveMaximum_boolean": {
+          "source_syntax": "maximum: <N>, exclusiveMaximum: true",
+          "target_syntax": "exclusiveMaximum: <N>",
+          "constraint_retention_rule": "Remove 'maximum' and assign numeric bound to 'exclusiveMaximum'.",
+          "post_conversion_cleanup": "Remove boolean exclusiveMaximum and maximum keywords.",
+          "lineage_transformation_category": "INTENTIONAL_REPRESENTATION_CHANGE",
+          "difference_classification": "INTENTIONAL_REPRESENTATION_CHANGE",
+          "rationale": "Draft-07 requires numeric bounds for exclusiveMaximum; boolean values cause validator SchemaError."
+        },
+        "example_singular": {
+          "source_syntax": "example: <V>",
+          "target_syntax": "examples: [<V>] or retained as informative extension",
+          "constraint_retention_rule": "Singular example is non-validating in both dialects.",
+          "post_conversion_cleanup": "Retain singular example as extension metadata or normalize to examples array.",
+          "lineage_transformation_category": "IDENTITY",
+          "difference_classification": "DOCUMENTED_ANNOTATION",
+          "rationale": "Example values do not affect Draft-07 validation assertion outcomes."
+        }
+      }
+    },
+    "C_EXPLICIT_REPRESENTATION_CHANGING_NORMALIZATION": {
+      "description": "Architectural normalizations required to adapt heterogeneous HTTP operations to standardized function tool call interfaces.",
+      "classification_label": "WRAPPER_NORMALIZATION",
+      "normalizations": {
+        "wrapper_closed_object_policy": {
+          "policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001",
+          "description": "Synthesized root and transport surface wrappers (path, query, header, body) enforce additionalProperties: false for strict tool-argument evaluation.",
+          "acknowledgment": "Deliberate non-lossless normalization; requires explicit human validation sign-off."
+        },
+        "transport_serialization_metadata": {
+          "policy_id": "SERIALIZATION_TRANSPORT_METADATA_001",
+          "description": "OpenAPI form serialization metadata (style, explode, allowReserved) quarantined in x-openapi-encoding or x-benchmark-metadata.",
+          "acknowledgment": "Standard Draft-07 validators ignore x- properties; preserves Tier 2 in-process serialization fidelity."
+        }
+      }
+    },
+    "D_UNSUPPORTED_REJECTED_CONSTRUCTS": {
+      "description": "Dialect features that cannot be mapped into JSON Schema Draft-07 without semantic ambiguity; extractor must fail closed.",
+      "classification_label": "UNSUPPORTED_OR_UNVERIFIED",
+      "rejection_rules": {
+        "readOnly_in_request_surface": {
+          "rejection_code": "ERR_READONLY_IN_REQUEST_SURFACE",
+          "rationale": "Function tool call arguments represent write request payloads. Properties marked readOnly in request bodies violate HTTP request semantics (RFC 7231 / OpenAPI 3.0 section 4.7.24)."
+        },
+        "discriminator": {
+          "rejection_code": "ERR_POLYMORPHIC_DISCRIMINATOR",
+          "rationale": "OpenAPI discriminator mapping is an object-polymorphism mechanism unsupported in monomorphic tool extraction."
+        },
+        "polymorphic_union": {
+          "rejection_code": "ERR_POLYMORPHIC_UNION",
+          "rationale": "Top-level or nested oneOf/anyOf unions require dedicated union protocol under Protocol Amendment 003."
+        },
+        "unknown_oas_keyword": {
+          "rejection_code": "ERR_UNKNOWN_OAS_KEYWORD",
+          "rationale": "Unregistered or vendor-specific schema keywords fail closed to prevent silent semantic corruption."
+        }
+      }
+    }
+  }
+}
