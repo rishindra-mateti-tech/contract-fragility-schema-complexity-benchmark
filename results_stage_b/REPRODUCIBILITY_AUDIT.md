@@ -6,7 +6,7 @@
 - **Auditor Role:** AUTHOR_MANUAL_REVIEW
 - **Benchmark Phase:** Stage B Research Infrastructure Hardening
 - **Repository:** `contract-fragility-schema-complexity-benchmark`
-- **Audit Outcome:** PASS (8/8 Integrity Checks Satisfied)
+- **Audit Outcome:** PASS (9/9 Integrity Checks Satisfied)
 - **Status Invariant Compliance:** STRICT (Zero unauthorized slot extractions; zero claims of `CANONICAL_FAITHFUL`)
 
 ---
@@ -105,10 +105,20 @@ Authoritative hashes for active canonical contracts on disk:
 
 ---
 
-## 8. Batch Candidate Re-Extraction Determinism and Quarantined Invariants
+## 8. Batch Candidate Re-Extraction Determinism and Quarantined Invariants (V1)
 
 1. Re-extraction of all 13 batch candidate bundles into isolated temporary directories yields 100% bit-for-bit SHA-256 byte identity.
 2. Quarantined Directory Compliance: All 13 candidates reside strictly under `data_stage_b/extraction_candidates/<SLOT_ID>/`, with zero batch candidates placed into `data_stage_b/canonical/`.
 3. Lifecycle Status Invariant: All 13 candidates are strictly assigned `EXTRACTED_PENDING_HUMAN_VALIDATION` under creation mode `BATCH_GENERATED_CANDIDATE`.
 4. Epistemic Boundary: Zero independent validation claimed (`NOT_INDEPENDENTLY_VALIDATED`). Zero designations of `CANONICAL_FAITHFUL`.
+
+---
+
+## 9. Batch V2 Candidate Dialect Determinism and Policy Invariants
+
+1. Re-extraction of all 13 upgraded V2 candidate bundles under `OAS30_TO_DRAFT07_CONVERSION_POLICY_001` yields 100% bit-for-bit SHA-256 byte identity.
+2. Quarantined Base Compliance: All 13 V2 candidates reside strictly under `data_stage_b/extraction_candidates_v2/<SLOT_ID>/`.
+3. Dialect Integrity: Zero occurrences of the raw `nullable` keyword exist across any V2 Draft-07 candidate contracts; all nullability is represented via standard type unions `type: [<T>, "null"]`.
+4. Lifecycle Status Invariant: All 13 V2 candidates are strictly assigned `EXTRACTED_PENDING_HUMAN_VALIDATION`. Zero designations of `CANONICAL_FAITHFUL`.
+5. Historical Preservation: All 13 V1 candidate directories in `data_stage_b/extraction_candidates/` remain preserved without modification.
 

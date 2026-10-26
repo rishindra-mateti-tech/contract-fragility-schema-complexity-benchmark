@@ -68,9 +68,10 @@ Stage B Benchmark - Reproducibility & Integrity Verification
 [PASS] Check 5: Canonical Artifact Cryptographic Integrity
 [PASS] Check 6: Canonical Directory Cleanliness
 [PASS] Check 7: Lifecycle Status Invariants & Boundaries
-[PASS] Check 8: Batch Candidate Re-Extraction Determinism
+[PASS] Check 8: Batch Candidate Re-Extraction Determinism (V1)
+[PASS] Check 9: Batch Candidate Dialect Determinism (V2)
 ======================================================================
-RESULT: ALL 8 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
+RESULT: ALL 9 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
 ======================================================================
 ```
 
@@ -96,14 +97,24 @@ python src/extract_stage_b_canonical_contract.py --slot-id SLOT_STRIPE_02 --gene
 diff /tmp/stripe_reextract/canonical_contract.json data_stage_b/canonical/SLOT_STRIPE_02/canonical_contract.json
 ```
 
-### Step 5b: Verify Deterministic Re-Extraction of Quarantined Batch Candidates
+### Step 5b: Verify Deterministic Re-Extraction of Quarantined Batch Candidates (V1)
 To manually verify that the generic batch extraction candidate pipeline produces bit-for-bit identical outputs for all 13 quarantined candidates:
 ```bash
 # Re-extract all candidates into temporary directory
-python src/extract_stage_b_batch_candidates.py --all --output-dir /tmp/candidates_reextract
+python src/extract_stage_b_batch_candidates.py --output-base-dir /tmp/candidates_reextract
 
 # Verify byte identity for any candidate slot (e.g. SLOT_GITHUB_02)
 diff -r /tmp/candidates_reextract/SLOT_GITHUB_02 data_stage_b/extraction_candidates/SLOT_GITHUB_02
+```
+
+### Step 5c: Verify Deterministic Re-Extraction of Upgraded Batch Candidates (V2)
+To manually verify that the V2 batch extraction pipeline produces bit-for-bit identical outputs for all 13 V2 candidates under Policy 001:
+```bash
+# Re-extract all V2 candidates into temporary directory
+python src/extract_stage_b_batch_candidates_v2.py --output-base-dir /tmp/candidates_v2_reextract
+
+# Verify byte identity for any V2 candidate slot (e.g. SLOT_GITHUB_02)
+diff -r /tmp/candidates_v2_reextract/SLOT_GITHUB_02 data_stage_b/extraction_candidates_v2/SLOT_GITHUB_02
 ```
 
 ### Step 6: Run Adversarial Red-Team Verification

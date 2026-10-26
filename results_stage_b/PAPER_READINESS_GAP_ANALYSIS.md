@@ -36,9 +36,9 @@ As of October 2026, the benchmark repository has established an uncompromising s
 - **Evidentiary Artifacts:** `STAGE_B_EXTRACTION_SPEC.md`, `results_stage_b/SCHEMA_FEATURE_SUPPORT_REGISTRY.yaml`, `results_stage_b/stage_b_operation_manifest.yaml`.
 - **Audit Finding:** All 30 active manifest operations are mapped to immutable raw sources, Git blob SHAs, and JSON Pointers. No open questions remain regarding schema structure.
 
-### Dimension 2: Canonical Extraction Coverage (`IN_PROGRESS` - 6.7% Complete)
-- **Evidentiary Artifacts:** `data_stage_b/canonical/SLOT_GITHUB_01/`, `data_stage_b/canonical/SLOT_STRIPE_02/`, `results_stage_b/EXTRACTION_READINESS_MATRIX.json`.
-- **Audit Finding:** Exactly 2 of 30 operations have been extracted into canonical contracts. The remaining 28 operations require query/header surface parsing, enum extraction, and TypeScript AST compilation for MCP tools.
+### Dimension 2: Canonical Extraction Coverage (`IN_PROGRESS` - 6.7% Admitted to Canonical)
+- **Evidentiary Artifacts:** `data_stage_b/canonical/` (2 pilot slots), `data_stage_b/extraction_candidates_v2/` (13 quarantined candidates), `results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.md`.
+- **Audit Finding:** Exactly 2 of 30 operations reside in the canonical directory (`SLOT_GITHUB_01`, `SLOT_STRIPE_02`). Thirteen eligible monomorphic operations have been extracted into quarantined candidate directories under `data_stage_b/extraction_candidates_v2/` governed by `OAS30_TO_DRAFT07_CONVERSION_POLICY_001`. Fourteen operations remain rejected fail-closed due to external refs, formData transport, and AST formats. All 13 candidates are strictly held at `EXTRACTED_PENDING_HUMAN_VALIDATION`. Verbatim preservation claims across dialects are scoped to reflect explicit type union conversion for `nullable: true`. Independent validation has not been performed.
 
 ### Dimension 3: Validation Independence (`NOT_STARTED` - 0.0% Complete)
 - **Evidentiary Artifacts:** `results_stage_b/HUMAN_VALIDATION_OPERATIONS_MANUAL.md`, `results_stage_b/HUMAN_VALIDATION_CONFLICT_RULES.md`.

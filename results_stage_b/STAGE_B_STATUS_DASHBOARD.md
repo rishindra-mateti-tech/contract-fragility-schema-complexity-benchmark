@@ -71,11 +71,20 @@ The following subsystems and artifacts have been fully implemented, validated by
 - Documented clean clone replication in `REPRODUCIBILITY.md`.
 - Implemented automated 8-point verification script in `scripts/verify_reproducibility.py` (`results_stage_b/REPRODUCIBILITY_AUDIT.md`).
 
-### 2.9 Quarantined Batch Extraction Candidates
+### 2.9 Quarantined Batch Extraction Candidates (V1 Historical Baseline)
 - Implemented generic batch candidate extraction pipeline in `src/stage_b_candidate_pipeline.py` and runner in `src/extract_stage_b_batch_candidates.py`.
 - Evaluated all 27 remaining monomorphic candidate operations from the active manifest.
-- Successfully generated and quarantined 13 candidate bundles in `data_stage_b/extraction_candidates/<SLOT_ID>/`, each with 8 required artifacts and strictly held at `EXTRACTED_PENDING_HUMAN_VALIDATION`.
-- Rejections: 14 operations cleanly rejected fail-closed with exact scientific evidence in `results_stage_b/BATCH_EXTRACTION_REJECTION_REGISTER.md`.
+- Generated and quarantined 13 candidate bundles in `data_stage_b/extraction_candidates/<SLOT_ID>/`.
+- Methodological Limitation Identified: V1 candidate contracts declared Draft-07 while copying OpenAPI 3.0 `nullable: true` verbatim. Under Draft-07 evaluation, `null` payloads are rejected contrary to source specification intent.
+- Historical Status: All 13 V1 candidates are designated `V1_REQUIRES_DIALECT_REVIEW` and remain permanently preserved as immutable evidence.
+
+### 2.10 Batch Extraction Pipeline V2 and Dialect Governance
+- Formulated `results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.md` establishing explicit four-tier dialect taxonomy.
+- Executed comprehensive audit across all 15 active slots in `results_stage_b/OAS30_DRAFT07_COMPATIBILITY_AUDIT.md` (928 dialect occurrences analyzed).
+- Implemented Batch Pipeline V2 in `src/stage_b_candidate_pipeline_v2.py` and runner `src/extract_stage_b_batch_candidates_v2.py`.
+- Generated 13 upgraded candidate bundles in `data_stage_b/extraction_candidates_v2/<SLOT_ID>/`, converting `nullable: true` to Draft-07 type union `type: [<T>, "null"]` and excising the raw `nullable` keyword.
+- Status: All 13 V2 candidates are designated `V2_GENERATED_PENDING_HUMAN_VALIDATION` under creation mode `BATCH_GENERATED_CANDIDATE`.
+- Rejections: 14 operations cleanly rejected fail-closed (`V2_REJECTED_FAIL_CLOSED`) in `results_stage_b/BATCH_V2_REJECTION_REGISTER.md`.
 - Invariants: Zero operations labeled `CANONICAL_FAITHFUL`; zero independent reviews claimed.
 
 ---
@@ -86,12 +95,21 @@ The following subsystems and artifacts have been fully implemented, validated by
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `SLOT_GITHUB_01` | `pulls/create` | `CAND-001` | Developer Platforms | `EXTRACTED` | `CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY` |
 | `SLOT_STRIPE_02` | `PostShippingRates` | `CAND-002` | Payments & Billing | `EXTRACTED` | `EXTRACTED_PENDING_HUMAN_VALIDATION` |
-| `SLOT_STRIPE_01` | `PostPayouts` | `CAND-002` | Payments & Billing | `NOT_YET_EXTRACTED` | `ADMITTED_PENDING_EXTRACTION` |
-| `SLOT_GITHUB_02` | `repos/create-commit-status`| `CAND-001` | Developer Platforms | `NOT_YET_EXTRACTED` | `ADMITTED_PENDING_EXTRACTION` |
-| `SLOT_GITHUB_03` | `repos/create-for-authenticated-user` | `CAND-001` | Developer Platforms | `NOT_YET_EXTRACTED` | `ADMITTED_PENDING_EXTRACTION` |
-| `SLOT_CHATWOOT_01` | `create-a-webhook` | `CAND-007` | Customer Support | `NOT_YET_EXTRACTED` | `ADMITTED_PENDING_EXTRACTION` |
-| `SLOT_STRIPE_03` | `PostRefunds` | `CAND-002` | Payments & Billing | `NOT_YET_EXTRACTED` | `REQUIRES_PROTOCOL_AMENDMENT` |
-| Remaining 23 Active Slots | Various | `CAND-003` - `CAND-007` | Various | `NOT_YET_EXTRACTED` | `REQUIRES_EXTRACTOR_CAPABILITY` |
+| `SLOT_GITHUB_02` | `repos/create-commit-status` | `CAND-001` | Developer Platforms | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_GITHUB_03` | `repos/create-for-authenticated-user` | `CAND-001` | Developer Platforms | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_BOX_01` | `post_folders` | `CAND-005` | Content & Files | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_BOX_02` | `post_collaborations` | `CAND-005` | Content & Files | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_BOX_03` | `post_users` | `CAND-005` | Content & Files | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_LINE_01` | `showLoadingAnimation` | `CAND-013` | Messaging & Bots | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_LINE_02` | `setWebhookEndpoint` | `CAND-013` | Messaging & Bots | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_LINE_03` | `markMessagesAsRead` | `CAND-013` | Messaging & Bots | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_STRIPE_01` | `PostPayouts` | `CAND-002` | Payments & Billing | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_TWILIO_01` | `UpdateAccount` | `CAND-004` | Telephony & Messaging | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_TWILIO_02` | `CreateMessage` | `CAND-004` | Telephony & Messaging | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_TWILIO_03` | `CreateCall` | `CAND-004` | Telephony & Messaging | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_CHATWOOT_01` | `create-a-webhook` | `CAND-011` | Customer Support | `V2_GENERATED_PENDING_HUMAN_VALIDATION` | `V1_REQUIRES_DIALECT_REVIEW` |
+| `SLOT_STRIPE_03` | `PostRefunds` | `CAND-002` | Payments & Billing | `NOT_EXTRACTED` | `REQUIRES_PROTOCOL_AMENDMENT` |
+| 14 Rejected Ops (`SLOT_DO_01..03`, `SLOT_SLACK_01..03`, `SLOT_MCP_SQLITE_01..03`, `SLOT_MCP_GITHUB_01..03`, `SLOT_CHATWOOT_02..03`) | Various | Various | Various | `V2_REJECTED_FAIL_CLOSED` | `REJECTED_GATE_AUDIT` |
 | 7 Excluded Operations | Various | Various | Various | `EXCLUDED` | `DISQUALIFIED_GATE_2_5` |
 
 ---

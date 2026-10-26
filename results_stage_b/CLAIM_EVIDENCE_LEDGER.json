@@ -277,11 +277,28 @@
       "prohibited_stronger_wording": "Validated canonical contracts or empirical evaluations.",
       "reviewer_needed": false,
       "status": "SUPPORTED"
+    },
+    {
+      "category": "METHODOLOGICAL",
+      "claim_id": "CLAIM-018",
+      "document_path": "results_stage_b/BATCH_V1_TO_V2_CHANGELOG.md",
+      "epistemic_notes": "Corrects Batch-V1 dialect divergence for SLOT_GITHUB_02 and establishes V2 candidate baseline.",
+      "evidence_artifacts": [
+        "results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.md",
+        "results_stage_b/OAS30_DRAFT07_COMPATIBILITY_AUDIT.md",
+        "data_stage_b/extraction_candidates_v2/"
+      ],
+      "exact_quoted_text": "OpenAPI 3.0 to JSON Schema Draft-07 conversion requires explicit type union transformation for nullable: true under OAS30_TO_DRAFT07_CONVERSION_POLICY_001; verbatim preservation is not semantically valid.",
+      "line_range": "1-45",
+      "permitted_wording": "OpenAPI 3.0 to JSON Schema Draft-07 conversion requires explicit type union transformation for nullable: true under OAS30_TO_DRAFT07_CONVERSION_POLICY_001; verbatim preservation is not semantically valid.",
+      "prohibited_stronger_wording": "Claiming zero potential loss or verbatim preservation across heterogeneous schema dialects.",
+      "reviewer_needed": false,
+      "status": "SCOPE_RESTRICTED"
     }
   ],
   "governing_document": "docs/RESEARCH_CLAIM_STYLE_GUIDE.md",
-  "last_updated_utc": "2026-10-20T00:05:00Z",
-  "ledger_version": "1.0.0",
-  "total_claims": 16,
-  "total_claims_registered": 17
+  "last_updated_utc": "2026-10-26T16:00:00Z",
+  "ledger_version": "1.1.0",
+  "total_claims": 18,
+  "total_claims_registered": 18
 }

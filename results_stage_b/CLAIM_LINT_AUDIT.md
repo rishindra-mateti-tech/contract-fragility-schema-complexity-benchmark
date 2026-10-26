@@ -10,11 +10,11 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `97` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `142` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
-| **Total Pattern Matches** | `198` | All occurrences of monitored high-risk stems. |
+| **Total Pattern Matches** | `201` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `13` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
-| **Scoped Acceptable Claims** | `185` | Contextually constrained by negative disclaimers or definitions. |
+| **Scoped Acceptable Claims** | `188` | Contextually constrained by negative disclaimers or definitions. |
 | **Un-scoped Violations** | **`0`** | Absolutist or ungrounded claims requiring remediation. |
 
 ---
@@ -23,9 +23,9 @@
 
 | High-Risk Term | Total Matches | Scoped Acceptable | Allowlisted | Violations |
 | :--- | :---: | :---: | :---: | :---: |
-| `CANONICAL_FAITHFUL promotion` | 50 | 46 | 4 | 0 |
+| `CANONICAL_FAITHFUL promotion` | 52 | 48 | 4 | 0 |
 | `guarantee / guaranteed` | 4 | 4 | 0 | 0 |
-| `independent validation / review` | 81 | 78 | 3 | 0 |
+| `independent validation / review` | 82 | 79 | 3 | 0 |
 | `lossless` | 44 | 42 | 2 | 0 |
 | `proves / proven` | 6 | 5 | 1 | 0 |
 | `statistical significance` | 13 | 10 | 3 | 0 |
@@ -56,12 +56,12 @@
 | `README.md` | 33 | `ALLOWLISTED` | `statistically significant` | Explicitly registered and permitted under CLAIM-001 |
 | `README.md` | 165 | `ALLOWLISTED` | `Statistical Significance` | Explicitly registered and permitted under CLAIM-001 |
 | `REPRODUCIBILITY.md` | 12 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-014 |
-| `REPRODUCIBILITY.md` | 149 | `SCOPED_ACCEPTABLE` | `Independent Review` | SCOPED_BY_PATTERN: \b(do not|does not|not|never|neither|nor|without|zero|0|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b |
+| `REPRODUCIBILITY.md` | 160 | `SCOPED_ACCEPTABLE` | `Independent Review` | SCOPED_BY_PATTERN: \b(do not|does not|not|never|neither|nor|without|zero|0|must not|future|pending|unconducted|not conducted|NOT_CONDUCTED)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 19 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 20 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 197 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 210 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: `CANONICAL_FAITHFUL` |
-| ... | ... | ... | ... | *(173 additional scoped occurrences verified)* |
+| ... | ... | ... | ... | *(176 additional scoped occurrences verified)* |
 
 ---
 
