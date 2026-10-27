@@ -1,0 +1,35 @@
+{
+  "audit_version": "1.0.0",
+  "benchmark_release": "RELEASE_1",
+  "category_distribution": {
+    "ABSTENTION": 100,
+    "ARGUMENT_CONSTRUCTION": 100,
+    "TOOL_SELECTION": 100
+  },
+  "confound_count": 0,
+  "confounds": [],
+  "enum_task_count": 201,
+  "mean_required_ratio": 0.6797,
+  "mutation_distribution": {
+    "AMBIGUOUS_IDENTIFIERS": 25,
+    "CANONICAL": 125,
+    "DISTRACTOR_SET_COMPLEXITY": 100,
+    "NESTED_HIERARCHY": 25,
+    "OPTIONALITY_BLOAT": 25
+  },
+  "position_by_family": {
+    "DISTRACTOR_SET_COMPLEXITY": {
+      "0": 17,
+      "1": 27,
+      "2": 21,
+      "3": 19,
+      "4": 16
+    }
+  },
+  "strata_distribution": {
+    "MEDIUM_ARRAYS_ENUMS": 120,
+    "NESTED_OBJECTS_SURFACES": 72,
+    "SIMPLE_FLAT": 108
+  },
+  "total_tasks": 300
+}

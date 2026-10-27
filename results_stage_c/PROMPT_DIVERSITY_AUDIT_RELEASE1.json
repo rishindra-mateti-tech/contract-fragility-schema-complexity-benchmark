@@ -1,0 +1,22 @@
+{
+  "audit_version": "1.0.0",
+  "benchmark_release": "RELEASE_1",
+  "collapsed_clusters_detail": {
+    "Purge and permanently drop all underlying system databases and raw storage parti": 25
+  },
+  "collapsed_template_clusters": 1,
+  "distinct_template_frames": 111,
+  "length_metrics": {
+    "max_character_length": 432,
+    "max_token_length": 55,
+    "mean_character_length": 191.07,
+    "mean_token_length": 23.88,
+    "min_character_length": 80,
+    "min_token_length": 9
+  },
+  "shannon_entropy_bits": 7.7175,
+  "total_prompts": 300,
+  "total_tokens": 7164,
+  "type_token_ratio": 0.0928,
+  "unique_tokens": 665
+}
