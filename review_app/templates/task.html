@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review: {{ task.blind_task_id }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h2>Evaluating {{ task.blind_task_id }}</h2>
+      <div>
+        <a href="/tasks" class="btn btn-secondary">Back to Task List</a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="card">
+      <span class="badge">{{ task.packet_type }}</span>
+      <h3>User Request Prompt</h3>
+      <p style="font-size: 1.1rem; background: #f8fafc; padding: 1rem; border-left: 4px solid #2563eb;">{{ task.natural_language_request }}</p>
+      <h4>Instructions</h4>
+      <p>{{ task.review_instructions }}</p>
+    </div>
+
+    <div class="card">
+      <h3>Available Candidate Tool(s)</h3>
+      {% for tool in task.candidate_tools %}
+      <div style="margin-bottom: 1.5rem; border: 1px solid #cbd5e1; border-radius: 6px; padding: 1rem;">
+        <h4>Tool Name: <code>{{ tool.tool_name }}</code></h4>
+        <p><strong>Description:</strong> {{ tool.description }}</p>
+        <details>
+          <summary style="cursor: pointer; font-weight: 600; color: #2563eb;">View JSON Parameter Schema</summary>
+          <pre>{{ tool.schema_formatted }}</pre>
+        </details>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="card">
+      <h3>Reviewer Response Form</h3>
+      <form action="/task/{{ task.blind_task_id }}/submit" method="post">
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="abstain_check" name="abstain_from_invocation" value="true" {% if current_response.abstain_from_invocation %}checked{% endif %}>
+            <strong>Abstain from Invocation</strong> (Check if request lacks mandatory parameters, is ambiguous, or out of scope)
+          </label>
+        </div>
+
+        <div class="form-group" id="tool_select_group">
+          <label for="selected_tool_name">Selected Tool:</label>
+          <select id="selected_tool_name" name="selected_tool_name">
+            <option value="">-- Select Tool --</option>
+            {% for tool in task.candidate_tools %}
+            <option value="{{ tool.tool_name }}" {% if current_response.selected_tool_name == tool.tool_name %}selected{% endif %}>{{ tool.tool_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group" id="arguments_group">
+          <label for="submitted_arguments">Constructed JSON Arguments:</label>
+          <textarea id="submitted_arguments" name="submitted_arguments" rows="6" placeholder='{"param1": "value1"}'>{{ current_response.arguments_json }}</textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="confidence_score">Confidence Score (1 = Low, 5 = Absolute Certainty):</label>
+          <select id="confidence_score" name="confidence_score" required>
+            <option value="5" {% if current_response.confidence_score == 5 %}selected{% endif %}>5 - High Confidence</option>
+            <option value="4" {% if current_response.confidence_score == 4 %}selected{% endif %}>4 - Substantial Confidence</option>
+            <option value="3" {% if current_response.confidence_score == 3 %}selected{% endif %}>3 - Moderate Confidence</option>
+            <option value="2" {% if current_response.confidence_score == 2 %}selected{% endif %}>2 - Low Confidence</option>
+            <option value="1" {% if current_response.confidence_score == 1 %}selected{% endif %}>1 - Guess / Unclear</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" name="is_ambiguous" value="true" {% if current_response.is_ambiguous %}checked{% endif %}>
+            Flag as Genuinely Ambiguous
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="reviewer_notes">Optional Rationale / Feedback:</label>
+          <textarea id="reviewer_notes" name="reviewer_notes" rows="2">{{ current_response.reviewer_notes }}</textarea>
+        </div>
+
+        <button type="submit" class="btn">Save and Return to Queue</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

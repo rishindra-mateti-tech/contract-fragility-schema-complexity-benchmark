@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stage C Offline Reviewer Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h2>Stage C Benchmark Local Review Portal</h2>
+      <span class="badge">Offline Environment</span>
+    </div>
+  </header>
+  <div class="container">
+    <div class="card">
+      <h3>Reviewer Session Authentication</h3>
+      <p>Enter your designated reviewer pseudonym to begin or resume your local review session. No external data is transmitted.</p>
+      <form action="/login" method="post">
+        <div class="form-group">
+          <label for="pseudonym">Reviewer Pseudonym:</label>
+          <input type="text" id="pseudonym" name="pseudonym" required placeholder="e.g. reviewer_01">
+        </div>
+        <button type="submit" class="btn">Enter Session</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Stage C Offline Local Human-Review Application
+# Runs 100% offline without external telemetry, internet access, or API keys.
+fastapi>=0.100.0
+uvicorn>=0.20.0
+jinja2>=3.1.0

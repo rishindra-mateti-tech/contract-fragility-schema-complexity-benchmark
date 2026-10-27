@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Assigned Task Overview</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h2>Stage C Benchmark Reviewer Portal</h2>
+      <div>
+        <span class="badge">Pseudonym: {{ pseudonym }}</span>
+        <a href="/summary" class="btn btn-secondary">Review Summary</a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="card">
+      <h3>Blinded Task Assignment Queue</h3>
+      <p>Progress: {{ completed_count }} of {{ total_count }} tasks completed.</p>
+    </div>
+    <div class="card">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="text-align: left; border-bottom: 2px solid #e2e8f0;">
+            <th style="padding: 0.5rem;">Task ID</th>
+            <th style="padding: 0.5rem;">Packet Type</th>
+            <th style="padding: 0.5rem;">Status</th>
+            <th style="padding: 0.5rem;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in tasks %}
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 0.5rem;"><code>{{ item.blind_task_id }}</code></td>
+            <td style="padding: 0.5rem;">{{ item.packet_type }}</td>
+            <td style="padding: 0.5rem;">
+              {% if item.is_completed %}
+                <span class="badge badge-success">Completed</span>
+              {% else %}
+                <span class="badge badge-warning">Pending</span>
+              {% endif %}
+            </td>
+            <td style="padding: 0.5rem;">
+              <a href="/task/{{ item.blind_task_id }}" class="btn" style="padding: 0.3rem 0.6rem; font-size: 0.85rem;">Review</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

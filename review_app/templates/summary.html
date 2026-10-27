@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review Session Summary</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <h2>Session Review Summary</h2>
+      <div>
+        <a href="/tasks" class="btn btn-secondary">Back to Task List</a>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="card">
+      <h3>Session Overview: <code>{{ pseudonym }}</code></h3>
+      <p>Total Tasks Completed: <strong>{{ completed_count }}</strong> of <strong>{{ total_count }}</strong></p>
+      {% if completed_count == total_count %}
+        <p class="badge badge-success" style="font-size: 1rem; padding: 0.5rem 1rem;">All Assigned Tasks Completed!</p>
+      {% else %}
+        <p class="badge badge-warning" style="font-size: 1rem; padding: 0.5rem 1rem;">Session In Progress</p>
+      {% endif %}
+    </div>
+
+    <div class="card">
+      <h3>Export Submission Bundle</h3>
+      <p>Download your completed review package as a signed, cryptographic JSON file. This file contains only your submitted evaluations, timestamps, and integrity hash.</p>
+      <a href="/export" class="btn" style="background: #16a34a;">Download Signed Review Bundle (.json)</a>
+    </div>
+  </div>
+</body>
+</html>
