@@ -1,0 +1,120 @@
+{
+  "available_tools": [
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 3 parameters.",
+            "properties": {
+              "metadata_tags": {
+                "description": "Classification tags",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "partition_key": {
+                "description": "Partition identifier",
+                "minLength": 2,
+                "type": "string"
+              },
+              "retention_years": {
+                "description": "Archival compliance retention period",
+                "maximum": 10,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "partition_key"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "compression_format",
+          "payload_parameters"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_014",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "compression_format": "gzip",
+    "payload_parameters": {
+      "partition_key": "part_2026_q1"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_archive_data_partition",
+    "constraints": {
+      "required": [
+        "compression_format",
+        "partition_key"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f327c79066d31058d10509c1973506409ece0c78ad40c8ec8aa00c01ecaf46f9",
+    "intent_id": "INTENT_AC_014",
+    "metadata": {},
+    "slots": {
+      "compression_format": {
+        "data_type": "string",
+        "description": "Compression algorithm",
+        "is_required": true,
+        "name": "compression_format",
+        "value": "gzip"
+      },
+      "partition_key": {
+        "data_type": "string",
+        "description": "Partition identifier",
+        "is_required": true,
+        "name": "partition_key",
+        "value": "part_2026_q1"
+      }
+    },
+    "target_entity": "BASE_SYNTH_014"
+  },
+  "expected_tool_name": "synth_archive_data_partition",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_014_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "compression_format": "compression_format",
+        "payload_parameters.metadata_tags": "metadata_tags",
+        "payload_parameters.partition_key": "partition_key",
+        "payload_parameters.retention_years": "retention_years"
+      },
+      "intent_to_arg_path": {
+        "compression_format": "compression_format",
+        "metadata_tags": "payload_parameters.metadata_tags",
+        "partition_key": "payload_parameters.partition_key",
+        "retention_years": "payload_parameters.retention_years"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_014",
+  "user_prompt": "Please execute the synth_archive_data_partition operation for Archive Data Partition. Specific parameters required: compression_format set to 'gzip', partition_key set to 'part_2026_q1'."
+}

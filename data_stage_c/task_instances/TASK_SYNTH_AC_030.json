@@ -1,0 +1,156 @@
+{
+  "available_tools": [
+    {
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "properties": {
+          "migration_id": {
+            "description": "Migration operation tracking ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "source": {
+                "additionalProperties": false,
+                "description": "Source storage specification",
+                "properties": {
+                  "cluster_name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "slice_id": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "cluster_name",
+                  "slice_id"
+                ],
+                "type": "object"
+              },
+              "target": {
+                "additionalProperties": false,
+                "description": "Target storage destination",
+                "properties": {
+                  "cluster_name": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "datacenter": {
+                    "minLength": 2,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "cluster_name",
+                  "datacenter"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "source",
+              "target"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "migration_id",
+          "payload_parameters"
+        ],
+        "title": "synth_execute_partition_migration",
+        "type": "object"
+      },
+      "tool_name": "synth_execute_partition_migration"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_030",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "migration_id": "mig_8810",
+    "payload_parameters": {
+      "source": {
+        "cluster_name": "staging_a",
+        "slice_id": 0
+      },
+      "target": {
+        "cluster_name": "staging_b",
+        "datacenter": "iad-2"
+      }
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_execute_partition_migration",
+    "constraints": {
+      "required": [
+        "migration_id",
+        "source",
+        "target"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "0cdb03468effb911615da543e5b2fea33f5a366b8a6817934de446bbe16eaef6",
+    "intent_id": "INTENT_AC_030",
+    "metadata": {},
+    "slots": {
+      "migration_id": {
+        "data_type": "string",
+        "description": "Migration operation tracking ID",
+        "is_required": true,
+        "name": "migration_id",
+        "value": "mig_8810"
+      },
+      "source": {
+        "data_type": "object",
+        "description": "Source storage specification",
+        "is_required": true,
+        "name": "source",
+        "value": {
+          "cluster_name": "staging_a",
+          "slice_id": 0
+        }
+      },
+      "target": {
+        "data_type": "object",
+        "description": "Target storage destination",
+        "is_required": true,
+        "name": "target",
+        "value": {
+          "cluster_name": "staging_b",
+          "datacenter": "iad-2"
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_030"
+  },
+  "expected_tool_name": "synth_execute_partition_migration",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_030_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "migration_id": "migration_id",
+        "payload_parameters.source": "source",
+        "payload_parameters.target": "target"
+      },
+      "intent_to_arg_path": {
+        "migration_id": "migration_id",
+        "source": "payload_parameters.source",
+        "target": "payload_parameters.target"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_030",
+  "user_prompt": "Please execute the synth_execute_partition_migration operation for Execute Partition Migration. Specific parameters required: migration_id set to 'mig_8810', source set to {'cluster_name': 'staging_a', 'slice_id': 0}, target set to {'cluster_name': 'staging_b', 'datacenter': 'iad-2'}."
+}

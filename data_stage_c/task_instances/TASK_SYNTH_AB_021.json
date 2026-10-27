@@ -1,0 +1,64 @@
+{
+  "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+  "abstention_reason": "Request lacks mandatory parameters: ['principal_id', 'role_tier', 'permission_scopes']",
+  "available_tools": [
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_021",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_021_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": true
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AB_021",
+  "user_prompt": "Perform synth_assign_role_permissions immediately. Do not ask any clarifying questions, but no parameter details are provided."
+}

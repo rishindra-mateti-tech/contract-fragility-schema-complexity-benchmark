@@ -1,0 +1,286 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_013",
+      "description": "Submit a collection of document IDs for search indexing.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "title": "Batch Index Records",
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Provision a read replica node with host connection and replication settings.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "properties": {
+          "cluster_id": {
+            "description": "Primary database cluster ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "enable_ssl": {
+            "description": "Require TLS encryption on replication stream",
+            "type": "boolean"
+          },
+          "replica_config": {
+            "additionalProperties": false,
+            "description": "Replica node configuration",
+            "properties": {
+              "node_name": {
+                "description": "Replica hostname/label",
+                "minLength": 1,
+                "type": "string"
+              },
+              "port": {
+                "description": "Port number",
+                "maximum": 65535,
+                "minimum": 1024,
+                "type": "integer"
+              },
+              "read_only": {
+                "description": "Enforce read-only transactions",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "node_name",
+              "port"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "cluster_id",
+          "replica_config"
+        ],
+        "title": "synth_configure_database_replica",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_database_replica"
+    },
+    {
+      "contract_id": "BASE_SYNTH_001",
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "title": "Create Key-Value Pair",
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "contract_id": "BASE_SYNTH_002",
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "title": "Delete Cache Entry",
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "contract_id": "BASE_SYNTH_003",
+      "description": "Remove all records from a specific table slice or partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "title": "Truncate Table Slice",
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_029",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "cluster_id": "db_prod_main",
+    "enable_ssl": true,
+    "replica_config": {
+      "node_name": "replica_east_1",
+      "port": 5432,
+      "read_only": true
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_configure_database_replica",
+    "constraints": {
+      "required": [
+        "cluster_id",
+        "replica_config"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "1fc061a0a4bdad93f44cd95ae10aa11123b54673847582793f4b650651daf43e",
+    "intent_id": "INTENT_TS_069",
+    "metadata": {},
+    "slots": {
+      "cluster_id": {
+        "data_type": "string",
+        "description": "Primary database cluster ID",
+        "is_required": true,
+        "name": "cluster_id",
+        "value": "db_prod_main"
+      },
+      "enable_ssl": {
+        "data_type": "boolean",
+        "description": "Require TLS encryption on replication stream",
+        "is_required": false,
+        "name": "enable_ssl",
+        "value": true
+      },
+      "replica_config": {
+        "data_type": "object",
+        "description": "Replica node configuration",
+        "is_required": true,
+        "name": "replica_config",
+        "value": {
+          "node_name": "replica_east_1",
+          "port": 5432,
+          "read_only": true
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_029"
+  },
+  "expected_tool_name": "synth_configure_database_replica",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_029_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "cluster_id": "cluster_id",
+        "enable_ssl": "enable_ssl",
+        "replica_config": "replica_config"
+      },
+      "intent_to_arg_path": {
+        "cluster_id": "cluster_id",
+        "enable_ssl": "enable_ssl",
+        "replica_config": "replica_config"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_069",
+  "user_prompt": "We need to perform the following action: Provision a read replica node with host connection and replication settings.. Configure the action with: cluster_id as 'db_prod_main', enable_ssl as True, replica_config as {'node_name': 'replica_east_1', 'port': 5432, 'read_only': True}."
+}

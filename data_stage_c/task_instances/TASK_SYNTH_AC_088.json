@@ -1,0 +1,103 @@
+{
+  "available_tools": [
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds_param": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy_param": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name_param": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "epoch_seconds_param",
+          "is_healthy_param",
+          "service_name_param"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_008",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "epoch_seconds_param": 1761500010,
+    "is_healthy_param": false,
+    "service_name_param": "gateway_proxy_0"
+  },
+  "expected_latent_intent": {
+    "action": "synth_record_heartbeat_timestamp",
+    "constraints": {
+      "required": [
+        "epoch_seconds",
+        "is_healthy",
+        "service_name"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3eedc50d9c4857dc3fa9ae528633aed97f213431c6c1beb9425a4a418c4a4210",
+    "intent_id": "INTENT_AC_088",
+    "metadata": {},
+    "slots": {
+      "epoch_seconds": {
+        "data_type": "integer",
+        "description": "Unix timestamp in seconds",
+        "is_required": true,
+        "name": "epoch_seconds",
+        "value": 1761500010
+      },
+      "is_healthy": {
+        "data_type": "boolean",
+        "description": "Self-reported health state",
+        "is_required": true,
+        "name": "is_healthy",
+        "value": false
+      },
+      "service_name": {
+        "data_type": "string",
+        "description": "Service instance name",
+        "is_required": true,
+        "name": "service_name",
+        "value": "gateway_proxy_0"
+      }
+    },
+    "target_entity": "BASE_SYNTH_008"
+  },
+  "expected_tool_name": "synth_record_heartbeat_timestamp",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_008_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "epoch_seconds_param": "epoch_seconds",
+        "is_healthy_param": "is_healthy",
+        "service_name_param": "service_name"
+      },
+      "intent_to_arg_path": {
+        "epoch_seconds": "epoch_seconds_param",
+        "is_healthy": "is_healthy_param",
+        "service_name": "service_name_param"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_088",
+  "user_prompt": "Please execute the synth_record_heartbeat_timestamp operation for Record Heartbeat Timestamp. Specific parameters required: epoch_seconds set to 1761500010, is_healthy set to False, service_name set to 'gateway_proxy_0'."
+}

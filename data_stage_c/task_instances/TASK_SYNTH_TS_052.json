@@ -1,0 +1,256 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_021",
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "title": "Assign Role Permissions",
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "contract_id": "BASE_SYNTH_011",
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "title": "Extend Session Lease",
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "contract_id": "BASE_SYNTH_022",
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "title": "Provision API Credential",
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "contract_id": "BASE_SYNTH_010",
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "title": "Revoke Access Token",
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "lock_hours": 72,
+    "user_id": "usr_5501"
+  },
+  "expected_latent_intent": {
+    "action": "synth_lock_user_account",
+    "constraints": {
+      "required": [
+        "lock_hours",
+        "user_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "6b63fd4003812d7b9afce8563cfd9d88e06e72ee6c066a1e008f329e00292b31",
+    "intent_id": "INTENT_TS_052",
+    "metadata": {},
+    "slots": {
+      "lock_hours": {
+        "data_type": "integer",
+        "description": "Lock duration in hours",
+        "is_required": true,
+        "name": "lock_hours",
+        "value": 72
+      },
+      "user_id": {
+        "data_type": "string",
+        "description": "Target user identifier",
+        "is_required": true,
+        "name": "user_id",
+        "value": "usr_5501"
+      }
+    },
+    "target_entity": "BASE_SYNTH_012"
+  },
+  "expected_tool_name": "synth_lock_user_account",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_012_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "lock_hours": "lock_hours",
+        "require_password_reset": "require_password_reset",
+        "user_id": "user_id"
+      },
+      "intent_to_arg_path": {
+        "lock_hours": "lock_hours",
+        "require_password_reset": "require_password_reset",
+        "user_id": "user_id"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_052",
+  "user_prompt": "We need to perform the following action: Impose an administrative lock on a compromised user account.. Configure the action with: lock_hours as 72, user_id as 'usr_5501'."
+}

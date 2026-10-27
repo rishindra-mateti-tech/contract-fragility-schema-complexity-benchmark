@@ -1,0 +1,94 @@
+{
+  "available_tools": [
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "reason": {
+                "description": "Security revocation rationale",
+                "type": "string"
+              },
+              "token_id": {
+                "description": "Token unique identifier (jti)",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "token_id"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_010",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "payload_parameters": {
+      "token_id": "tok_12345678"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_revoke_access_token",
+    "constraints": {
+      "required": [
+        "token_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "7f8425d763bb2980cdc69a35bb6f74a8a9b5be5da23c2a67f7d4dcfc26b6ba2d",
+    "intent_id": "INTENT_AC_050",
+    "metadata": {},
+    "slots": {
+      "token_id": {
+        "data_type": "string",
+        "description": "Token unique identifier (jti)",
+        "is_required": true,
+        "name": "token_id",
+        "value": "tok_12345678"
+      }
+    },
+    "target_entity": "BASE_SYNTH_010"
+  },
+  "expected_tool_name": "synth_revoke_access_token",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_010_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "notify_subject": "notify_subject",
+        "payload_parameters.reason": "reason",
+        "payload_parameters.token_id": "token_id"
+      },
+      "intent_to_arg_path": {
+        "notify_subject": "notify_subject",
+        "reason": "payload_parameters.reason",
+        "token_id": "payload_parameters.token_id"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_050",
+  "user_prompt": "Please execute the synth_revoke_access_token operation for Revoke Access Token. Specific parameters required: token_id set to 'tok_12345678'."
+}

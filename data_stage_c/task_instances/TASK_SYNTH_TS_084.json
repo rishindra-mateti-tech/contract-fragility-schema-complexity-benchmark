@@ -1,0 +1,261 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_015",
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "title": "Broadcast Alert Notification",
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "description": "Send an SMS text message to a designated phone destination.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "contract_id": "BASE_SYNTH_016",
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "title": "Enqueue Email Digest",
+      "tool_name": "synth_enqueue_email_digest"
+    },
+    {
+      "contract_id": "BASE_SYNTH_006",
+      "description": "Tear down an established conference audio bridge.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "title": "Terminate Voice Bridge",
+      "tool_name": "synth_terminate_voice_bridge"
+    },
+    {
+      "contract_id": "BASE_SYNTH_005",
+      "description": "Modify the signaling status of an active voice call session.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "title": "Update Call Session Status",
+      "tool_name": "synth_update_call_status"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_004",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "message_body": "Appointment reminder for tomorrow.",
+    "recipient_number": "+12145550199"
+  },
+  "expected_latent_intent": {
+    "action": "synth_dispatch_sms_message",
+    "constraints": {
+      "required": [
+        "message_body",
+        "recipient_number"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "431b8896a80b4d5c4f7be2537f9f13de855c63158222354c78e787d4987b2764",
+    "intent_id": "INTENT_TS_084",
+    "metadata": {},
+    "slots": {
+      "message_body": {
+        "data_type": "string",
+        "description": "SMS text body",
+        "is_required": true,
+        "name": "message_body",
+        "value": "Appointment reminder for tomorrow."
+      },
+      "recipient_number": {
+        "data_type": "string",
+        "description": "E.164 phone number",
+        "is_required": true,
+        "name": "recipient_number",
+        "value": "+12145550199"
+      }
+    },
+    "target_entity": "BASE_SYNTH_004"
+  },
+  "expected_tool_name": "synth_dispatch_sms_message",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_004_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "message_body": "message_body",
+        "priority": "priority",
+        "recipient_number": "recipient_number"
+      },
+      "intent_to_arg_path": {
+        "message_body": "message_body",
+        "priority": "priority",
+        "recipient_number": "recipient_number"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_084",
+  "user_prompt": "We need to perform the following action: Send an SMS text message to a designated phone destination.. Configure the action with: message_body as 'Appointment reminder for tomorrow.', recipient_number as '+12145550199'."
+}

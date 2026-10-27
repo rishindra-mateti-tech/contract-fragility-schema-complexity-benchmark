@@ -1,0 +1,286 @@
+{
+  "available_tools": [
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "contract_id": "BASE_SYNTH_004",
+      "description": "Send an SMS text message to a designated phone destination.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "title": "Dispatch SMS Message",
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "contract_id": "BASE_SYNTH_016",
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "title": "Enqueue Email Digest",
+      "tool_name": "synth_enqueue_email_digest"
+    },
+    {
+      "contract_id": "BASE_SYNTH_006",
+      "description": "Tear down an established conference audio bridge.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "title": "Terminate Voice Bridge",
+      "tool_name": "synth_terminate_voice_bridge"
+    },
+    {
+      "contract_id": "BASE_SYNTH_005",
+      "description": "Modify the signaling status of an active voice call session.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "title": "Update Call Session Status",
+      "tool_name": "synth_update_call_status"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_015",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "alert_title": "Database High Memory",
+    "auto_resolve_minutes": 60,
+    "severity_level": "CRITICAL",
+    "target_channels": [
+      "slack-ops",
+      "pagerduty-sre"
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_broadcast_alert_notification",
+    "constraints": {
+      "required": [
+        "alert_title",
+        "severity_level",
+        "target_channels"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "adead129e501758e088bb3b6d77dd8eaeb63f4d1e2cde779aa41b6ac6b0f7499",
+    "intent_id": "INTENT_TS_055",
+    "metadata": {},
+    "slots": {
+      "alert_title": {
+        "data_type": "string",
+        "description": "Short alert title",
+        "is_required": true,
+        "name": "alert_title",
+        "value": "Database High Memory"
+      },
+      "auto_resolve_minutes": {
+        "data_type": "integer",
+        "description": "Automatic timeout before auto-resolve",
+        "is_required": false,
+        "name": "auto_resolve_minutes",
+        "value": 60
+      },
+      "severity_level": {
+        "data_type": "string",
+        "description": "Alert severity tier",
+        "is_required": true,
+        "name": "severity_level",
+        "value": "CRITICAL"
+      },
+      "target_channels": {
+        "data_type": "array[string]",
+        "description": "Broadcast destination channels",
+        "is_required": true,
+        "name": "target_channels",
+        "value": [
+          "slack-ops",
+          "pagerduty-sre"
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_015"
+  },
+  "expected_tool_name": "synth_broadcast_alert_notification",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_015_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      },
+      "intent_to_arg_path": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_055",
+  "user_prompt": "We need to perform the following action: Broadcast a critical operational alert across multiple notification channels.. Configure the action with: alert_title as 'Database High Memory', auto_resolve_minutes as 60, severity_level as 'CRITICAL', target_channels as ['slack-ops', 'pagerduty-sre']."
+}

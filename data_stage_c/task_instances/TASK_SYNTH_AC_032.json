@@ -1,0 +1,119 @@
+{
+  "available_tools": [
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id_param": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue_param": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria_param": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id_param",
+          "routing_criteria_param"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_032",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "conversation_id_param": "conv_1102",
+    "routing_criteria_param": {
+      "language": "es"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_route_omnichannel_conversation",
+    "constraints": {
+      "required": [
+        "conversation_id",
+        "routing_criteria"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f12be2ffdde9f63c3f37fd702d2a17093f202d150571e835046a783d6b69ec23",
+    "intent_id": "INTENT_AC_032",
+    "metadata": {},
+    "slots": {
+      "conversation_id": {
+        "data_type": "string",
+        "description": "Customer inquiry ticket ID",
+        "is_required": true,
+        "name": "conversation_id",
+        "value": "conv_1102"
+      },
+      "routing_criteria": {
+        "data_type": "object",
+        "description": "Agent matching criteria",
+        "is_required": true,
+        "name": "routing_criteria",
+        "value": {
+          "language": "es"
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_032"
+  },
+  "expected_tool_name": "synth_route_omnichannel_conversation",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_032_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "conversation_id_param": "conversation_id",
+        "fallback_queue_param": "fallback_queue",
+        "routing_criteria_param": "routing_criteria"
+      },
+      "intent_to_arg_path": {
+        "conversation_id": "conversation_id_param",
+        "fallback_queue": "fallback_queue_param",
+        "routing_criteria": "routing_criteria_param"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_032",
+  "user_prompt": "Please execute the synth_route_omnichannel_conversation operation for Route Omnichannel Conversation. Specific parameters required: conversation_id set to 'conv_1102', routing_criteria set to {'language': 'es'}."
+}

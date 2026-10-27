@@ -1,0 +1,127 @@
+{
+  "available_tools": [
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries_param": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name_param": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count_param": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit_param": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "bucket_boundaries_param",
+          "histogram_name_param",
+          "unit_param"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_020",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "bucket_boundaries_param": [
+      1.0,
+      5.0,
+      10.0
+    ],
+    "histogram_name_param": "db_query_time",
+    "unit_param": "milliseconds"
+  },
+  "expected_latent_intent": {
+    "action": "synth_publish_metric_histogram",
+    "constraints": {
+      "required": [
+        "bucket_boundaries",
+        "histogram_name",
+        "unit"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3aa2bbb3061db8a76a77f54ba6048f7482c8bafe1fccfb469f7787e04ffbbdf1",
+    "intent_id": "INTENT_AC_020",
+    "metadata": {},
+    "slots": {
+      "bucket_boundaries": {
+        "data_type": "array[number]",
+        "description": "Ascending bucket threshold values",
+        "is_required": true,
+        "name": "bucket_boundaries",
+        "value": [
+          1.0,
+          5.0,
+          10.0
+        ]
+      },
+      "histogram_name": {
+        "data_type": "string",
+        "description": "Histogram metric name",
+        "is_required": true,
+        "name": "histogram_name",
+        "value": "db_query_time"
+      },
+      "unit": {
+        "data_type": "string",
+        "description": "Measurement unit",
+        "is_required": true,
+        "name": "unit",
+        "value": "milliseconds"
+      }
+    },
+    "target_entity": "BASE_SYNTH_020"
+  },
+  "expected_tool_name": "synth_publish_metric_histogram",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_020_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "bucket_boundaries_param": "bucket_boundaries",
+        "histogram_name_param": "histogram_name",
+        "sample_count_param": "sample_count",
+        "unit_param": "unit"
+      },
+      "intent_to_arg_path": {
+        "bucket_boundaries": "bucket_boundaries_param",
+        "histogram_name": "histogram_name_param",
+        "sample_count": "sample_count_param",
+        "unit": "unit_param"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_020",
+  "user_prompt": "Please execute the synth_publish_metric_histogram operation for Publish Metric Histogram. Specific parameters required: bucket_boundaries set to [1.0, 5.0, 10.0], histogram_name set to 'db_query_time', unit set to 'milliseconds'."
+}

@@ -1,0 +1,96 @@
+{
+  "available_tools": [
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "key_pattern": {
+                "description": "Glob or prefix pattern",
+                "minLength": 1,
+                "type": "string"
+              },
+              "max_evictions": {
+                "description": "Eviction batch cap",
+                "maximum": 1000,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "key_pattern"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_002",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "payload_parameters": {
+      "key_pattern": "temp:auth:99"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_delete_cache_entry",
+    "constraints": {
+      "required": [
+        "key_pattern"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3b7c9478bfa54c9da005b7409df38cf449465661943c30913173b5cec8c3f8e7",
+    "intent_id": "INTENT_AC_082",
+    "metadata": {},
+    "slots": {
+      "key_pattern": {
+        "data_type": "string",
+        "description": "Glob or prefix pattern",
+        "is_required": true,
+        "name": "key_pattern",
+        "value": "temp:auth:99"
+      }
+    },
+    "target_entity": "BASE_SYNTH_002"
+  },
+  "expected_tool_name": "synth_delete_cache_entry",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_002_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "cascade_eviction": "cascade_eviction",
+        "payload_parameters.key_pattern": "key_pattern",
+        "payload_parameters.max_evictions": "max_evictions"
+      },
+      "intent_to_arg_path": {
+        "cascade_eviction": "cascade_eviction",
+        "key_pattern": "payload_parameters.key_pattern",
+        "max_evictions": "payload_parameters.max_evictions"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_082",
+  "user_prompt": "Please execute the synth_delete_cache_entry operation for Delete Cache Entry. Specific parameters required: key_pattern set to 'temp:auth:99'."
+}

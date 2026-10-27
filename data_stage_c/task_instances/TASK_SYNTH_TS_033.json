@@ -1,0 +1,287 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_015",
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "title": "Broadcast Alert Notification",
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "contract_id": "BASE_SYNTH_004",
+      "description": "Send an SMS text message to a designated phone destination.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "title": "Dispatch SMS Message",
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    },
+    {
+      "contract_id": "BASE_SYNTH_006",
+      "description": "Tear down an established conference audio bridge.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "title": "Terminate Voice Bridge",
+      "tool_name": "synth_terminate_voice_bridge"
+    },
+    {
+      "contract_id": "BASE_SYNTH_005",
+      "description": "Modify the signaling status of an active voice call session.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "title": "Update Call Session Status",
+      "tool_name": "synth_update_call_status"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_033",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "endpoint": {
+      "signing_secret": "whsec_abcdef123456",
+      "timeout_ms": 3000,
+      "url": "https://api.partner.com/hooks"
+    },
+    "event_type": "payment.succeeded",
+    "max_retries": 3
+  },
+  "expected_latent_intent": {
+    "action": "synth_publish_webhook_event",
+    "constraints": {
+      "required": [
+        "endpoint",
+        "event_type"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "699b9f5229bb7f889352967135e875d381c7dd827f520271ea30fe8d155577c5",
+    "intent_id": "INTENT_TS_033",
+    "metadata": {},
+    "slots": {
+      "endpoint": {
+        "data_type": "object",
+        "description": "Destination HTTP configuration",
+        "is_required": true,
+        "name": "endpoint",
+        "value": {
+          "signing_secret": "whsec_abcdef123456",
+          "timeout_ms": 3000,
+          "url": "https://api.partner.com/hooks"
+        }
+      },
+      "event_type": {
+        "data_type": "string",
+        "description": "Domain event classification",
+        "is_required": true,
+        "name": "event_type",
+        "value": "payment.succeeded"
+      },
+      "max_retries": {
+        "data_type": "integer",
+        "description": "Retry limit on 5xx failures",
+        "is_required": false,
+        "name": "max_retries",
+        "value": 3
+      }
+    },
+    "target_entity": "BASE_SYNTH_033"
+  },
+  "expected_tool_name": "synth_publish_webhook_event",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_033_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "endpoint": "endpoint",
+        "event_type": "event_type",
+        "max_retries": "max_retries"
+      },
+      "intent_to_arg_path": {
+        "endpoint": "endpoint",
+        "event_type": "event_type",
+        "max_retries": "max_retries"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_033",
+  "user_prompt": "We need to perform the following action: Deliver a JSON notification payload to an external subscriber webhook.. Configure the action with: endpoint as {'signing_secret': 'whsec_abcdef123456', 'timeout_ms': 3000, 'url': 'https://api.partner.com/hooks'}, event_type as 'payment.succeeded', max_retries as 3."
+}

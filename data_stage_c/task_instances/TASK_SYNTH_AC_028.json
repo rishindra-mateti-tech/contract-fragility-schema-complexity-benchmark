@@ -1,0 +1,112 @@
+{
+  "available_tools": [
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate_param": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids_param": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency_param": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool_param": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_ids_param",
+          "worker_pool_param"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_028",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "job_ids_param": [
+      "job_500"
+    ],
+    "worker_pool_param": "standard"
+  },
+  "expected_latent_intent": {
+    "action": "synth_dispatch_batch_worker",
+    "constraints": {
+      "required": [
+        "job_ids",
+        "worker_pool"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3440ed25297c7e94aa5e0c46aba9a3b3a1b5808e62d6a39d463479279f16ab60",
+    "intent_id": "INTENT_AC_028",
+    "metadata": {},
+    "slots": {
+      "job_ids": {
+        "data_type": "array[string]",
+        "description": "Assigned job identifiers",
+        "is_required": true,
+        "name": "job_ids",
+        "value": [
+          "job_500"
+        ]
+      },
+      "worker_pool": {
+        "data_type": "string",
+        "description": "Compute tier",
+        "is_required": true,
+        "name": "worker_pool",
+        "value": "standard"
+      }
+    },
+    "target_entity": "BASE_SYNTH_028"
+  },
+  "expected_tool_name": "synth_dispatch_batch_worker",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_028_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "auto_terminate_param": "auto_terminate",
+        "job_ids_param": "job_ids",
+        "worker_concurrency_param": "worker_concurrency",
+        "worker_pool_param": "worker_pool"
+      },
+      "intent_to_arg_path": {
+        "auto_terminate": "auto_terminate_param",
+        "job_ids": "job_ids_param",
+        "worker_concurrency": "worker_concurrency_param",
+        "worker_pool": "worker_pool_param"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_028",
+  "user_prompt": "Please execute the synth_dispatch_batch_worker operation for Dispatch Batch Worker. Specific parameters required: job_ids set to ['job_500'], worker_pool set to 'standard'."
+}

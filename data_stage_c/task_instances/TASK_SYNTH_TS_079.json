@@ -1,0 +1,328 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_025",
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "title": "Cancel Workflow Task",
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    },
+    {
+      "contract_id": "BASE_SYNTH_026",
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "title": "Resume Paused Execution",
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "contract_id": "BASE_SYNTH_027",
+      "description": "Register a recurring automated task schedule with target queue.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "title": "Schedule Cron Job",
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "contract_id": "BASE_SYNTH_024",
+      "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+        "properties": {
+          "artifact_paths": {
+            "description": "Input artifact files",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "pipeline_id": {
+            "description": "Workflow pipeline definition ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "stage_name": {
+            "description": "Target execution stage",
+            "enum": [
+              "lint",
+              "unit_test",
+              "integration_test",
+              "security_scan",
+              "package"
+            ],
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "description": "Maximum stage runtime",
+            "maximum": 3600,
+            "minimum": 10,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pipeline_id",
+          "stage_name"
+        ],
+        "title": "synth_trigger_pipeline_stage",
+        "type": "object"
+      },
+      "title": "Trigger Pipeline Stage",
+      "tool_name": "synth_trigger_pipeline_stage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_039",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "application_id": "checkout_api",
+    "canary_strategy": {
+      "initial_percentage": 10,
+      "step_duration_minutes": 15
+    },
+    "rollback_thresholds": {
+      "max_error_rate_percent": 1.5
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_manage_deployment_rollout",
+    "constraints": {
+      "required": [
+        "application_id",
+        "canary_strategy",
+        "rollback_thresholds"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "aa46b5a41b9069c0ac57b9f9471f6226e86505f4547058c63c22e0c17cab0e09",
+    "intent_id": "INTENT_TS_079",
+    "metadata": {},
+    "slots": {
+      "application_id": {
+        "data_type": "string",
+        "description": "Deployed microservice ID",
+        "is_required": true,
+        "name": "application_id",
+        "value": "checkout_api"
+      },
+      "canary_strategy": {
+        "data_type": "object",
+        "description": "Progressive traffic shift parameters",
+        "is_required": true,
+        "name": "canary_strategy",
+        "value": {
+          "initial_percentage": 10,
+          "step_duration_minutes": 15
+        }
+      },
+      "rollback_thresholds": {
+        "data_type": "object",
+        "description": "Error circuit-breaker triggers",
+        "is_required": true,
+        "name": "rollback_thresholds",
+        "value": {
+          "max_error_rate_percent": 1.5
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_039"
+  },
+  "expected_tool_name": "synth_manage_deployment_rollout",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_039_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "application_id": "application_id",
+        "canary_strategy": "canary_strategy",
+        "rollback_thresholds": "rollback_thresholds"
+      },
+      "intent_to_arg_path": {
+        "application_id": "application_id",
+        "canary_strategy": "canary_strategy",
+        "rollback_thresholds": "rollback_thresholds"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_079",
+  "user_prompt": "We need to perform the following action: Control canary progression and rollback parameters for an application release.. Configure the action with: application_id as 'checkout_api', canary_strategy as {'initial_percentage': 10, 'step_duration_minutes': 15}, rollback_thresholds as {'max_error_rate_percent': 1.5}."
+}

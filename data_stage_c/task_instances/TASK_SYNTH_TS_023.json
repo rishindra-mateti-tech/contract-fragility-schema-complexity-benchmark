@@ -1,0 +1,280 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_021",
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "title": "Assign Role Permissions",
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "contract_id": "BASE_SYNTH_011",
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "title": "Extend Session Lease",
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "contract_id": "BASE_SYNTH_012",
+      "description": "Impose an administrative lock on a compromised user account.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "title": "Lock User Account",
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "contract_id": "BASE_SYNTH_010",
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "title": "Revoke Access Token",
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_023",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "affected_services": [
+      "auth-srv",
+      "api-gateway"
+    ],
+    "algorithm": "AES-256-GCM",
+    "grace_period_hours": 24,
+    "secret_slug": "jwt_signing_key"
+  },
+  "expected_latent_intent": {
+    "action": "synth_rotate_secret_key",
+    "constraints": {
+      "required": [
+        "algorithm",
+        "secret_slug"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "b7e2a531bd8a50c608bfb63c55e8435bf10f59c9289f18e7f2187ac5d99712f3",
+    "intent_id": "INTENT_TS_023",
+    "metadata": {},
+    "slots": {
+      "affected_services": {
+        "data_type": "array[string]",
+        "description": "Downstream services requiring key reload",
+        "is_required": false,
+        "name": "affected_services",
+        "value": [
+          "auth-srv",
+          "api-gateway"
+        ]
+      },
+      "algorithm": {
+        "data_type": "string",
+        "description": "Cryptographic cipher",
+        "is_required": true,
+        "name": "algorithm",
+        "value": "AES-256-GCM"
+      },
+      "grace_period_hours": {
+        "data_type": "integer",
+        "description": "Overlap period where old key remains valid",
+        "is_required": false,
+        "name": "grace_period_hours",
+        "value": 24
+      },
+      "secret_slug": {
+        "data_type": "string",
+        "description": "Secret vault key identifier",
+        "is_required": true,
+        "name": "secret_slug",
+        "value": "jwt_signing_key"
+      }
+    },
+    "target_entity": "BASE_SYNTH_023"
+  },
+  "expected_tool_name": "synth_rotate_secret_key",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_023_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "affected_services": "affected_services",
+        "algorithm": "algorithm",
+        "grace_period_hours": "grace_period_hours",
+        "secret_slug": "secret_slug"
+      },
+      "intent_to_arg_path": {
+        "affected_services": "affected_services",
+        "algorithm": "algorithm",
+        "grace_period_hours": "grace_period_hours",
+        "secret_slug": "secret_slug"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_023",
+  "user_prompt": "We need to perform the following action: Re-encrypt and replace cryptographic secret key with specified algorithm.. Configure the action with: affected_services as ['auth-srv', 'api-gateway'], algorithm as 'AES-256-GCM', grace_period_hours as 24, secret_slug as 'jwt_signing_key'."
+}

@@ -1,0 +1,117 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_001",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "key": "user_1024",
+    "overwrite": true,
+    "ttl_seconds": 3600,
+    "value": "session_active"
+  },
+  "expected_latent_intent": {
+    "action": "synth_create_key_value",
+    "constraints": {
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f377864a5892b32a93dab7c3929ed1118ca063ff0f75d2c7522d78745dd6908c",
+    "intent_id": "INTENT_AC_001",
+    "metadata": {},
+    "slots": {
+      "key": {
+        "data_type": "string",
+        "description": "Unique key identifier",
+        "is_required": true,
+        "name": "key",
+        "value": "user_1024"
+      },
+      "overwrite": {
+        "data_type": "boolean",
+        "description": "Whether to overwrite existing entry",
+        "is_required": false,
+        "name": "overwrite",
+        "value": true
+      },
+      "ttl_seconds": {
+        "data_type": "integer",
+        "description": "Time to live in seconds",
+        "is_required": false,
+        "name": "ttl_seconds",
+        "value": 3600
+      },
+      "value": {
+        "data_type": "string",
+        "description": "Serialized value payload",
+        "is_required": true,
+        "name": "value",
+        "value": "session_active"
+      }
+    },
+    "target_entity": "BASE_SYNTH_001"
+  },
+  "expected_tool_name": "synth_create_key_value",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_001_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "key": "key",
+        "overwrite": "overwrite",
+        "ttl_seconds": "ttl_seconds",
+        "value": "value"
+      },
+      "intent_to_arg_path": {
+        "key": "key",
+        "overwrite": "overwrite",
+        "ttl_seconds": "ttl_seconds",
+        "value": "value"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_001",
+  "user_prompt": "Please execute the synth_create_key_value operation for Create Key-Value Pair. Specific parameters required: key set to 'user_1024', overwrite set to True, ttl_seconds set to 3600, value set to 'session_active'."
+}

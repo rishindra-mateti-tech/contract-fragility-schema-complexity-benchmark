@@ -1,0 +1,133 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 3 parameters.",
+            "properties": {
+              "filter_dimensions": {
+                "description": "Key=value tag filters",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "metric_series": {
+                "description": "Metric timeseries identifier",
+                "minLength": 1,
+                "type": "string"
+              },
+              "window_seconds": {
+                "description": "Aggregation window width",
+                "maximum": 86400,
+                "minimum": 60,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "metric_series",
+              "window_seconds"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "aggregation",
+          "payload_parameters"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_018",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "aggregation": "avg",
+    "payload_parameters": {
+      "metric_series": "cpu_utilization",
+      "window_seconds": 60
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_query_metric_aggregate",
+    "constraints": {
+      "required": [
+        "aggregation",
+        "metric_series",
+        "window_seconds"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3c5797255612777f04f8ef46b057ea96b90a9679701819cff657dc83db86bdee",
+    "intent_id": "INTENT_AC_098",
+    "metadata": {},
+    "slots": {
+      "aggregation": {
+        "data_type": "string",
+        "description": "Statistical aggregator",
+        "is_required": true,
+        "name": "aggregation",
+        "value": "avg"
+      },
+      "metric_series": {
+        "data_type": "string",
+        "description": "Metric timeseries identifier",
+        "is_required": true,
+        "name": "metric_series",
+        "value": "cpu_utilization"
+      },
+      "window_seconds": {
+        "data_type": "integer",
+        "description": "Aggregation window width",
+        "is_required": true,
+        "name": "window_seconds",
+        "value": 60
+      }
+    },
+    "target_entity": "BASE_SYNTH_018"
+  },
+  "expected_tool_name": "synth_query_metric_aggregate",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_018_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "aggregation": "aggregation",
+        "payload_parameters.filter_dimensions": "filter_dimensions",
+        "payload_parameters.metric_series": "metric_series",
+        "payload_parameters.window_seconds": "window_seconds"
+      },
+      "intent_to_arg_path": {
+        "aggregation": "aggregation",
+        "filter_dimensions": "payload_parameters.filter_dimensions",
+        "metric_series": "payload_parameters.metric_series",
+        "window_seconds": "payload_parameters.window_seconds"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_098",
+  "user_prompt": "Please execute the synth_query_metric_aggregate operation for Query Metric Aggregate. Specific parameters required: aggregation set to 'avg', metric_series set to 'cpu_utilization', window_seconds set to 60."
+}

@@ -1,0 +1,118 @@
+{
+  "available_tools": [
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 3 parameters.",
+            "properties": {
+              "override_variables": {
+                "description": "Variable assignments as key=val",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "resume_point": {
+                "description": "Resume target",
+                "enum": [
+                  "checkpoint_start",
+                  "next_step",
+                  "replay_failed_step"
+                ],
+                "type": "string"
+              },
+              "skip_validation": {
+                "description": "Bypass intermediate state assertions",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "resume_point"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "execution_id",
+          "payload_parameters"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_026",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "execution_id": "exec_44102",
+    "payload_parameters": {
+      "resume_point": "checkpoint_start"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_resume_paused_execution",
+    "constraints": {
+      "required": [
+        "execution_id",
+        "resume_point"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "07d579a248ee407eef97a185a5b33804851d615b2f7a2e623445edff0ac8ba33",
+    "intent_id": "INTENT_AC_026",
+    "metadata": {},
+    "slots": {
+      "execution_id": {
+        "data_type": "string",
+        "description": "Suspended workflow execution ID",
+        "is_required": true,
+        "name": "execution_id",
+        "value": "exec_44102"
+      },
+      "resume_point": {
+        "data_type": "string",
+        "description": "Resume target",
+        "is_required": true,
+        "name": "resume_point",
+        "value": "checkpoint_start"
+      }
+    },
+    "target_entity": "BASE_SYNTH_026"
+  },
+  "expected_tool_name": "synth_resume_paused_execution",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_026_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "execution_id": "execution_id",
+        "payload_parameters.override_variables": "override_variables",
+        "payload_parameters.resume_point": "resume_point",
+        "payload_parameters.skip_validation": "skip_validation"
+      },
+      "intent_to_arg_path": {
+        "execution_id": "execution_id",
+        "override_variables": "payload_parameters.override_variables",
+        "resume_point": "payload_parameters.resume_point",
+        "skip_validation": "payload_parameters.skip_validation"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_026",
+  "user_prompt": "Please execute the synth_resume_paused_execution operation for Resume Paused Execution. Specific parameters required: execution_id set to 'exec_44102', resume_point set to 'checkpoint_start'."
+}

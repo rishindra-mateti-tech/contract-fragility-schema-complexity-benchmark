@@ -1,0 +1,287 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_014",
+      "description": "Move a data partition to cold archival storage with compression.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "title": "Archive Data Partition",
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "contract_id": "BASE_SYNTH_001",
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "title": "Create Key-Value Pair",
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "contract_id": "BASE_SYNTH_002",
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "title": "Delete Cache Entry",
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "contract_id": "BASE_SYNTH_003",
+      "description": "Remove all records from a specific table slice or partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "title": "Truncate Table Slice",
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_013",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "collection_name": "knowledge_docs",
+    "index_mode": "asynchronous",
+    "record_ids": [
+      "doc_1",
+      "doc_2"
+    ],
+    "refresh_view": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_batch_index_records",
+    "constraints": {
+      "required": [
+        "collection_name",
+        "index_mode",
+        "record_ids"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3f9713e9f04504debb95fe6a1adc5e194251422030e845c3be1c6f2a4f13f407",
+    "intent_id": "INTENT_TS_093",
+    "metadata": {},
+    "slots": {
+      "collection_name": {
+        "data_type": "string",
+        "description": "Search index name",
+        "is_required": true,
+        "name": "collection_name",
+        "value": "knowledge_docs"
+      },
+      "index_mode": {
+        "data_type": "string",
+        "description": "Indexing commitment mode",
+        "is_required": true,
+        "name": "index_mode",
+        "value": "asynchronous"
+      },
+      "record_ids": {
+        "data_type": "array[string]",
+        "description": "List of record identifiers",
+        "is_required": true,
+        "name": "record_ids",
+        "value": [
+          "doc_1",
+          "doc_2"
+        ]
+      },
+      "refresh_view": {
+        "data_type": "boolean",
+        "description": "Force immediate index view refresh",
+        "is_required": false,
+        "name": "refresh_view",
+        "value": true
+      }
+    },
+    "target_entity": "BASE_SYNTH_013"
+  },
+  "expected_tool_name": "synth_batch_index_records",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_013_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "collection_name": "collection_name",
+        "index_mode": "index_mode",
+        "record_ids": "record_ids",
+        "refresh_view": "refresh_view"
+      },
+      "intent_to_arg_path": {
+        "collection_name": "collection_name",
+        "index_mode": "index_mode",
+        "record_ids": "record_ids",
+        "refresh_view": "refresh_view"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_093",
+  "user_prompt": "We need to perform the following action: Submit a collection of document IDs for search indexing.. Configure the action with: collection_name as 'knowledge_docs', index_mode as 'asynchronous', record_ids as ['doc_1', 'doc_2'], refresh_view as True."
+}

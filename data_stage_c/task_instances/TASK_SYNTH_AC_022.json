@@ -1,0 +1,120 @@
+{
+  "available_tools": [
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 3 parameters.",
+            "properties": {
+              "ip_allowlist": {
+                "description": "Allowed CIDR IP ranges",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "rate_limit_rpm": {
+                "description": "Maximum allowed requests per minute",
+                "maximum": 60000,
+                "minimum": 60,
+                "type": "integer"
+              },
+              "target_environment": {
+                "description": "Target tier",
+                "enum": [
+                  "development",
+                  "staging",
+                  "production"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "target_environment"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "client_name",
+          "payload_parameters"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_022",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "client_name": "test_harness",
+    "payload_parameters": {
+      "target_environment": "development"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_provision_api_credential",
+    "constraints": {
+      "required": [
+        "client_name",
+        "target_environment"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3b90b5bd4c133d0266de05865ff88c916b698b033c76b50aeecb5da52253cd5f",
+    "intent_id": "INTENT_AC_022",
+    "metadata": {},
+    "slots": {
+      "client_name": {
+        "data_type": "string",
+        "description": "Descriptive client application name",
+        "is_required": true,
+        "name": "client_name",
+        "value": "test_harness"
+      },
+      "target_environment": {
+        "data_type": "string",
+        "description": "Target tier",
+        "is_required": true,
+        "name": "target_environment",
+        "value": "development"
+      }
+    },
+    "target_entity": "BASE_SYNTH_022"
+  },
+  "expected_tool_name": "synth_provision_api_credential",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_022_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "client_name": "client_name",
+        "payload_parameters.ip_allowlist": "ip_allowlist",
+        "payload_parameters.rate_limit_rpm": "rate_limit_rpm",
+        "payload_parameters.target_environment": "target_environment"
+      },
+      "intent_to_arg_path": {
+        "client_name": "client_name",
+        "ip_allowlist": "payload_parameters.ip_allowlist",
+        "rate_limit_rpm": "payload_parameters.rate_limit_rpm",
+        "target_environment": "payload_parameters.target_environment"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_022",
+  "user_prompt": "Please execute the synth_provision_api_credential operation for Provision API Credential. Specific parameters required: client_name set to 'test_harness', target_environment set to 'development'."
+}

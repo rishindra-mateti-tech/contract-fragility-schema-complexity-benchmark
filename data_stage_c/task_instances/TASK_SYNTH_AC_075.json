@@ -1,0 +1,161 @@
+{
+  "available_tools": [
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_035",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "compliance_rules": {
+      "framework": "PCI_DSS",
+      "strict_mode": true
+    },
+    "target_system": "payment_processing_cluster",
+    "thresholds": {
+      "min_passing_score": 95
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_generate_audit_scorecard",
+    "constraints": {
+      "required": [
+        "compliance_rules",
+        "target_system",
+        "thresholds"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "fe2c4947894982bff4c3f453d846218db7b4231ebfe3e85a38fb50cbc6ef7dc4",
+    "intent_id": "INTENT_AC_075",
+    "metadata": {},
+    "slots": {
+      "compliance_rules": {
+        "data_type": "object",
+        "description": "Evaluated framework rules",
+        "is_required": true,
+        "name": "compliance_rules",
+        "value": {
+          "framework": "PCI_DSS",
+          "strict_mode": true
+        }
+      },
+      "target_system": {
+        "data_type": "string",
+        "description": "Evaluated subsystem",
+        "is_required": true,
+        "name": "target_system",
+        "value": "payment_processing_cluster"
+      },
+      "thresholds": {
+        "data_type": "object",
+        "description": "Passing score limits",
+        "is_required": true,
+        "name": "thresholds",
+        "value": {
+          "min_passing_score": 95
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_035"
+  },
+  "expected_tool_name": "synth_generate_audit_scorecard",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_035_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "compliance_rules": "compliance_rules",
+        "target_system": "target_system",
+        "thresholds": "thresholds"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "compliance_rules": "compliance_rules",
+        "target_system": "target_system",
+        "thresholds": "thresholds"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_075",
+  "user_prompt": "Please execute the synth_generate_audit_scorecard operation for Generate Audit Scorecard. Specific parameters required: compliance_rules set to {'framework': 'PCI_DSS', 'strict_mode': True}, target_system set to 'payment_processing_cluster', thresholds set to {'min_passing_score': 95}."
+}

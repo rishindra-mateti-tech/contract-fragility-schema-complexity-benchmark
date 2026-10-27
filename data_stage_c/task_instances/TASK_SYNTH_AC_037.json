@@ -1,0 +1,137 @@
+{
+  "available_tools": [
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_037",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "boundary_id": "vpc_secure_prod",
+    "ingress_policy": {
+      "allowed_cidr": "10.0.0.0/16",
+      "ports": [
+        443,
+        8443
+      ]
+    },
+    "inspection_tier": "stateful_inspection"
+  },
+  "expected_latent_intent": {
+    "action": "synth_enforce_security_boundary",
+    "constraints": {
+      "required": [
+        "boundary_id",
+        "ingress_policy",
+        "inspection_tier"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "809893ecf5c7bf39b3b8c313c174f7b40eb2f94cec6f786f55dec6ab6e44fef0",
+    "intent_id": "INTENT_AC_037",
+    "metadata": {},
+    "slots": {
+      "boundary_id": {
+        "data_type": "string",
+        "description": "VPC or subnet identifier",
+        "is_required": true,
+        "name": "boundary_id",
+        "value": "vpc_secure_prod"
+      },
+      "ingress_policy": {
+        "data_type": "object",
+        "description": "Inbound packet rules",
+        "is_required": true,
+        "name": "ingress_policy",
+        "value": {
+          "allowed_cidr": "10.0.0.0/16",
+          "ports": [
+            443,
+            8443
+          ]
+        }
+      },
+      "inspection_tier": {
+        "data_type": "string",
+        "description": "Firewall filtering depth",
+        "is_required": true,
+        "name": "inspection_tier",
+        "value": "stateful_inspection"
+      }
+    },
+    "target_entity": "BASE_SYNTH_037"
+  },
+  "expected_tool_name": "synth_enforce_security_boundary",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_037_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "boundary_id": "boundary_id",
+        "ingress_policy": "ingress_policy",
+        "inspection_tier": "inspection_tier"
+      },
+      "intent_to_arg_path": {
+        "boundary_id": "boundary_id",
+        "ingress_policy": "ingress_policy",
+        "inspection_tier": "inspection_tier"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_037",
+  "user_prompt": "Please execute the synth_enforce_security_boundary operation for Enforce Security Boundary. Specific parameters required: boundary_id set to 'vpc_secure_prod', ingress_policy set to {'allowed_cidr': '10.0.0.0/16', 'ports': [443, 8443]}, inspection_tier set to 'stateful_inspection'."
+}

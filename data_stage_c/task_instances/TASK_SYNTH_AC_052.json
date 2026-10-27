@@ -1,0 +1,94 @@
+{
+  "available_tools": [
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "account_identifier": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "lock_hours_param": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset_param": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "lock_hours_param",
+          "account_identifier"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "account_identifier": "usr_5501",
+    "lock_hours_param": 72
+  },
+  "expected_latent_intent": {
+    "action": "synth_lock_user_account",
+    "constraints": {
+      "required": [
+        "lock_hours",
+        "user_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "6b63fd4003812d7b9afce8563cfd9d88e06e72ee6c066a1e008f329e00292b31",
+    "intent_id": "INTENT_AC_052",
+    "metadata": {},
+    "slots": {
+      "lock_hours": {
+        "data_type": "integer",
+        "description": "Lock duration in hours",
+        "is_required": true,
+        "name": "lock_hours",
+        "value": 72
+      },
+      "user_id": {
+        "data_type": "string",
+        "description": "Target user identifier",
+        "is_required": true,
+        "name": "user_id",
+        "value": "usr_5501"
+      }
+    },
+    "target_entity": "BASE_SYNTH_012"
+  },
+  "expected_tool_name": "synth_lock_user_account",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_012_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "account_identifier": "user_id",
+        "lock_hours_param": "lock_hours",
+        "require_password_reset_param": "require_password_reset"
+      },
+      "intent_to_arg_path": {
+        "lock_hours": "lock_hours_param",
+        "require_password_reset": "require_password_reset_param",
+        "user_id": "account_identifier"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_052",
+  "user_prompt": "Please execute the synth_lock_user_account operation for Lock User Account. Specific parameters required: lock_hours set to 72, user_id set to 'usr_5501'."
+}

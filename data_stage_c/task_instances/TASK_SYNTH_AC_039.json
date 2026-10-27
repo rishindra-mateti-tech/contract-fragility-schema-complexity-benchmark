@@ -1,0 +1,160 @@
+{
+  "available_tools": [
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_039",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "application_id": "checkout_api",
+    "canary_strategy": {
+      "initial_percentage": 10,
+      "step_duration_minutes": 15
+    },
+    "rollback_thresholds": {
+      "max_error_rate_percent": 1.5
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_manage_deployment_rollout",
+    "constraints": {
+      "required": [
+        "application_id",
+        "canary_strategy",
+        "rollback_thresholds"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "aa46b5a41b9069c0ac57b9f9471f6226e86505f4547058c63c22e0c17cab0e09",
+    "intent_id": "INTENT_AC_039",
+    "metadata": {},
+    "slots": {
+      "application_id": {
+        "data_type": "string",
+        "description": "Deployed microservice ID",
+        "is_required": true,
+        "name": "application_id",
+        "value": "checkout_api"
+      },
+      "canary_strategy": {
+        "data_type": "object",
+        "description": "Progressive traffic shift parameters",
+        "is_required": true,
+        "name": "canary_strategy",
+        "value": {
+          "initial_percentage": 10,
+          "step_duration_minutes": 15
+        }
+      },
+      "rollback_thresholds": {
+        "data_type": "object",
+        "description": "Error circuit-breaker triggers",
+        "is_required": true,
+        "name": "rollback_thresholds",
+        "value": {
+          "max_error_rate_percent": 1.5
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_039"
+  },
+  "expected_tool_name": "synth_manage_deployment_rollout",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_039_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "application_id": "application_id",
+        "canary_strategy": "canary_strategy",
+        "rollback_thresholds": "rollback_thresholds"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "application_id": "application_id",
+        "canary_strategy": "canary_strategy",
+        "rollback_thresholds": "rollback_thresholds"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_039",
+  "user_prompt": "Please execute the synth_manage_deployment_rollout operation for Manage Deployment Rollout. Specific parameters required: application_id set to 'checkout_api', canary_strategy set to {'initial_percentage': 10, 'step_duration_minutes': 15}, rollback_thresholds set to {'max_error_rate_percent': 1.5}."
+}

@@ -1,0 +1,94 @@
+{
+  "available_tools": [
+    {
+      "description": "Tear down an established conference audio bridge.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "bridge_id": {
+                "description": "Conference bridge identifier",
+                "minLength": 4,
+                "type": "string"
+              },
+              "termination_reason": {
+                "description": "Audit rationale for bridge shutdown",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bridge_id"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "tool_name": "synth_terminate_voice_bridge"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_006",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "payload_parameters": {
+      "bridge_id": "bridge_8820"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_terminate_voice_bridge",
+    "constraints": {
+      "required": [
+        "bridge_id"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "db8173a120da2c63152ef5cf42b1a3158f3c12e173e4c12eadf9e6b238a15dfc",
+    "intent_id": "INTENT_AC_086",
+    "metadata": {},
+    "slots": {
+      "bridge_id": {
+        "data_type": "string",
+        "description": "Conference bridge identifier",
+        "is_required": true,
+        "name": "bridge_id",
+        "value": "bridge_8820"
+      }
+    },
+    "target_entity": "BASE_SYNTH_006"
+  },
+  "expected_tool_name": "synth_terminate_voice_bridge",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_006_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "archive_recording": "archive_recording",
+        "payload_parameters.bridge_id": "bridge_id",
+        "payload_parameters.termination_reason": "termination_reason"
+      },
+      "intent_to_arg_path": {
+        "archive_recording": "archive_recording",
+        "bridge_id": "payload_parameters.bridge_id",
+        "termination_reason": "payload_parameters.termination_reason"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_086",
+  "user_prompt": "Please execute the synth_terminate_voice_bridge operation for Terminate Voice Bridge. Specific parameters required: bridge_id set to 'bridge_8820'."
+}

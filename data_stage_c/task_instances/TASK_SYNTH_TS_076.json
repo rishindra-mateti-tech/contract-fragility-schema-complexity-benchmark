@@ -1,0 +1,273 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_021",
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "title": "Assign Role Permissions",
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    },
+    {
+      "contract_id": "BASE_SYNTH_011",
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "title": "Extend Session Lease",
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "contract_id": "BASE_SYNTH_012",
+      "description": "Impose an administrative lock on a compromised user account.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "title": "Lock User Account",
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "contract_id": "BASE_SYNTH_010",
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "title": "Revoke Access Token",
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_036",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "idp_spec": {
+      "entity_id": "google-enterprise",
+      "protocol": "OIDC",
+      "sso_url": "https://accounts.google.com/o/oauth2/auth"
+    },
+    "provider_name": "google_workspace_oidc"
+  },
+  "expected_latent_intent": {
+    "action": "synth_configure_sso_identity_provider",
+    "constraints": {
+      "required": [
+        "idp_spec",
+        "provider_name"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "243b491c60be4e4ae57cfaaecfa387b578002b13f7b8ddc33c5bd753ea19a76d",
+    "intent_id": "INTENT_TS_076",
+    "metadata": {},
+    "slots": {
+      "idp_spec": {
+        "data_type": "object",
+        "description": "Provider connection details",
+        "is_required": true,
+        "name": "idp_spec",
+        "value": {
+          "entity_id": "google-enterprise",
+          "protocol": "OIDC",
+          "sso_url": "https://accounts.google.com/o/oauth2/auth"
+        }
+      },
+      "provider_name": {
+        "data_type": "string",
+        "description": "Federation label",
+        "is_required": true,
+        "name": "provider_name",
+        "value": "google_workspace_oidc"
+      }
+    },
+    "target_entity": "BASE_SYNTH_036"
+  },
+  "expected_tool_name": "synth_configure_sso_identity_provider",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_036_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "enforce_domain_lock": "enforce_domain_lock",
+        "idp_spec": "idp_spec",
+        "provider_name": "provider_name"
+      },
+      "intent_to_arg_path": {
+        "enforce_domain_lock": "enforce_domain_lock",
+        "idp_spec": "idp_spec",
+        "provider_name": "provider_name"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_076",
+  "user_prompt": "We need to perform the following action: Set up SAML/OIDC enterprise identity federation for a workspace.. Configure the action with: idp_spec as {'entity_id': 'google-enterprise', 'protocol': 'OIDC', 'sso_url': 'https://accounts.google.com/o/oauth2/auth'}, provider_name as 'google_workspace_oidc'."
+}

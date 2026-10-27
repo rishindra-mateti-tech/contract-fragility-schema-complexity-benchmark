@@ -1,0 +1,166 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "properties": {
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "sink_connector": {
+                "additionalProperties": false,
+                "description": "Target warehouse loader",
+                "properties": {
+                  "table_mode": {
+                    "enum": [
+                      "append",
+                      "overwrite",
+                      "merge"
+                    ],
+                    "type": "string"
+                  },
+                  "warehouse": {
+                    "enum": [
+                      "snowflake",
+                      "bigquery",
+                      "redshift"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "warehouse",
+                  "table_mode"
+                ],
+                "type": "object"
+              },
+              "source_connector": {
+                "additionalProperties": false,
+                "description": "Origin database extractor",
+                "properties": {
+                  "connector_type": {
+                    "enum": [
+                      "postgres",
+                      "mysql",
+                      "mongodb"
+                    ],
+                    "type": "string"
+                  },
+                  "query_timeout_sec": {
+                    "maximum": 300,
+                    "minimum": 1,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "connector_type"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "sink_connector",
+              "source_connector"
+            ],
+            "type": "object"
+          },
+          "pipeline_name": {
+            "description": "Pipeline execution job name",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "pipeline_name",
+          "payload_parameters"
+        ],
+        "title": "synth_orchestrate_etl_pipeline",
+        "type": "object"
+      },
+      "tool_name": "synth_orchestrate_etl_pipeline"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_038",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "payload_parameters": {
+      "sink_connector": {
+        "table_mode": "merge",
+        "warehouse": "bigquery"
+      },
+      "source_connector": {
+        "connector_type": "mongodb"
+      }
+    },
+    "pipeline_name": "events_streaming_merge"
+  },
+  "expected_latent_intent": {
+    "action": "synth_orchestrate_etl_pipeline",
+    "constraints": {
+      "required": [
+        "pipeline_name",
+        "sink_connector",
+        "source_connector"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3b60df65487217f7674611d9c6ef3a9cd6cff40deaed5b62020da7a55a4f89dd",
+    "intent_id": "INTENT_AC_078",
+    "metadata": {},
+    "slots": {
+      "pipeline_name": {
+        "data_type": "string",
+        "description": "Pipeline execution job name",
+        "is_required": true,
+        "name": "pipeline_name",
+        "value": "events_streaming_merge"
+      },
+      "sink_connector": {
+        "data_type": "object",
+        "description": "Target warehouse loader",
+        "is_required": true,
+        "name": "sink_connector",
+        "value": {
+          "table_mode": "merge",
+          "warehouse": "bigquery"
+        }
+      },
+      "source_connector": {
+        "data_type": "object",
+        "description": "Origin database extractor",
+        "is_required": true,
+        "name": "source_connector",
+        "value": {
+          "connector_type": "mongodb"
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_038"
+  },
+  "expected_tool_name": "synth_orchestrate_etl_pipeline",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_038_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "payload_parameters.sink_connector": "sink_connector",
+        "payload_parameters.source_connector": "source_connector",
+        "pipeline_name": "pipeline_name"
+      },
+      "intent_to_arg_path": {
+        "pipeline_name": "pipeline_name",
+        "sink_connector": "payload_parameters.sink_connector",
+        "source_connector": "payload_parameters.source_connector"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_078",
+  "user_prompt": "Please execute the synth_orchestrate_etl_pipeline operation for Orchestrate ETL Pipeline. Specific parameters required: pipeline_name set to 'events_streaming_merge', sink_connector set to {'table_mode': 'merge', 'warehouse': 'bigquery'}, source_connector set to {'connector_type': 'mongodb'}."
+}

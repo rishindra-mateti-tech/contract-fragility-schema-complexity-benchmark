@@ -1,0 +1,132 @@
+{
+  "available_tools": [
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_033",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "endpoint": {
+      "signing_secret": "whsec_abcdef123456",
+      "timeout_ms": 3000,
+      "url": "https://api.partner.com/hooks"
+    },
+    "event_type": "payment.succeeded",
+    "max_retries": 3
+  },
+  "expected_latent_intent": {
+    "action": "synth_publish_webhook_event",
+    "constraints": {
+      "required": [
+        "endpoint",
+        "event_type"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "699b9f5229bb7f889352967135e875d381c7dd827f520271ea30fe8d155577c5",
+    "intent_id": "INTENT_AC_073",
+    "metadata": {},
+    "slots": {
+      "endpoint": {
+        "data_type": "object",
+        "description": "Destination HTTP configuration",
+        "is_required": true,
+        "name": "endpoint",
+        "value": {
+          "signing_secret": "whsec_abcdef123456",
+          "timeout_ms": 3000,
+          "url": "https://api.partner.com/hooks"
+        }
+      },
+      "event_type": {
+        "data_type": "string",
+        "description": "Domain event classification",
+        "is_required": true,
+        "name": "event_type",
+        "value": "payment.succeeded"
+      },
+      "max_retries": {
+        "data_type": "integer",
+        "description": "Retry limit on 5xx failures",
+        "is_required": false,
+        "name": "max_retries",
+        "value": 3
+      }
+    },
+    "target_entity": "BASE_SYNTH_033"
+  },
+  "expected_tool_name": "synth_publish_webhook_event",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_033_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "endpoint": "endpoint",
+        "event_type": "event_type",
+        "max_retries": "max_retries"
+      },
+      "intent_to_arg_path": {
+        "endpoint": "endpoint",
+        "event_type": "event_type",
+        "max_retries": "max_retries"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_073",
+  "user_prompt": "Please execute the synth_publish_webhook_event operation for Publish Webhook Event. Specific parameters required: endpoint set to {'signing_secret': 'whsec_abcdef123456', 'timeout_ms': 3000, 'url': 'https://api.partner.com/hooks'}, event_type set to 'payment.succeeded', max_retries set to 3."
+}

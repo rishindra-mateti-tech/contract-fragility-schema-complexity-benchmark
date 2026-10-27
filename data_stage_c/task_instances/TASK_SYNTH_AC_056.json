@@ -1,0 +1,121 @@
+{
+  "available_tools": [
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency_param": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients_param": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug_param": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens_param": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "digest_frequency_param",
+          "recipients_param",
+          "template_slug_param"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_016",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "digest_frequency_param": "monthly",
+    "recipients_param": [
+      "cfo@example.com"
+    ],
+    "template_slug_param": "monthly_billing"
+  },
+  "expected_latent_intent": {
+    "action": "synth_enqueue_email_digest",
+    "constraints": {
+      "required": [
+        "digest_frequency",
+        "recipients",
+        "template_slug"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f9c3c6b4bdf7e0c71a8fdf1694f4f4e1ce40839c8f46891925ae09031b99ff5d",
+    "intent_id": "INTENT_AC_056",
+    "metadata": {},
+    "slots": {
+      "digest_frequency": {
+        "data_type": "string",
+        "description": "Aggregation cadence",
+        "is_required": true,
+        "name": "digest_frequency",
+        "value": "monthly"
+      },
+      "recipients": {
+        "data_type": "array[string]",
+        "description": "Recipient email addresses",
+        "is_required": true,
+        "name": "recipients",
+        "value": [
+          "cfo@example.com"
+        ]
+      },
+      "template_slug": {
+        "data_type": "string",
+        "description": "Email layout template ID",
+        "is_required": true,
+        "name": "template_slug",
+        "value": "monthly_billing"
+      }
+    },
+    "target_entity": "BASE_SYNTH_016"
+  },
+  "expected_tool_name": "synth_enqueue_email_digest",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_016_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "digest_frequency_param": "digest_frequency",
+        "recipients_param": "recipients",
+        "template_slug_param": "template_slug",
+        "track_opens_param": "track_opens"
+      },
+      "intent_to_arg_path": {
+        "digest_frequency": "digest_frequency_param",
+        "recipients": "recipients_param",
+        "template_slug": "template_slug_param",
+        "track_opens": "track_opens_param"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_056",
+  "user_prompt": "Please execute the synth_enqueue_email_digest operation for Enqueue Email Digest. Specific parameters required: digest_frequency set to 'monthly', recipients set to ['cfo@example.com'], template_slug set to 'monthly_billing'."
+}

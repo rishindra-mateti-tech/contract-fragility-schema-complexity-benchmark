@@ -1,0 +1,161 @@
+{
+  "available_tools": [
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "format_spec": {
+                "additionalProperties": false,
+                "description": "Export serialization format",
+                "properties": {
+                  "compress": {
+                    "type": "boolean"
+                  },
+                  "format_type": {
+                    "enum": [
+                      "csv",
+                      "parquet",
+                      "jsonl"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "format_type"
+                ],
+                "type": "object"
+              },
+              "query_window": {
+                "additionalProperties": false,
+                "description": "Temporal boundaries",
+                "properties": {
+                  "end_epoch": {
+                    "minimum": 1600000000,
+                    "type": "integer"
+                  },
+                  "interval_seconds": {
+                    "maximum": 3600,
+                    "minimum": 1,
+                    "type": "integer"
+                  },
+                  "start_epoch": {
+                    "minimum": 1600000000,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "start_epoch",
+                  "end_epoch"
+                ],
+                "type": "object"
+              }
+            },
+            "required": [
+              "format_spec",
+              "query_window"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "payload_parameters"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_034",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "dataset_name": "error_rates",
+    "payload_parameters": {
+      "format_spec": {
+        "format_type": "csv"
+      },
+      "query_window": {
+        "end_epoch": 1761510000,
+        "start_epoch": 1761500000
+      }
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_export_timeseries_dataset",
+    "constraints": {
+      "required": [
+        "dataset_name",
+        "format_spec",
+        "query_window"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "8513832bcd9aa4fcb4f775f9ecaaee3dda44e3ac06c861efb811cfb5cd0a6c34",
+    "intent_id": "INTENT_AC_074",
+    "metadata": {},
+    "slots": {
+      "dataset_name": {
+        "data_type": "string",
+        "description": "Target metrics catalog",
+        "is_required": true,
+        "name": "dataset_name",
+        "value": "error_rates"
+      },
+      "format_spec": {
+        "data_type": "object",
+        "description": "Export serialization format",
+        "is_required": true,
+        "name": "format_spec",
+        "value": {
+          "format_type": "csv"
+        }
+      },
+      "query_window": {
+        "data_type": "object",
+        "description": "Temporal boundaries",
+        "is_required": true,
+        "name": "query_window",
+        "value": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_034"
+  },
+  "expected_tool_name": "synth_export_timeseries_dataset",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_034_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "dataset_name": "dataset_name",
+        "payload_parameters.format_spec": "format_spec",
+        "payload_parameters.query_window": "query_window"
+      },
+      "intent_to_arg_path": {
+        "dataset_name": "dataset_name",
+        "format_spec": "payload_parameters.format_spec",
+        "query_window": "payload_parameters.query_window"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_074",
+  "user_prompt": "Please execute the synth_export_timeseries_dataset operation for Export Timeseries Dataset. Specific parameters required: dataset_name set to 'error_rates', format_spec set to {'format_type': 'csv'}, query_window set to {'end_epoch': 1761510000, 'start_epoch': 1761500000}."
+}

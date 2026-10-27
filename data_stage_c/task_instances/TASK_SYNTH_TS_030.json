@@ -1,0 +1,300 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_013",
+      "description": "Submit a collection of document IDs for search indexing.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "title": "Batch Index Records",
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "contract_id": "BASE_SYNTH_001",
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "title": "Create Key-Value Pair",
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "contract_id": "BASE_SYNTH_002",
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "title": "Delete Cache Entry",
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "properties": {
+          "migration_id": {
+            "description": "Migration operation tracking ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "source": {
+            "additionalProperties": false,
+            "description": "Source storage specification",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "slice_id": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "slice_id"
+            ],
+            "type": "object"
+          },
+          "target": {
+            "additionalProperties": false,
+            "description": "Target storage destination",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "datacenter": {
+                "minLength": 2,
+                "type": "string"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "datacenter"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "migration_id",
+          "source",
+          "target"
+        ],
+        "title": "synth_execute_partition_migration",
+        "type": "object"
+      },
+      "tool_name": "synth_execute_partition_migration"
+    },
+    {
+      "contract_id": "BASE_SYNTH_003",
+      "description": "Remove all records from a specific table slice or partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "title": "Truncate Table Slice",
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_030",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "migration_id": "mig_8810",
+    "source": {
+      "cluster_name": "staging_a",
+      "slice_id": 0
+    },
+    "target": {
+      "cluster_name": "staging_b",
+      "datacenter": "iad-2"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_execute_partition_migration",
+    "constraints": {
+      "required": [
+        "migration_id",
+        "source",
+        "target"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "0cdb03468effb911615da543e5b2fea33f5a366b8a6817934de446bbe16eaef6",
+    "intent_id": "INTENT_TS_030",
+    "metadata": {},
+    "slots": {
+      "migration_id": {
+        "data_type": "string",
+        "description": "Migration operation tracking ID",
+        "is_required": true,
+        "name": "migration_id",
+        "value": "mig_8810"
+      },
+      "source": {
+        "data_type": "object",
+        "description": "Source storage specification",
+        "is_required": true,
+        "name": "source",
+        "value": {
+          "cluster_name": "staging_a",
+          "slice_id": 0
+        }
+      },
+      "target": {
+        "data_type": "object",
+        "description": "Target storage destination",
+        "is_required": true,
+        "name": "target",
+        "value": {
+          "cluster_name": "staging_b",
+          "datacenter": "iad-2"
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_030"
+  },
+  "expected_tool_name": "synth_execute_partition_migration",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_030_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "migration_id": "migration_id",
+        "source": "source",
+        "target": "target"
+      },
+      "intent_to_arg_path": {
+        "migration_id": "migration_id",
+        "source": "source",
+        "target": "target"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_030",
+  "user_prompt": "We need to perform the following action: Migrate partition slices from source cluster to target destination cluster.. Configure the action with: migration_id as 'mig_8810', source as {'cluster_name': 'staging_a', 'slice_id': 0}, target as {'cluster_name': 'staging_b', 'datacenter': 'iad-2'}."
+}

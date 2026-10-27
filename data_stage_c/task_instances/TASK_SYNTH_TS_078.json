@@ -1,0 +1,342 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_025",
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "title": "Cancel Workflow Task",
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "properties": {
+          "pipeline_name": {
+            "description": "Pipeline execution job name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "sink_connector": {
+            "additionalProperties": false,
+            "description": "Target warehouse loader",
+            "properties": {
+              "table_mode": {
+                "enum": [
+                  "append",
+                  "overwrite",
+                  "merge"
+                ],
+                "type": "string"
+              },
+              "warehouse": {
+                "enum": [
+                  "snowflake",
+                  "bigquery",
+                  "redshift"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "warehouse",
+              "table_mode"
+            ],
+            "type": "object"
+          },
+          "source_connector": {
+            "additionalProperties": false,
+            "description": "Origin database extractor",
+            "properties": {
+              "connector_type": {
+                "enum": [
+                  "postgres",
+                  "mysql",
+                  "mongodb"
+                ],
+                "type": "string"
+              },
+              "query_timeout_sec": {
+                "maximum": 300,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "connector_type"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "pipeline_name",
+          "source_connector",
+          "sink_connector"
+        ],
+        "title": "synth_orchestrate_etl_pipeline",
+        "type": "object"
+      },
+      "tool_name": "synth_orchestrate_etl_pipeline"
+    },
+    {
+      "contract_id": "BASE_SYNTH_026",
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "title": "Resume Paused Execution",
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "contract_id": "BASE_SYNTH_027",
+      "description": "Register a recurring automated task schedule with target queue.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "title": "Schedule Cron Job",
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "contract_id": "BASE_SYNTH_024",
+      "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+        "properties": {
+          "artifact_paths": {
+            "description": "Input artifact files",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "pipeline_id": {
+            "description": "Workflow pipeline definition ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "stage_name": {
+            "description": "Target execution stage",
+            "enum": [
+              "lint",
+              "unit_test",
+              "integration_test",
+              "security_scan",
+              "package"
+            ],
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "description": "Maximum stage runtime",
+            "maximum": 3600,
+            "minimum": 10,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pipeline_id",
+          "stage_name"
+        ],
+        "title": "synth_trigger_pipeline_stage",
+        "type": "object"
+      },
+      "title": "Trigger Pipeline Stage",
+      "tool_name": "synth_trigger_pipeline_stage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_038",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "pipeline_name": "events_streaming_merge",
+    "sink_connector": {
+      "table_mode": "merge",
+      "warehouse": "bigquery"
+    },
+    "source_connector": {
+      "connector_type": "mongodb"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_orchestrate_etl_pipeline",
+    "constraints": {
+      "required": [
+        "pipeline_name",
+        "sink_connector",
+        "source_connector"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3b60df65487217f7674611d9c6ef3a9cd6cff40deaed5b62020da7a55a4f89dd",
+    "intent_id": "INTENT_TS_078",
+    "metadata": {},
+    "slots": {
+      "pipeline_name": {
+        "data_type": "string",
+        "description": "Pipeline execution job name",
+        "is_required": true,
+        "name": "pipeline_name",
+        "value": "events_streaming_merge"
+      },
+      "sink_connector": {
+        "data_type": "object",
+        "description": "Target warehouse loader",
+        "is_required": true,
+        "name": "sink_connector",
+        "value": {
+          "table_mode": "merge",
+          "warehouse": "bigquery"
+        }
+      },
+      "source_connector": {
+        "data_type": "object",
+        "description": "Origin database extractor",
+        "is_required": true,
+        "name": "source_connector",
+        "value": {
+          "connector_type": "mongodb"
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_038"
+  },
+  "expected_tool_name": "synth_orchestrate_etl_pipeline",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_038_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "pipeline_name": "pipeline_name",
+        "sink_connector": "sink_connector",
+        "source_connector": "source_connector"
+      },
+      "intent_to_arg_path": {
+        "pipeline_name": "pipeline_name",
+        "sink_connector": "sink_connector",
+        "source_connector": "source_connector"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_078",
+  "user_prompt": "We need to perform the following action: Execute end-to-end data extraction, transformation, and load workflow.. Configure the action with: pipeline_name as 'events_streaming_merge', sink_connector as {'table_mode': 'merge', 'warehouse': 'bigquery'}, source_connector as {'connector_type': 'mongodb'}."
+}

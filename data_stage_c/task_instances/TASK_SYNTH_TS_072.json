@@ -1,0 +1,274 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_015",
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "title": "Broadcast Alert Notification",
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "contract_id": "BASE_SYNTH_004",
+      "description": "Send an SMS text message to a designated phone destination.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "title": "Dispatch SMS Message",
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    },
+    {
+      "contract_id": "BASE_SYNTH_006",
+      "description": "Tear down an established conference audio bridge.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "title": "Terminate Voice Bridge",
+      "tool_name": "synth_terminate_voice_bridge"
+    },
+    {
+      "contract_id": "BASE_SYNTH_005",
+      "description": "Modify the signaling status of an active voice call session.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "title": "Update Call Session Status",
+      "tool_name": "synth_update_call_status"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_032",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "conversation_id": "conv_1102",
+    "routing_criteria": {
+      "language": "es"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_route_omnichannel_conversation",
+    "constraints": {
+      "required": [
+        "conversation_id",
+        "routing_criteria"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f12be2ffdde9f63c3f37fd702d2a17093f202d150571e835046a783d6b69ec23",
+    "intent_id": "INTENT_TS_072",
+    "metadata": {},
+    "slots": {
+      "conversation_id": {
+        "data_type": "string",
+        "description": "Customer inquiry ticket ID",
+        "is_required": true,
+        "name": "conversation_id",
+        "value": "conv_1102"
+      },
+      "routing_criteria": {
+        "data_type": "object",
+        "description": "Agent matching criteria",
+        "is_required": true,
+        "name": "routing_criteria",
+        "value": {
+          "language": "es"
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_032"
+  },
+  "expected_tool_name": "synth_route_omnichannel_conversation",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_032_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "conversation_id": "conversation_id",
+        "fallback_queue": "fallback_queue",
+        "routing_criteria": "routing_criteria"
+      },
+      "intent_to_arg_path": {
+        "conversation_id": "conversation_id",
+        "fallback_queue": "fallback_queue",
+        "routing_criteria": "routing_criteria"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_072",
+  "user_prompt": "We need to perform the following action: Dispatch incoming support ticket across routing and priority constraints.. Configure the action with: conversation_id as 'conv_1102', routing_criteria as {'language': 'es'}."
+}

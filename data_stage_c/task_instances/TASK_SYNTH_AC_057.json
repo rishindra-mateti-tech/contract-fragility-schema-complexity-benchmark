@@ -1,0 +1,130 @@
+{
+  "available_tools": [
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_017",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "device_id": "dev_9918274619",
+    "platform": "ios",
+    "subscribed_topics": [
+      "news",
+      "alerts"
+    ],
+    "token_ttl_days": 90
+  },
+  "expected_latent_intent": {
+    "action": "synth_register_push_token",
+    "constraints": {
+      "required": [
+        "device_id",
+        "platform"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "172850baa17a9f763c0bdd743bfb60997a91554bbf294a31729656e7821c95ab",
+    "intent_id": "INTENT_AC_057",
+    "metadata": {},
+    "slots": {
+      "device_id": {
+        "data_type": "string",
+        "description": "Hardware device UUID",
+        "is_required": true,
+        "name": "device_id",
+        "value": "dev_9918274619"
+      },
+      "platform": {
+        "data_type": "string",
+        "description": "Operating system platform",
+        "is_required": true,
+        "name": "platform",
+        "value": "ios"
+      },
+      "subscribed_topics": {
+        "data_type": "array[string]",
+        "description": "Notification interest topics",
+        "is_required": false,
+        "name": "subscribed_topics",
+        "value": [
+          "news",
+          "alerts"
+        ]
+      },
+      "token_ttl_days": {
+        "data_type": "integer",
+        "description": "Token validity expiration",
+        "is_required": false,
+        "name": "token_ttl_days",
+        "value": 90
+      }
+    },
+    "target_entity": "BASE_SYNTH_017"
+  },
+  "expected_tool_name": "synth_register_push_token",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_017_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "device_id": "device_id",
+        "platform": "platform",
+        "subscribed_topics": "subscribed_topics",
+        "token_ttl_days": "token_ttl_days"
+      },
+      "intent_to_arg_path": {
+        "device_id": "device_id",
+        "platform": "platform",
+        "subscribed_topics": "subscribed_topics",
+        "token_ttl_days": "token_ttl_days"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_057",
+  "user_prompt": "Please execute the synth_register_push_token operation for Register Push Notification Token. Specific parameters required: device_id set to 'dev_9918274619', platform set to 'ios', subscribed_topics set to ['news', 'alerts'], token_ttl_days set to 90."
+}

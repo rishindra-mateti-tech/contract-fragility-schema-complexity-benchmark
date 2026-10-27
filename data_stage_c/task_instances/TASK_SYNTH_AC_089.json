@@ -1,0 +1,103 @@
+{
+  "available_tools": [
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_009",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "grace_period_minutes": 60,
+    "quota_bucket": "daily_api_calls",
+    "tenant_id": "ten_9941"
+  },
+  "expected_latent_intent": {
+    "action": "synth_reset_quota_usage",
+    "constraints": {
+      "required": [
+        "quota_bucket",
+        "tenant_id"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "68e5a82871525b226bde41b9a0038a2189bcec31526e0e73786df985f90fcbf7",
+    "intent_id": "INTENT_AC_089",
+    "metadata": {},
+    "slots": {
+      "grace_period_minutes": {
+        "data_type": "integer",
+        "description": "Exemption duration",
+        "is_required": false,
+        "name": "grace_period_minutes",
+        "value": 60
+      },
+      "quota_bucket": {
+        "data_type": "string",
+        "description": "Rate limit bucket key",
+        "is_required": true,
+        "name": "quota_bucket",
+        "value": "daily_api_calls"
+      },
+      "tenant_id": {
+        "data_type": "string",
+        "description": "Account tenant identifier",
+        "is_required": true,
+        "name": "tenant_id",
+        "value": "ten_9941"
+      }
+    },
+    "target_entity": "BASE_SYNTH_009"
+  },
+  "expected_tool_name": "synth_reset_quota_usage",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_009_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "grace_period_minutes": "grace_period_minutes",
+        "quota_bucket": "quota_bucket",
+        "tenant_id": "tenant_id"
+      },
+      "intent_to_arg_path": {
+        "grace_period_minutes": "grace_period_minutes",
+        "quota_bucket": "quota_bucket",
+        "tenant_id": "tenant_id"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_089",
+  "user_prompt": "Please execute the synth_reset_quota_usage operation for Reset Quota Usage. Specific parameters required: grace_period_minutes set to 60, quota_bucket set to 'daily_api_calls', tenant_id set to 'ten_9941'."
+}

@@ -1,0 +1,123 @@
+{
+  "available_tools": [
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock_param": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec_param": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name_param": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "idp_spec_param",
+          "provider_name_param"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_036",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "idp_spec_param": {
+      "entity_id": "google-enterprise",
+      "protocol": "OIDC",
+      "sso_url": "https://accounts.google.com/o/oauth2/auth"
+    },
+    "provider_name_param": "google_workspace_oidc"
+  },
+  "expected_latent_intent": {
+    "action": "synth_configure_sso_identity_provider",
+    "constraints": {
+      "required": [
+        "idp_spec",
+        "provider_name"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "243b491c60be4e4ae57cfaaecfa387b578002b13f7b8ddc33c5bd753ea19a76d",
+    "intent_id": "INTENT_AC_076",
+    "metadata": {},
+    "slots": {
+      "idp_spec": {
+        "data_type": "object",
+        "description": "Provider connection details",
+        "is_required": true,
+        "name": "idp_spec",
+        "value": {
+          "entity_id": "google-enterprise",
+          "protocol": "OIDC",
+          "sso_url": "https://accounts.google.com/o/oauth2/auth"
+        }
+      },
+      "provider_name": {
+        "data_type": "string",
+        "description": "Federation label",
+        "is_required": true,
+        "name": "provider_name",
+        "value": "google_workspace_oidc"
+      }
+    },
+    "target_entity": "BASE_SYNTH_036"
+  },
+  "expected_tool_name": "synth_configure_sso_identity_provider",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_036_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "enforce_domain_lock_param": "enforce_domain_lock",
+        "idp_spec_param": "idp_spec",
+        "provider_name_param": "provider_name"
+      },
+      "intent_to_arg_path": {
+        "enforce_domain_lock": "enforce_domain_lock_param",
+        "idp_spec": "idp_spec_param",
+        "provider_name": "provider_name_param"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_076",
+  "user_prompt": "Please execute the synth_configure_sso_identity_provider operation for Configure SSO Identity Provider. Specific parameters required: idp_spec set to {'entity_id': 'google-enterprise', 'protocol': 'OIDC', 'sso_url': 'https://accounts.google.com/o/oauth2/auth'}, provider_name set to 'google_workspace_oidc'."
+}

@@ -1,0 +1,303 @@
+{
+  "available_tools": [
+    {
+      "contract_id": "BASE_SYNTH_013",
+      "description": "Submit a collection of document IDs for search indexing.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "title": "Batch Index Records",
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "contract_id": "BASE_SYNTH_001",
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "title": "Create Key-Value Pair",
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "contract_id": "BASE_SYNTH_002",
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "title": "Delete Cache Entry",
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    },
+    {
+      "contract_id": "BASE_SYNTH_003",
+      "description": "Remove all records from a specific table slice or partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "title": "Truncate Table Slice",
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_031",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "retention": {
+      "days": 30,
+      "lock_deletion": true
+    },
+    "snapshot_metadata": {
+      "creator": "sre_automation",
+      "environment": "prod"
+    },
+    "volume_id": "vol_root_prod_01"
+  },
+  "expected_latent_intent": {
+    "action": "synth_register_storage_snapshot",
+    "constraints": {
+      "required": [
+        "retention",
+        "snapshot_metadata",
+        "volume_id"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "bce6dc11415495c434c0936d86acc2799e4a0eef14f53f7245f3f51220aee05e",
+    "intent_id": "INTENT_TS_031",
+    "metadata": {},
+    "slots": {
+      "retention": {
+        "data_type": "object",
+        "description": "Snapshot expiration parameters",
+        "is_required": true,
+        "name": "retention",
+        "value": {
+          "days": 30,
+          "lock_deletion": true
+        }
+      },
+      "snapshot_metadata": {
+        "data_type": "object",
+        "description": "Descriptive snapshot labels",
+        "is_required": true,
+        "name": "snapshot_metadata",
+        "value": {
+          "creator": "sre_automation",
+          "environment": "prod"
+        }
+      },
+      "volume_id": {
+        "data_type": "string",
+        "description": "Target block storage volume",
+        "is_required": true,
+        "name": "volume_id",
+        "value": "vol_root_prod_01"
+      }
+    },
+    "target_entity": "BASE_SYNTH_031"
+  },
+  "expected_tool_name": "synth_register_storage_snapshot",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_031_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "retention": "retention",
+        "snapshot_metadata": "snapshot_metadata",
+        "volume_id": "volume_id"
+      },
+      "intent_to_arg_path": {
+        "retention": "retention",
+        "snapshot_metadata": "snapshot_metadata",
+        "volume_id": "volume_id"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_031",
+  "user_prompt": "We need to perform the following action: Create a point-in-time volume snapshot with retention and tag metadata.. Configure the action with: retention as {'days': 30, 'lock_deletion': True}, snapshot_metadata as {'creator': 'sre_automation', 'environment': 'prod'}, volume_id as 'vol_root_prod_01'."
+}

@@ -1,0 +1,121 @@
+{
+  "available_tools": [
+    {
+      "description": "Remove all records from a specific table slice or partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_003",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "force_truncate": true,
+    "slice_index": 3,
+    "table_name": "audit_logs_2026"
+  },
+  "expected_latent_intent": {
+    "action": "synth_truncate_table_slice",
+    "constraints": {
+      "required": [
+        "slice_index",
+        "table_name"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "7a1812342ac9a840dea923dda36ff56101879b0a1938816194a7f8066c4b77d3",
+    "intent_id": "INTENT_AC_043",
+    "metadata": {},
+    "slots": {
+      "force_truncate": {
+        "data_type": "boolean",
+        "description": "Bypass active read-lock confirmation",
+        "is_required": false,
+        "name": "force_truncate",
+        "value": true
+      },
+      "slice_index": {
+        "data_type": "integer",
+        "description": "Zero-indexed partition slice",
+        "is_required": true,
+        "name": "slice_index",
+        "value": 3
+      },
+      "table_name": {
+        "data_type": "string",
+        "description": "Target relational table name",
+        "is_required": true,
+        "name": "table_name",
+        "value": "audit_logs_2026"
+      }
+    },
+    "target_entity": "BASE_SYNTH_003"
+  },
+  "expected_tool_name": "synth_truncate_table_slice",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_003_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_043",
+  "user_prompt": "Please execute the synth_truncate_table_slice operation for Truncate Table Slice. Specific parameters required: force_truncate set to True, slice_index set to 3, table_name set to 'audit_logs_2026'."
+}

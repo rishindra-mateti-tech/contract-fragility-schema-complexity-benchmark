@@ -1,0 +1,281 @@
+{
+  "available_tools": [
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "contract_id": "BASE_SYNTH_011",
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "title": "Extend Session Lease",
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "contract_id": "BASE_SYNTH_012",
+      "description": "Impose an administrative lock on a compromised user account.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "title": "Lock User Account",
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "contract_id": "BASE_SYNTH_022",
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "title": "Provision API Credential",
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "contract_id": "BASE_SYNTH_010",
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "title": "Revoke Access Token",
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_021",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "enforce_mfa": true,
+    "permission_scopes": [
+      "read:logs",
+      "restart:service"
+    ],
+    "principal_id": "usr_9918",
+    "role_tier": "operator"
+  },
+  "expected_latent_intent": {
+    "action": "synth_assign_role_permissions",
+    "constraints": {
+      "required": [
+        "permission_scopes",
+        "principal_id",
+        "role_tier"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "fcea023585c2a48ef6e87110f8ab12f702b5b7bd3a95e49e2c910bd7ed76f062",
+    "intent_id": "INTENT_TS_061",
+    "metadata": {},
+    "slots": {
+      "enforce_mfa": {
+        "data_type": "boolean",
+        "description": "Require multi-factor authentication for role usage",
+        "is_required": false,
+        "name": "enforce_mfa",
+        "value": true
+      },
+      "permission_scopes": {
+        "data_type": "array[string]",
+        "description": "Granted scope strings",
+        "is_required": true,
+        "name": "permission_scopes",
+        "value": [
+          "read:logs",
+          "restart:service"
+        ]
+      },
+      "principal_id": {
+        "data_type": "string",
+        "description": "User or service principal identifier",
+        "is_required": true,
+        "name": "principal_id",
+        "value": "usr_9918"
+      },
+      "role_tier": {
+        "data_type": "string",
+        "description": "Predefined RBAC role tier",
+        "is_required": true,
+        "name": "role_tier",
+        "value": "operator"
+      }
+    },
+    "target_entity": "BASE_SYNTH_021"
+  },
+  "expected_tool_name": "synth_assign_role_permissions",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_021_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "enforce_mfa": "enforce_mfa",
+        "permission_scopes": "permission_scopes",
+        "principal_id": "principal_id",
+        "role_tier": "role_tier"
+      },
+      "intent_to_arg_path": {
+        "enforce_mfa": "enforce_mfa",
+        "permission_scopes": "permission_scopes",
+        "principal_id": "principal_id",
+        "role_tier": "role_tier"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_061",
+  "user_prompt": "We need to perform the following action: Grant a predefined security role and scope set to a user principal.. Configure the action with: enforce_mfa as True, permission_scopes as ['read:logs', 'restart:service'], principal_id as 'usr_9918', role_tier as 'operator'."
+}

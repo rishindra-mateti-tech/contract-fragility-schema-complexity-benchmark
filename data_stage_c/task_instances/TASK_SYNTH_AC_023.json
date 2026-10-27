@@ -1,0 +1,150 @@
+{
+  "available_tools": [
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_023",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "affected_services": [
+      "auth-srv",
+      "api-gateway"
+    ],
+    "algorithm": "AES-256-GCM",
+    "grace_period_hours": 24,
+    "secret_slug": "jwt_signing_key"
+  },
+  "expected_latent_intent": {
+    "action": "synth_rotate_secret_key",
+    "constraints": {
+      "required": [
+        "algorithm",
+        "secret_slug"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "b7e2a531bd8a50c608bfb63c55e8435bf10f59c9289f18e7f2187ac5d99712f3",
+    "intent_id": "INTENT_AC_023",
+    "metadata": {},
+    "slots": {
+      "affected_services": {
+        "data_type": "array[string]",
+        "description": "Downstream services requiring key reload",
+        "is_required": false,
+        "name": "affected_services",
+        "value": [
+          "auth-srv",
+          "api-gateway"
+        ]
+      },
+      "algorithm": {
+        "data_type": "string",
+        "description": "Cryptographic cipher",
+        "is_required": true,
+        "name": "algorithm",
+        "value": "AES-256-GCM"
+      },
+      "grace_period_hours": {
+        "data_type": "integer",
+        "description": "Overlap period where old key remains valid",
+        "is_required": false,
+        "name": "grace_period_hours",
+        "value": 24
+      },
+      "secret_slug": {
+        "data_type": "string",
+        "description": "Secret vault key identifier",
+        "is_required": true,
+        "name": "secret_slug",
+        "value": "jwt_signing_key"
+      }
+    },
+    "target_entity": "BASE_SYNTH_023"
+  },
+  "expected_tool_name": "synth_rotate_secret_key",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_023_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "affected_services": "affected_services",
+        "algorithm": "algorithm",
+        "grace_period_hours": "grace_period_hours",
+        "secret_slug": "secret_slug"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "affected_services": "affected_services",
+        "algorithm": "algorithm",
+        "grace_period_hours": "grace_period_hours",
+        "secret_slug": "secret_slug"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_023",
+  "user_prompt": "Please execute the synth_rotate_secret_key operation for Rotate Secret Key. Specific parameters required: affected_services set to ['auth-srv', 'api-gateway'], algorithm set to 'AES-256-GCM', grace_period_hours set to 24, secret_slug set to 'jwt_signing_key'."
+}

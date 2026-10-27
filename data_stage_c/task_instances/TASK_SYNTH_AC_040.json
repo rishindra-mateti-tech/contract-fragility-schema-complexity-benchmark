@@ -1,0 +1,170 @@
+{
+  "available_tools": [
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain_param": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config_param": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes_param": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain_param",
+          "consensus_config_param",
+          "member_nodes_param"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_040",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "cluster_domain_param": "raft_cluster_staging",
+    "consensus_config_param": {
+      "election_timeout_ms": 500,
+      "quorum_size": 3
+    },
+    "member_nodes_param": [
+      {
+        "address": "127.0.0.1:9001",
+        "node_id": "stage_1"
+      },
+      {
+        "address": "127.0.0.1:9002",
+        "node_id": "stage_2"
+      },
+      {
+        "address": "127.0.0.1:9003",
+        "node_id": "stage_3"
+      }
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_synchronize_distributed_cluster",
+    "constraints": {
+      "required": [
+        "cluster_domain",
+        "consensus_config",
+        "member_nodes"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "2389ef4c81c9095aff86a9302269f5f541b05cafed861121266a87c9fa349a35",
+    "intent_id": "INTENT_AC_040",
+    "metadata": {},
+    "slots": {
+      "cluster_domain": {
+        "data_type": "string",
+        "description": "Consensus cluster domain",
+        "is_required": true,
+        "name": "cluster_domain",
+        "value": "raft_cluster_staging"
+      },
+      "consensus_config": {
+        "data_type": "object",
+        "description": "Raft/Paxos consensus parameters",
+        "is_required": true,
+        "name": "consensus_config",
+        "value": {
+          "election_timeout_ms": 500,
+          "quorum_size": 3
+        }
+      },
+      "member_nodes": {
+        "data_type": "array[object]",
+        "description": "Active peer node connection endpoints",
+        "is_required": true,
+        "name": "member_nodes",
+        "value": [
+          {
+            "address": "127.0.0.1:9001",
+            "node_id": "stage_1"
+          },
+          {
+            "address": "127.0.0.1:9002",
+            "node_id": "stage_2"
+          },
+          {
+            "address": "127.0.0.1:9003",
+            "node_id": "stage_3"
+          }
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_040"
+  },
+  "expected_tool_name": "synth_synchronize_distributed_cluster",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_040_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "cluster_domain_param": "cluster_domain",
+        "consensus_config_param": "consensus_config",
+        "member_nodes_param": "member_nodes"
+      },
+      "intent_to_arg_path": {
+        "cluster_domain": "cluster_domain_param",
+        "consensus_config": "consensus_config_param",
+        "member_nodes": "member_nodes_param"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_AC_040",
+  "user_prompt": "Please execute the synth_synchronize_distributed_cluster operation for Synchronize Distributed Cluster. Specific parameters required: cluster_domain set to 'raft_cluster_staging', consensus_config set to {'election_timeout_ms': 500, 'quorum_size': 3}, member_nodes set to [{'address': '127.0.0.1:9001', 'node_id': 'stage_1'}, {'address': '127.0.0.1:9002', 'node_id': 'stage_2'}, {'address': '127.0.0.1:9003', 'node_id': 'stage_3'}]."
+}

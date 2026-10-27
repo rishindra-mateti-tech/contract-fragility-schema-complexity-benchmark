@@ -1,0 +1,296 @@
+{
+  "available_tools": [
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    },
+    {
+      "contract_id": "BASE_SYNTH_007",
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "title": "Increment Counter Metric",
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "contract_id": "BASE_SYNTH_018",
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "title": "Query Metric Aggregate",
+      "tool_name": "synth_query_metric_aggregate"
+    },
+    {
+      "contract_id": "BASE_SYNTH_008",
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "title": "Record Heartbeat Timestamp",
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "contract_id": "BASE_SYNTH_009",
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "title": "Reset Quota Usage",
+      "tool_name": "synth_reset_quota_usage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_035",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "compliance_rules": {
+      "framework": "PCI_DSS",
+      "strict_mode": true
+    },
+    "target_system": "payment_processing_cluster",
+    "thresholds": {
+      "min_passing_score": 95
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_generate_audit_scorecard",
+    "constraints": {
+      "required": [
+        "compliance_rules",
+        "target_system",
+        "thresholds"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "fe2c4947894982bff4c3f453d846218db7b4231ebfe3e85a38fb50cbc6ef7dc4",
+    "intent_id": "INTENT_TS_035",
+    "metadata": {},
+    "slots": {
+      "compliance_rules": {
+        "data_type": "object",
+        "description": "Evaluated framework rules",
+        "is_required": true,
+        "name": "compliance_rules",
+        "value": {
+          "framework": "PCI_DSS",
+          "strict_mode": true
+        }
+      },
+      "target_system": {
+        "data_type": "string",
+        "description": "Evaluated subsystem",
+        "is_required": true,
+        "name": "target_system",
+        "value": "payment_processing_cluster"
+      },
+      "thresholds": {
+        "data_type": "object",
+        "description": "Passing score limits",
+        "is_required": true,
+        "name": "thresholds",
+        "value": {
+          "min_passing_score": 95
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_035"
+  },
+  "expected_tool_name": "synth_generate_audit_scorecard",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_035_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "compliance_rules": "compliance_rules",
+        "target_system": "target_system",
+        "thresholds": "thresholds"
+      },
+      "intent_to_arg_path": {
+        "compliance_rules": "compliance_rules",
+        "target_system": "target_system",
+        "thresholds": "thresholds"
+      }
+    }
+  },
+  "provenance_statement": "SYNTHETIC_STAGE_C_GOLD_TASK_INSTANCE",
+  "task_id": "TASK_SYNTH_TS_035",
+  "user_prompt": "We need to perform the following action: Compute infrastructure compliance scorecard against defined thresholds.. Configure the action with: compliance_rules as {'framework': 'PCI_DSS', 'strict_mode': True}, target_system as 'payment_processing_cluster', thresholds as {'min_passing_score': 95}."
+}
