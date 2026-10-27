@@ -10,7 +10,7 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `323` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `324` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
 | **Total Pattern Matches** | `236` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `14` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
