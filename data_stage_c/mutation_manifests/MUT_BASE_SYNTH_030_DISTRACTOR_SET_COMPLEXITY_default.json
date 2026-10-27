@@ -1,0 +1,310 @@
+{
+  "base_contract_id": "BASE_SYNTH_030",
+  "complexity_delta": {
+    "distractor_count": 4
+  },
+  "distractor_tools": [
+    {
+      "contract_id": "BASE_SYNTH_001",
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "title": "Create Key-Value Pair",
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "contract_id": "BASE_SYNTH_002",
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "title": "Delete Cache Entry",
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "contract_id": "BASE_SYNTH_003",
+      "description": "Remove all records from a specific table slice or partition.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "title": "Truncate Table Slice",
+      "tool_name": "synth_truncate_table_slice"
+    },
+    {
+      "contract_id": "BASE_SYNTH_013",
+      "description": "Submit a collection of document IDs for search indexing.",
+      "domain": "data_management",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "title": "Batch Index Records",
+      "tool_name": "synth_batch_index_records"
+    }
+  ],
+  "family": "DISTRACTOR_SET_COMPLEXITY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "migration_id": "migration_id",
+      "source": "source",
+      "target": "target"
+    },
+    "intent_to_arg_path": {
+      "migration_id": "migration_id",
+      "source": "source",
+      "target": "target"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_030",
+    "counterexamples": [
+      {
+        "migration_id": "mig_missing_target",
+        "source": {
+          "cluster_name": "c1",
+          "slice_id": 0
+        }
+      },
+      {
+        "migration_id": "mig_bad_target",
+        "source": {
+          "cluster_name": "c1",
+          "slice_id": 0
+        },
+        "target": {
+          "cluster_name": "c2"
+        }
+      }
+    ],
+    "description": "Migrate partition slices from source cluster to target destination cluster.",
+    "domain": "data_management",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "migration_id": "mig_9941",
+        "source": {
+          "cluster_name": "cluster_us_east",
+          "slice_id": 4
+        },
+        "target": {
+          "cluster_name": "cluster_eu_central",
+          "datacenter": "fra-1"
+        }
+      },
+      {
+        "migration_id": "mig_8810",
+        "source": {
+          "cluster_name": "staging_a",
+          "slice_id": 0
+        },
+        "target": {
+          "cluster_name": "staging_b",
+          "datacenter": "iad-2"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "migration_id": "string",
+      "source": "object",
+      "target": "object"
+    },
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "mutation_id": "MUT_BASE_SYNTH_030_DISTRACTOR_SET_COMPLEXITY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "properties": {
+        "migration_id": {
+          "description": "Migration operation tracking ID",
+          "minLength": 3,
+          "type": "string"
+        },
+        "source": {
+          "additionalProperties": false,
+          "description": "Source storage specification",
+          "properties": {
+            "cluster_name": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "slice_id": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "cluster_name",
+            "slice_id"
+          ],
+          "type": "object"
+        },
+        "target": {
+          "additionalProperties": false,
+          "description": "Target storage destination",
+          "properties": {
+            "cluster_name": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "datacenter": {
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          "required": [
+            "cluster_name",
+            "datacenter"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "migration_id",
+        "source",
+        "target"
+      ],
+      "title": "synth_execute_partition_migration",
+      "type": "object"
+    },
+    "seed": 42030,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Execute Partition Migration",
+    "tool_name": "synth_execute_partition_migration"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_030_DISTRACTOR_SET_COMPLEXITY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

@@ -1,0 +1,100 @@
+{
+  "base_contract_id": "BASE_SYNTH_002",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "CANONICAL",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "cascade_eviction": "cascade_eviction",
+      "key_pattern": "key_pattern",
+      "max_evictions": "max_evictions"
+    },
+    "intent_to_arg_path": {
+      "cascade_eviction": "cascade_eviction",
+      "key_pattern": "key_pattern",
+      "max_evictions": "max_evictions"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 1,
+      "property_count": 3,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_002",
+    "counterexamples": [
+      {
+        "cascade_eviction": true
+      },
+      {
+        "key_pattern": "",
+        "max_evictions": 50
+      }
+    ],
+    "description": "Purge entries matching a specific key pattern from the cache.",
+    "domain": "data_management",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "cascade_eviction": true,
+        "key_pattern": "session:*",
+        "max_evictions": 500
+      },
+      {
+        "key_pattern": "temp:auth:99"
+      }
+    ],
+    "latent_intent_schema": {
+      "cascade_eviction": "boolean",
+      "key_pattern": "string",
+      "max_evictions": "integer"
+    },
+    "mutation_family": "CANONICAL",
+    "mutation_id": "MUT_BASE_SYNTH_002_CANONICAL_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "properties": {
+        "cascade_eviction": {
+          "description": "Evict child keys recursively",
+          "type": "boolean"
+        },
+        "key_pattern": {
+          "description": "Glob or prefix pattern",
+          "minLength": 1,
+          "type": "string"
+        },
+        "max_evictions": {
+          "description": "Eviction batch cap",
+          "maximum": 1000,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "key_pattern"
+      ],
+      "title": "synth_delete_cache_entry",
+      "type": "object"
+    },
+    "seed": 42002,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Delete Cache Entry",
+    "tool_name": "synth_delete_cache_entry"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_002_CANONICAL_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

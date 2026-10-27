@@ -1,0 +1,112 @@
+{
+  "base_contract_id": "BASE_SYNTH_006",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "archive_recording": "archive_recording",
+      "payload_parameters.bridge_id": "bridge_id",
+      "payload_parameters.termination_reason": "termination_reason"
+    },
+    "intent_to_arg_path": {
+      "archive_recording": "archive_recording",
+      "bridge_id": "payload_parameters.bridge_id",
+      "termination_reason": "payload_parameters.termination_reason"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 2,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_006",
+    "counterexamples": [
+      {
+        "termination_reason": "Missing bridge ID"
+      },
+      {
+        "bridge_id": "br",
+        "termination_reason": "ID too short"
+      }
+    ],
+    "description": "Tear down an established conference audio bridge.",
+    "domain": "communications",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "archive_recording": true,
+        "payload_parameters": {
+          "bridge_id": "bridge_7710",
+          "termination_reason": "Host ended call"
+        }
+      },
+      {
+        "payload_parameters": {
+          "bridge_id": "bridge_8820"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "archive_recording": "boolean",
+      "bridge_id": "string",
+      "termination_reason": "string"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_006_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Tear down an established conference audio bridge.",
+      "properties": {
+        "archive_recording": {
+          "description": "Persist audio capture to cold storage",
+          "type": "boolean"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "bridge_id": {
+              "description": "Conference bridge identifier",
+              "minLength": 4,
+              "type": "string"
+            },
+            "termination_reason": {
+              "description": "Audit rationale for bridge shutdown",
+              "type": "string"
+            }
+          },
+          "required": [
+            "bridge_id"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "payload_parameters"
+      ],
+      "title": "synth_terminate_voice_bridge",
+      "type": "object"
+    },
+    "seed": 42006,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Terminate Voice Bridge",
+    "tool_name": "synth_terminate_voice_bridge"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_006_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

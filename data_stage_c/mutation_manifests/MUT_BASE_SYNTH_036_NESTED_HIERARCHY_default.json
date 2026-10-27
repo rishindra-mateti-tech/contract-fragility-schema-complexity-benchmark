@@ -1,0 +1,149 @@
+{
+  "base_contract_id": "BASE_SYNTH_036",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "enforce_domain_lock": "enforce_domain_lock",
+      "payload_parameters.idp_spec": "idp_spec",
+      "payload_parameters.provider_name": "provider_name"
+    },
+    "intent_to_arg_path": {
+      "enforce_domain_lock": "enforce_domain_lock",
+      "idp_spec": "payload_parameters.idp_spec",
+      "provider_name": "payload_parameters.provider_name"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 2,
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 2,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_036",
+    "counterexamples": [
+      {
+        "provider_name": "missing_spec"
+      },
+      {
+        "idp_spec": {
+          "entity_id": "ent",
+          "protocol": "KERBEROS",
+          "sso_url": "https://sso.com"
+        },
+        "provider_name": "bad_protocol"
+      }
+    ],
+    "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "enforce_domain_lock": true,
+        "payload_parameters": {
+          "idp_spec": {
+            "entity_id": "urn:company:okta",
+            "protocol": "SAML2",
+            "sso_url": "https://company.okta.com/app/sso"
+          },
+          "provider_name": "okta_corporate_sso"
+        }
+      },
+      {
+        "payload_parameters": {
+          "idp_spec": {
+            "entity_id": "google-enterprise",
+            "protocol": "OIDC",
+            "sso_url": "https://accounts.google.com/o/oauth2/auth"
+          },
+          "provider_name": "google_workspace_oidc"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "enforce_domain_lock": "boolean",
+      "idp_spec": "object",
+      "provider_name": "string"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_036_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "properties": {
+        "enforce_domain_lock": {
+          "description": "Restrict logins strictly to claimed corporate domains",
+          "type": "boolean"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "idp_spec": {
+              "additionalProperties": false,
+              "description": "Provider connection details",
+              "properties": {
+                "entity_id": {
+                  "minLength": 4,
+                  "type": "string"
+                },
+                "protocol": {
+                  "enum": [
+                    "SAML2",
+                    "OIDC"
+                  ],
+                  "type": "string"
+                },
+                "sso_url": {
+                  "minLength": 8,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sso_url",
+                "entity_id",
+                "protocol"
+              ],
+              "type": "object"
+            },
+            "provider_name": {
+              "description": "Federation label",
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          "required": [
+            "idp_spec",
+            "provider_name"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "payload_parameters"
+      ],
+      "title": "synth_configure_sso_identity_provider",
+      "type": "object"
+    },
+    "seed": 42036,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Configure SSO Identity Provider",
+    "tool_name": "synth_configure_sso_identity_provider"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_036_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

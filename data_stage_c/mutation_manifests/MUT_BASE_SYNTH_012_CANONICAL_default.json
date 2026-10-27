@@ -1,0 +1,102 @@
+{
+  "base_contract_id": "BASE_SYNTH_012",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "CANONICAL",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "lock_hours": "lock_hours",
+      "require_password_reset": "require_password_reset",
+      "user_id": "user_id"
+    },
+    "intent_to_arg_path": {
+      "lock_hours": "lock_hours",
+      "require_password_reset": "require_password_reset",
+      "user_id": "user_id"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 1,
+      "property_count": 3,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_012",
+    "counterexamples": [
+      {
+        "user_id": "usr_no_hours"
+      },
+      {
+        "lock_hours": 0,
+        "user_id": "usr_bad_hours"
+      }
+    ],
+    "description": "Impose an administrative lock on a compromised user account.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "lock_hours": 24,
+        "require_password_reset": true,
+        "user_id": "usr_9918"
+      },
+      {
+        "lock_hours": 72,
+        "user_id": "usr_5501"
+      }
+    ],
+    "latent_intent_schema": {
+      "lock_hours": "integer",
+      "require_password_reset": "boolean",
+      "user_id": "string"
+    },
+    "mutation_family": "CANONICAL",
+    "mutation_id": "MUT_BASE_SYNTH_012_CANONICAL_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Impose an administrative lock on a compromised user account.",
+      "properties": {
+        "lock_hours": {
+          "description": "Lock duration in hours",
+          "maximum": 720,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "require_password_reset": {
+          "description": "Enforce password reset on unlock",
+          "type": "boolean"
+        },
+        "user_id": {
+          "description": "Target user identifier",
+          "minLength": 4,
+          "type": "string"
+        }
+      },
+      "required": [
+        "user_id",
+        "lock_hours"
+      ],
+      "title": "synth_lock_user_account",
+      "type": "object"
+    },
+    "seed": 42012,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Lock User Account",
+    "tool_name": "synth_lock_user_account"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_012_CANONICAL_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

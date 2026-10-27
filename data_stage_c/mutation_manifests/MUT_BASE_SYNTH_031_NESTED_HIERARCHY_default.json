@@ -1,0 +1,172 @@
+{
+  "base_contract_id": "BASE_SYNTH_031",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "payload_parameters.snapshot_metadata": "snapshot_metadata",
+      "payload_parameters.volume_id": "volume_id",
+      "retention": "retention"
+    },
+    "intent_to_arg_path": {
+      "retention": "retention",
+      "snapshot_metadata": "payload_parameters.snapshot_metadata",
+      "volume_id": "payload_parameters.volume_id"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 2,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_031",
+    "counterexamples": [
+      {
+        "retention": {
+          "days": 10
+        },
+        "snapshot_metadata": {
+          "creator": "c"
+        },
+        "volume_id": "vol_1"
+      },
+      {
+        "retention": {
+          "days": 10
+        },
+        "snapshot_metadata": {
+          "creator": "c",
+          "environment": "test"
+        },
+        "volume_id": "vol_1"
+      }
+    ],
+    "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+    "domain": "data_management",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "payload_parameters": {
+          "snapshot_metadata": {
+            "creator": "sre_automation",
+            "environment": "prod"
+          },
+          "volume_id": "vol_root_prod_01"
+        },
+        "retention": {
+          "days": 30,
+          "lock_deletion": true
+        }
+      },
+      {
+        "payload_parameters": {
+          "snapshot_metadata": {
+            "creator": "dev_alice",
+            "environment": "dev"
+          },
+          "volume_id": "vol_data_dev"
+        },
+        "retention": {
+          "days": 7
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "retention": "object",
+      "snapshot_metadata": "object",
+      "volume_id": "string"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_031_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "properties": {
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "snapshot_metadata": {
+              "additionalProperties": false,
+              "description": "Descriptive snapshot labels",
+              "properties": {
+                "creator": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "environment": {
+                  "enum": [
+                    "prod",
+                    "stage",
+                    "dev"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "creator",
+                "environment"
+              ],
+              "type": "object"
+            },
+            "volume_id": {
+              "description": "Target block storage volume",
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "snapshot_metadata",
+            "volume_id"
+          ],
+          "type": "object"
+        },
+        "retention": {
+          "additionalProperties": false,
+          "description": "Snapshot expiration parameters",
+          "properties": {
+            "days": {
+              "maximum": 365,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "lock_deletion": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "days"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "retention",
+        "payload_parameters"
+      ],
+      "title": "synth_register_storage_snapshot",
+      "type": "object"
+    },
+    "seed": 42031,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Register Storage Snapshot",
+    "tool_name": "synth_register_storage_snapshot"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_031_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

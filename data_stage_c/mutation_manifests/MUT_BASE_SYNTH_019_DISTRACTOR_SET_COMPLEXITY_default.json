@@ -1,0 +1,286 @@
+{
+  "base_contract_id": "BASE_SYNTH_019",
+  "complexity_delta": {
+    "distractor_count": 4
+  },
+  "distractor_tools": [
+    {
+      "contract_id": "BASE_SYNTH_007",
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "title": "Increment Counter Metric",
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "contract_id": "BASE_SYNTH_008",
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "title": "Record Heartbeat Timestamp",
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "contract_id": "BASE_SYNTH_009",
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "title": "Reset Quota Usage",
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "contract_id": "BASE_SYNTH_018",
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "title": "Query Metric Aggregate",
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "family": "DISTRACTOR_SET_COMPLEXITY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "detector_id": "detector_id",
+      "emit_alert": "emit_alert",
+      "sensitivity": "sensitivity",
+      "training_windows": "training_windows"
+    },
+    "intent_to_arg_path": {
+      "detector_id": "detector_id",
+      "emit_alert": "emit_alert",
+      "sensitivity": "sensitivity",
+      "training_windows": "training_windows"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 4,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 4,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_019",
+    "counterexamples": [
+      {
+        "detector_id": "empty_windows",
+        "sensitivity": "low",
+        "training_windows": []
+      },
+      {
+        "detector_id": "bad_sensitivity",
+        "sensitivity": "ultra",
+        "training_windows": [
+          1
+        ]
+      }
+    ],
+    "description": "Run statistical outlier detection on a series with specified sensitivity.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "detector_id": "traffic_spike_detector",
+        "emit_alert": true,
+        "sensitivity": "high",
+        "training_windows": [
+          1,
+          7,
+          14
+        ]
+      },
+      {
+        "detector_id": "db_connections",
+        "sensitivity": "medium",
+        "training_windows": [
+          1
+        ]
+      }
+    ],
+    "latent_intent_schema": {
+      "detector_id": "string",
+      "emit_alert": "boolean",
+      "sensitivity": "string",
+      "training_windows": "array[integer]"
+    },
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "mutation_id": "MUT_BASE_SYNTH_019_DISTRACTOR_SET_COMPLEXITY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "properties": {
+        "detector_id": {
+          "description": "Anomaly detection model name",
+          "minLength": 3,
+          "type": "string"
+        },
+        "emit_alert": {
+          "description": "Trigger alert pipeline if anomaly detected",
+          "type": "boolean"
+        },
+        "sensitivity": {
+          "description": "Standard deviation threshold tier",
+          "enum": [
+            "low",
+            "medium",
+            "high",
+            "paranoid"
+          ],
+          "type": "string"
+        },
+        "training_windows": {
+          "description": "Historical comparative day offsets",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "detector_id",
+        "sensitivity",
+        "training_windows"
+      ],
+      "title": "synth_evaluate_anomaly_detector",
+      "type": "object"
+    },
+    "seed": 42019,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Evaluate Anomaly Detector",
+    "tool_name": "synth_evaluate_anomaly_detector"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_019_DISTRACTOR_SET_COMPLEXITY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

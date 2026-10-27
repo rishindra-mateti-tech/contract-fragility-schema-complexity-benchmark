@@ -1,0 +1,153 @@
+{
+  "base_contract_id": "BASE_SYNTH_032",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "conversation_id": "conversation_id",
+      "fallback_queue": "fallback_queue",
+      "routing_criteria": "routing_criteria"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "conversation_id": "conversation_id",
+      "fallback_queue": "fallback_queue",
+      "routing_criteria": "routing_criteria"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": true,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 4,
+      "property_count": 6,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_032",
+    "counterexamples": [
+      {
+        "conversation_id": "conv_no_criteria"
+      },
+      {
+        "conversation_id": "c1",
+        "routing_criteria": {
+          "priority_weight": 50
+        }
+      }
+    ],
+    "description": "Dispatch incoming support ticket across routing and priority constraints.",
+    "domain": "communications",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "conversation_id": "conv_9921",
+        "fallback_queue": "general_tier_1",
+        "routing_criteria": {
+          "language": "en",
+          "priority_weight": 90,
+          "skill_tags": [
+            "billing",
+            "enterprise"
+          ]
+        }
+      },
+      {
+        "conversation_id": "conv_1102",
+        "routing_criteria": {
+          "language": "es"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "conversation_id": "string",
+      "fallback_queue": "string",
+      "routing_criteria": "object"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_032_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "properties": {
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "conversation_id": {
+          "description": "Customer inquiry ticket ID",
+          "minLength": 3,
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "fallback_queue": {
+          "description": "Default destination if no agent available",
+          "type": "string"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        },
+        "routing_criteria": {
+          "additionalProperties": false,
+          "description": "Agent matching criteria",
+          "properties": {
+            "language": {
+              "description": "ISO language code",
+              "minLength": 2,
+              "type": "string"
+            },
+            "priority_weight": {
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "skill_tags": {
+              "description": "Required agent competencies",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "required": [
+            "language"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "conversation_id",
+        "routing_criteria"
+      ],
+      "title": "synth_route_omnichannel_conversation",
+      "type": "object"
+    },
+    "seed": 42032,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Route Omnichannel Conversation",
+    "tool_name": "synth_route_omnichannel_conversation"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_032_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

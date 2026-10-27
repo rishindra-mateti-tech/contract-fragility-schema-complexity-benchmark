@@ -1,0 +1,164 @@
+{
+  "base_contract_id": "BASE_SYNTH_038",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "CANONICAL",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "pipeline_name": "pipeline_name",
+      "sink_connector": "sink_connector",
+      "source_connector": "source_connector"
+    },
+    "intent_to_arg_path": {
+      "pipeline_name": "pipeline_name",
+      "sink_connector": "sink_connector",
+      "source_connector": "source_connector"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 9,
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_038",
+    "counterexamples": [
+      {
+        "pipeline_name": "missing_sink",
+        "source_connector": {
+          "connector_type": "mysql"
+        }
+      },
+      {
+        "pipeline_name": "bad_wh",
+        "sink_connector": {
+          "table_mode": "append",
+          "warehouse": "oracle"
+        },
+        "source_connector": {
+          "connector_type": "postgres"
+        }
+      }
+    ],
+    "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+    "domain": "workflow_orchestration",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "pipeline_name": "daily_customer_etl",
+        "sink_connector": {
+          "table_mode": "append",
+          "warehouse": "snowflake"
+        },
+        "source_connector": {
+          "connector_type": "postgres",
+          "query_timeout_sec": 60
+        }
+      },
+      {
+        "pipeline_name": "events_streaming_merge",
+        "sink_connector": {
+          "table_mode": "merge",
+          "warehouse": "bigquery"
+        },
+        "source_connector": {
+          "connector_type": "mongodb"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "pipeline_name": "string",
+      "sink_connector": "object",
+      "source_connector": "object"
+    },
+    "mutation_family": "CANONICAL",
+    "mutation_id": "MUT_BASE_SYNTH_038_CANONICAL_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "properties": {
+        "pipeline_name": {
+          "description": "Pipeline execution job name",
+          "minLength": 3,
+          "type": "string"
+        },
+        "sink_connector": {
+          "additionalProperties": false,
+          "description": "Target warehouse loader",
+          "properties": {
+            "table_mode": {
+              "enum": [
+                "append",
+                "overwrite",
+                "merge"
+              ],
+              "type": "string"
+            },
+            "warehouse": {
+              "enum": [
+                "snowflake",
+                "bigquery",
+                "redshift"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "warehouse",
+            "table_mode"
+          ],
+          "type": "object"
+        },
+        "source_connector": {
+          "additionalProperties": false,
+          "description": "Origin database extractor",
+          "properties": {
+            "connector_type": {
+              "enum": [
+                "postgres",
+                "mysql",
+                "mongodb"
+              ],
+              "type": "string"
+            },
+            "query_timeout_sec": {
+              "maximum": 300,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "connector_type"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "pipeline_name",
+        "source_connector",
+        "sink_connector"
+      ],
+      "title": "synth_orchestrate_etl_pipeline",
+      "type": "object"
+    },
+    "seed": 42038,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Orchestrate ETL Pipeline",
+    "tool_name": "synth_orchestrate_etl_pipeline"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_038_CANONICAL_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

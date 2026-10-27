@@ -1,0 +1,136 @@
+{
+  "base_contract_id": "BASE_SYNTH_024",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "artifact_paths": "artifact_paths",
+      "payload_parameters.pipeline_id": "pipeline_id",
+      "payload_parameters.stage_name": "stage_name",
+      "payload_parameters.timeout_seconds": "timeout_seconds"
+    },
+    "intent_to_arg_path": {
+      "artifact_paths": "artifact_paths",
+      "pipeline_id": "payload_parameters.pipeline_id",
+      "stage_name": "payload_parameters.stage_name",
+      "timeout_seconds": "payload_parameters.timeout_seconds"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 5,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 2,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_024",
+    "counterexamples": [
+      {
+        "pipeline_id": "pipe_bad_stage",
+        "stage_name": "deploy_prod"
+      },
+      {
+        "stage_name": "unit_test"
+      }
+    ],
+    "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+    "domain": "workflow_orchestration",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "artifact_paths": [
+          "build/bin.tar.gz"
+        ],
+        "payload_parameters": {
+          "pipeline_id": "pipe_release_v2",
+          "stage_name": "integration_test",
+          "timeout_seconds": 600
+        }
+      },
+      {
+        "payload_parameters": {
+          "pipeline_id": "pipe_fast_pr",
+          "stage_name": "lint"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "artifact_paths": "array[string]",
+      "pipeline_id": "string",
+      "stage_name": "string",
+      "timeout_seconds": "integer"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_024_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+      "properties": {
+        "artifact_paths": {
+          "description": "Input artifact files",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 3 parameters.",
+          "properties": {
+            "pipeline_id": {
+              "description": "Workflow pipeline definition ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "stage_name": {
+              "description": "Target execution stage",
+              "enum": [
+                "lint",
+                "unit_test",
+                "integration_test",
+                "security_scan",
+                "package"
+              ],
+              "type": "string"
+            },
+            "timeout_seconds": {
+              "description": "Maximum stage runtime",
+              "maximum": 3600,
+              "minimum": 10,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "pipeline_id",
+            "stage_name"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "payload_parameters"
+      ],
+      "title": "synth_trigger_pipeline_stage",
+      "type": "object"
+    },
+    "seed": 42024,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Trigger Pipeline Stage",
+    "tool_name": "synth_trigger_pipeline_stage"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_024_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

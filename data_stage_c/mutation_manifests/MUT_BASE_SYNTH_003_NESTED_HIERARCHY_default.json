@@ -1,0 +1,115 @@
+{
+  "base_contract_id": "BASE_SYNTH_003",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "force_truncate": "force_truncate",
+      "payload_parameters.slice_index": "slice_index",
+      "payload_parameters.table_name": "table_name"
+    },
+    "intent_to_arg_path": {
+      "force_truncate": "force_truncate",
+      "slice_index": "payload_parameters.slice_index",
+      "table_name": "payload_parameters.table_name"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 2,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_003",
+    "counterexamples": [
+      {
+        "table_name": "missing_slice"
+      },
+      {
+        "slice_index": -1,
+        "table_name": "bad_slice"
+      }
+    ],
+    "description": "Remove all records from a specific table slice or partition.",
+    "domain": "data_management",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "force_truncate": true,
+        "payload_parameters": {
+          "slice_index": 3,
+          "table_name": "audit_logs_2026"
+        }
+      },
+      {
+        "payload_parameters": {
+          "slice_index": 0,
+          "table_name": "temp_staging"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "force_truncate": "boolean",
+      "slice_index": "integer",
+      "table_name": "string"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_003_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Remove all records from a specific table slice or partition.",
+      "properties": {
+        "force_truncate": {
+          "description": "Bypass active read-lock confirmation",
+          "type": "boolean"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "slice_index": {
+              "description": "Zero-indexed partition slice",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "table_name": {
+              "description": "Target relational table name",
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "slice_index",
+            "table_name"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "payload_parameters"
+      ],
+      "title": "synth_truncate_table_slice",
+      "type": "object"
+    },
+    "seed": 42003,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Truncate Table Slice",
+    "tool_name": "synth_truncate_table_slice"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_003_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

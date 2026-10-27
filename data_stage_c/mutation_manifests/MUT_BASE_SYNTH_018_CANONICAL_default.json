@@ -1,0 +1,129 @@
+{
+  "base_contract_id": "BASE_SYNTH_018",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "CANONICAL",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "aggregation": "aggregation",
+      "filter_dimensions": "filter_dimensions",
+      "metric_series": "metric_series",
+      "window_seconds": "window_seconds"
+    },
+    "intent_to_arg_path": {
+      "aggregation": "aggregation",
+      "filter_dimensions": "filter_dimensions",
+      "metric_series": "metric_series",
+      "window_seconds": "window_seconds"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 6,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 4,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_018",
+    "counterexamples": [
+      {
+        "aggregation": "median",
+        "metric_series": "latency",
+        "window_seconds": 60
+      },
+      {
+        "aggregation": "avg",
+        "metric_series": "cpu",
+        "window_seconds": 10
+      }
+    ],
+    "description": "Execute a timeseries aggregation query over specified dimensions.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "aggregation": "p99",
+        "filter_dimensions": [
+          "region=us-east",
+          "env=prod"
+        ],
+        "metric_series": "api_latency_ms",
+        "window_seconds": 300
+      },
+      {
+        "aggregation": "avg",
+        "metric_series": "cpu_utilization",
+        "window_seconds": 60
+      }
+    ],
+    "latent_intent_schema": {
+      "aggregation": "string",
+      "filter_dimensions": "array[string]",
+      "metric_series": "string",
+      "window_seconds": "integer"
+    },
+    "mutation_family": "CANONICAL",
+    "mutation_id": "MUT_BASE_SYNTH_018_CANONICAL_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "properties": {
+        "aggregation": {
+          "description": "Statistical aggregator",
+          "enum": [
+            "avg",
+            "sum",
+            "min",
+            "max",
+            "p95",
+            "p99"
+          ],
+          "type": "string"
+        },
+        "filter_dimensions": {
+          "description": "Key=value tag filters",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metric_series": {
+          "description": "Metric timeseries identifier",
+          "minLength": 1,
+          "type": "string"
+        },
+        "window_seconds": {
+          "description": "Aggregation window width",
+          "maximum": 86400,
+          "minimum": 60,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "metric_series",
+        "aggregation",
+        "window_seconds"
+      ],
+      "title": "synth_query_metric_aggregate",
+      "type": "object"
+    },
+    "seed": 42018,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Query Metric Aggregate",
+    "tool_name": "synth_query_metric_aggregate"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_018_CANONICAL_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

@@ -1,0 +1,139 @@
+{
+  "base_contract_id": "BASE_SYNTH_022",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "client_name": "client_name",
+      "ip_allowlist": "ip_allowlist",
+      "rate_limit_rpm": "rate_limit_rpm",
+      "target_environment": "target_environment"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "client_name": "client_name",
+      "ip_allowlist": "ip_allowlist",
+      "rate_limit_rpm": "rate_limit_rpm",
+      "target_environment": "target_environment"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 7,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_022",
+    "counterexamples": [
+      {
+        "client_name": "bad_env",
+        "target_environment": "qa_sandbox"
+      },
+      {
+        "target_environment": "staging"
+      }
+    ],
+    "description": "Generate a client API key with environment assignment and rate limits.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "client_name": "payment_gateway_client",
+        "ip_allowlist": [
+          "192.168.1.0/24"
+        ],
+        "rate_limit_rpm": 1200,
+        "target_environment": "production"
+      },
+      {
+        "client_name": "test_harness",
+        "target_environment": "development"
+      }
+    ],
+    "latent_intent_schema": {
+      "client_name": "string",
+      "ip_allowlist": "array[string]",
+      "rate_limit_rpm": "integer",
+      "target_environment": "string"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_022_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "properties": {
+        "client_name": {
+          "description": "Descriptive client application name",
+          "minLength": 2,
+          "type": "string"
+        },
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "ip_allowlist": {
+          "description": "Allowed CIDR IP ranges",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        },
+        "rate_limit_rpm": {
+          "description": "Maximum allowed requests per minute",
+          "maximum": 60000,
+          "minimum": 60,
+          "type": "integer"
+        },
+        "target_environment": {
+          "description": "Target tier",
+          "enum": [
+            "development",
+            "staging",
+            "production"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "client_name",
+        "target_environment"
+      ],
+      "title": "synth_provision_api_credential",
+      "type": "object"
+    },
+    "seed": 42022,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Provision API Credential",
+    "tool_name": "synth_provision_api_credential"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_022_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

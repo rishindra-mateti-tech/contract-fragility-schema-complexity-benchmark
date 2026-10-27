@@ -1,0 +1,118 @@
+{
+  "base_contract_id": "BASE_SYNTH_007",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "flush_immediately": "flush_immediately",
+      "increment_by": "increment_by",
+      "metric_name": "metric_name"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "flush_immediately": "flush_immediately",
+      "increment_by": "increment_by",
+      "metric_name": "metric_name"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 1,
+      "property_count": 6,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_007",
+    "counterexamples": [
+      {
+        "increment_by": 5
+      },
+      {
+        "increment_by": 0,
+        "metric_name": "bad_inc"
+      }
+    ],
+    "description": "Add a delta value to a Prometheus-style counter metric.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "flush_immediately": true,
+        "increment_by": 5,
+        "metric_name": "http_requests_total"
+      },
+      {
+        "metric_name": "auth_failures_total"
+      }
+    ],
+    "latent_intent_schema": {
+      "flush_immediately": "boolean",
+      "increment_by": "integer",
+      "metric_name": "string"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_007_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "properties": {
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "flush_immediately": {
+          "description": "Flush local buffer to aggregator",
+          "type": "boolean"
+        },
+        "increment_by": {
+          "description": "Positive integer increment",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "metric_name": {
+          "description": "Metric identifier",
+          "minLength": 1,
+          "type": "string"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "metric_name"
+      ],
+      "title": "synth_increment_counter_metric",
+      "type": "object"
+    },
+    "seed": 42007,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Increment Counter Metric",
+    "tool_name": "synth_increment_counter_metric"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_007_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

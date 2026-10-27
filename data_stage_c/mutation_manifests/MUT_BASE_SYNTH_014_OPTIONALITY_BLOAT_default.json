@@ -1,0 +1,140 @@
+{
+  "base_contract_id": "BASE_SYNTH_014",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "compression_format": "compression_format",
+      "metadata_tags": "metadata_tags",
+      "partition_key": "partition_key",
+      "retention_years": "retention_years"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "compression_format": "compression_format",
+      "metadata_tags": "metadata_tags",
+      "partition_key": "partition_key",
+      "retention_years": "retention_years"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 7,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_014",
+    "counterexamples": [
+      {
+        "compression_format": "bzip2",
+        "partition_key": "p1"
+      },
+      {
+        "compression_format": "zstd"
+      }
+    ],
+    "description": "Move a data partition to cold archival storage with compression.",
+    "domain": "data_management",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "compression_format": "zstd",
+        "metadata_tags": [
+          "financial",
+          "audited"
+        ],
+        "partition_key": "part_2025_q4",
+        "retention_years": 7
+      },
+      {
+        "compression_format": "gzip",
+        "partition_key": "part_2026_q1"
+      }
+    ],
+    "latent_intent_schema": {
+      "compression_format": "string",
+      "metadata_tags": "array[string]",
+      "partition_key": "string",
+      "retention_years": "integer"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_014_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Move a data partition to cold archival storage with compression.",
+      "properties": {
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "compression_format": {
+          "description": "Compression algorithm",
+          "enum": [
+            "gzip",
+            "zstd",
+            "snappy"
+          ],
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "metadata_tags": {
+          "description": "Classification tags",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        },
+        "partition_key": {
+          "description": "Partition identifier",
+          "minLength": 2,
+          "type": "string"
+        },
+        "retention_years": {
+          "description": "Archival compliance retention period",
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "partition_key",
+        "compression_format"
+      ],
+      "title": "synth_archive_data_partition",
+      "type": "object"
+    },
+    "seed": 42014,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Archive Data Partition",
+    "tool_name": "synth_archive_data_partition"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_014_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

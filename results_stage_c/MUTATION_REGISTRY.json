@@ -1,0 +1,1814 @@
+{
+  "base_contracts_covered": 40,
+  "family_distribution": {
+    "AMBIGUOUS_IDENTIFIERS": 40,
+    "CANONICAL": 40,
+    "DISTRACTOR_SET_COMPLEXITY": 40,
+    "NESTED_HIERARCHY": 40,
+    "OPTIONALITY_BLOAT": 40
+  },
+  "mutations": [
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_001_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_001_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_001_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_001_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_001_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_001_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_001_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_001_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_001_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_001_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_002_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_002_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_002_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_002_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_002_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_002_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_002_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_002_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_002_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_002_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_003",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_003_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_003_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_003",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_003_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_003_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_003",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_003_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_003_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_003",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_003_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_003_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_003",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_003_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_003_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_004_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_004_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_004_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_004_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_004_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_004_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_004_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_004_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_004_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_004_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_005_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_005_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_005_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_005_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_005_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_005_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_005_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_005_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_005_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_005_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_006_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_006_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_006_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_006_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_006_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_006_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_006_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_006_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_006_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_006_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_007_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_007_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_007_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_007_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_007_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_007_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_007_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_007_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_007_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_007_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_008",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_008_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_008_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_008",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_008_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_008_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_008",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_008_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_008_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_008",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_008_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_008_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_008",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_008_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_008_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_009",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_009_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_009_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_009",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_009_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_009_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_009",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_009_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_009_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_009",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_009_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_009_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_009",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_009_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_009_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_010_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_010_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_010_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_010_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_010_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_010_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_010_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_010_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_010_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_010_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_011_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_011_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_011_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_011_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_011_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_011_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_011_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_011_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_011_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_011_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_012",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_012_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_012_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_012",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_012_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_012_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_012",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_012_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_012_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_012",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_012_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_012_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_012",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_012_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_012_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_013_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_013_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_013_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_013_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_013_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_013_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_013_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_013_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_013_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_013_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_014",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_014_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_014_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_014",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_014_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_014_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_014",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_014_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_014_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_014",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_014_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_014_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_014",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_014_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_014_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_015",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_015_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_015_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_015",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_015_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_015_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_015",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_015_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_015_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_015",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_015_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_015_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_015",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_015_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_015_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_016_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_016_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_016_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_016_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_016_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_016_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_016_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_016_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_016_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_016_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_017",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_017_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_017_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_017",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_017_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_017_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_017",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_017_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_017_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_017",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_017_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_017_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_017",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_017_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_017_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_018_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_018_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_018_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_018_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_018_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_018_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_018_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_018_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_018_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_018_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_019_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_019_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_019_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_019_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_019_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_019_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_019_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_019_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_019_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_019_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_020",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_020_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_020_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_020",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_020_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_020_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_020",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_020_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_020_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_020",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_020_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_020_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_020",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_020_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_020_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_021",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_021_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_021_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_021",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_021_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_021_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_021",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_021_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_021_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_021",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_021_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_021_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_021",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_021_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_021_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_022_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_022_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_022_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_022_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_022_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_022_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_022_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_022_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_022_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_022_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_023_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_023_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_023_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_023_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_023_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_023_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_023_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_023_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_023_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_023_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_024_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_024_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_024_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_024_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_024_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_024_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_024_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_024_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_024_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_024_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_025_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_025_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_025_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_025_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_025_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_025_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_025_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_025_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_025_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_025_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_026",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_026_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_026_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_026",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_026_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_026_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_026",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_026_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_026_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_026",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_026_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_026_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_026",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_026_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_026_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_027",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_027_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_027_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_027",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_027_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_027_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_027",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_027_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_027_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_027",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_027_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_027_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_027",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_027_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_027_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_028",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_028_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_028_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_028",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_028_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_028_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_028",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_028_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_028_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_028",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_028_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_028_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_028",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_028_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_028_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_029_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_029_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_029_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_029_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_029_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_029_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_029_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_029_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_029_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_029_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_030",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_030_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_030_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_030",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_030_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_030_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_030",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_030_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_030_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_030",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_030_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_030_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_030",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_030_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_030_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_031",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_031_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_031_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_031",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_031_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_031_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_031",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_031_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_031_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_031",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_031_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_031_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_031",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_031_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_031_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_032",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_032_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_032_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_032",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_032_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_032_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_032",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_032_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_032_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_032",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_032_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_032_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_032",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_032_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_032_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_033",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_033_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_033_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_033",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_033_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_033_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_033",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_033_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_033_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_033",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_033_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_033_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_033",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_033_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_033_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_034",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_034_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_034_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_034",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_034_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_034_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_034",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_034_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_034_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_034",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_034_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_034_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_034",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_034_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_034_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_035",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_035_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_035_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_035",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_035_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_035_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_035",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_035_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_035_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_035",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_035_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_035_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_035",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_035_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_035_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_036_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_036_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_036_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_036_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_036_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_036_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_036_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_036_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_036_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_036_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_037",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_037_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_037_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_037",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_037_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_037_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_037",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_037_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_037_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_037",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_037_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_037_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_037",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_037_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_037_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_038",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_038_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_038_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_038",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_038_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_038_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_038",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_038_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_038_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_038",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_038_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_038_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_038",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_038_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_038_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_039",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_039_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_039_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_039",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_039_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_039_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_039",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_039_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_039_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_039",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_039_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_039_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_039",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_039_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_039_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_040",
+      "distractor_count": 0,
+      "family": "CANONICAL",
+      "mutation_id": "MUT_BASE_SYNTH_040_CANONICAL_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_040_CANONICAL_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_040",
+      "distractor_count": 0,
+      "family": "NESTED_HIERARCHY",
+      "mutation_id": "MUT_BASE_SYNTH_040_NESTED_HIERARCHY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_040_NESTED_HIERARCHY_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_040",
+      "distractor_count": 0,
+      "family": "OPTIONALITY_BLOAT",
+      "mutation_id": "MUT_BASE_SYNTH_040_OPTIONALITY_BLOAT_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_040_OPTIONALITY_BLOAT_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_040",
+      "distractor_count": 0,
+      "family": "AMBIGUOUS_IDENTIFIERS",
+      "mutation_id": "MUT_BASE_SYNTH_040_AMBIGUOUS_IDENTIFIERS_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_040_AMBIGUOUS_IDENTIFIERS_default.json",
+      "variant": "default"
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_040",
+      "distractor_count": 4,
+      "family": "DISTRACTOR_SET_COMPLEXITY",
+      "mutation_id": "MUT_BASE_SYNTH_040_DISTRACTOR_SET_COMPLEXITY_default",
+      "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+      "relative_path": "data_stage_c/mutation_manifests/MUT_BASE_SYNTH_040_DISTRACTOR_SET_COMPLEXITY_default.json",
+      "variant": "default"
+    }
+  ],
+  "registry_version": "1.0.0",
+  "total_mutations": 200
+}

@@ -1,0 +1,303 @@
+{
+  "base_contract_id": "BASE_SYNTH_035",
+  "complexity_delta": {
+    "distractor_count": 4
+  },
+  "distractor_tools": [
+    {
+      "contract_id": "BASE_SYNTH_007",
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "title": "Increment Counter Metric",
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "contract_id": "BASE_SYNTH_008",
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "title": "Record Heartbeat Timestamp",
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "contract_id": "BASE_SYNTH_009",
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "title": "Reset Quota Usage",
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "contract_id": "BASE_SYNTH_018",
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "title": "Query Metric Aggregate",
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "family": "DISTRACTOR_SET_COMPLEXITY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "compliance_rules": "compliance_rules",
+      "target_system": "target_system",
+      "thresholds": "thresholds"
+    },
+    "intent_to_arg_path": {
+      "compliance_rules": "compliance_rules",
+      "target_system": "target_system",
+      "thresholds": "thresholds"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 4,
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_035",
+    "counterexamples": [
+      {
+        "target_system": "sys_no_rules",
+        "thresholds": {
+          "min_passing_score": 80
+        }
+      },
+      {
+        "compliance_rules": {
+          "framework": "FEDRAMP"
+        },
+        "target_system": "sys_bad_fw",
+        "thresholds": {
+          "min_passing_score": 80
+        }
+      }
+    ],
+    "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "compliance_rules": {
+          "framework": "PCI_DSS",
+          "strict_mode": true
+        },
+        "target_system": "payment_processing_cluster",
+        "thresholds": {
+          "min_passing_score": 95
+        }
+      },
+      {
+        "compliance_rules": {
+          "framework": "SOC2"
+        },
+        "target_system": "analytics_datalake",
+        "thresholds": {
+          "min_passing_score": 80
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "compliance_rules": "object",
+      "target_system": "string",
+      "thresholds": "object"
+    },
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "mutation_id": "MUT_BASE_SYNTH_035_DISTRACTOR_SET_COMPLEXITY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "properties": {
+        "compliance_rules": {
+          "additionalProperties": false,
+          "description": "Evaluated framework rules",
+          "properties": {
+            "framework": {
+              "enum": [
+                "SOC2",
+                "HIPAA",
+                "PCI_DSS",
+                "ISO_27001"
+              ],
+              "type": "string"
+            },
+            "strict_mode": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "framework"
+          ],
+          "type": "object"
+        },
+        "target_system": {
+          "description": "Evaluated subsystem",
+          "minLength": 2,
+          "type": "string"
+        },
+        "thresholds": {
+          "additionalProperties": false,
+          "description": "Passing score limits",
+          "properties": {
+            "min_passing_score": {
+              "maximum": 100,
+              "minimum": 50,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "min_passing_score"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "target_system",
+        "compliance_rules",
+        "thresholds"
+      ],
+      "title": "synth_generate_audit_scorecard",
+      "type": "object"
+    },
+    "seed": 42035,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Generate Audit Scorecard",
+    "tool_name": "synth_generate_audit_scorecard"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_035_DISTRACTOR_SET_COMPLEXITY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

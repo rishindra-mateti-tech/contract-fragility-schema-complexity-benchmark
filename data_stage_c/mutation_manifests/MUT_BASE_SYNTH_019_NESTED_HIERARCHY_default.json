@@ -1,0 +1,145 @@
+{
+  "base_contract_id": "BASE_SYNTH_019",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "detector_id": "detector_id",
+      "payload_parameters.emit_alert": "emit_alert",
+      "payload_parameters.sensitivity": "sensitivity",
+      "payload_parameters.training_windows": "training_windows"
+    },
+    "intent_to_arg_path": {
+      "detector_id": "detector_id",
+      "emit_alert": "payload_parameters.emit_alert",
+      "sensitivity": "payload_parameters.sensitivity",
+      "training_windows": "payload_parameters.training_windows"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 4,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 4,
+      "property_count": 2,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_019",
+    "counterexamples": [
+      {
+        "detector_id": "empty_windows",
+        "sensitivity": "low",
+        "training_windows": []
+      },
+      {
+        "detector_id": "bad_sensitivity",
+        "sensitivity": "ultra",
+        "training_windows": [
+          1
+        ]
+      }
+    ],
+    "description": "Run statistical outlier detection on a series with specified sensitivity.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "detector_id": "traffic_spike_detector",
+        "payload_parameters": {
+          "emit_alert": true,
+          "sensitivity": "high",
+          "training_windows": [
+            1,
+            7,
+            14
+          ]
+        }
+      },
+      {
+        "detector_id": "db_connections",
+        "payload_parameters": {
+          "sensitivity": "medium",
+          "training_windows": [
+            1
+          ]
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "detector_id": "string",
+      "emit_alert": "boolean",
+      "sensitivity": "string",
+      "training_windows": "array[integer]"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_019_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "properties": {
+        "detector_id": {
+          "description": "Anomaly detection model name",
+          "minLength": 3,
+          "type": "string"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 3 parameters.",
+          "properties": {
+            "emit_alert": {
+              "description": "Trigger alert pipeline if anomaly detected",
+              "type": "boolean"
+            },
+            "sensitivity": {
+              "description": "Standard deviation threshold tier",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "paranoid"
+              ],
+              "type": "string"
+            },
+            "training_windows": {
+              "description": "Historical comparative day offsets",
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "sensitivity",
+            "training_windows"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "detector_id",
+        "payload_parameters"
+      ],
+      "title": "synth_evaluate_anomaly_detector",
+      "type": "object"
+    },
+    "seed": 42019,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Evaluate Anomaly Detector",
+    "tool_name": "synth_evaluate_anomaly_detector"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_019_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

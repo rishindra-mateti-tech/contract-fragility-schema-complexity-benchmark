@@ -1,0 +1,140 @@
+{
+  "base_contract_id": "BASE_SYNTH_023",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "affected_services": "affected_services",
+      "algorithm": "algorithm",
+      "grace_period_hours": "grace_period_hours",
+      "secret_slug": "secret_slug"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "affected_services": "affected_services",
+      "algorithm": "algorithm",
+      "grace_period_hours": "grace_period_hours",
+      "secret_slug": "secret_slug"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 7,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_023",
+    "counterexamples": [
+      {
+        "algorithm": "DES-56",
+        "secret_slug": "bad_algo"
+      },
+      {
+        "algorithm": "RSA-4096"
+      }
+    ],
+    "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "affected_services": [
+          "auth-srv",
+          "api-gateway"
+        ],
+        "algorithm": "AES-256-GCM",
+        "grace_period_hours": 24,
+        "secret_slug": "jwt_signing_key"
+      },
+      {
+        "algorithm": "ChaCha20-Poly1305",
+        "secret_slug": "webhook_hmac_secret"
+      }
+    ],
+    "latent_intent_schema": {
+      "affected_services": "array[string]",
+      "algorithm": "string",
+      "grace_period_hours": "integer",
+      "secret_slug": "string"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_023_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "properties": {
+        "affected_services": {
+          "description": "Downstream services requiring key reload",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "algorithm": {
+          "description": "Cryptographic cipher",
+          "enum": [
+            "AES-256-GCM",
+            "ChaCha20-Poly1305",
+            "RSA-4096"
+          ],
+          "type": "string"
+        },
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "grace_period_hours": {
+          "description": "Overlap period where old key remains valid",
+          "maximum": 168,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        },
+        "secret_slug": {
+          "description": "Secret vault key identifier",
+          "minLength": 2,
+          "type": "string"
+        }
+      },
+      "required": [
+        "secret_slug",
+        "algorithm"
+      ],
+      "title": "synth_rotate_secret_key",
+      "type": "object"
+    },
+    "seed": 42023,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Rotate Secret Key",
+    "tool_name": "synth_rotate_secret_key"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_023_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

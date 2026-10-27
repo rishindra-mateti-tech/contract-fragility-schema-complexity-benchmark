@@ -1,0 +1,96 @@
+{
+  "base_contract_id": "BASE_SYNTH_010",
+  "complexity_delta": {
+    "renamed_properties": 3
+  },
+  "distractor_tools": [],
+  "family": "AMBIGUOUS_IDENTIFIERS",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "notify_subject_param": "notify_subject",
+      "reason_param": "reason",
+      "token_id_param": "token_id"
+    },
+    "intent_to_arg_path": {
+      "notify_subject": "notify_subject_param",
+      "reason": "reason_param",
+      "token_id": "token_id_param"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 1,
+      "property_count": 3,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_010",
+    "counterexamples": [
+      {
+        "reason": "No token provided"
+      },
+      {
+        "token_id": "short"
+      }
+    ],
+    "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "notify_subject_param": true,
+        "reason_param": "Suspicious login location",
+        "token_id_param": "tok_9918274619"
+      },
+      {
+        "token_id_param": "tok_12345678"
+      }
+    ],
+    "latent_intent_schema": {
+      "notify_subject": "boolean",
+      "reason": "string",
+      "token_id": "string"
+    },
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "mutation_id": "MUT_BASE_SYNTH_010_AMBIGUOUS_IDENTIFIERS_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "properties": {
+        "notify_subject_param": {
+          "description": "Send notification email to token owner",
+          "type": "boolean"
+        },
+        "reason_param": {
+          "description": "Security revocation rationale",
+          "type": "string"
+        },
+        "token_id_param": {
+          "description": "Token unique identifier (jti)",
+          "minLength": 8,
+          "type": "string"
+        }
+      },
+      "required": [
+        "token_id_param"
+      ],
+      "title": "synth_revoke_access_token",
+      "type": "object"
+    },
+    "seed": 42010,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Revoke Access Token",
+    "tool_name": "synth_revoke_access_token"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_010_AMBIGUOUS_IDENTIFIERS_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

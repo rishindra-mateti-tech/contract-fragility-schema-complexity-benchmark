@@ -1,0 +1,121 @@
+{
+  "base_contract_id": "BASE_SYNTH_017",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "CANONICAL",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "device_id": "device_id",
+      "platform": "platform",
+      "subscribed_topics": "subscribed_topics",
+      "token_ttl_days": "token_ttl_days"
+    },
+    "intent_to_arg_path": {
+      "device_id": "device_id",
+      "platform": "platform",
+      "subscribed_topics": "subscribed_topics",
+      "token_ttl_days": "token_ttl_days"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 4,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_017",
+    "counterexamples": [
+      {
+        "platform": "web"
+      },
+      {
+        "device_id": "dev_bad_plat",
+        "platform": "windows_phone"
+      }
+    ],
+    "description": "Associate a mobile device APNS or FCM push token with an account.",
+    "domain": "communications",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "device_id": "dev_9918274619",
+        "platform": "ios",
+        "subscribed_topics": [
+          "news",
+          "alerts"
+        ],
+        "token_ttl_days": 90
+      },
+      {
+        "device_id": "dev_1122334455",
+        "platform": "android"
+      }
+    ],
+    "latent_intent_schema": {
+      "device_id": "string",
+      "platform": "string",
+      "subscribed_topics": "array[string]",
+      "token_ttl_days": "integer"
+    },
+    "mutation_family": "CANONICAL",
+    "mutation_id": "MUT_BASE_SYNTH_017_CANONICAL_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "properties": {
+        "device_id": {
+          "description": "Hardware device UUID",
+          "minLength": 8,
+          "type": "string"
+        },
+        "platform": {
+          "description": "Operating system platform",
+          "enum": [
+            "ios",
+            "android",
+            "web"
+          ],
+          "type": "string"
+        },
+        "subscribed_topics": {
+          "description": "Notification interest topics",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "token_ttl_days": {
+          "description": "Token validity expiration",
+          "maximum": 365,
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "device_id",
+        "platform"
+      ],
+      "title": "synth_register_push_token",
+      "type": "object"
+    },
+    "seed": 42017,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Register Push Notification Token",
+    "tool_name": "synth_register_push_token"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_017_CANONICAL_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

@@ -1,0 +1,102 @@
+{
+  "base_contract_id": "BASE_SYNTH_009",
+  "complexity_delta": {
+    "renamed_properties": 3
+  },
+  "distractor_tools": [],
+  "family": "AMBIGUOUS_IDENTIFIERS",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "grace_period_minutes_param": "grace_period_minutes",
+      "quota_bucket_param": "quota_bucket",
+      "tenant_id_param": "tenant_id"
+    },
+    "intent_to_arg_path": {
+      "grace_period_minutes": "grace_period_minutes_param",
+      "quota_bucket": "quota_bucket_param",
+      "tenant_id": "tenant_id_param"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 1,
+      "property_count": 3,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_009",
+    "counterexamples": [
+      {
+        "quota_bucket": "daily_calls"
+      },
+      {
+        "quota_bucket": "short_tenant",
+        "tenant_id": "t1"
+      }
+    ],
+    "description": "Reset API invocation consumption counter for a specific tenant.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "grace_period_minutes_param": 60,
+        "quota_bucket_param": "daily_api_calls",
+        "tenant_id_param": "ten_9941"
+      },
+      {
+        "quota_bucket_param": "sms_allowance",
+        "tenant_id_param": "ten_1102"
+      }
+    ],
+    "latent_intent_schema": {
+      "grace_period_minutes": "integer",
+      "quota_bucket": "string",
+      "tenant_id": "string"
+    },
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "mutation_id": "MUT_BASE_SYNTH_009_AMBIGUOUS_IDENTIFIERS_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "properties": {
+        "grace_period_minutes_param": {
+          "description": "Exemption duration",
+          "maximum": 1440,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "quota_bucket_param": {
+          "description": "Rate limit bucket key",
+          "minLength": 1,
+          "type": "string"
+        },
+        "tenant_id_param": {
+          "description": "Account tenant identifier",
+          "minLength": 3,
+          "type": "string"
+        }
+      },
+      "required": [
+        "quota_bucket_param",
+        "tenant_id_param"
+      ],
+      "title": "synth_reset_quota_usage",
+      "type": "object"
+    },
+    "seed": 42009,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Reset Quota Usage",
+    "tool_name": "synth_reset_quota_usage"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_009_AMBIGUOUS_IDENTIFIERS_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

@@ -1,0 +1,315 @@
+{
+  "base_contract_id": "BASE_SYNTH_034",
+  "complexity_delta": {
+    "distractor_count": 4
+  },
+  "distractor_tools": [
+    {
+      "contract_id": "BASE_SYNTH_007",
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "title": "Increment Counter Metric",
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "contract_id": "BASE_SYNTH_008",
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "title": "Record Heartbeat Timestamp",
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "contract_id": "BASE_SYNTH_009",
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "title": "Reset Quota Usage",
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "contract_id": "BASE_SYNTH_018",
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "domain": "analytics_metrics",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "title": "Query Metric Aggregate",
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "family": "DISTRACTOR_SET_COMPLEXITY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "dataset_name": "dataset_name",
+      "format_spec": "format_spec",
+      "query_window": "query_window"
+    },
+    "intent_to_arg_path": {
+      "dataset_name": "dataset_name",
+      "format_spec": "format_spec",
+      "query_window": "query_window"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_034",
+    "counterexamples": [
+      {
+        "dataset_name": "missing_window",
+        "format_spec": {
+          "format_type": "csv"
+        }
+      },
+      {
+        "dataset_name": "bad_format",
+        "format_spec": {
+          "format_type": "xml"
+        },
+        "query_window": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      }
+    ],
+    "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "dataset_name": "latency_timeseries_oct",
+        "format_spec": {
+          "compress": true,
+          "format_type": "parquet"
+        },
+        "query_window": {
+          "end_epoch": 1761586400,
+          "interval_seconds": 60,
+          "start_epoch": 1761500000
+        }
+      },
+      {
+        "dataset_name": "error_rates",
+        "format_spec": {
+          "format_type": "csv"
+        },
+        "query_window": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "dataset_name": "string",
+      "format_spec": "object",
+      "query_window": "object"
+    },
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "mutation_id": "MUT_BASE_SYNTH_034_DISTRACTOR_SET_COMPLEXITY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "properties": {
+        "dataset_name": {
+          "description": "Target metrics catalog",
+          "minLength": 2,
+          "type": "string"
+        },
+        "format_spec": {
+          "additionalProperties": false,
+          "description": "Export serialization format",
+          "properties": {
+            "compress": {
+              "type": "boolean"
+            },
+            "format_type": {
+              "enum": [
+                "csv",
+                "parquet",
+                "jsonl"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "format_type"
+          ],
+          "type": "object"
+        },
+        "query_window": {
+          "additionalProperties": false,
+          "description": "Temporal boundaries",
+          "properties": {
+            "end_epoch": {
+              "minimum": 1600000000,
+              "type": "integer"
+            },
+            "interval_seconds": {
+              "maximum": 3600,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "start_epoch": {
+              "minimum": 1600000000,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "start_epoch",
+            "end_epoch"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "dataset_name",
+        "query_window",
+        "format_spec"
+      ],
+      "title": "synth_export_timeseries_dataset",
+      "type": "object"
+    },
+    "seed": 42034,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Export Timeseries Dataset",
+    "tool_name": "synth_export_timeseries_dataset"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_034_DISTRACTOR_SET_COMPLEXITY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

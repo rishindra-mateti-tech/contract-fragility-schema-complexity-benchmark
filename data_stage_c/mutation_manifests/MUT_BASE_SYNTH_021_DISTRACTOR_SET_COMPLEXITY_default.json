@@ -1,0 +1,279 @@
+{
+  "base_contract_id": "BASE_SYNTH_021",
+  "complexity_delta": {
+    "distractor_count": 4
+  },
+  "distractor_tools": [
+    {
+      "contract_id": "BASE_SYNTH_010",
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "title": "Revoke Access Token",
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "contract_id": "BASE_SYNTH_011",
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "title": "Extend Session Lease",
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "contract_id": "BASE_SYNTH_012",
+      "description": "Impose an administrative lock on a compromised user account.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "title": "Lock User Account",
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "contract_id": "BASE_SYNTH_022",
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "domain": "access_governance",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "title": "Provision API Credential",
+      "tool_name": "synth_provision_api_credential"
+    }
+  ],
+  "family": "DISTRACTOR_SET_COMPLEXITY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "enforce_mfa": "enforce_mfa",
+      "permission_scopes": "permission_scopes",
+      "principal_id": "principal_id",
+      "role_tier": "role_tier"
+    },
+    "intent_to_arg_path": {
+      "enforce_mfa": "enforce_mfa",
+      "permission_scopes": "permission_scopes",
+      "principal_id": "principal_id",
+      "role_tier": "role_tier"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 4,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 4,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_021",
+    "counterexamples": [
+      {
+        "permission_scopes": [],
+        "principal_id": "usr_no_scopes",
+        "role_tier": "admin"
+      },
+      {
+        "permission_scopes": [
+          "read"
+        ],
+        "principal_id": "usr_bad_tier",
+        "role_tier": "superadmin"
+      }
+    ],
+    "description": "Grant a predefined security role and scope set to a user principal.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "enforce_mfa": true,
+        "permission_scopes": [
+          "read:logs",
+          "restart:service"
+        ],
+        "principal_id": "usr_9918",
+        "role_tier": "operator"
+      },
+      {
+        "permission_scopes": [
+          "read:dashboard"
+        ],
+        "principal_id": "usr_5501",
+        "role_tier": "viewer"
+      }
+    ],
+    "latent_intent_schema": {
+      "enforce_mfa": "boolean",
+      "permission_scopes": "array[string]",
+      "principal_id": "string",
+      "role_tier": "string"
+    },
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "mutation_id": "MUT_BASE_SYNTH_021_DISTRACTOR_SET_COMPLEXITY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "properties": {
+        "enforce_mfa": {
+          "description": "Require multi-factor authentication for role usage",
+          "type": "boolean"
+        },
+        "permission_scopes": {
+          "description": "Granted scope strings",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "principal_id": {
+          "description": "User or service principal identifier",
+          "minLength": 3,
+          "type": "string"
+        },
+        "role_tier": {
+          "description": "Predefined RBAC role tier",
+          "enum": [
+            "viewer",
+            "operator",
+            "admin",
+            "owner"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "principal_id",
+        "role_tier",
+        "permission_scopes"
+      ],
+      "title": "synth_assign_role_permissions",
+      "type": "object"
+    },
+    "seed": 42021,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Assign Role Permissions",
+    "tool_name": "synth_assign_role_permissions"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_021_DISTRACTOR_SET_COMPLEXITY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

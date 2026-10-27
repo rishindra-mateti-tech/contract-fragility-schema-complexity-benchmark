@@ -1,0 +1,116 @@
+{
+  "base_contract_id": "BASE_SYNTH_005",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "call_id": "call_id",
+      "payload_parameters.record_audio": "record_audio",
+      "payload_parameters.status_code": "status_code"
+    },
+    "intent_to_arg_path": {
+      "call_id": "call_id",
+      "record_audio": "payload_parameters.record_audio",
+      "status_code": "payload_parameters.status_code"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 2,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_005",
+    "counterexamples": [
+      {
+        "call_id": "call_no_status"
+      },
+      {
+        "call_id": "call_bad_status",
+        "status_code": 50
+      }
+    ],
+    "description": "Modify the signaling status of an active voice call session.",
+    "domain": "communications",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "call_id": "call_9941a",
+        "payload_parameters": {
+          "record_audio": true,
+          "status_code": 200
+        }
+      },
+      {
+        "call_id": "call_1102b",
+        "payload_parameters": {
+          "status_code": 486
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "call_id": "string",
+      "record_audio": "boolean",
+      "status_code": "integer"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_005_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Modify the signaling status of an active voice call session.",
+      "properties": {
+        "call_id": {
+          "description": "Unique call session identifier",
+          "minLength": 4,
+          "type": "string"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "record_audio": {
+              "description": "Toggle media recording on bridge",
+              "type": "boolean"
+            },
+            "status_code": {
+              "description": "SIP/VoIP status code",
+              "maximum": 600,
+              "minimum": 100,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "status_code"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "call_id",
+        "payload_parameters"
+      ],
+      "title": "synth_update_call_status",
+      "type": "object"
+    },
+    "seed": 42005,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Update Call Session Status",
+    "tool_name": "synth_update_call_status"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_005_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

@@ -1,0 +1,130 @@
+{
+  "base_contract_id": "BASE_SYNTH_021",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "CANONICAL",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "enforce_mfa": "enforce_mfa",
+      "permission_scopes": "permission_scopes",
+      "principal_id": "principal_id",
+      "role_tier": "role_tier"
+    },
+    "intent_to_arg_path": {
+      "enforce_mfa": "enforce_mfa",
+      "permission_scopes": "permission_scopes",
+      "principal_id": "principal_id",
+      "role_tier": "role_tier"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 4,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 4,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_021",
+    "counterexamples": [
+      {
+        "permission_scopes": [],
+        "principal_id": "usr_no_scopes",
+        "role_tier": "admin"
+      },
+      {
+        "permission_scopes": [
+          "read"
+        ],
+        "principal_id": "usr_bad_tier",
+        "role_tier": "superadmin"
+      }
+    ],
+    "description": "Grant a predefined security role and scope set to a user principal.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "enforce_mfa": true,
+        "permission_scopes": [
+          "read:logs",
+          "restart:service"
+        ],
+        "principal_id": "usr_9918",
+        "role_tier": "operator"
+      },
+      {
+        "permission_scopes": [
+          "read:dashboard"
+        ],
+        "principal_id": "usr_5501",
+        "role_tier": "viewer"
+      }
+    ],
+    "latent_intent_schema": {
+      "enforce_mfa": "boolean",
+      "permission_scopes": "array[string]",
+      "principal_id": "string",
+      "role_tier": "string"
+    },
+    "mutation_family": "CANONICAL",
+    "mutation_id": "MUT_BASE_SYNTH_021_CANONICAL_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "properties": {
+        "enforce_mfa": {
+          "description": "Require multi-factor authentication for role usage",
+          "type": "boolean"
+        },
+        "permission_scopes": {
+          "description": "Granted scope strings",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "principal_id": {
+          "description": "User or service principal identifier",
+          "minLength": 3,
+          "type": "string"
+        },
+        "role_tier": {
+          "description": "Predefined RBAC role tier",
+          "enum": [
+            "viewer",
+            "operator",
+            "admin",
+            "owner"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "principal_id",
+        "role_tier",
+        "permission_scopes"
+      ],
+      "title": "synth_assign_role_permissions",
+      "type": "object"
+    },
+    "seed": 42021,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Assign Role Permissions",
+    "tool_name": "synth_assign_role_permissions"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_021_CANONICAL_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

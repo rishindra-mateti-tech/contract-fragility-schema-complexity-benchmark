@@ -1,0 +1,119 @@
+{
+  "base_contract_id": "BASE_SYNTH_008",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "epoch_seconds": "epoch_seconds",
+      "payload_parameters.is_healthy": "is_healthy",
+      "payload_parameters.service_name": "service_name"
+    },
+    "intent_to_arg_path": {
+      "epoch_seconds": "epoch_seconds",
+      "is_healthy": "payload_parameters.is_healthy",
+      "service_name": "payload_parameters.service_name"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 2,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_008",
+    "counterexamples": [
+      {
+        "is_healthy": true,
+        "service_name": "missing_epoch"
+      },
+      {
+        "epoch_seconds": 100,
+        "is_healthy": true,
+        "service_name": "old_epoch"
+      }
+    ],
+    "description": "Report service agent health heartbeat with unix epoch timestamp.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "epoch_seconds": 1761500000,
+        "payload_parameters": {
+          "is_healthy": true,
+          "service_name": "auth_service_node_1"
+        }
+      },
+      {
+        "epoch_seconds": 1761500010,
+        "payload_parameters": {
+          "is_healthy": false,
+          "service_name": "gateway_proxy_0"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "epoch_seconds": "integer",
+      "is_healthy": "boolean",
+      "service_name": "string"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_008_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "properties": {
+        "epoch_seconds": {
+          "description": "Unix timestamp in seconds",
+          "minimum": 1600000000,
+          "type": "integer"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "is_healthy": {
+              "description": "Self-reported health state",
+              "type": "boolean"
+            },
+            "service_name": {
+              "description": "Service instance name",
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "is_healthy",
+            "service_name"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "epoch_seconds",
+        "payload_parameters"
+      ],
+      "title": "synth_record_heartbeat_timestamp",
+      "type": "object"
+    },
+    "seed": 42008,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Record Heartbeat Timestamp",
+    "tool_name": "synth_record_heartbeat_timestamp"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_008_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

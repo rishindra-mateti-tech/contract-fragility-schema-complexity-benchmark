@@ -1,0 +1,156 @@
+{
+  "base_contract_id": "BASE_SYNTH_037",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "boundary_id": "boundary_id",
+      "payload_parameters.ingress_policy": "ingress_policy",
+      "payload_parameters.inspection_tier": "inspection_tier"
+    },
+    "intent_to_arg_path": {
+      "boundary_id": "boundary_id",
+      "ingress_policy": "payload_parameters.ingress_policy",
+      "inspection_tier": "payload_parameters.inspection_tier"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 5,
+      "property_count": 2,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_037",
+    "counterexamples": [
+      {
+        "boundary_id": "missing_ingress",
+        "inspection_tier": "stateless"
+      },
+      {
+        "boundary_id": "b1",
+        "ingress_policy": {
+          "allowed_cidr": "10.0.0.0/8",
+          "ports": []
+        },
+        "inspection_tier": "stateless"
+      }
+    ],
+    "description": "Apply subnet network security group filtering and packet inspection rules.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "boundary_id": "vpc_secure_prod",
+        "payload_parameters": {
+          "ingress_policy": {
+            "allowed_cidr": "10.0.0.0/16",
+            "ports": [
+              443,
+              8443
+            ]
+          },
+          "inspection_tier": "stateful_inspection"
+        }
+      },
+      {
+        "boundary_id": "subnet_dmz",
+        "payload_parameters": {
+          "ingress_policy": {
+            "allowed_cidr": "0.0.0.0/0",
+            "ports": [
+              80,
+              443
+            ]
+          },
+          "inspection_tier": "stateless"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "boundary_id": "string",
+      "ingress_policy": "object",
+      "inspection_tier": "string"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_037_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "properties": {
+        "boundary_id": {
+          "description": "VPC or subnet identifier",
+          "minLength": 3,
+          "type": "string"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "ingress_policy": {
+              "additionalProperties": false,
+              "description": "Inbound packet rules",
+              "properties": {
+                "allowed_cidr": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "ports": {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "allowed_cidr",
+                "ports"
+              ],
+              "type": "object"
+            },
+            "inspection_tier": {
+              "description": "Firewall filtering depth",
+              "enum": [
+                "stateless",
+                "stateful_inspection",
+                "deep_packet_dpi"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "ingress_policy",
+            "inspection_tier"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "boundary_id",
+        "payload_parameters"
+      ],
+      "title": "synth_enforce_security_boundary",
+      "type": "object"
+    },
+    "seed": 42037,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Enforce Security Boundary",
+    "tool_name": "synth_enforce_security_boundary"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_037_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

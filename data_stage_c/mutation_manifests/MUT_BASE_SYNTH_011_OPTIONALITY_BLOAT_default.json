@@ -1,0 +1,121 @@
+{
+  "base_contract_id": "BASE_SYNTH_011",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "extension_minutes": "extension_minutes",
+      "session_id": "session_id",
+      "touch_activity": "touch_activity"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "extension_minutes": "extension_minutes",
+      "session_id": "session_id",
+      "touch_activity": "touch_activity"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 1,
+      "property_count": 6,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_011",
+    "counterexamples": [
+      {
+        "session_id": "sess_missing_minutes"
+      },
+      {
+        "extension_minutes": 2,
+        "session_id": "sess_too_short_ext"
+      }
+    ],
+    "description": "Prolong an active authenticated session lease by a given duration.",
+    "domain": "access_governance",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "extension_minutes": 60,
+        "session_id": "sess_8839201948",
+        "touch_activity": true
+      },
+      {
+        "extension_minutes": 15,
+        "session_id": "sess_1192837465"
+      }
+    ],
+    "latent_intent_schema": {
+      "extension_minutes": "integer",
+      "session_id": "string",
+      "touch_activity": "boolean"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_011_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "properties": {
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "extension_minutes": {
+          "description": "Extension duration",
+          "maximum": 480,
+          "minimum": 5,
+          "type": "integer"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        },
+        "session_id": {
+          "description": "Active session cookie ID",
+          "minLength": 8,
+          "type": "string"
+        },
+        "touch_activity": {
+          "description": "Update last active timestamp",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "session_id",
+        "extension_minutes"
+      ],
+      "title": "synth_extend_session_lease",
+      "type": "object"
+    },
+    "seed": 42011,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Extend Session Lease",
+    "tool_name": "synth_extend_session_lease"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_011_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

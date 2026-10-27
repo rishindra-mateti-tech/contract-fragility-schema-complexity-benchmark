@@ -1,0 +1,268 @@
+{
+  "base_contract_id": "BASE_SYNTH_006",
+  "complexity_delta": {
+    "distractor_count": 4
+  },
+  "distractor_tools": [
+    {
+      "contract_id": "BASE_SYNTH_004",
+      "description": "Send an SMS text message to a designated phone destination.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "title": "Dispatch SMS Message",
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "contract_id": "BASE_SYNTH_005",
+      "description": "Modify the signaling status of an active voice call session.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "title": "Update Call Session Status",
+      "tool_name": "synth_update_call_status"
+    },
+    {
+      "contract_id": "BASE_SYNTH_015",
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "title": "Broadcast Alert Notification",
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "contract_id": "BASE_SYNTH_016",
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "domain": "communications",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "title": "Enqueue Email Digest",
+      "tool_name": "synth_enqueue_email_digest"
+    }
+  ],
+  "family": "DISTRACTOR_SET_COMPLEXITY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "archive_recording": "archive_recording",
+      "bridge_id": "bridge_id",
+      "termination_reason": "termination_reason"
+    },
+    "intent_to_arg_path": {
+      "archive_recording": "archive_recording",
+      "bridge_id": "bridge_id",
+      "termination_reason": "termination_reason"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "has_numeric_constraints": false,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 1,
+      "property_count": 3,
+      "required_count": 1
+    },
+    "contract_id": "BASE_SYNTH_006",
+    "counterexamples": [
+      {
+        "termination_reason": "Missing bridge ID"
+      },
+      {
+        "bridge_id": "br",
+        "termination_reason": "ID too short"
+      }
+    ],
+    "description": "Tear down an established conference audio bridge.",
+    "domain": "communications",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "archive_recording": true,
+        "bridge_id": "bridge_7710",
+        "termination_reason": "Host ended call"
+      },
+      {
+        "bridge_id": "bridge_8820"
+      }
+    ],
+    "latent_intent_schema": {
+      "archive_recording": "boolean",
+      "bridge_id": "string",
+      "termination_reason": "string"
+    },
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "mutation_id": "MUT_BASE_SYNTH_006_DISTRACTOR_SET_COMPLEXITY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Tear down an established conference audio bridge.",
+      "properties": {
+        "archive_recording": {
+          "description": "Persist audio capture to cold storage",
+          "type": "boolean"
+        },
+        "bridge_id": {
+          "description": "Conference bridge identifier",
+          "minLength": 4,
+          "type": "string"
+        },
+        "termination_reason": {
+          "description": "Audit rationale for bridge shutdown",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bridge_id"
+      ],
+      "title": "synth_terminate_voice_bridge",
+      "type": "object"
+    },
+    "seed": 42006,
+    "stratum": "SIMPLE_FLAT",
+    "title": "Terminate Voice Bridge",
+    "tool_name": "synth_terminate_voice_bridge"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_006_DISTRACTOR_SET_COMPLEXITY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

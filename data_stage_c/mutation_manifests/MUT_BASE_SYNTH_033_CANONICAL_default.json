@@ -1,0 +1,133 @@
+{
+  "base_contract_id": "BASE_SYNTH_033",
+  "complexity_delta": {
+    "depth_delta": 0,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "CANONICAL",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "endpoint": "endpoint",
+      "event_type": "event_type",
+      "max_retries": "max_retries"
+    },
+    "intent_to_arg_path": {
+      "endpoint": "endpoint",
+      "event_type": "event_type",
+      "max_retries": "max_retries"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_033",
+    "counterexamples": [
+      {
+        "event_type": "invoice.created"
+      },
+      {
+        "endpoint": {
+          "url": "https://api.com"
+        },
+        "event_type": "order.paid"
+      }
+    ],
+    "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+    "domain": "communications",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "endpoint": {
+          "signing_secret": "whsec_abcdef123456",
+          "timeout_ms": 3000,
+          "url": "https://api.partner.com/hooks"
+        },
+        "event_type": "payment.succeeded",
+        "max_retries": 3
+      },
+      {
+        "endpoint": {
+          "signing_secret": "secret_12345678",
+          "url": "https://hooks.slack.com/services/T00/B00/X"
+        },
+        "event_type": "user.registered"
+      }
+    ],
+    "latent_intent_schema": {
+      "endpoint": "object",
+      "event_type": "string",
+      "max_retries": "integer"
+    },
+    "mutation_family": "CANONICAL",
+    "mutation_id": "MUT_BASE_SYNTH_033_CANONICAL_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "properties": {
+        "endpoint": {
+          "additionalProperties": false,
+          "description": "Destination HTTP configuration",
+          "properties": {
+            "signing_secret": {
+              "description": "HMAC signature secret",
+              "minLength": 8,
+              "type": "string"
+            },
+            "timeout_ms": {
+              "maximum": 10000,
+              "minimum": 100,
+              "type": "integer"
+            },
+            "url": {
+              "description": "HTTPS webhook URL",
+              "minLength": 8,
+              "type": "string"
+            }
+          },
+          "required": [
+            "url",
+            "signing_secret"
+          ],
+          "type": "object"
+        },
+        "event_type": {
+          "description": "Domain event classification",
+          "minLength": 3,
+          "type": "string"
+        },
+        "max_retries": {
+          "description": "Retry limit on 5xx failures",
+          "maximum": 5,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "event_type",
+        "endpoint"
+      ],
+      "title": "synth_publish_webhook_event",
+      "type": "object"
+    },
+    "seed": 42033,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Publish Webhook Event",
+    "tool_name": "synth_publish_webhook_event"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_033_CANONICAL_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

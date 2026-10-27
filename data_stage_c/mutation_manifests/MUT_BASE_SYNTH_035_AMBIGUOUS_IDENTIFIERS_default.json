@@ -1,0 +1,147 @@
+{
+  "base_contract_id": "BASE_SYNTH_035",
+  "complexity_delta": {
+    "renamed_properties": 3
+  },
+  "distractor_tools": [],
+  "family": "AMBIGUOUS_IDENTIFIERS",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "compliance_rules_param": "compliance_rules",
+      "target_system_param": "target_system",
+      "thresholds_param": "thresholds"
+    },
+    "intent_to_arg_path": {
+      "compliance_rules": "compliance_rules_param",
+      "target_system": "target_system_param",
+      "thresholds": "thresholds_param"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 4,
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_035",
+    "counterexamples": [
+      {
+        "target_system": "sys_no_rules",
+        "thresholds": {
+          "min_passing_score": 80
+        }
+      },
+      {
+        "compliance_rules": {
+          "framework": "FEDRAMP"
+        },
+        "target_system": "sys_bad_fw",
+        "thresholds": {
+          "min_passing_score": 80
+        }
+      }
+    ],
+    "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "compliance_rules_param": {
+          "framework": "PCI_DSS",
+          "strict_mode": true
+        },
+        "target_system_param": "payment_processing_cluster",
+        "thresholds_param": {
+          "min_passing_score": 95
+        }
+      },
+      {
+        "compliance_rules_param": {
+          "framework": "SOC2"
+        },
+        "target_system_param": "analytics_datalake",
+        "thresholds_param": {
+          "min_passing_score": 80
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "compliance_rules": "object",
+      "target_system": "string",
+      "thresholds": "object"
+    },
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "mutation_id": "MUT_BASE_SYNTH_035_AMBIGUOUS_IDENTIFIERS_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "properties": {
+        "compliance_rules_param": {
+          "additionalProperties": false,
+          "description": "Evaluated framework rules",
+          "properties": {
+            "framework": {
+              "enum": [
+                "SOC2",
+                "HIPAA",
+                "PCI_DSS",
+                "ISO_27001"
+              ],
+              "type": "string"
+            },
+            "strict_mode": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "framework"
+          ],
+          "type": "object"
+        },
+        "target_system_param": {
+          "description": "Evaluated subsystem",
+          "minLength": 2,
+          "type": "string"
+        },
+        "thresholds_param": {
+          "additionalProperties": false,
+          "description": "Passing score limits",
+          "properties": {
+            "min_passing_score": {
+              "maximum": 100,
+              "minimum": 50,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "min_passing_score"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "compliance_rules_param",
+        "target_system_param",
+        "thresholds_param"
+      ],
+      "title": "synth_generate_audit_scorecard",
+      "type": "object"
+    },
+    "seed": 42035,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Generate Audit Scorecard",
+    "tool_name": "synth_generate_audit_scorecard"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_035_AMBIGUOUS_IDENTIFIERS_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

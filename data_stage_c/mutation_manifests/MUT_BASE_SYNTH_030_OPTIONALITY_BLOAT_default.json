@@ -1,0 +1,173 @@
+{
+  "base_contract_id": "BASE_SYNTH_030",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "migration_id": "migration_id",
+      "source": "source",
+      "target": "target"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "migration_id": "migration_id",
+      "source": "source",
+      "target": "target"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 6,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_030",
+    "counterexamples": [
+      {
+        "migration_id": "mig_missing_target",
+        "source": {
+          "cluster_name": "c1",
+          "slice_id": 0
+        }
+      },
+      {
+        "migration_id": "mig_bad_target",
+        "source": {
+          "cluster_name": "c1",
+          "slice_id": 0
+        },
+        "target": {
+          "cluster_name": "c2"
+        }
+      }
+    ],
+    "description": "Migrate partition slices from source cluster to target destination cluster.",
+    "domain": "data_management",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "migration_id": "mig_9941",
+        "source": {
+          "cluster_name": "cluster_us_east",
+          "slice_id": 4
+        },
+        "target": {
+          "cluster_name": "cluster_eu_central",
+          "datacenter": "fra-1"
+        }
+      },
+      {
+        "migration_id": "mig_8810",
+        "source": {
+          "cluster_name": "staging_a",
+          "slice_id": 0
+        },
+        "target": {
+          "cluster_name": "staging_b",
+          "datacenter": "iad-2"
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "migration_id": "string",
+      "source": "object",
+      "target": "object"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_030_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "properties": {
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "migration_id": {
+          "description": "Migration operation tracking ID",
+          "minLength": 3,
+          "type": "string"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        },
+        "source": {
+          "additionalProperties": false,
+          "description": "Source storage specification",
+          "properties": {
+            "cluster_name": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "slice_id": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "cluster_name",
+            "slice_id"
+          ],
+          "type": "object"
+        },
+        "target": {
+          "additionalProperties": false,
+          "description": "Target storage destination",
+          "properties": {
+            "cluster_name": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "datacenter": {
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          "required": [
+            "cluster_name",
+            "datacenter"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "migration_id",
+        "source",
+        "target"
+      ],
+      "title": "synth_execute_partition_migration",
+      "type": "object"
+    },
+    "seed": 42030,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Execute Partition Migration",
+    "tool_name": "synth_execute_partition_migration"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_030_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

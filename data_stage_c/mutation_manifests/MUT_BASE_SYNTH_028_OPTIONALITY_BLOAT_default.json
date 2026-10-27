@@ -1,0 +1,145 @@
+{
+  "base_contract_id": "BASE_SYNTH_028",
+  "complexity_delta": {
+    "properties_delta": 3
+  },
+  "distractor_tools": [],
+  "family": "OPTIONALITY_BLOAT",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "auto_terminate": "auto_terminate",
+      "job_ids": "job_ids",
+      "worker_concurrency": "worker_concurrency",
+      "worker_pool": "worker_pool"
+    },
+    "injected_optional_properties": [
+      "client_request_id",
+      "dry_run",
+      "notify_on_completion"
+    ],
+    "intent_to_arg_path": {
+      "auto_terminate": "auto_terminate",
+      "job_ids": "job_ids",
+      "worker_concurrency": "worker_concurrency",
+      "worker_pool": "worker_pool"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 7,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_028",
+    "counterexamples": [
+      {
+        "job_ids": [
+          "job_1"
+        ],
+        "worker_pool": "gpu_cluster"
+      },
+      {
+        "job_ids": [],
+        "worker_pool": "standard"
+      }
+    ],
+    "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+    "domain": "workflow_orchestration",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "auto_terminate": true,
+        "job_ids": [
+          "job_101",
+          "job_102"
+        ],
+        "worker_concurrency": 16,
+        "worker_pool": "cpu_optimized"
+      },
+      {
+        "job_ids": [
+          "job_500"
+        ],
+        "worker_pool": "standard"
+      }
+    ],
+    "latent_intent_schema": {
+      "auto_terminate": "boolean",
+      "job_ids": "array[string]",
+      "worker_concurrency": "integer",
+      "worker_pool": "string"
+    },
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "mutation_id": "MUT_BASE_SYNTH_028_OPTIONALITY_BLOAT_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "properties": {
+        "auto_terminate": {
+          "description": "Shut down worker upon queue exhaustion",
+          "type": "boolean"
+        },
+        "client_request_id": {
+          "description": "Client correlation identifier.",
+          "maxLength": 64,
+          "type": "string"
+        },
+        "dry_run": {
+          "default": false,
+          "description": "Validate request without committing changes.",
+          "type": "boolean"
+        },
+        "job_ids": {
+          "description": "Assigned job identifiers",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "notify_on_completion": {
+          "default": false,
+          "description": "Trigger alert upon operation completion.",
+          "type": "boolean"
+        },
+        "worker_concurrency": {
+          "description": "Parallel thread count",
+          "maximum": 32,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "worker_pool": {
+          "description": "Compute tier",
+          "enum": [
+            "cpu_optimized",
+            "memory_optimized",
+            "standard"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "worker_pool",
+        "job_ids"
+      ],
+      "title": "synth_dispatch_batch_worker",
+      "type": "object"
+    },
+    "seed": 42028,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Dispatch Batch Worker",
+    "tool_name": "synth_dispatch_batch_worker"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_028_OPTIONALITY_BLOAT_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

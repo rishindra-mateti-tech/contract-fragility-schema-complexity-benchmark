@@ -1,0 +1,149 @@
+{
+  "base_contract_id": "BASE_SYNTH_039",
+  "complexity_delta": {
+    "renamed_properties": 3
+  },
+  "distractor_tools": [],
+  "family": "AMBIGUOUS_IDENTIFIERS",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "application_id_param": "application_id",
+      "canary_strategy_param": "canary_strategy",
+      "rollback_thresholds_param": "rollback_thresholds"
+    },
+    "intent_to_arg_path": {
+      "application_id": "application_id_param",
+      "canary_strategy": "canary_strategy_param",
+      "rollback_thresholds": "rollback_thresholds_param"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_039",
+    "counterexamples": [
+      {
+        "application_id": "no_rollback",
+        "canary_strategy": {
+          "initial_percentage": 10,
+          "step_duration_minutes": 10
+        }
+      },
+      {
+        "application_id": "bad_canary",
+        "canary_strategy": {
+          "initial_percentage": 80,
+          "step_duration_minutes": 10
+        },
+        "rollback_thresholds": {
+          "max_error_rate_percent": 1.0
+        }
+      }
+    ],
+    "description": "Control canary progression and rollback parameters for an application release.",
+    "domain": "workflow_orchestration",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "application_id_param": "checkout_api",
+        "canary_strategy_param": {
+          "initial_percentage": 10,
+          "step_duration_minutes": 15
+        },
+        "rollback_thresholds_param": {
+          "max_error_rate_percent": 1.5
+        }
+      },
+      {
+        "application_id_param": "auth_service",
+        "canary_strategy_param": {
+          "initial_percentage": 5,
+          "step_duration_minutes": 30
+        },
+        "rollback_thresholds_param": {
+          "max_error_rate_percent": 0.5
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "application_id": "string",
+      "canary_strategy": "object",
+      "rollback_thresholds": "object"
+    },
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "mutation_id": "MUT_BASE_SYNTH_039_AMBIGUOUS_IDENTIFIERS_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "properties": {
+        "application_id_param": {
+          "description": "Deployed microservice ID",
+          "minLength": 2,
+          "type": "string"
+        },
+        "canary_strategy_param": {
+          "additionalProperties": false,
+          "description": "Progressive traffic shift parameters",
+          "properties": {
+            "initial_percentage": {
+              "maximum": 50,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "step_duration_minutes": {
+              "maximum": 120,
+              "minimum": 5,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "initial_percentage",
+            "step_duration_minutes"
+          ],
+          "type": "object"
+        },
+        "rollback_thresholds_param": {
+          "additionalProperties": false,
+          "description": "Error circuit-breaker triggers",
+          "properties": {
+            "max_error_rate_percent": {
+              "maximum": 10.0,
+              "minimum": 0.1,
+              "type": "number"
+            }
+          },
+          "required": [
+            "max_error_rate_percent"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "application_id_param",
+        "canary_strategy_param",
+        "rollback_thresholds_param"
+      ],
+      "title": "synth_manage_deployment_rollout",
+      "type": "object"
+    },
+    "seed": 42039,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Manage Deployment Rollout",
+    "tool_name": "synth_manage_deployment_rollout"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_039_AMBIGUOUS_IDENTIFIERS_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

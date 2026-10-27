@@ -1,0 +1,159 @@
+{
+  "base_contract_id": "BASE_SYNTH_034",
+  "complexity_delta": {
+    "renamed_properties": 3
+  },
+  "distractor_tools": [],
+  "family": "AMBIGUOUS_IDENTIFIERS",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "dataset_name_param": "dataset_name",
+      "format_spec_param": "format_spec",
+      "query_window_param": "query_window"
+    },
+    "intent_to_arg_path": {
+      "dataset_name": "dataset_name_param",
+      "format_spec": "format_spec_param",
+      "query_window": "query_window_param"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 3,
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 2,
+      "property_count": 3,
+      "required_count": 3
+    },
+    "contract_id": "BASE_SYNTH_034",
+    "counterexamples": [
+      {
+        "dataset_name": "missing_window",
+        "format_spec": {
+          "format_type": "csv"
+        }
+      },
+      {
+        "dataset_name": "bad_format",
+        "format_spec": {
+          "format_type": "xml"
+        },
+        "query_window": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      }
+    ],
+    "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+    "domain": "analytics_metrics",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "dataset_name_param": "latency_timeseries_oct",
+        "format_spec_param": {
+          "compress": true,
+          "format_type": "parquet"
+        },
+        "query_window_param": {
+          "end_epoch": 1761586400,
+          "interval_seconds": 60,
+          "start_epoch": 1761500000
+        }
+      },
+      {
+        "dataset_name_param": "error_rates",
+        "format_spec_param": {
+          "format_type": "csv"
+        },
+        "query_window_param": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "dataset_name": "string",
+      "format_spec": "object",
+      "query_window": "object"
+    },
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "mutation_id": "MUT_BASE_SYNTH_034_AMBIGUOUS_IDENTIFIERS_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "properties": {
+        "dataset_name_param": {
+          "description": "Target metrics catalog",
+          "minLength": 2,
+          "type": "string"
+        },
+        "format_spec_param": {
+          "additionalProperties": false,
+          "description": "Export serialization format",
+          "properties": {
+            "compress": {
+              "type": "boolean"
+            },
+            "format_type": {
+              "enum": [
+                "csv",
+                "parquet",
+                "jsonl"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "format_type"
+          ],
+          "type": "object"
+        },
+        "query_window_param": {
+          "additionalProperties": false,
+          "description": "Temporal boundaries",
+          "properties": {
+            "end_epoch": {
+              "minimum": 1600000000,
+              "type": "integer"
+            },
+            "interval_seconds": {
+              "maximum": 3600,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "start_epoch": {
+              "minimum": 1600000000,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "start_epoch",
+            "end_epoch"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "dataset_name_param",
+        "format_spec_param",
+        "query_window_param"
+      ],
+      "title": "synth_export_timeseries_dataset",
+      "type": "object"
+    },
+    "seed": 42034,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Export Timeseries Dataset",
+    "tool_name": "synth_export_timeseries_dataset"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_034_AMBIGUOUS_IDENTIFIERS_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

@@ -1,0 +1,197 @@
+{
+  "base_contract_id": "BASE_SYNTH_040",
+  "complexity_delta": {
+    "depth_delta": 1,
+    "properties_delta": 0
+  },
+  "distractor_tools": [],
+  "family": "NESTED_HIERARCHY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "cluster_domain": "cluster_domain",
+      "payload_parameters.consensus_config": "consensus_config",
+      "payload_parameters.member_nodes": "member_nodes"
+    },
+    "intent_to_arg_path": {
+      "cluster_domain": "cluster_domain",
+      "consensus_config": "payload_parameters.consensus_config",
+      "member_nodes": "payload_parameters.member_nodes"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 0,
+      "has_arrays": true,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 4,
+      "property_count": 2,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_040",
+    "counterexamples": [
+      {
+        "cluster_domain": "missing_nodes",
+        "consensus_config": {
+          "election_timeout_ms": 300,
+          "quorum_size": 3
+        }
+      },
+      {
+        "cluster_domain": "too_few_nodes",
+        "consensus_config": {
+          "election_timeout_ms": 300,
+          "quorum_size": 3
+        },
+        "member_nodes": [
+          {
+            "address": "10.0.0.1:80",
+            "node_id": "n1"
+          }
+        ]
+      }
+    ],
+    "description": "Coordinate cluster consensus state and membership across peer nodes.",
+    "domain": "workflow_orchestration",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "cluster_domain": "raft_cluster_prod",
+        "payload_parameters": {
+          "consensus_config": {
+            "election_timeout_ms": 300,
+            "quorum_size": 3
+          },
+          "member_nodes": [
+            {
+              "address": "10.0.1.10:9000",
+              "node_id": "node_1"
+            },
+            {
+              "address": "10.0.1.11:9000",
+              "node_id": "node_2"
+            },
+            {
+              "address": "10.0.1.12:9000",
+              "node_id": "node_3"
+            }
+          ]
+        }
+      },
+      {
+        "cluster_domain": "raft_cluster_staging",
+        "payload_parameters": {
+          "consensus_config": {
+            "election_timeout_ms": 500,
+            "quorum_size": 3
+          },
+          "member_nodes": [
+            {
+              "address": "127.0.0.1:9001",
+              "node_id": "stage_1"
+            },
+            {
+              "address": "127.0.0.1:9002",
+              "node_id": "stage_2"
+            },
+            {
+              "address": "127.0.0.1:9003",
+              "node_id": "stage_3"
+            }
+          ]
+        }
+      }
+    ],
+    "latent_intent_schema": {
+      "cluster_domain": "string",
+      "consensus_config": "object",
+      "member_nodes": "array[object]"
+    },
+    "mutation_family": "NESTED_HIERARCHY",
+    "mutation_id": "MUT_BASE_SYNTH_040_NESTED_HIERARCHY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "properties": {
+        "cluster_domain": {
+          "description": "Consensus cluster domain",
+          "minLength": 3,
+          "type": "string"
+        },
+        "payload_parameters": {
+          "additionalProperties": false,
+          "description": "Structured container encapsulating 2 parameters.",
+          "properties": {
+            "consensus_config": {
+              "additionalProperties": false,
+              "description": "Raft/Paxos consensus parameters",
+              "properties": {
+                "election_timeout_ms": {
+                  "maximum": 5000,
+                  "minimum": 150,
+                  "type": "integer"
+                },
+                "quorum_size": {
+                  "maximum": 9,
+                  "minimum": 3,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "quorum_size",
+                "election_timeout_ms"
+              ],
+              "type": "object"
+            },
+            "member_nodes": {
+              "description": "Active peer node connection endpoints",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "minLength": 7,
+                    "type": "string"
+                  },
+                  "node_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "node_id",
+                  "address"
+                ],
+                "type": "object"
+              },
+              "minItems": 3,
+              "type": "array"
+            }
+          },
+          "required": [
+            "consensus_config",
+            "member_nodes"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "cluster_domain",
+        "payload_parameters"
+      ],
+      "title": "synth_synchronize_distributed_cluster",
+      "type": "object"
+    },
+    "seed": 42040,
+    "stratum": "NESTED_OBJECTS_SURFACES",
+    "title": "Synchronize Distributed Cluster",
+    "tool_name": "synth_synchronize_distributed_cluster"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_040_NESTED_HIERARCHY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}

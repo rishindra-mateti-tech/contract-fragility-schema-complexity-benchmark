@@ -1,0 +1,308 @@
+{
+  "base_contract_id": "BASE_SYNTH_024",
+  "complexity_delta": {
+    "distractor_count": 4
+  },
+  "distractor_tools": [
+    {
+      "contract_id": "BASE_SYNTH_025",
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "title": "Cancel Workflow Task",
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "contract_id": "BASE_SYNTH_026",
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "title": "Resume Paused Execution",
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "contract_id": "BASE_SYNTH_027",
+      "description": "Register a recurring automated task schedule with target queue.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "title": "Schedule Cron Job",
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "contract_id": "BASE_SYNTH_028",
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "domain": "workflow_orchestration",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "title": "Dispatch Batch Worker",
+      "tool_name": "synth_dispatch_batch_worker"
+    }
+  ],
+  "family": "DISTRACTOR_SET_COMPLEXITY",
+  "mapping_spec": {
+    "arg_to_intent_slot": {
+      "artifact_paths": "artifact_paths",
+      "pipeline_id": "pipeline_id",
+      "stage_name": "stage_name",
+      "timeout_seconds": "timeout_seconds"
+    },
+    "intent_to_arg_path": {
+      "artifact_paths": "artifact_paths",
+      "pipeline_id": "pipeline_id",
+      "stage_name": "stage_name",
+      "timeout_seconds": "timeout_seconds"
+    }
+  },
+  "mutated_contract": {
+    "complexity_metrics": {
+      "enum_count": 5,
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": false,
+      "has_numeric_constraints": true,
+      "has_temporal_fields": false,
+      "max_nesting_depth": 3,
+      "property_count": 4,
+      "required_count": 2
+    },
+    "contract_id": "BASE_SYNTH_024",
+    "counterexamples": [
+      {
+        "pipeline_id": "pipe_bad_stage",
+        "stage_name": "deploy_prod"
+      },
+      {
+        "stage_name": "unit_test"
+      }
+    ],
+    "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+    "domain": "workflow_orchestration",
+    "generator_version": "1.0.0",
+    "gold_examples": [
+      {
+        "artifact_paths": [
+          "build/bin.tar.gz"
+        ],
+        "pipeline_id": "pipe_release_v2",
+        "stage_name": "integration_test",
+        "timeout_seconds": 600
+      },
+      {
+        "pipeline_id": "pipe_fast_pr",
+        "stage_name": "lint"
+      }
+    ],
+    "latent_intent_schema": {
+      "artifact_paths": "array[string]",
+      "pipeline_id": "string",
+      "stage_name": "string",
+      "timeout_seconds": "integer"
+    },
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "mutation_id": "MUT_BASE_SYNTH_024_DISTRACTOR_SET_COMPLEXITY_default",
+    "mutation_variant": "default",
+    "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+    "schema": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "additionalProperties": false,
+      "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+      "properties": {
+        "artifact_paths": {
+          "description": "Input artifact files",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pipeline_id": {
+          "description": "Workflow pipeline definition ID",
+          "minLength": 3,
+          "type": "string"
+        },
+        "stage_name": {
+          "description": "Target execution stage",
+          "enum": [
+            "lint",
+            "unit_test",
+            "integration_test",
+            "security_scan",
+            "package"
+          ],
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "description": "Maximum stage runtime",
+          "maximum": 3600,
+          "minimum": 10,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pipeline_id",
+        "stage_name"
+      ],
+      "title": "synth_trigger_pipeline_stage",
+      "type": "object"
+    },
+    "seed": 42024,
+    "stratum": "MEDIUM_ARRAYS_ENUMS",
+    "title": "Trigger Pipeline Stage",
+    "tool_name": "synth_trigger_pipeline_stage"
+  },
+  "mutation_id": "MUT_BASE_SYNTH_024_DISTRACTOR_SET_COMPLEXITY_default",
+  "provenance_statement": "SYNTHETIC_MUTATION_DERIVED_FROM_BASE_CONTRACT",
+  "variant": "default"
+}
