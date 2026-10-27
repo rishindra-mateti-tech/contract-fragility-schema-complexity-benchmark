@@ -1,0 +1,204 @@
+{
+  "matrix_version": "1.0.0",
+  "pipeline_version": "4.0.0",
+  "audit_date_utc": "2026-10-26T21:00:00Z",
+  "total_vectors_tested": 21,
+  "total_vectors_passed": 21,
+  "total_vectors_failed": 0,
+  "vector_breakdown": {
+    "python_ast": 7,
+    "typescript_ast": 7,
+    "reference_closure": 7
+  },
+  "vectors": [
+    {
+      "vector_id": "PY-01",
+      "category": "Python AST",
+      "test_method": "test_python_literal_schema_accepted",
+      "description": "Pure literal schema dictionary is accepted and extracted statically",
+      "expected_behavior": "EXTRACTION_SUCCESS",
+      "observed_code": null,
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "PY-02",
+      "category": "Python AST",
+      "test_method": "test_python_dynamic_variable_rejected",
+      "description": "Schema referenced via variable identifier rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_DYNAMIC_VARIABLE_REJECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "PY-03",
+      "category": "Python AST",
+      "test_method": "test_python_function_call_generated_schema_rejected",
+      "description": "Schema constructed via function/constructor call rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_COMPUTED_SCHEMA_CONSTRUCTION",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "PY-04",
+      "category": "Python AST",
+      "test_method": "test_python_imported_schema_rejected",
+      "description": "Schema referenced from imported module attribute rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_DYNAMIC_ATTRIBUTE_REJECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "PY-05",
+      "category": "Python AST",
+      "test_method": "test_python_computed_name_rejected",
+      "description": "Tool name computed via string concatenation rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_STRING_CONCATENATION_REJECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "PY-06",
+      "category": "Python AST",
+      "test_method": "test_python_nested_literal_schema_preserved",
+      "description": "Deeply nested literal schema hierarchies preserved without loss",
+      "expected_behavior": "EXTRACTION_SUCCESS_LOSSLESS",
+      "observed_code": null,
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "PY-07",
+      "category": "Python AST",
+      "test_method": "test_python_source_span_stability_verified",
+      "description": "Source span coordinates and snippet hash bit-identical across parses",
+      "expected_behavior": "DETERMINISTIC_SPAN_EVIDENCE",
+      "observed_code": null,
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "TS-01",
+      "category": "TypeScript AST",
+      "test_method": "test_typescript_literal_object_accepted",
+      "description": "Pure literal object schema accepted and extracted statically",
+      "expected_behavior": "EXTRACTION_SUCCESS",
+      "observed_code": null,
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "TS-02",
+      "category": "TypeScript AST",
+      "test_method": "test_typescript_unknown_spread_rejected",
+      "description": "Unknown spread operator inside schema rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_UNKNOWN_SPREAD_REJECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "TS-03",
+      "category": "TypeScript AST",
+      "test_method": "test_typescript_computed_key_rejected",
+      "description": "Computed property name [expr] inside schema rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_COMPUTED_PROPERTY_REJECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "TS-04",
+      "category": "TypeScript AST",
+      "test_method": "test_typescript_dynamic_builder_rejected",
+      "description": "Runtime schema builder call (zodToJsonSchema) rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_RUNTIME_SCHEMA_BUILDER_REJECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "TS-05",
+      "category": "TypeScript AST",
+      "test_method": "test_typescript_imported_value_rejected",
+      "description": "Non-literal imported identifier passed as schema rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_IMPORTED_SCHEMA_REJECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "TS-06",
+      "category": "TypeScript AST",
+      "test_method": "test_typescript_nested_literal_schema_preserved",
+      "description": "Deeply nested TypeScript literal schema parsed without structure distortion",
+      "expected_behavior": "EXTRACTION_SUCCESS_LOSSLESS",
+      "observed_code": null,
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "TS-07",
+      "category": "TypeScript AST",
+      "test_method": "test_typescript_line_column_stability_verified",
+      "description": "Tree-sitter span line/column bounds identical across runs",
+      "expected_behavior": "DETERMINISTIC_SPAN_EVIDENCE",
+      "observed_code": null,
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "REF-01",
+      "category": "Reference Closure",
+      "test_method": "test_ref_valid_local_multi_file_accepted",
+      "description": "Valid local multi-file relative reference resolves successfully",
+      "expected_behavior": "RESOLUTION_SUCCESS",
+      "observed_code": null,
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "REF-02",
+      "category": "Reference Closure",
+      "test_method": "test_ref_escaped_path_rejected",
+      "description": "Path traversal escaping bundle root and closure directory rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_PATH_TRAVERSAL_DETECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "REF-03",
+      "category": "Reference Closure",
+      "test_method": "test_ref_remote_url_rejected",
+      "description": "Remote URI scheme (https://) prohibited fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_REMOTE_REF_PROHIBITED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "REF-04",
+      "category": "Reference Closure",
+      "test_method": "test_ref_cycle_rejected",
+      "description": "Mutually recursive reference cycle detected and terminated fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_REFERENCE_CYCLE_DETECTED",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "REF-05",
+      "category": "Reference Closure",
+      "test_method": "test_ref_stale_hash_rejected",
+      "description": "Modified/stale closure file fails cryptographic audit check",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_CRYPTOGRAPHIC_HASH_MISMATCH",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "REF-06",
+      "category": "Reference Closure",
+      "test_method": "test_ref_missing_fragment_rejected",
+      "description": "Pointer to non-existent JSON Pointer fragment rejected fail-closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_FRAGMENT_NOT_FOUND",
+      "status": "VERIFIED_DEFENDED"
+    },
+    {
+      "vector_id": "REF-07",
+      "category": "Reference Closure",
+      "test_method": "test_ref_conflicting_sibling_properties_fail_closed",
+      "description": "Inconsistent or malformed reference document fails closed",
+      "expected_behavior": "FAIL_CLOSED_REJECTION",
+      "observed_code": "ERR_PARSER_EXCEPTION",
+      "status": "VERIFIED_DEFENDED"
+    }
+  ]
+}
