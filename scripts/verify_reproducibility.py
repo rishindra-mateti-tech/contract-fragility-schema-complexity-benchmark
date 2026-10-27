@@ -431,6 +431,100 @@ def check_batch_v3_candidates_reproducibility() -> Tuple[bool, str]:
     return True, "All 18 batch V3 candidates re-extracted deterministically across 4 policies with bit-for-bit identity"
 
 
+# Check 11: Batch V4 candidate extraction determinism, AST static adapters, and IR invariants
+def check_batch_v4_candidates_reproducibility() -> Tuple[bool, str]:
+    from src.extract_stage_b_batch_candidates_v4 import run_batch_v4_extraction
+    from src.stage_b_candidate_validation_v4 import CandidateValidatorV4, REQUIRED_V4_ARTIFACTS
+    from src.audit_pinned_source_closure import audit_source_closure
+
+    # 1. Verify all 8 governing policies
+    expected_policies = {
+        "results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.json": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+        "results_stage_b/OAS30_TO_DRAFT07_CONVERSION_POLICY_001.md": "9e3a9c97765796b96d9cb9a0ea6d38e78acf3fa79d2aaa2746027c91e6e9be00",
+        "results_stage_b/OPENAPI_REFERENCE_RESOLUTION_POLICY_001.json": "99b95332d7ae8b6e68f4262eb7671ef5b2abed1cbb9e412eaca181a9d1cd9fd8",
+        "results_stage_b/OPENAPI_REFERENCE_RESOLUTION_POLICY_001.md": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+        "results_stage_b/OPENAPI_PARAMETER_INHERITANCE_POLICY_001.json": "1df932ede99bd9da72522cc00ab98e92ab4dfa3b9999f99a04967406b8ba7ddc",
+        "results_stage_b/OPENAPI_PARAMETER_INHERITANCE_POLICY_001.md": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+        "results_stage_b/OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001.json": "9539cb12b6231a348a20487c9dd7c27a8db5832aad0a39c92be0326706075f41",
+        "results_stage_b/OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001.md": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+        "results_stage_b/PINNED_SOURCE_CLOSURE_ACQUISITION_POLICY_001.json": "66dee7f12536da047799c55803a13a3ec4a7286a75edcea8e8a6c5c0039b526c",
+        "results_stage_b/PINNED_SOURCE_CLOSURE_ACQUISITION_POLICY_001.md": "79762cdfc4d6c7c53b189bacb411e4d3f78b62e12cb8c667a0bff6d1e7536b14",
+        "results_stage_b/PYTHON_AST_STATIC_TOOL_EXTRACTION_POLICY_001.json": "0e30b10c1a1f0e1b3d910f6ea836f24e958ad0a346e33345de0b22e5fac9b190",
+        "results_stage_b/PYTHON_AST_STATIC_TOOL_EXTRACTION_POLICY_001.md": "bbcca22f946229562f67cc3f604d1970bc97722791da16055d6cbcb6261a8e4b",
+        "results_stage_b/TYPESCRIPT_AST_STATIC_TOOL_EXTRACTION_POLICY_001.json": "c7b54723b40fdd44767c03fbb3caa145dec98720b1ce504f7c3181880b8d8db9",
+        "results_stage_b/TYPESCRIPT_AST_STATIC_TOOL_EXTRACTION_POLICY_001.md": "6305ddc8af5c58bc8e6a5fa55479aed07226e2e35edee2170dd88d26ffe88d47",
+        "results_stage_b/STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001.md": "e865b345deac8aca10569db7d692ed8a00b30498776f5a4aa229cfe107fb0136",
+    }
+    for pol_path, exp_sha in expected_policies.items():
+        full_pol = os.path.join(ROOT_DIR, pol_path)
+        if not os.path.exists(full_pol):
+            return False, f"Missing governing policy file: {pol_path}"
+        act_sha = sha256_file(full_pol)
+        if act_sha != exp_sha:
+            return False, f"Policy hash drift for {pol_path}: expected {exp_sha}, got {act_sha}"
+
+    # 2. Historical V1, V2, and V3 immutability
+    v1_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates")
+    v2_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates_v2")
+    v3_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates_v3")
+    if len(glob.glob(os.path.join(v1_dir, "*"))) != 13:
+        return False, "Historical V1 candidates count modified"
+    if len(glob.glob(os.path.join(v2_dir, "*"))) != 13:
+        return False, "Historical V2 candidates count modified"
+    if len(glob.glob(os.path.join(v3_dir, "*"))) != 18:
+        return False, "Historical V3 candidates count modified"
+
+    # 3. Source closure cryptographic audit
+    closure_audit = audit_source_closure()
+    if closure_audit.get("hash_mismatches_count", 0) != 0:
+        return False, f"Closure audit hash mismatches: {closure_audit.get('hash_mismatches_count')}"
+    if closure_audit.get("missing_files_count", 0) != 0:
+        return False, f"Closure audit missing files: {closure_audit.get('missing_files_count')}"
+    if closure_audit.get("files_verified_count") != 49:
+        return False, f"Expected 49 verified closure files, got {closure_audit.get('files_verified_count')}"
+
+    # 4. Re-extract V4 in temporary directory and check bit-for-bit identity
+    with tempfile.TemporaryDirectory() as tmp_dir:
+        res = run_batch_v4_extraction(output_base=tmp_dir)
+        gen = res["candidates_generated"]
+        if len(gen) != 22:
+            return False, f"Expected 22 generated V4 candidates, got {len(gen)}"
+        if len(res["candidates_rejected"]) != 6:
+            return False, f"Expected 6 rejected V4 candidates, got {len(res['candidates_rejected'])}"
+
+        base_candidates_v4_dir = os.path.join(ROOT_DIR, "data_stage_b", "extraction_candidates_v4")
+        validator = CandidateValidatorV4()
+
+        for c in gen:
+            slot_id = c["slot_id"]
+            tmp_slot_dir = os.path.join(tmp_dir, slot_id)
+            repo_slot_dir = os.path.join(base_candidates_v4_dir, slot_id)
+
+            if not os.path.exists(repo_slot_dir):
+                return False, f"V4 candidate dir missing in repository: {repo_slot_dir}"
+
+            # Validate bundle
+            is_valid, errors = validator.validate_candidate_bundle(repo_slot_dir, expected_slot_id=slot_id)
+            if not is_valid:
+                return False, f"Validation failed for repo V4 candidate {slot_id}: {errors}"
+
+            # Check raw nullable keyword absent from contract
+            c_file = os.path.join(repo_slot_dir, "candidate_contract.json")
+            with open(c_file, "r", encoding="utf-8") as cf:
+                c_text = cf.read()
+                if '"nullable"' in c_text:
+                    return False, f"Raw 'nullable' keyword found in V4 contract {slot_id}"
+
+            # Compare all 13 artifacts byte-for-byte
+            for fname in REQUIRED_V4_ARTIFACTS:
+                f_tmp = os.path.join(tmp_slot_dir, fname)
+                f_repo = os.path.join(repo_slot_dir, fname)
+                if sha256_file(f_tmp) != sha256_file(f_repo):
+                    return False, f"Byte identity failure for V4 {slot_id}/{fname}"
+
+    return True, "All 22 batch V4 candidates re-extracted deterministically across 8 policies with bit-for-bit identity"
+
+
 def main() -> int:
     print("=" * 70)
     print("Stage B Benchmark - Reproducibility & Integrity Verification")
@@ -447,6 +541,7 @@ def main() -> int:
         (8, "Batch Candidate Re-Extraction Determinism (V1)", check_batch_candidates_reproducibility),
         (9, "Batch Candidate Dialect Determinism (V2)", check_batch_v2_candidates_reproducibility),
         (10, "Batch Candidate Adapter Determinism (V3)", check_batch_v3_candidates_reproducibility),
+        (11, "Batch Candidate Static Adapter Determinism (V4)", check_batch_v4_candidates_reproducibility),
     ]
 
     all_passed = True
@@ -458,7 +553,7 @@ def main() -> int:
 
     print("=" * 70)
     if all_passed:
-        print("RESULT: ALL 10 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.")
+        print("RESULT: ALL 11 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.")
         print("=" * 70)
         return 0
     else:

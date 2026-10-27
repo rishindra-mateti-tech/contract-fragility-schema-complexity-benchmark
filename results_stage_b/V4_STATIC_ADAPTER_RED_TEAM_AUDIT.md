@@ -22,7 +22,7 @@ All 21 adversarial vectors passed verification without exception. The static ada
 - Defense: `PythonAstToolExtractor` operates exclusively on Python's built-in `ast` module. No modules are imported, no bytecode is compiled, and no runtime state is created. Any dynamic identifier, function call, variable reference, or computed attribute triggers an immediate, structured `PythonAstExtractionError`.
 
 ### 1.2 TypeScript Runtime Schema Builder Threat Model
-- Risk: MCP TypeScript tools frequently use dynamic schema builders (such as `zodToJsonSchema`) or import schemas from sibling modules. Inferring these schemas at runtime requires running a Node.js runtime, which violates deterministic offline audit guarantees.
+- Risk: MCP TypeScript tools frequently use dynamic schema builders (such as `zodToJsonSchema`) or import schemas from sibling modules. Inferring these schemas at runtime requires running a Node.js runtime, which violates deterministic offline audit invariants.
 - Defense: `TypeScriptAstToolExtractor` utilizes Tree-sitter (`tree-sitter:0.25.2` and `tree-sitter-typescript:0.23.2`) to inspect syntax trees statically. Dynamic schema builders, function calls (`call_expression`), unknown object spreads, and imported identifiers are rejected fail-closed with structured diagnostic records.
 
 ### 1.3 Filesystem Traversal and SSRF Threat Model
@@ -46,7 +46,7 @@ All 21 adversarial vectors passed verification without exception. The static ada
 | `PY-03` | Function-call-generated schema constructor | `ERR_COMPUTED_SCHEMA_CONSTRUCTION` | Fail-closed exception raised | PASSED |
 | `PY-04` | Imported module attribute passed as schema | `ERR_DYNAMIC_ATTRIBUTE_REJECTED` | Fail-closed exception raised | PASSED |
 | `PY-05` | Computed tool name via string concatenation | `ERR_STRING_CONCATENATION_REJECTED` | Fail-closed exception raised | PASSED |
-| `PY-06` | Deeply nested object/array literal preservation | Lossless Structure | Exact key hierarchy preserved | PASSED |
+| `PY-06` | Deeply nested object/array literal preservation | Structural Preservation | Exact key hierarchy preserved | PASSED |
 | `PY-07` | Source span and snippet hash stability | Deterministic Coordinates | Bit-identical coordinates verified | PASSED |
 
 ### 2.2 TypeScript AST Test Suite (7 Vectors)
@@ -58,7 +58,7 @@ All 21 adversarial vectors passed verification without exception. The static ada
 | `TS-03` | Computed property name (`[key]: val`) | `ERR_COMPUTED_PROPERTY_REJECTED` | Fail-closed rejection recorded | PASSED |
 | `TS-04` | Runtime schema builder call (`zodToJsonSchema`) | `ERR_RUNTIME_SCHEMA_BUILDER_REJECTED` | Fail-closed rejection recorded | PASSED |
 | `TS-05` | Imported identifier passed as schema | `ERR_IMPORTED_SCHEMA_REJECTED` | Fail-closed rejection recorded | PASSED |
-| `TS-06` | Deeply nested TypeScript literal preservation | Lossless Structure | Exact hierarchy preserved | PASSED |
+| `TS-06` | Deeply nested TypeScript literal preservation | Structural Preservation | Exact hierarchy preserved | PASSED |
 | `TS-07` | Tree-sitter line/column span stability | Deterministic Coordinates | Bit-identical coordinates verified | PASSED |
 
 ### 2.3 Reference Closure Test Suite (7 Vectors)

@@ -87,6 +87,21 @@ The following subsystems and artifacts have been fully implemented, validated by
 - Rejections: 14 operations cleanly rejected fail-closed (`V2_REJECTED_FAIL_CLOSED`) in `results_stage_b/BATCH_V2_REJECTION_REGISTER.md`.
 - Invariants: Zero operations labeled `CANONICAL_FAITHFUL`; zero independent reviews claimed.
 
+### 2.11 Batch Extraction Pipeline V3 and Source-Adapter Framework
+- Formulated governing policies for reference resolution, parameter inheritance, and formData translation.
+- Implemented `ParameterInheritanceAdapter` and `OpenAPI2FormDataAdapter`.
+- Generated 18 candidate bundles in `data_stage_b/extraction_candidates_v3/` with 11 audit artifacts each.
+- Unlocked Chatwoot path parameter inheritance and Slack OpenAPI 2.0 formData operations.
+
+### 2.12 Static Source-Adapter Framework Expansion and Batch Pipeline V4
+- Acquired and cryptographically audited 49-file pinned source closure for DigitalOcean (`CAND-003`) from commit `e326f5060794769b6835084e48be7ce4db062d39`.
+- Implemented pure static Python AST tool extractor (`PythonAstToolExtractor`) unlocking 3 SQLite MCP tools without host code execution or imports.
+- Implemented Tree-sitter static TypeScript AST analyzer (`TypeScriptAstToolExtractor`) evaluating GitHub MCP tools and rejecting dynamic schema builders (`zodToJsonSchema`) fail-closed.
+- Implemented common Static Intermediate Representation adhering to `STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001`.
+- Generated 22 complete candidate bundles under `data_stage_b/extraction_candidates_v4/` with 13 required artifacts each.
+- Reconciled all 30 manifest operations: 22 candidates generated, 6 operations rejected fail-closed, 2 existing pilots preserved.
+- Status: All 22 V4 candidates remain strictly at `EXTRACTED_PENDING_HUMAN_VALIDATION`. Zero `CANONICAL_FAITHFUL` labels. Zero independent reviews claimed.
+
 ---
 
 ## 3. Operation Lifecycle Status Roster
@@ -95,26 +110,34 @@ The following subsystems and artifacts have been fully implemented, validated by
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `SLOT_GITHUB_01` | `pulls/create` | `CAND-001` | Developer Platforms | `EXTRACTED` | `CANONICAL_VALIDATED_WITH_EXPLICIT_WRAPPER_POLICY` |
 | `SLOT_STRIPE_02` | `PostShippingRates` | `CAND-002` | Payments & Billing | `EXTRACTED` | `EXTRACTED_PENDING_HUMAN_VALIDATION` |
-| `SLOT_GITHUB_02` | `repos/create-commit-status` | `CAND-001` | Developer Platforms | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_GITHUB_03` | `repos/create-for-authenticated-user` | `CAND-001` | Developer Platforms | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_BOX_01` | `post_folders` | `CAND-005` | Content & Files | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_BOX_02` | `post_collaborations` | `CAND-005` | Content & Files | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_BOX_03` | `post_users` | `CAND-005` | Content & Files | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_LINE_01` | `showLoadingAnimation` | `CAND-013` | Messaging & Bots | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_LINE_02` | `setWebhookEndpoint` | `CAND-013` | Messaging & Bots | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_LINE_03` | `markMessagesAsRead` | `CAND-013` | Messaging & Bots | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_STRIPE_01` | `PostPayouts` | `CAND-002` | Payments & Billing | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_TWILIO_01` | `UpdateAccount` | `CAND-004` | Telephony & Messaging | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_TWILIO_02` | `CreateMessage` | `CAND-004` | Telephony & Messaging | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_TWILIO_03` | `CreateCall` | `CAND-004` | Telephony & Messaging | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_CHATWOOT_01` | `create-a-webhook` | `CAND-011` | Customer Support | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_CHATWOOT_02` | `create-an-account-user` | `CAND-011` | Customer Support | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_CHATWOOT_03` | `create-a-conversation` | `CAND-011` | Customer Support | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_SLACK_01` | `conversations.create` | `CAND-006` | Messaging & Collaboration | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_SLACK_02` | `users.profile.set` | `CAND-006` | Messaging & Collaboration | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_SLACK_03` | `reminders.add` | `CAND-006` | Messaging & Collaboration | `V3_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
-| `SLOT_STRIPE_03` | `PostRefunds` | `CAND-002` | Payments & Billing | `NOT_EXTRACTED` | `REQUIRES_PROTOCOL_AMENDMENT` |
-| 10 Rejected Ops (`SLOT_DO_01..03`, `SLOT_MCP_SQLITE_01..03`, `SLOT_MCP_GITHUB_01..03`, `SLOT_STRIPE_03`) | Various | Various | Various | `V3_REJECTED_FAIL_CLOSED` | `REJECTED_GATE_AUDIT` |
+| `SLOT_GITHUB_02` | `repos/create-commit-status` | `CAND-001` | Developer Platforms | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_GITHUB_03` | `repos/create-for-authenticated-user` | `CAND-001` | Developer Platforms | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_BOX_01` | `post_folders` | `CAND-005` | Content & Files | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_BOX_02` | `post_collaborations` | `CAND-005` | Content & Files | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_BOX_03` | `post_users` | `CAND-005` | Content & Files | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_LINE_01` | `showLoadingAnimation` | `CAND-007` | Messaging & Bots | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_LINE_02` | `setWebhookEndpoint` | `CAND-007` | Messaging & Bots | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_LINE_03` | `markMessagesAsRead` | `CAND-007` | Messaging & Bots | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_STRIPE_01` | `PostPayouts` | `CAND-002` | Payments & Billing | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_TWILIO_01` | `UpdateAccount` | `CAND-006` | Telephony & Messaging | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_TWILIO_02` | `CreateMessage` | `CAND-006` | Telephony & Messaging | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_TWILIO_03` | `CreateCall` | `CAND-006` | Telephony & Messaging | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_CHATWOOT_01` | `create-a-webhook` | `CAND-008` | Customer Support | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_CHATWOOT_02` | `create-an-account-user` | `CAND-008` | Customer Support | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_CHATWOOT_03` | `create-a-conversation` | `CAND-008` | Customer Support | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_SLACK_01` | `conversations.create` | `CAND-004` | Messaging & Collaboration | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_SLACK_02` | `users.profile.set` | `CAND-004` | Messaging & Collaboration | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_SLACK_03` | `reminders.add` | `CAND-004` | Messaging & Collaboration | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_DO_01` | `floating_ips_create` | `CAND-003` | Cloud Infrastructure | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_MCP_SQLITE_01` | `read_query` | `CAND-009` | Database Tools | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_MCP_SQLITE_02` | `write_query` | `CAND-009` | Database Tools | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_MCP_SQLITE_03` | `describe_table` | `CAND-009` | Database Tools | `V4_GENERATED_PENDING_HUMAN_VALIDATION` | `PENDING_AUTHOR_REVIEW` |
+| `SLOT_DO_02` | `domains_create` | `CAND-003` | Cloud Infrastructure | `V4_REJECTED_FAIL_CLOSED` | `REJECTED_READONLY_IN_REQUEST` |
+| `SLOT_DO_03` | `droplets_create` | `CAND-003` | Cloud Infrastructure | `V4_REJECTED_FAIL_CLOSED` | `REJECTED_READONLY_IN_REQUEST` |
+| `SLOT_MCP_GITHUB_01` | `search_repositories` | `CAND-010` | Developer Platforms | `V4_REJECTED_FAIL_CLOSED` | `REJECTED_DYNAMIC_SCHEMA_BUILDER` |
+| `SLOT_MCP_GITHUB_02` | `create_issue` | `CAND-010` | Developer Platforms | `V4_REJECTED_FAIL_CLOSED` | `REJECTED_DYNAMIC_SCHEMA_BUILDER` |
+| `SLOT_MCP_GITHUB_03` | `create_or_update_file` | `CAND-010` | Developer Platforms | `V4_REJECTED_FAIL_CLOSED` | `REJECTED_DYNAMIC_SCHEMA_BUILDER` |
+| `SLOT_STRIPE_03` | `PostRefunds` | `CAND-002` | Payments & Billing | `V4_REJECTED_FAIL_CLOSED` | `REJECTED_POLYMORPHIC_UNION` |
 | 7 Excluded Operations | Various | Various | Various | `EXCLUDED` | `DISQUALIFIED_GATE_2_5` |
 
 ---

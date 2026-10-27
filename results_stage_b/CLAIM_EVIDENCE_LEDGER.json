@@ -311,6 +311,24 @@
       "prohibited_stronger_wording": "Claiming full canonical validation, semantic equivalence, or wire conformance.",
       "reviewer_needed": false,
       "status": "SUPPORTED"
+    },
+    {
+      "category": "METHODOLOGICAL",
+      "claim_id": "CLAIM-020",
+      "document_path": "results_stage_b/V4_BATCH_EXTRACTION_RESULTS.md",
+      "epistemic_notes": "Expands coverage via pinned multi-file reference closures (DigitalOcean) and static Python AST analysis (SQLite MCP), synthesizing a common Static Intermediate Representation (STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001), generating 22 quarantined V4 candidate bundles held at EXTRACTED_PENDING_HUMAN_VALIDATION and rejecting 6 operations fail-closed under 8 governing policies.",
+      "evidence_artifacts": [
+        "data_stage_b/extraction_candidates_v4/",
+        "results_stage_b/V4_BATCH_EXTRACTION_RESULTS.json",
+        "tests/test_stage_b_candidate_pipeline_v4.py",
+        "results_stage_b/STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001.md"
+      ],
+      "exact_quoted_text": "Static source-adapter framework expands coverage via pinned multi-file reference closures (DigitalOcean) and static Python AST analysis (SQLite MCP), synthesizing a common Static Intermediate Representation (STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001), generating 22 quarantined V4 candidate bundles held at EXTRACTED_PENDING_HUMAN_VALIDATION and rejecting 6 operations fail-closed under 8 governing policies.",
+      "line_range": "1-50",
+      "permitted_wording": "Static source-adapter framework expands coverage via pinned multi-file reference closures (DigitalOcean) and static Python AST analysis (SQLite MCP), synthesizing a common Static Intermediate Representation (STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001), generating 22 quarantined V4 candidate bundles held at EXTRACTED_PENDING_HUMAN_VALIDATION and rejecting 6 operations fail-closed under 8 governing policies.",
+      "prohibited_stronger_wording": "Claiming full canonical validation, independent review, or empirical benchmark performance.",
+      "reviewer_needed": false,
+      "status": "SUPPORTED"
     }
   ],
   "governing_document": "docs/RESEARCH_CLAIM_STYLE_GUIDE.md",

@@ -71,8 +71,9 @@ Stage B Benchmark - Reproducibility & Integrity Verification
 [PASS] Check 8: Batch Candidate Re-Extraction Determinism (V1)
 [PASS] Check 9: Batch Candidate Dialect Determinism (V2)
 [PASS] Check 10: Batch Candidate Adapter Determinism (V3)
+[PASS] Check 11: Batch Candidate Static Adapter Determinism (V4)
 ======================================================================
-RESULT: ALL 10 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
+RESULT: ALL 11 REPRODUCIBILITY CHECKS PASSED SUCCESSFULLY.
 ======================================================================
 ```
 
@@ -126,6 +127,16 @@ python src/extract_stage_b_batch_candidates_v3.py
 
 # Verify byte identity for any V3 candidate slot (e.g. SLOT_CHATWOOT_02 or SLOT_SLACK_01)
 diff -r /tmp/candidates_v3_reextract/SLOT_CHATWOOT_02 data_stage_b/extraction_candidates_v3/SLOT_CHATWOOT_02
+```
+
+### Step 5e: Verify Deterministic Re-Extraction of Static-Adapted Batch Candidates (V4)
+To manually verify that the V4 batch extraction pipeline produces bit-for-bit identical outputs across all 22 V4 candidate bundles under the 8 governing policies (including Pinned Source Closures, Python AST static adapter, and Static Intermediate Representation):
+```bash
+# Re-extract all V4 candidates into temporary directory
+python src/extract_stage_b_batch_candidates_v4.py
+
+# Verify byte identity for any V4 candidate slot (e.g. SLOT_DO_01, SLOT_MCP_SQLITE_01, or SLOT_BOX_01)
+diff -r /tmp/candidates_v4_reextract/SLOT_DO_01 data_stage_b/extraction_candidates_v4/SLOT_DO_01
 ```
 
 ### Step 6: Run Adversarial Red-Team Verification

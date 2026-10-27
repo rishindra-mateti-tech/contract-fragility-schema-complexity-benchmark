@@ -40,9 +40,17 @@ jobs:
         run: |
           python src/audit_openapi_reference_closure.py
 
+      - name: Run Pinned Source Closure Audit
+        run: |
+          python src/audit_pinned_source_closure.py
+
       - name: Run V3 Candidate Provenance and Difference Audit
         run: |
           python src/audit_v3_candidate_provenance.py
+
+      - name: Run V4 Candidate Provenance and Difference Audit
+        run: |
+          python src/audit_v4_candidate_provenance.py
 
       - name: Run Batch Extraction Candidate Self-Test (Dry-Run)
         run: |

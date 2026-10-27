@@ -1,0 +1,525 @@
+{
+  "audit_timestamp": "2026-10-26T21:00:00Z",
+  "candidates": [
+    {
+      "accessed_files": [
+        "e740e641b82d30e398a2a0d1b14b4c052e310422.json"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "8a809181ab1393781ede7fd13e2ec9d89a92527c70ac3875781973ae7d5244ad",
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 5,
+      "operation_id": "post_folders",
+      "property_count": 2,
+      "required_count": 0,
+      "slot_id": "SLOT_BOX_01",
+      "source_dialect": "OpenAPI 3.0.2",
+      "surfaces": [
+        "body",
+        "query"
+      ]
+    },
+    {
+      "accessed_files": [
+        "e740e641b82d30e398a2a0d1b14b4c052e310422.json"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "051447d1104563b0862b072c56faf355e80935e8b4cbb45379e19167550e9bb4",
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 4,
+      "operation_id": "post_collaborations",
+      "property_count": 2,
+      "required_count": 0,
+      "slot_id": "SLOT_BOX_02",
+      "source_dialect": "OpenAPI 3.0.2",
+      "surfaces": [
+        "body",
+        "query"
+      ]
+    },
+    {
+      "accessed_files": [
+        "e740e641b82d30e398a2a0d1b14b4c052e310422.json"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "681abb137af1f033089890c64660828ee1f54d104a7783b97d360349bdb11d53",
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 5,
+      "operation_id": "post_users",
+      "property_count": 2,
+      "required_count": 0,
+      "slot_id": "SLOT_BOX_03",
+      "source_dialect": "OpenAPI 3.0.2",
+      "surfaces": [
+        "body",
+        "query"
+      ]
+    },
+    {
+      "accessed_files": [
+        "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json"
+      ],
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "b5f8c68c4f874f45e84dfc02eaaaa990a98bfd0a64dfbb2461015ff9a0cc5a1c",
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 4,
+      "operation_id": "create-a-webhook",
+      "property_count": 2,
+      "required_count": 2,
+      "slot_id": "SLOT_CHATWOOT_01",
+      "source_dialect": "OpenAPI 3.1.0",
+      "surfaces": [
+        "body",
+        "path"
+      ]
+    },
+    {
+      "accessed_files": [
+        "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json"
+      ],
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "930ac80c9aa789dc626ba186ade0b7c5b9d6961f3b9a14a9411e10472d00c432",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "create-an-account-user",
+      "property_count": 2,
+      "required_count": 2,
+      "slot_id": "SLOT_CHATWOOT_02",
+      "source_dialect": "OpenAPI 3.1.0",
+      "surfaces": [
+        "body",
+        "path"
+      ]
+    },
+    {
+      "accessed_files": [
+        "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json"
+      ],
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "78c770753bab0ffcd258b004a87283bad7ae4967e0f5143451b13f99d358a8e0",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "create-a-conversation",
+      "property_count": 2,
+      "required_count": 2,
+      "slot_id": "SLOT_CHATWOOT_03",
+      "source_dialect": "OpenAPI 3.1.0",
+      "surfaces": [
+        "body",
+        "path"
+      ]
+    },
+    {
+      "accessed_files": [
+        "a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+        "../../source_closures/CAND-003/resources/floating_ips/floatingIPs_create.yml",
+        "../../source_closures/CAND-003/resources/floating_ips/models/floating_ip_create.yml"
+      ],
+      "adapters_used": [
+        "LocalReferenceResolver"
+      ],
+      "candidate_source_id": "CAND-003",
+      "contract_sha256": "da4a4de3ad4ced3011732e37f64dea2ba6e2ca6d34c64ae87f3fa6f9004f6a72",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 4,
+      "operation_id": "floating_ips_create",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_DO_01",
+      "source_dialect": "OpenAPI 3.0.0",
+      "surfaces": []
+    },
+    {
+      "accessed_files": [
+        "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "52101953ba1fcd28a31a086b9f774ea7925abd5c830a6b4b10c44cce137f1837",
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "repos/create-commit-status",
+      "property_count": 2,
+      "required_count": 2,
+      "slot_id": "SLOT_GITHUB_02",
+      "source_dialect": "OpenAPI 3.0.3",
+      "surfaces": [
+        "body",
+        "path"
+      ]
+    },
+    {
+      "accessed_files": [
+        "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "37b950a9f8839677a52c6450172d720045dc1de3198bbc4dc043daa2f172e0c7",
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "repos/create-for-authenticated-user",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_GITHUB_03",
+      "source_dialect": "OpenAPI 3.0.3",
+      "surfaces": [
+        "body"
+      ]
+    },
+    {
+      "accessed_files": [
+        "11f1fdb91092246f881edd1a9457cb37327a6c5d.yml"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "209ced6d6b70a489f04f9bbd867becee2679c67dcaec462207c3eec70b35d261",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "showLoadingAnimation",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_LINE_01",
+      "source_dialect": "OpenAPI 3.0.0",
+      "surfaces": [
+        "body"
+      ]
+    },
+    {
+      "accessed_files": [
+        "11f1fdb91092246f881edd1a9457cb37327a6c5d.yml"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "2740fa0f3dd1cf8cfe7e52f2ccd6fedd58ebb0fef431be611e594ad89b39bfe6",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "setWebhookEndpoint",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_LINE_02",
+      "source_dialect": "OpenAPI 3.0.0",
+      "surfaces": [
+        "body"
+      ]
+    },
+    {
+      "accessed_files": [
+        "11f1fdb91092246f881edd1a9457cb37327a6c5d.yml"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "b26d9d2190863ded14bfd97bc91b429b4a3277f23d0a2c546f595b83488548cd",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 4,
+      "operation_id": "markMessagesAsRead",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_LINE_03",
+      "source_dialect": "OpenAPI 3.0.0",
+      "surfaces": [
+        "body"
+      ]
+    },
+    {
+      "accessed_files": [
+        "src/sqlite/src/mcp_server_sqlite/server.py"
+      ],
+      "adapters_used": [
+        "PythonAstToolExtractor"
+      ],
+      "candidate_source_id": "CAND-009",
+      "contract_sha256": "89bcb10822856641f82a6e9fa491c646000ca89586b347d5fc5db48f81fa8935",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 2,
+      "operation_id": "read_query",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_MCP_SQLITE_01",
+      "source_dialect": "Python 3 AST",
+      "surfaces": [
+        "rpc_arguments"
+      ]
+    },
+    {
+      "accessed_files": [
+        "src/sqlite/src/mcp_server_sqlite/server.py"
+      ],
+      "adapters_used": [
+        "PythonAstToolExtractor"
+      ],
+      "candidate_source_id": "CAND-009",
+      "contract_sha256": "49580f6765cd7cf43256617854bf3ef0bc5625aa728047f4695c0c918dd50dc0",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 2,
+      "operation_id": "describe_table",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_MCP_SQLITE_02",
+      "source_dialect": "Python 3 AST",
+      "surfaces": [
+        "rpc_arguments"
+      ]
+    },
+    {
+      "accessed_files": [
+        "src/sqlite/src/mcp_server_sqlite/server.py"
+      ],
+      "adapters_used": [
+        "PythonAstToolExtractor"
+      ],
+      "candidate_source_id": "CAND-009",
+      "contract_sha256": "bd65fe36f0f574a219d8d1083f69c1143e0b6837e905882320e86c68cf344f51",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": false,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 2,
+      "operation_id": "write_query",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_MCP_SQLITE_03",
+      "source_dialect": "Python 3 AST",
+      "surfaces": [
+        "rpc_arguments"
+      ]
+    },
+    {
+      "accessed_files": [
+        "f7b1affd1fb34f9473cd87980428883019b29c07.json"
+      ],
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "28b70e9d402326d40d5b8283946c60bab60dcc5f2eed70283b24ed4602a51ce3",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "conversations.create",
+      "property_count": 2,
+      "required_count": 0,
+      "slot_id": "SLOT_SLACK_01",
+      "source_dialect": "OpenAPI 2.0",
+      "surfaces": [
+        "form",
+        "header"
+      ]
+    },
+    {
+      "accessed_files": [
+        "f7b1affd1fb34f9473cd87980428883019b29c07.json"
+      ],
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "dc8b01901fa5136478ac4ca1704d987867a211c1397d6b4d3d8eb60d6e279805",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "users.profile.set",
+      "property_count": 2,
+      "required_count": 1,
+      "slot_id": "SLOT_SLACK_02",
+      "source_dialect": "OpenAPI 2.0",
+      "surfaces": [
+        "form",
+        "header"
+      ]
+    },
+    {
+      "accessed_files": [
+        "f7b1affd1fb34f9473cd87980428883019b29c07.json"
+      ],
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "0ef02058cd82e8052ab1e9bb325cfb639035ec96a7621b41941e84176a8dd341",
+      "has_arrays": false,
+      "has_enums": false,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "reminders.add",
+      "property_count": 2,
+      "required_count": 2,
+      "slot_id": "SLOT_SLACK_03",
+      "source_dialect": "OpenAPI 2.0",
+      "surfaces": [
+        "form",
+        "header"
+      ]
+    },
+    {
+      "accessed_files": [
+        "f1cedf38e0178538a3c72e750da80226df41e28c.json"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-002",
+      "contract_sha256": "6e451eb90ab48ae6ef74f33ffe55234210f71dbe637497af99e290ae9f779913",
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 4,
+      "operation_id": "PostPayouts",
+      "property_count": 1,
+      "required_count": 1,
+      "slot_id": "SLOT_STRIPE_01",
+      "source_dialect": "OpenAPI 3.0.0",
+      "surfaces": [
+        "body"
+      ]
+    },
+    {
+      "accessed_files": [
+        "5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "cab1d96b6ef411643317a46a6f86211e70361b41110b9701f014be82bace8bd8",
+      "has_arrays": false,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 3,
+      "operation_id": "UpdateAccount",
+      "property_count": 2,
+      "required_count": 1,
+      "slot_id": "SLOT_TWILIO_01",
+      "source_dialect": "OpenAPI 3.0.1",
+      "surfaces": [
+        "body",
+        "path"
+      ]
+    },
+    {
+      "accessed_files": [
+        "5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "8b871cf394b99ea91b34969e66762c74e56fd2bee5696475690d64cd015b67b9",
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 4,
+      "operation_id": "CreateMessage",
+      "property_count": 2,
+      "required_count": 1,
+      "slot_id": "SLOT_TWILIO_02",
+      "source_dialect": "OpenAPI 3.0.1",
+      "surfaces": [
+        "body",
+        "path"
+      ]
+    },
+    {
+      "accessed_files": [
+        "5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml"
+      ],
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "8738e94043ada0b2dc6d6dacc08ed55152ce8522df289ca62d6c385ba792ac17",
+      "has_arrays": true,
+      "has_enums": true,
+      "has_nested_objects": true,
+      "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+      "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+      "max_nesting_depth": 4,
+      "operation_id": "CreateCall",
+      "property_count": 2,
+      "required_count": 1,
+      "slot_id": "SLOT_TWILIO_03",
+      "source_dialect": "OpenAPI 3.0.1",
+      "surfaces": [
+        "body",
+        "path"
+      ]
+    }
+  ],
+  "pipeline_version": "4.0.0",
+  "total_audited": 22,
+  "total_passed": 22
+}
