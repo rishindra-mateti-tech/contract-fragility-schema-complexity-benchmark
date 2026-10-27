@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StageCHumanReviewResultsArtifact",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "validation_status",
+    "reason",
+    "total_submissions_loaded",
+    "inter_rater_agreement",
+    "adjudication_queue",
+    "epistemic_notice"
+  ],
+  "properties": {
+    "schema_version": { "type": "string" },
+    "validation_status": {
+      "type": "string",
+      "enum": ["NO_HUMAN_REVIEW_RESULTS_PRESENT", "ANALYZED", "PARTIAL"]
+    },
+    "reason": { "type": "string" },
+    "total_submissions_loaded": { "type": "integer", "minimum": 0 },
+    "inter_rater_agreement": { "type": "object" },
+    "adjudication_queue": { "type": "array" },
+    "reviewer_exclusions": { "type": "array" },
+    "epistemic_notice": { "type": "string" }
+  },
+  "additionalProperties": false
+}
