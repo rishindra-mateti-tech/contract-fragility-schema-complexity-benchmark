@@ -1,0 +1,84 @@
+{
+  "benchmark_stage": "STAGE_C",
+  "enforcement_notice": "Hard execution gate: Model inference, evaluation scripts, or token calls must not be invoked while operational_state is MODEL_EXECUTION_BLOCKED_PENDING_INDEPENDENT_HUMAN_VALIDATION.",
+  "gates": {
+    "GATE_01_BASE_CORPUS_REPRODUCIBILITY": {
+      "details": "Found 40 / 40 base contracts on disk.",
+      "gate_number": 1,
+      "name": "Synthetic Base Corpus Reproducibility",
+      "status": "PASS"
+    },
+    "GATE_02_MUTATION_REPRODUCIBILITY": {
+      "details": "Found 200 / 200 mutation manifests on disk.",
+      "gate_number": 2,
+      "name": "Mutation Registry Reproducibility",
+      "status": "PASS"
+    },
+    "GATE_03_TASK_SUITE_REPRODUCIBILITY": {
+      "details": "Found 300 / 300 task instances on disk.",
+      "gate_number": 3,
+      "name": "Task Suite Reproducibility",
+      "status": "PASS"
+    },
+    "GATE_04_LEAKAGE_AUDIT_COMPLETE": {
+      "details": "Leakage audit report present: True",
+      "gate_number": 4,
+      "name": "Leakage and Shortcut Audit Complete",
+      "status": "PASS"
+    },
+    "GATE_05_DISTRACTOR_AUDIT_COMPLETE": {
+      "details": "Distractor audit report present: True",
+      "gate_number": 5,
+      "name": "Distractor Quality Audit Complete",
+      "status": "PASS"
+    },
+    "GATE_06_CORPUS_BALANCE_COMPLETE": {
+      "details": "Corpus balance report present: True",
+      "gate_number": 6,
+      "name": "Corpus Balance and Diversity Audit Complete",
+      "status": "PASS"
+    },
+    "GATE_07_ZERO_UNRESOLVED_INVALID_TASKS": {
+      "details": "100 tasks in Release 1 diagnosed with INVALID leakage findings.",
+      "gate_number": 7,
+      "name": "Zero Unresolved INVALID Tasks in Active Suite",
+      "status": "BLOCKED_PENDING_RELEASE_2_REMEDIATION"
+    },
+    "GATE_08_HUMAN_REVIEW_PACKAGE_BUILT": {
+      "details": "Blind review package present: True",
+      "gate_number": 8,
+      "name": "Blinded Human Review Package Generation",
+      "status": "PASS"
+    },
+    "GATE_09_DUAL_HUMAN_REVIEWS_COMPLETED": {
+      "details": "Found 0 reviewer submissions (minimum 2 required).",
+      "gate_number": 9,
+      "name": "Dual Independent Reviews on Pre-Registered Sample",
+      "status": "BLOCKED_PENDING_INDEPENDENT_HUMAN_REVIEW"
+    },
+    "GATE_10_AGREEMENT_THRESHOLDS_SATISFIED": {
+      "details": "Requires at least two validated human reviewer submissions.",
+      "gate_number": 10,
+      "name": "Inter-Rater Agreement Thresholds Satisfied",
+      "status": "BLOCKED_PENDING_INDEPENDENT_HUMAN_REVIEW"
+    },
+    "GATE_11_REVIEWER_OUTCOMES_LOGGED": {
+      "details": "Requires finalized human review adjudications.",
+      "gate_number": 11,
+      "name": "Reviewer Outcomes and Exclusion Registry Logged",
+      "status": "BLOCKED_PENDING_INDEPENDENT_HUMAN_REVIEW"
+    },
+    "GATE_12_FINAL_SUITE_FROZEN_AND_HASHED": {
+      "details": "Final benchmark freeze follows successful human review adjudication.",
+      "gate_number": 12,
+      "name": "Final Benchmark Task Suite Frozen and Hashed",
+      "status": "BLOCKED_PENDING_POST_REVIEW_FREEZE"
+    }
+  },
+  "gates_blocked": 5,
+  "gates_passed": 7,
+  "model_execution_permitted": false,
+  "operational_state": "MODEL_EXECUTION_BLOCKED_PENDING_INDEPENDENT_HUMAN_VALIDATION",
+  "schema_version": "1.0.0",
+  "total_gates": 12
+}
