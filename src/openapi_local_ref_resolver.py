@@ -95,9 +95,15 @@ class LocalReferenceResolver:
         self,
         bundle_root_dir: str,
         max_depth: int = DEFAULT_MAX_DEPTH,
+        source_closure_dir: Optional[str] = None,
     ):
         self.bundle_root_dir = os.path.realpath(os.path.abspath(bundle_root_dir))
         self.max_depth = max_depth
+        self.source_closure_dir = (
+            os.path.realpath(os.path.abspath(source_closure_dir))
+            if source_closure_dir
+            else None
+        )
         self.doc_cache: Dict[str, Tuple[Any, bytes, str, str]] = {}
         self.resolution_log: List[Dict[str, Any]] = []
         self.accessed_files: Dict[str, Dict[str, Any]] = {}
@@ -231,26 +237,38 @@ class LocalReferenceResolver:
             current_dir = os.path.dirname(real_current_file)
             candidate_target = os.path.join(current_dir, file_part)
             target_file = os.path.realpath(os.path.abspath(candidate_target))
+            if not os.path.exists(target_file) and self.source_closure_dir:
+                fallback_target = os.path.realpath(
+                    os.path.abspath(os.path.join(self.source_closure_dir, file_part))
+                )
+                if os.path.exists(fallback_target):
+                    target_file = fallback_target
 
-        # 3. Path traversal detection: ensure target is within bundle_root_dir
-        # Allow target_file if it is within or equal to bundle_root_dir
+        # 3. Path traversal detection: ensure target is within bundle_root_dir or source_closure_dir
         try:
             rel = os.path.relpath(target_file, self.bundle_root_dir)
-            if rel.startswith("..") or os.path.isabs(rel):
-                raise ReferenceResolutionError(
-                    ERR_PATH_TRAVERSAL_DETECTED,
-                    f"Reference '{ref_string}' traverses outside bundle root '{self.bundle_root_dir}'",
-                    {
-                        "ref_string": ref_string,
-                        "target_file": target_file,
-                        "bundle_root": self.bundle_root_dir,
-                    },
-                )
+            in_bundle = not rel.startswith("..") and not os.path.isabs(rel)
         except ValueError:
+            in_bundle = False
+
+        in_closure = False
+        if self.source_closure_dir:
+            try:
+                rel_c = os.path.relpath(target_file, self.source_closure_dir)
+                in_closure = not rel_c.startswith("..") and not os.path.isabs(rel_c)
+            except ValueError:
+                in_closure = False
+
+        if not (in_bundle or in_closure):
             raise ReferenceResolutionError(
                 ERR_PATH_TRAVERSAL_DETECTED,
-                f"Reference '{ref_string}' is on a different drive or invalid path relative to bundle root",
-                {"ref_string": ref_string, "target_file": target_file},
+                f"Reference '{ref_string}' traverses outside bundle root or closure directory",
+                {
+                    "ref_string": ref_string,
+                    "target_file": target_file,
+                    "bundle_root": self.bundle_root_dir,
+                    "source_closure_dir": self.source_closure_dir,
+                },
             )
 
         # 4. Cycle detection
