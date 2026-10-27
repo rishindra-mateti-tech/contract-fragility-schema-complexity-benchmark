@@ -1,0 +1,151 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "description": "A positive integer in cents representing how much to pay out.",
+            "type": "integer"
+          },
+          "currency": {
+            "description": "Three-letter [ISO currency code](https://www.iso.org/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https://stripe.com/docs/currencies).",
+            "format": "currency",
+            "type": "string"
+          },
+          "description": {
+            "description": "An arbitrary string attached to the object. Often useful for displaying to users.",
+            "maxLength": 5000,
+            "type": "string"
+          },
+          "destination": {
+            "description": "The ID of a bank account or a card to send the payout to. If you don't provide a destination, we use the default external account for the specified currency.",
+            "type": "string"
+          },
+          "expand": {
+            "description": "Specifies which fields in the response should be expanded.",
+            "items": {
+              "maxLength": 5000,
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Set of [key-value pairs](https://docs.stripe.com/api/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to `metadata`.",
+            "type": "object"
+          },
+          "method": {
+            "description": "The method used to send this payout, which is `standard` or `instant`. We support `instant` for payouts to debit cards and bank accounts in certain countries. Learn more about [bank support for Instant Payouts](https://stripe.com/docs/payouts/instant-payouts-banks).",
+            "enum": [
+              "instant",
+              "standard"
+            ],
+            "maxLength": 5000,
+            "type": "string",
+            "x-stripeBypassValidation": true
+          },
+          "payout_method": {
+            "description": "The ID of a v2 FinancialAccount to send funds to.",
+            "type": "string"
+          },
+          "source_type": {
+            "description": "The balance type of your Stripe balance to draw this payout from. Balances for different payment sources are kept separately. You can find the amounts with the Balances API. One of `bank_account`, `card`, or `fpx`.",
+            "enum": [
+              "bank_account",
+              "card",
+              "fpx"
+            ],
+            "maxLength": 5000,
+            "type": "string",
+            "x-stripeBypassValidation": true
+          },
+          "statement_descriptor": {
+            "description": "A string that displays on the recipient's bank or card statement (up to 22 characters). A `statement_descriptor` that's longer than 22 characters return an error. Most banks truncate this information and display it inconsistently. Some banks might not display it at all. For US ACH payouts, this maps to the ACH Company Entry Description field, which the NACHA standard limits to 10 characters. Stripe truncates descriptors longer than 10 characters for US ACH payouts.",
+            "maxLength": 22,
+            "type": "string",
+            "x-stripeBypassValidation": true
+          }
+        },
+        "required": [
+          "amount",
+          "currency"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "body"
+    ],
+    "sub_surfaces": {
+      "body": [
+        "amount",
+        "currency",
+        "description",
+        "destination",
+        "expand",
+        "metadata",
+        "method",
+        "payout_method",
+        "source_type",
+        "statement_descriptor"
+      ],
+      "form": [],
+      "header": [],
+      "path": [],
+      "query": [],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-002",
+    "operation_id": "PostPayouts",
+    "slot_id": "SLOT_STRIPE_01",
+    "source_dialect": "OpenAPI 3.0.0",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": true,
+    "max_nesting_depth": 4,
+    "property_count": 1,
+    "required_count": 1
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "f1cedf38e0178538a3c72e750da80226df41e28c.json"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "openapi/spec3.json",
+    "primary_source_file_blob_sha": "f1cedf38e0178538a3c72e750da80226df41e28c",
+    "primary_source_file_sha256": "7cff4cc46d0654101a36a3302f7544640f5f73e4f3cad6f264f0e23c19fa1776"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "json:load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~1v1~1payouts/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [],
+  "unsupported_feature_flags": []
+}

@@ -1,0 +1,9 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "body"
+  ],
+  "operation_id": "floating_ips_create",
+  "slot_id": "SLOT_DO_01",
+  "wire_representation": "json_tool_call_arguments"
+}

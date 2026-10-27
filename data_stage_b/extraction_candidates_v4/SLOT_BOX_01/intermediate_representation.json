@@ -1,0 +1,165 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "additionalProperties": false,
+        "properties": {
+          "folder_upload_email": {
+            "allOf": [
+              {
+                "description": "The Write Folder Upload Email object.",
+                "properties": {
+                  "access": {
+                    "description": "When this parameter has been set, users can email files\nto the email address that has been automatically\ncreated for this folder.\n\nTo create an email address, set this property either when\ncreating or updating the folder.\n\nWhen set to `collaborators`, only emails from registered email\naddresses for collaborators will be accepted. This includes\nany email aliases a user might have registered.\n\nWhen set to `open` it will accept emails from any email\naddress.",
+                    "enum": [
+                      "open",
+                      "collaborators"
+                    ],
+                    "example": "open",
+                    "type": "string"
+                  }
+                },
+                "title": "Folder upload email",
+                "type": "object"
+              },
+              {
+                "description": "Setting this object enables the upload email address.\n\nThis email address can be used by users to directly\nupload files directly to the folder via email."
+              }
+            ]
+          },
+          "name": {
+            "description": "The name for the new folder.\n\nThe following restrictions to folder names apply: names containing\nnon-printable ASCII characters, forward and backward slashes\n(`/`, `\\`), names with trailing spaces, and names `.` and `..` are\nnot allowed.\n\nFolder names must be unique within their parent folder. The name check is case-insensitive,\nso a folder named `New Folder` cannot be created in a parent folder that already contains\na folder named `new folder`.",
+            "example": "New Folder",
+            "maxLength": 255,
+            "minLength": 1,
+            "type": "string"
+          },
+          "parent": {
+            "description": "The parent folder to create the new folder within.",
+            "properties": {
+              "id": {
+                "description": "The ID of parent folder.",
+                "example": "0",
+                "type": "string"
+              }
+            },
+            "required": [
+              "id"
+            ],
+            "type": "object"
+          },
+          "sync_state": {
+            "description": "Specifies whether a folder should be synced to a\nuser's device or not. This is used by Box Sync\n(discontinued) and is not used by Box Drive.",
+            "enum": [
+              "synced",
+              "not_synced",
+              "partially_synced"
+            ],
+            "example": "synced",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "parent"
+        ],
+        "type": "object"
+      },
+      "query": {
+        "additionalProperties": false,
+        "properties": {
+          "fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [],
+    "sub_surfaces": {
+      "body": [
+        "folder_upload_email",
+        "name",
+        "parent",
+        "sync_state"
+      ],
+      "form": [],
+      "header": [],
+      "path": [],
+      "query": [
+        "fields"
+      ],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-005",
+    "operation_id": "post_folders",
+    "slot_id": "SLOT_BOX_01",
+    "source_dialect": "OpenAPI 3.0.2",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": true,
+    "max_nesting_depth": 5,
+    "property_count": 2,
+    "required_count": 0
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "e740e641b82d30e398a2a0d1b14b4c052e310422.json"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "openapi.json",
+    "primary_source_file_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+    "primary_source_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "json:load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~1folders/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1folders/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1folders/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    }
+  ],
+  "unsupported_feature_flags": []
+}

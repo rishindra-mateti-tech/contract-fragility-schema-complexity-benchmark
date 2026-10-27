@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Creates a new empty folder within the specified parent folder.",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "folder_upload_email": {
+          "allOf": [
+            {
+              "description": "The Write Folder Upload Email object.",
+              "properties": {
+                "access": {
+                  "description": "When this parameter has been set, users can email files\nto the email address that has been automatically\ncreated for this folder.\n\nTo create an email address, set this property either when\ncreating or updating the folder.\n\nWhen set to `collaborators`, only emails from registered email\naddresses for collaborators will be accepted. This includes\nany email aliases a user might have registered.\n\nWhen set to `open` it will accept emails from any email\naddress.",
+                  "enum": [
+                    "open",
+                    "collaborators"
+                  ],
+                  "example": "open",
+                  "type": "string"
+                }
+              },
+              "title": "Folder upload email",
+              "type": "object"
+            },
+            {
+              "description": "Setting this object enables the upload email address.\n\nThis email address can be used by users to directly\nupload files directly to the folder via email."
+            }
+          ]
+        },
+        "name": {
+          "description": "The name for the new folder.\n\nThe following restrictions to folder names apply: names containing\nnon-printable ASCII characters, forward and backward slashes\n(`/`, `\\`), names with trailing spaces, and names `.` and `..` are\nnot allowed.\n\nFolder names must be unique within their parent folder. The name check is case-insensitive,\nso a folder named `New Folder` cannot be created in a parent folder that already contains\na folder named `new folder`.",
+          "example": "New Folder",
+          "maxLength": 255,
+          "minLength": 1,
+          "type": "string"
+        },
+        "parent": {
+          "description": "The parent folder to create the new folder within.",
+          "properties": {
+            "id": {
+              "description": "The ID of parent folder.",
+              "example": "0",
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "type": "object"
+        },
+        "sync_state": {
+          "description": "Specifies whether a folder should be synced to a\nuser's device or not. This is used by Box Sync\n(discontinued) and is not used by Box Drive.",
+          "enum": [
+            "synced",
+            "not_synced",
+            "partially_synced"
+          ],
+          "example": "synced",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "parent"
+      ],
+      "type": "object"
+    },
+    "query": {
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "title": "SLOT_BOX_01 Tool Call Contract",
+  "type": "object",
+  "x-antigravity-metadata": {
+    "candidate_source_id": "CAND-005",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "extractor_version": "4.0.0",
+    "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+    "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "post_folders",
+    "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+    "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+    "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+    "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+    "slot_id": "SLOT_BOX_01",
+    "source_dialect": "OpenAPI 3.0.2",
+    "target_dialect": "JSON Schema Draft-07"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "table_name"
+  ],
+  "operation_id": "describe_table",
+  "slot_id": "SLOT_MCP_SQLITE_02",
+  "wire_representation": "json_tool_call_arguments"
+}

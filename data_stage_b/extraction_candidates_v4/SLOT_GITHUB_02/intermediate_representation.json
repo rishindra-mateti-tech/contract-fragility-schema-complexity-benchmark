@@ -1,0 +1,177 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "additionalProperties": false,
+        "properties": {
+          "context": {
+            "default": "default",
+            "description": "A string label to differentiate this status from the status of other systems. This field is case-insensitive.",
+            "type": "string"
+          },
+          "description": {
+            "description": "A short description of the status.",
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "description": "The state of the status.",
+            "enum": [
+              "error",
+              "failure",
+              "pending",
+              "success"
+            ],
+            "type": "string"
+          },
+          "target_url": {
+            "description": "The target URL to associate with this status. This URL will be linked from the GitHub UI to allow users to easily see the source of the status.  \nFor example, if your continuous integration system is posting build status, you would want to provide the deep link for the build output for this specific SHA:  \n`http://ci.example.com/user/repo/build/sha`",
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "state"
+        ],
+        "type": "object"
+      },
+      "path": {
+        "additionalProperties": false,
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          },
+          "sha": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "owner",
+          "repo",
+          "sha"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "path",
+      "body"
+    ],
+    "sub_surfaces": {
+      "body": [
+        "context",
+        "description",
+        "state",
+        "target_url"
+      ],
+      "form": [],
+      "header": [],
+      "path": [
+        "owner",
+        "repo",
+        "sha"
+      ],
+      "query": [],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-001",
+    "operation_id": "repos/create-commit-status",
+    "slot_id": "SLOT_GITHUB_02",
+    "source_dialect": "OpenAPI 3.0.3",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": false,
+    "has_enums": true,
+    "has_nested_objects": true,
+    "max_nesting_depth": 3,
+    "property_count": 2,
+    "required_count": 2
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d.json"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "descriptions/api.github.com/api.github.com.json",
+    "primary_source_file_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+    "primary_source_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "json:load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [
+    {
+      "in": "path",
+      "name": "owner",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/0",
+      "op_resolved_pointer": "#/components/parameters/owner",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "repo",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/1",
+      "op_resolved_pointer": "#/components/parameters/repo",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "sha",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/2",
+      "op_resolved_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/2",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "unsupported_feature_flags": []
+}

@@ -1,0 +1,14 @@
+{
+  "ast_node_kind": "OpenAPIOperationObject",
+  "ast_path": "#/paths/~1user~1repos/post",
+  "parser_name": "json:load",
+  "parser_version": "native_python",
+  "source_snippet": null,
+  "source_snippet_sha256": null,
+  "span": {
+    "col_offset": 0,
+    "end_col_offset": 0,
+    "end_lineno": 0,
+    "lineno": 0
+  }
+}

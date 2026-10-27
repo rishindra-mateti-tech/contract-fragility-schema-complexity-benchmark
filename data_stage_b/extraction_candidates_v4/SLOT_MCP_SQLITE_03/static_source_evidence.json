@@ -1,0 +1,14 @@
+{
+  "ast_node_kind": "ast.Call",
+  "ast_path": "Module/AsyncFunctionDef[main]/AsyncFunctionDef[handle_list_tools]/Return/List/Call/Call[types.Tool:write-query]",
+  "parser_name": "python:built-in:ast",
+  "parser_version": "python-3.13.2:ast",
+  "source_snippet": "types.Tool(\n                name=\"write-query\",\n                description=\"Execute an INSERT, UPDATE, or DELETE query on the SQLite database\",\n                inputSchema={\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"query\": {\"type\": \"string\", \"description\": \"SQL query to execute\"},\n                    },\n                    \"required\": [\"query\"],\n                },\n            )",
+  "source_snippet_sha256": "f6e63dd0d44677e379bd6e2d7c646adbaeb01c56a294bd455a07e14b79dbf937",
+  "span": {
+    "col_offset": 12,
+    "end_col_offset": 13,
+    "end_lineno": 256,
+    "lineno": 246
+  }
+}

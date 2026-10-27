@@ -1,0 +1,14 @@
+{
+  "ast_node_kind": "ast.Call",
+  "ast_path": "Module/AsyncFunctionDef[main]/AsyncFunctionDef[handle_list_tools]/Return/List/Call/Call[types.Tool:read-query]",
+  "parser_name": "python:built-in:ast",
+  "parser_version": "python-3.13.2:ast",
+  "source_snippet": "types.Tool(\n                name=\"read-query\",\n                description=\"Execute a SELECT query on the SQLite database\",\n                inputSchema={\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"query\": {\"type\": \"string\", \"description\": \"SELECT SQL query to execute\"},\n                    },\n                    \"required\": [\"query\"],\n                },\n            )",
+  "source_snippet_sha256": "b052f5c4f86e01c2b3d8f9ecfb0b77c57e76e67d76b0623138ce7d6855733574",
+  "span": {
+    "col_offset": 12,
+    "end_col_offset": 13,
+    "end_lineno": 245,
+    "lineno": 235
+  }
+}

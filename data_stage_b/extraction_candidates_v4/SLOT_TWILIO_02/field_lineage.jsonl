@@ -1,0 +1,2 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "body", "inferred_type": "object", "source_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post/body", "target_pointer": "#/properties/body"}
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "path", "inferred_type": "object", "source_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post/path", "target_pointer": "#/properties/path"}

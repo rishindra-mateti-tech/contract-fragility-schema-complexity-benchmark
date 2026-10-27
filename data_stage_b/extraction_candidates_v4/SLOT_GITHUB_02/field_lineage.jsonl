@@ -1,0 +1,2 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "body", "inferred_type": "object", "source_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/body", "target_pointer": "#/properties/body"}
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "path", "inferred_type": "object", "source_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/path", "target_pointer": "#/properties/path"}

@@ -1,0 +1,16 @@
+[
+  {
+    "in": "path",
+    "name": "account_id",
+    "op_declared_pointer": null,
+    "op_resolved_pointer": null,
+    "origin": "PATH_ITEM",
+    "override_status": "INHERITED",
+    "path_declared_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/parameters/0",
+    "path_resolved_pointer": "#/components/parameters/account_id",
+    "required": true,
+    "schema": {
+      "type": "integer"
+    }
+  }
+]

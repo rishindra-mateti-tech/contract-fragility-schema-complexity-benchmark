@@ -1,0 +1,254 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "additionalProperties": false,
+        "properties": {
+          "address": {
+            "description": "The user\u2019s address.",
+            "example": "900 Jefferson Ave, Redwood City, CA 94063",
+            "maxLength": 255,
+            "type": "string"
+          },
+          "can_see_managed_users": {
+            "description": "Whether the user can see other enterprise users in their\ncontact list.",
+            "example": true,
+            "type": "boolean"
+          },
+          "external_app_user_id": {
+            "description": "An external identifier for an app user, which can be used to look\nup the user. This can be used to tie user IDs from external\nidentity providers to Box users.",
+            "example": "my-user-1234",
+            "type": "string"
+          },
+          "is_exempt_from_device_limits": {
+            "description": "Whether to exempt the user from enterprise device limits.",
+            "example": true,
+            "type": "boolean"
+          },
+          "is_exempt_from_login_verification": {
+            "description": "Whether the user must use two-factor authentication.",
+            "example": true,
+            "type": "boolean"
+          },
+          "is_external_collab_restricted": {
+            "description": "Whether the user is allowed to collaborate with users outside\ntheir enterprise.",
+            "example": true,
+            "type": "boolean"
+          },
+          "is_platform_access_only": {
+            "description": "Specifies that the user is an app user.",
+            "example": true,
+            "type": "boolean"
+          },
+          "is_sync_enabled": {
+            "description": "Whether the user can use Box Sync.",
+            "example": true,
+            "type": "boolean"
+          },
+          "job_title": {
+            "description": "The user\u2019s job title.",
+            "example": "CEO",
+            "maxLength": 100,
+            "type": "string"
+          },
+          "language": {
+            "description": "The language of the user, formatted in modified version of the\n[ISO 639-1](https://developer.box.com/guides/api-calls/language-codes) format.",
+            "example": "en",
+            "type": "string"
+          },
+          "login": {
+            "description": "The email address the user uses to log in\n\nRequired, unless `is_platform_access_only`\nis set to `true`.",
+            "example": "boss@box.com",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name of the user.",
+            "example": "Aaron Levie",
+            "maxLength": 50,
+            "type": "string"
+          },
+          "phone": {
+            "description": "The user\u2019s phone number.",
+            "example": "6509241374",
+            "maxLength": 100,
+            "type": "string"
+          },
+          "role": {
+            "description": "The user\u2019s enterprise role.",
+            "enum": [
+              "coadmin",
+              "user"
+            ],
+            "example": "user",
+            "type": "string"
+          },
+          "space_amount": {
+            "description": "The user\u2019s total available space in bytes. Set this to `-1` to\nindicate unlimited storage.",
+            "example": 11345156112,
+            "format": "int64",
+            "type": "integer"
+          },
+          "status": {
+            "description": "The user's account status.",
+            "enum": [
+              "active",
+              "inactive",
+              "cannot_delete_edit",
+              "cannot_delete_edit_upload"
+            ],
+            "example": "active",
+            "type": "string"
+          },
+          "timezone": {
+            "description": "The user's timezone.",
+            "example": "Africa/Bujumbura",
+            "format": "timezone",
+            "type": "string"
+          },
+          "tracking_codes": {
+            "description": "Tracking codes allow an admin to generate reports from the\nadmin console and assign an attribute to a specific group\nof users. This setting must be enabled for an enterprise before it\ncan be used.",
+            "items": {
+              "description": "Tracking codes allow an admin to generate reports from the admin console\nand assign an attribute to a specific group of users.\nThis setting must be enabled for an enterprise before it can be used.",
+              "properties": {
+                "name": {
+                  "description": "The name of the tracking code, which must be preconfigured in\nthe Admin Console.",
+                  "example": "department",
+                  "type": "string"
+                },
+                "type": {
+                  "description": "The value will always be `tracking_code`.",
+                  "enum": [
+                    "tracking_code"
+                  ],
+                  "example": "tracking_code",
+                  "type": "string"
+                },
+                "value": {
+                  "description": "The value of the tracking code.",
+                  "example": "Sales",
+                  "type": "string"
+                }
+              },
+              "title": "Tracking code",
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "query": {
+        "additionalProperties": false,
+        "properties": {
+          "fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "required": [],
+    "sub_surfaces": {
+      "body": [
+        "address",
+        "can_see_managed_users",
+        "external_app_user_id",
+        "is_exempt_from_device_limits",
+        "is_exempt_from_login_verification",
+        "is_external_collab_restricted",
+        "is_platform_access_only",
+        "is_sync_enabled",
+        "job_title",
+        "language",
+        "login",
+        "name",
+        "phone",
+        "role",
+        "space_amount",
+        "status",
+        "timezone",
+        "tracking_codes"
+      ],
+      "form": [],
+      "header": [],
+      "path": [],
+      "query": [
+        "fields"
+      ],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-005",
+    "operation_id": "post_users",
+    "slot_id": "SLOT_BOX_03",
+    "source_dialect": "OpenAPI 3.0.2",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": true,
+    "max_nesting_depth": 5,
+    "property_count": 2,
+    "required_count": 0
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "e740e641b82d30e398a2a0d1b14b4c052e310422.json"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "openapi.json",
+    "primary_source_file_blob_sha": "e740e641b82d30e398a2a0d1b14b4c052e310422",
+    "primary_source_file_sha256": "13cc601e01a7b82133975aaf7aeffb1850159a10ac6365fae00d5af94406d9d4"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "json:load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~1users/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1users/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1users/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    }
+  ],
+  "unsupported_feature_flags": []
+}

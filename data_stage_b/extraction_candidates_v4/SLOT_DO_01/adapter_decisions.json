@@ -1,0 +1,8 @@
+[
+  {
+    "action": "OPERATION_DEREFERENCE",
+    "adapter_name": "LocalReferenceResolver",
+    "reason": "Resolved operation reference from root specification into closure bundle.",
+    "resolved_file": "floatingIPs_create.yml"
+  }
+]

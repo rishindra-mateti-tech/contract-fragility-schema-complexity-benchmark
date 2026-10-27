@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Modify the properties of a given Account",
+  "properties": {
+    "body": {
+      "additionalProperties": false,
+      "properties": {
+        "FriendlyName": {
+          "description": "Update the human-readable description of this Account",
+          "type": "string"
+        },
+        "Status": {
+          "description": "The status of this account. Usually `active`, but can be `suspended` or `closed`.",
+          "enum": [
+            "active",
+            "suspended",
+            "closed"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "UpdateAccountRequest",
+      "type": "object"
+    },
+    "path": {
+      "additionalProperties": false,
+      "properties": {
+        "Sid": {
+          "maxLength": 34,
+          "minLength": 34,
+          "pattern": "^AC[0-9a-fA-F]{32}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Sid"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "path"
+  ],
+  "title": "SLOT_TWILIO_01 Tool Call Contract",
+  "type": "object",
+  "x-antigravity-metadata": {
+    "candidate_source_id": "CAND-004",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "extractor_version": "4.0.0",
+    "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+    "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "UpdateAccount",
+    "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+    "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+    "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+    "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+    "slot_id": "SLOT_TWILIO_01",
+    "source_dialect": "OpenAPI 3.0.1",
+    "target_dialect": "JSON Schema Draft-07"
+  }
+}

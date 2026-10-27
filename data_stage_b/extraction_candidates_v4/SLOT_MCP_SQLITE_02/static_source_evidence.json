@@ -1,0 +1,14 @@
+{
+  "ast_node_kind": "ast.Call",
+  "ast_path": "Module/AsyncFunctionDef[main]/AsyncFunctionDef[handle_list_tools]/Return/List/Call/Call[types.Tool:describe-table]",
+  "parser_name": "python:built-in:ast",
+  "parser_version": "python-3.13.2:ast",
+  "source_snippet": "types.Tool(\n                name=\"describe-table\",\n                description=\"Get the schema information for a specific table\",\n                inputSchema={\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"table_name\": {\"type\": \"string\", \"description\": \"Name of the table to describe\"},\n                    },\n                    \"required\": [\"table_name\"],\n                },\n            )",
+  "source_snippet_sha256": "9026f8c1c980ac0637609e3752dd95d8607686acdee628190e9c2d2852e4a891",
+  "span": {
+    "col_offset": 12,
+    "end_col_offset": 13,
+    "end_lineno": 286,
+    "lineno": 276
+  }
+}

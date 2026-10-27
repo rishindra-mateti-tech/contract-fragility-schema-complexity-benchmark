@@ -1,0 +1,2 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "body", "inferred_type": "object", "source_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/post/body", "target_pointer": "#/properties/body"}
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "path", "inferred_type": "object", "source_pointer": "#/paths/~1public~1api~1v1~1inboxes~1{inbox_identifier}~1contacts~1{contact_identifier}~1conversations/post/path", "target_pointer": "#/properties/path"}

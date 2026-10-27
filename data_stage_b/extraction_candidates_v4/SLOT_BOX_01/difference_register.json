@@ -1,0 +1,35 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1folders/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1folders/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    }
+  ],
+  "adapter_decisions_count": 1,
+  "operation_id": "post_folders",
+  "slot_id": "SLOT_BOX_01",
+  "transformations": [
+    {
+      "pointer": "#/paths/~1folders/post/requestBody/content/application/json/schema/properties/folder_upload_email/allOf/0/properties/access",
+      "type": "QUARANTINED_REDUNDANT_NULLABLE_FALSE"
+    },
+    {
+      "pointer": "#/paths/~1folders/post/requestBody/content/application/json/schema/properties/sync_state",
+      "type": "QUARANTINED_REDUNDANT_NULLABLE_FALSE"
+    }
+  ],
+  "transformations_count": 2
+}

@@ -1,0 +1,10 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "header",
+    "form"
+  ],
+  "operation_id": "conversations.create",
+  "slot_id": "SLOT_SLACK_01",
+  "wire_representation": "json_tool_call_arguments"
+}

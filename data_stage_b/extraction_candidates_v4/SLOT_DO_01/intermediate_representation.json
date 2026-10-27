@@ -1,0 +1,113 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "oneOf": [
+          {
+            "properties": {
+              "droplet_id": {
+                "description": "The ID of the Droplet that the floating IP will be assigned to.",
+                "example": 2457247,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "droplet_id"
+            ],
+            "title": "Assign to Droplet",
+            "type": "object"
+          },
+          {
+            "properties": {
+              "project_id": {
+                "description": "The UUID of the project to which the floating IP will be assigned.",
+                "example": "746c6152-2fa2-11ed-92d3-27aaa54e4988",
+                "format": "uuid",
+                "type": "string"
+              },
+              "region": {
+                "description": "The slug identifier for the region the floating IP will be reserved to.",
+                "example": "nyc3",
+                "type": "string"
+              }
+            },
+            "required": [
+              "region"
+            ],
+            "title": "Reserve to Region",
+            "type": "object"
+          }
+        ]
+      }
+    },
+    "required": [
+      "body"
+    ],
+    "sub_surfaces": {
+      "body": [],
+      "form": [],
+      "header": [],
+      "path": [],
+      "query": [],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-003",
+    "operation_id": "floating_ips_create",
+    "slot_id": "SLOT_DO_01",
+    "source_dialect": "OpenAPI 3.0.0",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": true,
+    "max_nesting_depth": 4,
+    "property_count": 1,
+    "required_count": 1
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "a26d71aa637fd6c6241602e9862eae7fb3d1ed95.yaml",
+      "../../source_closures/CAND-003/resources/floating_ips/floatingIPs_create.yml",
+      "../../source_closures/CAND-003/resources/floating_ips/models/floating_ip_create.yml"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "specification/DigitalOcean-public.v2.yaml",
+    "primary_source_file_blob_sha": "a26d71aa637fd6c6241602e9862eae7fb3d1ed95",
+    "primary_source_file_sha256": "e18ad525a336da3dd83776659d5b574e30748b1d59efc53a42c86115b290a76a"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "yaml:safe_load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~1v2~1floating_ips/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [
+    {
+      "action": "OPERATION_DEREFERENCE",
+      "adapter_name": "LocalReferenceResolver",
+      "reason": "Resolved operation reference from root specification into closure bundle.",
+      "resolved_file": "floatingIPs_create.yml"
+    }
+  ],
+  "unsupported_feature_flags": []
+}

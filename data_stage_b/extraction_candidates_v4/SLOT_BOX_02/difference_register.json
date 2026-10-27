@@ -1,0 +1,40 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "query",
+      "name": "fields",
+      "op_declared_pointer": "#/paths/~1collaborations/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~1collaborations/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      }
+    },
+    {
+      "in": "query",
+      "name": "notify",
+      "op_declared_pointer": "#/paths/~1collaborations/post/parameters/1",
+      "op_resolved_pointer": "#/paths/~1collaborations/post/parameters/1",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": false,
+      "schema": {
+        "type": "boolean"
+      }
+    }
+  ],
+  "adapter_decisions_count": 2,
+  "operation_id": "post_collaborations",
+  "slot_id": "SLOT_BOX_02",
+  "transformations": [],
+  "transformations_count": 0
+}

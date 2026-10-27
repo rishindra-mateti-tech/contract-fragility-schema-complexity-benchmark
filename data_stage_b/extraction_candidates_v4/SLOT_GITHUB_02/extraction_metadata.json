@@ -1,0 +1,123 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "path",
+      "name": "owner",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/0",
+      "op_resolved_pointer": "#/components/parameters/owner",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "repo",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/1",
+      "op_resolved_pointer": "#/components/parameters/repo",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "sha",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/2",
+      "op_resolved_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/2",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "adapter_decisions_count": 3,
+  "adapters_used": [],
+  "candidate_source_id": "CAND-001",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T22:00:00Z",
+  "extractor_git_commit": "465f0c189b71e7d0f1a63c46d30f4058d844c208",
+  "extractor_script_sha256": "8dc620dad9ca5dbe143331202b037504f9caccb3365e452423ae81f4049398eb",
+  "extractor_version": "4.0.0",
+  "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+  "generated_artifact_hashes": {
+    "adapter_decisions.json": "2690a5d4df5f4feeb552790db4a01f89599c2b99f2e9bec0355120110a4e05cd",
+    "candidate_contract.json": "52101953ba1fcd28a31a086b9f774ea7925abd5c830a6b4b10c44cce137f1837",
+    "candidate_validation_report.md": "6435fe038febc3964d76bbd77683906ab4860cc72e16e19050d45e3a47059c2c",
+    "difference_register.json": "85f2b06333bd2a5eaade9c98e925fa5deafed325629c2358b31f9239516daa9d",
+    "difference_register.md": "7cdbb5bd214f9e6f2d3ff6df5b5c7944c3a18d6be814c32cc1ca9ac1e3976cee",
+    "feature_inventory.json": "17ba3c985da4e25389852518d2aea50eb8a2af5da9ee7842e6626ca2fc9f2e23",
+    "field_lineage.jsonl": "cb0e46cdc44370df7b543d8711ebbd8f083cb25b7c93cb7956820a1c10eefab1",
+    "intermediate_representation.json": "dcced45692b54ec74a8d925cac598f81c63de23e783c0bacf18326f71daf14e3",
+    "review_packet.md": "d9e37e3c191c7dddd4239cd6acc437d75df4062406cb8cd2583883f3ef14e12a",
+    "serialization_characterization.json": "536cfc15eeeb30936ca7045e273ff55aabc3552a2e892da55d7ea310db941281",
+    "source_reference_closure.json": "09e80117131b5d63ed7073a77b45b734388dce762259c6719f2fdea560df9f39",
+    "static_source_evidence.json": "8ee729565a70e5edbcbf5a457437a823d904c764e881d2d38e64a199200f8d60"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "ir_spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "repos/create-commit-status",
+  "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+  "py_ast_policy_id": "PYTHON_AST_STATIC_TOOL_EXTRACTION_POLICY_001",
+  "py_ast_policy_sha256": "0e30b10c1a1f0e1b3d910f6ea836f24e958ad0a346e33345de0b22e5fac9b190",
+  "raw_source_blob_sha": "a91fa76a34558f5ed28e245cb1a6c46a44a61f4d",
+  "raw_source_file_sha256": "ba5ddc1eeeede9f3858abd96325359891f38a2bd8e20fd111abf4230741db194",
+  "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+  "schema_transformations": [
+    {
+      "converted": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "original": {
+        "nullable": true,
+        "type": "string"
+      },
+      "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application/json/schema/properties/description",
+      "type": "NULLABLE_TO_MULTI_TYPE"
+    },
+    {
+      "converted": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "original": {
+        "nullable": true,
+        "type": "string"
+      },
+      "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application/json/schema/properties/target_url",
+      "type": "NULLABLE_TO_MULTI_TYPE"
+    }
+  ],
+  "schema_transformations_count": 2,
+  "slot_id": "SLOT_GITHUB_02",
+  "source_cluster_id": "CLUSTER_GITHUB",
+  "source_dialect": "OpenAPI 3.0.3",
+  "source_spec_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post",
+  "target_dialect": "JSON Schema Draft-07",
+  "ts_ast_policy_id": "TYPESCRIPT_AST_STATIC_TOOL_EXTRACTION_POLICY_001",
+  "ts_ast_policy_sha256": "c7b54723b40fdd44767c03fbb3caa145dec98720b1ce504f7c3181880b8d8db9",
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

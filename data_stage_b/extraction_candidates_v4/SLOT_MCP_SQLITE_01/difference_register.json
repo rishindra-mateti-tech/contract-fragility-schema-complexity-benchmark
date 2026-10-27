@@ -1,0 +1,19 @@
+{
+  "adapter_decisions": [
+    {
+      "action": "STATIC_LITERAL_EXTRACTION",
+      "adapter_name": "PythonAstToolExtractor",
+      "reason": "Statically extracted literal Tool call schema from Python AST without code execution."
+    },
+    {
+      "action": "TOOL_SURFACE_SYNTHESIS",
+      "adapter_name": "PythonAstToolExtractor",
+      "reason": "Normalized inputSchema dictionary into closed object container (additionalProperties: false)."
+    }
+  ],
+  "adapter_decisions_count": 2,
+  "operation_id": "read_query",
+  "slot_id": "SLOT_MCP_SQLITE_01",
+  "transformations": [],
+  "transformations_count": 0
+}

@@ -1,0 +1,80 @@
+{
+  "adapter_decisions": [
+    {
+      "in": "path",
+      "name": "owner",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/0",
+      "op_resolved_pointer": "#/components/parameters/owner",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "repo",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/1",
+      "op_resolved_pointer": "#/components/parameters/repo",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "in": "path",
+      "name": "sha",
+      "op_declared_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/2",
+      "op_resolved_pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/parameters/2",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "adapter_decisions_count": 3,
+  "operation_id": "repos/create-commit-status",
+  "slot_id": "SLOT_GITHUB_02",
+  "transformations": [
+    {
+      "converted": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "original": {
+        "nullable": true,
+        "type": "string"
+      },
+      "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application/json/schema/properties/description",
+      "type": "NULLABLE_TO_MULTI_TYPE"
+    },
+    {
+      "converted": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "original": {
+        "nullable": true,
+        "type": "string"
+      },
+      "pointer": "#/paths/~1repos~1{owner}~1{repo}~1statuses~1{sha}/post/requestBody/content/application/json/schema/properties/target_url",
+      "type": "NULLABLE_TO_MULTI_TYPE"
+    }
+  ],
+  "transformations_count": 2
+}

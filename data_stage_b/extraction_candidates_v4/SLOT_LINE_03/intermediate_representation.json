@@ -1,0 +1,96 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "additionalProperties": false,
+        "externalDocs": {
+          "url": "https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read"
+        },
+        "properties": {
+          "chat": {
+            "description": "Chat reference",
+            "externalDocs": {
+              "url": "https://developers.line.biz/en/reference/partner-docs/#mark-messages-from-users-as-read"
+            },
+            "properties": {
+              "userId": {
+                "description": "The target user ID",
+                "type": "string"
+              }
+            },
+            "required": [
+              "userId"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "chat"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "body"
+    ],
+    "sub_surfaces": {
+      "body": [
+        "chat"
+      ],
+      "form": [],
+      "header": [],
+      "path": [],
+      "query": [],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-013",
+    "operation_id": "markMessagesAsRead",
+    "slot_id": "SLOT_LINE_03",
+    "source_dialect": "OpenAPI 3.0.0",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": true,
+    "max_nesting_depth": 4,
+    "property_count": 1,
+    "required_count": 1
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "11f1fdb91092246f881edd1a9457cb37327a6c5d.yml"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "messaging-api.yml",
+    "primary_source_file_blob_sha": "11f1fdb91092246f881edd1a9457cb37327a6c5d",
+    "primary_source_file_sha256": "41033aa8491fc67ab09c4ec322f2aab072ae7b9402297e8c4f042eda0c2dd1fc"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "yaml:safe_load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~1v2~1bot~1message~1markAsRead/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [],
+  "unsupported_feature_flags": []
+}

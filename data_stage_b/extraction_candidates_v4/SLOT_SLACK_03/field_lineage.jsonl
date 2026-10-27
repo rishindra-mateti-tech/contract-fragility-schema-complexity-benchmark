@@ -1,0 +1,2 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "form", "inferred_type": "object", "source_pointer": "#/paths/~1reminders.add/post/form", "target_pointer": "#/properties/form"}
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "header", "inferred_type": "object", "source_pointer": "#/paths/~1reminders.add/post/header", "target_pointer": "#/properties/header"}

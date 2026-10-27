@@ -1,0 +1,1 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "query", "inferred_type": "string", "source_pointer": "server.py:list_tools:read-query/query", "target_pointer": "#/properties/query"}

@@ -1,0 +1,2 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "body", "inferred_type": "object", "source_pointer": "#/paths/~1folders/post/body", "target_pointer": "#/properties/body"}
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "query", "inferred_type": "object", "source_pointer": "#/paths/~1folders/post/query", "target_pointer": "#/properties/query"}

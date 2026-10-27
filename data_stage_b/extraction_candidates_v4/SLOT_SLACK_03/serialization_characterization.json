@@ -1,0 +1,10 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "header",
+    "form"
+  ],
+  "operation_id": "reminders.add",
+  "slot_id": "SLOT_SLACK_03",
+  "wire_representation": "json_tool_call_arguments"
+}

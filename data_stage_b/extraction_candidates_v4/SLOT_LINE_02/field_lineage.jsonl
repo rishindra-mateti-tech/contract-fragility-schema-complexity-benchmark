@@ -1,0 +1,1 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "body", "inferred_type": "object", "source_pointer": "#/paths/~1v2~1bot~1channel~1webhook~1endpoint/put/body", "target_pointer": "#/properties/body"}

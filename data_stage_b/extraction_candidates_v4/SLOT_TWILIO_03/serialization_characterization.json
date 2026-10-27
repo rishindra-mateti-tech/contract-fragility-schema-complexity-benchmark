@@ -1,0 +1,10 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "path",
+    "body"
+  ],
+  "operation_id": "CreateCall",
+  "slot_id": "SLOT_TWILIO_03",
+  "wire_representation": "json_tool_call_arguments"
+}

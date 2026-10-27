@@ -1,0 +1,64 @@
+{
+  "adapter_decisions": [
+    {
+      "action": "STATIC_LITERAL_EXTRACTION",
+      "adapter_name": "PythonAstToolExtractor",
+      "reason": "Statically extracted literal Tool call schema from Python AST without code execution."
+    },
+    {
+      "action": "TOOL_SURFACE_SYNTHESIS",
+      "adapter_name": "PythonAstToolExtractor",
+      "reason": "Normalized inputSchema dictionary into closed object container (additionalProperties: false)."
+    }
+  ],
+  "adapter_decisions_count": 2,
+  "adapters_used": [
+    "PythonAstToolExtractor"
+  ],
+  "candidate_source_id": "CAND-009",
+  "creation_mode": "BATCH_GENERATED_CANDIDATE",
+  "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+  "extraction_timestamp": "2026-10-26T22:00:00Z",
+  "extractor_git_commit": "465f0c189b71e7d0f1a63c46d30f4058d844c208",
+  "extractor_script_sha256": "8dc620dad9ca5dbe143331202b037504f9caccb3365e452423ae81f4049398eb",
+  "extractor_version": "4.0.0",
+  "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+  "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+  "generated_artifact_hashes": {
+    "adapter_decisions.json": "fd08f5343d6f3c76361007a12b9d07f3558d4016fa9b2fd2eebafef6f67acd98",
+    "candidate_contract.json": "49580f6765cd7cf43256617854bf3ef0bc5625aa728047f4695c0c918dd50dc0",
+    "candidate_validation_report.md": "6a285bc169002778eedad85416b75e41e9b349f5b6030dc3613bf160bc26cc36",
+    "difference_register.json": "7ef65bcd11aa00d8030010515098a209d63f9561da2e8ad221a938e64b7d5bfd",
+    "difference_register.md": "fc95599647089976ff233d2a7bdba3b5a787cda124f1ae021b4e00485bf6e27a",
+    "feature_inventory.json": "7abd8255519ed29d6e0897e964963c6071143b00293c1c8a7e6e84900d2819f5",
+    "field_lineage.jsonl": "67d755d8e1ec6d5a61f7549ce683109f1cbacc74952d4eec1cf3e85d8790edbc",
+    "intermediate_representation.json": "beed59c49bd5f9a58899d43048b8b06f6f7f7d68632c9a8c8bc5499f17d1f9dc",
+    "review_packet.md": "ffd5722edd03bb456833334e0ea523005f1aef46dce7f71e70925e8d955856eb",
+    "serialization_characterization.json": "2f1106b42269746ea88a3b88d917140b2515b77187f2fc8b9ebc9651ec4da80a",
+    "source_reference_closure.json": "e66efd61c5c0c20da84b1ff093960b78a952700bfdd7d1feeeb96bd520b3b1c4",
+    "static_source_evidence.json": "15cac0afa36d74404a0c6f80fd0be7018ba522f96b4a6bac5bd176bbadbce4bd"
+  },
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+  "ir_spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+  "operation_id": "describe_table",
+  "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+  "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+  "py_ast_policy_id": "PYTHON_AST_STATIC_TOOL_EXTRACTION_POLICY_001",
+  "py_ast_policy_sha256": "0e30b10c1a1f0e1b3d910f6ea836f24e958ad0a346e33345de0b22e5fac9b190",
+  "raw_source_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
+  "raw_source_file_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863",
+  "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+  "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+  "schema_transformations": [],
+  "schema_transformations_count": 0,
+  "slot_id": "SLOT_MCP_SQLITE_02",
+  "source_cluster_id": "CLUSTER_MCP_SQLITE",
+  "source_dialect": "Python 3 AST",
+  "source_spec_pointer": "server.py:list_tools:describe-table",
+  "target_dialect": "JSON Schema Draft-07",
+  "ts_ast_policy_id": "TYPESCRIPT_AST_STATIC_TOOL_EXTRACTION_POLICY_001",
+  "ts_ast_policy_sha256": "c7b54723b40fdd44767c03fbb3caa145dec98720b1ce504f7c3181880b8d8db9",
+  "wrapper_policy_id": "WRAPPER_CLOSED_OBJECT_POLICY_001"
+}

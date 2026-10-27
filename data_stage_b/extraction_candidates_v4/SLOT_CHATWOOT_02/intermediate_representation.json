@@ -1,0 +1,119 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "additionalProperties": false,
+        "properties": {
+          "role": {
+            "description": "whether user is an administrator or agent",
+            "example": "administrator",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "The ID of the user",
+            "example": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "user_id",
+          "role"
+        ],
+        "type": "object"
+      },
+      "path": {
+        "additionalProperties": false,
+        "properties": {
+          "account_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "account_id"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "path",
+      "body"
+    ],
+    "sub_surfaces": {
+      "body": [
+        "role",
+        "user_id"
+      ],
+      "form": [],
+      "header": [],
+      "path": [
+        "account_id"
+      ],
+      "query": [],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-011",
+    "operation_id": "create-an-account-user",
+    "slot_id": "SLOT_CHATWOOT_02",
+    "source_dialect": "OpenAPI 3.1.0",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": true,
+    "max_nesting_depth": 3,
+    "property_count": 2,
+    "required_count": 2
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589.json"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "swagger/swagger.json",
+    "primary_source_file_blob_sha": "b0b3ca6332f0627a1fe7e4e8db5bd92ac4e77589",
+    "primary_source_file_sha256": "c8cba6e5975ee286593866f20652e29154717b835dc6324af7433bb497e7ab43"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "json:load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [
+    {
+      "in": "path",
+      "name": "account_id",
+      "op_declared_pointer": null,
+      "op_resolved_pointer": null,
+      "origin": "PATH_ITEM",
+      "override_status": "INHERITED",
+      "path_declared_pointer": "#/paths/~1platform~1api~1v1~1accounts~1{account_id}~1account_users/parameters/0",
+      "path_resolved_pointer": "#/components/parameters/account_id",
+      "required": true,
+      "schema": {
+        "type": "integer"
+      }
+    }
+  ],
+  "unsupported_feature_flags": []
+}

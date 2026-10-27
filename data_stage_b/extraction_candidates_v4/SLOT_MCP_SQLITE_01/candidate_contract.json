@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Execute a SELECT query on the SQLite database",
+  "properties": {
+    "query": {
+      "description": "SELECT SQL query to execute",
+      "type": "string"
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "title": "SLOT_MCP_SQLITE_01 Tool Call Contract",
+  "type": "object",
+  "x-antigravity-metadata": {
+    "candidate_source_id": "CAND-009",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "extractor_version": "4.0.0",
+    "governing_policy_id": "PYTHON_AST_STATIC_TOOL_EXTRACTION_POLICY_001",
+    "governing_policy_sha256": "0e30b10c1a1f0e1b3d910f6ea836f24e958ad0a346e33345de0b22e5fac9b190",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "read_query",
+    "slot_id": "SLOT_MCP_SQLITE_01",
+    "source_dialect": "Python 3 AST",
+    "target_dialect": "JSON Schema Draft-07"
+  }
+}

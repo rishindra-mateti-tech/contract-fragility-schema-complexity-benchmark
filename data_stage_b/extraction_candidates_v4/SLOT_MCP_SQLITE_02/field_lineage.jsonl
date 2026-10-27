@@ -1,0 +1,1 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "table_name", "inferred_type": "string", "source_pointer": "server.py:list_tools:describe-table/table_name", "target_pointer": "#/properties/table_name"}

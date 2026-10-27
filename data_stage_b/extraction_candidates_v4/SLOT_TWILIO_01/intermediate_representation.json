@@ -1,0 +1,124 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "body": {
+        "additionalProperties": false,
+        "properties": {
+          "FriendlyName": {
+            "description": "Update the human-readable description of this Account",
+            "type": "string"
+          },
+          "Status": {
+            "description": "The status of this account. Usually `active`, but can be `suspended` or `closed`.",
+            "enum": [
+              "active",
+              "suspended",
+              "closed"
+            ],
+            "type": "string"
+          }
+        },
+        "title": "UpdateAccountRequest",
+        "type": "object"
+      },
+      "path": {
+        "additionalProperties": false,
+        "properties": {
+          "Sid": {
+            "maxLength": 34,
+            "minLength": 34,
+            "pattern": "^AC[0-9a-fA-F]{32}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "Sid"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "path"
+    ],
+    "sub_surfaces": {
+      "body": [
+        "FriendlyName",
+        "Status"
+      ],
+      "form": [],
+      "header": [],
+      "path": [
+        "Sid"
+      ],
+      "query": [],
+      "rpc_arguments": []
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-004",
+    "operation_id": "UpdateAccount",
+    "slot_id": "SLOT_TWILIO_01",
+    "source_dialect": "OpenAPI 3.0.1",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": false,
+    "has_enums": true,
+    "has_nested_objects": true,
+    "max_nesting_depth": 3,
+    "property_count": 2,
+    "required_count": 1
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "5b2e77834f20cbe5d3efeffd27326381fee6b07e.yaml"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "spec/yaml/twilio_api_v2010.yaml",
+    "primary_source_file_blob_sha": "5b2e77834f20cbe5d3efeffd27326381fee6b07e",
+    "primary_source_file_sha256": "052b294839a56c89a921c77639305d99ad15be6e248bdeaef8975aea6cfcb339"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": null,
+    "ast_span": {
+      "col_offset": 0,
+      "end_col_offset": 0,
+      "end_lineno": 0,
+      "lineno": 0
+    },
+    "parser_name": "yaml:safe_load",
+    "parser_version": "native_python",
+    "source_pointer": "#/paths/~12010-04-01~1Accounts~1{Sid}.json/post",
+    "source_snippet": null,
+    "source_snippet_sha256": null
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [
+    {
+      "in": "path",
+      "name": "Sid",
+      "op_declared_pointer": "#/paths/~12010-04-01~1Accounts~1{Sid}.json/post/parameters/0",
+      "op_resolved_pointer": "#/paths/~12010-04-01~1Accounts~1{Sid}.json/post/parameters/0",
+      "origin": "OPERATION",
+      "override_status": "OPERATION_LEVEL",
+      "path_declared_pointer": null,
+      "path_resolved_pointer": null,
+      "required": true,
+      "schema": {
+        "maxLength": 34,
+        "minLength": 34,
+        "pattern": "^AC[0-9a-fA-F]{32}$",
+        "type": "string"
+      }
+    }
+  ],
+  "unsupported_feature_flags": []
+}

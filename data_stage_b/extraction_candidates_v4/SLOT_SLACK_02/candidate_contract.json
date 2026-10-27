@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "description": "Set the profile information for a user.",
+  "properties": {
+    "form": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "description": "Name of a single key to set. Usable only if `profile` is not passed.",
+          "type": "string"
+        },
+        "profile": {
+          "description": "Collection of key:value pairs presented as a URL-encoded JSON hash. At most 50 fields may be set. Each field name is limited to 255 characters.",
+          "type": "string"
+        },
+        "user": {
+          "description": "ID of user to change. This argument may only be specified by team admins on paid teams.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Value to set a single key to. Usable only if `profile` is not passed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "header": {
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "header"
+  ],
+  "title": "SLOT_SLACK_02 Tool Call Contract",
+  "type": "object",
+  "x-antigravity-metadata": {
+    "candidate_source_id": "CAND-006",
+    "declaration": "NOT_INDEPENDENTLY_VALIDATED",
+    "extractor_version": "4.0.0",
+    "formdata_policy_id": "OAS2_FORMDATA_TO_TOOL_SURFACE_POLICY_001",
+    "formdata_policy_sha256": "579301efb29030a72e96727550aa2c27ea14d01dec5b88086b728ec318c99dca",
+    "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+    "governing_policy_sha256": "ca17608c3a1fcee075e5706928bfbc7f958d6e59e447e9461350f4afc9191290",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION",
+    "operation_id": "users.profile.set",
+    "parameter_policy_id": "OPENAPI_PARAMETER_INHERITANCE_POLICY_001",
+    "parameter_policy_sha256": "bd1e0fb3bf4f4e7fceda1214d74d2c0d4253668f3cdb7bc59f9817f5e2f128b6",
+    "reference_policy_id": "OPENAPI_REFERENCE_RESOLUTION_POLICY_001",
+    "reference_policy_sha256": "fa6023db036d3eb79f089f2b9383d9245a00808f848956d10dbc5da4c5c80b5e",
+    "slot_id": "SLOT_SLACK_02",
+    "source_dialect": "OpenAPI 2.0",
+    "target_dialect": "JSON Schema Draft-07"
+  }
+}

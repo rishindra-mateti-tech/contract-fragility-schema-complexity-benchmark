@@ -1,0 +1,10 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "query",
+    "body"
+  ],
+  "operation_id": "post_folders",
+  "slot_id": "SLOT_BOX_01",
+  "wire_representation": "json_tool_call_arguments"
+}

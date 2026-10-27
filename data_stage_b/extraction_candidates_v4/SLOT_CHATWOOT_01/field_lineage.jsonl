@@ -1,0 +1,2 @@
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "body", "inferred_type": "object", "source_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post/body", "target_pointer": "#/properties/body"}
+{"extraction_status": "EXTRACTED_LITERAL", "field_name": "path", "inferred_type": "object", "source_pointer": "#/paths/~1api~1v1~1accounts~1{account_id}~1webhooks/post/path", "target_pointer": "#/properties/path"}

@@ -1,0 +1,376 @@
+{
+  "adapters_summary": {
+    "LocalReferenceResolver": 1,
+    "OpenAPI2FormDataAdapter": 3,
+    "ParameterInheritanceAdapter": 3,
+    "PythonAstToolExtractor": 3,
+    "TypeScriptAstToolExtractor": 0,
+    "none": 12
+  },
+  "already_extracted_pilots": [
+    "SLOT_GITHUB_01",
+    "SLOT_STRIPE_02"
+  ],
+  "candidates_generated": [
+    {
+      "adapter_decisions_count": 3,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "52101953ba1fcd28a31a086b9f774ea7925abd5c830a6b4b10c44cce137f1837",
+      "operation_id": "repos/create-commit-status",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_GITHUB_02",
+      "schema_transformations_count": 2,
+      "slot_id": "SLOT_GITHUB_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 0,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-001",
+      "contract_sha256": "37b950a9f8839677a52c6450172d720045dc1de3198bbc4dc043daa2f172e0c7",
+      "operation_id": "repos/create-for-authenticated-user",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_GITHUB_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_GITHUB_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [
+        "LocalReferenceResolver"
+      ],
+      "candidate_source_id": "CAND-003",
+      "contract_sha256": "da4a4de3ad4ced3011732e37f64dea2ba6e2ca6d34c64ae87f3fa6f9004f6a72",
+      "operation_id": "floating_ips_create",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_DO_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_DO_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "cab1d96b6ef411643317a46a6f86211e70361b41110b9701f014be82bace8bd8",
+      "operation_id": "UpdateAccount",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_TWILIO_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_TWILIO_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "8b871cf394b99ea91b34969e66762c74e56fd2bee5696475690d64cd015b67b9",
+      "operation_id": "CreateMessage",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_TWILIO_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_TWILIO_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-004",
+      "contract_sha256": "8738e94043ada0b2dc6d6dacc08ed55152ce8522df289ca62d6c385ba792ac17",
+      "operation_id": "CreateCall",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_TWILIO_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_TWILIO_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "8a809181ab1393781ede7fd13e2ec9d89a92527c70ac3875781973ae7d5244ad",
+      "operation_id": "post_folders",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_BOX_01",
+      "schema_transformations_count": 2,
+      "slot_id": "SLOT_BOX_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 2,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "051447d1104563b0862b072c56faf355e80935e8b4cbb45379e19167550e9bb4",
+      "operation_id": "post_collaborations",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_BOX_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_BOX_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-005",
+      "contract_sha256": "681abb137af1f033089890c64660828ee1f54d104a7783b97d360349bdb11d53",
+      "operation_id": "post_users",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_BOX_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_BOX_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 5,
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "28b70e9d402326d40d5b8283946c60bab60dcc5f2eed70283b24ed4602a51ce3",
+      "operation_id": "conversations.create",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_SLACK_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_SLACK_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 9,
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "dc8b01901fa5136478ac4ca1704d987867a211c1397d6b4d3d8eb60d6e279805",
+      "operation_id": "users.profile.set",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_SLACK_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_SLACK_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 7,
+      "adapters_used": [
+        "OpenAPI2FormDataAdapter"
+      ],
+      "candidate_source_id": "CAND-006",
+      "contract_sha256": "0ef02058cd82e8052ab1e9bb325cfb639035ec96a7621b41941e84176a8dd341",
+      "operation_id": "reminders.add",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_SLACK_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_SLACK_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 2,
+      "adapters_used": [
+        "PythonAstToolExtractor"
+      ],
+      "candidate_source_id": "CAND-009",
+      "contract_sha256": "89bcb10822856641f82a6e9fa491c646000ca89586b347d5fc5db48f81fa8935",
+      "operation_id": "read_query",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_MCP_SQLITE_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_MCP_SQLITE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 2,
+      "adapters_used": [
+        "PythonAstToolExtractor"
+      ],
+      "candidate_source_id": "CAND-009",
+      "contract_sha256": "49580f6765cd7cf43256617854bf3ef0bc5625aa728047f4695c0c918dd50dc0",
+      "operation_id": "describe_table",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_MCP_SQLITE_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_MCP_SQLITE_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 2,
+      "adapters_used": [
+        "PythonAstToolExtractor"
+      ],
+      "candidate_source_id": "CAND-009",
+      "contract_sha256": "bd65fe36f0f574a219d8d1083f69c1143e0b6837e905882320e86c68cf344f51",
+      "operation_id": "write_query",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_MCP_SQLITE_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_MCP_SQLITE_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "930ac80c9aa789dc626ba186ade0b7c5b9d6961f3b9a14a9411e10472d00c432",
+      "operation_id": "create-an-account-user",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_CHATWOOT_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_CHATWOOT_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 2,
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "78c770753bab0ffcd258b004a87283bad7ae4967e0f5143451b13f99d358a8e0",
+      "operation_id": "create-a-conversation",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_CHATWOOT_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_CHATWOOT_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 0,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "2740fa0f3dd1cf8cfe7e52f2ccd6fedd58ebb0fef431be611e594ad89b39bfe6",
+      "operation_id": "setWebhookEndpoint",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_LINE_02",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_LINE_02",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 0,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "b26d9d2190863ded14bfd97bc91b429b4a3277f23d0a2c546f595b83488548cd",
+      "operation_id": "markMessagesAsRead",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_LINE_03",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_LINE_03",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 0,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-002",
+      "contract_sha256": "6e451eb90ab48ae6ef74f33ffe55234210f71dbe637497af99e290ae9f779913",
+      "operation_id": "PostPayouts",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_STRIPE_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_STRIPE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 1,
+      "adapters_used": [
+        "ParameterInheritanceAdapter"
+      ],
+      "candidate_source_id": "CAND-011",
+      "contract_sha256": "b5f8c68c4f874f45e84dfc02eaaaa990a98bfd0a64dfbb2461015ff9a0cc5a1c",
+      "operation_id": "create-a-webhook",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_CHATWOOT_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_CHATWOOT_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    },
+    {
+      "adapter_decisions_count": 0,
+      "adapters_used": [],
+      "candidate_source_id": "CAND-013",
+      "contract_sha256": "209ced6d6b70a489f04f9bbd867becee2679c67dcaec462207c3eec70b35d261",
+      "operation_id": "showLoadingAnimation",
+      "output_dir": "C:\\Users\\rishi\\OneDrive\\Desktop\\Education\\contract-fragility-schema-complexity-benchmark\\data_stage_b\\extraction_candidates_v4\\SLOT_LINE_01",
+      "schema_transformations_count": 0,
+      "slot_id": "SLOT_LINE_01",
+      "status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+    }
+  ],
+  "candidates_rejected": [
+    {
+      "candidate_source_id": "CAND-002",
+      "operation_id": "PostRefunds",
+      "rationale": "Polymorphic union schemas require multi-schema extraction protocol (Protocol Amendment 003).",
+      "rejection_category": "UNSUPPORTED_SCHEMA_TOPOLOGY",
+      "rejection_code": "FEAT_POLYMORPHIC_UNION",
+      "slot_id": "SLOT_STRIPE_03"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "operation_id": "domains_create",
+      "rationale": "Request property declares 'readOnly: true', which is prohibited on HTTP write surfaces under OAS30_TO_DRAFT07_CONVERSION_POLICY_001.",
+      "rejection_category": "UNSUPPORTED_REQUEST_SURFACE_READONLY",
+      "rejection_code": "ERR_READONLY_IN_REQUEST_SURFACE",
+      "slot_id": "SLOT_DO_02"
+    },
+    {
+      "candidate_source_id": "CAND-003",
+      "operation_id": "droplets_create",
+      "rationale": "Request property declares 'readOnly: true', which is prohibited on HTTP write surfaces under OAS30_TO_DRAFT07_CONVERSION_POLICY_001.",
+      "rejection_category": "UNSUPPORTED_REQUEST_SURFACE_READONLY",
+      "rejection_code": "ERR_READONLY_IN_REQUEST_SURFACE",
+      "slot_id": "SLOT_DO_03"
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "operation_id": "search_repositories",
+      "rationale": "Dynamic runtime schema builder 'zodToJsonSchema' cannot be resolved statically without code execution",
+      "rejection_category": "DYNAMIC_SCHEMA_CONSTRUCT",
+      "rejection_code": "ERR_RUNTIME_SCHEMA_BUILDER_REJECTED",
+      "slot_id": "SLOT_MCP_GITHUB_01",
+      "static_evidence": {
+        "ast_node_kind": "call_expression",
+        "ast_path": "Program/program/expression_statement/call_expression/arguments/arrow_function/statement_block/return_statement/object/pair/array/Object[Tool:search_repositories]/inputSchema:call_expression",
+        "source_snippet": "zodToJsonSchema(SearchRepositoriesSchema)",
+        "source_snippet_sha256": "ea12c2b80f6c2dc2f7fb20e2ab9dd97b222ed0cf7b7a564163c23af5024a2200",
+        "span": {
+          "col_offset": 21,
+          "end_col_offset": 62,
+          "end_lineno": 481,
+          "lineno": 481
+        }
+      }
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "operation_id": "create_issue",
+      "rationale": "Dynamic runtime schema builder 'zodToJsonSchema' cannot be resolved statically without code execution",
+      "rejection_category": "DYNAMIC_SCHEMA_CONSTRUCT",
+      "rejection_code": "ERR_RUNTIME_SCHEMA_BUILDER_REJECTED",
+      "slot_id": "SLOT_MCP_GITHUB_02",
+      "static_evidence": {
+        "ast_node_kind": "call_expression",
+        "ast_path": "Program/program/expression_statement/call_expression/arguments/arrow_function/statement_block/return_statement/object/pair/array/Object[Tool:create_issue]/inputSchema:call_expression",
+        "source_snippet": "zodToJsonSchema(CreateIssueSchema)",
+        "source_snippet_sha256": "3c6b302aecb30a9c71f4921e58d9bef62074e2e52527851195d1daa2dae3bf8a",
+        "span": {
+          "col_offset": 21,
+          "end_col_offset": 55,
+          "end_lineno": 501,
+          "lineno": 501
+        }
+      }
+    },
+    {
+      "candidate_source_id": "CAND-010",
+      "operation_id": "create_or_update_file",
+      "rationale": "Dynamic runtime schema builder 'zodToJsonSchema' cannot be resolved statically without code execution",
+      "rejection_category": "DYNAMIC_SCHEMA_CONSTRUCT",
+      "rejection_code": "ERR_RUNTIME_SCHEMA_BUILDER_REJECTED",
+      "slot_id": "SLOT_MCP_GITHUB_03",
+      "static_evidence": {
+        "ast_node_kind": "call_expression",
+        "ast_path": "Program/program/expression_statement/call_expression/arguments/arrow_function/statement_block/return_statement/object/pair/array/Object[Tool:create_or_update_file]/inputSchema:call_expression",
+        "source_snippet": "zodToJsonSchema(CreateOrUpdateFileSchema)",
+        "source_snippet_sha256": "ad1ed0ca8ab09dc349352a520384ebc80d91a86b7142bc5ea490ba30963a9ecd",
+        "span": {
+          "col_offset": 21,
+          "end_col_offset": 62,
+          "end_lineno": 476,
+          "lineno": 476
+        }
+      }
+    }
+  ],
+  "governing_policy_id": "OAS30_TO_DRAFT07_CONVERSION_POLICY_001",
+  "pipeline_version": "4.0.0",
+  "summary": {
+    "candidates_generated": 22,
+    "candidates_rejected": 6,
+    "manifest_total": 30,
+    "pilots_skipped": 2
+  },
+  "total_manifest_operations": 30,
+  "union_slots_excluded": [
+    "SLOT_STRIPE_03"
+  ]
+}

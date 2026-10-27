@@ -1,0 +1,8 @@
+{
+  "has_arrays": false,
+  "has_enums": false,
+  "has_nested_objects": true,
+  "max_nesting_depth": 3,
+  "property_count": 2,
+  "required_count": 2
+}

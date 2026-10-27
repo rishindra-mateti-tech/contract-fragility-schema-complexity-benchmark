@@ -1,0 +1,12 @@
+[
+  {
+    "action": "STATIC_LITERAL_EXTRACTION",
+    "adapter_name": "PythonAstToolExtractor",
+    "reason": "Statically extracted literal Tool call schema from Python AST without code execution."
+  },
+  {
+    "action": "TOOL_SURFACE_SYNTHESIS",
+    "adapter_name": "PythonAstToolExtractor",
+    "reason": "Normalized inputSchema dictionary into closed object container (additionalProperties: false)."
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "body"
+  ],
+  "operation_id": "setWebhookEndpoint",
+  "slot_id": "SLOT_LINE_02",
+  "wire_representation": "json_tool_call_arguments"
+}

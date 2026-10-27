@@ -1,0 +1,83 @@
+{
+  "input_surface": {
+    "additionalProperties": false,
+    "properties": {
+      "query": {
+        "description": "SELECT SQL query to execute",
+        "type": "string"
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "sub_surfaces": {
+      "body": [],
+      "form": [],
+      "header": [],
+      "path": [],
+      "query": [],
+      "rpc_arguments": [
+        "query"
+      ]
+    },
+    "type": "object"
+  },
+  "ir_version": "1.0.0",
+  "operation_identity": {
+    "candidate_source_id": "CAND-009",
+    "operation_id": "read_query",
+    "slot_id": "SLOT_MCP_SQLITE_01",
+    "source_dialect": "Python 3 AST",
+    "target_dialect": "JSON Schema Draft-07"
+  },
+  "schema_complexity_metrics": {
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": false,
+    "max_nesting_depth": 2,
+    "property_count": 1,
+    "required_count": 1
+  },
+  "source_file_closure": {
+    "closure_files_accessed": [
+      "src/sqlite/src/mcp_server_sqlite/server.py"
+    ],
+    "closure_manifest_sha256": null,
+    "primary_source_file": "src/sqlite/src/mcp_server_sqlite/server.py",
+    "primary_source_file_blob_sha": "1b97a6a4903bd8961941cdff43df3b059e610e5f",
+    "primary_source_file_sha256": "d3d58a605315e6bf360b43178d8a0a54a9098931bbc00974221ccf3d8e9ba863"
+  },
+  "source_lineage_and_evidence": {
+    "ast_path": "Module/AsyncFunctionDef[main]/AsyncFunctionDef[handle_list_tools]/Return/List/Call/Call[types.Tool:read-query]",
+    "ast_span": {
+      "col_offset": 12,
+      "end_col_offset": 13,
+      "end_lineno": 245,
+      "lineno": 235
+    },
+    "parser_name": "python:built-in:ast",
+    "parser_version": "python-3.13.2:ast",
+    "source_pointer": null,
+    "source_snippet": "types.Tool(\n                name=\"read-query\",\n                description=\"Execute a SELECT query on the SQLite database\",\n                inputSchema={\n                    \"type\": \"object\",\n                    \"properties\": {\n                        \"query\": {\"type\": \"string\", \"description\": \"SELECT SQL query to execute\"},\n                    },\n                    \"required\": [\"query\"],\n                },\n            )",
+    "source_snippet_sha256": "b052f5c4f86e01c2b3d8f9ecfb0b77c57e76e67d76b0623138ce7d6855733574"
+  },
+  "spec_id": "STATIC_SOURCE_INTERMEDIATE_REPRESENTATION_SPEC_001",
+  "status_and_confidence": {
+    "confidence_assessment": "STATICALLY_VERIFIED_LITERAL",
+    "independent_validation_status": "NOT_INDEPENDENTLY_VALIDATED",
+    "lifecycle_status": "EXTRACTED_PENDING_HUMAN_VALIDATION"
+  },
+  "transformation_and_adapter_decisions": [
+    {
+      "action": "STATIC_LITERAL_EXTRACTION",
+      "adapter_name": "PythonAstToolExtractor",
+      "reason": "Statically extracted literal Tool call schema from Python AST without code execution."
+    },
+    {
+      "action": "TOOL_SURFACE_SYNTHESIS",
+      "adapter_name": "PythonAstToolExtractor",
+      "reason": "Normalized inputSchema dictionary into closed object container (additionalProperties: false)."
+    }
+  ],
+  "unsupported_feature_flags": []
+}

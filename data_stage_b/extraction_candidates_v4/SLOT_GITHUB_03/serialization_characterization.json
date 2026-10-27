@@ -1,0 +1,9 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "body"
+  ],
+  "operation_id": "repos/create-for-authenticated-user",
+  "slot_id": "SLOT_GITHUB_03",
+  "wire_representation": "json_tool_call_arguments"
+}

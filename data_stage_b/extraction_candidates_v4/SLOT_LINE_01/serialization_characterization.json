@@ -1,0 +1,9 @@
+{
+  "closed_surface_enforced": true,
+  "containers_synthesized": [
+    "body"
+  ],
+  "operation_id": "showLoadingAnimation",
+  "slot_id": "SLOT_LINE_01",
+  "wire_representation": "json_tool_call_arguments"
+}

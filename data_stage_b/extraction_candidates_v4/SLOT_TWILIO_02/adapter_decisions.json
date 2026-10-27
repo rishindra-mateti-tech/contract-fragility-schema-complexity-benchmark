@@ -1,0 +1,19 @@
+[
+  {
+    "in": "path",
+    "name": "AccountSid",
+    "op_declared_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post/parameters/0",
+    "op_resolved_pointer": "#/paths/~12010-04-01~1Accounts~1{AccountSid}~1Messages.json/post/parameters/0",
+    "origin": "OPERATION",
+    "override_status": "OPERATION_LEVEL",
+    "path_declared_pointer": null,
+    "path_resolved_pointer": null,
+    "required": true,
+    "schema": {
+      "maxLength": 34,
+      "minLength": 34,
+      "pattern": "^AC[0-9a-fA-F]{32}$",
+      "type": "string"
+    }
+  }
+]
