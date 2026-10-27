@@ -1,0 +1,61 @@
+{
+  "policy_id": "PYTHON_AST_STATIC_TOOL_EXTRACTION_POLICY_001",
+  "policy_name": "Python AST Static Tool Extraction Policy",
+  "version": "1.0.0",
+  "effective_date": "2026-10-26",
+  "status": "ENFORCED",
+  "parser": "python:built-in:ast",
+  "target_candidate_source_id": "CAND-009",
+  "target_operations": [
+    {
+      "operation_id": "read_query",
+      "slot_id": "SLOT_MCP_SQLITE_01",
+      "ast_tool_name": "read-query",
+      "source_spec_pointer": "server.py:list_tools:read-query"
+    },
+    {
+      "operation_id": "describe_table",
+      "slot_id": "SLOT_MCP_SQLITE_02",
+      "ast_tool_name": "describe-table",
+      "source_spec_pointer": "server.py:list_tools:describe-table"
+    },
+    {
+      "operation_id": "write_query",
+      "slot_id": "SLOT_MCP_SQLITE_03",
+      "ast_tool_name": "write-query",
+      "source_spec_pointer": "server.py:list_tools:write-query"
+    }
+  ],
+  "allowed_literal_constructs": [
+    "ast.Constant",
+    "ast.Dict",
+    "ast.List",
+    "ast.Tuple",
+    "ast.UnaryOp (numeric negative)",
+    "keyword arguments with literal values"
+  ],
+  "prohibited_constructs": [
+    "module execution or importing (importlib, __import__)",
+    "runtime evaluation (eval, exec)",
+    "function-call-generated schemas",
+    "dictionary or list unpacking/spread (**kwargs, *args)",
+    "dynamic variable references",
+    "f-strings (ast.JoinedStr) and string concatenation",
+    "comprehensions (ast.ListComp, ast.DictComp, ast.SetComp, ast.GeneratorExp)",
+    "dynamic attribute lookups",
+    "regular expression parsing"
+  ],
+  "provenance_requirements": [
+    "source_file_path",
+    "source_file_blob_sha",
+    "source_file_sha256",
+    "ast_node_kind",
+    "line_start",
+    "line_end",
+    "col_start",
+    "col_end",
+    "source_snippet_sha256",
+    "normalized_ast_path",
+    "parser_version"
+  ]
+}
