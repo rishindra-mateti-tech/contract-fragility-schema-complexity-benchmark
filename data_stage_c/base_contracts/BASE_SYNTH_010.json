@@ -1,0 +1,70 @@
+{
+  "complexity_metrics": {
+    "enum_count": 0,
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": false,
+    "has_numeric_constraints": false,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 1,
+    "property_count": 3,
+    "required_count": 1
+  },
+  "contract_id": "BASE_SYNTH_010",
+  "counterexamples": [
+    {
+      "reason": "No token provided"
+    },
+    {
+      "token_id": "short"
+    }
+  ],
+  "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+  "domain": "access_governance",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "notify_subject": true,
+      "reason": "Suspicious login location",
+      "token_id": "tok_9918274619"
+    },
+    {
+      "token_id": "tok_12345678"
+    }
+  ],
+  "latent_intent_schema": {
+    "notify_subject": "boolean",
+    "reason": "string",
+    "token_id": "string"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+    "properties": {
+      "notify_subject": {
+        "description": "Send notification email to token owner",
+        "type": "boolean"
+      },
+      "reason": {
+        "description": "Security revocation rationale",
+        "type": "string"
+      },
+      "token_id": {
+        "description": "Token unique identifier (jti)",
+        "minLength": 8,
+        "type": "string"
+      }
+    },
+    "required": [
+      "token_id"
+    ],
+    "title": "synth_revoke_access_token",
+    "type": "object"
+  },
+  "seed": 42010,
+  "stratum": "SIMPLE_FLAT",
+  "title": "Revoke Access Token",
+  "tool_name": "synth_revoke_access_token"
+}

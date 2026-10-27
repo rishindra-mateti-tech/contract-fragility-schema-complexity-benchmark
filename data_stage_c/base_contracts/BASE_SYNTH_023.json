@@ -1,0 +1,92 @@
+{
+  "complexity_metrics": {
+    "enum_count": 3,
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": false,
+    "has_numeric_constraints": true,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 3,
+    "property_count": 4,
+    "required_count": 2
+  },
+  "contract_id": "BASE_SYNTH_023",
+  "counterexamples": [
+    {
+      "algorithm": "DES-56",
+      "secret_slug": "bad_algo"
+    },
+    {
+      "algorithm": "RSA-4096"
+    }
+  ],
+  "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+  "domain": "access_governance",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "affected_services": [
+        "auth-srv",
+        "api-gateway"
+      ],
+      "algorithm": "AES-256-GCM",
+      "grace_period_hours": 24,
+      "secret_slug": "jwt_signing_key"
+    },
+    {
+      "algorithm": "ChaCha20-Poly1305",
+      "secret_slug": "webhook_hmac_secret"
+    }
+  ],
+  "latent_intent_schema": {
+    "affected_services": "array[string]",
+    "algorithm": "string",
+    "grace_period_hours": "integer",
+    "secret_slug": "string"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+    "properties": {
+      "affected_services": {
+        "description": "Downstream services requiring key reload",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "algorithm": {
+        "description": "Cryptographic cipher",
+        "enum": [
+          "AES-256-GCM",
+          "ChaCha20-Poly1305",
+          "RSA-4096"
+        ],
+        "type": "string"
+      },
+      "grace_period_hours": {
+        "description": "Overlap period where old key remains valid",
+        "maximum": 168,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "secret_slug": {
+        "description": "Secret vault key identifier",
+        "minLength": 2,
+        "type": "string"
+      }
+    },
+    "required": [
+      "secret_slug",
+      "algorithm"
+    ],
+    "title": "synth_rotate_secret_key",
+    "type": "object"
+  },
+  "seed": 42023,
+  "stratum": "MEDIUM_ARRAYS_ENUMS",
+  "title": "Rotate Secret Key",
+  "tool_name": "synth_rotate_secret_key"
+}

@@ -1,0 +1,107 @@
+{
+  "complexity_metrics": {
+    "enum_count": 0,
+    "has_arrays": true,
+    "has_enums": false,
+    "has_nested_objects": true,
+    "has_numeric_constraints": true,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 4,
+    "property_count": 3,
+    "required_count": 2
+  },
+  "contract_id": "BASE_SYNTH_032",
+  "counterexamples": [
+    {
+      "conversation_id": "conv_no_criteria"
+    },
+    {
+      "conversation_id": "c1",
+      "routing_criteria": {
+        "priority_weight": 50
+      }
+    }
+  ],
+  "description": "Dispatch incoming support ticket across routing and priority constraints.",
+  "domain": "communications",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "conversation_id": "conv_9921",
+      "fallback_queue": "general_tier_1",
+      "routing_criteria": {
+        "language": "en",
+        "priority_weight": 90,
+        "skill_tags": [
+          "billing",
+          "enterprise"
+        ]
+      }
+    },
+    {
+      "conversation_id": "conv_1102",
+      "routing_criteria": {
+        "language": "es"
+      }
+    }
+  ],
+  "latent_intent_schema": {
+    "conversation_id": "string",
+    "fallback_queue": "string",
+    "routing_criteria": "object"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Dispatch incoming support ticket across routing and priority constraints.",
+    "properties": {
+      "conversation_id": {
+        "description": "Customer inquiry ticket ID",
+        "minLength": 3,
+        "type": "string"
+      },
+      "fallback_queue": {
+        "description": "Default destination if no agent available",
+        "type": "string"
+      },
+      "routing_criteria": {
+        "additionalProperties": false,
+        "description": "Agent matching criteria",
+        "properties": {
+          "language": {
+            "description": "ISO language code",
+            "minLength": 2,
+            "type": "string"
+          },
+          "priority_weight": {
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "skill_tags": {
+            "description": "Required agent competencies",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "language"
+        ],
+        "type": "object"
+      }
+    },
+    "required": [
+      "conversation_id",
+      "routing_criteria"
+    ],
+    "title": "synth_route_omnichannel_conversation",
+    "type": "object"
+  },
+  "seed": 42032,
+  "stratum": "NESTED_OBJECTS_SURFACES",
+  "title": "Route Omnichannel Conversation",
+  "tool_name": "synth_route_omnichannel_conversation"
+}

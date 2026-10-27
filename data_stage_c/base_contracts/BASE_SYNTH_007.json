@@ -1,0 +1,72 @@
+{
+  "complexity_metrics": {
+    "enum_count": 0,
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": false,
+    "has_numeric_constraints": true,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 1,
+    "property_count": 3,
+    "required_count": 1
+  },
+  "contract_id": "BASE_SYNTH_007",
+  "counterexamples": [
+    {
+      "increment_by": 5
+    },
+    {
+      "increment_by": 0,
+      "metric_name": "bad_inc"
+    }
+  ],
+  "description": "Add a delta value to a Prometheus-style counter metric.",
+  "domain": "analytics_metrics",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "flush_immediately": true,
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    },
+    {
+      "metric_name": "auth_failures_total"
+    }
+  ],
+  "latent_intent_schema": {
+    "flush_immediately": "boolean",
+    "increment_by": "integer",
+    "metric_name": "string"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Add a delta value to a Prometheus-style counter metric.",
+    "properties": {
+      "flush_immediately": {
+        "description": "Flush local buffer to aggregator",
+        "type": "boolean"
+      },
+      "increment_by": {
+        "description": "Positive integer increment",
+        "minimum": 1,
+        "type": "integer"
+      },
+      "metric_name": {
+        "description": "Metric identifier",
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "metric_name"
+    ],
+    "title": "synth_increment_counter_metric",
+    "type": "object"
+  },
+  "seed": 42007,
+  "stratum": "SIMPLE_FLAT",
+  "title": "Increment Counter Metric",
+  "tool_name": "synth_increment_counter_metric"
+}

@@ -1,0 +1,89 @@
+{
+  "complexity_metrics": {
+    "enum_count": 3,
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": false,
+    "has_numeric_constraints": false,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 3,
+    "property_count": 4,
+    "required_count": 2
+  },
+  "contract_id": "BASE_SYNTH_026",
+  "counterexamples": [
+    {
+      "execution_id": "exec_bad_pt",
+      "resume_point": "restart_entire_cluster"
+    },
+    {
+      "resume_point": "next_step"
+    }
+  ],
+  "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+  "domain": "workflow_orchestration",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "execution_id": "exec_99182",
+      "override_variables": [
+        "RETRIES=3"
+      ],
+      "resume_point": "next_step",
+      "skip_validation": true
+    },
+    {
+      "execution_id": "exec_44102",
+      "resume_point": "checkpoint_start"
+    }
+  ],
+  "latent_intent_schema": {
+    "execution_id": "string",
+    "override_variables": "array[string]",
+    "resume_point": "string",
+    "skip_validation": "boolean"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+    "properties": {
+      "execution_id": {
+        "description": "Suspended workflow execution ID",
+        "minLength": 4,
+        "type": "string"
+      },
+      "override_variables": {
+        "description": "Variable assignments as key=val",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "resume_point": {
+        "description": "Resume target",
+        "enum": [
+          "checkpoint_start",
+          "next_step",
+          "replay_failed_step"
+        ],
+        "type": "string"
+      },
+      "skip_validation": {
+        "description": "Bypass intermediate state assertions",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "execution_id",
+      "resume_point"
+    ],
+    "title": "synth_resume_paused_execution",
+    "type": "object"
+  },
+  "seed": 42026,
+  "stratum": "MEDIUM_ARRAYS_ENUMS",
+  "title": "Resume Paused Execution",
+  "tool_name": "synth_resume_paused_execution"
+}

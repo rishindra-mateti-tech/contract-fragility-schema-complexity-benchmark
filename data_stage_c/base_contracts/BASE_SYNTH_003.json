@@ -1,0 +1,74 @@
+{
+  "complexity_metrics": {
+    "enum_count": 0,
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": false,
+    "has_numeric_constraints": true,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 1,
+    "property_count": 3,
+    "required_count": 2
+  },
+  "contract_id": "BASE_SYNTH_003",
+  "counterexamples": [
+    {
+      "table_name": "missing_slice"
+    },
+    {
+      "slice_index": -1,
+      "table_name": "bad_slice"
+    }
+  ],
+  "description": "Remove all records from a specific table slice or partition.",
+  "domain": "data_management",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "force_truncate": true,
+      "slice_index": 3,
+      "table_name": "audit_logs_2026"
+    },
+    {
+      "slice_index": 0,
+      "table_name": "temp_staging"
+    }
+  ],
+  "latent_intent_schema": {
+    "force_truncate": "boolean",
+    "slice_index": "integer",
+    "table_name": "string"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Remove all records from a specific table slice or partition.",
+    "properties": {
+      "force_truncate": {
+        "description": "Bypass active read-lock confirmation",
+        "type": "boolean"
+      },
+      "slice_index": {
+        "description": "Zero-indexed partition slice",
+        "minimum": 0,
+        "type": "integer"
+      },
+      "table_name": {
+        "description": "Target relational table name",
+        "minLength": 1,
+        "type": "string"
+      }
+    },
+    "required": [
+      "table_name",
+      "slice_index"
+    ],
+    "title": "synth_truncate_table_slice",
+    "type": "object"
+  },
+  "seed": 42003,
+  "stratum": "SIMPLE_FLAT",
+  "title": "Truncate Table Slice",
+  "tool_name": "synth_truncate_table_slice"
+}

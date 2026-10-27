@@ -1,0 +1,95 @@
+{
+  "complexity_metrics": {
+    "enum_count": 3,
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": false,
+    "has_numeric_constraints": false,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 3,
+    "property_count": 4,
+    "required_count": 3
+  },
+  "contract_id": "BASE_SYNTH_027",
+  "counterexamples": [
+    {
+      "cron_expression": "*",
+      "job_name": "bad_cron",
+      "target_queue": "default"
+    },
+    {
+      "cron_expression": "0 0 * * *",
+      "job_name": "bad_q",
+      "target_queue": "urgent_queue"
+    }
+  ],
+  "description": "Register a recurring automated task schedule with target queue.",
+  "domain": "workflow_orchestration",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "alert_emails": [
+        "ops@example.com"
+      ],
+      "cron_expression": "0 2 * * *",
+      "job_name": "nightly_backup",
+      "target_queue": "batch_overnight"
+    },
+    {
+      "cron_expression": "*/5 * * * *",
+      "job_name": "health_check",
+      "target_queue": "high_priority"
+    }
+  ],
+  "latent_intent_schema": {
+    "alert_emails": "array[string]",
+    "cron_expression": "string",
+    "job_name": "string",
+    "target_queue": "string"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Register a recurring automated task schedule with target queue.",
+    "properties": {
+      "alert_emails": {
+        "description": "Failure notification recipients",
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "cron_expression": {
+        "description": "Standard 5-part cron syntax",
+        "minLength": 9,
+        "type": "string"
+      },
+      "job_name": {
+        "description": "Unique cron job name",
+        "minLength": 2,
+        "type": "string"
+      },
+      "target_queue": {
+        "description": "Target dispatch queue",
+        "enum": [
+          "default",
+          "high_priority",
+          "batch_overnight"
+        ],
+        "type": "string"
+      }
+    },
+    "required": [
+      "job_name",
+      "cron_expression",
+      "target_queue"
+    ],
+    "title": "synth_schedule_cron_job",
+    "type": "object"
+  },
+  "seed": 42027,
+  "stratum": "MEDIUM_ARRAYS_ENUMS",
+  "title": "Schedule Cron Job",
+  "tool_name": "synth_schedule_cron_job"
+}

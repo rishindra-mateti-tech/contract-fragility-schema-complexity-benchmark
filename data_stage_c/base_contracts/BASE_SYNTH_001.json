@@ -1,0 +1,83 @@
+{
+  "complexity_metrics": {
+    "enum_count": 0,
+    "has_arrays": false,
+    "has_enums": false,
+    "has_nested_objects": false,
+    "has_numeric_constraints": true,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 1,
+    "property_count": 4,
+    "required_count": 2
+  },
+  "contract_id": "BASE_SYNTH_001",
+  "counterexamples": [
+    {
+      "value": "no_key_provided"
+    },
+    {
+      "key": "bad_ttl",
+      "ttl_seconds": 0,
+      "value": "ok"
+    }
+  ],
+  "description": "Store a key-value pair in a distributed cache partition.",
+  "domain": "data_management",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "key": "user_1024",
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    },
+    {
+      "key": "counter_hit",
+      "value": "42"
+    }
+  ],
+  "latent_intent_schema": {
+    "key": "string",
+    "overwrite": "boolean",
+    "ttl_seconds": "integer",
+    "value": "string"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Store a key-value pair in a distributed cache partition.",
+    "properties": {
+      "key": {
+        "description": "Unique key identifier",
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "overwrite": {
+        "description": "Whether to overwrite existing entry",
+        "type": "boolean"
+      },
+      "ttl_seconds": {
+        "description": "Time to live in seconds",
+        "maximum": 86400,
+        "minimum": 1,
+        "type": "integer"
+      },
+      "value": {
+        "description": "Serialized value payload",
+        "type": "string"
+      }
+    },
+    "required": [
+      "key",
+      "value"
+    ],
+    "title": "synth_create_key_value",
+    "type": "object"
+  },
+  "seed": 42001,
+  "stratum": "SIMPLE_FLAT",
+  "title": "Create Key-Value Pair",
+  "tool_name": "synth_create_key_value"
+}

@@ -1,0 +1,103 @@
+{
+  "complexity_metrics": {
+    "enum_count": 4,
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": false,
+    "has_numeric_constraints": true,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 3,
+    "property_count": 4,
+    "required_count": 3
+  },
+  "contract_id": "BASE_SYNTH_015",
+  "counterexamples": [
+    {
+      "alert_title": "No channels",
+      "severity_level": "INFO",
+      "target_channels": []
+    },
+    {
+      "alert_title": "Bad level",
+      "severity_level": "UNKNOWN",
+      "target_channels": [
+        "c1"
+      ]
+    }
+  ],
+  "description": "Broadcast a critical operational alert across multiple notification channels.",
+  "domain": "communications",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "alert_title": "Database High Memory",
+      "auto_resolve_minutes": 60,
+      "severity_level": "CRITICAL",
+      "target_channels": [
+        "slack-ops",
+        "pagerduty-sre"
+      ]
+    },
+    {
+      "alert_title": "Certificate Expiring",
+      "severity_level": "WARNING",
+      "target_channels": [
+        "email-admins"
+      ]
+    }
+  ],
+  "latent_intent_schema": {
+    "alert_title": "string",
+    "auto_resolve_minutes": "integer",
+    "severity_level": "string",
+    "target_channels": "array[string]"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Broadcast a critical operational alert across multiple notification channels.",
+    "properties": {
+      "alert_title": {
+        "description": "Short alert title",
+        "minLength": 1,
+        "type": "string"
+      },
+      "auto_resolve_minutes": {
+        "description": "Automatic timeout before auto-resolve",
+        "maximum": 1440,
+        "minimum": 5,
+        "type": "integer"
+      },
+      "severity_level": {
+        "description": "Alert severity tier",
+        "enum": [
+          "INFO",
+          "WARNING",
+          "CRITICAL",
+          "FATAL"
+        ],
+        "type": "string"
+      },
+      "target_channels": {
+        "description": "Broadcast destination channels",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "type": "array"
+      }
+    },
+    "required": [
+      "alert_title",
+      "severity_level",
+      "target_channels"
+    ],
+    "title": "synth_broadcast_alert_notification",
+    "type": "object"
+  },
+  "seed": 42015,
+  "stratum": "MEDIUM_ARRAYS_ENUMS",
+  "title": "Broadcast Alert Notification",
+  "tool_name": "synth_broadcast_alert_notification"
+}

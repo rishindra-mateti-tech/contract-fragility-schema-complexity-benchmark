@@ -1,0 +1,101 @@
+{
+  "complexity_metrics": {
+    "enum_count": 3,
+    "has_arrays": true,
+    "has_enums": true,
+    "has_nested_objects": false,
+    "has_numeric_constraints": false,
+    "has_temporal_fields": false,
+    "max_nesting_depth": 3,
+    "property_count": 4,
+    "required_count": 3
+  },
+  "contract_id": "BASE_SYNTH_013",
+  "counterexamples": [
+    {
+      "collection_name": "empty_records",
+      "index_mode": "lazy",
+      "record_ids": []
+    },
+    {
+      "collection_name": "bad_mode",
+      "index_mode": "invalid_mode",
+      "record_ids": [
+        "d1"
+      ]
+    }
+  ],
+  "description": "Submit a collection of document IDs for search indexing.",
+  "domain": "data_management",
+  "generator_version": "1.0.0",
+  "gold_examples": [
+    {
+      "collection_name": "knowledge_docs",
+      "index_mode": "asynchronous",
+      "record_ids": [
+        "doc_1",
+        "doc_2"
+      ],
+      "refresh_view": true
+    },
+    {
+      "collection_name": "products_catalog",
+      "index_mode": "synchronous",
+      "record_ids": [
+        "sku_100"
+      ]
+    }
+  ],
+  "latent_intent_schema": {
+    "collection_name": "string",
+    "index_mode": "string",
+    "record_ids": "array[string]",
+    "refresh_view": "boolean"
+  },
+  "provenance_statement": "Explicitly synthetic contract generated deterministically from seed without production API or real endpoint derivation.",
+  "schema": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
+    "description": "Submit a collection of document IDs for search indexing.",
+    "properties": {
+      "collection_name": {
+        "description": "Search index name",
+        "minLength": 1,
+        "type": "string"
+      },
+      "index_mode": {
+        "description": "Indexing commitment mode",
+        "enum": [
+          "synchronous",
+          "asynchronous",
+          "lazy"
+        ],
+        "type": "string"
+      },
+      "record_ids": {
+        "description": "List of record identifiers",
+        "items": {
+          "type": "string"
+        },
+        "maxItems": 100,
+        "minItems": 1,
+        "type": "array"
+      },
+      "refresh_view": {
+        "description": "Force immediate index view refresh",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "collection_name",
+      "record_ids",
+      "index_mode"
+    ],
+    "title": "synth_batch_index_records",
+    "type": "object"
+  },
+  "seed": 42013,
+  "stratum": "MEDIUM_ARRAYS_ENUMS",
+  "title": "Batch Index Records",
+  "tool_name": "synth_batch_index_records"
+}
