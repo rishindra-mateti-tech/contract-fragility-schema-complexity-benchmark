@@ -1,0 +1,61 @@
+{
+  "policy_id": "TYPESCRIPT_AST_STATIC_TOOL_EXTRACTION_POLICY_001",
+  "policy_name": "TypeScript AST Static Tool Extraction Policy",
+  "version": "1.0.0",
+  "effective_date": "2026-10-26",
+  "status": "ENFORCED",
+  "parser": "tree-sitter:0.25.2:tree-sitter-typescript:0.23.2",
+  "target_candidate_source_id": "CAND-010",
+  "target_operations": [
+    {
+      "operation_id": "search_repositories",
+      "slot_id": "SLOT_MCP_GITHUB_01",
+      "ast_tool_name": "search_repositories",
+      "source_spec_pointer": "src/github/index.ts:search_repositories"
+    },
+    {
+      "operation_id": "create_issue",
+      "slot_id": "SLOT_MCP_GITHUB_02",
+      "ast_tool_name": "create_issue",
+      "source_spec_pointer": "src/github/index.ts:create_issue"
+    },
+    {
+      "operation_id": "create_or_update_file",
+      "slot_id": "SLOT_MCP_GITHUB_03",
+      "ast_tool_name": "create_or_update_file",
+      "source_spec_pointer": "src/github/index.ts:create_or_update_file"
+    }
+  ],
+  "allowed_literal_constructs": [
+    "string and string_fragment AST nodes",
+    "number AST nodes",
+    "true and false AST nodes",
+    "null and undefined AST nodes",
+    "object literals with literal keys",
+    "array literals with literal elements",
+    "unary_expression with negative numeric literals"
+  ],
+  "prohibited_constructs": [
+    "dynamic JavaScript/TypeScript expressions",
+    "spread elements from unknown objects (...spread)",
+    "computed property names ([computedKey]: val)",
+    "runtime schema builders (zod, zodToJsonSchema, joi, typebox, etc.)",
+    "imported dynamic schema definitions",
+    "function-call-generated schemas",
+    "unresolved variable references or aliases",
+    "regular expression parsing"
+  ],
+  "provenance_requirements": [
+    "source_file_path",
+    "source_file_blob_sha",
+    "source_file_sha256",
+    "ast_node_kind",
+    "line_start",
+    "line_end",
+    "col_start",
+    "col_end",
+    "source_snippet_sha256",
+    "normalized_ast_path",
+    "parser_version"
+  ]
+}
