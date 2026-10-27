@@ -60,6 +60,14 @@ jobs:
         run: |
           python scripts/red_team_reproducibility.py
 
+      - name: Run Stage C Reproducibility Verification
+        run: |
+          python scripts/verify_stage_c_reproducibility.py
+
+      - name: Run Stage C Benchmark Audit
+        run: |
+          python src/audit_stage_c_benchmark.py
+
       - name: Run Full Test Suite with Verbose Reporting
         run: |
           python -m pytest -v
