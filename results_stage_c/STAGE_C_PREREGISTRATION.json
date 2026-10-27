@@ -1,0 +1,142 @@
+{
+  "preregistration_version": "1.0.0",
+  "protocol_version": "1.0.0",
+  "date_utc": "2026-10-26T22:30:00Z",
+  "project_title": "Contract Fragility and Schema Complexity Benchmark: Stage C Controlled Synthetic Investigation",
+  "author": "Rishindra Mateti",
+  "lifecycle_status": "PREREGISTERED_INFRASTRUCTURE_PHASE",
+  "empirical_results_state": "NO_EMPIRICAL_RESULTS_PRESENT",
+  "research_question": "Under controlled synthetic task conditions, how do specified schema transformations affect structured tool-use task completion?",
+  "master_random_seed": 42,
+  "subseed_derivation_rule": "master_seed * 1000 + contract_index",
+  "task_categories": [
+    {
+      "category_id": "ARGUMENT_CONSTRUCTION",
+      "name": "Argument Construction",
+      "description": "Construct valid structured argument payload for a known target tool given natural language instruction.",
+      "evaluated_facets": ["schema_conformance", "nesting_navigation", "type_compliance", "constraint_adherence"]
+    },
+    {
+      "category_id": "TOOL_SELECTION",
+      "name": "Tool Selection Among Distractors",
+      "description": "Identify and invoke the exact target tool from a catalog containing controlled distractors with domain and structural overlap.",
+      "evaluated_facets": ["discriminative_selection", "tool_name_resolution", "catalog_scaling"]
+    },
+    {
+      "category_id": "ABSTENTION",
+      "name": "Abstention When No Valid Tool Applies",
+      "description": "Refuse invocation or emit formal abstention when instruction cannot be satisfied by any available candidate tool.",
+      "evaluated_facets": ["hallucination_prevention", "overconfidence_mitigation", "negative_constraint_recognition"]
+    }
+  ],
+  "primary_metrics": [
+    {
+      "metric_id": "TN_EM",
+      "name": "Tool-Name Exact Match",
+      "type": "binary",
+      "range": [0.0, 1.0],
+      "description": "Selected tool name exactly matches gold target tool identifier."
+    },
+    {
+      "metric_id": "SVR",
+      "name": "Syntax-Valid Argument Rate",
+      "type": "binary",
+      "range": [0.0, 1.0],
+      "description": "Emitted payload is valid JSON and satisfies structural Draft-07 validation against active schema."
+    },
+    {
+      "metric_id": "SEM",
+      "name": "Semantic Argument Exact Match",
+      "type": "binary",
+      "range": [0.0, 1.0],
+      "description": "Decoded latent intent of emitted payload exactly matches gold latent intent values across all defined fields."
+    },
+    {
+      "metric_id": "ABS_P",
+      "name": "Abstention Precision",
+      "type": "continuous",
+      "range": [0.0, 1.0],
+      "description": "True abstentions divided by total predicted abstentions."
+    },
+    {
+      "metric_id": "ABS_R",
+      "name": "Abstention Recall",
+      "type": "continuous",
+      "range": [0.0, 1.0],
+      "description": "True abstentions divided by gold abstention instances."
+    }
+  ],
+  "secondary_metrics": [
+    {
+      "metric_id": "COMP_P",
+      "name": "Component-Level Precision",
+      "description": "Proportion of emitted argument fields matching gold field values."
+    },
+    {
+      "metric_id": "COMP_R",
+      "name": "Component-Level Recall",
+      "description": "Proportion of gold required and optional fields correctly populated."
+    },
+    {
+      "metric_id": "PFR",
+      "name": "Parse Failure Rate",
+      "description": "Proportion of responses failing JSON parsing or structural tool-call extraction."
+    },
+    {
+      "metric_id": "MJR",
+      "name": "Malformed JSON Rate",
+      "description": "Proportion of syntax failures resulting from formatting or truncation issues."
+    }
+  ],
+  "mutation_families": [
+    {
+      "family_id": "CANONICAL",
+      "name": "Canonical Baseline",
+      "description": "Clean, normalized Draft-07 baseline representation serving as the experimental control."
+    },
+    {
+      "family_id": "NESTED_HIERARCHY",
+      "name": "Nested Hierarchy",
+      "description": "Reorganizes schema properties into deterministic multi-level container objects with reversible latent mappings."
+    },
+    {
+      "family_id": "OPTIONALITY_BLOAT",
+      "name": "Optionality Bloat",
+      "description": "Injects controlled optional parameters, default values, and nullable constraints to evaluate surface noise sensitivity."
+    },
+    {
+      "family_id": "AMBIGUOUS_IDENTIFIERS",
+      "name": "Ambiguous Identifiers",
+      "description": "Systematically transforms field names using deterministic semantic aliases and domain abbreviations."
+    },
+    {
+      "family_id": "DISTRACTOR_SET_COMPLEXITY",
+      "name": "Distractor-Set Complexity",
+      "description": "Increases candidate catalog density and semantic proximity of distractor tools without modifying target contract semantics."
+    }
+  ],
+  "sample_targets": {
+    "minimum_base_contracts": 40,
+    "minimum_task_instances": 300,
+    "target_argument_construction_tasks": 100,
+    "target_tool_selection_tasks": 100,
+    "target_abstention_tasks": 100
+  },
+  "multiple_comparison_correction": {
+    "primary_method": "Benjamini-Hochberg False Discovery Rate (FDR)",
+    "family_wise_alpha": 0.05,
+    "secondary_method": "Bonferroni Adjustment for family-level hypotheses"
+  },
+  "stop_gates": {
+    "gate_0": "Full offline test suite execution and verification",
+    "gate_1": "Cryptographic reproducibility verification of contracts and task instances",
+    "gate_2": "Adversarial audit of prompt templates and leakage prevention",
+    "gate_3": "Formal human authorization required before executing LLM inference"
+  },
+  "declarations": {
+    "zero_model_execution_in_stage_c": true,
+    "zero_unvalidated_stage_b_data_used": true,
+    "latent_intent_is_benchmark_internal_only": true,
+    "no_claim_of_production_api_equivalence": true
+  }
+}
