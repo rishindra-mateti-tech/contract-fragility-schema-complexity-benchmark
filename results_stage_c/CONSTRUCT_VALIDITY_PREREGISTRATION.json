@@ -1,0 +1,87 @@
+{
+  "acceptable_balance_thresholds": {
+    "abstention_frequency": 0.3333,
+    "max_positional_skew": 0.15,
+    "mutation_family_parity": 0.2,
+    "task_category_ratio": {
+      "ABSTENTION": 0.3333,
+      "ARGUMENT_CONSTRUCTION": 0.3333,
+      "TOOL_SELECTION": 0.3333
+    }
+  },
+  "audit_dimensions": {
+    "balance_dimensions": [
+      "task_type",
+      "mutation_family",
+      "complexity_stratum",
+      "nesting_depth",
+      "field_count",
+      "enum_presence",
+      "required_ratio",
+      "set_size",
+      "target_position",
+      "abstention_frequency",
+      "template_diversity"
+    ],
+    "distractor_quality_dimensions": [
+      "lexical_similarity",
+      "semantic_field_overlap",
+      "signature_collision",
+      "operation_description_similarity",
+      "candidate_tool_count",
+      "target_position",
+      "accidental_duplicate_tool"
+    ],
+    "leakage_dimensions": [
+      "TOOL_NAME_EXACT_LEAK",
+      "TOOL_NAME_SUBSTRING_LEAK",
+      "FIELD_NAME_EXACT_LEAK",
+      "MUTATION_LABEL_LEAK",
+      "GOLD_VALUE_VERBATIM_COPY",
+      "DISTRACTOR_LEXICAL_CONTRAST",
+      "POSITIONAL_BIAS",
+      "DUPLICATE_PROMPTS",
+      "INTENT_CONFLICT",
+      "ABSTENTION_VALID_TOOL_LEAK",
+      "SELECTION_MULTIPLE_VALID_TOOLS",
+      "CONSTRUCTION_OMITTED_GOLD_VALUE",
+      "PROMPT_FAMILY_WORDING_LEAK",
+      "METADATA_PAYLOAD_LEAK"
+    ]
+  },
+  "date_utc": "2026-10-27",
+  "empirical_results_state": "NO_EMPIRICAL_RESULTS_PRESENT",
+  "excluded_non_constructs": [
+    "real API competence",
+    "endpoint execution",
+    "software engineering ability",
+    "factual knowledge",
+    "tool usefulness",
+    "production readiness",
+    "human preference"
+  ],
+  "human_review_plan": {
+    "blinding_policy": "Full masking of gold tool, gold args, mutation family, base ID, and author notes",
+    "independent_review_state": "NO_HUMAN_REVIEW_RESULTS_PRESENT",
+    "inter_rater_agreement_threshold_kappa": 0.7,
+    "minimum_reviewers_per_item": 2,
+    "sample_size_target": 90,
+    "stratification_criteria": [
+      "category",
+      "mutation_family",
+      "complexity_stratum",
+      "audit_finding_severity"
+    ]
+  },
+  "intentionally_measured": [
+    "argument construction",
+    "tool selection",
+    "abstention",
+    "structural schema sensitivity"
+  ],
+  "operational_state": "MODEL_EXECUTION_BLOCKED_PENDING_INDEPENDENT_HUMAN_VALIDATION",
+  "preregistration_version": "1.0.0",
+  "protocol_version": "1.0.0",
+  "release_gates_total": 12,
+  "target_construct": "Ability to map a natural-language request to an appropriate structured tool invocation under controlled schema-surface transformations."
+}
