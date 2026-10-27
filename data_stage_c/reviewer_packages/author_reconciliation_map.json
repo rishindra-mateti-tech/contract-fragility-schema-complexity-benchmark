@@ -1,0 +1,1262 @@
+[
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_001",
+    "gold_arguments": {
+      "compression_format": "gzip",
+      "partition_key": "part_2026_q1"
+    },
+    "gold_tool_name": "synth_archive_data_partition",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_094"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_034",
+    "blind_task_id": "BLIND_TASK_002",
+    "gold_arguments": {
+      "dataset_name": "error_rates",
+      "payload_parameters": {
+        "format_spec": {
+          "format_type": "csv"
+        },
+        "query_window": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      }
+    },
+    "gold_tool_name": "synth_export_timeseries_dataset",
+    "is_gold_abstention": false,
+    "mutation_family": "NESTED_HIERARCHY",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_034"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_003",
+    "gold_arguments": {
+      "key": "user_1024",
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    },
+    "gold_tool_name": "synth_create_key_value",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_041"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_004",
+    "gold_arguments": {
+      "message_body_param": "Appointment reminder for tomorrow.",
+      "recipient_number_param": "+12145550199"
+    },
+    "gold_tool_name": "synth_dispatch_sms_message",
+    "is_gold_abstention": false,
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_004"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_005",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_041"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_021",
+    "blind_task_id": "BLIND_TASK_006",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_021"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_007",
+    "gold_arguments": {
+      "extension_minutes": 60,
+      "session_id": "sess_8839201948",
+      "touch_activity": true
+    },
+    "gold_tool_name": "synth_extend_session_lease",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_051"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_008",
+    "gold_arguments": {
+      "flush_immediately": true,
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    },
+    "gold_tool_name": "synth_increment_counter_metric",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_087"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_034",
+    "blind_task_id": "BLIND_TASK_009",
+    "gold_arguments": {
+      "dataset_name": "error_rates",
+      "format_spec": {
+        "format_type": "csv"
+      },
+      "query_window": {
+        "end_epoch": 1761510000,
+        "start_epoch": 1761500000
+      }
+    },
+    "gold_tool_name": "synth_export_timeseries_dataset",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_034"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_010",
+    "gold_arguments": {
+      "flush_immediately": true,
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    },
+    "gold_tool_name": "synth_increment_counter_metric",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_007"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_011",
+    "gold_arguments": {
+      "extension_minutes": 60,
+      "session_id": "sess_8839201948",
+      "touch_activity": true
+    },
+    "gold_tool_name": "synth_extend_session_lease",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_051"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_012",
+    "gold_arguments": {
+      "device_id": "dev_9918274619",
+      "platform": "ios",
+      "subscribed_topics": [
+        "news",
+        "alerts"
+      ],
+      "token_ttl_days": 90
+    },
+    "gold_tool_name": "synth_register_push_token",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_057"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_024",
+    "blind_task_id": "BLIND_TASK_013",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_024"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_024",
+    "blind_task_id": "BLIND_TASK_014",
+    "gold_arguments": {
+      "pipeline_id_param": "pipe_fast_pr",
+      "stage_name_param": "lint"
+    },
+    "gold_tool_name": "synth_trigger_pipeline_stage",
+    "is_gold_abstention": false,
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_064"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_015",
+    "gold_arguments": {
+      "device_id": "dev_9918274619",
+      "platform": "ios",
+      "subscribed_topics": [
+        "news",
+        "alerts"
+      ],
+      "token_ttl_days": 90
+    },
+    "gold_tool_name": "synth_register_push_token",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_097"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_016",
+    "gold_arguments": {
+      "message_body": "Appointment reminder for tomorrow.",
+      "recipient_number": "+12145550199"
+    },
+    "gold_tool_name": "synth_dispatch_sms_message",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_084"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_017",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_007"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_034",
+    "blind_task_id": "BLIND_TASK_018",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_034"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_031",
+    "blind_task_id": "BLIND_TASK_019",
+    "gold_arguments": {
+      "retention": {
+        "days": 30,
+        "lock_deletion": true
+      },
+      "snapshot_metadata": {
+        "creator": "sre_automation",
+        "environment": "prod"
+      },
+      "volume_id": "vol_root_prod_01"
+    },
+    "gold_tool_name": "synth_register_storage_snapshot",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_071"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_020",
+    "gold_arguments": {
+      "flush_immediately": true,
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    },
+    "gold_tool_name": "synth_increment_counter_metric",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_087"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_024",
+    "blind_task_id": "BLIND_TASK_021",
+    "gold_arguments": {
+      "pipeline_id": "pipe_fast_pr",
+      "stage_name": "lint"
+    },
+    "gold_tool_name": "synth_trigger_pipeline_stage",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_064"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_022",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_084"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_024",
+    "blind_task_id": "BLIND_TASK_023",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_064"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_024",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_011"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_025",
+    "gold_arguments": {
+      "extension_minutes": 60,
+      "session_id": "sess_8839201948",
+      "touch_activity": true
+    },
+    "gold_tool_name": "synth_extend_session_lease",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_011"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_027",
+    "blind_task_id": "BLIND_TASK_026",
+    "gold_arguments": {
+      "alert_emails": [
+        "ops@example.com"
+      ],
+      "cron_expression": "0 2 * * *",
+      "job_name": "nightly_backup",
+      "target_queue": "batch_overnight"
+    },
+    "gold_tool_name": "synth_schedule_cron_job",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_027"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_024",
+    "blind_task_id": "BLIND_TASK_027",
+    "gold_arguments": {
+      "pipeline_id": "pipe_fast_pr",
+      "stage_name": "lint"
+    },
+    "gold_tool_name": "synth_trigger_pipeline_stage",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_024"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_037",
+    "blind_task_id": "BLIND_TASK_028",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_037"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_029",
+    "gold_arguments": {
+      "key": "user_1024",
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    },
+    "gold_tool_name": "synth_create_key_value",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_001"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_030",
+    "gold_arguments": {
+      "message_body": "Appointment reminder for tomorrow.",
+      "recipient_number": "+12145550199"
+    },
+    "gold_tool_name": "synth_dispatch_sms_message",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_044"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_031",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_004"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_037",
+    "blind_task_id": "BLIND_TASK_032",
+    "gold_arguments": {
+      "boundary_id": "vpc_secure_prod",
+      "ingress_policy": {
+        "allowed_cidr": "10.0.0.0/16",
+        "ports": [
+          443,
+          8443
+        ]
+      },
+      "inspection_tier": "stateful_inspection"
+    },
+    "gold_tool_name": "synth_enforce_security_boundary",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_037"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_031",
+    "blind_task_id": "BLIND_TASK_033",
+    "gold_arguments": {
+      "retention": {
+        "days": 30,
+        "lock_deletion": true
+      },
+      "snapshot_metadata": {
+        "creator": "sre_automation",
+        "environment": "prod"
+      },
+      "volume_id": "vol_root_prod_01"
+    },
+    "gold_tool_name": "synth_register_storage_snapshot",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_031"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_034",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_094"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_035",
+    "gold_arguments": {
+      "compression_format": "gzip",
+      "partition_key": "part_2026_q1"
+    },
+    "gold_tool_name": "synth_archive_data_partition",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_054"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_036",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_057"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_037",
+    "gold_arguments": {
+      "key": "user_1024",
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    },
+    "gold_tool_name": "synth_create_key_value",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_041"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_021",
+    "blind_task_id": "BLIND_TASK_038",
+    "gold_arguments": {
+      "enforce_mfa": true,
+      "permission_scopes": [
+        "read:logs",
+        "restart:service"
+      ],
+      "principal_id": "usr_9918",
+      "role_tier": "operator"
+    },
+    "gold_tool_name": "synth_assign_role_permissions",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_021"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_037",
+    "blind_task_id": "BLIND_TASK_039",
+    "gold_arguments": {
+      "boundary_id": "vpc_secure_prod",
+      "ingress_policy": {
+        "allowed_cidr": "10.0.0.0/16",
+        "ports": [
+          443,
+          8443
+        ]
+      },
+      "inspection_tier": "stateful_inspection"
+    },
+    "gold_tool_name": "synth_enforce_security_boundary",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_077"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_021",
+    "blind_task_id": "BLIND_TASK_040",
+    "gold_arguments": {
+      "enforce_mfa": true,
+      "permission_scopes": [
+        "read:logs",
+        "restart:service"
+      ],
+      "principal_id": "usr_9918",
+      "role_tier": "operator"
+    },
+    "gold_tool_name": "synth_assign_role_permissions",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_061"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_041",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_017"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_027",
+    "blind_task_id": "BLIND_TASK_042",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_027"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_034",
+    "blind_task_id": "BLIND_TASK_043",
+    "gold_arguments": {
+      "dataset_name": "error_rates",
+      "format_spec": {
+        "format_type": "csv"
+      },
+      "query_window": {
+        "end_epoch": 1761510000,
+        "start_epoch": 1761500000
+      }
+    },
+    "gold_tool_name": "synth_export_timeseries_dataset",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_074"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_024",
+    "blind_task_id": "BLIND_TASK_044",
+    "gold_arguments": {
+      "pipeline_id_param": "pipe_fast_pr",
+      "stage_name_param": "lint"
+    },
+    "gold_tool_name": "synth_trigger_pipeline_stage",
+    "is_gold_abstention": false,
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_024"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_045",
+    "gold_arguments": {
+      "compression_format": "gzip",
+      "partition_key": "part_2026_q1"
+    },
+    "gold_tool_name": "synth_archive_data_partition",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_014"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_046",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_044"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_047",
+    "gold_arguments": {
+      "flush_immediately": true,
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    },
+    "gold_tool_name": "synth_increment_counter_metric",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_007"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_048",
+    "gold_arguments": {
+      "compression_format": "gzip",
+      "payload_parameters": {
+        "partition_key": "part_2026_q1"
+      }
+    },
+    "gold_tool_name": "synth_archive_data_partition",
+    "is_gold_abstention": false,
+    "mutation_family": "NESTED_HIERARCHY",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_054"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_027",
+    "blind_task_id": "BLIND_TASK_049",
+    "gold_arguments": {
+      "alert_emails": [
+        "ops@example.com"
+      ],
+      "cron_expression": "0 2 * * *",
+      "job_name": "nightly_backup",
+      "target_queue": "batch_overnight"
+    },
+    "gold_tool_name": "synth_schedule_cron_job",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_027"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_027",
+    "blind_task_id": "BLIND_TASK_050",
+    "gold_arguments": {
+      "alert_emails": [
+        "ops@example.com"
+      ],
+      "cron_expression": "0 2 * * *",
+      "job_name": "nightly_backup",
+      "target_queue": "batch_overnight"
+    },
+    "gold_tool_name": "synth_schedule_cron_job",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_067"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_034",
+    "blind_task_id": "BLIND_TASK_051",
+    "gold_arguments": {
+      "dataset_name": "error_rates",
+      "payload_parameters": {
+        "format_spec": {
+          "format_type": "csv"
+        },
+        "query_window": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      }
+    },
+    "gold_tool_name": "synth_export_timeseries_dataset",
+    "is_gold_abstention": false,
+    "mutation_family": "NESTED_HIERARCHY",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_074"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_021",
+    "blind_task_id": "BLIND_TASK_052",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_061"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_053",
+    "gold_arguments": {
+      "key": "user_1024",
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    },
+    "gold_tool_name": "synth_create_key_value",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_081"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_054",
+    "gold_arguments": {
+      "device_id": "dev_9918274619",
+      "platform": "ios",
+      "subscribed_topics": [
+        "news",
+        "alerts"
+      ],
+      "token_ttl_days": 90
+    },
+    "gold_tool_name": "synth_register_push_token",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_017"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_021",
+    "blind_task_id": "BLIND_TASK_055",
+    "gold_arguments": {
+      "enforce_mfa": true,
+      "permission_scopes": [
+        "read:logs",
+        "restart:service"
+      ],
+      "principal_id": "usr_9918",
+      "role_tier": "operator"
+    },
+    "gold_tool_name": "synth_assign_role_permissions",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_021"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_056",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_001"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_021",
+    "blind_task_id": "BLIND_TASK_057",
+    "gold_arguments": {
+      "enforce_mfa": true,
+      "permission_scopes": [
+        "read:logs",
+        "restart:service"
+      ],
+      "principal_id": "usr_9918",
+      "role_tier": "operator"
+    },
+    "gold_tool_name": "synth_assign_role_permissions",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_061"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_034",
+    "blind_task_id": "BLIND_TASK_058",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_074"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_031",
+    "blind_task_id": "BLIND_TASK_059",
+    "gold_arguments": {
+      "retention": {
+        "days": 30,
+        "lock_deletion": true
+      },
+      "snapshot_metadata": {
+        "creator": "sre_automation",
+        "environment": "prod"
+      },
+      "volume_id": "vol_root_prod_01"
+    },
+    "gold_tool_name": "synth_register_storage_snapshot",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_031"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_037",
+    "blind_task_id": "BLIND_TASK_060",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_077"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_031",
+    "blind_task_id": "BLIND_TASK_061",
+    "gold_arguments": {
+      "retention": {
+        "days": 30,
+        "lock_deletion": true
+      },
+      "snapshot_metadata": {
+        "creator": "sre_automation",
+        "environment": "prod"
+      },
+      "volume_id": "vol_root_prod_01"
+    },
+    "gold_tool_name": "synth_register_storage_snapshot",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_071"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_062",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_047"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_063",
+    "gold_arguments": {
+      "flush_immediately": true,
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    },
+    "gold_tool_name": "synth_increment_counter_metric",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_047"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_027",
+    "blind_task_id": "BLIND_TASK_064",
+    "gold_arguments": {
+      "alert_emails": [
+        "ops@example.com"
+      ],
+      "cron_expression": "0 2 * * *",
+      "job_name": "nightly_backup",
+      "target_queue": "batch_overnight"
+    },
+    "gold_tool_name": "synth_schedule_cron_job",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_067"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_065",
+    "gold_arguments": {
+      "key": "user_1024",
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    },
+    "gold_tool_name": "synth_create_key_value",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_001"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_066",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_087"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_067",
+    "gold_arguments": {
+      "extension_minutes": 60,
+      "session_id": "sess_8839201948",
+      "touch_activity": true
+    },
+    "gold_tool_name": "synth_extend_session_lease",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_091"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_068",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_081"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_037",
+    "blind_task_id": "BLIND_TASK_069",
+    "gold_arguments": {
+      "boundary_id": "vpc_secure_prod",
+      "ingress_policy": {
+        "allowed_cidr": "10.0.0.0/16",
+        "ports": [
+          443,
+          8443
+        ]
+      },
+      "inspection_tier": "stateful_inspection"
+    },
+    "gold_tool_name": "synth_enforce_security_boundary",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_077"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_070",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_097"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_071",
+    "gold_arguments": {
+      "message_body_param": "Appointment reminder for tomorrow.",
+      "recipient_number_param": "+12145550199"
+    },
+    "gold_tool_name": "synth_dispatch_sms_message",
+    "is_gold_abstention": false,
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_084"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_072",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_054"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_073",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_014"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_074",
+    "gold_arguments": {
+      "device_id": "dev_9918274619",
+      "platform": "ios",
+      "subscribed_topics": [
+        "news",
+        "alerts"
+      ],
+      "token_ttl_days": 90
+    },
+    "gold_tool_name": "synth_register_push_token",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_097"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_075",
+    "gold_arguments": {
+      "extension_minutes": 60,
+      "session_id": "sess_8839201948",
+      "touch_activity": true
+    },
+    "gold_tool_name": "synth_extend_session_lease",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_091"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_027",
+    "blind_task_id": "BLIND_TASK_076",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_067"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_077",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_091"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_078",
+    "gold_arguments": {
+      "compression_format": "gzip",
+      "payload_parameters": {
+        "partition_key": "part_2026_q1"
+      }
+    },
+    "gold_tool_name": "synth_archive_data_partition",
+    "is_gold_abstention": false,
+    "mutation_family": "NESTED_HIERARCHY",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_014"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_001",
+    "blind_task_id": "BLIND_TASK_079",
+    "gold_arguments": {
+      "key": "user_1024",
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    },
+    "gold_tool_name": "synth_create_key_value",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_081"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_080",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_051"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_037",
+    "blind_task_id": "BLIND_TASK_081",
+    "gold_arguments": {
+      "boundary_id": "vpc_secure_prod",
+      "ingress_policy": {
+        "allowed_cidr": "10.0.0.0/16",
+        "ports": [
+          443,
+          8443
+        ]
+      },
+      "inspection_tier": "stateful_inspection"
+    },
+    "gold_tool_name": "synth_enforce_security_boundary",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_037"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_031",
+    "blind_task_id": "BLIND_TASK_082",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_031"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_083",
+    "gold_arguments": {
+      "message_body_param": "Appointment reminder for tomorrow.",
+      "recipient_number_param": "+12145550199"
+    },
+    "gold_tool_name": "synth_dispatch_sms_message",
+    "is_gold_abstention": false,
+    "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_044"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_084",
+    "gold_arguments": {
+      "device_id": "dev_9918274619",
+      "platform": "ios",
+      "subscribed_topics": [
+        "news",
+        "alerts"
+      ],
+      "token_ttl_days": 90
+    },
+    "gold_tool_name": "synth_register_push_token",
+    "is_gold_abstention": false,
+    "mutation_family": "CANONICAL",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_057"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_014",
+    "blind_task_id": "BLIND_TASK_085",
+    "gold_arguments": {
+      "compression_format": "gzip",
+      "payload_parameters": {
+        "partition_key": "part_2026_q1"
+      }
+    },
+    "gold_tool_name": "synth_archive_data_partition",
+    "is_gold_abstention": false,
+    "mutation_family": "NESTED_HIERARCHY",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_094"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_004",
+    "blind_task_id": "BLIND_TASK_086",
+    "gold_arguments": {
+      "message_body": "Appointment reminder for tomorrow.",
+      "recipient_number": "+12145550199"
+    },
+    "gold_tool_name": "synth_dispatch_sms_message",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_004"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_017",
+    "blind_task_id": "BLIND_TASK_087",
+    "gold_arguments": {
+      "device_id": "dev_9918274619",
+      "platform": "ios",
+      "subscribed_topics": [
+        "news",
+        "alerts"
+      ],
+      "token_ttl_days": 90
+    },
+    "gold_tool_name": "synth_register_push_token",
+    "is_gold_abstention": false,
+    "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+    "original_category": "TOOL_SELECTION",
+    "original_task_id": "TASK_SYNTH_TS_017"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_011",
+    "blind_task_id": "BLIND_TASK_088",
+    "gold_arguments": {
+      "extension_minutes": 60,
+      "session_id": "sess_8839201948",
+      "touch_activity": true
+    },
+    "gold_tool_name": "synth_extend_session_lease",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_011"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_007",
+    "blind_task_id": "BLIND_TASK_089",
+    "gold_arguments": {
+      "flush_immediately": true,
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    },
+    "gold_tool_name": "synth_increment_counter_metric",
+    "is_gold_abstention": false,
+    "mutation_family": "OPTIONALITY_BLOAT",
+    "original_category": "ARGUMENT_CONSTRUCTION",
+    "original_task_id": "TASK_SYNTH_AC_047"
+  },
+  {
+    "base_contract_id": "BASE_SYNTH_031",
+    "blind_task_id": "BLIND_TASK_090",
+    "gold_arguments": null,
+    "gold_tool_name": null,
+    "is_gold_abstention": true,
+    "mutation_family": "CANONICAL",
+    "original_category": "ABSTENTION",
+    "original_task_id": "TASK_SYNTH_AB_071"
+  }
+]
