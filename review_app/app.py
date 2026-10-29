@@ -24,7 +24,8 @@ if str(ROOT_DIR) not in sys.path:
 
 from src.validate_stage_c_human_review_submission import StageCHumanReviewSubmissionValidator
 
-PACKAGES_DIR = ROOT_DIR / "data_stage_c" / "reviewer_packages"
+R1_PACKAGES_DIR = ROOT_DIR / "data_stage_c" / "reviewer_packages"
+R2_PACKAGES_DIR = ROOT_DIR / "data_stage_c_release2" / "reviewer_packages"
 SESSIONS_DIR = APP_DIR / "sessions"
 SESSIONS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -35,10 +36,18 @@ app.mount("/static", StaticFiles(directory=str(APP_DIR / "static")), name="stati
 templates = Jinja2Templates(directory=str(APP_DIR / "templates"))
 
 
-def load_blind_manifest() -> Dict[str, Any]:
-    manifest_file = PACKAGES_DIR / "blind_sample_manifest.json"
+def get_packages_dir(release: str = "release2") -> Path:
+    """Returns packages directory based on selected benchmark release."""
+    if release and "1" in release.lower():
+        return R1_PACKAGES_DIR
+    return R2_PACKAGES_DIR
+
+
+def load_blind_manifest(release: str = "release2") -> Dict[str, Any]:
+    packages_dir = get_packages_dir(release)
+    manifest_file = packages_dir / "blind_sample_manifest.json"
     if not manifest_file.is_file():
-        raise RuntimeError("Blinded review package missing. Run build_stage_c_blind_review_package.py first.")
+        raise RuntimeError(f"Blinded review package missing for {release}. Run package builder first.")
     with open(manifest_file, "r", encoding="utf-8") as f:
         return json.load(f)
 
@@ -48,13 +57,17 @@ def get_session_file(pseudonym: str) -> Path:
     return SESSIONS_DIR / f"{safe_name}.json"
 
 
-def load_session(pseudonym: str) -> Dict[str, Any]:
+def load_session(pseudonym: str, release: str = "release2") -> Dict[str, Any]:
     fpath = get_session_file(pseudonym)
     if fpath.is_file():
         with open(fpath, "r", encoding="utf-8") as f:
-            return json.load(f)
+            sess = json.load(f)
+            if "release" not in sess:
+                sess["release"] = release
+            return sess
     return {
         "pseudonym": pseudonym,
+        "release": release,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "responses": {}
     }
@@ -72,15 +85,21 @@ async def index_view(request: Request):
 
 
 @app.post("/login")
-async def login_view(pseudonym: str = Form(...)):
+async def login_view(pseudonym: str = Form(...), release: Optional[str] = Form(None)):
     clean_p = pseudonym.strip()
     if not clean_p:
         raise HTTPException(status_code=400, detail="Pseudonym cannot be empty.")
-    # Initialize session
     sess = load_session(clean_p)
+    if release:
+        clean_rel = "release1" if "1" in release.lower() else "release2"
+        sess["release"] = clean_rel
+    else:
+        clean_rel = sess.get("release", "release1" if "42" in clean_p else "release2")
+        sess["release"] = clean_rel
     save_session(sess)
     response = RedirectResponse(url="/tasks", status_code=303)
     response.set_cookie(key="reviewer_pseudonym", value=clean_p)
+    response.set_cookie(key="review_release", value=clean_rel)
     return response
 
 
@@ -90,9 +109,12 @@ async def tasks_list_view(request: Request):
     if not pseudonym:
         return RedirectResponse(url="/", status_code=303)
 
-    manifest_data = load_blind_manifest()
-    all_tasks = manifest_data.get("tasks", [])
     session_data = load_session(pseudonym)
+    cookie_rel = request.cookies.get("review_release")
+    release = cookie_rel if cookie_rel else session_data.get("release", "release2")
+
+    manifest_data = load_blind_manifest(release)
+    all_tasks = manifest_data.get("tasks", [])
     completed_keys = set(session_data.get("responses", {}).keys())
 
     task_rows = []
@@ -109,7 +131,8 @@ async def tasks_list_view(request: Request):
         "pseudonym": pseudonym,
         "tasks": task_rows,
         "total_count": len(all_tasks),
-        "completed_count": len(completed_keys)
+        "completed_count": len(completed_keys),
+        "selected_release": release
     })
 
 
@@ -119,7 +142,8 @@ async def task_detail_view(task_id: str, request: Request):
     if not pseudonym:
         return RedirectResponse(url="/", status_code=303)
 
-    manifest_data = load_blind_manifest()
+    release = "release2" if "R2" in task_id else "release1"
+    manifest_data = load_blind_manifest(release)
     task = next((t for t in manifest_data.get("tasks", []) if t["blind_task_id"] == task_id), None)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found in blind manifest.")
@@ -184,34 +208,38 @@ async def task_submit_view(
 @app.get("/summary", response_class=HTMLResponse)
 async def summary_view(request: Request):
     pseudonym = request.cookies.get("reviewer_pseudonym")
+    release = request.cookies.get("review_release", "release2")
     if not pseudonym:
         return RedirectResponse(url="/", status_code=303)
 
-    manifest_data = load_blind_manifest()
+    manifest_data = load_blind_manifest(release)
     total_count = len(manifest_data.get("tasks", []))
-    session_data = load_session(pseudonym)
+    session_data = load_session(pseudonym, release=release)
     completed_count = len(session_data.get("responses", {}))
 
     return templates.TemplateResponse("summary.html", {
         "request": request,
         "pseudonym": pseudonym,
         "total_count": total_count,
-        "completed_count": completed_count
+        "completed_count": completed_count,
+        "selected_release": release
     })
 
 
 @app.get("/export")
 async def export_submission_view(request: Request):
     pseudonym = request.cookies.get("reviewer_pseudonym")
+    release = request.cookies.get("review_release", "release2")
     if not pseudonym:
         return RedirectResponse(url="/", status_code=303)
 
-    session_data = load_session(pseudonym)
+    session_data = load_session(pseudonym, release=release)
     responses_dict = session_data.get("responses", {})
     reviews = sorted(list(responses_dict.values()), key=lambda x: x["blind_task_id"])
 
     submission_bundle = {
         "submission_version": "1.0.0",
+        "benchmark_release": release,
         "reviewer_pseudonym": pseudonym,
         "submission_timestamp": datetime.now(timezone.utc).isoformat(),
         "total_items_reviewed": len(reviews),
@@ -230,7 +258,7 @@ async def export_submission_view(request: Request):
 
 
 @app.post("/reconcile")
-async def reconcile_author_view(submissions: List[Dict[str, Any]]):
+async def reconcile_author_view(submissions: List[Dict[str, Any]], release: str = "release2"):
     """Author-side local reconciliation mode."""
     if len(submissions) < 2:
         return {
@@ -239,7 +267,7 @@ async def reconcile_author_view(submissions: List[Dict[str, Any]]):
             "submissions_provided": len(submissions)
         }
 
-    key_path = PACKAGES_DIR / "author_reconciliation_map.json"
+    key_path = get_packages_dir(release) / "author_reconciliation_map.json"
     if not key_path.is_file():
         raise HTTPException(status_code=500, detail="Author reconciliation key missing.")
 

@@ -1,0 +1,4748 @@
+[
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_003",
+    "candidate_tools": [
+      {
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Apply subnet network security group filtering and packet inspection rules.",
+          "properties": {
+            "boundary_id": {
+              "description": "VPC or subnet identifier",
+              "minLength": 3,
+              "type": "string"
+            },
+            "ingress_policy": {
+              "additionalProperties": false,
+              "description": "Inbound packet rules",
+              "properties": {
+                "allowed_cidr": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "ports": {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "allowed_cidr",
+                "ports"
+              ],
+              "type": "object"
+            },
+            "inspection_tier": {
+              "description": "Firewall filtering depth",
+              "enum": [
+                "stateless",
+                "stateful_inspection",
+                "deep_packet_dpi"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "boundary_id",
+            "ingress_policy",
+            "inspection_tier"
+          ],
+          "title": "synth_enforce_security_boundary",
+          "type": "object"
+        },
+        "tool_name": "synth_enforce_security_boundary"
+      },
+      {
+        "description": "Modify the signaling status of an active voice call session.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Modify the signaling status of an active voice call session.",
+          "properties": {
+            "call_id": {
+              "description": "Unique call session identifier",
+              "minLength": 4,
+              "type": "string"
+            },
+            "record_audio": {
+              "description": "Toggle media recording on bridge",
+              "type": "boolean"
+            },
+            "status_code": {
+              "description": "SIP/VoIP status code",
+              "maximum": 600,
+              "minimum": 100,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "call_id",
+            "status_code"
+          ],
+          "title": "synth_update_call_status",
+          "type": "object"
+        },
+        "tool_name": "synth_update_call_status"
+      },
+      {
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute a timeseries aggregation query over specified dimensions.",
+          "properties": {
+            "aggregation": {
+              "description": "Statistical aggregator",
+              "enum": [
+                "avg",
+                "sum",
+                "min",
+                "max",
+                "p95",
+                "p99"
+              ],
+              "type": "string"
+            },
+            "filter_dimensions": {
+              "description": "Key=value tag filters",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "metric_series": {
+              "description": "Metric timeseries identifier",
+              "minLength": 1,
+              "type": "string"
+            },
+            "window_seconds": {
+              "description": "Aggregation window width",
+              "maximum": 86400,
+              "minimum": 60,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "metric_series",
+            "aggregation",
+            "window_seconds"
+          ],
+          "title": "synth_query_metric_aggregate",
+          "type": "object"
+        },
+        "tool_name": "synth_query_metric_aggregate"
+      }
+    ],
+    "natural_language_request": "Dispatch a request to configure database replica for environment env_029 using default assumptions where possible.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_004",
+    "candidate_tools": [
+      {
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Reset API invocation consumption counter for a specific tenant.",
+          "properties": {
+            "grace_period_minutes": {
+              "description": "Exemption duration",
+              "maximum": 1440,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "quota_bucket": {
+              "description": "Rate limit bucket key",
+              "minLength": 1,
+              "type": "string"
+            },
+            "tenant_id": {
+              "description": "Account tenant identifier",
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "tenant_id",
+            "quota_bucket"
+          ],
+          "title": "synth_reset_quota_usage",
+          "type": "object"
+        },
+        "tool_name": "synth_reset_quota_usage"
+      },
+      {
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Store a key-value pair in a distributed cache partition.",
+          "properties": {
+            "key": {
+              "description": "Unique key identifier",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "overwrite": {
+              "description": "Whether to overwrite existing entry",
+              "type": "boolean"
+            },
+            "ttl_seconds": {
+              "description": "Time to live in seconds",
+              "maximum": 86400,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "value": {
+              "description": "Serialized value payload",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "value"
+          ],
+          "title": "synth_create_key_value",
+          "type": "object"
+        },
+        "tool_name": "synth_create_key_value"
+      },
+      {
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+          "properties": {
+            "endpoint": {
+              "additionalProperties": false,
+              "description": "Destination HTTP configuration",
+              "properties": {
+                "signing_secret": {
+                  "description": "HMAC signature secret",
+                  "minLength": 8,
+                  "type": "string"
+                },
+                "timeout_ms": {
+                  "maximum": 10000,
+                  "minimum": 100,
+                  "type": "integer"
+                },
+                "url": {
+                  "description": "HTTPS webhook URL",
+                  "minLength": 8,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "url",
+                "signing_secret"
+              ],
+              "type": "object"
+            },
+            "event_type": {
+              "description": "Domain event classification",
+              "minLength": 3,
+              "type": "string"
+            },
+            "max_retries": {
+              "description": "Retry limit on 5xx failures",
+              "maximum": 5,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "event_type",
+            "endpoint"
+          ],
+          "title": "synth_publish_webhook_event",
+          "type": "object"
+        },
+        "tool_name": "synth_publish_webhook_event"
+      }
+    ],
+    "natural_language_request": "Dispatch a request to configure database replica for environment env_069 using default assumptions where possible.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_005",
+    "candidate_tools": [
+      {
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Grant a predefined security role and scope set to a user principal.",
+          "properties": {
+            "enforce_mfa": {
+              "description": "Require multi-factor authentication for role usage",
+              "type": "boolean"
+            },
+            "permission_scopes": {
+              "description": "Granted scope strings",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "principal_id": {
+              "description": "User or service principal identifier",
+              "minLength": 3,
+              "type": "string"
+            },
+            "role_tier": {
+              "description": "Predefined RBAC role tier",
+              "enum": [
+                "viewer",
+                "operator",
+                "admin",
+                "owner"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "principal_id",
+            "role_tier",
+            "permission_scopes"
+          ],
+          "title": "synth_assign_role_permissions",
+          "type": "object"
+        },
+        "tool_name": "synth_assign_role_permissions"
+      },
+      {
+        "description": "Send an SMS text message to a designated phone destination.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Send an SMS text message to a designated phone destination.",
+          "properties": {
+            "message_body": {
+              "description": "SMS text body",
+              "maxLength": 160,
+              "minLength": 1,
+              "type": "string"
+            },
+            "priority": {
+              "description": "Queue priority from 1 to 5",
+              "maximum": 5,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "recipient_number": {
+              "description": "E.164 phone number",
+              "maxLength": 16,
+              "minLength": 8,
+              "type": "string"
+            }
+          },
+          "required": [
+            "recipient_number",
+            "message_body"
+          ],
+          "title": "synth_dispatch_sms_message",
+          "type": "object"
+        },
+        "tool_name": "synth_dispatch_sms_message"
+      },
+      {
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Schedule an aggregated email digest for a recipient list.",
+          "properties": {
+            "digest_frequency": {
+              "description": "Aggregation cadence",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly"
+              ],
+              "type": "string"
+            },
+            "recipients": {
+              "description": "Recipient email addresses",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "template_slug": {
+              "description": "Email layout template ID",
+              "minLength": 1,
+              "type": "string"
+            },
+            "track_opens": {
+              "description": "Embed tracking pixel",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "template_slug",
+            "recipients",
+            "digest_frequency"
+          ],
+          "title": "synth_enqueue_email_digest",
+          "type": "object"
+        },
+        "tool_name": "synth_enqueue_email_digest"
+      }
+    ],
+    "natural_language_request": "Handle the recent events on pipeline stage for batch 064 using whatever system seems most appropriate.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_013",
+    "candidate_tools": [
+      {
+        "description": "Impose an administrative lock on a compromised user account.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Impose an administrative lock on a compromised user account.",
+          "properties": {
+            "lock_hours": {
+              "description": "Lock duration in hours",
+              "maximum": 720,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "require_password_reset": {
+              "description": "Enforce password reset on unlock",
+              "type": "boolean"
+            },
+            "user_id": {
+              "description": "Target user identifier",
+              "minLength": 4,
+              "type": "string"
+            }
+          },
+          "required": [
+            "user_id",
+            "lock_hours"
+          ],
+          "title": "synth_lock_user_account",
+          "type": "object"
+        },
+        "tool_name": "synth_lock_user_account"
+      },
+      {
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Run statistical outlier detection on a series with specified sensitivity.",
+          "properties": {
+            "detector_id": {
+              "description": "Anomaly detection model name",
+              "minLength": 3,
+              "type": "string"
+            },
+            "emit_alert": {
+              "description": "Trigger alert pipeline if anomaly detected",
+              "type": "boolean"
+            },
+            "sensitivity": {
+              "description": "Standard deviation threshold tier",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "paranoid"
+              ],
+              "type": "string"
+            },
+            "training_windows": {
+              "description": "Historical comparative day offsets",
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "detector_id",
+            "sensitivity",
+            "training_windows"
+          ],
+          "title": "synth_evaluate_anomaly_detector",
+          "type": "object"
+        },
+        "tool_name": "synth_evaluate_anomaly_detector"
+      },
+      {
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+          "properties": {
+            "enforce_domain_lock": {
+              "description": "Restrict logins strictly to claimed corporate domains",
+              "type": "boolean"
+            },
+            "idp_spec": {
+              "additionalProperties": false,
+              "description": "Provider connection details",
+              "properties": {
+                "entity_id": {
+                  "minLength": 4,
+                  "type": "string"
+                },
+                "protocol": {
+                  "enum": [
+                    "SAML2",
+                    "OIDC"
+                  ],
+                  "type": "string"
+                },
+                "sso_url": {
+                  "minLength": 8,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sso_url",
+                "entity_id",
+                "protocol"
+              ],
+              "type": "object"
+            },
+            "provider_name": {
+              "description": "Federation label",
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          "required": [
+            "provider_name",
+            "idp_spec"
+          ],
+          "title": "synth_configure_sso_identity_provider",
+          "type": "object"
+        },
+        "tool_name": "synth_configure_sso_identity_provider"
+      }
+    ],
+    "natural_language_request": "Process everything related to heartbeat timestamp for cycle 048 as soon as convenient.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_014",
+    "candidate_tools": [
+      {
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Generate a client API key with environment assignment and rate limits.",
+          "properties": {
+            "client_name": {
+              "description": "Descriptive client application name",
+              "minLength": 2,
+              "type": "string"
+            },
+            "ip_allowlist": {
+              "description": "Allowed CIDR IP ranges",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "rate_limit_rpm": {
+              "description": "Maximum allowed requests per minute",
+              "maximum": 60000,
+              "minimum": 60,
+              "type": "integer"
+            },
+            "target_environment": {
+              "description": "Target tier",
+              "enum": [
+                "development",
+                "staging",
+                "production"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "client_name",
+            "target_environment"
+          ],
+          "title": "synth_provision_api_credential",
+          "type": "object"
+        },
+        "tool_name": "synth_provision_api_credential"
+      },
+      {
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+          "properties": {
+            "notify_subject": {
+              "description": "Send notification email to token owner",
+              "type": "boolean"
+            },
+            "reason": {
+              "description": "Security revocation rationale",
+              "type": "string"
+            },
+            "token_id": {
+              "description": "Token unique identifier (jti)",
+              "minLength": 8,
+              "type": "string"
+            }
+          },
+          "required": [
+            "token_id"
+          ],
+          "title": "synth_revoke_access_token",
+          "type": "object"
+        },
+        "tool_name": "synth_revoke_access_token"
+      },
+      {
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Reset API invocation consumption counter for a specific tenant.",
+          "properties": {
+            "grace_period_minutes": {
+              "description": "Exemption duration",
+              "maximum": 1440,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "quota_bucket": {
+              "description": "Rate limit bucket key",
+              "minLength": 1,
+              "type": "string"
+            },
+            "tenant_id": {
+              "description": "Account tenant identifier",
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "tenant_id",
+            "quota_bucket"
+          ],
+          "title": "synth_reset_quota_usage",
+          "type": "object"
+        },
+        "tool_name": "synth_reset_quota_usage"
+      }
+    ],
+    "natural_language_request": "Update session lease for partition 011 with a lock duration of zero seconds while enforcing permanent exclusivity.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_017",
+    "candidate_tools": [
+      {
+        "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+          "properties": {
+            "artifact_paths": {
+              "description": "Input artifact files",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "pipeline_id": {
+              "description": "Workflow pipeline definition ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "stage_name": {
+              "description": "Target execution stage",
+              "enum": [
+                "lint",
+                "unit_test",
+                "integration_test",
+                "security_scan",
+                "package"
+              ],
+              "type": "string"
+            },
+            "timeout_seconds": {
+              "description": "Maximum stage runtime",
+              "maximum": 3600,
+              "minimum": 10,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "pipeline_id",
+            "stage_name"
+          ],
+          "title": "synth_trigger_pipeline_stage",
+          "type": "object"
+        },
+        "tool_name": "synth_trigger_pipeline_stage"
+      },
+      {
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute a timeseries aggregation query over specified dimensions.",
+          "properties": {
+            "aggregation": {
+              "description": "Statistical aggregator",
+              "enum": [
+                "avg",
+                "sum",
+                "min",
+                "max",
+                "p95",
+                "p99"
+              ],
+              "type": "string"
+            },
+            "filter_dimensions": {
+              "description": "Key=value tag filters",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "metric_series": {
+              "description": "Metric timeseries identifier",
+              "minLength": 1,
+              "type": "string"
+            },
+            "window_seconds": {
+              "description": "Aggregation window width",
+              "maximum": 86400,
+              "minimum": 60,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "metric_series",
+            "aggregation",
+            "window_seconds"
+          ],
+          "title": "synth_query_metric_aggregate",
+          "type": "object"
+        },
+        "tool_name": "synth_query_metric_aggregate"
+      },
+      {
+        "description": "Move a data partition to cold archival storage with compression.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Move a data partition to cold archival storage with compression.",
+          "properties": {
+            "compression_format": {
+              "description": "Compression algorithm",
+              "enum": [
+                "gzip",
+                "zstd",
+                "snappy"
+              ],
+              "type": "string"
+            },
+            "metadata_tags": {
+              "description": "Classification tags",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "partition_key": {
+              "description": "Partition identifier",
+              "minLength": 2,
+              "type": "string"
+            },
+            "retention_years": {
+              "description": "Archival compliance retention period",
+              "maximum": 10,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "partition_key",
+            "compression_format"
+          ],
+          "title": "synth_archive_data_partition",
+          "type": "object"
+        },
+        "tool_name": "synth_archive_data_partition"
+      }
+    ],
+    "natural_language_request": "Dispatch a request to cancel workflow task for environment env_025 using default assumptions where possible.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_021",
+    "candidate_tools": [
+      {
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+          "properties": {
+            "pipeline_name": {
+              "description": "Pipeline execution job name",
+              "minLength": 3,
+              "type": "string"
+            },
+            "sink_connector": {
+              "additionalProperties": false,
+              "description": "Target warehouse loader",
+              "properties": {
+                "table_mode": {
+                  "enum": [
+                    "append",
+                    "overwrite",
+                    "merge"
+                  ],
+                  "type": "string"
+                },
+                "warehouse": {
+                  "enum": [
+                    "snowflake",
+                    "bigquery",
+                    "redshift"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "warehouse",
+                "table_mode"
+              ],
+              "type": "object"
+            },
+            "source_connector": {
+              "additionalProperties": false,
+              "description": "Origin database extractor",
+              "properties": {
+                "connector_type": {
+                  "enum": [
+                    "postgres",
+                    "mysql",
+                    "mongodb"
+                  ],
+                  "type": "string"
+                },
+                "query_timeout_sec": {
+                  "maximum": 300,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connector_type"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "pipeline_name",
+            "source_connector",
+            "sink_connector"
+          ],
+          "title": "synth_orchestrate_etl_pipeline",
+          "type": "object"
+        },
+        "tool_name": "synth_orchestrate_etl_pipeline"
+      },
+      {
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Run statistical outlier detection on a series with specified sensitivity.",
+          "properties": {
+            "detector_id": {
+              "description": "Anomaly detection model name",
+              "minLength": 3,
+              "type": "string"
+            },
+            "emit_alert": {
+              "description": "Trigger alert pipeline if anomaly detected",
+              "type": "boolean"
+            },
+            "sensitivity": {
+              "description": "Standard deviation threshold tier",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "paranoid"
+              ],
+              "type": "string"
+            },
+            "training_windows": {
+              "description": "Historical comparative day offsets",
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "detector_id",
+            "sensitivity",
+            "training_windows"
+          ],
+          "title": "synth_evaluate_anomaly_detector",
+          "type": "object"
+        },
+        "tool_name": "synth_evaluate_anomaly_detector"
+      },
+      {
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute a timeseries aggregation query over specified dimensions.",
+          "properties": {
+            "aggregation": {
+              "description": "Statistical aggregator",
+              "enum": [
+                "avg",
+                "sum",
+                "min",
+                "max",
+                "p95",
+                "p99"
+              ],
+              "type": "string"
+            },
+            "filter_dimensions": {
+              "description": "Key=value tag filters",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "metric_series": {
+              "description": "Metric timeseries identifier",
+              "minLength": 1,
+              "type": "string"
+            },
+            "window_seconds": {
+              "description": "Aggregation window width",
+              "maximum": 86400,
+              "minimum": 60,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "metric_series",
+            "aggregation",
+            "window_seconds"
+          ],
+          "title": "synth_query_metric_aggregate",
+          "type": "object"
+        },
+        "tool_name": "synth_query_metric_aggregate"
+      }
+    ],
+    "natural_language_request": "Update counter metric for partition 087 with a lock duration of zero seconds while enforcing permanent exclusivity.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_025",
+    "candidate_tools": [
+      {
+        "description": "Modify the signaling status of an active voice call session.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Modify the signaling status of an active voice call session.",
+          "properties": {
+            "call_id": {
+              "description": "Unique call session identifier",
+              "minLength": 4,
+              "type": "string"
+            },
+            "record_audio": {
+              "description": "Toggle media recording on bridge",
+              "type": "boolean"
+            },
+            "status_code": {
+              "description": "SIP/VoIP status code",
+              "maximum": 600,
+              "minimum": 100,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "call_id",
+            "status_code"
+          ],
+          "title": "synth_update_call_status",
+          "type": "object"
+        },
+        "tool_name": "synth_update_call_status"
+      },
+      {
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Coordinate cluster consensus state and membership across peer nodes.",
+          "properties": {
+            "cluster_domain": {
+              "description": "Consensus cluster domain",
+              "minLength": 3,
+              "type": "string"
+            },
+            "consensus_config": {
+              "additionalProperties": false,
+              "description": "Raft/Paxos consensus parameters",
+              "properties": {
+                "election_timeout_ms": {
+                  "maximum": 5000,
+                  "minimum": 150,
+                  "type": "integer"
+                },
+                "quorum_size": {
+                  "maximum": 9,
+                  "minimum": 3,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "quorum_size",
+                "election_timeout_ms"
+              ],
+              "type": "object"
+            },
+            "member_nodes": {
+              "description": "Active peer node connection endpoints",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "minLength": 7,
+                    "type": "string"
+                  },
+                  "node_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "node_id",
+                  "address"
+                ],
+                "type": "object"
+              },
+              "minItems": 3,
+              "type": "array"
+            }
+          },
+          "required": [
+            "cluster_domain",
+            "consensus_config",
+            "member_nodes"
+          ],
+          "title": "synth_synchronize_distributed_cluster",
+          "type": "object"
+        },
+        "tool_name": "synth_synchronize_distributed_cluster"
+      },
+      {
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Control canary progression and rollback parameters for an application release.",
+          "properties": {
+            "application_id": {
+              "description": "Deployed microservice ID",
+              "minLength": 2,
+              "type": "string"
+            },
+            "canary_strategy": {
+              "additionalProperties": false,
+              "description": "Progressive traffic shift parameters",
+              "properties": {
+                "initial_percentage": {
+                  "maximum": 50,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "step_duration_minutes": {
+                  "maximum": 120,
+                  "minimum": 5,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "initial_percentage",
+                "step_duration_minutes"
+              ],
+              "type": "object"
+            },
+            "rollback_thresholds": {
+              "additionalProperties": false,
+              "description": "Error circuit-breaker triggers",
+              "properties": {
+                "max_error_rate_percent": {
+                  "maximum": 10.0,
+                  "minimum": 0.1,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "max_error_rate_percent"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "application_id",
+            "canary_strategy",
+            "rollback_thresholds"
+          ],
+          "title": "synth_manage_deployment_rollout",
+          "type": "object"
+        },
+        "tool_name": "synth_manage_deployment_rollout"
+      }
+    ],
+    "natural_language_request": "Configure alert notification for job 095 with an expiration lifetime of -9999 seconds and negative zero concurrency.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_032",
+    "candidate_tools": [
+      {
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+          "properties": {
+            "auto_terminate": {
+              "description": "Shut down worker upon queue exhaustion",
+              "type": "boolean"
+            },
+            "job_ids": {
+              "description": "Assigned job identifiers",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "worker_concurrency": {
+              "description": "Parallel thread count",
+              "maximum": 32,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "worker_pool": {
+              "description": "Compute tier",
+              "enum": [
+                "cpu_optimized",
+                "memory_optimized",
+                "standard"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "worker_pool",
+            "job_ids"
+          ],
+          "title": "synth_dispatch_batch_worker",
+          "type": "object"
+        },
+        "tool_name": "synth_dispatch_batch_worker"
+      },
+      {
+        "description": "Move a data partition to cold archival storage with compression.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Move a data partition to cold archival storage with compression.",
+          "properties": {
+            "compression_format": {
+              "description": "Compression algorithm",
+              "enum": [
+                "gzip",
+                "zstd",
+                "snappy"
+              ],
+              "type": "string"
+            },
+            "metadata_tags": {
+              "description": "Classification tags",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "partition_key": {
+              "description": "Partition identifier",
+              "minLength": 2,
+              "type": "string"
+            },
+            "retention_years": {
+              "description": "Archival compliance retention period",
+              "maximum": 10,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "partition_key",
+            "compression_format"
+          ],
+          "title": "synth_archive_data_partition",
+          "type": "object"
+        },
+        "tool_name": "synth_archive_data_partition"
+      },
+      {
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Publish observations into predefined histogram bucket thresholds.",
+          "properties": {
+            "bucket_boundaries": {
+              "description": "Ascending bucket threshold values",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "type": "array"
+            },
+            "histogram_name": {
+              "description": "Histogram metric name",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sample_count": {
+              "description": "Number of observations",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "unit": {
+              "description": "Measurement unit",
+              "enum": [
+                "milliseconds",
+                "seconds",
+                "bytes",
+                "count"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "histogram_name",
+            "unit",
+            "bucket_boundaries"
+          ],
+          "title": "synth_publish_metric_histogram",
+          "type": "object"
+        },
+        "tool_name": "synth_publish_metric_histogram"
+      }
+    ],
+    "natural_language_request": "We want to reset quota usage in partition part_089. Run this operation now without providing parameter values.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_033",
+    "candidate_tools": [
+      {
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Reset API invocation consumption counter for a specific tenant.",
+          "properties": {
+            "grace_period_minutes": {
+              "description": "Exemption duration",
+              "maximum": 1440,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "quota_bucket": {
+              "description": "Rate limit bucket key",
+              "minLength": 1,
+              "type": "string"
+            },
+            "tenant_id": {
+              "description": "Account tenant identifier",
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "tenant_id",
+            "quota_bucket"
+          ],
+          "title": "synth_reset_quota_usage",
+          "type": "object"
+        },
+        "tool_name": "synth_reset_quota_usage"
+      },
+      {
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Dispatch incoming support ticket across routing and priority constraints.",
+          "properties": {
+            "conversation_id": {
+              "description": "Customer inquiry ticket ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "fallback_queue": {
+              "description": "Default destination if no agent available",
+              "type": "string"
+            },
+            "routing_criteria": {
+              "additionalProperties": false,
+              "description": "Agent matching criteria",
+              "properties": {
+                "language": {
+                  "description": "ISO language code",
+                  "minLength": 2,
+                  "type": "string"
+                },
+                "priority_weight": {
+                  "maximum": 100,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "skill_tags": {
+                  "description": "Required agent competencies",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "language"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "conversation_id",
+            "routing_criteria"
+          ],
+          "title": "synth_route_omnichannel_conversation",
+          "type": "object"
+        },
+        "tool_name": "synth_route_omnichannel_conversation"
+      },
+      {
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Provision a read replica node with host connection and replication settings.",
+          "properties": {
+            "cluster_id": {
+              "description": "Primary database cluster ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "enable_ssl": {
+              "description": "Require TLS encryption on replication stream",
+              "type": "boolean"
+            },
+            "replica_config": {
+              "additionalProperties": false,
+              "description": "Replica node configuration",
+              "properties": {
+                "node_name": {
+                  "description": "Replica hostname/label",
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "port": {
+                  "description": "Port number",
+                  "maximum": 65535,
+                  "minimum": 1024,
+                  "type": "integer"
+                },
+                "read_only": {
+                  "description": "Enforce read-only transactions",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "node_name",
+                "port"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "cluster_id",
+            "replica_config"
+          ],
+          "title": "synth_configure_database_replica",
+          "type": "object"
+        },
+        "tool_name": "synth_configure_database_replica"
+      }
+    ],
+    "natural_language_request": "Apply configuration to storage snapshot (dispatch #031) requiring simultaneous immediate completion and indefinite suspension.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_036",
+    "candidate_tools": [
+      {
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Associate a mobile device APNS or FCM push token with an account.",
+          "properties": {
+            "device_id": {
+              "description": "Hardware device UUID",
+              "minLength": 8,
+              "type": "string"
+            },
+            "platform": {
+              "description": "Operating system platform",
+              "enum": [
+                "ios",
+                "android",
+                "web"
+              ],
+              "type": "string"
+            },
+            "subscribed_topics": {
+              "description": "Notification interest topics",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "token_ttl_days": {
+              "description": "Token validity expiration",
+              "maximum": 365,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "device_id",
+            "platform"
+          ],
+          "title": "synth_register_push_token",
+          "type": "object"
+        },
+        "tool_name": "synth_register_push_token"
+      },
+      {
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Control canary progression and rollback parameters for an application release.",
+          "properties": {
+            "application_id": {
+              "description": "Deployed microservice ID",
+              "minLength": 2,
+              "type": "string"
+            },
+            "canary_strategy": {
+              "additionalProperties": false,
+              "description": "Progressive traffic shift parameters",
+              "properties": {
+                "initial_percentage": {
+                  "maximum": 50,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "step_duration_minutes": {
+                  "maximum": 120,
+                  "minimum": 5,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "initial_percentage",
+                "step_duration_minutes"
+              ],
+              "type": "object"
+            },
+            "rollback_thresholds": {
+              "additionalProperties": false,
+              "description": "Error circuit-breaker triggers",
+              "properties": {
+                "max_error_rate_percent": {
+                  "maximum": 10.0,
+                  "minimum": 0.1,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "max_error_rate_percent"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "application_id",
+            "canary_strategy",
+            "rollback_thresholds"
+          ],
+          "title": "synth_manage_deployment_rollout",
+          "type": "object"
+        },
+        "tool_name": "synth_manage_deployment_rollout"
+      },
+      {
+        "description": "Impose an administrative lock on a compromised user account.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Impose an administrative lock on a compromised user account.",
+          "properties": {
+            "lock_hours": {
+              "description": "Lock duration in hours",
+              "maximum": 720,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "require_password_reset": {
+              "description": "Enforce password reset on unlock",
+              "type": "boolean"
+            },
+            "user_id": {
+              "description": "Target user identifier",
+              "minLength": 4,
+              "type": "string"
+            }
+          },
+          "required": [
+            "user_id",
+            "lock_hours"
+          ],
+          "title": "synth_lock_user_account",
+          "type": "object"
+        },
+        "tool_name": "synth_lock_user_account"
+      }
+    ],
+    "natural_language_request": "Please batch index records for batch run 053 immediately without waiting for specific payload details.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_038",
+    "candidate_tools": [
+      {
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+          "properties": {
+            "dataset_name": {
+              "description": "Target metrics catalog",
+              "minLength": 2,
+              "type": "string"
+            },
+            "format_spec": {
+              "additionalProperties": false,
+              "description": "Export serialization format",
+              "properties": {
+                "compress": {
+                  "type": "boolean"
+                },
+                "format_type": {
+                  "enum": [
+                    "csv",
+                    "parquet",
+                    "jsonl"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "format_type"
+              ],
+              "type": "object"
+            },
+            "query_window": {
+              "additionalProperties": false,
+              "description": "Temporal boundaries",
+              "properties": {
+                "end_epoch": {
+                  "minimum": 1600000000,
+                  "type": "integer"
+                },
+                "interval_seconds": {
+                  "maximum": 3600,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "start_epoch": {
+                  "minimum": 1600000000,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "start_epoch",
+                "end_epoch"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "dataset_name",
+            "query_window",
+            "format_spec"
+          ],
+          "title": "synth_export_timeseries_dataset",
+          "type": "object"
+        },
+        "tool_name": "synth_export_timeseries_dataset"
+      },
+      {
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+          "properties": {
+            "enforce_domain_lock": {
+              "description": "Restrict logins strictly to claimed corporate domains",
+              "type": "boolean"
+            },
+            "idp_spec": {
+              "additionalProperties": false,
+              "description": "Provider connection details",
+              "properties": {
+                "entity_id": {
+                  "minLength": 4,
+                  "type": "string"
+                },
+                "protocol": {
+                  "enum": [
+                    "SAML2",
+                    "OIDC"
+                  ],
+                  "type": "string"
+                },
+                "sso_url": {
+                  "minLength": 8,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sso_url",
+                "entity_id",
+                "protocol"
+              ],
+              "type": "object"
+            },
+            "provider_name": {
+              "description": "Federation label",
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          "required": [
+            "provider_name",
+            "idp_spec"
+          ],
+          "title": "synth_configure_sso_identity_provider",
+          "type": "object"
+        },
+        "tool_name": "synth_configure_sso_identity_provider"
+      },
+      {
+        "description": "Impose an administrative lock on a compromised user account.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Impose an administrative lock on a compromised user account.",
+          "properties": {
+            "lock_hours": {
+              "description": "Lock duration in hours",
+              "maximum": 720,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "require_password_reset": {
+              "description": "Enforce password reset on unlock",
+              "type": "boolean"
+            },
+            "user_id": {
+              "description": "Target user identifier",
+              "minLength": 4,
+              "type": "string"
+            }
+          },
+          "required": [
+            "user_id",
+            "lock_hours"
+          ],
+          "title": "synth_lock_user_account",
+          "type": "object"
+        },
+        "tool_name": "synth_lock_user_account"
+      }
+    ],
+    "natural_language_request": "Transcribe all related audio communications for etl pipeline (run #038) into French subtitles in real time.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_039",
+    "candidate_tools": [
+      {
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Abort a currently queued or executing background task in a workflow.",
+          "properties": {
+            "cancellation_policy": {
+              "description": "Teardown mode",
+              "enum": [
+                "immediate_kill",
+                "graceful_drain",
+                "compensate_and_stop"
+              ],
+              "type": "string"
+            },
+            "cleanup_tags": {
+              "description": "Resource tags to deallocate",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "task_id": {
+              "description": "Subtask identifier",
+              "minLength": 3,
+              "type": "string"
+            },
+            "workflow_id": {
+              "description": "Parent workflow execution ID",
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "workflow_id",
+            "task_id",
+            "cancellation_policy"
+          ],
+          "title": "synth_cancel_workflow_task",
+          "type": "object"
+        },
+        "tool_name": "synth_cancel_workflow_task"
+      },
+      {
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Store a key-value pair in a distributed cache partition.",
+          "properties": {
+            "key": {
+              "description": "Unique key identifier",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "overwrite": {
+              "description": "Whether to overwrite existing entry",
+              "type": "boolean"
+            },
+            "ttl_seconds": {
+              "description": "Time to live in seconds",
+              "maximum": 86400,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "value": {
+              "description": "Serialized value payload",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "value"
+          ],
+          "title": "synth_create_key_value",
+          "type": "object"
+        },
+        "tool_name": "synth_create_key_value"
+      },
+      {
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+          "properties": {
+            "endpoint": {
+              "additionalProperties": false,
+              "description": "Destination HTTP configuration",
+              "properties": {
+                "signing_secret": {
+                  "description": "HMAC signature secret",
+                  "minLength": 8,
+                  "type": "string"
+                },
+                "timeout_ms": {
+                  "maximum": 10000,
+                  "minimum": 100,
+                  "type": "integer"
+                },
+                "url": {
+                  "description": "HTTPS webhook URL",
+                  "minLength": 8,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "url",
+                "signing_secret"
+              ],
+              "type": "object"
+            },
+            "event_type": {
+              "description": "Domain event classification",
+              "minLength": 3,
+              "type": "string"
+            },
+            "max_retries": {
+              "description": "Retry limit on 5xx failures",
+              "maximum": 5,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "event_type",
+            "endpoint"
+          ],
+          "title": "synth_publish_webhook_event",
+          "type": "object"
+        },
+        "tool_name": "synth_publish_webhook_event"
+      }
+    ],
+    "natural_language_request": "Perform an automated physical hardware diagnostic for batch 062 on the motherboard powering api credential.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_043",
+    "candidate_tools": [
+      {
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Apply subnet network security group filtering and packet inspection rules.",
+          "properties": {
+            "boundary_id": {
+              "description": "VPC or subnet identifier",
+              "minLength": 3,
+              "type": "string"
+            },
+            "ingress_policy": {
+              "additionalProperties": false,
+              "description": "Inbound packet rules",
+              "properties": {
+                "allowed_cidr": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "ports": {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "allowed_cidr",
+                "ports"
+              ],
+              "type": "object"
+            },
+            "inspection_tier": {
+              "description": "Firewall filtering depth",
+              "enum": [
+                "stateless",
+                "stateful_inspection",
+                "deep_packet_dpi"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "boundary_id",
+            "ingress_policy",
+            "inspection_tier"
+          ],
+          "title": "synth_enforce_security_boundary",
+          "type": "object"
+        },
+        "tool_name": "synth_enforce_security_boundary"
+      },
+      {
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+          "properties": {
+            "affected_services": {
+              "description": "Downstream services requiring key reload",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "algorithm": {
+              "description": "Cryptographic cipher",
+              "enum": [
+                "AES-256-GCM",
+                "ChaCha20-Poly1305",
+                "RSA-4096"
+              ],
+              "type": "string"
+            },
+            "grace_period_hours": {
+              "description": "Overlap period where old key remains valid",
+              "maximum": 168,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "secret_slug": {
+              "description": "Secret vault key identifier",
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          "required": [
+            "secret_slug",
+            "algorithm"
+          ],
+          "title": "synth_rotate_secret_key",
+          "type": "object"
+        },
+        "tool_name": "synth_rotate_secret_key"
+      },
+      {
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Dispatch incoming support ticket across routing and priority constraints.",
+          "properties": {
+            "conversation_id": {
+              "description": "Customer inquiry ticket ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "fallback_queue": {
+              "description": "Default destination if no agent available",
+              "type": "string"
+            },
+            "routing_criteria": {
+              "additionalProperties": false,
+              "description": "Agent matching criteria",
+              "properties": {
+                "language": {
+                  "description": "ISO language code",
+                  "minLength": 2,
+                  "type": "string"
+                },
+                "priority_weight": {
+                  "maximum": 100,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "skill_tags": {
+                  "description": "Required agent competencies",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "language"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "conversation_id",
+            "routing_criteria"
+          ],
+          "title": "synth_route_omnichannel_conversation",
+          "type": "object"
+        },
+        "tool_name": "synth_route_omnichannel_conversation"
+      }
+    ],
+    "natural_language_request": "Transcribe all related audio communications for access token (run #010) into French subtitles in real time.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_048",
+    "candidate_tools": [
+      {
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Add a delta value to a Prometheus-style counter metric.",
+          "properties": {
+            "flush_immediately": {
+              "description": "Flush local buffer to aggregator",
+              "type": "boolean"
+            },
+            "increment_by": {
+              "description": "Positive integer increment",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "metric_name": {
+              "description": "Metric identifier",
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "metric_name"
+          ],
+          "title": "synth_increment_counter_metric",
+          "type": "object"
+        },
+        "tool_name": "synth_increment_counter_metric"
+      },
+      {
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Coordinate cluster consensus state and membership across peer nodes.",
+          "properties": {
+            "cluster_domain": {
+              "description": "Consensus cluster domain",
+              "minLength": 3,
+              "type": "string"
+            },
+            "consensus_config": {
+              "additionalProperties": false,
+              "description": "Raft/Paxos consensus parameters",
+              "properties": {
+                "election_timeout_ms": {
+                  "maximum": 5000,
+                  "minimum": 150,
+                  "type": "integer"
+                },
+                "quorum_size": {
+                  "maximum": 9,
+                  "minimum": 3,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "quorum_size",
+                "election_timeout_ms"
+              ],
+              "type": "object"
+            },
+            "member_nodes": {
+              "description": "Active peer node connection endpoints",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "minLength": 7,
+                    "type": "string"
+                  },
+                  "node_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "node_id",
+                  "address"
+                ],
+                "type": "object"
+              },
+              "minItems": 3,
+              "type": "array"
+            }
+          },
+          "required": [
+            "cluster_domain",
+            "consensus_config",
+            "member_nodes"
+          ],
+          "title": "synth_synchronize_distributed_cluster",
+          "type": "object"
+        },
+        "tool_name": "synth_synchronize_distributed_cluster"
+      },
+      {
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Dispatch incoming support ticket across routing and priority constraints.",
+          "properties": {
+            "conversation_id": {
+              "description": "Customer inquiry ticket ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "fallback_queue": {
+              "description": "Default destination if no agent available",
+              "type": "string"
+            },
+            "routing_criteria": {
+              "additionalProperties": false,
+              "description": "Agent matching criteria",
+              "properties": {
+                "language": {
+                  "description": "ISO language code",
+                  "minLength": 2,
+                  "type": "string"
+                },
+                "priority_weight": {
+                  "maximum": 100,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "skill_tags": {
+                  "description": "Required agent competencies",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "language"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "conversation_id",
+            "routing_criteria"
+          ],
+          "title": "synth_route_omnichannel_conversation",
+          "type": "object"
+        },
+        "tool_name": "synth_route_omnichannel_conversation"
+      }
+    ],
+    "natural_language_request": "Handle the recent events on user account for batch 012 using whatever system seems most appropriate.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_055",
+    "candidate_tools": [
+      {
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Provision a read replica node with host connection and replication settings.",
+          "properties": {
+            "cluster_id": {
+              "description": "Primary database cluster ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "enable_ssl": {
+              "description": "Require TLS encryption on replication stream",
+              "type": "boolean"
+            },
+            "replica_config": {
+              "additionalProperties": false,
+              "description": "Replica node configuration",
+              "properties": {
+                "node_name": {
+                  "description": "Replica hostname/label",
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "port": {
+                  "description": "Port number",
+                  "maximum": 65535,
+                  "minimum": 1024,
+                  "type": "integer"
+                },
+                "read_only": {
+                  "description": "Enforce read-only transactions",
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "node_name",
+                "port"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "cluster_id",
+            "replica_config"
+          ],
+          "title": "synth_configure_database_replica",
+          "type": "object"
+        },
+        "tool_name": "synth_configure_database_replica"
+      },
+      {
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+          "properties": {
+            "pipeline_name": {
+              "description": "Pipeline execution job name",
+              "minLength": 3,
+              "type": "string"
+            },
+            "sink_connector": {
+              "additionalProperties": false,
+              "description": "Target warehouse loader",
+              "properties": {
+                "table_mode": {
+                  "enum": [
+                    "append",
+                    "overwrite",
+                    "merge"
+                  ],
+                  "type": "string"
+                },
+                "warehouse": {
+                  "enum": [
+                    "snowflake",
+                    "bigquery",
+                    "redshift"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "warehouse",
+                "table_mode"
+              ],
+              "type": "object"
+            },
+            "source_connector": {
+              "additionalProperties": false,
+              "description": "Origin database extractor",
+              "properties": {
+                "connector_type": {
+                  "enum": [
+                    "postgres",
+                    "mysql",
+                    "mongodb"
+                  ],
+                  "type": "string"
+                },
+                "query_timeout_sec": {
+                  "maximum": 300,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connector_type"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "pipeline_name",
+            "source_connector",
+            "sink_connector"
+          ],
+          "title": "synth_orchestrate_etl_pipeline",
+          "type": "object"
+        },
+        "tool_name": "synth_orchestrate_etl_pipeline"
+      },
+      {
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Store a key-value pair in a distributed cache partition.",
+          "properties": {
+            "key": {
+              "description": "Unique key identifier",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "overwrite": {
+              "description": "Whether to overwrite existing entry",
+              "type": "boolean"
+            },
+            "ttl_seconds": {
+              "description": "Time to live in seconds",
+              "maximum": 86400,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "value": {
+              "description": "Serialized value payload",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "value"
+          ],
+          "title": "synth_create_key_value",
+          "type": "object"
+        },
+        "tool_name": "synth_create_key_value"
+      }
+    ],
+    "natural_language_request": "Dispatch a request to update call session status for environment env_045 using default assumptions where possible.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_060",
+    "candidate_tools": [
+      {
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute a timeseries aggregation query over specified dimensions.",
+          "properties": {
+            "aggregation": {
+              "description": "Statistical aggregator",
+              "enum": [
+                "avg",
+                "sum",
+                "min",
+                "max",
+                "p95",
+                "p99"
+              ],
+              "type": "string"
+            },
+            "filter_dimensions": {
+              "description": "Key=value tag filters",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "metric_series": {
+              "description": "Metric timeseries identifier",
+              "minLength": 1,
+              "type": "string"
+            },
+            "window_seconds": {
+              "description": "Aggregation window width",
+              "maximum": 86400,
+              "minimum": 60,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "metric_series",
+            "aggregation",
+            "window_seconds"
+          ],
+          "title": "synth_query_metric_aggregate",
+          "type": "object"
+        },
+        "tool_name": "synth_query_metric_aggregate"
+      },
+      {
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Broadcast a critical operational alert across multiple notification channels.",
+          "properties": {
+            "alert_title": {
+              "description": "Short alert title",
+              "minLength": 1,
+              "type": "string"
+            },
+            "auto_resolve_minutes": {
+              "description": "Automatic timeout before auto-resolve",
+              "maximum": 1440,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "severity_level": {
+              "description": "Alert severity tier",
+              "enum": [
+                "INFO",
+                "WARNING",
+                "CRITICAL",
+                "FATAL"
+              ],
+              "type": "string"
+            },
+            "target_channels": {
+              "description": "Broadcast destination channels",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "alert_title",
+            "severity_level",
+            "target_channels"
+          ],
+          "title": "synth_broadcast_alert_notification",
+          "type": "object"
+        },
+        "tool_name": "synth_broadcast_alert_notification"
+      },
+      {
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Migrate partition slices from source cluster to target destination cluster.",
+          "properties": {
+            "migration_id": {
+              "description": "Migration operation tracking ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "source": {
+              "additionalProperties": false,
+              "description": "Source storage specification",
+              "properties": {
+                "cluster_name": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "slice_id": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "cluster_name",
+                "slice_id"
+              ],
+              "type": "object"
+            },
+            "target": {
+              "additionalProperties": false,
+              "description": "Target storage destination",
+              "properties": {
+                "cluster_name": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "datacenter": {
+                  "minLength": 2,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cluster_name",
+                "datacenter"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "migration_id",
+            "source",
+            "target"
+          ],
+          "title": "synth_execute_partition_migration",
+          "type": "object"
+        },
+        "tool_name": "synth_execute_partition_migration"
+      }
+    ],
+    "natural_language_request": "We want to enforce security boundary in partition part_037. Run this operation now without providing parameter values.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_063",
+    "candidate_tools": [
+      {
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Add a delta value to a Prometheus-style counter metric.",
+          "properties": {
+            "flush_immediately": {
+              "description": "Flush local buffer to aggregator",
+              "type": "boolean"
+            },
+            "increment_by": {
+              "description": "Positive integer increment",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "metric_name": {
+              "description": "Metric identifier",
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "metric_name"
+          ],
+          "title": "synth_increment_counter_metric",
+          "type": "object"
+        },
+        "tool_name": "synth_increment_counter_metric"
+      },
+      {
+        "description": "Impose an administrative lock on a compromised user account.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Impose an administrative lock on a compromised user account.",
+          "properties": {
+            "lock_hours": {
+              "description": "Lock duration in hours",
+              "maximum": 720,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "require_password_reset": {
+              "description": "Enforce password reset on unlock",
+              "type": "boolean"
+            },
+            "user_id": {
+              "description": "Target user identifier",
+              "minLength": 4,
+              "type": "string"
+            }
+          },
+          "required": [
+            "user_id",
+            "lock_hours"
+          ],
+          "title": "synth_lock_user_account",
+          "type": "object"
+        },
+        "tool_name": "synth_lock_user_account"
+      },
+      {
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Store a key-value pair in a distributed cache partition.",
+          "properties": {
+            "key": {
+              "description": "Unique key identifier",
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "overwrite": {
+              "description": "Whether to overwrite existing entry",
+              "type": "boolean"
+            },
+            "ttl_seconds": {
+              "description": "Time to live in seconds",
+              "maximum": 86400,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "value": {
+              "description": "Serialized value payload",
+              "type": "string"
+            }
+          },
+          "required": [
+            "key",
+            "value"
+          ],
+          "title": "synth_create_key_value",
+          "type": "object"
+        },
+        "tool_name": "synth_create_key_value"
+      }
+    ],
+    "natural_language_request": "Dispatch a request to publish webhook event for environment env_033 using default assumptions where possible.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_064",
+    "candidate_tools": [
+      {
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Migrate partition slices from source cluster to target destination cluster.",
+          "properties": {
+            "migration_id": {
+              "description": "Migration operation tracking ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "source": {
+              "additionalProperties": false,
+              "description": "Source storage specification",
+              "properties": {
+                "cluster_name": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "slice_id": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "cluster_name",
+                "slice_id"
+              ],
+              "type": "object"
+            },
+            "target": {
+              "additionalProperties": false,
+              "description": "Target storage destination",
+              "properties": {
+                "cluster_name": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "datacenter": {
+                  "minLength": 2,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cluster_name",
+                "datacenter"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "migration_id",
+            "source",
+            "target"
+          ],
+          "title": "synth_execute_partition_migration",
+          "type": "object"
+        },
+        "tool_name": "synth_execute_partition_migration"
+      },
+      {
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Publish observations into predefined histogram bucket thresholds.",
+          "properties": {
+            "bucket_boundaries": {
+              "description": "Ascending bucket threshold values",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 2,
+              "type": "array"
+            },
+            "histogram_name": {
+              "description": "Histogram metric name",
+              "minLength": 1,
+              "type": "string"
+            },
+            "sample_count": {
+              "description": "Number of observations",
+              "minimum": 1,
+              "type": "integer"
+            },
+            "unit": {
+              "description": "Measurement unit",
+              "enum": [
+                "milliseconds",
+                "seconds",
+                "bytes",
+                "count"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "histogram_name",
+            "unit",
+            "bucket_boundaries"
+          ],
+          "title": "synth_publish_metric_histogram",
+          "type": "object"
+        },
+        "tool_name": "synth_publish_metric_histogram"
+      },
+      {
+        "description": "Impose an administrative lock on a compromised user account.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Impose an administrative lock on a compromised user account.",
+          "properties": {
+            "lock_hours": {
+              "description": "Lock duration in hours",
+              "maximum": 720,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "require_password_reset": {
+              "description": "Enforce password reset on unlock",
+              "type": "boolean"
+            },
+            "user_id": {
+              "description": "Target user identifier",
+              "minLength": 4,
+              "type": "string"
+            }
+          },
+          "required": [
+            "user_id",
+            "lock_hours"
+          ],
+          "title": "synth_lock_user_account",
+          "type": "object"
+        },
+        "tool_name": "synth_lock_user_account"
+      }
+    ],
+    "natural_language_request": "Configure counter metric for job 047 with an expiration lifetime of -9999 seconds and negative zero concurrency.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_067",
+    "candidate_tools": [
+      {
+        "description": "Tear down an established conference audio bridge.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Tear down an established conference audio bridge.",
+          "properties": {
+            "archive_recording": {
+              "description": "Persist audio capture to cold storage",
+              "type": "boolean"
+            },
+            "bridge_id": {
+              "description": "Conference bridge identifier",
+              "minLength": 4,
+              "type": "string"
+            },
+            "termination_reason": {
+              "description": "Audit rationale for bridge shutdown",
+              "type": "string"
+            }
+          },
+          "required": [
+            "bridge_id"
+          ],
+          "title": "synth_terminate_voice_bridge",
+          "type": "object"
+        },
+        "tool_name": "synth_terminate_voice_bridge"
+      },
+      {
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Coordinate cluster consensus state and membership across peer nodes.",
+          "properties": {
+            "cluster_domain": {
+              "description": "Consensus cluster domain",
+              "minLength": 3,
+              "type": "string"
+            },
+            "consensus_config": {
+              "additionalProperties": false,
+              "description": "Raft/Paxos consensus parameters",
+              "properties": {
+                "election_timeout_ms": {
+                  "maximum": 5000,
+                  "minimum": 150,
+                  "type": "integer"
+                },
+                "quorum_size": {
+                  "maximum": 9,
+                  "minimum": 3,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "quorum_size",
+                "election_timeout_ms"
+              ],
+              "type": "object"
+            },
+            "member_nodes": {
+              "description": "Active peer node connection endpoints",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "minLength": 7,
+                    "type": "string"
+                  },
+                  "node_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "node_id",
+                  "address"
+                ],
+                "type": "object"
+              },
+              "minItems": 3,
+              "type": "array"
+            }
+          },
+          "required": [
+            "cluster_domain",
+            "consensus_config",
+            "member_nodes"
+          ],
+          "title": "synth_synchronize_distributed_cluster",
+          "type": "object"
+        },
+        "tool_name": "synth_synchronize_distributed_cluster"
+      },
+      {
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+          "properties": {
+            "auto_terminate": {
+              "description": "Shut down worker upon queue exhaustion",
+              "type": "boolean"
+            },
+            "job_ids": {
+              "description": "Assigned job identifiers",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "worker_concurrency": {
+              "description": "Parallel thread count",
+              "maximum": 32,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "worker_pool": {
+              "description": "Compute tier",
+              "enum": [
+                "cpu_optimized",
+                "memory_optimized",
+                "standard"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "worker_pool",
+            "job_ids"
+          ],
+          "title": "synth_dispatch_batch_worker",
+          "type": "object"
+        },
+        "tool_name": "synth_dispatch_batch_worker"
+      }
+    ],
+    "natural_language_request": "Transcribe all related audio communications for access token (run #050) into French subtitles in real time.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_068",
+    "candidate_tools": [
+      {
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Broadcast a critical operational alert across multiple notification channels.",
+          "properties": {
+            "alert_title": {
+              "description": "Short alert title",
+              "minLength": 1,
+              "type": "string"
+            },
+            "auto_resolve_minutes": {
+              "description": "Automatic timeout before auto-resolve",
+              "maximum": 1440,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "severity_level": {
+              "description": "Alert severity tier",
+              "enum": [
+                "INFO",
+                "WARNING",
+                "CRITICAL",
+                "FATAL"
+              ],
+              "type": "string"
+            },
+            "target_channels": {
+              "description": "Broadcast destination channels",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "alert_title",
+            "severity_level",
+            "target_channels"
+          ],
+          "title": "synth_broadcast_alert_notification",
+          "type": "object"
+        },
+        "tool_name": "synth_broadcast_alert_notification"
+      },
+      {
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Report service agent health heartbeat with unix epoch timestamp.",
+          "properties": {
+            "epoch_seconds": {
+              "description": "Unix timestamp in seconds",
+              "minimum": 1600000000,
+              "type": "integer"
+            },
+            "is_healthy": {
+              "description": "Self-reported health state",
+              "type": "boolean"
+            },
+            "service_name": {
+              "description": "Service instance name",
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "service_name",
+            "epoch_seconds",
+            "is_healthy"
+          ],
+          "title": "synth_record_heartbeat_timestamp",
+          "type": "object"
+        },
+        "tool_name": "synth_record_heartbeat_timestamp"
+      },
+      {
+        "description": "Register a recurring automated task schedule with target queue.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Register a recurring automated task schedule with target queue.",
+          "properties": {
+            "alert_emails": {
+              "description": "Failure notification recipients",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "cron_expression": {
+              "description": "Standard 5-part cron syntax",
+              "minLength": 9,
+              "type": "string"
+            },
+            "job_name": {
+              "description": "Unique cron job name",
+              "minLength": 2,
+              "type": "string"
+            },
+            "target_queue": {
+              "description": "Target dispatch queue",
+              "enum": [
+                "default",
+                "high_priority",
+                "batch_overnight"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "job_name",
+            "cron_expression",
+            "target_queue"
+          ],
+          "title": "synth_schedule_cron_job",
+          "type": "object"
+        },
+        "tool_name": "synth_schedule_cron_job"
+      }
+    ],
+    "natural_language_request": "Execute evaluate for anomaly detector (request #019) setting maximum capacity to -1 and minimum threshold to 999999.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_070",
+    "candidate_tools": [
+      {
+        "description": "Impose an administrative lock on a compromised user account.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Impose an administrative lock on a compromised user account.",
+          "properties": {
+            "lock_hours": {
+              "description": "Lock duration in hours",
+              "maximum": 720,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "require_password_reset": {
+              "description": "Enforce password reset on unlock",
+              "type": "boolean"
+            },
+            "user_id": {
+              "description": "Target user identifier",
+              "minLength": 4,
+              "type": "string"
+            }
+          },
+          "required": [
+            "user_id",
+            "lock_hours"
+          ],
+          "title": "synth_lock_user_account",
+          "type": "object"
+        },
+        "tool_name": "synth_lock_user_account"
+      },
+      {
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Purge entries matching a specific key pattern from the cache.",
+          "properties": {
+            "cascade_eviction": {
+              "description": "Evict child keys recursively",
+              "type": "boolean"
+            },
+            "key_pattern": {
+              "description": "Glob or prefix pattern",
+              "minLength": 1,
+              "type": "string"
+            },
+            "max_evictions": {
+              "description": "Eviction batch cap",
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "key_pattern"
+          ],
+          "title": "synth_delete_cache_entry",
+          "type": "object"
+        },
+        "tool_name": "synth_delete_cache_entry"
+      },
+      {
+        "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+          "properties": {
+            "artifact_paths": {
+              "description": "Input artifact files",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "pipeline_id": {
+              "description": "Workflow pipeline definition ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "stage_name": {
+              "description": "Target execution stage",
+              "enum": [
+                "lint",
+                "unit_test",
+                "integration_test",
+                "security_scan",
+                "package"
+              ],
+              "type": "string"
+            },
+            "timeout_seconds": {
+              "description": "Maximum stage runtime",
+              "maximum": 3600,
+              "minimum": 10,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "pipeline_id",
+            "stage_name"
+          ],
+          "title": "synth_trigger_pipeline_stage",
+          "type": "object"
+        },
+        "tool_name": "synth_trigger_pipeline_stage"
+      }
+    ],
+    "natural_language_request": "Execute manage for deployment rollout (request #039) setting maximum capacity to -1 and minimum threshold to 999999.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_076",
+    "candidate_tools": [
+      {
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Prolong an active authenticated session lease by a given duration.",
+          "properties": {
+            "extension_minutes": {
+              "description": "Extension duration",
+              "maximum": 480,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "session_id": {
+              "description": "Active session cookie ID",
+              "minLength": 8,
+              "type": "string"
+            },
+            "touch_activity": {
+              "description": "Update last active timestamp",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "session_id",
+            "extension_minutes"
+          ],
+          "title": "synth_extend_session_lease",
+          "type": "object"
+        },
+        "tool_name": "synth_extend_session_lease"
+      },
+      {
+        "description": "Send an SMS text message to a designated phone destination.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Send an SMS text message to a designated phone destination.",
+          "properties": {
+            "message_body": {
+              "description": "SMS text body",
+              "maxLength": 160,
+              "minLength": 1,
+              "type": "string"
+            },
+            "priority": {
+              "description": "Queue priority from 1 to 5",
+              "maximum": 5,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "recipient_number": {
+              "description": "E.164 phone number",
+              "maxLength": 16,
+              "minLength": 8,
+              "type": "string"
+            }
+          },
+          "required": [
+            "recipient_number",
+            "message_body"
+          ],
+          "title": "synth_dispatch_sms_message",
+          "type": "object"
+        },
+        "tool_name": "synth_dispatch_sms_message"
+      },
+      {
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+          "properties": {
+            "retention": {
+              "additionalProperties": false,
+              "description": "Snapshot expiration parameters",
+              "properties": {
+                "days": {
+                  "maximum": 365,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "lock_deletion": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "days"
+              ],
+              "type": "object"
+            },
+            "snapshot_metadata": {
+              "additionalProperties": false,
+              "description": "Descriptive snapshot labels",
+              "properties": {
+                "creator": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "environment": {
+                  "enum": [
+                    "prod",
+                    "stage",
+                    "dev"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "creator",
+                "environment"
+              ],
+              "type": "object"
+            },
+            "volume_id": {
+              "description": "Target block storage volume",
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "volume_id",
+            "snapshot_metadata",
+            "retention"
+          ],
+          "title": "synth_register_storage_snapshot",
+          "type": "object"
+        },
+        "tool_name": "synth_register_storage_snapshot"
+      }
+    ],
+    "natural_language_request": "Handle the recent events on sso identity provider for batch 036 using whatever system seems most appropriate.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_077",
+    "candidate_tools": [
+      {
+        "description": "Submit a collection of document IDs for search indexing.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Submit a collection of document IDs for search indexing.",
+          "properties": {
+            "collection_name": {
+              "description": "Search index name",
+              "minLength": 1,
+              "type": "string"
+            },
+            "index_mode": {
+              "description": "Indexing commitment mode",
+              "enum": [
+                "synchronous",
+                "asynchronous",
+                "lazy"
+              ],
+              "type": "string"
+            },
+            "record_ids": {
+              "description": "List of record identifiers",
+              "items": {
+                "type": "string"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "type": "array"
+            },
+            "refresh_view": {
+              "description": "Force immediate index view refresh",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "collection_name",
+            "record_ids",
+            "index_mode"
+          ],
+          "title": "synth_batch_index_records",
+          "type": "object"
+        },
+        "tool_name": "synth_batch_index_records"
+      },
+      {
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+          "properties": {
+            "dataset_name": {
+              "description": "Target metrics catalog",
+              "minLength": 2,
+              "type": "string"
+            },
+            "format_spec": {
+              "additionalProperties": false,
+              "description": "Export serialization format",
+              "properties": {
+                "compress": {
+                  "type": "boolean"
+                },
+                "format_type": {
+                  "enum": [
+                    "csv",
+                    "parquet",
+                    "jsonl"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "format_type"
+              ],
+              "type": "object"
+            },
+            "query_window": {
+              "additionalProperties": false,
+              "description": "Temporal boundaries",
+              "properties": {
+                "end_epoch": {
+                  "minimum": 1600000000,
+                  "type": "integer"
+                },
+                "interval_seconds": {
+                  "maximum": 3600,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "start_epoch": {
+                  "minimum": 1600000000,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "start_epoch",
+                "end_epoch"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "dataset_name",
+            "query_window",
+            "format_spec"
+          ],
+          "title": "synth_export_timeseries_dataset",
+          "type": "object"
+        },
+        "tool_name": "synth_export_timeseries_dataset"
+      },
+      {
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Run statistical outlier detection on a series with specified sensitivity.",
+          "properties": {
+            "detector_id": {
+              "description": "Anomaly detection model name",
+              "minLength": 3,
+              "type": "string"
+            },
+            "emit_alert": {
+              "description": "Trigger alert pipeline if anomaly detected",
+              "type": "boolean"
+            },
+            "sensitivity": {
+              "description": "Standard deviation threshold tier",
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "paranoid"
+              ],
+              "type": "string"
+            },
+            "training_windows": {
+              "description": "Historical comparative day offsets",
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "detector_id",
+            "sensitivity",
+            "training_windows"
+          ],
+          "title": "synth_evaluate_anomaly_detector",
+          "type": "object"
+        },
+        "tool_name": "synth_evaluate_anomaly_detector"
+      }
+    ],
+    "natural_language_request": "Take care of the open items regarding sso identity provider (incident #076) across all services.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_081",
+    "candidate_tools": [
+      {
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+          "properties": {
+            "notify_subject": {
+              "description": "Send notification email to token owner",
+              "type": "boolean"
+            },
+            "reason": {
+              "description": "Security revocation rationale",
+              "type": "string"
+            },
+            "token_id": {
+              "description": "Token unique identifier (jti)",
+              "minLength": 8,
+              "type": "string"
+            }
+          },
+          "required": [
+            "token_id"
+          ],
+          "title": "synth_revoke_access_token",
+          "type": "object"
+        },
+        "tool_name": "synth_revoke_access_token"
+      },
+      {
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Broadcast a critical operational alert across multiple notification channels.",
+          "properties": {
+            "alert_title": {
+              "description": "Short alert title",
+              "minLength": 1,
+              "type": "string"
+            },
+            "auto_resolve_minutes": {
+              "description": "Automatic timeout before auto-resolve",
+              "maximum": 1440,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "severity_level": {
+              "description": "Alert severity tier",
+              "enum": [
+                "INFO",
+                "WARNING",
+                "CRITICAL",
+                "FATAL"
+              ],
+              "type": "string"
+            },
+            "target_channels": {
+              "description": "Broadcast destination channels",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "alert_title",
+            "severity_level",
+            "target_channels"
+          ],
+          "title": "synth_broadcast_alert_notification",
+          "type": "object"
+        },
+        "tool_name": "synth_broadcast_alert_notification"
+      },
+      {
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Migrate partition slices from source cluster to target destination cluster.",
+          "properties": {
+            "migration_id": {
+              "description": "Migration operation tracking ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "source": {
+              "additionalProperties": false,
+              "description": "Source storage specification",
+              "properties": {
+                "cluster_name": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "slice_id": {
+                  "minimum": 0,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "cluster_name",
+                "slice_id"
+              ],
+              "type": "object"
+            },
+            "target": {
+              "additionalProperties": false,
+              "description": "Target storage destination",
+              "properties": {
+                "cluster_name": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "datacenter": {
+                  "minLength": 2,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "cluster_name",
+                "datacenter"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "migration_id",
+            "source",
+            "target"
+          ],
+          "title": "synth_execute_partition_migration",
+          "type": "object"
+        },
+        "tool_name": "synth_execute_partition_migration"
+      }
+    ],
+    "natural_language_request": "Perform an automated physical hardware diagnostic for batch 026 on the motherboard powering paused execution.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_082",
+    "candidate_tools": [
+      {
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+          "properties": {
+            "pipeline_name": {
+              "description": "Pipeline execution job name",
+              "minLength": 3,
+              "type": "string"
+            },
+            "sink_connector": {
+              "additionalProperties": false,
+              "description": "Target warehouse loader",
+              "properties": {
+                "table_mode": {
+                  "enum": [
+                    "append",
+                    "overwrite",
+                    "merge"
+                  ],
+                  "type": "string"
+                },
+                "warehouse": {
+                  "enum": [
+                    "snowflake",
+                    "bigquery",
+                    "redshift"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "warehouse",
+                "table_mode"
+              ],
+              "type": "object"
+            },
+            "source_connector": {
+              "additionalProperties": false,
+              "description": "Origin database extractor",
+              "properties": {
+                "connector_type": {
+                  "enum": [
+                    "postgres",
+                    "mysql",
+                    "mongodb"
+                  ],
+                  "type": "string"
+                },
+                "query_timeout_sec": {
+                  "maximum": 300,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connector_type"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "pipeline_name",
+            "source_connector",
+            "sink_connector"
+          ],
+          "title": "synth_orchestrate_etl_pipeline",
+          "type": "object"
+        },
+        "tool_name": "synth_orchestrate_etl_pipeline"
+      },
+      {
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute a timeseries aggregation query over specified dimensions.",
+          "properties": {
+            "aggregation": {
+              "description": "Statistical aggregator",
+              "enum": [
+                "avg",
+                "sum",
+                "min",
+                "max",
+                "p95",
+                "p99"
+              ],
+              "type": "string"
+            },
+            "filter_dimensions": {
+              "description": "Key=value tag filters",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "metric_series": {
+              "description": "Metric timeseries identifier",
+              "minLength": 1,
+              "type": "string"
+            },
+            "window_seconds": {
+              "description": "Aggregation window width",
+              "maximum": 86400,
+              "minimum": 60,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "metric_series",
+            "aggregation",
+            "window_seconds"
+          ],
+          "title": "synth_query_metric_aggregate",
+          "type": "object"
+        },
+        "tool_name": "synth_query_metric_aggregate"
+      },
+      {
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+          "properties": {
+            "auto_terminate": {
+              "description": "Shut down worker upon queue exhaustion",
+              "type": "boolean"
+            },
+            "job_ids": {
+              "description": "Assigned job identifiers",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "worker_concurrency": {
+              "description": "Parallel thread count",
+              "maximum": 32,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "worker_pool": {
+              "description": "Compute tier",
+              "enum": [
+                "cpu_optimized",
+                "memory_optimized",
+                "standard"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "worker_pool",
+            "job_ids"
+          ],
+          "title": "synth_dispatch_batch_worker",
+          "type": "object"
+        },
+        "tool_name": "synth_dispatch_batch_worker"
+      }
+    ],
+    "natural_language_request": "We want to reset quota usage in partition part_009. Run this operation now without providing parameter values.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_084",
+    "candidate_tools": [
+      {
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+          "properties": {
+            "pipeline_name": {
+              "description": "Pipeline execution job name",
+              "minLength": 3,
+              "type": "string"
+            },
+            "sink_connector": {
+              "additionalProperties": false,
+              "description": "Target warehouse loader",
+              "properties": {
+                "table_mode": {
+                  "enum": [
+                    "append",
+                    "overwrite",
+                    "merge"
+                  ],
+                  "type": "string"
+                },
+                "warehouse": {
+                  "enum": [
+                    "snowflake",
+                    "bigquery",
+                    "redshift"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "warehouse",
+                "table_mode"
+              ],
+              "type": "object"
+            },
+            "source_connector": {
+              "additionalProperties": false,
+              "description": "Origin database extractor",
+              "properties": {
+                "connector_type": {
+                  "enum": [
+                    "postgres",
+                    "mysql",
+                    "mongodb"
+                  ],
+                  "type": "string"
+                },
+                "query_timeout_sec": {
+                  "maximum": 300,
+                  "minimum": 1,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connector_type"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "pipeline_name",
+            "source_connector",
+            "sink_connector"
+          ],
+          "title": "synth_orchestrate_etl_pipeline",
+          "type": "object"
+        },
+        "tool_name": "synth_orchestrate_etl_pipeline"
+      },
+      {
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Broadcast a critical operational alert across multiple notification channels.",
+          "properties": {
+            "alert_title": {
+              "description": "Short alert title",
+              "minLength": 1,
+              "type": "string"
+            },
+            "auto_resolve_minutes": {
+              "description": "Automatic timeout before auto-resolve",
+              "maximum": 1440,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "severity_level": {
+              "description": "Alert severity tier",
+              "enum": [
+                "INFO",
+                "WARNING",
+                "CRITICAL",
+                "FATAL"
+              ],
+              "type": "string"
+            },
+            "target_channels": {
+              "description": "Broadcast destination channels",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            }
+          },
+          "required": [
+            "alert_title",
+            "severity_level",
+            "target_channels"
+          ],
+          "title": "synth_broadcast_alert_notification",
+          "type": "object"
+        },
+        "tool_name": "synth_broadcast_alert_notification"
+      },
+      {
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Reset API invocation consumption counter for a specific tenant.",
+          "properties": {
+            "grace_period_minutes": {
+              "description": "Exemption duration",
+              "maximum": 1440,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "quota_bucket": {
+              "description": "Rate limit bucket key",
+              "minLength": 1,
+              "type": "string"
+            },
+            "tenant_id": {
+              "description": "Account tenant identifier",
+              "minLength": 3,
+              "type": "string"
+            }
+          },
+          "required": [
+            "tenant_id",
+            "quota_bucket"
+          ],
+          "title": "synth_reset_quota_usage",
+          "type": "object"
+        },
+        "tool_name": "synth_reset_quota_usage"
+      }
+    ],
+    "natural_language_request": "Handle the recent events on pipeline stage for batch 024 using whatever system seems most appropriate.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_085",
+    "candidate_tools": [
+      {
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Apply subnet network security group filtering and packet inspection rules.",
+          "properties": {
+            "boundary_id": {
+              "description": "VPC or subnet identifier",
+              "minLength": 3,
+              "type": "string"
+            },
+            "ingress_policy": {
+              "additionalProperties": false,
+              "description": "Inbound packet rules",
+              "properties": {
+                "allowed_cidr": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "ports": {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                }
+              },
+              "required": [
+                "allowed_cidr",
+                "ports"
+              ],
+              "type": "object"
+            },
+            "inspection_tier": {
+              "description": "Firewall filtering depth",
+              "enum": [
+                "stateless",
+                "stateful_inspection",
+                "deep_packet_dpi"
+              ],
+              "type": "string"
+            }
+          },
+          "required": [
+            "boundary_id",
+            "ingress_policy",
+            "inspection_tier"
+          ],
+          "title": "synth_enforce_security_boundary",
+          "type": "object"
+        },
+        "tool_name": "synth_enforce_security_boundary"
+      },
+      {
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Prolong an active authenticated session lease by a given duration.",
+          "properties": {
+            "extension_minutes": {
+              "description": "Extension duration",
+              "maximum": 480,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "session_id": {
+              "description": "Active session cookie ID",
+              "minLength": 8,
+              "type": "string"
+            },
+            "touch_activity": {
+              "description": "Update last active timestamp",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "session_id",
+            "extension_minutes"
+          ],
+          "title": "synth_extend_session_lease",
+          "type": "object"
+        },
+        "tool_name": "synth_extend_session_lease"
+      },
+      {
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Coordinate cluster consensus state and membership across peer nodes.",
+          "properties": {
+            "cluster_domain": {
+              "description": "Consensus cluster domain",
+              "minLength": 3,
+              "type": "string"
+            },
+            "consensus_config": {
+              "additionalProperties": false,
+              "description": "Raft/Paxos consensus parameters",
+              "properties": {
+                "election_timeout_ms": {
+                  "maximum": 5000,
+                  "minimum": 150,
+                  "type": "integer"
+                },
+                "quorum_size": {
+                  "maximum": 9,
+                  "minimum": 3,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "quorum_size",
+                "election_timeout_ms"
+              ],
+              "type": "object"
+            },
+            "member_nodes": {
+              "description": "Active peer node connection endpoints",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "minLength": 7,
+                    "type": "string"
+                  },
+                  "node_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "node_id",
+                  "address"
+                ],
+                "type": "object"
+              },
+              "minItems": 3,
+              "type": "array"
+            }
+          },
+          "required": [
+            "cluster_domain",
+            "consensus_config",
+            "member_nodes"
+          ],
+          "title": "synth_synchronize_distributed_cluster",
+          "type": "object"
+        },
+        "tool_name": "synth_synchronize_distributed_cluster"
+      }
+    ],
+    "natural_language_request": "Perform an automated physical hardware diagnostic for batch 018 on the motherboard powering metric aggregate.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_086",
+    "candidate_tools": [
+      {
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+          "properties": {
+            "affected_services": {
+              "description": "Downstream services requiring key reload",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "algorithm": {
+              "description": "Cryptographic cipher",
+              "enum": [
+                "AES-256-GCM",
+                "ChaCha20-Poly1305",
+                "RSA-4096"
+              ],
+              "type": "string"
+            },
+            "grace_period_hours": {
+              "description": "Overlap period where old key remains valid",
+              "maximum": 168,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "secret_slug": {
+              "description": "Secret vault key identifier",
+              "minLength": 2,
+              "type": "string"
+            }
+          },
+          "required": [
+            "secret_slug",
+            "algorithm"
+          ],
+          "title": "synth_rotate_secret_key",
+          "type": "object"
+        },
+        "tool_name": "synth_rotate_secret_key"
+      },
+      {
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Control canary progression and rollback parameters for an application release.",
+          "properties": {
+            "application_id": {
+              "description": "Deployed microservice ID",
+              "minLength": 2,
+              "type": "string"
+            },
+            "canary_strategy": {
+              "additionalProperties": false,
+              "description": "Progressive traffic shift parameters",
+              "properties": {
+                "initial_percentage": {
+                  "maximum": 50,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "step_duration_minutes": {
+                  "maximum": 120,
+                  "minimum": 5,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "initial_percentage",
+                "step_duration_minutes"
+              ],
+              "type": "object"
+            },
+            "rollback_thresholds": {
+              "additionalProperties": false,
+              "description": "Error circuit-breaker triggers",
+              "properties": {
+                "max_error_rate_percent": {
+                  "maximum": 10.0,
+                  "minimum": 0.1,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "max_error_rate_percent"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "application_id",
+            "canary_strategy",
+            "rollback_thresholds"
+          ],
+          "title": "synth_manage_deployment_rollout",
+          "type": "object"
+        },
+        "tool_name": "synth_manage_deployment_rollout"
+      },
+      {
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Schedule an aggregated email digest for a recipient list.",
+          "properties": {
+            "digest_frequency": {
+              "description": "Aggregation cadence",
+              "enum": [
+                "daily",
+                "weekly",
+                "monthly"
+              ],
+              "type": "string"
+            },
+            "recipients": {
+              "description": "Recipient email addresses",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            "template_slug": {
+              "description": "Email layout template ID",
+              "minLength": 1,
+              "type": "string"
+            },
+            "track_opens": {
+              "description": "Embed tracking pixel",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "template_slug",
+            "recipients",
+            "digest_frequency"
+          ],
+          "title": "synth_enqueue_email_digest",
+          "type": "object"
+        },
+        "tool_name": "synth_enqueue_email_digest"
+      }
+    ],
+    "natural_language_request": "Transcribe all related audio communications for api credential (run #022) into French subtitles in real time.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  },
+  {
+    "benchmark_release": "RELEASE_2",
+    "blind_task_id": "BLIND_R2_TASK_087",
+    "candidate_tools": [
+      {
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Coordinate cluster consensus state and membership across peer nodes.",
+          "properties": {
+            "cluster_domain": {
+              "description": "Consensus cluster domain",
+              "minLength": 3,
+              "type": "string"
+            },
+            "consensus_config": {
+              "additionalProperties": false,
+              "description": "Raft/Paxos consensus parameters",
+              "properties": {
+                "election_timeout_ms": {
+                  "maximum": 5000,
+                  "minimum": 150,
+                  "type": "integer"
+                },
+                "quorum_size": {
+                  "maximum": 9,
+                  "minimum": 3,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "quorum_size",
+                "election_timeout_ms"
+              ],
+              "type": "object"
+            },
+            "member_nodes": {
+              "description": "Active peer node connection endpoints",
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "address": {
+                    "minLength": 7,
+                    "type": "string"
+                  },
+                  "node_id": {
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "node_id",
+                  "address"
+                ],
+                "type": "object"
+              },
+              "minItems": 3,
+              "type": "array"
+            }
+          },
+          "required": [
+            "cluster_domain",
+            "consensus_config",
+            "member_nodes"
+          ],
+          "title": "synth_synchronize_distributed_cluster",
+          "type": "object"
+        },
+        "tool_name": "synth_synchronize_distributed_cluster"
+      },
+      {
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+          "properties": {
+            "dataset_name": {
+              "description": "Target metrics catalog",
+              "minLength": 2,
+              "type": "string"
+            },
+            "format_spec": {
+              "additionalProperties": false,
+              "description": "Export serialization format",
+              "properties": {
+                "compress": {
+                  "type": "boolean"
+                },
+                "format_type": {
+                  "enum": [
+                    "csv",
+                    "parquet",
+                    "jsonl"
+                  ],
+                  "type": "string"
+                }
+              },
+              "required": [
+                "format_type"
+              ],
+              "type": "object"
+            },
+            "query_window": {
+              "additionalProperties": false,
+              "description": "Temporal boundaries",
+              "properties": {
+                "end_epoch": {
+                  "minimum": 1600000000,
+                  "type": "integer"
+                },
+                "interval_seconds": {
+                  "maximum": 3600,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "start_epoch": {
+                  "minimum": 1600000000,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "start_epoch",
+                "end_epoch"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "dataset_name",
+            "query_window",
+            "format_spec"
+          ],
+          "title": "synth_export_timeseries_dataset",
+          "type": "object"
+        },
+        "tool_name": "synth_export_timeseries_dataset"
+      },
+      {
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "additionalProperties": false,
+          "description": "Dispatch incoming support ticket across routing and priority constraints.",
+          "properties": {
+            "conversation_id": {
+              "description": "Customer inquiry ticket ID",
+              "minLength": 3,
+              "type": "string"
+            },
+            "fallback_queue": {
+              "description": "Default destination if no agent available",
+              "type": "string"
+            },
+            "routing_criteria": {
+              "additionalProperties": false,
+              "description": "Agent matching criteria",
+              "properties": {
+                "language": {
+                  "description": "ISO language code",
+                  "minLength": 2,
+                  "type": "string"
+                },
+                "priority_weight": {
+                  "maximum": 100,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "skill_tags": {
+                  "description": "Required agent competencies",
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "required": [
+                "language"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "conversation_id",
+            "routing_criteria"
+          ],
+          "title": "synth_route_omnichannel_conversation",
+          "type": "object"
+        },
+        "tool_name": "synth_route_omnichannel_conversation"
+      }
+    ],
+    "natural_language_request": "Update audit scorecard for partition 075 with a lock duration of zero seconds while enforcing permanent exclusivity.",
+    "packet_type": "ABSTENTION_REVIEW",
+    "required_evaluation_fields": {
+      "confidence_score": "integer 1-5 (1=low, 5=high certainty)",
+      "is_abstention_required": "boolean (true if request cannot be fulfilled by any tool)",
+      "is_ambiguous": "boolean (true if request is contradictory or under-specified)",
+      "reviewer_notes": "optional free-text justification",
+      "selected_tool_name": "string (name of chosen tool, or null if abstaining)",
+      "submitted_arguments": "object (JSON dictionary of arguments for chosen tool)"
+    },
+    "review_instructions": "Determine whether any candidate tool can fulfill the request. If none can fulfill it or if critical information is missing, record an abstention."
+  }
+]

@@ -21,6 +21,13 @@
           <label for="pseudonym">Reviewer Pseudonym:</label>
           <input type="text" id="pseudonym" name="pseudonym" required placeholder="e.g. reviewer_01">
         </div>
+        <div class="form-group">
+          <label for="release">Benchmark Release:</label>
+          <select id="release" name="release" class="form-control">
+            <option value="release2" selected>Release 2 (Active Remediated Benchmark)</option>
+            <option value="release1">Release 1 (Historical Diagnostic)</option>
+          </select>
+        </div>
         <button type="submit" class="btn">Enter Session</button>
       </form>
     </div>

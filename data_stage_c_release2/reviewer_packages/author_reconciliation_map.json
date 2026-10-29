@@ -1,0 +1,1490 @@
+{
+  "author_reconciliation_key": [
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "blind_task_id": "BLIND_R2_TASK_001",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "message_body": "Your verification code is 492011",
+        "priority": 1,
+        "recipient_number": "+14693636353"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_dispatch_sms_message",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_004",
+      "release_2_task_id": "TASK_R2_AC_004",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "blind_task_id": "BLIND_R2_TASK_002",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "aggregation": "p99",
+        "filter_dimensions": [
+          "region=us-east",
+          "env=prod"
+        ],
+        "metric_series": "api_latency_ms",
+        "window_seconds": 300
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_query_metric_aggregate",
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "paired_group_id": "PAIR_GROUP_018",
+      "release_2_task_id": "TASK_R2_AC_068",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "blind_task_id": "BLIND_R2_TASK_003",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_029",
+      "release_2_task_id": "TASK_R2_AB_029",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "blind_task_id": "BLIND_R2_TASK_004",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_069",
+      "release_2_task_id": "TASK_R2_AB_069",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "blind_task_id": "BLIND_R2_TASK_005",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_064",
+      "release_2_task_id": "TASK_R2_AB_064",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "blind_task_id": "BLIND_R2_TASK_006",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "cancellation_policy": "immediate_kill",
+        "payload_parameters": {
+          "cleanup_tags": [
+            "temp_db",
+            "staging_s3"
+          ],
+          "task_id": "task_sub_4",
+          "workflow_id": "wf_10928"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_cancel_workflow_task",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_025",
+      "release_2_task_id": "TASK_R2_AC_050",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_032",
+      "blind_task_id": "BLIND_R2_TASK_007",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "conversation_id": "conv_1102",
+        "routing_criteria": {
+          "language": "es"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_route_omnichannel_conversation",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_072",
+      "release_2_task_id": "TASK_R2_TS_072",
+      "target_position": 1
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "blind_task_id": "BLIND_R2_TASK_008",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "artifact_paths": [
+          "build/bin.tar.gz"
+        ],
+        "payload_parameters": {
+          "pipeline_id": "pipe_release_v2",
+          "stage_name": "integration_test",
+          "timeout_seconds": 600
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_trigger_pipeline_stage",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_024",
+      "release_2_task_id": "TASK_R2_AC_049",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_020",
+      "blind_task_id": "BLIND_R2_TASK_009",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "bucket_boundaries": [
+          100.0,
+          500.0,
+          1000.0,
+          5000.0
+        ],
+        "histogram_name": "rpc_response_size",
+        "sample_count": 120,
+        "unit": "bytes"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_publish_metric_histogram",
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "paired_group_id": "PAIR_GROUP_020",
+      "release_2_task_id": "TASK_R2_AC_070",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "blind_task_id": "BLIND_R2_TASK_010",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "message_body": "Appointment reminder for tomorrow.",
+        "recipient_number": "+12145550199"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_dispatch_sms_message",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_084",
+      "release_2_task_id": "TASK_R2_TS_084",
+      "target_position": 3
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "blind_task_id": "BLIND_R2_TASK_011",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "affected_services": [
+          "auth-srv",
+          "api-gateway"
+        ],
+        "payload_parameters": {
+          "algorithm": "AES-256-GCM",
+          "grace_period_hours": 24,
+          "secret_slug": "jwt_signing_key"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_rotate_secret_key",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_023",
+      "release_2_task_id": "TASK_R2_AC_048",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_029",
+      "blind_task_id": "BLIND_R2_TASK_012",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "cluster_id": "db_prod_main",
+        "enable_ssl": true,
+        "replica_config": {
+          "node_name": "replica_east_1",
+          "port": 5432,
+          "read_only": true
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_configure_database_replica",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_069",
+      "release_2_task_id": "TASK_R2_TS_069",
+      "target_position": 3
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_008",
+      "blind_task_id": "BLIND_R2_TASK_013",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_048",
+      "release_2_task_id": "TASK_R2_AB_048",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "blind_task_id": "BLIND_R2_TASK_014",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_011",
+      "release_2_task_id": "TASK_R2_AB_011",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "blind_task_id": "BLIND_R2_TASK_015",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "detector_id": "traffic_spike_detector",
+        "emit_alert": true,
+        "sensitivity": "high",
+        "training_windows": [
+          1,
+          7,
+          14
+        ]
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_evaluate_anomaly_detector",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_019",
+      "release_2_task_id": "TASK_R2_TS_019",
+      "target_position": 3
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "blind_task_id": "BLIND_R2_TASK_016",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "key": "user_1024",
+        "overwrite": true,
+        "ttl_seconds": 3600,
+        "value": "session_active"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_create_key_value",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_041",
+      "release_2_task_id": "TASK_R2_TS_041",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "blind_task_id": "BLIND_R2_TASK_017",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_025",
+      "release_2_task_id": "TASK_R2_AB_025",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_015",
+      "blind_task_id": "BLIND_R2_TASK_018",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "alert_title": "Database High Memory",
+        "auto_resolve_minutes": 60,
+        "severity_level": "CRITICAL",
+        "target_channels": [
+          "slack-ops",
+          "pagerduty-sre"
+        ]
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_broadcast_alert_notification",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_095",
+      "release_2_task_id": "TASK_R2_TS_095",
+      "target_position": 4
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_030",
+      "blind_task_id": "BLIND_R2_TASK_019",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "migration_id": "mig_8810",
+        "source": {
+          "cluster_name": "staging_a",
+          "slice_id": 0
+        },
+        "target": {
+          "cluster_name": "staging_b",
+          "datacenter": "iad-2"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_execute_partition_migration",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_030",
+      "release_2_task_id": "TASK_R2_TS_030",
+      "target_position": 4
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "blind_task_id": "BLIND_R2_TASK_020",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "artifact_paths": [
+          "build/bin.tar.gz"
+        ],
+        "pipeline_id": "pipe_release_v2",
+        "stage_name": "integration_test",
+        "timeout_seconds": 600
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_trigger_pipeline_stage",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_024",
+      "release_2_task_id": "TASK_R2_AC_024",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "blind_task_id": "BLIND_R2_TASK_021",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_087",
+      "release_2_task_id": "TASK_R2_AB_087",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_003",
+      "blind_task_id": "BLIND_R2_TASK_022",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "force_truncate_param": true,
+        "slice_index_param": 3,
+        "table_name_param": "audit_logs_2026"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_truncate_table_slice",
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "paired_group_id": "PAIR_GROUP_003",
+      "release_2_task_id": "TASK_R2_AC_078",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "blind_task_id": "BLIND_R2_TASK_023",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "cascade_eviction": true,
+        "payload_parameters": {
+          "key_pattern": "session:*",
+          "max_evictions": 500
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_delete_cache_entry",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_002",
+      "release_2_task_id": "TASK_R2_AC_027",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "blind_task_id": "BLIND_R2_TASK_024",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "digest_frequency": "monthly",
+        "recipients": [
+          "cfo@example.com"
+        ],
+        "template_slug": "monthly_billing"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_enqueue_email_digest",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_056",
+      "release_2_task_id": "TASK_R2_TS_056",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_015",
+      "blind_task_id": "BLIND_R2_TASK_025",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_095",
+      "release_2_task_id": "TASK_R2_AB_095",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_034",
+      "blind_task_id": "BLIND_R2_TASK_026",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "dataset_name": "error_rates",
+        "format_spec": {
+          "format_type": "csv"
+        },
+        "query_window": {
+          "end_epoch": 1761510000,
+          "start_epoch": 1761500000
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_export_timeseries_dataset",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_034",
+      "release_2_task_id": "TASK_R2_TS_034",
+      "target_position": 3
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "blind_task_id": "BLIND_R2_TASK_027",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "flush_immediately": true,
+        "increment_by": 5,
+        "metric_name": "http_requests_total"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_increment_counter_metric",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_007",
+      "release_2_task_id": "TASK_R2_TS_007",
+      "target_position": 1
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_035",
+      "blind_task_id": "BLIND_R2_TASK_028",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "compliance_rules": {
+          "framework": "PCI_DSS",
+          "strict_mode": true
+        },
+        "target_system": "payment_processing_cluster",
+        "thresholds": {
+          "min_passing_score": 95
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_generate_audit_scorecard",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_075",
+      "release_2_task_id": "TASK_R2_TS_075",
+      "target_position": 4
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "blind_task_id": "BLIND_R2_TASK_029",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "digest_frequency": "weekly",
+        "recipients": [
+          "alice@example.com",
+          "bob@example.com"
+        ],
+        "template_slug": "weekly_developer_digest",
+        "track_opens": false
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_enqueue_email_digest",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_016",
+      "release_2_task_id": "TASK_R2_AC_016",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "blind_task_id": "BLIND_R2_TASK_030",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "cascade_eviction": true,
+        "key_pattern": "session:*",
+        "max_evictions": 500
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_delete_cache_entry",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_002",
+      "release_2_task_id": "TASK_R2_AC_002",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "blind_task_id": "BLIND_R2_TASK_031",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "bridge_id": "bridge_8820"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_terminate_voice_bridge",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_086",
+      "release_2_task_id": "TASK_R2_TS_086",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_009",
+      "blind_task_id": "BLIND_R2_TASK_032",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_089",
+      "release_2_task_id": "TASK_R2_AB_089",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_031",
+      "blind_task_id": "BLIND_R2_TASK_033",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_031",
+      "release_2_task_id": "TASK_R2_AB_031",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "blind_task_id": "BLIND_R2_TASK_034",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "extension_minutes": 60,
+        "session_id": "sess_8839201948",
+        "touch_activity": true
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_extend_session_lease",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_051",
+      "release_2_task_id": "TASK_R2_TS_051",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "blind_task_id": "BLIND_R2_TASK_035",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "extension_minutes": 60,
+        "payload_parameters": {
+          "session_id": "sess_8839201948",
+          "touch_activity": true
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_extend_session_lease",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_011",
+      "release_2_task_id": "TASK_R2_AC_036",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "blind_task_id": "BLIND_R2_TASK_036",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_053",
+      "release_2_task_id": "TASK_R2_AB_053",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "blind_task_id": "BLIND_R2_TASK_037",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "notify_subject": true,
+        "reason": "Suspicious login location",
+        "token_id": "tok_9918274619"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_revoke_access_token",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_010",
+      "release_2_task_id": "TASK_R2_AC_010",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_038",
+      "blind_task_id": "BLIND_R2_TASK_038",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_038",
+      "release_2_task_id": "TASK_R2_AB_038",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "blind_task_id": "BLIND_R2_TASK_039",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_062",
+      "release_2_task_id": "TASK_R2_AB_062",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_031",
+      "blind_task_id": "BLIND_R2_TASK_040",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "retention": {
+          "days": 30,
+          "lock_deletion": true
+        },
+        "snapshot_metadata": {
+          "creator": "sre_automation",
+          "environment": "prod"
+        },
+        "volume_id": "vol_root_prod_01"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_register_storage_snapshot",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_071",
+      "release_2_task_id": "TASK_R2_TS_071",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "blind_task_id": "BLIND_R2_TASK_041",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "key": "user_1024",
+        "overwrite": true,
+        "ttl_seconds": 3600,
+        "value": "session_active"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_create_key_value",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_001",
+      "release_2_task_id": "TASK_R2_AC_001",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "blind_task_id": "BLIND_R2_TASK_042",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "bridge_id": "bridge_8820"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_terminate_voice_bridge",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_046",
+      "release_2_task_id": "TASK_R2_TS_046",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "blind_task_id": "BLIND_R2_TASK_043",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_010",
+      "release_2_task_id": "TASK_R2_AB_010",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "blind_task_id": "BLIND_R2_TASK_044",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "collection_name": "knowledge_docs",
+        "index_mode": "asynchronous",
+        "record_ids": [
+          "doc_1",
+          "doc_2"
+        ],
+        "refresh_view": true
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_batch_index_records",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_093",
+      "release_2_task_id": "TASK_R2_TS_093",
+      "target_position": 2
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "blind_task_id": "BLIND_R2_TASK_045",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "digest_frequency": "weekly",
+        "recipients": [
+          "alice@example.com",
+          "bob@example.com"
+        ],
+        "template_slug": "weekly_developer_digest",
+        "track_opens": false
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_enqueue_email_digest",
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "paired_group_id": "PAIR_GROUP_016",
+      "release_2_task_id": "TASK_R2_AC_066",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "blind_task_id": "BLIND_R2_TASK_046",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "affected_services": [
+          "auth-srv",
+          "api-gateway"
+        ],
+        "algorithm": "AES-256-GCM",
+        "grace_period_hours": 24,
+        "secret_slug": "jwt_signing_key"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_rotate_secret_key",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_063",
+      "release_2_task_id": "TASK_R2_TS_063",
+      "target_position": 2
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "blind_task_id": "BLIND_R2_TASK_047",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "bridge_id": "bridge_8820"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_terminate_voice_bridge",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_006",
+      "release_2_task_id": "TASK_R2_TS_006",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_012",
+      "blind_task_id": "BLIND_R2_TASK_048",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_012",
+      "release_2_task_id": "TASK_R2_AB_012",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "blind_task_id": "BLIND_R2_TASK_049",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "digest_frequency": "monthly",
+        "recipients": [
+          "cfo@example.com"
+        ],
+        "template_slug": "monthly_billing"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_enqueue_email_digest",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_016",
+      "release_2_task_id": "TASK_R2_TS_016",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_023",
+      "blind_task_id": "BLIND_R2_TASK_050",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "affected_services": [
+          "auth-srv",
+          "api-gateway"
+        ],
+        "algorithm": "AES-256-GCM",
+        "grace_period_hours": 24,
+        "secret_slug": "jwt_signing_key"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_rotate_secret_key",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_023",
+      "release_2_task_id": "TASK_R2_TS_023",
+      "target_position": 2
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_001",
+      "blind_task_id": "BLIND_R2_TASK_051",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "key": "user_1024",
+        "overwrite": true,
+        "ttl_seconds": 3600,
+        "value": "session_active"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_create_key_value",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_081",
+      "release_2_task_id": "TASK_R2_TS_081",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "blind_task_id": "BLIND_R2_TASK_052",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "client_name": "payment_gateway_client",
+        "ip_allowlist": [
+          "192.168.1.0/24"
+        ],
+        "rate_limit_rpm": 1200,
+        "target_environment": "production"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_provision_api_credential",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_022",
+      "release_2_task_id": "TASK_R2_AC_022",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_021",
+      "blind_task_id": "BLIND_R2_TASK_053",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "enforce_mfa": true,
+        "payload_parameters": {
+          "permission_scopes": [
+            "read:logs",
+            "restart:service"
+          ],
+          "principal_id": "usr_9918",
+          "role_tier": "operator"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_assign_role_permissions",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_021",
+      "release_2_task_id": "TASK_R2_AC_046",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_030",
+      "blind_task_id": "BLIND_R2_TASK_054",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "migration_id": "mig_8810",
+        "source": {
+          "cluster_name": "staging_a",
+          "slice_id": 0
+        },
+        "target": {
+          "cluster_name": "staging_b",
+          "datacenter": "iad-2"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_execute_partition_migration",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_070",
+      "release_2_task_id": "TASK_R2_TS_070",
+      "target_position": 4
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "blind_task_id": "BLIND_R2_TASK_055",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_045",
+      "release_2_task_id": "TASK_R2_AB_045",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "blind_task_id": "BLIND_R2_TASK_056",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "call_id": "call_9941a",
+        "payload_parameters": {
+          "record_audio": true,
+          "status_code": 200
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_update_call_status",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_005",
+      "release_2_task_id": "TASK_R2_AC_030",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_008",
+      "blind_task_id": "BLIND_R2_TASK_057",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "epoch_seconds": 1761500000,
+        "payload_parameters": {
+          "is_healthy": true,
+          "service_name": "auth_service_node_1"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_record_heartbeat_timestamp",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_008",
+      "release_2_task_id": "TASK_R2_AC_033",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_033",
+      "blind_task_id": "BLIND_R2_TASK_058",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "endpoint": {
+          "signing_secret": "whsec_abcdef123456",
+          "timeout_ms": 3000,
+          "url": "https://api.partner.com/hooks"
+        },
+        "event_type": "payment.succeeded",
+        "max_retries": 3
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_publish_webhook_event",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_073",
+      "release_2_task_id": "TASK_R2_TS_073",
+      "target_position": 2
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_040",
+      "blind_task_id": "BLIND_R2_TASK_059",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "cluster_domain": "raft_cluster_staging",
+        "consensus_config": {
+          "election_timeout_ms": 500,
+          "quorum_size": 3
+        },
+        "member_nodes": [
+          {
+            "address": "127.0.0.1:9001",
+            "node_id": "stage_1"
+          },
+          {
+            "address": "127.0.0.1:9002",
+            "node_id": "stage_2"
+          },
+          {
+            "address": "127.0.0.1:9003",
+            "node_id": "stage_3"
+          }
+        ]
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_synchronize_distributed_cluster",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_040",
+      "release_2_task_id": "TASK_R2_TS_040",
+      "target_position": 4
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_037",
+      "blind_task_id": "BLIND_R2_TASK_060",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_037",
+      "release_2_task_id": "TASK_R2_AB_037",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "blind_task_id": "BLIND_R2_TASK_061",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "call_id": "call_9941a",
+        "record_audio": true,
+        "status_code": 200
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_update_call_status",
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "paired_group_id": "PAIR_GROUP_005",
+      "release_2_task_id": "TASK_R2_AC_055",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "blind_task_id": "BLIND_R2_TASK_062",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "archive_recording_param": true,
+        "bridge_id_param": "bridge_7710",
+        "termination_reason_param": "Host ended call"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_terminate_voice_bridge",
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "paired_group_id": "PAIR_GROUP_006",
+      "release_2_task_id": "TASK_R2_AC_081",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_033",
+      "blind_task_id": "BLIND_R2_TASK_063",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_033",
+      "release_2_task_id": "TASK_R2_AB_033",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "blind_task_id": "BLIND_R2_TASK_064",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_047",
+      "release_2_task_id": "TASK_R2_AB_047",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_011",
+      "blind_task_id": "BLIND_R2_TASK_065",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "extension_minutes": 60,
+        "session_id": "sess_8839201948",
+        "touch_activity": true
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_extend_session_lease",
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_011",
+      "release_2_task_id": "TASK_R2_AC_011",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "blind_task_id": "BLIND_R2_TASK_066",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "aggregation": "avg",
+        "metric_series": "cpu_utilization",
+        "window_seconds": 60
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_query_metric_aggregate",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_018",
+      "release_2_task_id": "TASK_R2_TS_018",
+      "target_position": 2
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_010",
+      "blind_task_id": "BLIND_R2_TASK_067",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_050",
+      "release_2_task_id": "TASK_R2_AB_050",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "blind_task_id": "BLIND_R2_TASK_068",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_019",
+      "release_2_task_id": "TASK_R2_AB_019",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_002",
+      "blind_task_id": "BLIND_R2_TASK_069",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "key_pattern": "temp:auth:99"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_delete_cache_entry",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_042",
+      "release_2_task_id": "TASK_R2_TS_042",
+      "target_position": 1
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_039",
+      "blind_task_id": "BLIND_R2_TASK_070",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_039",
+      "release_2_task_id": "TASK_R2_AB_039",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_025",
+      "blind_task_id": "BLIND_R2_TASK_071",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "cancellation_policy": "immediate_kill",
+        "cleanup_tags": [
+          "temp_db",
+          "staging_s3"
+        ],
+        "task_id": "task_sub_4",
+        "workflow_id": "wf_10928"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_cancel_workflow_task",
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "paired_group_id": "PAIR_GROUP_025",
+      "release_2_task_id": "TASK_R2_AC_075",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "blind_task_id": "BLIND_R2_TASK_072",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "aggregation": "avg",
+        "metric_series": "cpu_utilization",
+        "window_seconds": 60
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_query_metric_aggregate",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_058",
+      "release_2_task_id": "TASK_R2_TS_058",
+      "target_position": 2
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_007",
+      "blind_task_id": "BLIND_R2_TASK_073",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "flush_immediately_param": true,
+        "increment_by_param": 5,
+        "telemetry_indicator": "http_requests_total"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_increment_counter_metric",
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "paired_group_id": "PAIR_GROUP_007",
+      "release_2_task_id": "TASK_R2_AC_082",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_005",
+      "blind_task_id": "BLIND_R2_TASK_074",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "call_id": "call_9941a",
+        "record_audio": true,
+        "status_code": 200
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_update_call_status",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_085",
+      "release_2_task_id": "TASK_R2_TS_085",
+      "target_position": 4
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "blind_task_id": "BLIND_R2_TASK_075",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "detector_id": "traffic_spike_detector",
+        "emit_alert": true,
+        "sensitivity": "high",
+        "training_windows": [
+          1,
+          7,
+          14
+        ]
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_evaluate_anomaly_detector",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_059",
+      "release_2_task_id": "TASK_R2_TS_059",
+      "target_position": 3
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "blind_task_id": "BLIND_R2_TASK_076",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_036",
+      "release_2_task_id": "TASK_R2_AB_036",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "blind_task_id": "BLIND_R2_TASK_077",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_076",
+      "release_2_task_id": "TASK_R2_AB_076",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_019",
+      "blind_task_id": "BLIND_R2_TASK_078",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "detector_id": "traffic_spike_detector",
+        "payload_parameters": {
+          "emit_alert": true,
+          "sensitivity": "high",
+          "training_windows": [
+            1,
+            7,
+            14
+          ]
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_evaluate_anomaly_detector",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_019",
+      "release_2_task_id": "TASK_R2_AC_044",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_004",
+      "blind_task_id": "BLIND_R2_TASK_079",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "message_body": "Your verification code is 492011",
+        "payload_parameters": {
+          "priority": 1,
+          "recipient_number": "+14693636353"
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_dispatch_sms_message",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_004",
+      "release_2_task_id": "TASK_R2_AC_029",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_020",
+      "blind_task_id": "BLIND_R2_TASK_080",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "bucket_boundaries_param": [
+          100.0,
+          500.0,
+          1000.0,
+          5000.0
+        ],
+        "histogram_name_param": "rpc_response_size",
+        "sample_count_param": 120,
+        "unit_param": "bytes"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_publish_metric_histogram",
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "paired_group_id": "PAIR_GROUP_020",
+      "release_2_task_id": "TASK_R2_AC_095",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_026",
+      "blind_task_id": "BLIND_R2_TASK_081",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_026",
+      "release_2_task_id": "TASK_R2_AB_026",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_009",
+      "blind_task_id": "BLIND_R2_TASK_082",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_009",
+      "release_2_task_id": "TASK_R2_AB_009",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_006",
+      "blind_task_id": "BLIND_R2_TASK_083",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "archive_recording": true,
+        "bridge_id": "bridge_7710",
+        "termination_reason": "Host ended call"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_terminate_voice_bridge",
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "paired_group_id": "PAIR_GROUP_006",
+      "release_2_task_id": "TASK_R2_AC_056",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_024",
+      "blind_task_id": "BLIND_R2_TASK_084",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_024",
+      "release_2_task_id": "TASK_R2_AB_024",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_018",
+      "blind_task_id": "BLIND_R2_TASK_085",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_018",
+      "release_2_task_id": "TASK_R2_AB_018",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_022",
+      "blind_task_id": "BLIND_R2_TASK_086",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_022",
+      "release_2_task_id": "TASK_R2_AB_022",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_035",
+      "blind_task_id": "BLIND_R2_TASK_087",
+      "category": "ABSTENTION",
+      "gold_arguments": null,
+      "gold_is_abstention": true,
+      "gold_tool_name": null,
+      "mutation_family": "CANONICAL",
+      "paired_group_id": "PAIR_GROUP_AB_075",
+      "release_2_task_id": "TASK_R2_AB_075",
+      "target_position": null
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_016",
+      "blind_task_id": "BLIND_R2_TASK_088",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "digest_frequency": "weekly",
+        "payload_parameters": {
+          "recipients": [
+            "alice@example.com",
+            "bob@example.com"
+          ],
+          "template_slug": "weekly_developer_digest",
+          "track_opens": false
+        }
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_enqueue_email_digest",
+      "mutation_family": "NESTED_HIERARCHY",
+      "paired_group_id": "PAIR_GROUP_016",
+      "release_2_task_id": "TASK_R2_AC_041",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_013",
+      "blind_task_id": "BLIND_R2_TASK_089",
+      "category": "ARGUMENT_CONSTRUCTION",
+      "gold_arguments": {
+        "collection_name_param": "knowledge_docs",
+        "index_mode_param": "asynchronous",
+        "record_ids_param": [
+          "doc_1",
+          "doc_2"
+        ],
+        "refresh_view_param": true
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_batch_index_records",
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "paired_group_id": "PAIR_GROUP_013",
+      "release_2_task_id": "TASK_R2_AC_088",
+      "target_position": 0
+    },
+    {
+      "base_contract_id": "BASE_SYNTH_036",
+      "blind_task_id": "BLIND_R2_TASK_090",
+      "category": "TOOL_SELECTION",
+      "gold_arguments": {
+        "idp_spec": {
+          "entity_id": "google-enterprise",
+          "protocol": "OIDC",
+          "sso_url": "https://accounts.google.com/o/oauth2/auth"
+        },
+        "provider_name": "google_workspace_oidc"
+      },
+      "gold_is_abstention": false,
+      "gold_tool_name": "synth_configure_sso_identity_provider",
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "paired_group_id": "PAIR_GROUP_TS_076",
+      "release_2_task_id": "TASK_R2_TS_076",
+      "target_position": 0
+    }
+  ],
+  "benchmark_release": "RELEASE_2",
+  "map_version": "2.0.0"
+}

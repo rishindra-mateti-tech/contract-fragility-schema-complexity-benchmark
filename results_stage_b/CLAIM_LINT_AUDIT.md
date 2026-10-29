@@ -10,11 +10,11 @@
 
 | Metric | Count | Governance Meaning |
 | :--- | :---: | :--- |
-| **Markdown Documents Scanned** | `329` | All active documentation, specifications, and reports. |
+| **Markdown Documents Scanned** | `331` | All active documentation, specifications, and reports. |
 | **High-Risk Terms Monitored** | `8` | Monitored vocabulary for overclaiming risks. |
-| **Total Pattern Matches** | `236` | All occurrences of monitored high-risk stems. |
+| **Total Pattern Matches** | `239` | All occurrences of monitored high-risk stems. |
 | **Allowlisted Claims** | `14` | Verified against approved entries in `CLAIM_EVIDENCE_LEDGER.json`. |
-| **Scoped Acceptable Claims** | `222` | Contextually constrained by negative disclaimers or definitions. |
+| **Scoped Acceptable Claims** | `225` | Contextually constrained by negative disclaimers or definitions. |
 | **Un-scoped Violations** | **`0`** | Absolutist or ungrounded claims requiring remediation. |
 
 ---
@@ -25,7 +25,7 @@
 | :--- | :---: | :---: | :---: | :---: |
 | `CANONICAL_FAITHFUL promotion` | 67 | 62 | 5 | 0 |
 | `guarantee / guaranteed` | 10 | 10 | 0 | 0 |
-| `independent validation / review` | 92 | 89 | 3 | 0 |
+| `independent validation / review` | 95 | 92 | 3 | 0 |
 | `lossless` | 45 | 43 | 2 | 0 |
 | `proves / proven` | 8 | 7 | 1 | 0 |
 | `statistical significance` | 14 | 11 | 3 | 0 |
@@ -61,7 +61,7 @@
 | `STAGE_B_EXTRACTION_SPEC.md` | 20 | `ALLOWLISTED` | `CANONICAL_FAITHFUL` | Explicitly registered and permitted under CLAIM-006 |
 | `STAGE_B_EXTRACTION_SPEC.md` | 197 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: \b(do not|does not|must not|never|prohibited|not|before|until|cannot|without|pending)\b |
 | `STAGE_B_EXTRACTION_SPEC.md` | 210 | `SCOPED_ACCEPTABLE` | `CANONICAL_FAITHFUL` | SCOPED_BY_PATTERN: `CANONICAL_FAITHFUL` |
-| ... | ... | ... | ... | *(211 additional scoped occurrences verified)* |
+| ... | ... | ... | ... | *(214 additional scoped occurrences verified)* |
 
 ---
 
