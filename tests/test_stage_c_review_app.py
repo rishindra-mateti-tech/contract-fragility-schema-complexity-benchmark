@@ -12,6 +12,17 @@ from starlette.testclient import TestClient
 from review_app.app import app
 
 
+@pytest.fixture(autouse=True)
+def preserve_test_reviewer_session():
+    session_file = Path(__file__).resolve().parent.parent / "review_app" / "sessions" / "test_reviewer_42.json"
+    original_bytes = session_file.read_bytes() if session_file.exists() else None
+    yield
+    if original_bytes is not None:
+        session_file.write_bytes(original_bytes)
+    elif session_file.exists():
+        session_file.unlink()
+
+
 @pytest.fixture
 def client():
     return TestClient(app)

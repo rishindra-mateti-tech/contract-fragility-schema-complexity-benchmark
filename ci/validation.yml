@@ -76,6 +76,14 @@ jobs:
         run: |
           python src/check_stage_c_execution_readiness.py
 
+      - name: Run Stage C Release 2 Reproducibility Verification
+        run: |
+          python scripts/verify_stage_c_release2_reproducibility.py
+
+      - name: Run Stage C Release 2 Execution Readiness Check
+        run: |
+          python src/check_stage_c_release2_execution_readiness.py
+
       - name: Run Full Test Suite with Verbose Reporting
         run: |
           python -m pytest -v

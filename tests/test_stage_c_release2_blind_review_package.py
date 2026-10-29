@@ -23,6 +23,14 @@ ASSIGNMENT_CSV = Path(__file__).resolve().parent.parent / "results_stage_c" / "R
 READINESS_MD = Path(__file__).resolve().parent.parent / "results_stage_c" / "RELEASE2_HUMAN_REVIEW_READINESS.md"
 
 
+@pytest.fixture(autouse=True)
+def cleanup_test_session():
+    yield
+    test_session = Path(__file__).resolve().parent.parent / "review_app" / "sessions" / "test_r2_reviewer.json"
+    if test_session.exists():
+        test_session.unlink()
+
+
 def test_blind_manifest_structure_and_counts():
     manifest_file = R2_PACKAGES_DIR / "blind_sample_manifest.json"
     assert manifest_file.is_file(), f"Missing {manifest_file}"
