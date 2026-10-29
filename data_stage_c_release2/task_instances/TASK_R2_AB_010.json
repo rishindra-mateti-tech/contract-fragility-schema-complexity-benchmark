@@ -1,0 +1,178 @@
+{
+  "available_tools": [
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_010",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_010",
+  "prompt_seed": 3403253893,
+  "prompt_sha256": "840dc4dd0d049fcac04d9dc403d663e99fb6c4064a75270f934848e034af58b7",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "2acb3bc6289e60905b3eba4265f2154a76eecb05a46d70bd0b08433c8fb34f43",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_010",
+  "task_sha256": "10cc1ff8997b70747a4493fdb860fc25b52ec96a66efbf4bd584f587c40861c7",
+  "user_prompt": "Transcribe all related audio communications for access token (run #010) into French subtitles in real time."
+}

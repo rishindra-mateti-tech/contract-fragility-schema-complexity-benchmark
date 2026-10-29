@@ -1,0 +1,138 @@
+{
+  "available_tools": [
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services_param": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm_param": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours_param": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug_param": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "algorithm_param",
+          "secret_slug_param"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_023",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "affected_services_param": [
+      "auth-srv",
+      "api-gateway"
+    ],
+    "algorithm_param": "AES-256-GCM",
+    "grace_period_hours_param": 24,
+    "secret_slug_param": "jwt_signing_key"
+  },
+  "expected_latent_intent": {
+    "action": "synth_rotate_secret_key",
+    "constraints": {
+      "required": [
+        "algorithm",
+        "secret_slug"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "b7e2a531bd8a50c608bfb63c55e8435bf10f59c9289f18e7f2187ac5d99712f3",
+    "intent_id": "INTENT_R2_PG_023",
+    "metadata": {},
+    "slots": {
+      "affected_services": {
+        "data_type": "array[string]",
+        "description": "Downstream services requiring key reload",
+        "is_required": false,
+        "name": "affected_services",
+        "value": [
+          "auth-srv",
+          "api-gateway"
+        ]
+      },
+      "algorithm": {
+        "data_type": "string",
+        "description": "Cryptographic cipher",
+        "is_required": true,
+        "name": "algorithm",
+        "value": "AES-256-GCM"
+      },
+      "grace_period_hours": {
+        "data_type": "integer",
+        "description": "Overlap period where old key remains valid",
+        "is_required": false,
+        "name": "grace_period_hours",
+        "value": 24
+      },
+      "secret_slug": {
+        "data_type": "string",
+        "description": "Secret vault key identifier",
+        "is_required": true,
+        "name": "secret_slug",
+        "value": "jwt_signing_key"
+      }
+    },
+    "target_entity": "BASE_SYNTH_023"
+  },
+  "expected_tool_name": "synth_rotate_secret_key",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_023_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "affected_services_param": "affected_services",
+        "algorithm_param": "algorithm",
+        "grace_period_hours_param": "grace_period_hours",
+        "secret_slug_param": "secret_slug"
+      },
+      "intent_to_arg_path": {
+        "affected_services": "affected_services_param",
+        "algorithm": "algorithm_param",
+        "grace_period_hours": "grace_period_hours_param",
+        "secret_slug": "secret_slug_param"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_023",
+  "prompt_seed": 2783352458,
+  "prompt_sha256": "8bdd83e1ccb2b63738c34cabf3dc7b820e743d997129ed27d67616d89c181b88",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "cd90a66b135b4cc10cbd0d6bdcea3b072faf6256e0935c1af4e82b7ba644842c",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_098",
+  "task_sha256": "864e74c4053341c4579d16a16293d6f390efa601a55ae02dade0a5f864e2c822",
+  "user_prompt": "Perform a task to rotate secret key, ensuring that you are setting affected services to '['auth-srv', 'api-gateway']', using the AES-256-GCM algorithm, setting grace period hours to '24', setting secret slug to 'jwt_signing_key'."
+}

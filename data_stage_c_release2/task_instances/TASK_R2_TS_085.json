@@ -1,0 +1,348 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "properties": {
+          "pipeline_name": {
+            "description": "Pipeline execution job name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "sink_connector": {
+            "additionalProperties": false,
+            "description": "Target warehouse loader",
+            "properties": {
+              "table_mode": {
+                "enum": [
+                  "append",
+                  "overwrite",
+                  "merge"
+                ],
+                "type": "string"
+              },
+              "warehouse": {
+                "enum": [
+                  "snowflake",
+                  "bigquery",
+                  "redshift"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "warehouse",
+              "table_mode"
+            ],
+            "type": "object"
+          },
+          "source_connector": {
+            "additionalProperties": false,
+            "description": "Origin database extractor",
+            "properties": {
+              "connector_type": {
+                "enum": [
+                  "postgres",
+                  "mysql",
+                  "mongodb"
+                ],
+                "type": "string"
+              },
+              "query_timeout_sec": {
+                "maximum": 300,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "connector_type"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "pipeline_name",
+          "source_connector",
+          "sink_connector"
+        ],
+        "title": "synth_orchestrate_etl_pipeline",
+        "type": "object"
+      },
+      "tool_name": "synth_orchestrate_etl_pipeline"
+    },
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    },
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    },
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_005",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "call_id": "call_9941a",
+    "record_audio": true,
+    "status_code": 200
+  },
+  "expected_latent_intent": {
+    "action": "synth_update_call_status",
+    "constraints": {
+      "required": [
+        "call_id",
+        "status_code"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "caf5c3272e0956e27d04109dc13363fab611c5b7fcb825794f34c4fc6310f2a4",
+    "intent_id": "INTENT_R2_TS_085",
+    "metadata": {},
+    "slots": {
+      "call_id": {
+        "data_type": "string",
+        "description": "Unique call session identifier",
+        "is_required": true,
+        "name": "call_id",
+        "value": "call_9941a"
+      },
+      "record_audio": {
+        "data_type": "boolean",
+        "description": "Toggle media recording on bridge",
+        "is_required": false,
+        "name": "record_audio",
+        "value": true
+      },
+      "status_code": {
+        "data_type": "integer",
+        "description": "SIP/VoIP status code",
+        "is_required": true,
+        "name": "status_code",
+        "value": 200
+      }
+    },
+    "target_entity": "BASE_SYNTH_005"
+  },
+  "expected_tool_name": "synth_update_call_status",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_005_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "call_id": "call_id",
+        "record_audio": "record_audio",
+        "status_code": "status_code"
+      },
+      "intent_to_arg_path": {
+        "call_id": "call_id",
+        "record_audio": "record_audio",
+        "status_code": "status_code"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_085",
+  "prompt_seed": 2936097338,
+  "prompt_sha256": "057d9872800b4bdefa4d0b7e8488a09caf433df4a43ad702dc1ec5a728018bde",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "beb5f7dd84c89ad3dd5ec9cdefdfc62c7e8d9ae85d282aeaed0d672272d8f9df",
+  "target_position": 4,
+  "task_id": "TASK_R2_TS_085",
+  "task_sha256": "30ece1dee9f3548ffadbe480c946288459a9b07c5cc54e8381a7c1f7212c8196",
+  "user_prompt": "Dispatch an automated request to update call session status (reference ref_085). Required configuration: for active call session 'call_9941a', disabling audio recording, setting terminal status code 200."
+}

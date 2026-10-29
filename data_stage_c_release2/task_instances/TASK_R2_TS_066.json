@@ -1,0 +1,320 @@
+{
+  "available_tools": [
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    },
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_026",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "execution_id": "exec_44102",
+    "resume_point": "checkpoint_start"
+  },
+  "expected_latent_intent": {
+    "action": "synth_resume_paused_execution",
+    "constraints": {
+      "required": [
+        "execution_id",
+        "resume_point"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "07d579a248ee407eef97a185a5b33804851d615b2f7a2e623445edff0ac8ba33",
+    "intent_id": "INTENT_R2_TS_066",
+    "metadata": {},
+    "slots": {
+      "execution_id": {
+        "data_type": "string",
+        "description": "Suspended workflow execution ID",
+        "is_required": true,
+        "name": "execution_id",
+        "value": "exec_44102"
+      },
+      "resume_point": {
+        "data_type": "string",
+        "description": "Resume target",
+        "is_required": true,
+        "name": "resume_point",
+        "value": "checkpoint_start"
+      }
+    },
+    "target_entity": "BASE_SYNTH_026"
+  },
+  "expected_tool_name": "synth_resume_paused_execution",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_026_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "execution_id": "execution_id",
+        "override_variables": "override_variables",
+        "resume_point": "resume_point",
+        "skip_validation": "skip_validation"
+      },
+      "intent_to_arg_path": {
+        "execution_id": "execution_id",
+        "override_variables": "override_variables",
+        "resume_point": "resume_point",
+        "skip_validation": "skip_validation"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_066",
+  "prompt_seed": 2250013184,
+  "prompt_sha256": "2801ae8ea20f32a2067173f354f0bf9585135dc9bcbd7431602ec0c2607a9360",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "d6d9b9e2a69096dd29973feec0eedbd7c3afff5ba5df8f8fd65dcad0e525a0b6",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_066",
+  "task_sha256": "b4e6d6e13284ea065bb871f4e4d98c287d4fd30c2588ec8968019bf82f92f75a",
+  "user_prompt": "We need to resume paused execution for operations batch 066. Please configure: setting execution id to 'exec_44102', setting resume point to 'checkpoint_start'."
+}

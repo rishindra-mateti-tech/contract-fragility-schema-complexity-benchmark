@@ -1,0 +1,312 @@
+{
+  "available_tools": [
+    {
+      "description": "Tear down an established conference audio bridge.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "tool_name": "synth_terminate_voice_bridge"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    },
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    },
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_018",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "aggregation": "avg",
+    "metric_series": "cpu_utilization",
+    "window_seconds": 60
+  },
+  "expected_latent_intent": {
+    "action": "synth_query_metric_aggregate",
+    "constraints": {
+      "required": [
+        "aggregation",
+        "metric_series",
+        "window_seconds"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3c5797255612777f04f8ef46b057ea96b90a9679701819cff657dc83db86bdee",
+    "intent_id": "INTENT_R2_TS_018",
+    "metadata": {},
+    "slots": {
+      "aggregation": {
+        "data_type": "string",
+        "description": "Statistical aggregator",
+        "is_required": true,
+        "name": "aggregation",
+        "value": "avg"
+      },
+      "metric_series": {
+        "data_type": "string",
+        "description": "Metric timeseries identifier",
+        "is_required": true,
+        "name": "metric_series",
+        "value": "cpu_utilization"
+      },
+      "window_seconds": {
+        "data_type": "integer",
+        "description": "Aggregation window width",
+        "is_required": true,
+        "name": "window_seconds",
+        "value": 60
+      }
+    },
+    "target_entity": "BASE_SYNTH_018"
+  },
+  "expected_tool_name": "synth_query_metric_aggregate",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_018_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "aggregation": "aggregation",
+        "filter_dimensions": "filter_dimensions",
+        "metric_series": "metric_series",
+        "window_seconds": "window_seconds"
+      },
+      "intent_to_arg_path": {
+        "aggregation": "aggregation",
+        "filter_dimensions": "filter_dimensions",
+        "metric_series": "metric_series",
+        "window_seconds": "window_seconds"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_018",
+  "prompt_seed": 2624569741,
+  "prompt_sha256": "8c7c1ca6fe7c0b49d1e51a9b03aaadaf20928ce3567f13b599c91a2b66965e22",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e78a2af754f7dc59f844afdc1960b011888a62e6f6e93333967d8d8bcfd141d6",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_018",
+  "task_sha256": "9d1c0691e6a0336a0da0df186007d14d34508cabbefdc7d4a5ac821712c32e6f",
+  "user_prompt": "A user requested to query metric aggregate under dispatch tag #018. Apply the following specifications: setting aggregation to 'avg', in metric series 'cpu_utilization', setting window seconds to '60'."
+}

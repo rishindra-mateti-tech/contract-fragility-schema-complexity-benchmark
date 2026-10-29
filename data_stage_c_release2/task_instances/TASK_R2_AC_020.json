@@ -1,0 +1,145 @@
+{
+  "available_tools": [
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_020",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "bucket_boundaries": [
+      100.0,
+      500.0,
+      1000.0,
+      5000.0
+    ],
+    "histogram_name": "rpc_response_size",
+    "sample_count": 120,
+    "unit": "bytes"
+  },
+  "expected_latent_intent": {
+    "action": "synth_publish_metric_histogram",
+    "constraints": {
+      "required": [
+        "bucket_boundaries",
+        "histogram_name",
+        "unit"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "d2c43e73168c3d9f3d53bece1769d337583f4458dd2a8bdd6d514f79ccd6efb6",
+    "intent_id": "INTENT_R2_PG_020",
+    "metadata": {},
+    "slots": {
+      "bucket_boundaries": {
+        "data_type": "array[number]",
+        "description": "Ascending bucket threshold values",
+        "is_required": true,
+        "name": "bucket_boundaries",
+        "value": [
+          100.0,
+          500.0,
+          1000.0,
+          5000.0
+        ]
+      },
+      "histogram_name": {
+        "data_type": "string",
+        "description": "Histogram metric name",
+        "is_required": true,
+        "name": "histogram_name",
+        "value": "rpc_response_size"
+      },
+      "sample_count": {
+        "data_type": "integer",
+        "description": "Number of observations",
+        "is_required": false,
+        "name": "sample_count",
+        "value": 120
+      },
+      "unit": {
+        "data_type": "string",
+        "description": "Measurement unit",
+        "is_required": true,
+        "name": "unit",
+        "value": "bytes"
+      }
+    },
+    "target_entity": "BASE_SYNTH_020"
+  },
+  "expected_tool_name": "synth_publish_metric_histogram",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_020_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "bucket_boundaries": "bucket_boundaries",
+        "histogram_name": "histogram_name",
+        "sample_count": "sample_count",
+        "unit": "unit"
+      },
+      "intent_to_arg_path": {
+        "bucket_boundaries": "bucket_boundaries",
+        "histogram_name": "histogram_name",
+        "sample_count": "sample_count",
+        "unit": "unit"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_020",
+  "prompt_seed": 4249547265,
+  "prompt_sha256": "8f775f1e034e73921aaabc2de0687e4c7ff882c8923d74a786d3de6051254e10",
+  "prompt_template_id": "AC_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "1c06bf52eeb5a53f7f1d3d58d34c5a5592338b8371973cd40474b7a5d16f09e5",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_020",
+  "task_sha256": "c8be435e53ac4317d00ff2c1f494e8795c7abaf79bb8919bde29be68d3096af4",
+  "user_prompt": "We need to publish metric histogram. Execute this request setting bucket boundaries to '[100.0, 500.0, 1000.0, 5000.0]', setting histogram name to 'rpc_response_size', collecting 120 samples, setting unit to 'bytes'."
+}

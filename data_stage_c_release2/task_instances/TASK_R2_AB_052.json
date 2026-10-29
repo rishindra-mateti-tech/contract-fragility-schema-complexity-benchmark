@@ -1,0 +1,152 @@
+{
+  "available_tools": [
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "description": "Send an SMS text message to a designated phone destination.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_052",
+  "prompt_seed": 2920223687,
+  "prompt_sha256": "cded165c5522416a0ae6d47f0ed7d5f7fc373305d700fb19de3b43f3505343ea",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "835ef2fb6526252f920292145da664b17a7493d1c89ddb22868f514b5a107e79",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_052",
+  "task_sha256": "5cf80bf14bb545ccf50aba49834591e2b24c6c0f68c714edc98f67682d8fe5ca",
+  "user_prompt": "Do what is necessary for user account for ticket #052 based on current status."
+}

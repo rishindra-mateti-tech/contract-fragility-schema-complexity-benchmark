@@ -1,0 +1,134 @@
+{
+  "available_tools": [
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_020",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_020",
+  "prompt_seed": 167248702,
+  "prompt_sha256": "48ad58f2c324665df12394df2b6e41b3b789e2607f0444a186a06dd32160e950",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e370a524dbb4c1b9211dca1a9f347d87e9b00e87c35820bdfb898d188a6f2348",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_020",
+  "task_sha256": "a51e83077f3ea67a49254df7aa8bb3e8a3ebf1cac44465ab442eb19ec48664f9",
+  "user_prompt": "Process everything related to metric histogram for cycle 020 as soon as convenient."
+}

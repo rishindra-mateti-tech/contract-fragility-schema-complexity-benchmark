@@ -1,0 +1,146 @@
+{
+  "available_tools": [
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_016",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_096",
+  "prompt_seed": 2016393856,
+  "prompt_sha256": "c88415f7a02400346382ad383875eb6d7b900dc02befb5ba3aabf2894edfe342",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a4480e070d911787b1b1423a06651fc66406cdc292f27964c7f84cd5a8ed1867",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_096",
+  "task_sha256": "70a64ab8f11ef345d9a509e61d9d97c13fdff899632b7f11ef3784c82473d1ee",
+  "user_prompt": "Handle the recent events on email digest for batch 096 using whatever system seems most appropriate."
+}

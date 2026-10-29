@@ -1,0 +1,331 @@
+{
+  "available_tools": [
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    },
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_015",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "alert_title": "Database High Memory",
+    "auto_resolve_minutes": 60,
+    "severity_level": "CRITICAL",
+    "target_channels": [
+      "slack-ops",
+      "pagerduty-sre"
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_broadcast_alert_notification",
+    "constraints": {
+      "required": [
+        "alert_title",
+        "severity_level",
+        "target_channels"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "adead129e501758e088bb3b6d77dd8eaeb63f4d1e2cde779aa41b6ac6b0f7499",
+    "intent_id": "INTENT_R2_TS_015",
+    "metadata": {},
+    "slots": {
+      "alert_title": {
+        "data_type": "string",
+        "description": "Short alert title",
+        "is_required": true,
+        "name": "alert_title",
+        "value": "Database High Memory"
+      },
+      "auto_resolve_minutes": {
+        "data_type": "integer",
+        "description": "Automatic timeout before auto-resolve",
+        "is_required": false,
+        "name": "auto_resolve_minutes",
+        "value": 60
+      },
+      "severity_level": {
+        "data_type": "string",
+        "description": "Alert severity tier",
+        "is_required": true,
+        "name": "severity_level",
+        "value": "CRITICAL"
+      },
+      "target_channels": {
+        "data_type": "array[string]",
+        "description": "Broadcast destination channels",
+        "is_required": true,
+        "name": "target_channels",
+        "value": [
+          "slack-ops",
+          "pagerduty-sre"
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_015"
+  },
+  "expected_tool_name": "synth_broadcast_alert_notification",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_015_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      },
+      "intent_to_arg_path": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_015",
+  "prompt_seed": 71538526,
+  "prompt_sha256": "069a1066b9bd580fdedbdde8f23d5cf31b08129c2af3499689cbaed96d08f0e9",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "0c7a6604006412dcf290b8270d4cbdff8120439f8f8beeebd07f6d54b8630f8a",
+  "target_position": 4,
+  "task_id": "TASK_R2_TS_015",
+  "task_sha256": "459abaa853c2d61b09df3b86b7d83b9c27d583bc763c22a4f9e710ecc78e21fd",
+  "user_prompt": "Dispatch an automated request to broadcast alert notification (reference ref_015). Required configuration: titled 'Database High Memory', setting auto resolve minutes to '60', marked with CRITICAL severity, setting target channels to '['slack-ops', 'pagerduty-sre']'."
+}

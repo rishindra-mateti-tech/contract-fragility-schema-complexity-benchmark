@@ -1,0 +1,132 @@
+{
+  "available_tools": [
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "description": "Tear down an established conference audio bridge.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "tool_name": "synth_terminate_voice_bridge"
+    },
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_025",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_065",
+  "prompt_seed": 746955498,
+  "prompt_sha256": "50bfcd40263009231cccc4180272a0a474811af01664ae82e55bc6f903dd13f9",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "86341835bfae6d756e1188455bffedfc7de64cdc52d50b3eeeadd10a5ae4e415",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_065",
+  "task_sha256": "e098bdea248fcbd26b3bf0f539e55a45b2719c925f29fc3fe5f39e58d3414c7e",
+  "user_prompt": "Dispatch a request to cancel workflow task for environment env_065 using default assumptions where possible."
+}

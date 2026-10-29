@@ -1,0 +1,170 @@
+{
+  "available_tools": [
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_002",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_082",
+  "prompt_seed": 2081067636,
+  "prompt_sha256": "559fb15054f71fd3f1125a757e42446cb1dbe1de9cbfc354c11f74a31ab8ec04",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "2cf7a5f6c82e486836f760eb5916a6fab8e4919d48770fac9b84afc85154f59b",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_082",
+  "task_sha256": "96165bacf2901bd3ce164c2ea6142d3233173f6f10832eb597d6110f6b23603d",
+  "user_prompt": "Generate a machine learning forecast model for cache entry (task #082) and export the neural weights to disk."
+}

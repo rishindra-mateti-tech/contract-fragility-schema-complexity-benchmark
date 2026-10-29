@@ -1,0 +1,122 @@
+{
+  "available_tools": [
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "require_password_reset": {
+                "description": "Enforce password reset on unlock",
+                "type": "boolean"
+              },
+              "user_id": {
+                "description": "Target user identifier",
+                "minLength": 4,
+                "type": "string"
+              }
+            },
+            "required": [
+              "user_id"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "lock_hours",
+          "payload_parameters"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "lock_hours": 24,
+    "payload_parameters": {
+      "require_password_reset": true,
+      "user_id": "usr_9918"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_lock_user_account",
+    "constraints": {
+      "required": [
+        "lock_hours",
+        "user_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "a7240a1c956b15e62e94ed5ddf50cab0599efb1993497e5d01064171dbaa5709",
+    "intent_id": "INTENT_R2_PG_012",
+    "metadata": {},
+    "slots": {
+      "lock_hours": {
+        "data_type": "integer",
+        "description": "Lock duration in hours",
+        "is_required": true,
+        "name": "lock_hours",
+        "value": 24
+      },
+      "require_password_reset": {
+        "data_type": "boolean",
+        "description": "Enforce password reset on unlock",
+        "is_required": false,
+        "name": "require_password_reset",
+        "value": true
+      },
+      "user_id": {
+        "data_type": "string",
+        "description": "Target user identifier",
+        "is_required": true,
+        "name": "user_id",
+        "value": "usr_9918"
+      }
+    },
+    "target_entity": "BASE_SYNTH_012"
+  },
+  "expected_tool_name": "synth_lock_user_account",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_012_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "lock_hours": "lock_hours",
+        "payload_parameters.require_password_reset": "require_password_reset",
+        "payload_parameters.user_id": "user_id"
+      },
+      "intent_to_arg_path": {
+        "lock_hours": "lock_hours",
+        "require_password_reset": "payload_parameters.require_password_reset",
+        "user_id": "payload_parameters.user_id"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_012",
+  "prompt_seed": 791978752,
+  "prompt_sha256": "66706b5d02a8375d6853537f3440150281885ba0d39f5400a857f77a5d0f124d",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "54bbeb746153bdbe63aa8739bc48f08ba3cd8e8f7000e5d4f05449bbb96b0b15",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_037",
+  "task_sha256": "28fb1a81b7a82e9031d3b06773e7eb8809e1acbb8d594034721a7f0abbb1d392",
+  "user_prompt": "Please lock user account. Specifically, configure this by holding the lock for 24 hours, enabling require password reset, for user account 'usr_9918'."
+}

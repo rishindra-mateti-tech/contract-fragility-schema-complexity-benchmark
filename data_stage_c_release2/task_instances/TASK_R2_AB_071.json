@@ -1,0 +1,187 @@
+{
+  "available_tools": [
+    {
+      "description": "Provision a read replica node with host connection and replication settings.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "properties": {
+          "cluster_id": {
+            "description": "Primary database cluster ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "enable_ssl": {
+            "description": "Require TLS encryption on replication stream",
+            "type": "boolean"
+          },
+          "replica_config": {
+            "additionalProperties": false,
+            "description": "Replica node configuration",
+            "properties": {
+              "node_name": {
+                "description": "Replica hostname/label",
+                "minLength": 1,
+                "type": "string"
+              },
+              "port": {
+                "description": "Port number",
+                "maximum": 65535,
+                "minimum": 1024,
+                "type": "integer"
+              },
+              "read_only": {
+                "description": "Enforce read-only transactions",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "node_name",
+              "port"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "cluster_id",
+          "replica_config"
+        ],
+        "title": "synth_configure_database_replica",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_database_replica"
+    },
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    },
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_031",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_071",
+  "prompt_seed": 137531058,
+  "prompt_sha256": "53ffd4d28e125631890f7029e121cb43ae68bb5cbabc378b9c0c2a65e5f596a7",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e7d3ec59160e4dc7cffc71fc2eacd76be3276c358178f195f1d25fd5f908c7f0",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_071",
+  "task_sha256": "58703c2619300a18bb1f502213c17fb57738255631ed85a78e7ff6553d1e2d47",
+  "user_prompt": "Apply configuration to storage snapshot (dispatch #071) requiring simultaneous immediate completion and indefinite suspension."
+}

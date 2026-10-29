@@ -1,0 +1,302 @@
+{
+  "available_tools": [
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    },
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_023",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "affected_services": [
+      "auth-srv",
+      "api-gateway"
+    ],
+    "algorithm": "AES-256-GCM",
+    "grace_period_hours": 24,
+    "secret_slug": "jwt_signing_key"
+  },
+  "expected_latent_intent": {
+    "action": "synth_rotate_secret_key",
+    "constraints": {
+      "required": [
+        "algorithm",
+        "secret_slug"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "b7e2a531bd8a50c608bfb63c55e8435bf10f59c9289f18e7f2187ac5d99712f3",
+    "intent_id": "INTENT_R2_TS_023",
+    "metadata": {},
+    "slots": {
+      "affected_services": {
+        "data_type": "array[string]",
+        "description": "Downstream services requiring key reload",
+        "is_required": false,
+        "name": "affected_services",
+        "value": [
+          "auth-srv",
+          "api-gateway"
+        ]
+      },
+      "algorithm": {
+        "data_type": "string",
+        "description": "Cryptographic cipher",
+        "is_required": true,
+        "name": "algorithm",
+        "value": "AES-256-GCM"
+      },
+      "grace_period_hours": {
+        "data_type": "integer",
+        "description": "Overlap period where old key remains valid",
+        "is_required": false,
+        "name": "grace_period_hours",
+        "value": 24
+      },
+      "secret_slug": {
+        "data_type": "string",
+        "description": "Secret vault key identifier",
+        "is_required": true,
+        "name": "secret_slug",
+        "value": "jwt_signing_key"
+      }
+    },
+    "target_entity": "BASE_SYNTH_023"
+  },
+  "expected_tool_name": "synth_rotate_secret_key",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_023_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "affected_services": "affected_services",
+        "algorithm": "algorithm",
+        "grace_period_hours": "grace_period_hours",
+        "secret_slug": "secret_slug"
+      },
+      "intent_to_arg_path": {
+        "affected_services": "affected_services",
+        "algorithm": "algorithm",
+        "grace_period_hours": "grace_period_hours",
+        "secret_slug": "secret_slug"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_023",
+  "prompt_seed": 3191925302,
+  "prompt_sha256": "ac6003adc6869351e6bb0a7b1fe68a53f8555542e0c4a165899cd25a830a0ff8",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "2a722f48fea9d4773993fba82a478891a6f0824b8c5c1a19bd4ed0984513b0b8",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_023",
+  "task_sha256": "ba84ed4ac9c7f9cd816eb2293a8f6c5f6176d24456cf92a9105f6d49acde9e5c",
+  "user_prompt": "Dispatch an automated request to rotate secret key (reference ref_023). Required configuration: setting affected services to '['auth-srv', 'api-gateway']', using the AES-256-GCM algorithm, setting grace period hours to '24', setting secret slug to 'jwt_signing_key'."
+}

@@ -1,0 +1,123 @@
+{
+  "available_tools": [
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "quota_bucket": {
+                "description": "Rate limit bucket key",
+                "minLength": 1,
+                "type": "string"
+              },
+              "tenant_id": {
+                "description": "Account tenant identifier",
+                "minLength": 3,
+                "type": "string"
+              }
+            },
+            "required": [
+              "quota_bucket",
+              "tenant_id"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_009",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "grace_period_minutes": 60,
+    "payload_parameters": {
+      "quota_bucket": "daily_api_calls",
+      "tenant_id": "ten_9941"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_reset_quota_usage",
+    "constraints": {
+      "required": [
+        "quota_bucket",
+        "tenant_id"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "68e5a82871525b226bde41b9a0038a2189bcec31526e0e73786df985f90fcbf7",
+    "intent_id": "INTENT_R2_PG_009",
+    "metadata": {},
+    "slots": {
+      "grace_period_minutes": {
+        "data_type": "integer",
+        "description": "Exemption duration",
+        "is_required": false,
+        "name": "grace_period_minutes",
+        "value": 60
+      },
+      "quota_bucket": {
+        "data_type": "string",
+        "description": "Rate limit bucket key",
+        "is_required": true,
+        "name": "quota_bucket",
+        "value": "daily_api_calls"
+      },
+      "tenant_id": {
+        "data_type": "string",
+        "description": "Account tenant identifier",
+        "is_required": true,
+        "name": "tenant_id",
+        "value": "ten_9941"
+      }
+    },
+    "target_entity": "BASE_SYNTH_009"
+  },
+  "expected_tool_name": "synth_reset_quota_usage",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_009_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "grace_period_minutes": "grace_period_minutes",
+        "payload_parameters.quota_bucket": "quota_bucket",
+        "payload_parameters.tenant_id": "tenant_id"
+      },
+      "intent_to_arg_path": {
+        "grace_period_minutes": "grace_period_minutes",
+        "quota_bucket": "payload_parameters.quota_bucket",
+        "tenant_id": "payload_parameters.tenant_id"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_009",
+  "prompt_seed": 3101517747,
+  "prompt_sha256": "d0c57bbbe5462320debb17794328f1462892cb55d70cd647abed6e05fb283491",
+  "prompt_template_id": "AC_FRAME_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "9384118dc596db9da3a80ac1a8387b018a926c98379e629cb302ca3914f58f6d",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_034",
+  "task_sha256": "069a4b76ff42c67b94185c1cff9df9badcaf2d3adbc82a51d83a943a5dc60e5b",
+  "user_prompt": "Kindly reset quota usage. The operational requirements are: setting grace period minutes to '60', setting quota bucket to 'daily_api_calls', within tenant 'ten_9941'."
+}

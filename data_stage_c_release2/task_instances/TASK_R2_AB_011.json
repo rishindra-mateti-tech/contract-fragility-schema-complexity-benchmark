@@ -1,0 +1,133 @@
+{
+  "available_tools": [
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_011",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_011",
+  "prompt_seed": 2310190419,
+  "prompt_sha256": "9b0363df5c59fa3d2c316966848205fa112675f38779b640bc2bb2428b838a31",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "714e48d783ee564524f3010f5e23c94693bef5439314a2bcf4d8829c910f037d",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_011",
+  "task_sha256": "4d2bbe604caa5fc3777c07dff88b1c43f59d3539956d1f6d50e782820ceb60cc",
+  "user_prompt": "Update session lease for partition 011 with a lock duration of zero seconds while enforcing permanent exclusivity."
+}

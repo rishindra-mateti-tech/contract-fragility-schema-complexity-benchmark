@@ -1,0 +1,280 @@
+{
+  "available_tools": [
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "description": "Register a recurring automated task schedule with target queue.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_009",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "grace_period_minutes": 60,
+    "quota_bucket": "daily_api_calls",
+    "tenant_id": "ten_9941"
+  },
+  "expected_latent_intent": {
+    "action": "synth_reset_quota_usage",
+    "constraints": {
+      "required": [
+        "quota_bucket",
+        "tenant_id"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "68e5a82871525b226bde41b9a0038a2189bcec31526e0e73786df985f90fcbf7",
+    "intent_id": "INTENT_R2_TS_049",
+    "metadata": {},
+    "slots": {
+      "grace_period_minutes": {
+        "data_type": "integer",
+        "description": "Exemption duration",
+        "is_required": false,
+        "name": "grace_period_minutes",
+        "value": 60
+      },
+      "quota_bucket": {
+        "data_type": "string",
+        "description": "Rate limit bucket key",
+        "is_required": true,
+        "name": "quota_bucket",
+        "value": "daily_api_calls"
+      },
+      "tenant_id": {
+        "data_type": "string",
+        "description": "Account tenant identifier",
+        "is_required": true,
+        "name": "tenant_id",
+        "value": "ten_9941"
+      }
+    },
+    "target_entity": "BASE_SYNTH_009"
+  },
+  "expected_tool_name": "synth_reset_quota_usage",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_009_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "grace_period_minutes": "grace_period_minutes",
+        "quota_bucket": "quota_bucket",
+        "tenant_id": "tenant_id"
+      },
+      "intent_to_arg_path": {
+        "grace_period_minutes": "grace_period_minutes",
+        "quota_bucket": "quota_bucket",
+        "tenant_id": "tenant_id"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_049",
+  "prompt_seed": 476509810,
+  "prompt_sha256": "050df2c632c50db7f90b3a9ca7e77a248933b74c4361e4dd47dba7c1a88df804",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "f66b94aafb475a6ba113e4183184a7a325df5fb0956fc29f6123aa3b62f798c8",
+  "target_position": 3,
+  "task_id": "TASK_R2_TS_049",
+  "task_sha256": "9f7ba989077501a065f31ef9371f70236904145c23d99215115c8009b17a7acd",
+  "user_prompt": "Dispatch an automated request to reset quota usage (reference ref_049). Required configuration: setting grace period minutes to '60', setting quota bucket to 'daily_api_calls', within tenant 'ten_9941'."
+}

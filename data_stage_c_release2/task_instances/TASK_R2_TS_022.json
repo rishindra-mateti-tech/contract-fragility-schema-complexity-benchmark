@@ -1,0 +1,325 @@
+{
+  "available_tools": [
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    },
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_022",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "client_name": "test_harness",
+    "target_environment": "development"
+  },
+  "expected_latent_intent": {
+    "action": "synth_provision_api_credential",
+    "constraints": {
+      "required": [
+        "client_name",
+        "target_environment"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3b90b5bd4c133d0266de05865ff88c916b698b033c76b50aeecb5da52253cd5f",
+    "intent_id": "INTENT_R2_TS_022",
+    "metadata": {},
+    "slots": {
+      "client_name": {
+        "data_type": "string",
+        "description": "Descriptive client application name",
+        "is_required": true,
+        "name": "client_name",
+        "value": "test_harness"
+      },
+      "target_environment": {
+        "data_type": "string",
+        "description": "Target tier",
+        "is_required": true,
+        "name": "target_environment",
+        "value": "development"
+      }
+    },
+    "target_entity": "BASE_SYNTH_022"
+  },
+  "expected_tool_name": "synth_provision_api_credential",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_022_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "client_name": "client_name",
+        "ip_allowlist": "ip_allowlist",
+        "rate_limit_rpm": "rate_limit_rpm",
+        "target_environment": "target_environment"
+      },
+      "intent_to_arg_path": {
+        "client_name": "client_name",
+        "ip_allowlist": "ip_allowlist",
+        "rate_limit_rpm": "rate_limit_rpm",
+        "target_environment": "target_environment"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_022",
+  "prompt_seed": 30849760,
+  "prompt_sha256": "ce72a526e411fe2b77a808aaa6b4ae0b9c9b4d0106581cc38863f51244f5f106",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "783a746491efbf7b767db39c935e9166160ca66ee9451668dfb83516fc7e706e",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_022",
+  "task_sha256": "26c7e40ce6088f2bcbfb239549dbe16dad1f0dd3c1eee73096e7ff35f6fe9d98",
+  "user_prompt": "We need to provision api credential for operations batch 022. Please configure: for client 'test_harness', setting target environment to 'development'."
+}

@@ -1,0 +1,150 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_003",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_003",
+  "prompt_seed": 1270821206,
+  "prompt_sha256": "5f12acb7306d79e933df0d0dc4f7a5d75c89164ef1f6df82160ffd80d4759b1d",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "10030aa90b406e451f59f6288edae9e92d776ccf9ee914eaffc99f010aeec8c9",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_003",
+  "task_sha256": "46a7e51daf3da1ebe8ccda7727ecbbb51e6ee28de095ca24a255a69269a90f06",
+  "user_prompt": "Apply configuration to table slice (dispatch #003) requiring simultaneous immediate completion and indefinite suspension."
+}

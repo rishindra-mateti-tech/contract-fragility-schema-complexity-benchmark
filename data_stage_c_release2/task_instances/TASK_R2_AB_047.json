@@ -1,0 +1,166 @@
+{
+  "available_tools": [
+    {
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "properties": {
+          "migration_id": {
+            "description": "Migration operation tracking ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "source": {
+            "additionalProperties": false,
+            "description": "Source storage specification",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "slice_id": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "slice_id"
+            ],
+            "type": "object"
+          },
+          "target": {
+            "additionalProperties": false,
+            "description": "Target storage destination",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "datacenter": {
+                "minLength": 2,
+                "type": "string"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "datacenter"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "migration_id",
+          "source",
+          "target"
+        ],
+        "title": "synth_execute_partition_migration",
+        "type": "object"
+      },
+      "tool_name": "synth_execute_partition_migration"
+    },
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_007",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_047",
+  "prompt_seed": 2070862608,
+  "prompt_sha256": "d6e2b852e4cdf477395e9398e49a16fabb92faefeb08a83baf5b225b532e7c73",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "0e0fbabb5f9ece7375a655fc980d58d86feefe26797bcce9a2250d0cb20b2155",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_047",
+  "task_sha256": "e9e5699df54425abc2f43797c7cc7aa2efef71cc1cfda56eff6bbe7c791c0fe0",
+  "user_prompt": "Configure counter metric for job 047 with an expiration lifetime of -9999 seconds and negative zero concurrency."
+}

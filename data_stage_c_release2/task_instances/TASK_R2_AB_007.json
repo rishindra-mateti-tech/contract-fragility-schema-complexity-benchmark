@@ -1,0 +1,179 @@
+{
+  "available_tools": [
+    {
+      "description": "Register a recurring automated task schedule with target queue.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_007",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_007",
+  "prompt_seed": 3374338295,
+  "prompt_sha256": "96dcec1e6db8e5f7a54b0ad2126788b5d6d86b411d17573a15becc5b4202effa",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "1d571ef5693110fa00d69e18f45ddd83687fa5943769fb021888d337bacb9fe5",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_007",
+  "task_sha256": "289df2f554ff5e44631a337c6b3bb4e4a7052e27916e27f0410d52293ae3a38c",
+  "user_prompt": "Update counter metric for partition 007 with a lock duration of zero seconds while enforcing permanent exclusivity."
+}

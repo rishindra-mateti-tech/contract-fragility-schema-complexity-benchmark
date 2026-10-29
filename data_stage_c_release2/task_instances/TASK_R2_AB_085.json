@@ -1,0 +1,132 @@
+{
+  "available_tools": [
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    },
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_005",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_085",
+  "prompt_seed": 3226245623,
+  "prompt_sha256": "9e5882a489bbc08559047d343db7b87ef3a093248795f1dc42d1c6c0d3651996",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "7e5b401430dcc59a39e01ecdb2efe6b346d0271527e9699f6360533a7a0c190c",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_085",
+  "task_sha256": "a387fe9fdf5146a6cb049e5c1199f8f8788cff691547988bddadfc18a7e3dbfb",
+  "user_prompt": "We want to update call session status in partition part_085. Run this operation now without providing parameter values."
+}

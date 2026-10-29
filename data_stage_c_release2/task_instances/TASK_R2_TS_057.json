@@ -1,0 +1,344 @@
+{
+  "available_tools": [
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    },
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    },
+    {
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "properties": {
+          "migration_id": {
+            "description": "Migration operation tracking ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "source": {
+            "additionalProperties": false,
+            "description": "Source storage specification",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "slice_id": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "slice_id"
+            ],
+            "type": "object"
+          },
+          "target": {
+            "additionalProperties": false,
+            "description": "Target storage destination",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "datacenter": {
+                "minLength": 2,
+                "type": "string"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "datacenter"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "migration_id",
+          "source",
+          "target"
+        ],
+        "title": "synth_execute_partition_migration",
+        "type": "object"
+      },
+      "tool_name": "synth_execute_partition_migration"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_017",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "device_id": "dev_9918274619",
+    "platform": "ios",
+    "subscribed_topics": [
+      "news",
+      "alerts"
+    ],
+    "token_ttl_days": 90
+  },
+  "expected_latent_intent": {
+    "action": "synth_register_push_token",
+    "constraints": {
+      "required": [
+        "device_id",
+        "platform"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "172850baa17a9f763c0bdd743bfb60997a91554bbf294a31729656e7821c95ab",
+    "intent_id": "INTENT_R2_TS_057",
+    "metadata": {},
+    "slots": {
+      "device_id": {
+        "data_type": "string",
+        "description": "Hardware device UUID",
+        "is_required": true,
+        "name": "device_id",
+        "value": "dev_9918274619"
+      },
+      "platform": {
+        "data_type": "string",
+        "description": "Operating system platform",
+        "is_required": true,
+        "name": "platform",
+        "value": "ios"
+      },
+      "subscribed_topics": {
+        "data_type": "array[string]",
+        "description": "Notification interest topics",
+        "is_required": false,
+        "name": "subscribed_topics",
+        "value": [
+          "news",
+          "alerts"
+        ]
+      },
+      "token_ttl_days": {
+        "data_type": "integer",
+        "description": "Token validity expiration",
+        "is_required": false,
+        "name": "token_ttl_days",
+        "value": 90
+      }
+    },
+    "target_entity": "BASE_SYNTH_017"
+  },
+  "expected_tool_name": "synth_register_push_token",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_017_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "device_id": "device_id",
+        "platform": "platform",
+        "subscribed_topics": "subscribed_topics",
+        "token_ttl_days": "token_ttl_days"
+      },
+      "intent_to_arg_path": {
+        "device_id": "device_id",
+        "platform": "platform",
+        "subscribed_topics": "subscribed_topics",
+        "token_ttl_days": "token_ttl_days"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_057",
+  "prompt_seed": 3677970170,
+  "prompt_sha256": "445b1e57b1570fd5a34d0f5563c53068284e149d429296d582edb8b69aa2d8a3",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "994c57f53fd0aa62877953a222c8395ccb6125492cc4fe94a951811a3ef79c5d",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_057",
+  "task_sha256": "01458529f82a19d05904b2a2700bed16f9fcf7ee24b64d4cd8e019c54a6165d6",
+  "user_prompt": "Dispatch an automated request to register push notification token (reference ref_057). Required configuration: for device 'dev_9918274619', setting platform to 'ios', setting subscribed topics to '['news', 'alerts']', valid for 90 days."
+}

@@ -1,0 +1,135 @@
+{
+  "available_tools": [
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    },
+    {
+      "description": "Remove all records from a specific table slice or partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_008",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_088",
+  "prompt_seed": 2534698814,
+  "prompt_sha256": "71a2eced2e9e163b98826a84bc05f9440f3cbb0c06a3aa2757bf5e183fd85eca",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "f5cde0ccf7b6152e92775a534a1b1f6ee78539c7c4c0f944f4e80c3eea4b1f6a",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_088",
+  "task_sha256": "4102a335d87a96dbecd76ebb45d2122afa86eb7b789f883e39e52f715b090125",
+  "user_prompt": "Process everything related to heartbeat timestamp for cycle 088 as soon as convenient."
+}

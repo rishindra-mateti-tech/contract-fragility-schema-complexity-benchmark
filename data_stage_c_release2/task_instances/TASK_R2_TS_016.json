@@ -1,0 +1,311 @@
+{
+  "available_tools": [
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Register a recurring automated task schedule with target queue.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_016",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "digest_frequency": "monthly",
+    "recipients": [
+      "cfo@example.com"
+    ],
+    "template_slug": "monthly_billing"
+  },
+  "expected_latent_intent": {
+    "action": "synth_enqueue_email_digest",
+    "constraints": {
+      "required": [
+        "digest_frequency",
+        "recipients",
+        "template_slug"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f9c3c6b4bdf7e0c71a8fdf1694f4f4e1ce40839c8f46891925ae09031b99ff5d",
+    "intent_id": "INTENT_R2_TS_016",
+    "metadata": {},
+    "slots": {
+      "digest_frequency": {
+        "data_type": "string",
+        "description": "Aggregation cadence",
+        "is_required": true,
+        "name": "digest_frequency",
+        "value": "monthly"
+      },
+      "recipients": {
+        "data_type": "array[string]",
+        "description": "Recipient email addresses",
+        "is_required": true,
+        "name": "recipients",
+        "value": [
+          "cfo@example.com"
+        ]
+      },
+      "template_slug": {
+        "data_type": "string",
+        "description": "Email layout template ID",
+        "is_required": true,
+        "name": "template_slug",
+        "value": "monthly_billing"
+      }
+    },
+    "target_entity": "BASE_SYNTH_016"
+  },
+  "expected_tool_name": "synth_enqueue_email_digest",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_016_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "digest_frequency": "digest_frequency",
+        "recipients": "recipients",
+        "template_slug": "template_slug",
+        "track_opens": "track_opens"
+      },
+      "intent_to_arg_path": {
+        "digest_frequency": "digest_frequency",
+        "recipients": "recipients",
+        "template_slug": "template_slug",
+        "track_opens": "track_opens"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_016",
+  "prompt_seed": 1637489637,
+  "prompt_sha256": "b501e5fcc764f4cc12f19f7b0358deae15153cc0dd689ddcb1e7025352d68c95",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "6bfd7c50a7d8d16d33d2f3c144b38e45742878ce3eb546c190bad9dbbedbe6f1",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_016",
+  "task_sha256": "6799aad377fb7f10e8deaf540ee26d3de07e564c56ef2a5e52096dcab1aab3ec",
+  "user_prompt": "A user requested to enqueue email digest under dispatch tag #016. Apply the following specifications: setting digest frequency to 'monthly', setting recipients to '['cfo@example.com']', setting template slug to 'monthly_billing'."
+}

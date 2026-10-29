@@ -1,0 +1,259 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_002",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "key_pattern": "temp:auth:99"
+  },
+  "expected_latent_intent": {
+    "action": "synth_delete_cache_entry",
+    "constraints": {
+      "required": [
+        "key_pattern"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3b7c9478bfa54c9da005b7409df38cf449465661943c30913173b5cec8c3f8e7",
+    "intent_id": "INTENT_R2_TS_042",
+    "metadata": {},
+    "slots": {
+      "key_pattern": {
+        "data_type": "string",
+        "description": "Glob or prefix pattern",
+        "is_required": true,
+        "name": "key_pattern",
+        "value": "temp:auth:99"
+      }
+    },
+    "target_entity": "BASE_SYNTH_002"
+  },
+  "expected_tool_name": "synth_delete_cache_entry",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_002_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "cascade_eviction": "cascade_eviction",
+        "key_pattern": "key_pattern",
+        "max_evictions": "max_evictions"
+      },
+      "intent_to_arg_path": {
+        "cascade_eviction": "cascade_eviction",
+        "key_pattern": "key_pattern",
+        "max_evictions": "max_evictions"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_042",
+  "prompt_seed": 2588610894,
+  "prompt_sha256": "4a20884ac87604f713b7cdea44ac828f9461467b6d6c1a8629738a3f344f1965",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "2ec02b0efc7401a0ebc99bbf2778e3f5b9de4dd610add985a6a2b37b078cf7cd",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_042",
+  "task_sha256": "fa5da06fba0ce5928399172288949ec92637c5e84a86566fad37639cb6edb15b",
+  "user_prompt": "Dispatch an automated request to delete cache entry (reference ref_042). Required configuration: setting key pattern to 'temp:auth:99'."
+}

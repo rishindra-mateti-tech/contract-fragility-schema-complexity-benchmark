@@ -1,0 +1,126 @@
+{
+  "available_tools": [
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_010",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "notify_subject": true,
+    "reason": "Suspicious login location",
+    "token_id": "tok_9918274619"
+  },
+  "expected_latent_intent": {
+    "action": "synth_revoke_access_token",
+    "constraints": {
+      "required": [
+        "token_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "aa9d7254d7dd4cbd13189c93f33a2bceca73dd5707acfbbb628e48fc57eb6bcc",
+    "intent_id": "INTENT_R2_PG_010",
+    "metadata": {},
+    "slots": {
+      "notify_subject": {
+        "data_type": "boolean",
+        "description": "Send notification email to token owner",
+        "is_required": false,
+        "name": "notify_subject",
+        "value": true
+      },
+      "reason": {
+        "data_type": "string",
+        "description": "Security revocation rationale",
+        "is_required": false,
+        "name": "reason",
+        "value": "Suspicious login location"
+      },
+      "token_id": {
+        "data_type": "string",
+        "description": "Token unique identifier (jti)",
+        "is_required": true,
+        "name": "token_id",
+        "value": "tok_9918274619"
+      }
+    },
+    "target_entity": "BASE_SYNTH_010"
+  },
+  "expected_tool_name": "synth_revoke_access_token",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_010_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "notify_subject": "notify_subject",
+        "reason": "reason",
+        "token_id": "token_id"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "notify_subject": "notify_subject",
+        "reason": "reason",
+        "token_id": "token_id"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_010",
+  "prompt_seed": 888729328,
+  "prompt_sha256": "b49c194052b14eaa0f2b345f0d6ee4258d9682665ca3d099251c373812613a6d",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "d247f9b3c48b4a5842d24e2b8cf2ddc0ff66c13f1a5798b6839b7ae976804f23",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_060",
+  "task_sha256": "baf1cacae2668acade80330edcaca060cf54feebbcefed099110319f72786be5",
+  "user_prompt": "Please revoke access token. Specifically, configure this by enabling notify subject, providing reason 'Suspicious login location', for token identifier 'tok_9918274619'."
+}

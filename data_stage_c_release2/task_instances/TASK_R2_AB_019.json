@@ -1,0 +1,150 @@
+{
+  "available_tools": [
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "description": "Register a recurring automated task schedule with target queue.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "tool_name": "synth_schedule_cron_job"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_019",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_019",
+  "prompt_seed": 3772621253,
+  "prompt_sha256": "4a6d5059ce86789932f64983a284dd8ba8bca0caa449d55b5b73f7c721725de7",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "93f059981fe8c611bc7e3982424d4c4a03478ec6653989986cdb4ff1181afd49",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_019",
+  "task_sha256": "1ea3893640c7a2f6245d52d241b58f0a2724eb288d9c938bcab976edbb93e867",
+  "user_prompt": "Execute evaluate for anomaly detector (request #019) setting maximum capacity to -1 and minimum threshold to 999999."
+}

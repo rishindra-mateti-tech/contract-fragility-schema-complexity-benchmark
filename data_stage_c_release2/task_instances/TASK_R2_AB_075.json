@@ -1,0 +1,215 @@
+{
+  "available_tools": [
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain",
+          "consensus_config",
+          "member_nodes"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    },
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_035",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_075",
+  "prompt_seed": 3333534367,
+  "prompt_sha256": "ef4de4b46b773042ecd2efb4b1df0ca78c84ec3e3becadff98e5d68b4ec4a2a1",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "325d9b3cf09737e14400648c4b3f81af89cde9b4be331341226aa547bcb1b915",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_075",
+  "task_sha256": "3b5e80fd0c542f3980862b8412ad2ff343049407db9a8b98d40ebd8c860a32ec",
+  "user_prompt": "Update audit scorecard for partition 075 with a lock duration of zero seconds while enforcing permanent exclusivity."
+}

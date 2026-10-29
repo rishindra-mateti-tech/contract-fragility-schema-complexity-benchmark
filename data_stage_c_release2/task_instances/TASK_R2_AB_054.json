@@ -1,0 +1,169 @@
+{
+  "available_tools": [
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    },
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_014",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_054",
+  "prompt_seed": 2855676026,
+  "prompt_sha256": "68a2ff240e7062b859f9a3f8e6c95f05ca77366ea9dee4eb08bd799d5d4f528b",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e55372cdc0cc5b048b3e7e660503dfad7d35900668f00739fe8cdc72eabd9353",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_054",
+  "task_sha256": "0c21415c56281c195a328a946ba2a95782cc747487418566076b4a5ceda25efa",
+  "user_prompt": "Perform an automated physical hardware diagnostic for batch 054 on the motherboard powering data partition."
+}

@@ -1,0 +1,304 @@
+{
+  "available_tools": [
+    {
+      "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+        "properties": {
+          "artifact_paths": {
+            "description": "Input artifact files",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "pipeline_id": {
+            "description": "Workflow pipeline definition ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "stage_name": {
+            "description": "Target execution stage",
+            "enum": [
+              "lint",
+              "unit_test",
+              "integration_test",
+              "security_scan",
+              "package"
+            ],
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "description": "Maximum stage runtime",
+            "maximum": 3600,
+            "minimum": 10,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pipeline_id",
+          "stage_name"
+        ],
+        "title": "synth_trigger_pipeline_stage",
+        "type": "object"
+      },
+      "tool_name": "synth_trigger_pipeline_stage"
+    },
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    },
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    },
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_020",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "bucket_boundaries": [
+      1.0,
+      5.0,
+      10.0
+    ],
+    "histogram_name": "db_query_time",
+    "unit": "milliseconds"
+  },
+  "expected_latent_intent": {
+    "action": "synth_publish_metric_histogram",
+    "constraints": {
+      "required": [
+        "bucket_boundaries",
+        "histogram_name",
+        "unit"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3aa2bbb3061db8a76a77f54ba6048f7482c8bafe1fccfb469f7787e04ffbbdf1",
+    "intent_id": "INTENT_R2_TS_020",
+    "metadata": {},
+    "slots": {
+      "bucket_boundaries": {
+        "data_type": "array[number]",
+        "description": "Ascending bucket threshold values",
+        "is_required": true,
+        "name": "bucket_boundaries",
+        "value": [
+          1.0,
+          5.0,
+          10.0
+        ]
+      },
+      "histogram_name": {
+        "data_type": "string",
+        "description": "Histogram metric name",
+        "is_required": true,
+        "name": "histogram_name",
+        "value": "db_query_time"
+      },
+      "unit": {
+        "data_type": "string",
+        "description": "Measurement unit",
+        "is_required": true,
+        "name": "unit",
+        "value": "milliseconds"
+      }
+    },
+    "target_entity": "BASE_SYNTH_020"
+  },
+  "expected_tool_name": "synth_publish_metric_histogram",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_020_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "bucket_boundaries": "bucket_boundaries",
+        "histogram_name": "histogram_name",
+        "sample_count": "sample_count",
+        "unit": "unit"
+      },
+      "intent_to_arg_path": {
+        "bucket_boundaries": "bucket_boundaries",
+        "histogram_name": "histogram_name",
+        "sample_count": "sample_count",
+        "unit": "unit"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_020",
+  "prompt_seed": 3312592810,
+  "prompt_sha256": "b4ee418bb4ef0b0fb3e310371312649091b6fbb3eeb59604fb8bebb75937d1d3",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "653a08d859c115dd2edef2e5d5a27177f7c42aedc1093d8f05c510e1e1b9b0a0",
+  "target_position": 4,
+  "task_id": "TASK_R2_TS_020",
+  "task_sha256": "e7aa087a946a95724300620d282a11dba947e0616d8951ce5b9d3b446b302846",
+  "user_prompt": "Dispatch an automated request to publish metric histogram (reference ref_020). Required configuration: setting bucket boundaries to '[1.0, 5.0, 10.0]', setting histogram name to 'db_query_time', setting unit to 'milliseconds'."
+}

@@ -1,0 +1,160 @@
+{
+  "available_tools": [
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_038",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_078",
+  "prompt_seed": 3757200412,
+  "prompt_sha256": "98968ec2918b35e315be7d11ed6e28e36b7ca8a4052a54072ea482f2c2058f03",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "33bfc8f2017ea43c603f77c7b7d3ba59c06579bc81f5848c9873c452cfed2cc1",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_078",
+  "task_sha256": "ac36c8db4288ca6dd358d18fdb86167ad253ccffbf7ae7e9860edf8afbfa8ee6",
+  "user_prompt": "Generate a machine learning forecast model for etl pipeline (task #078) and export the neural weights to disk."
+}

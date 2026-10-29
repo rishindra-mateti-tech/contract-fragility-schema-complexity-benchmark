@@ -1,0 +1,140 @@
+{
+  "available_tools": [
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name_param": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode_param": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids_param": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view_param": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name_param",
+          "index_mode_param",
+          "record_ids_param"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_013",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "collection_name_param": "knowledge_docs",
+    "index_mode_param": "asynchronous",
+    "record_ids_param": [
+      "doc_1",
+      "doc_2"
+    ],
+    "refresh_view_param": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_batch_index_records",
+    "constraints": {
+      "required": [
+        "collection_name",
+        "index_mode",
+        "record_ids"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3f9713e9f04504debb95fe6a1adc5e194251422030e845c3be1c6f2a4f13f407",
+    "intent_id": "INTENT_R2_PG_013",
+    "metadata": {},
+    "slots": {
+      "collection_name": {
+        "data_type": "string",
+        "description": "Search index name",
+        "is_required": true,
+        "name": "collection_name",
+        "value": "knowledge_docs"
+      },
+      "index_mode": {
+        "data_type": "string",
+        "description": "Indexing commitment mode",
+        "is_required": true,
+        "name": "index_mode",
+        "value": "asynchronous"
+      },
+      "record_ids": {
+        "data_type": "array[string]",
+        "description": "List of record identifiers",
+        "is_required": true,
+        "name": "record_ids",
+        "value": [
+          "doc_1",
+          "doc_2"
+        ]
+      },
+      "refresh_view": {
+        "data_type": "boolean",
+        "description": "Force immediate index view refresh",
+        "is_required": false,
+        "name": "refresh_view",
+        "value": true
+      }
+    },
+    "target_entity": "BASE_SYNTH_013"
+  },
+  "expected_tool_name": "synth_batch_index_records",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_013_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "collection_name_param": "collection_name",
+        "index_mode_param": "index_mode",
+        "record_ids_param": "record_ids",
+        "refresh_view_param": "refresh_view"
+      },
+      "intent_to_arg_path": {
+        "collection_name": "collection_name_param",
+        "index_mode": "index_mode_param",
+        "record_ids": "record_ids_param",
+        "refresh_view": "refresh_view_param"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_013",
+  "prompt_seed": 1209471460,
+  "prompt_sha256": "b359c19f74de33016c224e1a847f1734726fcb48c8cd61d0efc103d5c7dae2cf",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "c9ce245e1e9ce6fd6810d67d4f690e136458bfe8c4f0e936bfa38430d877fd7a",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_088",
+  "task_sha256": "e97b4bf92fd1453d447394aec9aabc916b8f7b97b70c5fa51ef4a75674075bc2",
+  "user_prompt": "Please batch index records. Specifically, configure this by setting collection name to 'knowledge_docs', using asynchronous indexing, setting record ids to '['doc_1', 'doc_2']', enabling refresh view."
+}

@@ -1,0 +1,307 @@
+{
+  "available_tools": [
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    },
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_015",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "alert_title": "Database High Memory",
+    "auto_resolve_minutes": 60,
+    "severity_level": "CRITICAL",
+    "target_channels": [
+      "slack-ops",
+      "pagerduty-sre"
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_broadcast_alert_notification",
+    "constraints": {
+      "required": [
+        "alert_title",
+        "severity_level",
+        "target_channels"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "adead129e501758e088bb3b6d77dd8eaeb63f4d1e2cde779aa41b6ac6b0f7499",
+    "intent_id": "INTENT_R2_TS_095",
+    "metadata": {},
+    "slots": {
+      "alert_title": {
+        "data_type": "string",
+        "description": "Short alert title",
+        "is_required": true,
+        "name": "alert_title",
+        "value": "Database High Memory"
+      },
+      "auto_resolve_minutes": {
+        "data_type": "integer",
+        "description": "Automatic timeout before auto-resolve",
+        "is_required": false,
+        "name": "auto_resolve_minutes",
+        "value": 60
+      },
+      "severity_level": {
+        "data_type": "string",
+        "description": "Alert severity tier",
+        "is_required": true,
+        "name": "severity_level",
+        "value": "CRITICAL"
+      },
+      "target_channels": {
+        "data_type": "array[string]",
+        "description": "Broadcast destination channels",
+        "is_required": true,
+        "name": "target_channels",
+        "value": [
+          "slack-ops",
+          "pagerduty-sre"
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_015"
+  },
+  "expected_tool_name": "synth_broadcast_alert_notification",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_015_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      },
+      "intent_to_arg_path": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_095",
+  "prompt_seed": 844153913,
+  "prompt_sha256": "ce63f00be5eb18ff56445fb8dba0ae28a27f85be9eec0520274a1d4c6b882fca",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "24e79f55543da055fb2d0f4a9deb19f08272238c72241b96642c06d5e4c0c92f",
+  "target_position": 4,
+  "task_id": "TASK_R2_TS_095",
+  "task_sha256": "09ae90e1fa9437fdef20df4dfd4263ed3b4dcb610591349b74c5f73bea763322",
+  "user_prompt": "A user requested to broadcast alert notification under dispatch tag #095. Apply the following specifications: titled 'Database High Memory', setting auto resolve minutes to '60', marked with CRITICAL severity, setting target channels to '['slack-ops', 'pagerduty-sre']'."
+}

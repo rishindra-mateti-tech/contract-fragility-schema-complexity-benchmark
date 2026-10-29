@@ -1,0 +1,319 @@
+{
+  "available_tools": [
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Send an SMS text message to a designated phone destination.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    },
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_021",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "enforce_mfa": true,
+    "permission_scopes": [
+      "read:logs",
+      "restart:service"
+    ],
+    "principal_id": "usr_9918",
+    "role_tier": "operator"
+  },
+  "expected_latent_intent": {
+    "action": "synth_assign_role_permissions",
+    "constraints": {
+      "required": [
+        "permission_scopes",
+        "principal_id",
+        "role_tier"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "fcea023585c2a48ef6e87110f8ab12f702b5b7bd3a95e49e2c910bd7ed76f062",
+    "intent_id": "INTENT_R2_TS_061",
+    "metadata": {},
+    "slots": {
+      "enforce_mfa": {
+        "data_type": "boolean",
+        "description": "Require multi-factor authentication for role usage",
+        "is_required": false,
+        "name": "enforce_mfa",
+        "value": true
+      },
+      "permission_scopes": {
+        "data_type": "array[string]",
+        "description": "Granted scope strings",
+        "is_required": true,
+        "name": "permission_scopes",
+        "value": [
+          "read:logs",
+          "restart:service"
+        ]
+      },
+      "principal_id": {
+        "data_type": "string",
+        "description": "User or service principal identifier",
+        "is_required": true,
+        "name": "principal_id",
+        "value": "usr_9918"
+      },
+      "role_tier": {
+        "data_type": "string",
+        "description": "Predefined RBAC role tier",
+        "is_required": true,
+        "name": "role_tier",
+        "value": "operator"
+      }
+    },
+    "target_entity": "BASE_SYNTH_021"
+  },
+  "expected_tool_name": "synth_assign_role_permissions",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_021_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "enforce_mfa": "enforce_mfa",
+        "permission_scopes": "permission_scopes",
+        "principal_id": "principal_id",
+        "role_tier": "role_tier"
+      },
+      "intent_to_arg_path": {
+        "enforce_mfa": "enforce_mfa",
+        "permission_scopes": "permission_scopes",
+        "principal_id": "principal_id",
+        "role_tier": "role_tier"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_061",
+  "prompt_seed": 1625191932,
+  "prompt_sha256": "ce8f1e7720b7b4380a709e0849cdc15a52ac646a5cc228f11f21f20c06c681c3",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "345d8a13c91187c7a27c2847f493152dd503ba9f441cb79d1ba0b2a4081eb486",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_061",
+  "task_sha256": "be4bdf8525865079dea6e8b168db19cc1456397edbe42b4f4ea0fad16743476c",
+  "user_prompt": "We need to assign role permissions for operations batch 061. Please configure: enabling enforce mfa, setting permission scopes to '['read:logs', 'restart:service']', setting principal id to 'usr_9918', setting role tier to 'operator'."
+}

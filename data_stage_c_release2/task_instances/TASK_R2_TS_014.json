@@ -1,0 +1,310 @@
+{
+  "available_tools": [
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    },
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_014",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "compression_format": "gzip",
+    "partition_key": "part_2026_q1"
+  },
+  "expected_latent_intent": {
+    "action": "synth_archive_data_partition",
+    "constraints": {
+      "required": [
+        "compression_format",
+        "partition_key"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f327c79066d31058d10509c1973506409ece0c78ad40c8ec8aa00c01ecaf46f9",
+    "intent_id": "INTENT_R2_TS_014",
+    "metadata": {},
+    "slots": {
+      "compression_format": {
+        "data_type": "string",
+        "description": "Compression algorithm",
+        "is_required": true,
+        "name": "compression_format",
+        "value": "gzip"
+      },
+      "partition_key": {
+        "data_type": "string",
+        "description": "Partition identifier",
+        "is_required": true,
+        "name": "partition_key",
+        "value": "part_2026_q1"
+      }
+    },
+    "target_entity": "BASE_SYNTH_014"
+  },
+  "expected_tool_name": "synth_archive_data_partition",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_014_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "compression_format": "compression_format",
+        "metadata_tags": "metadata_tags",
+        "partition_key": "partition_key",
+        "retention_years": "retention_years"
+      },
+      "intent_to_arg_path": {
+        "compression_format": "compression_format",
+        "metadata_tags": "metadata_tags",
+        "partition_key": "partition_key",
+        "retention_years": "retention_years"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_014",
+  "prompt_seed": 2957493367,
+  "prompt_sha256": "d24e10370ae89b6691c7f190939677552cae4379a61669a3543895036fc25892",
+  "prompt_template_id": "TS_FRAME_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "b8e9dd276cb46624400895961d7e0efb055740d7fb7e489cf7bd4ea9aea8d6e6",
+  "target_position": 3,
+  "task_id": "TASK_R2_TS_014",
+  "task_sha256": "4788197a1e8454d6c51d3b2614bd167fc86edff86d351ce027c2ad95172fe713",
+  "user_prompt": "The system needs to archive data partition for execution run 014. Ensure you setting compression format to 'gzip', setting partition key to 'part_2026_q1'."
+}

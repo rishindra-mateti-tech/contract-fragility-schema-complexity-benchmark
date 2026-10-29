@@ -1,0 +1,110 @@
+{
+  "available_tools": [
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_011",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "extension_minutes": 60,
+    "session_id": "sess_8839201948",
+    "touch_activity": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_extend_session_lease",
+    "constraints": {
+      "required": [
+        "extension_minutes",
+        "session_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "8710ef2efce2fd57d6450a70c0f5eeb5c5465afaf4dfdc699124631d9ae6b9b0",
+    "intent_id": "INTENT_R2_PG_011",
+    "metadata": {},
+    "slots": {
+      "extension_minutes": {
+        "data_type": "integer",
+        "description": "Extension duration",
+        "is_required": true,
+        "name": "extension_minutes",
+        "value": 60
+      },
+      "session_id": {
+        "data_type": "string",
+        "description": "Active session cookie ID",
+        "is_required": true,
+        "name": "session_id",
+        "value": "sess_8839201948"
+      },
+      "touch_activity": {
+        "data_type": "boolean",
+        "description": "Update last active timestamp",
+        "is_required": false,
+        "name": "touch_activity",
+        "value": true
+      }
+    },
+    "target_entity": "BASE_SYNTH_011"
+  },
+  "expected_tool_name": "synth_extend_session_lease",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_011_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "extension_minutes": "extension_minutes",
+        "session_id": "session_id",
+        "touch_activity": "touch_activity"
+      },
+      "intent_to_arg_path": {
+        "extension_minutes": "extension_minutes",
+        "session_id": "session_id",
+        "touch_activity": "touch_activity"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_011",
+  "prompt_seed": 1383702313,
+  "prompt_sha256": "7826026a055c431c7b0dd34cceab917cb5e6b55acb8e601e8f1879e0c9e0d0b1",
+  "prompt_template_id": "AC_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e99c050ecf80759e4fa7777a8386ab4a3078879c77547465f5c27742985ce71e",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_011",
+  "task_sha256": "7d1954050f7b4d36e73ca2aa4a95dd47eec18282427866b355e0793f60a00ba3",
+  "user_prompt": "We need to extend session lease. Execute this request setting extension minutes to '60', for session 'sess_8839201948', enabling touch activity."
+}

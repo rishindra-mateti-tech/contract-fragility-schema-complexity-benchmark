@@ -1,0 +1,107 @@
+{
+  "available_tools": [
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately_param": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by_param": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "telemetry_indicator": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "telemetry_indicator"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_007",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "flush_immediately_param": true,
+    "increment_by_param": 5,
+    "telemetry_indicator": "http_requests_total"
+  },
+  "expected_latent_intent": {
+    "action": "synth_increment_counter_metric",
+    "constraints": {
+      "required": [
+        "metric_name"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "6bf52ff762dab14a29e5e42d4cc34db804f796bf72412cb3b12d4315d96443fa",
+    "intent_id": "INTENT_R2_PG_007",
+    "metadata": {},
+    "slots": {
+      "flush_immediately": {
+        "data_type": "boolean",
+        "description": "Flush local buffer to aggregator",
+        "is_required": false,
+        "name": "flush_immediately",
+        "value": true
+      },
+      "increment_by": {
+        "data_type": "integer",
+        "description": "Positive integer increment",
+        "is_required": false,
+        "name": "increment_by",
+        "value": 5
+      },
+      "metric_name": {
+        "data_type": "string",
+        "description": "Metric identifier",
+        "is_required": true,
+        "name": "metric_name",
+        "value": "http_requests_total"
+      }
+    },
+    "target_entity": "BASE_SYNTH_007"
+  },
+  "expected_tool_name": "synth_increment_counter_metric",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_007_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "flush_immediately_param": "flush_immediately",
+        "increment_by_param": "increment_by",
+        "telemetry_indicator": "metric_name"
+      },
+      "intent_to_arg_path": {
+        "flush_immediately": "flush_immediately_param",
+        "increment_by": "increment_by_param",
+        "metric_name": "telemetry_indicator"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_007",
+  "prompt_seed": 4236097502,
+  "prompt_sha256": "2808169c7353092195842527c7c47cb05ff74c3a314d75744bc730928a0c2d70",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "0771e399b9f2162cb5cf5b6855bb32150827b74d3641b4044d111a1d3b295677",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_082",
+  "task_sha256": "3fd2b885e522c08c49012cfb982296dfaf40ea288df73aa8fa01578a27d862cc",
+  "user_prompt": "Perform a task to increment counter metric, ensuring that you are using standard buffer flushing, incrementing the counter by 5, for metric 'http_requests_total'."
+}

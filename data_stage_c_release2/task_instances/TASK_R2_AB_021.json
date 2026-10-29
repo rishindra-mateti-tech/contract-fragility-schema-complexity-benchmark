@@ -1,0 +1,193 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "properties": {
+          "pipeline_name": {
+            "description": "Pipeline execution job name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "sink_connector": {
+            "additionalProperties": false,
+            "description": "Target warehouse loader",
+            "properties": {
+              "table_mode": {
+                "enum": [
+                  "append",
+                  "overwrite",
+                  "merge"
+                ],
+                "type": "string"
+              },
+              "warehouse": {
+                "enum": [
+                  "snowflake",
+                  "bigquery",
+                  "redshift"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "warehouse",
+              "table_mode"
+            ],
+            "type": "object"
+          },
+          "source_connector": {
+            "additionalProperties": false,
+            "description": "Origin database extractor",
+            "properties": {
+              "connector_type": {
+                "enum": [
+                  "postgres",
+                  "mysql",
+                  "mongodb"
+                ],
+                "type": "string"
+              },
+              "query_timeout_sec": {
+                "maximum": 300,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "connector_type"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "pipeline_name",
+          "source_connector",
+          "sink_connector"
+        ],
+        "title": "synth_orchestrate_etl_pipeline",
+        "type": "object"
+      },
+      "tool_name": "synth_orchestrate_etl_pipeline"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "properties": {
+          "migration_id": {
+            "description": "Migration operation tracking ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "source": {
+            "additionalProperties": false,
+            "description": "Source storage specification",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "slice_id": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "slice_id"
+            ],
+            "type": "object"
+          },
+          "target": {
+            "additionalProperties": false,
+            "description": "Target storage destination",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "datacenter": {
+                "minLength": 2,
+                "type": "string"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "datacenter"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "migration_id",
+          "source",
+          "target"
+        ],
+        "title": "synth_execute_partition_migration",
+        "type": "object"
+      },
+      "tool_name": "synth_execute_partition_migration"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_021",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_021",
+  "prompt_seed": 1001159507,
+  "prompt_sha256": "ea9b0791897d27f03894dfda0e87f91a43675b0b632fc68c6fa7356b2b5ebf0a",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "162c365f053b5dd5160f3417a8230372d11d0cd1adcfe0c896cb7358b6e2d8b4",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_021",
+  "task_sha256": "1653ae86fabe0c0f5e103711a80ed076f01a4e120763d80d4b9f00691257cfd0",
+  "user_prompt": "We want to assign role permissions in partition part_021. Run this operation now without providing parameter values."
+}

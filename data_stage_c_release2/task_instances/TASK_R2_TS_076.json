@@ -1,0 +1,290 @@
+{
+  "available_tools": [
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    },
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_036",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "idp_spec": {
+      "entity_id": "google-enterprise",
+      "protocol": "OIDC",
+      "sso_url": "https://accounts.google.com/o/oauth2/auth"
+    },
+    "provider_name": "google_workspace_oidc"
+  },
+  "expected_latent_intent": {
+    "action": "synth_configure_sso_identity_provider",
+    "constraints": {
+      "required": [
+        "idp_spec",
+        "provider_name"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "243b491c60be4e4ae57cfaaecfa387b578002b13f7b8ddc33c5bd753ea19a76d",
+    "intent_id": "INTENT_R2_TS_076",
+    "metadata": {},
+    "slots": {
+      "idp_spec": {
+        "data_type": "object",
+        "description": "Provider connection details",
+        "is_required": true,
+        "name": "idp_spec",
+        "value": {
+          "entity_id": "google-enterprise",
+          "protocol": "OIDC",
+          "sso_url": "https://accounts.google.com/o/oauth2/auth"
+        }
+      },
+      "provider_name": {
+        "data_type": "string",
+        "description": "Federation label",
+        "is_required": true,
+        "name": "provider_name",
+        "value": "google_workspace_oidc"
+      }
+    },
+    "target_entity": "BASE_SYNTH_036"
+  },
+  "expected_tool_name": "synth_configure_sso_identity_provider",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_036_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "enforce_domain_lock": "enforce_domain_lock",
+        "idp_spec": "idp_spec",
+        "provider_name": "provider_name"
+      },
+      "intent_to_arg_path": {
+        "enforce_domain_lock": "enforce_domain_lock",
+        "idp_spec": "idp_spec",
+        "provider_name": "provider_name"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_076",
+  "prompt_seed": 153005466,
+  "prompt_sha256": "9387142ed102b13d67abd2a00063b1c99df75f91b8998218682bfabb25e9b093",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "9bff7679140726414da3adcd98600dfb954f5bcbb37510fde276c43ebc15847a",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_076",
+  "task_sha256": "a851387430f3d3d9ae49ad6659d2bd6dc995ac43d0ba87b8a53f162a92588afe",
+  "user_prompt": "Dispatch an automated request to configure sso identity provider (reference ref_076). Required configuration: setting idp spec to '{'entity_id': 'google-enterprise', 'protocol': 'OIDC', 'sso_url': 'https://accounts.google.com/o/oauth2/auth'}', setting provider name to 'google_workspace_oidc'."
+}

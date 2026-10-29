@@ -1,0 +1,151 @@
+{
+  "available_tools": [
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_029",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_069",
+  "prompt_seed": 3727117230,
+  "prompt_sha256": "e0979789d6d12a705c69e8903134525c347719f294fea039900f629b9aef6f96",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "3bdb50f6688b0d7896bec2cf810930cc95fdd8757e9ba2a0aa576fe6f7da76e1",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_069",
+  "task_sha256": "f327e7c0f04e6fefa48d5d82ab8257dbad6c5bab222aad3779ccd6d0cc34586b",
+  "user_prompt": "Dispatch a request to configure database replica for environment env_069 using default assumptions where possible."
+}

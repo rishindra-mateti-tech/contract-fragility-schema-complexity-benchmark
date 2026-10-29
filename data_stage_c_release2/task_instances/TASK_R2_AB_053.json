@@ -1,0 +1,162 @@
+{
+  "available_tools": [
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_013",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_053",
+  "prompt_seed": 604820452,
+  "prompt_sha256": "956418a5656471863988adb1a4301625f920496570d6d7105abe702f828e88bd",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "19a364b998392750040cb876c8a987adf313a32680a536de6468df6d4c3d93b7",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_053",
+  "task_sha256": "fdab2e22641742880461697ce928c808e5d2bef4828de7aa00695cccfcd23f67",
+  "user_prompt": "Please batch index records for batch run 053 immediately without waiting for specific payload details."
+}

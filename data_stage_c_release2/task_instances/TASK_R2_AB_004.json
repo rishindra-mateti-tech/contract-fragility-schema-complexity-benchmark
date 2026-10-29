@@ -1,0 +1,141 @@
+{
+  "available_tools": [
+    {
+      "description": "Provision a read replica node with host connection and replication settings.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "properties": {
+          "cluster_id": {
+            "description": "Primary database cluster ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "enable_ssl": {
+            "description": "Require TLS encryption on replication stream",
+            "type": "boolean"
+          },
+          "replica_config": {
+            "additionalProperties": false,
+            "description": "Replica node configuration",
+            "properties": {
+              "node_name": {
+                "description": "Replica hostname/label",
+                "minLength": 1,
+                "type": "string"
+              },
+              "port": {
+                "description": "Port number",
+                "maximum": 65535,
+                "minimum": 1024,
+                "type": "integer"
+              },
+              "read_only": {
+                "description": "Enforce read-only transactions",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "node_name",
+              "port"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "cluster_id",
+          "replica_config"
+        ],
+        "title": "synth_configure_database_replica",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_database_replica"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "description": "Tear down an established conference audio bridge.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "tool_name": "synth_terminate_voice_bridge"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_004",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_004",
+  "prompt_seed": 847218194,
+  "prompt_sha256": "f0617851ac7d38db5bea1e6d8c881539fccf9a0c8f9db232b43a81b829c4ac64",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "60f28f8da6643dbd0f6c76d0f5b4e04b0c103baa7e15383414e62b1a000d7955",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_004",
+  "task_sha256": "0bf77d008ffb324dd260dc6d7a9c4c352cabc8e3788de8d2a0b378e0d63d34b9",
+  "user_prompt": "Process everything related to sms message for cycle 004 as soon as convenient."
+}

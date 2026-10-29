@@ -1,0 +1,126 @@
+{
+  "available_tools": [
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_033",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_033",
+  "prompt_seed": 2842143902,
+  "prompt_sha256": "40e959fb2904aea51e36a6dffc5e25654aa23e893303ef1822642b6cef42b961",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "f0a455399de3ff4deac60c1cbdfcdd92f057c34fc290a07e0a5221a087afbc7f",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_033",
+  "task_sha256": "a4f7678a30182321e2a0efc9f00cb0285942776438e3c2f2c3d1b809b0942877",
+  "user_prompt": "Dispatch a request to publish webhook event for environment env_033 using default assumptions where possible."
+}

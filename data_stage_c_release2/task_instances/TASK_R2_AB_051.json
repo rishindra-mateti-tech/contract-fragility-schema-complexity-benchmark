@@ -1,0 +1,175 @@
+{
+  "available_tools": [
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain",
+          "consensus_config",
+          "member_nodes"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    },
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_011",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_051",
+  "prompt_seed": 2544609078,
+  "prompt_sha256": "5c9bcb3c5e4f26f3505f1fc6e46e6870b7ef5ace49620bda065524637a0f2999",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "242950a16e907622cc9c6c6d24c632ed82bb390b5c235e078e7300f25ba0aedc",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_051",
+  "task_sha256": "ab406217a63fdf20e3f3ac219e415ec5ab4f34486be43e7de6349a95529c9667",
+  "user_prompt": "Apply configuration to session lease (dispatch #051) requiring simultaneous immediate completion and indefinite suspension."
+}

@@ -1,0 +1,270 @@
+{
+  "available_tools": [
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain",
+          "consensus_config",
+          "member_nodes"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    },
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    },
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_011",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "extension_minutes": 60,
+    "session_id": "sess_8839201948",
+    "touch_activity": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_extend_session_lease",
+    "constraints": {
+      "required": [
+        "extension_minutes",
+        "session_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "8710ef2efce2fd57d6450a70c0f5eeb5c5465afaf4dfdc699124631d9ae6b9b0",
+    "intent_id": "INTENT_R2_TS_051",
+    "metadata": {},
+    "slots": {
+      "extension_minutes": {
+        "data_type": "integer",
+        "description": "Extension duration",
+        "is_required": true,
+        "name": "extension_minutes",
+        "value": 60
+      },
+      "session_id": {
+        "data_type": "string",
+        "description": "Active session cookie ID",
+        "is_required": true,
+        "name": "session_id",
+        "value": "sess_8839201948"
+      },
+      "touch_activity": {
+        "data_type": "boolean",
+        "description": "Update last active timestamp",
+        "is_required": false,
+        "name": "touch_activity",
+        "value": true
+      }
+    },
+    "target_entity": "BASE_SYNTH_011"
+  },
+  "expected_tool_name": "synth_extend_session_lease",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_011_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "extension_minutes": "extension_minutes",
+        "session_id": "session_id",
+        "touch_activity": "touch_activity"
+      },
+      "intent_to_arg_path": {
+        "extension_minutes": "extension_minutes",
+        "session_id": "session_id",
+        "touch_activity": "touch_activity"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_051",
+  "prompt_seed": 2732968501,
+  "prompt_sha256": "60b97a3eee2c53ed0259529bd81e09ba6ca8d998c1a2b7abf80d0f4c23753286",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "779facd652abace5031507c4d076d5ab4705212e840cccbefe67b488917c5f4c",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_051",
+  "task_sha256": "6b4c8a5b1c4b3635f19bac90c24ea27465825dbf2f2b261dbff5865a0d877f34",
+  "user_prompt": "A user requested to extend session lease under dispatch tag #051. Apply the following specifications: setting extension minutes to '60', for session 'sess_8839201948', enabling touch activity."
+}

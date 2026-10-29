@@ -1,0 +1,163 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_003",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_083",
+  "prompt_seed": 2470001163,
+  "prompt_sha256": "b95f4e4ded0439cf1a7b6bbbfd26d65692e9d89a6a95da152a200f65eb703ce0",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "d5219e4abfa4c674b2bc25277c82128e7049097fccd9225153e23a25448eebd3",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_083",
+  "task_sha256": "8fbd793238d6a7ebb92412d79b25526fbafe737c827e09534cfeb601d49af0d1",
+  "user_prompt": "Update table slice for partition 083 with a lock duration of zero seconds while enforcing permanent exclusivity."
+}

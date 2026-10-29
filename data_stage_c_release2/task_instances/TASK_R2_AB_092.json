@@ -1,0 +1,168 @@
+{
+  "available_tools": [
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_092",
+  "prompt_seed": 4128467107,
+  "prompt_sha256": "334fcec65b638377fda736c5ea573182d2bf246a33d059427a24b562d2df5d4c",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "7d27577fac702940e8056f87f092cd8f1d9822ab07a6d5b08eeabb4e644cf931",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_092",
+  "task_sha256": "452a4430b7387f0f3e0073f80a1cd8dba5b16a6278afdbb7a6cf7980b61a7e3d",
+  "user_prompt": "Do what is necessary for user account for ticket #092 based on current status."
+}

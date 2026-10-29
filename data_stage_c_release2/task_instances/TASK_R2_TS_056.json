@@ -1,0 +1,296 @@
+{
+  "available_tools": [
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    },
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_016",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "digest_frequency": "monthly",
+    "recipients": [
+      "cfo@example.com"
+    ],
+    "template_slug": "monthly_billing"
+  },
+  "expected_latent_intent": {
+    "action": "synth_enqueue_email_digest",
+    "constraints": {
+      "required": [
+        "digest_frequency",
+        "recipients",
+        "template_slug"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f9c3c6b4bdf7e0c71a8fdf1694f4f4e1ce40839c8f46891925ae09031b99ff5d",
+    "intent_id": "INTENT_R2_TS_056",
+    "metadata": {},
+    "slots": {
+      "digest_frequency": {
+        "data_type": "string",
+        "description": "Aggregation cadence",
+        "is_required": true,
+        "name": "digest_frequency",
+        "value": "monthly"
+      },
+      "recipients": {
+        "data_type": "array[string]",
+        "description": "Recipient email addresses",
+        "is_required": true,
+        "name": "recipients",
+        "value": [
+          "cfo@example.com"
+        ]
+      },
+      "template_slug": {
+        "data_type": "string",
+        "description": "Email layout template ID",
+        "is_required": true,
+        "name": "template_slug",
+        "value": "monthly_billing"
+      }
+    },
+    "target_entity": "BASE_SYNTH_016"
+  },
+  "expected_tool_name": "synth_enqueue_email_digest",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_016_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "digest_frequency": "digest_frequency",
+        "recipients": "recipients",
+        "template_slug": "template_slug",
+        "track_opens": "track_opens"
+      },
+      "intent_to_arg_path": {
+        "digest_frequency": "digest_frequency",
+        "recipients": "recipients",
+        "template_slug": "template_slug",
+        "track_opens": "track_opens"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_056",
+  "prompt_seed": 4152925577,
+  "prompt_sha256": "f89886a823003b7abcbba6814a653ececb7fd330d879c04170027f60aa185cb3",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a5ba38e2135594f95809630978b75792a02101eff79a4558b688ea55890a586c",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_056",
+  "task_sha256": "1153cded4a25a3577c6e56e82635c428f5d8bc3d473cece602a8cc130fc66ecf",
+  "user_prompt": "A user requested to enqueue email digest under dispatch tag #056. Apply the following specifications: setting digest frequency to 'monthly', setting recipients to '['cfo@example.com']', setting template slug to 'monthly_billing'."
+}

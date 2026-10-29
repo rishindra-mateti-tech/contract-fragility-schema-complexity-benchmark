@@ -1,0 +1,315 @@
+{
+  "available_tools": [
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "description": "Remove all records from a specific table slice or partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "tool_name": "synth_truncate_table_slice"
+    },
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    },
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_003",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "force_truncate": true,
+    "slice_index": 3,
+    "table_name": "audit_logs_2026"
+  },
+  "expected_latent_intent": {
+    "action": "synth_truncate_table_slice",
+    "constraints": {
+      "required": [
+        "slice_index",
+        "table_name"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "7a1812342ac9a840dea923dda36ff56101879b0a1938816194a7f8066c4b77d3",
+    "intent_id": "INTENT_R2_TS_043",
+    "metadata": {},
+    "slots": {
+      "force_truncate": {
+        "data_type": "boolean",
+        "description": "Bypass active read-lock confirmation",
+        "is_required": false,
+        "name": "force_truncate",
+        "value": true
+      },
+      "slice_index": {
+        "data_type": "integer",
+        "description": "Zero-indexed partition slice",
+        "is_required": true,
+        "name": "slice_index",
+        "value": 3
+      },
+      "table_name": {
+        "data_type": "string",
+        "description": "Target relational table name",
+        "is_required": true,
+        "name": "table_name",
+        "value": "audit_logs_2026"
+      }
+    },
+    "target_entity": "BASE_SYNTH_003"
+  },
+  "expected_tool_name": "synth_truncate_table_slice",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_003_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      },
+      "intent_to_arg_path": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_043",
+  "prompt_seed": 3731315345,
+  "prompt_sha256": "1ea3b4207eb6c96f44aa77f53a97f0f7fa64b6acec231b9b80d5d18b34e60ff5",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a3b0edd9a5276cbc2936f76d15bfdc795193516149b55e779492d4cdff3c8b9c",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_043",
+  "task_sha256": "5a6a343a1df81cf717a2cfc629754018fdb83e4385dad1a229b5235c7a1da200",
+  "user_prompt": "A user requested to truncate table slice under dispatch tag #043. Apply the following specifications: performing standard truncation, targeting partition slice 3, for the 'audit_logs_2026' table."
+}

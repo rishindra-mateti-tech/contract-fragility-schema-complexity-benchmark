@@ -1,0 +1,155 @@
+{
+  "available_tools": [
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    },
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_034",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_034",
+  "prompt_seed": 1167014305,
+  "prompt_sha256": "a0218430abc67e85eaf041951aaadd7dce02ba9f14a30a4c27f2d781edc7df46",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "1a3f8f1d15ffd894ae55e6b3a1f6ab87ed9ed3f22adca1725c8f9c6e06300ad3",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_034",
+  "task_sha256": "0e2d9f19a49ee627e103a6dda10cae465841ab57a2951c18d8d5af73ae250fe9",
+  "user_prompt": "Transcribe all related audio communications for timeseries dataset (run #034) into French subtitles in real time."
+}

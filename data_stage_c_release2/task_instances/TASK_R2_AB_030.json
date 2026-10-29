@@ -1,0 +1,152 @@
+{
+  "available_tools": [
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_030",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_030",
+  "prompt_seed": 2824905495,
+  "prompt_sha256": "49829788924ca62e46fda0795440577293cd70ffaa69f465787f26d904e64b75",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "87c7a47bf7615e0c674863d0d7150f934736717c6e3373ab09c75b71f3bc8c19",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_030",
+  "task_sha256": "c444d026877f4842208e4d2e446992161900dc32c0f4c3af42f4f7726cb19c49",
+  "user_prompt": "Render a three-dimensional holographic visualization (dataset 030) of telemetry for partition migration."
+}

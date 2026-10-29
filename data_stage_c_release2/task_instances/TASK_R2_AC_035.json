@@ -1,0 +1,118 @@
+{
+  "available_tools": [
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "reason": {
+                "description": "Security revocation rationale",
+                "type": "string"
+              },
+              "token_id": {
+                "description": "Token unique identifier (jti)",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "token_id"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_010",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "notify_subject": true,
+    "payload_parameters": {
+      "reason": "Suspicious login location",
+      "token_id": "tok_9918274619"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_revoke_access_token",
+    "constraints": {
+      "required": [
+        "token_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "aa9d7254d7dd4cbd13189c93f33a2bceca73dd5707acfbbb628e48fc57eb6bcc",
+    "intent_id": "INTENT_R2_PG_010",
+    "metadata": {},
+    "slots": {
+      "notify_subject": {
+        "data_type": "boolean",
+        "description": "Send notification email to token owner",
+        "is_required": false,
+        "name": "notify_subject",
+        "value": true
+      },
+      "reason": {
+        "data_type": "string",
+        "description": "Security revocation rationale",
+        "is_required": false,
+        "name": "reason",
+        "value": "Suspicious login location"
+      },
+      "token_id": {
+        "data_type": "string",
+        "description": "Token unique identifier (jti)",
+        "is_required": true,
+        "name": "token_id",
+        "value": "tok_9918274619"
+      }
+    },
+    "target_entity": "BASE_SYNTH_010"
+  },
+  "expected_tool_name": "synth_revoke_access_token",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_010_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "notify_subject": "notify_subject",
+        "payload_parameters.reason": "reason",
+        "payload_parameters.token_id": "token_id"
+      },
+      "intent_to_arg_path": {
+        "notify_subject": "notify_subject",
+        "reason": "payload_parameters.reason",
+        "token_id": "payload_parameters.token_id"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_010",
+  "prompt_seed": 888729328,
+  "prompt_sha256": "b49c194052b14eaa0f2b345f0d6ee4258d9682665ca3d099251c373812613a6d",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "c283c6aac791a67615e9ee18e873b867ec19bee960c6f42ede909b2110f3acfc",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_035",
+  "task_sha256": "04629febe32a33807913eb42ee86c258f21b4ad4d7a4236bb20bea53af2a8320",
+  "user_prompt": "Please revoke access token. Specifically, configure this by enabling notify subject, providing reason 'Suspicious login location', for token identifier 'tok_9918274619'."
+}

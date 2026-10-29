@@ -1,0 +1,176 @@
+{
+  "available_tools": [
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "properties": {
+          "pipeline_name": {
+            "description": "Pipeline execution job name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "sink_connector": {
+            "additionalProperties": false,
+            "description": "Target warehouse loader",
+            "properties": {
+              "table_mode": {
+                "enum": [
+                  "append",
+                  "overwrite",
+                  "merge"
+                ],
+                "type": "string"
+              },
+              "warehouse": {
+                "enum": [
+                  "snowflake",
+                  "bigquery",
+                  "redshift"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "warehouse",
+              "table_mode"
+            ],
+            "type": "object"
+          },
+          "source_connector": {
+            "additionalProperties": false,
+            "description": "Origin database extractor",
+            "properties": {
+              "connector_type": {
+                "enum": [
+                  "postgres",
+                  "mysql",
+                  "mongodb"
+                ],
+                "type": "string"
+              },
+              "query_timeout_sec": {
+                "maximum": 300,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "connector_type"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "pipeline_name",
+          "source_connector",
+          "sink_connector"
+        ],
+        "title": "synth_orchestrate_etl_pipeline",
+        "type": "object"
+      },
+      "tool_name": "synth_orchestrate_etl_pipeline"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_008",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_008",
+  "prompt_seed": 354469200,
+  "prompt_sha256": "329b3912ca4f64e3f9ad1fd3817e9b9e02dd0037b87f0fcca4ff854671e6e495",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "2076a647d39f1e3d41dee8477de10182764837ff7ae81662dcfb476b416457bc",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_008",
+  "task_sha256": "866d677ae91087cfdd9675b6ce5f6a87be825d709d4b77b15e2a4e6d878d9384",
+  "user_prompt": "Handle the recent events on heartbeat timestamp for batch 008 using whatever system seems most appropriate."
+}

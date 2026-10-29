@@ -1,0 +1,145 @@
+{
+  "available_tools": [
+    {
+      "description": "Tear down an established conference audio bridge.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "tool_name": "synth_terminate_voice_bridge"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_011",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_091",
+  "prompt_seed": 3601849137,
+  "prompt_sha256": "243ced72c6e591833bb5b7093bf8b3bb9ae2eeecc658896da5ee94a9bd0f2122",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "5c8cfc747fab5f9cddb9f93c4cdf10855990f6346b92bdf0fcd66e3fc834eff3",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_091",
+  "task_sha256": "06f973da67c4e69c20d5ba0baf830649a2eecd79b3ec35a7553e288f51806179",
+  "user_prompt": "Execute extend for session lease (request #091) setting maximum capacity to -1 and minimum threshold to 999999."
+}

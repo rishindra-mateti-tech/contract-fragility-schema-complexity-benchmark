@@ -1,0 +1,207 @@
+{
+  "available_tools": [
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    },
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_010",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_090",
+  "prompt_seed": 920395195,
+  "prompt_sha256": "bf8f6ae41ea8a0e84e9ed1ed42b7df69614572c495d4aac0041738889949e5cf",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e0131cf8494b4c071e30a85f68a5e0dc64c4e2dc716d6b471b5188461d2d4bbb",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_090",
+  "task_sha256": "bd77567dbf1205d9fde931840d0878cf3fc5abb8aa952482eb35fd0b7f4c231c",
+  "user_prompt": "Render a three-dimensional holographic visualization (dataset 090) of telemetry for access token."
+}

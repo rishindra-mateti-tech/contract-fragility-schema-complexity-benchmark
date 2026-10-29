@@ -1,0 +1,177 @@
+{
+  "available_tools": [
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain",
+          "consensus_config",
+          "member_nodes"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_012",
+  "prompt_seed": 346168400,
+  "prompt_sha256": "83f559875ca314c487e6f21d351d490b12b2c66abab3e223e2319ee68cad32e2",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "6494d3af6c7e16df6711c1619f469747966b071ab53dd8f7c0e831a7cc4136cf",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_012",
+  "task_sha256": "46b2095d1a5dbdd2b0318264afd20554a80295f607422717c6a6a0b4562a4ce4",
+  "user_prompt": "Handle the recent events on user account for batch 012 using whatever system seems most appropriate."
+}

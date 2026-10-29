@@ -1,0 +1,133 @@
+{
+  "available_tools": [
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_035",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_035",
+  "prompt_seed": 1320212219,
+  "prompt_sha256": "fa97de9a31001587ba92ba91a366dfd6ce1640c4a683f1b89ad14b79e8630406",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "42a4fa1a2e4561d739b46657c0ad850928edad8d6162852fcac86b4c2514ea31",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_035",
+  "task_sha256": "335f972648b07aac1c7e18aa18f7ef384fd9afabde18695cdc36b79a8d211c63",
+  "user_prompt": "Update audit scorecard for partition 035 with a lock duration of zero seconds while enforcing permanent exclusivity."
+}

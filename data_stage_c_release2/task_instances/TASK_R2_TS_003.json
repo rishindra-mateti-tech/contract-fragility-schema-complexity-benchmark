@@ -1,0 +1,276 @@
+{
+  "available_tools": [
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    },
+    {
+      "description": "Control canary progression and rollback parameters for an application release.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Control canary progression and rollback parameters for an application release.",
+        "properties": {
+          "application_id": {
+            "description": "Deployed microservice ID",
+            "minLength": 2,
+            "type": "string"
+          },
+          "canary_strategy": {
+            "additionalProperties": false,
+            "description": "Progressive traffic shift parameters",
+            "properties": {
+              "initial_percentage": {
+                "maximum": 50,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "step_duration_minutes": {
+                "maximum": 120,
+                "minimum": 5,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "initial_percentage",
+              "step_duration_minutes"
+            ],
+            "type": "object"
+          },
+          "rollback_thresholds": {
+            "additionalProperties": false,
+            "description": "Error circuit-breaker triggers",
+            "properties": {
+              "max_error_rate_percent": {
+                "maximum": 10.0,
+                "minimum": 0.1,
+                "type": "number"
+              }
+            },
+            "required": [
+              "max_error_rate_percent"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "application_id",
+          "canary_strategy",
+          "rollback_thresholds"
+        ],
+        "title": "synth_manage_deployment_rollout",
+        "type": "object"
+      },
+      "tool_name": "synth_manage_deployment_rollout"
+    },
+    {
+      "description": "Remove all records from a specific table slice or partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "tool_name": "synth_truncate_table_slice"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    },
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_003",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "force_truncate": true,
+    "slice_index": 3,
+    "table_name": "audit_logs_2026"
+  },
+  "expected_latent_intent": {
+    "action": "synth_truncate_table_slice",
+    "constraints": {
+      "required": [
+        "slice_index",
+        "table_name"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "7a1812342ac9a840dea923dda36ff56101879b0a1938816194a7f8066c4b77d3",
+    "intent_id": "INTENT_R2_TS_003",
+    "metadata": {},
+    "slots": {
+      "force_truncate": {
+        "data_type": "boolean",
+        "description": "Bypass active read-lock confirmation",
+        "is_required": false,
+        "name": "force_truncate",
+        "value": true
+      },
+      "slice_index": {
+        "data_type": "integer",
+        "description": "Zero-indexed partition slice",
+        "is_required": true,
+        "name": "slice_index",
+        "value": 3
+      },
+      "table_name": {
+        "data_type": "string",
+        "description": "Target relational table name",
+        "is_required": true,
+        "name": "table_name",
+        "value": "audit_logs_2026"
+      }
+    },
+    "target_entity": "BASE_SYNTH_003"
+  },
+  "expected_tool_name": "synth_truncate_table_slice",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_003_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      },
+      "intent_to_arg_path": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_003",
+  "prompt_seed": 2990874879,
+  "prompt_sha256": "e96a402c2b56117d93ee807e1ae7c74c6354969f23a5384442b46b33886af9c4",
+  "prompt_template_id": "TS_FRAME_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "88dfa81a947a7aad2c8b3016989dcb070c2e29ccddcda7ecde7b259ba3567068",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_003",
+  "task_sha256": "0f3fe070ec2297ace5c7116a14cccb50bf7411646f884d0fcfccf8ea6449fc75",
+  "user_prompt": "The system needs to truncate table slice for execution run 003. Ensure you performing standard truncation, targeting partition slice 3, for the 'audit_logs_2026' table."
+}

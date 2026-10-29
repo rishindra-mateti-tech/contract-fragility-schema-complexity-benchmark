@@ -1,0 +1,142 @@
+{
+  "available_tools": [
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id_param": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert_param": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity_param": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows_param": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id_param",
+          "sensitivity_param",
+          "training_windows_param"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_019",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "detector_id_param": "traffic_spike_detector",
+    "emit_alert_param": true,
+    "sensitivity_param": "high",
+    "training_windows_param": [
+      1,
+      7,
+      14
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_evaluate_anomaly_detector",
+    "constraints": {
+      "required": [
+        "detector_id",
+        "sensitivity",
+        "training_windows"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "d43881b6766aee24e0fb059033d01d44c5591f08e3f5b64754856cbe33074c08",
+    "intent_id": "INTENT_R2_PG_019",
+    "metadata": {},
+    "slots": {
+      "detector_id": {
+        "data_type": "string",
+        "description": "Anomaly detection model name",
+        "is_required": true,
+        "name": "detector_id",
+        "value": "traffic_spike_detector"
+      },
+      "emit_alert": {
+        "data_type": "boolean",
+        "description": "Trigger alert pipeline if anomaly detected",
+        "is_required": false,
+        "name": "emit_alert",
+        "value": true
+      },
+      "sensitivity": {
+        "data_type": "string",
+        "description": "Standard deviation threshold tier",
+        "is_required": true,
+        "name": "sensitivity",
+        "value": "high"
+      },
+      "training_windows": {
+        "data_type": "array[integer]",
+        "description": "Historical comparative day offsets",
+        "is_required": true,
+        "name": "training_windows",
+        "value": [
+          1,
+          7,
+          14
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_019"
+  },
+  "expected_tool_name": "synth_evaluate_anomaly_detector",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_019_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "detector_id_param": "detector_id",
+        "emit_alert_param": "emit_alert",
+        "sensitivity_param": "sensitivity",
+        "training_windows_param": "training_windows"
+      },
+      "intent_to_arg_path": {
+        "detector_id": "detector_id_param",
+        "emit_alert": "emit_alert_param",
+        "sensitivity": "sensitivity_param",
+        "training_windows": "training_windows_param"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_019",
+  "prompt_seed": 3559641552,
+  "prompt_sha256": "eedf867aedd32a7deec70f310ff71ee90dd447e73e697cee2856f8efb8aba517",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "6729b964f05acabf79cb388feda25e4abf927db4da2a54ef6ecc916f1eae19d6",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_094",
+  "task_sha256": "9338dc3fd52f6843fd31c0e364bd39694d8441617654d0484d8218b387b861da",
+  "user_prompt": "Please evaluate anomaly detector. Specifically, configure this by setting detector id to 'traffic_spike_detector', enabling emit alert, setting sensitivity to 'high', setting training windows to '[1, 7, 14]'."
+}

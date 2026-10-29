@@ -1,0 +1,185 @@
+{
+  "available_tools": [
+    {
+      "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+        "properties": {
+          "artifact_paths": {
+            "description": "Input artifact files",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "pipeline_id": {
+            "description": "Workflow pipeline definition ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "stage_name": {
+            "description": "Target execution stage",
+            "enum": [
+              "lint",
+              "unit_test",
+              "integration_test",
+              "security_scan",
+              "package"
+            ],
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "description": "Maximum stage runtime",
+            "maximum": 3600,
+            "minimum": 10,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pipeline_id",
+          "stage_name"
+        ],
+        "title": "synth_trigger_pipeline_stage",
+        "type": "object"
+      },
+      "tool_name": "synth_trigger_pipeline_stage"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain",
+          "consensus_config",
+          "member_nodes"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_004",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_044",
+  "prompt_seed": 3116778678,
+  "prompt_sha256": "a99f8e30583c93d939cafc1cb26fe65a746a14b62e8535fc53c655b9c25d5b00",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "f2a1d3299db7fe548794477a217c3a64bf51a8ffc6d94ff9e1df97162a00e2b1",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_044",
+  "task_sha256": "32047f91c03073f4109ef52ea9bc53f62226f38554d324dbb08a6f9d1f579546",
+  "user_prompt": "Process everything related to sms message for cycle 044 as soon as convenient."
+}

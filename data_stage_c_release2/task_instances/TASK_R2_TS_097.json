@@ -1,0 +1,293 @@
+{
+  "available_tools": [
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_017",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "device_id": "dev_9918274619",
+    "platform": "ios",
+    "subscribed_topics": [
+      "news",
+      "alerts"
+    ],
+    "token_ttl_days": 90
+  },
+  "expected_latent_intent": {
+    "action": "synth_register_push_token",
+    "constraints": {
+      "required": [
+        "device_id",
+        "platform"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "172850baa17a9f763c0bdd743bfb60997a91554bbf294a31729656e7821c95ab",
+    "intent_id": "INTENT_R2_TS_097",
+    "metadata": {},
+    "slots": {
+      "device_id": {
+        "data_type": "string",
+        "description": "Hardware device UUID",
+        "is_required": true,
+        "name": "device_id",
+        "value": "dev_9918274619"
+      },
+      "platform": {
+        "data_type": "string",
+        "description": "Operating system platform",
+        "is_required": true,
+        "name": "platform",
+        "value": "ios"
+      },
+      "subscribed_topics": {
+        "data_type": "array[string]",
+        "description": "Notification interest topics",
+        "is_required": false,
+        "name": "subscribed_topics",
+        "value": [
+          "news",
+          "alerts"
+        ]
+      },
+      "token_ttl_days": {
+        "data_type": "integer",
+        "description": "Token validity expiration",
+        "is_required": false,
+        "name": "token_ttl_days",
+        "value": 90
+      }
+    },
+    "target_entity": "BASE_SYNTH_017"
+  },
+  "expected_tool_name": "synth_register_push_token",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_017_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "device_id": "device_id",
+        "platform": "platform",
+        "subscribed_topics": "subscribed_topics",
+        "token_ttl_days": "token_ttl_days"
+      },
+      "intent_to_arg_path": {
+        "device_id": "device_id",
+        "platform": "platform",
+        "subscribed_topics": "subscribed_topics",
+        "token_ttl_days": "token_ttl_days"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_097",
+  "prompt_seed": 2857779577,
+  "prompt_sha256": "cfa43204f7276c9297e5b8e08652c19f45ecbc1e9ee723de140691899e7f9fa2",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "8e91013d445bd4e5752879453a5e0cf999e5ebe4aa74cfe0ab4546b32331bd1f",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_097",
+  "task_sha256": "7ee14b02d72c6dcfc13e19d50d2e362a8553a52b02e31c8dccfab69f3cefd23f",
+  "user_prompt": "A user requested to register push notification token under dispatch tag #097. Apply the following specifications: for device 'dev_9918274619', setting platform to 'ios', setting subscribed topics to '['news', 'alerts']', valid for 90 days."
+}

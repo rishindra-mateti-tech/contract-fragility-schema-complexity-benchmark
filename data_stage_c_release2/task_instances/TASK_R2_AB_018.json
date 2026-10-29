@@ -1,0 +1,180 @@
+{
+  "available_tools": [
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    },
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain",
+          "consensus_config",
+          "member_nodes"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_018",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_018",
+  "prompt_seed": 1085323066,
+  "prompt_sha256": "d28575428b3467138fe3da9cfefd4670c11c0b1e866e507e6428f351a2d59d52",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "f2391850c9cc4f789764bcdd1dd1c65522e5975b5d1458a4f0c635ca16d5e2dd",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_018",
+  "task_sha256": "c1716e24f9af70f335fe591f80cd6f56cd3c2850e320808a158b020dfded4f1a",
+  "user_prompt": "Perform an automated physical hardware diagnostic for batch 018 on the motherboard powering metric aggregate."
+}

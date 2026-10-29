@@ -1,0 +1,140 @@
+{
+  "available_tools": [
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa_param": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes_param": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id_param": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier_param": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "permission_scopes_param",
+          "principal_id_param",
+          "role_tier_param"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_021",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "enforce_mfa_param": true,
+    "permission_scopes_param": [
+      "read:logs",
+      "restart:service"
+    ],
+    "principal_id_param": "usr_9918",
+    "role_tier_param": "operator"
+  },
+  "expected_latent_intent": {
+    "action": "synth_assign_role_permissions",
+    "constraints": {
+      "required": [
+        "permission_scopes",
+        "principal_id",
+        "role_tier"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "fcea023585c2a48ef6e87110f8ab12f702b5b7bd3a95e49e2c910bd7ed76f062",
+    "intent_id": "INTENT_R2_PG_021",
+    "metadata": {},
+    "slots": {
+      "enforce_mfa": {
+        "data_type": "boolean",
+        "description": "Require multi-factor authentication for role usage",
+        "is_required": false,
+        "name": "enforce_mfa",
+        "value": true
+      },
+      "permission_scopes": {
+        "data_type": "array[string]",
+        "description": "Granted scope strings",
+        "is_required": true,
+        "name": "permission_scopes",
+        "value": [
+          "read:logs",
+          "restart:service"
+        ]
+      },
+      "principal_id": {
+        "data_type": "string",
+        "description": "User or service principal identifier",
+        "is_required": true,
+        "name": "principal_id",
+        "value": "usr_9918"
+      },
+      "role_tier": {
+        "data_type": "string",
+        "description": "Predefined RBAC role tier",
+        "is_required": true,
+        "name": "role_tier",
+        "value": "operator"
+      }
+    },
+    "target_entity": "BASE_SYNTH_021"
+  },
+  "expected_tool_name": "synth_assign_role_permissions",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_021_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "enforce_mfa_param": "enforce_mfa",
+        "permission_scopes_param": "permission_scopes",
+        "principal_id_param": "principal_id",
+        "role_tier_param": "role_tier"
+      },
+      "intent_to_arg_path": {
+        "enforce_mfa": "enforce_mfa_param",
+        "permission_scopes": "permission_scopes_param",
+        "principal_id": "principal_id_param",
+        "role_tier": "role_tier_param"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_021",
+  "prompt_seed": 3969890590,
+  "prompt_sha256": "c3fe95ee97e1a2ef32fe97a93488bc6dc4c377401aa3084997d97b8bb26f18d2",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a72639b990140b9c55e28b553cbd4a0362c8d3e49a79aa61ceb50ae78b61ffca",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_096",
+  "task_sha256": "0fa6b5e9d732065365548b0bffebf5f606a177e32c6dc0951d7453c2f1cdd778",
+  "user_prompt": "Perform a task to assign role permissions, ensuring that you are enabling enforce mfa, setting permission scopes to '['read:logs', 'restart:service']', setting principal id to 'usr_9918', setting role tier to 'operator'."
+}

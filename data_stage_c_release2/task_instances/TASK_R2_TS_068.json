@@ -1,0 +1,333 @@
+{
+  "available_tools": [
+    {
+      "description": "Provision a read replica node with host connection and replication settings.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "properties": {
+          "cluster_id": {
+            "description": "Primary database cluster ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "enable_ssl": {
+            "description": "Require TLS encryption on replication stream",
+            "type": "boolean"
+          },
+          "replica_config": {
+            "additionalProperties": false,
+            "description": "Replica node configuration",
+            "properties": {
+              "node_name": {
+                "description": "Replica hostname/label",
+                "minLength": 1,
+                "type": "string"
+              },
+              "port": {
+                "description": "Port number",
+                "maximum": 65535,
+                "minimum": 1024,
+                "type": "integer"
+              },
+              "read_only": {
+                "description": "Enforce read-only transactions",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "node_name",
+              "port"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "cluster_id",
+          "replica_config"
+        ],
+        "title": "synth_configure_database_replica",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_database_replica"
+    },
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    },
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    },
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_028",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "job_ids": [
+      "job_500"
+    ],
+    "worker_pool": "standard"
+  },
+  "expected_latent_intent": {
+    "action": "synth_dispatch_batch_worker",
+    "constraints": {
+      "required": [
+        "job_ids",
+        "worker_pool"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3440ed25297c7e94aa5e0c46aba9a3b3a1b5808e62d6a39d463479279f16ab60",
+    "intent_id": "INTENT_R2_TS_068",
+    "metadata": {},
+    "slots": {
+      "job_ids": {
+        "data_type": "array[string]",
+        "description": "Assigned job identifiers",
+        "is_required": true,
+        "name": "job_ids",
+        "value": [
+          "job_500"
+        ]
+      },
+      "worker_pool": {
+        "data_type": "string",
+        "description": "Compute tier",
+        "is_required": true,
+        "name": "worker_pool",
+        "value": "standard"
+      }
+    },
+    "target_entity": "BASE_SYNTH_028"
+  },
+  "expected_tool_name": "synth_dispatch_batch_worker",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_028_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "auto_terminate": "auto_terminate",
+        "job_ids": "job_ids",
+        "worker_concurrency": "worker_concurrency",
+        "worker_pool": "worker_pool"
+      },
+      "intent_to_arg_path": {
+        "auto_terminate": "auto_terminate",
+        "job_ids": "job_ids",
+        "worker_concurrency": "worker_concurrency",
+        "worker_pool": "worker_pool"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_068",
+  "prompt_seed": 2353402036,
+  "prompt_sha256": "ba69f85991762ce75d003aa73fa294c326f1afd855f35048adee610f250491ab",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "5148d1be99f4496ad9d761c4bc6a5df37f543c4d3f8d5d01106e2e0132c895ac",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_068",
+  "task_sha256": "ea435c629de7f90bf3e86df4d15bb9d8482a45280c4aef84aa10e10de54ccbf1",
+  "user_prompt": "We need to dispatch batch worker for operations batch 068. Please configure: setting job ids to '['job_500']', setting worker pool to 'standard'."
+}

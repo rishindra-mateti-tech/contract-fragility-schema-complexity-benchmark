@@ -1,0 +1,304 @@
+{
+  "available_tools": [
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    },
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "description": "Remove all records from a specific table slice or partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "tool_name": "synth_truncate_table_slice"
+    },
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    },
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_003",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "force_truncate": true,
+    "slice_index": 3,
+    "table_name": "audit_logs_2026"
+  },
+  "expected_latent_intent": {
+    "action": "synth_truncate_table_slice",
+    "constraints": {
+      "required": [
+        "slice_index",
+        "table_name"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "7a1812342ac9a840dea923dda36ff56101879b0a1938816194a7f8066c4b77d3",
+    "intent_id": "INTENT_R2_TS_083",
+    "metadata": {},
+    "slots": {
+      "force_truncate": {
+        "data_type": "boolean",
+        "description": "Bypass active read-lock confirmation",
+        "is_required": false,
+        "name": "force_truncate",
+        "value": true
+      },
+      "slice_index": {
+        "data_type": "integer",
+        "description": "Zero-indexed partition slice",
+        "is_required": true,
+        "name": "slice_index",
+        "value": 3
+      },
+      "table_name": {
+        "data_type": "string",
+        "description": "Target relational table name",
+        "is_required": true,
+        "name": "table_name",
+        "value": "audit_logs_2026"
+      }
+    },
+    "target_entity": "BASE_SYNTH_003"
+  },
+  "expected_tool_name": "synth_truncate_table_slice",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_003_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      },
+      "intent_to_arg_path": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_083",
+  "prompt_seed": 2520431404,
+  "prompt_sha256": "e700d4e67ff6d92ea91fd9e9ff435290ae4b48585e54b51718a9ad4a3f48419b",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "36039bd8788d41e76e18a43094a6e1fbf8b1b5527ce22ca5dd82fd68bd3e9b44",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_083",
+  "task_sha256": "a6561b549d30f28e8d407aca1b7063523635fa79206034e0ec0b9d02289c016c",
+  "user_prompt": "We need to truncate table slice for operations batch 083. Please configure: performing standard truncation, targeting partition slice 3, for the 'audit_logs_2026' table."
+}

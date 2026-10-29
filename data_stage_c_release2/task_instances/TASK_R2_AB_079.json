@@ -1,0 +1,193 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "properties": {
+          "pipeline_name": {
+            "description": "Pipeline execution job name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "sink_connector": {
+            "additionalProperties": false,
+            "description": "Target warehouse loader",
+            "properties": {
+              "table_mode": {
+                "enum": [
+                  "append",
+                  "overwrite",
+                  "merge"
+                ],
+                "type": "string"
+              },
+              "warehouse": {
+                "enum": [
+                  "snowflake",
+                  "bigquery",
+                  "redshift"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "warehouse",
+              "table_mode"
+            ],
+            "type": "object"
+          },
+          "source_connector": {
+            "additionalProperties": false,
+            "description": "Origin database extractor",
+            "properties": {
+              "connector_type": {
+                "enum": [
+                  "postgres",
+                  "mysql",
+                  "mongodb"
+                ],
+                "type": "string"
+              },
+              "query_timeout_sec": {
+                "maximum": 300,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "connector_type"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "pipeline_name",
+          "source_connector",
+          "sink_connector"
+        ],
+        "title": "synth_orchestrate_etl_pipeline",
+        "type": "object"
+      },
+      "tool_name": "synth_orchestrate_etl_pipeline"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_039",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_079",
+  "prompt_seed": 934510480,
+  "prompt_sha256": "459ae2b0866435d5ff6530870b4fc0ef53f526e2f139a2d458fd5574e0615b25",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "fd9b8f614565cb05c3fdfe581a7f873d3cb983bb861d9b51b6951b481b56d72c",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_079",
+  "task_sha256": "c05572136f79dc32d42968364a0917dfbeeac21e3040c0c674f6a6006f72dbfa",
+  "user_prompt": "Configure deployment rollout for job 079 with an expiration lifetime of -9999 seconds and negative zero concurrency."
+}

@@ -1,0 +1,125 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "entry_identifier": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "expiry_duration_sec": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "payload_content": {
+            "description": "Serialized value payload",
+            "type": "string"
+          },
+          "replace_existing_flag": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "entry_identifier",
+          "payload_content"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_001",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "entry_identifier": "user_1024",
+    "expiry_duration_sec": 3600,
+    "payload_content": "session_active",
+    "replace_existing_flag": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_create_key_value",
+    "constraints": {
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f377864a5892b32a93dab7c3929ed1118ca063ff0f75d2c7522d78745dd6908c",
+    "intent_id": "INTENT_R2_PG_001",
+    "metadata": {},
+    "slots": {
+      "key": {
+        "data_type": "string",
+        "description": "Unique key identifier",
+        "is_required": true,
+        "name": "key",
+        "value": "user_1024"
+      },
+      "overwrite": {
+        "data_type": "boolean",
+        "description": "Whether to overwrite existing entry",
+        "is_required": false,
+        "name": "overwrite",
+        "value": true
+      },
+      "ttl_seconds": {
+        "data_type": "integer",
+        "description": "Time to live in seconds",
+        "is_required": false,
+        "name": "ttl_seconds",
+        "value": 3600
+      },
+      "value": {
+        "data_type": "string",
+        "description": "Serialized value payload",
+        "is_required": true,
+        "name": "value",
+        "value": "session_active"
+      }
+    },
+    "target_entity": "BASE_SYNTH_001"
+  },
+  "expected_tool_name": "synth_create_key_value",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_001_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "entry_identifier": "key",
+        "expiry_duration_sec": "ttl_seconds",
+        "payload_content": "value",
+        "replace_existing_flag": "overwrite"
+      },
+      "intent_to_arg_path": {
+        "key": "entry_identifier",
+        "overwrite": "replace_existing_flag",
+        "ttl_seconds": "expiry_duration_sec",
+        "value": "payload_content"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_001",
+  "prompt_seed": 3840047020,
+  "prompt_sha256": "388fe7e1cd8c5012597e06d8f4d05fdb7b7d9b1becf0955751b5f3fef3cfe9c7",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "d7fa5b1b50ebe4e22ff0333d75153328c26cc2f371d3db50a8a30a038cbdb84a",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_076",
+  "task_sha256": "a725e8f0f33f6fc05e3f47a59ee5327b52bb8930b8838ef2dbd4c435dcf85dd3",
+  "user_prompt": "Please create key-value pair. Specifically, configure this by with lookup key 'user_1024', without overwriting existing records, with a time-to-live expiration of 3600 seconds, setting the value payload to 'session_active'."
+}

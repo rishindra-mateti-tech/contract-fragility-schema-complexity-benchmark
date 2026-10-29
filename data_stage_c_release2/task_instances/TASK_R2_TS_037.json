@@ -1,0 +1,297 @@
+{
+  "available_tools": [
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_037",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "boundary_id": "vpc_secure_prod",
+    "ingress_policy": {
+      "allowed_cidr": "10.0.0.0/16",
+      "ports": [
+        443,
+        8443
+      ]
+    },
+    "inspection_tier": "stateful_inspection"
+  },
+  "expected_latent_intent": {
+    "action": "synth_enforce_security_boundary",
+    "constraints": {
+      "required": [
+        "boundary_id",
+        "ingress_policy",
+        "inspection_tier"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "809893ecf5c7bf39b3b8c313c174f7b40eb2f94cec6f786f55dec6ab6e44fef0",
+    "intent_id": "INTENT_R2_TS_037",
+    "metadata": {},
+    "slots": {
+      "boundary_id": {
+        "data_type": "string",
+        "description": "VPC or subnet identifier",
+        "is_required": true,
+        "name": "boundary_id",
+        "value": "vpc_secure_prod"
+      },
+      "ingress_policy": {
+        "data_type": "object",
+        "description": "Inbound packet rules",
+        "is_required": true,
+        "name": "ingress_policy",
+        "value": {
+          "allowed_cidr": "10.0.0.0/16",
+          "ports": [
+            443,
+            8443
+          ]
+        }
+      },
+      "inspection_tier": {
+        "data_type": "string",
+        "description": "Firewall filtering depth",
+        "is_required": true,
+        "name": "inspection_tier",
+        "value": "stateful_inspection"
+      }
+    },
+    "target_entity": "BASE_SYNTH_037"
+  },
+  "expected_tool_name": "synth_enforce_security_boundary",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_037_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "boundary_id": "boundary_id",
+        "ingress_policy": "ingress_policy",
+        "inspection_tier": "inspection_tier"
+      },
+      "intent_to_arg_path": {
+        "boundary_id": "boundary_id",
+        "ingress_policy": "ingress_policy",
+        "inspection_tier": "inspection_tier"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_037",
+  "prompt_seed": 1431827744,
+  "prompt_sha256": "d1fb11c7d3104d3d9dd6c389a4670080484fd2ed8c8257ff2bc83e84d4491070",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "0fd2a2a8037f1a40f0bb803a93c2be6a5c5b148e9a485648e3b733a9e4fba563",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_037",
+  "task_sha256": "c88ba9cf3b7a571f6c738c75083dcad0aefd73cbc619b9ce4bcd5131f9da5bed",
+  "user_prompt": "We need to enforce security boundary for operations batch 037. Please configure: setting boundary id to 'vpc_secure_prod', setting ingress policy to '{'allowed_cidr': '10.0.0.0/16', 'ports': [443, 8443]}', setting inspection tier to 'stateful_inspection'."
+}

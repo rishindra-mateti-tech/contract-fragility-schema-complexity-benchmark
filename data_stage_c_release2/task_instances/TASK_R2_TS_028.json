@@ -1,0 +1,300 @@
+{
+  "available_tools": [
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    },
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    },
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    },
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_028",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "job_ids": [
+      "job_500"
+    ],
+    "worker_pool": "standard"
+  },
+  "expected_latent_intent": {
+    "action": "synth_dispatch_batch_worker",
+    "constraints": {
+      "required": [
+        "job_ids",
+        "worker_pool"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3440ed25297c7e94aa5e0c46aba9a3b3a1b5808e62d6a39d463479279f16ab60",
+    "intent_id": "INTENT_R2_TS_028",
+    "metadata": {},
+    "slots": {
+      "job_ids": {
+        "data_type": "array[string]",
+        "description": "Assigned job identifiers",
+        "is_required": true,
+        "name": "job_ids",
+        "value": [
+          "job_500"
+        ]
+      },
+      "worker_pool": {
+        "data_type": "string",
+        "description": "Compute tier",
+        "is_required": true,
+        "name": "worker_pool",
+        "value": "standard"
+      }
+    },
+    "target_entity": "BASE_SYNTH_028"
+  },
+  "expected_tool_name": "synth_dispatch_batch_worker",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_028_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "auto_terminate": "auto_terminate",
+        "job_ids": "job_ids",
+        "worker_concurrency": "worker_concurrency",
+        "worker_pool": "worker_pool"
+      },
+      "intent_to_arg_path": {
+        "auto_terminate": "auto_terminate",
+        "job_ids": "job_ids",
+        "worker_concurrency": "worker_concurrency",
+        "worker_pool": "worker_pool"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_028",
+  "prompt_seed": 2437916618,
+  "prompt_sha256": "e417db204a8431a83d742d5483b4dff2517629fa797039757335f9dfbb39794a",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "dbeaf820eecc31258617b444733d95dff8bb96d821cd0ba28dfbb9c7304ab213",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_028",
+  "task_sha256": "89fa64785d713e648d7892e7b8ac4407f5b0de19d4aaaec1cb7c9ceddbc6ce8d",
+  "user_prompt": "Dispatch an automated request to dispatch batch worker (reference ref_028). Required configuration: setting job ids to '['job_500']', setting worker pool to 'standard'."
+}

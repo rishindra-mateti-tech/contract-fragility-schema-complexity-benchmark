@@ -1,0 +1,148 @@
+{
+  "available_tools": [
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Remove all records from a specific table slice or partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_017",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_057",
+  "prompt_seed": 970546759,
+  "prompt_sha256": "2015eb2dbcd5acb558166e9fd4899fe0cfdd37e994a3dd9ca875fd62c05b678a",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "bbf3f8febc8885a2ddee368cc1e63d36b5624a0d560e36f3a066cc43521fd267",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_057",
+  "task_sha256": "a90f3348754b0fb28967b59b3d8882c9e2521b53043117025cc75fdaf23a3965",
+  "user_prompt": "We want to register push notification token in partition part_057. Run this operation now without providing parameter values."
+}

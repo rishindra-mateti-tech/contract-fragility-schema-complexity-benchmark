@@ -1,0 +1,308 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Grant a predefined security role and scope set to a user principal.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Grant a predefined security role and scope set to a user principal.",
+        "properties": {
+          "enforce_mfa": {
+            "description": "Require multi-factor authentication for role usage",
+            "type": "boolean"
+          },
+          "permission_scopes": {
+            "description": "Granted scope strings",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "principal_id": {
+            "description": "User or service principal identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "role_tier": {
+            "description": "Predefined RBAC role tier",
+            "enum": [
+              "viewer",
+              "operator",
+              "admin",
+              "owner"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "principal_id",
+          "role_tier",
+          "permission_scopes"
+        ],
+        "title": "synth_assign_role_permissions",
+        "type": "object"
+      },
+      "tool_name": "synth_assign_role_permissions"
+    },
+    {
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "properties": {
+          "migration_id": {
+            "description": "Migration operation tracking ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "source": {
+            "additionalProperties": false,
+            "description": "Source storage specification",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "slice_id": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "slice_id"
+            ],
+            "type": "object"
+          },
+          "target": {
+            "additionalProperties": false,
+            "description": "Target storage destination",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "datacenter": {
+                "minLength": 2,
+                "type": "string"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "datacenter"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "migration_id",
+          "source",
+          "target"
+        ],
+        "title": "synth_execute_partition_migration",
+        "type": "object"
+      },
+      "tool_name": "synth_execute_partition_migration"
+    },
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_001",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "key": "user_1024",
+    "overwrite": true,
+    "ttl_seconds": 3600,
+    "value": "session_active"
+  },
+  "expected_latent_intent": {
+    "action": "synth_create_key_value",
+    "constraints": {
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f377864a5892b32a93dab7c3929ed1118ca063ff0f75d2c7522d78745dd6908c",
+    "intent_id": "INTENT_R2_TS_041",
+    "metadata": {},
+    "slots": {
+      "key": {
+        "data_type": "string",
+        "description": "Unique key identifier",
+        "is_required": true,
+        "name": "key",
+        "value": "user_1024"
+      },
+      "overwrite": {
+        "data_type": "boolean",
+        "description": "Whether to overwrite existing entry",
+        "is_required": false,
+        "name": "overwrite",
+        "value": true
+      },
+      "ttl_seconds": {
+        "data_type": "integer",
+        "description": "Time to live in seconds",
+        "is_required": false,
+        "name": "ttl_seconds",
+        "value": 3600
+      },
+      "value": {
+        "data_type": "string",
+        "description": "Serialized value payload",
+        "is_required": true,
+        "name": "value",
+        "value": "session_active"
+      }
+    },
+    "target_entity": "BASE_SYNTH_001"
+  },
+  "expected_tool_name": "synth_create_key_value",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_001_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "key": "key",
+        "overwrite": "overwrite",
+        "ttl_seconds": "ttl_seconds",
+        "value": "value"
+      },
+      "intent_to_arg_path": {
+        "key": "key",
+        "overwrite": "overwrite",
+        "ttl_seconds": "ttl_seconds",
+        "value": "value"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_041",
+  "prompt_seed": 767996254,
+  "prompt_sha256": "397e7681d8e919356641ac3aa1be4469ce1114102304e3e8ba48e109efbdda95",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e6119a724c4ab3a9f5cd6d8422162530126a3f0a16a5e84e765e9bb8c393c14f",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_041",
+  "task_sha256": "ba8df55df10565bd71d54612c2aa91c8acda1f8aa7f0f4bf515256128ead58b1",
+  "user_prompt": "Dispatch an automated request to create key-value pair (reference ref_041). Required configuration: with lookup key 'user_1024', without overwriting existing records, with a time-to-live expiration of 3600 seconds, setting the value payload to 'session_active'."
+}

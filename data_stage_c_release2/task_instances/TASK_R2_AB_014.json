@@ -1,0 +1,177 @@
+{
+  "available_tools": [
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    },
+    {
+      "description": "Migrate partition slices from source cluster to target destination cluster.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Migrate partition slices from source cluster to target destination cluster.",
+        "properties": {
+          "migration_id": {
+            "description": "Migration operation tracking ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "source": {
+            "additionalProperties": false,
+            "description": "Source storage specification",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "slice_id": {
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "slice_id"
+            ],
+            "type": "object"
+          },
+          "target": {
+            "additionalProperties": false,
+            "description": "Target storage destination",
+            "properties": {
+              "cluster_name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "datacenter": {
+                "minLength": 2,
+                "type": "string"
+              }
+            },
+            "required": [
+              "cluster_name",
+              "datacenter"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "migration_id",
+          "source",
+          "target"
+        ],
+        "title": "synth_execute_partition_migration",
+        "type": "object"
+      },
+      "tool_name": "synth_execute_partition_migration"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_014",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "OUT_OF_DOMAIN_UNSUPPORTED",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_014",
+  "prompt_seed": 2374612050,
+  "prompt_sha256": "07356f8b3ab058b9c64b54a3d82033be43446f342825c3c2db54fa5dcdf2f4f2",
+  "prompt_template_id": "AB_OUT_OF_DOMAIN_UNSUPPORTED_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "5905a8690fa19a747dfbe2269d154ba851f754cc9849fbe4b468d5fcc56f5794",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_014",
+  "task_sha256": "5c50c7195180a01b75feabeb8fbcf5e2bd12a2276f8b811264d1e53f9d3fcfce",
+  "user_prompt": "Perform an automated physical hardware diagnostic for batch 014 on the motherboard powering data partition."
+}

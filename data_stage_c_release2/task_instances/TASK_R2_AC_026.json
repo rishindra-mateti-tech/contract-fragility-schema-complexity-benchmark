@@ -1,0 +1,137 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 3 parameters.",
+            "properties": {
+              "overwrite": {
+                "description": "Whether to overwrite existing entry",
+                "type": "boolean"
+              },
+              "ttl_seconds": {
+                "description": "Time to live in seconds",
+                "maximum": 86400,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "value": {
+                "description": "Serialized value payload",
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "key",
+          "payload_parameters"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_001",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "key": "user_1024",
+    "payload_parameters": {
+      "overwrite": true,
+      "ttl_seconds": 3600,
+      "value": "session_active"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_create_key_value",
+    "constraints": {
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f377864a5892b32a93dab7c3929ed1118ca063ff0f75d2c7522d78745dd6908c",
+    "intent_id": "INTENT_R2_PG_001",
+    "metadata": {},
+    "slots": {
+      "key": {
+        "data_type": "string",
+        "description": "Unique key identifier",
+        "is_required": true,
+        "name": "key",
+        "value": "user_1024"
+      },
+      "overwrite": {
+        "data_type": "boolean",
+        "description": "Whether to overwrite existing entry",
+        "is_required": false,
+        "name": "overwrite",
+        "value": true
+      },
+      "ttl_seconds": {
+        "data_type": "integer",
+        "description": "Time to live in seconds",
+        "is_required": false,
+        "name": "ttl_seconds",
+        "value": 3600
+      },
+      "value": {
+        "data_type": "string",
+        "description": "Serialized value payload",
+        "is_required": true,
+        "name": "value",
+        "value": "session_active"
+      }
+    },
+    "target_entity": "BASE_SYNTH_001"
+  },
+  "expected_tool_name": "synth_create_key_value",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_001_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "key": "key",
+        "payload_parameters.overwrite": "overwrite",
+        "payload_parameters.ttl_seconds": "ttl_seconds",
+        "payload_parameters.value": "value"
+      },
+      "intent_to_arg_path": {
+        "key": "key",
+        "overwrite": "payload_parameters.overwrite",
+        "ttl_seconds": "payload_parameters.ttl_seconds",
+        "value": "payload_parameters.value"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_001",
+  "prompt_seed": 3840047020,
+  "prompt_sha256": "388fe7e1cd8c5012597e06d8f4d05fdb7b7d9b1becf0955751b5f3fef3cfe9c7",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "4e3f6a80f7d59af4eb7ec66bcac4561c1300296f3d06518050026b98b76255f7",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_026",
+  "task_sha256": "d90c70a13e234f4b54964f79d890d00a148e21f5c8ec2a3825c85d4eaf410f50",
+  "user_prompt": "Please create key-value pair. Specifically, configure this by with lookup key 'user_1024', without overwriting existing records, with a time-to-live expiration of 3600 seconds, setting the value payload to 'session_active'."
+}

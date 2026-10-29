@@ -1,0 +1,171 @@
+{
+  "available_tools": [
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    },
+    {
+      "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Initiate a specific build or validation stage within a CI/CD pipeline.",
+        "properties": {
+          "artifact_paths": {
+            "description": "Input artifact files",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "pipeline_id": {
+            "description": "Workflow pipeline definition ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "stage_name": {
+            "description": "Target execution stage",
+            "enum": [
+              "lint",
+              "unit_test",
+              "integration_test",
+              "security_scan",
+              "package"
+            ],
+            "type": "string"
+          },
+          "timeout_seconds": {
+            "description": "Maximum stage runtime",
+            "maximum": 3600,
+            "minimum": 10,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "pipeline_id",
+          "stage_name"
+        ],
+        "title": "synth_trigger_pipeline_stage",
+        "type": "object"
+      },
+      "tool_name": "synth_trigger_pipeline_stage"
+    },
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_028",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_068",
+  "prompt_seed": 4248736620,
+  "prompt_sha256": "439a2732eac2076409fb774a660e6426d3a6edf4db2d5db4a20ea6a79aae4d8a",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a18e96a8a66c505804a3e73d1bc7c2ea94f4e20eebfedacb6cfae72b8fa0b0e1",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_068",
+  "task_sha256": "f838add94c515b3f95c525f0759341539c1a64d4774ca84b809ef54ae8659afc",
+  "user_prompt": "Handle the recent events on batch worker for batch 068 using whatever system seems most appropriate."
+}

@@ -1,0 +1,289 @@
+{
+  "available_tools": [
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    },
+    {
+      "description": "Provision a read replica node with host connection and replication settings.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "properties": {
+          "cluster_id": {
+            "description": "Primary database cluster ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "enable_ssl": {
+            "description": "Require TLS encryption on replication stream",
+            "type": "boolean"
+          },
+          "replica_config": {
+            "additionalProperties": false,
+            "description": "Replica node configuration",
+            "properties": {
+              "node_name": {
+                "description": "Replica hostname/label",
+                "minLength": 1,
+                "type": "string"
+              },
+              "port": {
+                "description": "Port number",
+                "maximum": 65535,
+                "minimum": 1024,
+                "type": "integer"
+              },
+              "read_only": {
+                "description": "Enforce read-only transactions",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "node_name",
+              "port"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "cluster_id",
+          "replica_config"
+        ],
+        "title": "synth_configure_database_replica",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_database_replica"
+    },
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_007",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "flush_immediately": true,
+    "increment_by": 5,
+    "metric_name": "http_requests_total"
+  },
+  "expected_latent_intent": {
+    "action": "synth_increment_counter_metric",
+    "constraints": {
+      "required": [
+        "metric_name"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "6bf52ff762dab14a29e5e42d4cc34db804f796bf72412cb3b12d4315d96443fa",
+    "intent_id": "INTENT_R2_TS_007",
+    "metadata": {},
+    "slots": {
+      "flush_immediately": {
+        "data_type": "boolean",
+        "description": "Flush local buffer to aggregator",
+        "is_required": false,
+        "name": "flush_immediately",
+        "value": true
+      },
+      "increment_by": {
+        "data_type": "integer",
+        "description": "Positive integer increment",
+        "is_required": false,
+        "name": "increment_by",
+        "value": 5
+      },
+      "metric_name": {
+        "data_type": "string",
+        "description": "Metric identifier",
+        "is_required": true,
+        "name": "metric_name",
+        "value": "http_requests_total"
+      }
+    },
+    "target_entity": "BASE_SYNTH_007"
+  },
+  "expected_tool_name": "synth_increment_counter_metric",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_007_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "flush_immediately": "flush_immediately",
+        "increment_by": "increment_by",
+        "metric_name": "metric_name"
+      },
+      "intent_to_arg_path": {
+        "flush_immediately": "flush_immediately",
+        "increment_by": "increment_by",
+        "metric_name": "metric_name"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_007",
+  "prompt_seed": 2049110608,
+  "prompt_sha256": "e0f39c7c14320261e914ca538eee627b3d746712081e4c6a7971c04950043609",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "8b2c9b9036d396eb686e6c35d2bd69f78d8ae917e8ace43a892e145d64b2388a",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_007",
+  "task_sha256": "a131df2a4f09987f58c932cdf31012ed73fdc8dbff536626a96cb8288def9bc1",
+  "user_prompt": "We need to increment counter metric for operations batch 007. Please configure: using standard buffer flushing, incrementing the counter by 5, for metric 'http_requests_total'."
+}

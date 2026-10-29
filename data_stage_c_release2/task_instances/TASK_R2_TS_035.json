@@ -1,0 +1,334 @@
+{
+  "available_tools": [
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    },
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_035",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "compliance_rules": {
+      "framework": "PCI_DSS",
+      "strict_mode": true
+    },
+    "target_system": "payment_processing_cluster",
+    "thresholds": {
+      "min_passing_score": 95
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_generate_audit_scorecard",
+    "constraints": {
+      "required": [
+        "compliance_rules",
+        "target_system",
+        "thresholds"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "fe2c4947894982bff4c3f453d846218db7b4231ebfe3e85a38fb50cbc6ef7dc4",
+    "intent_id": "INTENT_R2_TS_035",
+    "metadata": {},
+    "slots": {
+      "compliance_rules": {
+        "data_type": "object",
+        "description": "Evaluated framework rules",
+        "is_required": true,
+        "name": "compliance_rules",
+        "value": {
+          "framework": "PCI_DSS",
+          "strict_mode": true
+        }
+      },
+      "target_system": {
+        "data_type": "string",
+        "description": "Evaluated subsystem",
+        "is_required": true,
+        "name": "target_system",
+        "value": "payment_processing_cluster"
+      },
+      "thresholds": {
+        "data_type": "object",
+        "description": "Passing score limits",
+        "is_required": true,
+        "name": "thresholds",
+        "value": {
+          "min_passing_score": 95
+        }
+      }
+    },
+    "target_entity": "BASE_SYNTH_035"
+  },
+  "expected_tool_name": "synth_generate_audit_scorecard",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_035_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "compliance_rules": "compliance_rules",
+        "target_system": "target_system",
+        "thresholds": "thresholds"
+      },
+      "intent_to_arg_path": {
+        "compliance_rules": "compliance_rules",
+        "target_system": "target_system",
+        "thresholds": "thresholds"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_035",
+  "prompt_seed": 3904340963,
+  "prompt_sha256": "6e3b1877de9fa9e6ed89b4b3da5db2c36218649575007577ed1b03ea587596d8",
+  "prompt_template_id": "TS_FRAME_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "e5353ec33c8e4ef3ff9f979ca3ac4f8c5b741a891b3665dcd743ef73a5926e25",
+  "target_position": 4,
+  "task_id": "TASK_R2_TS_035",
+  "task_sha256": "78a44c19fb68e0dd343c5b07e638d8c628bc455712bef4154712a109966f5795",
+  "user_prompt": "The system needs to generate audit scorecard for execution run 035. Ensure you setting compliance rules to '{'framework': 'PCI_DSS', 'strict_mode': True}', setting target system to 'payment_processing_cluster', setting thresholds to '{'min_passing_score': 95}'."
+}

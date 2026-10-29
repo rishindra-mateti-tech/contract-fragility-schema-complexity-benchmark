@@ -1,0 +1,162 @@
+{
+  "available_tools": [
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_015",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "alert_title": "Database High Memory",
+    "auto_resolve_minutes": 60,
+    "severity_level": "CRITICAL",
+    "target_channels": [
+      "slack-ops",
+      "pagerduty-sre"
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_broadcast_alert_notification",
+    "constraints": {
+      "required": [
+        "alert_title",
+        "severity_level",
+        "target_channels"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "adead129e501758e088bb3b6d77dd8eaeb63f4d1e2cde779aa41b6ac6b0f7499",
+    "intent_id": "INTENT_R2_PG_015",
+    "metadata": {},
+    "slots": {
+      "alert_title": {
+        "data_type": "string",
+        "description": "Short alert title",
+        "is_required": true,
+        "name": "alert_title",
+        "value": "Database High Memory"
+      },
+      "auto_resolve_minutes": {
+        "data_type": "integer",
+        "description": "Automatic timeout before auto-resolve",
+        "is_required": false,
+        "name": "auto_resolve_minutes",
+        "value": 60
+      },
+      "severity_level": {
+        "data_type": "string",
+        "description": "Alert severity tier",
+        "is_required": true,
+        "name": "severity_level",
+        "value": "CRITICAL"
+      },
+      "target_channels": {
+        "data_type": "array[string]",
+        "description": "Broadcast destination channels",
+        "is_required": true,
+        "name": "target_channels",
+        "value": [
+          "slack-ops",
+          "pagerduty-sre"
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_015"
+  },
+  "expected_tool_name": "synth_broadcast_alert_notification",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_015_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "alert_title": "alert_title",
+        "auto_resolve_minutes": "auto_resolve_minutes",
+        "severity_level": "severity_level",
+        "target_channels": "target_channels"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_015",
+  "prompt_seed": 207274341,
+  "prompt_sha256": "aa10f1fbee565e35a5aa41d1bffe6258c32928c2f7188dfb6dc923bf3873a75a",
+  "prompt_template_id": "AC_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "982b43d42076e5bea647da837262832214f920e6779821ff685900f66b032f8c",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_065",
+  "task_sha256": "1d14a7260dc3f7fc0623d7625deb3a29e5876eca303269569784b51178cff17c",
+  "user_prompt": "We need to broadcast alert notification. Execute this request titled 'Database High Memory', setting auto resolve minutes to '60', marked with CRITICAL severity, setting target channels to '['slack-ops', 'pagerduty-sre']'."
+}

@@ -1,0 +1,289 @@
+{
+  "available_tools": [
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    },
+    {
+      "description": "Register a recurring automated task schedule with target queue.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_005",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "call_id": "call_9941a",
+    "record_audio": true,
+    "status_code": 200
+  },
+  "expected_latent_intent": {
+    "action": "synth_update_call_status",
+    "constraints": {
+      "required": [
+        "call_id",
+        "status_code"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "caf5c3272e0956e27d04109dc13363fab611c5b7fcb825794f34c4fc6310f2a4",
+    "intent_id": "INTENT_R2_TS_005",
+    "metadata": {},
+    "slots": {
+      "call_id": {
+        "data_type": "string",
+        "description": "Unique call session identifier",
+        "is_required": true,
+        "name": "call_id",
+        "value": "call_9941a"
+      },
+      "record_audio": {
+        "data_type": "boolean",
+        "description": "Toggle media recording on bridge",
+        "is_required": false,
+        "name": "record_audio",
+        "value": true
+      },
+      "status_code": {
+        "data_type": "integer",
+        "description": "SIP/VoIP status code",
+        "is_required": true,
+        "name": "status_code",
+        "value": 200
+      }
+    },
+    "target_entity": "BASE_SYNTH_005"
+  },
+  "expected_tool_name": "synth_update_call_status",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_005_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "call_id": "call_id",
+        "record_audio": "record_audio",
+        "status_code": "status_code"
+      },
+      "intent_to_arg_path": {
+        "call_id": "call_id",
+        "record_audio": "record_audio",
+        "status_code": "status_code"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_005",
+  "prompt_seed": 4239533196,
+  "prompt_sha256": "77a898a5a8c807e8f07840c05cb208e214a913c6bc9a40e5974330f354ddcceb",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "2cfb99bb0a6a2bb0c89c24a4b0bb527b7414b2da9c5d84ffcadd8d98cb0a660a",
+  "target_position": 4,
+  "task_id": "TASK_R2_TS_005",
+  "task_sha256": "a83731ff0c498258327e99e6cac779af75eaf999b144e387e9088288cf387146",
+  "user_prompt": "We need to update call session status for operations batch 005. Please configure: for active call session 'call_9941a', disabling audio recording, setting terminal status code 200."
+}

@@ -1,0 +1,157 @@
+{
+  "available_tools": [
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    },
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_008",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "AMBIGUOUS_ACTION_REQUEST",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_048",
+  "prompt_seed": 4177611494,
+  "prompt_sha256": "77e2fc5bf0cc109239e27a8be00666d3d71203366bb9681a21aa26677b911606",
+  "prompt_template_id": "AB_AMBIGUOUS_ACTION_REQUEST_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "5756e3913e7452ad244819eea71f926ad2d44881044853920877d1fe4f396eb3",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_048",
+  "task_sha256": "497f387297d8e2218cefce4e350d2c0bf3eabdd0a7a51c7cd37ab0d6ac28fc92",
+  "user_prompt": "Process everything related to heartbeat timestamp for cycle 048 as soon as convenient."
+}

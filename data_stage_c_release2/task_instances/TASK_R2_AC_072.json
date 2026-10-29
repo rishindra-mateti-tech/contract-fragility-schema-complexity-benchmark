@@ -1,0 +1,156 @@
+{
+  "available_tools": [
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_022",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "client_name": "payment_gateway_client",
+    "ip_allowlist": [
+      "192.168.1.0/24"
+    ],
+    "rate_limit_rpm": 1200,
+    "target_environment": "production"
+  },
+  "expected_latent_intent": {
+    "action": "synth_provision_api_credential",
+    "constraints": {
+      "required": [
+        "client_name",
+        "target_environment"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "290712f0311e77270c2ac7b63b9bcf725aa62d38a6511ffc0c3c02e18ad74d56",
+    "intent_id": "INTENT_R2_PG_022",
+    "metadata": {},
+    "slots": {
+      "client_name": {
+        "data_type": "string",
+        "description": "Descriptive client application name",
+        "is_required": true,
+        "name": "client_name",
+        "value": "payment_gateway_client"
+      },
+      "ip_allowlist": {
+        "data_type": "array[string]",
+        "description": "Allowed CIDR IP ranges",
+        "is_required": false,
+        "name": "ip_allowlist",
+        "value": [
+          "192.168.1.0/24"
+        ]
+      },
+      "rate_limit_rpm": {
+        "data_type": "integer",
+        "description": "Maximum allowed requests per minute",
+        "is_required": false,
+        "name": "rate_limit_rpm",
+        "value": 1200
+      },
+      "target_environment": {
+        "data_type": "string",
+        "description": "Target tier",
+        "is_required": true,
+        "name": "target_environment",
+        "value": "production"
+      }
+    },
+    "target_entity": "BASE_SYNTH_022"
+  },
+  "expected_tool_name": "synth_provision_api_credential",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_022_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "client_name": "client_name",
+        "ip_allowlist": "ip_allowlist",
+        "rate_limit_rpm": "rate_limit_rpm",
+        "target_environment": "target_environment"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "client_name": "client_name",
+        "ip_allowlist": "ip_allowlist",
+        "rate_limit_rpm": "rate_limit_rpm",
+        "target_environment": "target_environment"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_022",
+  "prompt_seed": 72407698,
+  "prompt_sha256": "6e4e508f083aa447aa1827f28da6d13b4e9ab09c69e12ad4edd286b3032d2e91",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "2c608d247c95ae0fc3abd083e4ce1698d368a713edb981403d714a6834dc4a5c",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_072",
+  "task_sha256": "df45de462e622759f871a91fbe2d75130a0783e6348f0f798bf03d7142bdde66",
+  "user_prompt": "Perform a task to provision api credential, ensuring that you are for client 'payment_gateway_client', setting ip allowlist to '['192.168.1.0/24']', setting rate limit rpm to '1200', setting target environment to 'production'."
+}

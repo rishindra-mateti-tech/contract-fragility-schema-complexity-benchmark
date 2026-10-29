@@ -1,0 +1,159 @@
+{
+  "available_tools": [
+    {
+      "description": "Abort a currently queued or executing background task in a workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Abort a currently queued or executing background task in a workflow.",
+        "properties": {
+          "cancellation_policy": {
+            "description": "Teardown mode",
+            "enum": [
+              "immediate_kill",
+              "graceful_drain",
+              "compensate_and_stop"
+            ],
+            "type": "string"
+          },
+          "cleanup_tags": {
+            "description": "Resource tags to deallocate",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "client_request_id": {
+            "description": "Client correlation identifier.",
+            "maxLength": 64,
+            "type": "string"
+          },
+          "dry_run": {
+            "default": false,
+            "description": "Validate request without committing changes.",
+            "type": "boolean"
+          },
+          "notify_on_completion": {
+            "default": false,
+            "description": "Trigger alert upon operation completion.",
+            "type": "boolean"
+          },
+          "task_id": {
+            "description": "Subtask identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "workflow_id": {
+            "description": "Parent workflow execution ID",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow_id",
+          "task_id",
+          "cancellation_policy"
+        ],
+        "title": "synth_cancel_workflow_task",
+        "type": "object"
+      },
+      "tool_name": "synth_cancel_workflow_task"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_025",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "cancellation_policy": "immediate_kill",
+    "cleanup_tags": [
+      "temp_db",
+      "staging_s3"
+    ],
+    "task_id": "task_sub_4",
+    "workflow_id": "wf_10928"
+  },
+  "expected_latent_intent": {
+    "action": "synth_cancel_workflow_task",
+    "constraints": {
+      "required": [
+        "cancellation_policy",
+        "task_id",
+        "workflow_id"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "678911a7e6ee9a28a0d401084356ffb4270659deac9757206eedbacd368cf853",
+    "intent_id": "INTENT_R2_PG_025",
+    "metadata": {},
+    "slots": {
+      "cancellation_policy": {
+        "data_type": "string",
+        "description": "Teardown mode",
+        "is_required": true,
+        "name": "cancellation_policy",
+        "value": "immediate_kill"
+      },
+      "cleanup_tags": {
+        "data_type": "array[string]",
+        "description": "Resource tags to deallocate",
+        "is_required": false,
+        "name": "cleanup_tags",
+        "value": [
+          "temp_db",
+          "staging_s3"
+        ]
+      },
+      "task_id": {
+        "data_type": "string",
+        "description": "Subtask identifier",
+        "is_required": true,
+        "name": "task_id",
+        "value": "task_sub_4"
+      },
+      "workflow_id": {
+        "data_type": "string",
+        "description": "Parent workflow execution ID",
+        "is_required": true,
+        "name": "workflow_id",
+        "value": "wf_10928"
+      }
+    },
+    "target_entity": "BASE_SYNTH_025"
+  },
+  "expected_tool_name": "synth_cancel_workflow_task",
+  "mutation_family": "OPTIONALITY_BLOAT",
+  "mutation_id": "MUT_BASE_SYNTH_025_OPTIONALITY_BLOAT_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "cancellation_policy": "cancellation_policy",
+        "cleanup_tags": "cleanup_tags",
+        "task_id": "task_id",
+        "workflow_id": "workflow_id"
+      },
+      "injected_optional_properties": [
+        "client_request_id",
+        "dry_run",
+        "notify_on_completion"
+      ],
+      "intent_to_arg_path": {
+        "cancellation_policy": "cancellation_policy",
+        "cleanup_tags": "cleanup_tags",
+        "task_id": "task_id",
+        "workflow_id": "workflow_id"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_025",
+  "prompt_seed": 338625956,
+  "prompt_sha256": "8183800651c388882fb570cfd488ef439d0e6c982a858b10bffc5aefa83e1374",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a13293166e31f93071301153054836cb08ca1fdf7d91001628f0b73319413c81",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_075",
+  "task_sha256": "939f8a61eeb795ad3febc2fcaa7343ae28ba03f8ce77da425b2c1c0c978bd567",
+  "user_prompt": "Please cancel workflow task. Specifically, configure this by setting cancellation policy to 'immediate_kill', setting cleanup tags to '['temp_db', 'staging_s3']', setting task id to 'task_sub_4', in workflow 'wf_10928'."
+}

@@ -1,0 +1,305 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute end-to-end data extraction, transformation, and load workflow.",
+        "properties": {
+          "pipeline_name": {
+            "description": "Pipeline execution job name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "sink_connector": {
+            "additionalProperties": false,
+            "description": "Target warehouse loader",
+            "properties": {
+              "table_mode": {
+                "enum": [
+                  "append",
+                  "overwrite",
+                  "merge"
+                ],
+                "type": "string"
+              },
+              "warehouse": {
+                "enum": [
+                  "snowflake",
+                  "bigquery",
+                  "redshift"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "warehouse",
+              "table_mode"
+            ],
+            "type": "object"
+          },
+          "source_connector": {
+            "additionalProperties": false,
+            "description": "Origin database extractor",
+            "properties": {
+              "connector_type": {
+                "enum": [
+                  "postgres",
+                  "mysql",
+                  "mongodb"
+                ],
+                "type": "string"
+              },
+              "query_timeout_sec": {
+                "maximum": 300,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "connector_type"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "pipeline_name",
+          "source_connector",
+          "sink_connector"
+        ],
+        "title": "synth_orchestrate_etl_pipeline",
+        "type": "object"
+      },
+      "tool_name": "synth_orchestrate_etl_pipeline"
+    },
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "lock_hours": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          },
+          "user_id": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "lock_hours"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    },
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "lock_hours": 72,
+    "user_id": "usr_5501"
+  },
+  "expected_latent_intent": {
+    "action": "synth_lock_user_account",
+    "constraints": {
+      "required": [
+        "lock_hours",
+        "user_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "6b63fd4003812d7b9afce8563cfd9d88e06e72ee6c066a1e008f329e00292b31",
+    "intent_id": "INTENT_R2_TS_052",
+    "metadata": {},
+    "slots": {
+      "lock_hours": {
+        "data_type": "integer",
+        "description": "Lock duration in hours",
+        "is_required": true,
+        "name": "lock_hours",
+        "value": 72
+      },
+      "user_id": {
+        "data_type": "string",
+        "description": "Target user identifier",
+        "is_required": true,
+        "name": "user_id",
+        "value": "usr_5501"
+      }
+    },
+    "target_entity": "BASE_SYNTH_012"
+  },
+  "expected_tool_name": "synth_lock_user_account",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_012_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "lock_hours": "lock_hours",
+        "require_password_reset": "require_password_reset",
+        "user_id": "user_id"
+      },
+      "intent_to_arg_path": {
+        "lock_hours": "lock_hours",
+        "require_password_reset": "require_password_reset",
+        "user_id": "user_id"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_052",
+  "prompt_seed": 2523555897,
+  "prompt_sha256": "427369c89b6df6dcef72692f428ee5fb6599c6ce63029a13a561a4c6fe7daf0b",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a618c63c29cfe02e222ff62c8dc113787c4287f5c2b65978eda812be5dfb8aeb",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_052",
+  "task_sha256": "8d742bf0137071e32c7ed9da06af2b4a46b6017227311214a0d51bda9f9e482c",
+  "user_prompt": "A user requested to lock user account under dispatch tag #052. Apply the following specifications: holding the lock for 72 hours, for user account 'usr_5501'."
+}

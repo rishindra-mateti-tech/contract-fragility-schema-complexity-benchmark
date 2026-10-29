@@ -1,0 +1,111 @@
+{
+  "available_tools": [
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds_param": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy_param": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name_param": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "epoch_seconds_param",
+          "is_healthy_param",
+          "service_name_param"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_008",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "epoch_seconds_param": 1761500000,
+    "is_healthy_param": true,
+    "service_name_param": "auth_service_node_1"
+  },
+  "expected_latent_intent": {
+    "action": "synth_record_heartbeat_timestamp",
+    "constraints": {
+      "required": [
+        "epoch_seconds",
+        "is_healthy",
+        "service_name"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "0020ad71f2f51dfa0364e020b127e361b1e57c7ac458725cd1ae1ac8d85f041b",
+    "intent_id": "INTENT_R2_PG_008",
+    "metadata": {},
+    "slots": {
+      "epoch_seconds": {
+        "data_type": "integer",
+        "description": "Unix timestamp in seconds",
+        "is_required": true,
+        "name": "epoch_seconds",
+        "value": 1761500000
+      },
+      "is_healthy": {
+        "data_type": "boolean",
+        "description": "Self-reported health state",
+        "is_required": true,
+        "name": "is_healthy",
+        "value": true
+      },
+      "service_name": {
+        "data_type": "string",
+        "description": "Service instance name",
+        "is_required": true,
+        "name": "service_name",
+        "value": "auth_service_node_1"
+      }
+    },
+    "target_entity": "BASE_SYNTH_008"
+  },
+  "expected_tool_name": "synth_record_heartbeat_timestamp",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_008_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "epoch_seconds_param": "epoch_seconds",
+        "is_healthy_param": "is_healthy",
+        "service_name_param": "service_name"
+      },
+      "intent_to_arg_path": {
+        "epoch_seconds": "epoch_seconds_param",
+        "is_healthy": "is_healthy_param",
+        "service_name": "service_name_param"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_008",
+  "prompt_seed": 2631564385,
+  "prompt_sha256": "7196488e5e6257520d485f10041f9e10adf9b087980073ffd197d1b4f398521b",
+  "prompt_template_id": "AC_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "840f01df0525b25f6480f04f23430f0ee212766edcb5f6f849b20341a1620835",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_083",
+  "task_sha256": "7ce903d88209db55a9f5604e35f8b5bcc76ffa30cba1fb51725c02ead6a35047",
+  "user_prompt": "We need to record heartbeat timestamp. Execute this request setting epoch seconds to '1761500000', enabling is healthy, setting service name to 'auth_service_node_1'."
+}

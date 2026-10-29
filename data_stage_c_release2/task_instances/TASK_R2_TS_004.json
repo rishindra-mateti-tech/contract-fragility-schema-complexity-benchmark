@@ -1,0 +1,307 @@
+{
+  "available_tools": [
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    },
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "platform": {
+            "description": "Operating system platform",
+            "enum": [
+              "ios",
+              "android",
+              "web"
+            ],
+            "type": "string"
+          },
+          "subscribed_topics": {
+            "description": "Notification interest topics",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "token_ttl_days": {
+            "description": "Token validity expiration",
+            "maximum": 365,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "device_id",
+          "platform"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    },
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Send an SMS text message to a designated phone destination.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_sms_message"
+    },
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_004",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "message_body": "Appointment reminder for tomorrow.",
+    "recipient_number": "+12145550199"
+  },
+  "expected_latent_intent": {
+    "action": "synth_dispatch_sms_message",
+    "constraints": {
+      "required": [
+        "message_body",
+        "recipient_number"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "431b8896a80b4d5c4f7be2537f9f13de855c63158222354c78e787d4987b2764",
+    "intent_id": "INTENT_R2_TS_004",
+    "metadata": {},
+    "slots": {
+      "message_body": {
+        "data_type": "string",
+        "description": "SMS text body",
+        "is_required": true,
+        "name": "message_body",
+        "value": "Appointment reminder for tomorrow."
+      },
+      "recipient_number": {
+        "data_type": "string",
+        "description": "E.164 phone number",
+        "is_required": true,
+        "name": "recipient_number",
+        "value": "+12145550199"
+      }
+    },
+    "target_entity": "BASE_SYNTH_004"
+  },
+  "expected_tool_name": "synth_dispatch_sms_message",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_004_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "message_body": "message_body",
+        "priority": "priority",
+        "recipient_number": "recipient_number"
+      },
+      "intent_to_arg_path": {
+        "message_body": "message_body",
+        "priority": "priority",
+        "recipient_number": "recipient_number"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_004",
+  "prompt_seed": 4259876825,
+  "prompt_sha256": "25367ca8f3035c9a3cddb7fbbe4f24034d821ea9d05a0ab98e3ec0e0af97c2cf",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "30cf14b5637f0142f4748cf9270d3bf0c89fa5d100b92f4f53935daa21058997",
+  "target_position": 3,
+  "task_id": "TASK_R2_TS_004",
+  "task_sha256": "89e05e1e5fb0332bccaf5a3b01b5250260cfd24073e4ef4eceb54df9bd4fa5a8",
+  "user_prompt": "A user requested to dispatch sms message under dispatch tag #004. Apply the following specifications: with message text 'Appointment reminder for tomorrow.', to destination number '+12145550199'."
+}

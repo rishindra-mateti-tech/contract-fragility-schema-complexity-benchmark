@@ -1,0 +1,152 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "filter_dimensions": {
+            "description": "Key=value tag filters",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "metric_series": {
+            "description": "Metric timeseries identifier",
+            "minLength": 1,
+            "type": "string"
+          },
+          "window_seconds": {
+            "description": "Aggregation window width",
+            "maximum": 86400,
+            "minimum": 60,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "metric_series",
+          "aggregation",
+          "window_seconds"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    },
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "description": "Send an SMS text message to a designated phone destination.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_sms_message"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_027",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "CONTRADICTORY_BOUNDS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_027",
+  "prompt_seed": 2187187159,
+  "prompt_sha256": "06a7305947b02d1c3ebe5766027fc764a7a45bb3b6511cd5166692a3ae989f5f",
+  "prompt_template_id": "AB_CONTRADICTORY_BOUNDS_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "520cdc7e6c50a8dfe2d628d399fdf259d9acdb0419217538e88ab2841eb97041",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_027",
+  "task_sha256": "9337652c2e1c34e1b4bf9e0ee99e3cb399b729231d6df5a9f5519e95603ec341",
+  "user_prompt": "Update cron job for partition 027 with a lock duration of zero seconds while enforcing permanent exclusivity."
+}

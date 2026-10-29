@@ -1,0 +1,313 @@
+{
+  "available_tools": [
+    {
+      "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Set up SAML/OIDC enterprise identity federation for a workspace.",
+        "properties": {
+          "enforce_domain_lock": {
+            "description": "Restrict logins strictly to claimed corporate domains",
+            "type": "boolean"
+          },
+          "idp_spec": {
+            "additionalProperties": false,
+            "description": "Provider connection details",
+            "properties": {
+              "entity_id": {
+                "minLength": 4,
+                "type": "string"
+              },
+              "protocol": {
+                "enum": [
+                  "SAML2",
+                  "OIDC"
+                ],
+                "type": "string"
+              },
+              "sso_url": {
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "sso_url",
+              "entity_id",
+              "protocol"
+            ],
+            "type": "object"
+          },
+          "provider_name": {
+            "description": "Federation label",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider_name",
+          "idp_spec"
+        ],
+        "title": "synth_configure_sso_identity_provider",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_sso_identity_provider"
+    },
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Broadcast a critical operational alert across multiple notification channels.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Broadcast a critical operational alert across multiple notification channels.",
+        "properties": {
+          "alert_title": {
+            "description": "Short alert title",
+            "minLength": 1,
+            "type": "string"
+          },
+          "auto_resolve_minutes": {
+            "description": "Automatic timeout before auto-resolve",
+            "maximum": 1440,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "severity_level": {
+            "description": "Alert severity tier",
+            "enum": [
+              "INFO",
+              "WARNING",
+              "CRITICAL",
+              "FATAL"
+            ],
+            "type": "string"
+          },
+          "target_channels": {
+            "description": "Broadcast destination channels",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "alert_title",
+          "severity_level",
+          "target_channels"
+        ],
+        "title": "synth_broadcast_alert_notification",
+        "type": "object"
+      },
+      "tool_name": "synth_broadcast_alert_notification"
+    },
+    {
+      "description": "Tear down an established conference audio bridge.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "bridge_id": {
+            "description": "Conference bridge identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "termination_reason": {
+            "description": "Audit rationale for bridge shutdown",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bridge_id"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "tool_name": "synth_terminate_voice_bridge"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_013",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "collection_name": "knowledge_docs",
+    "index_mode": "asynchronous",
+    "record_ids": [
+      "doc_1",
+      "doc_2"
+    ],
+    "refresh_view": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_batch_index_records",
+    "constraints": {
+      "required": [
+        "collection_name",
+        "index_mode",
+        "record_ids"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3f9713e9f04504debb95fe6a1adc5e194251422030e845c3be1c6f2a4f13f407",
+    "intent_id": "INTENT_R2_TS_013",
+    "metadata": {},
+    "slots": {
+      "collection_name": {
+        "data_type": "string",
+        "description": "Search index name",
+        "is_required": true,
+        "name": "collection_name",
+        "value": "knowledge_docs"
+      },
+      "index_mode": {
+        "data_type": "string",
+        "description": "Indexing commitment mode",
+        "is_required": true,
+        "name": "index_mode",
+        "value": "asynchronous"
+      },
+      "record_ids": {
+        "data_type": "array[string]",
+        "description": "List of record identifiers",
+        "is_required": true,
+        "name": "record_ids",
+        "value": [
+          "doc_1",
+          "doc_2"
+        ]
+      },
+      "refresh_view": {
+        "data_type": "boolean",
+        "description": "Force immediate index view refresh",
+        "is_required": false,
+        "name": "refresh_view",
+        "value": true
+      }
+    },
+    "target_entity": "BASE_SYNTH_013"
+  },
+  "expected_tool_name": "synth_batch_index_records",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_013_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "collection_name": "collection_name",
+        "index_mode": "index_mode",
+        "record_ids": "record_ids",
+        "refresh_view": "refresh_view"
+      },
+      "intent_to_arg_path": {
+        "collection_name": "collection_name",
+        "index_mode": "index_mode",
+        "record_ids": "record_ids",
+        "refresh_view": "refresh_view"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_013",
+  "prompt_seed": 2975459394,
+  "prompt_sha256": "d522e1650f2777c4a430a6855efc0b5782f187b8bcde4c8d83f46383115b4403",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "920be9882217dd20d59652ff620df0de36d7d9fceb44495591c114edeaaaf50e",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_013",
+  "task_sha256": "ee34dadc7f0080654058f9d4762c0eb5d6e303231c08e37adb342c481dba4671",
+  "user_prompt": "Dispatch an automated request to batch index records (reference ref_013). Required configuration: setting collection name to 'knowledge_docs', using asynchronous indexing, setting record ids to '['doc_1', 'doc_2']', enabling refresh view."
+}

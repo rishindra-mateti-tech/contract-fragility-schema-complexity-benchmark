@@ -1,0 +1,120 @@
+{
+  "available_tools": [
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "key_pattern": {
+                "description": "Glob or prefix pattern",
+                "minLength": 1,
+                "type": "string"
+              },
+              "max_evictions": {
+                "description": "Eviction batch cap",
+                "maximum": 1000,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "key_pattern"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_002",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "cascade_eviction": true,
+    "payload_parameters": {
+      "key_pattern": "session:*",
+      "max_evictions": 500
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_delete_cache_entry",
+    "constraints": {
+      "required": [
+        "key_pattern"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "f68ccb06e87e2e09661792f94e20a7625f5403459a722f094b170010ccd39cee",
+    "intent_id": "INTENT_R2_PG_002",
+    "metadata": {},
+    "slots": {
+      "cascade_eviction": {
+        "data_type": "boolean",
+        "description": "Evict child keys recursively",
+        "is_required": false,
+        "name": "cascade_eviction",
+        "value": true
+      },
+      "key_pattern": {
+        "data_type": "string",
+        "description": "Glob or prefix pattern",
+        "is_required": true,
+        "name": "key_pattern",
+        "value": "session:*"
+      },
+      "max_evictions": {
+        "data_type": "integer",
+        "description": "Eviction batch cap",
+        "is_required": false,
+        "name": "max_evictions",
+        "value": 500
+      }
+    },
+    "target_entity": "BASE_SYNTH_002"
+  },
+  "expected_tool_name": "synth_delete_cache_entry",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_002_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "cascade_eviction": "cascade_eviction",
+        "payload_parameters.key_pattern": "key_pattern",
+        "payload_parameters.max_evictions": "max_evictions"
+      },
+      "intent_to_arg_path": {
+        "cascade_eviction": "cascade_eviction",
+        "key_pattern": "payload_parameters.key_pattern",
+        "max_evictions": "payload_parameters.max_evictions"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_002",
+  "prompt_seed": 1477754971,
+  "prompt_sha256": "50b0cc300287c9215a4923033c8355e2e692fe9f48816150b829f3cafcde2f67",
+  "prompt_template_id": "AC_FRAME_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "eb30b1eb449ae7805149f865ded535ee403ed087ec81fe1c95020665b1c57b3d",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_027",
+  "task_sha256": "bdddd5b67341ded967104ac61c8964e3c9a46e3bf20fb34511517c4187b47b3d",
+  "user_prompt": "Kindly delete cache entry. The operational requirements are: enabling cascade eviction, setting key pattern to 'session:*', setting max evictions to '500'."
+}

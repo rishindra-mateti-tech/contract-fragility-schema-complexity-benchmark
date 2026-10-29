@@ -1,0 +1,150 @@
+{
+  "available_tools": [
+    {
+      "description": "Associate a mobile device APNS or FCM push token with an account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Associate a mobile device APNS or FCM push token with an account.",
+        "properties": {
+          "device_id": {
+            "description": "Hardware device UUID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 3 parameters.",
+            "properties": {
+              "platform": {
+                "description": "Operating system platform",
+                "enum": [
+                  "ios",
+                  "android",
+                  "web"
+                ],
+                "type": "string"
+              },
+              "subscribed_topics": {
+                "description": "Notification interest topics",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "token_ttl_days": {
+                "description": "Token validity expiration",
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "platform"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "device_id",
+          "payload_parameters"
+        ],
+        "title": "synth_register_push_token",
+        "type": "object"
+      },
+      "tool_name": "synth_register_push_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_017",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "device_id": "dev_9918274619",
+    "payload_parameters": {
+      "platform": "ios",
+      "subscribed_topics": [
+        "news",
+        "alerts"
+      ],
+      "token_ttl_days": 90
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_register_push_token",
+    "constraints": {
+      "required": [
+        "device_id",
+        "platform"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "172850baa17a9f763c0bdd743bfb60997a91554bbf294a31729656e7821c95ab",
+    "intent_id": "INTENT_R2_PG_017",
+    "metadata": {},
+    "slots": {
+      "device_id": {
+        "data_type": "string",
+        "description": "Hardware device UUID",
+        "is_required": true,
+        "name": "device_id",
+        "value": "dev_9918274619"
+      },
+      "platform": {
+        "data_type": "string",
+        "description": "Operating system platform",
+        "is_required": true,
+        "name": "platform",
+        "value": "ios"
+      },
+      "subscribed_topics": {
+        "data_type": "array[string]",
+        "description": "Notification interest topics",
+        "is_required": false,
+        "name": "subscribed_topics",
+        "value": [
+          "news",
+          "alerts"
+        ]
+      },
+      "token_ttl_days": {
+        "data_type": "integer",
+        "description": "Token validity expiration",
+        "is_required": false,
+        "name": "token_ttl_days",
+        "value": 90
+      }
+    },
+    "target_entity": "BASE_SYNTH_017"
+  },
+  "expected_tool_name": "synth_register_push_token",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_017_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "device_id": "device_id",
+        "payload_parameters.platform": "platform",
+        "payload_parameters.subscribed_topics": "subscribed_topics",
+        "payload_parameters.token_ttl_days": "token_ttl_days"
+      },
+      "intent_to_arg_path": {
+        "device_id": "device_id",
+        "platform": "payload_parameters.platform",
+        "subscribed_topics": "payload_parameters.subscribed_topics",
+        "token_ttl_days": "payload_parameters.token_ttl_days"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_017",
+  "prompt_seed": 1219300345,
+  "prompt_sha256": "aa466c6c03447d7f28e390788ed9bc1c6dd7d86d28af2f80cb9eae3d16331a49",
+  "prompt_template_id": "AC_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "119483493f45011f4216e5b84a0b925641e3b7778546a06af1928af2d62e090e",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_042",
+  "task_sha256": "ddc99c23aa0fdc53f329a9c4b47b5e0d3d7e7242e8d0022a6a608e7c219a2011",
+  "user_prompt": "We need to register push notification token. Execute this request for device 'dev_9918274619', setting platform to 'ios', setting subscribed topics to '['news', 'alerts']', valid for 90 days."
+}

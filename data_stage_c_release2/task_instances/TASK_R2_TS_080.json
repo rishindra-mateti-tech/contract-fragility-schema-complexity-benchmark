@@ -1,0 +1,335 @@
+{
+  "available_tools": [
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Spin up dedicated compute workers to process a batch of task IDs.",
+        "properties": {
+          "auto_terminate": {
+            "description": "Shut down worker upon queue exhaustion",
+            "type": "boolean"
+          },
+          "job_ids": {
+            "description": "Assigned job identifiers",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "worker_concurrency": {
+            "description": "Parallel thread count",
+            "maximum": 32,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "worker_pool": {
+            "description": "Compute tier",
+            "enum": [
+              "cpu_optimized",
+              "memory_optimized",
+              "standard"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "worker_pool",
+          "job_ids"
+        ],
+        "title": "synth_dispatch_batch_worker",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_batch_worker"
+    },
+    {
+      "description": "Dispatch incoming support ticket across routing and priority constraints.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Dispatch incoming support ticket across routing and priority constraints.",
+        "properties": {
+          "conversation_id": {
+            "description": "Customer inquiry ticket ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "fallback_queue": {
+            "description": "Default destination if no agent available",
+            "type": "string"
+          },
+          "routing_criteria": {
+            "additionalProperties": false,
+            "description": "Agent matching criteria",
+            "properties": {
+              "language": {
+                "description": "ISO language code",
+                "minLength": 2,
+                "type": "string"
+              },
+              "priority_weight": {
+                "maximum": 100,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "skill_tags": {
+                "description": "Required agent competencies",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "language"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "conversation_id",
+          "routing_criteria"
+        ],
+        "title": "synth_route_omnichannel_conversation",
+        "type": "object"
+      },
+      "tool_name": "synth_route_omnichannel_conversation"
+    },
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "description": "Coordinate cluster consensus state and membership across peer nodes.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Coordinate cluster consensus state and membership across peer nodes.",
+        "properties": {
+          "cluster_domain": {
+            "description": "Consensus cluster domain",
+            "minLength": 3,
+            "type": "string"
+          },
+          "consensus_config": {
+            "additionalProperties": false,
+            "description": "Raft/Paxos consensus parameters",
+            "properties": {
+              "election_timeout_ms": {
+                "maximum": 5000,
+                "minimum": 150,
+                "type": "integer"
+              },
+              "quorum_size": {
+                "maximum": 9,
+                "minimum": 3,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "quorum_size",
+              "election_timeout_ms"
+            ],
+            "type": "object"
+          },
+          "member_nodes": {
+            "description": "Active peer node connection endpoints",
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "address": {
+                  "minLength": 7,
+                  "type": "string"
+                },
+                "node_id": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "node_id",
+                "address"
+              ],
+              "type": "object"
+            },
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "cluster_domain",
+          "consensus_config",
+          "member_nodes"
+        ],
+        "title": "synth_synchronize_distributed_cluster",
+        "type": "object"
+      },
+      "tool_name": "synth_synchronize_distributed_cluster"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_040",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "cluster_domain": "raft_cluster_staging",
+    "consensus_config": {
+      "election_timeout_ms": 500,
+      "quorum_size": 3
+    },
+    "member_nodes": [
+      {
+        "address": "127.0.0.1:9001",
+        "node_id": "stage_1"
+      },
+      {
+        "address": "127.0.0.1:9002",
+        "node_id": "stage_2"
+      },
+      {
+        "address": "127.0.0.1:9003",
+        "node_id": "stage_3"
+      }
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_synchronize_distributed_cluster",
+    "constraints": {
+      "required": [
+        "cluster_domain",
+        "consensus_config",
+        "member_nodes"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "2389ef4c81c9095aff86a9302269f5f541b05cafed861121266a87c9fa349a35",
+    "intent_id": "INTENT_R2_TS_080",
+    "metadata": {},
+    "slots": {
+      "cluster_domain": {
+        "data_type": "string",
+        "description": "Consensus cluster domain",
+        "is_required": true,
+        "name": "cluster_domain",
+        "value": "raft_cluster_staging"
+      },
+      "consensus_config": {
+        "data_type": "object",
+        "description": "Raft/Paxos consensus parameters",
+        "is_required": true,
+        "name": "consensus_config",
+        "value": {
+          "election_timeout_ms": 500,
+          "quorum_size": 3
+        }
+      },
+      "member_nodes": {
+        "data_type": "array[object]",
+        "description": "Active peer node connection endpoints",
+        "is_required": true,
+        "name": "member_nodes",
+        "value": [
+          {
+            "address": "127.0.0.1:9001",
+            "node_id": "stage_1"
+          },
+          {
+            "address": "127.0.0.1:9002",
+            "node_id": "stage_2"
+          },
+          {
+            "address": "127.0.0.1:9003",
+            "node_id": "stage_3"
+          }
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_040"
+  },
+  "expected_tool_name": "synth_synchronize_distributed_cluster",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_040_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "cluster_domain": "cluster_domain",
+        "consensus_config": "consensus_config",
+        "member_nodes": "member_nodes"
+      },
+      "intent_to_arg_path": {
+        "cluster_domain": "cluster_domain",
+        "consensus_config": "consensus_config",
+        "member_nodes": "member_nodes"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_080",
+  "prompt_seed": 699752713,
+  "prompt_sha256": "1a8704e5f1e02db55a5583cde9791283aa5d85c673c819aaa95e2b529d0b1d5d",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "ea1c69febadec03934527154689ca79aaebc2a29bdaf4d958d3fa4dee4e62876",
+  "target_position": 4,
+  "task_id": "TASK_R2_TS_080",
+  "task_sha256": "74f5e766ebe9ffa8fb5b4b4940386c09b871647a287cf77260aea542a6a400f6",
+  "user_prompt": "A user requested to synchronize distributed cluster under dispatch tag #080. Apply the following specifications: setting cluster domain to 'raft_cluster_staging', setting consensus config to '{'election_timeout_ms': 500, 'quorum_size': 3}', setting member nodes to '[{'address': '127.0.0.1:9001', 'node_id': 'stage_1'}, {'address': '127.0.0.1:9002', 'node_id': 'stage_2'}, {'address': '127.0.0.1:9003', 'node_id': 'stage_3'}]'."
+}

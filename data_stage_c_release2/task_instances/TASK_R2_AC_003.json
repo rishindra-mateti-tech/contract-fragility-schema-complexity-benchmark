@@ -1,0 +1,109 @@
+{
+  "available_tools": [
+    {
+      "description": "Remove all records from a specific table slice or partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Remove all records from a specific table slice or partition.",
+        "properties": {
+          "force_truncate": {
+            "description": "Bypass active read-lock confirmation",
+            "type": "boolean"
+          },
+          "slice_index": {
+            "description": "Zero-indexed partition slice",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "table_name": {
+            "description": "Target relational table name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "table_name",
+          "slice_index"
+        ],
+        "title": "synth_truncate_table_slice",
+        "type": "object"
+      },
+      "tool_name": "synth_truncate_table_slice"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_003",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "force_truncate": true,
+    "slice_index": 3,
+    "table_name": "audit_logs_2026"
+  },
+  "expected_latent_intent": {
+    "action": "synth_truncate_table_slice",
+    "constraints": {
+      "required": [
+        "slice_index",
+        "table_name"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "7a1812342ac9a840dea923dda36ff56101879b0a1938816194a7f8066c4b77d3",
+    "intent_id": "INTENT_R2_PG_003",
+    "metadata": {},
+    "slots": {
+      "force_truncate": {
+        "data_type": "boolean",
+        "description": "Bypass active read-lock confirmation",
+        "is_required": false,
+        "name": "force_truncate",
+        "value": true
+      },
+      "slice_index": {
+        "data_type": "integer",
+        "description": "Zero-indexed partition slice",
+        "is_required": true,
+        "name": "slice_index",
+        "value": 3
+      },
+      "table_name": {
+        "data_type": "string",
+        "description": "Target relational table name",
+        "is_required": true,
+        "name": "table_name",
+        "value": "audit_logs_2026"
+      }
+    },
+    "target_entity": "BASE_SYNTH_003"
+  },
+  "expected_tool_name": "synth_truncate_table_slice",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_003_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      },
+      "intent_to_arg_path": {
+        "force_truncate": "force_truncate",
+        "slice_index": "slice_index",
+        "table_name": "table_name"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_003",
+  "prompt_seed": 3472615718,
+  "prompt_sha256": "e184c6da141b8af95d2031261f2b28b7452bab7130d88e3fc4ddf57fbc234c40",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "23e121109e7ba46c5df051d5ce9788252c336fa92cf8ca7cd44fbd97ea95adf7",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_003",
+  "task_sha256": "131bd18c81e93523b58e8c4313f1f91e7154dce545182d4e5d79c1d4c7650805",
+  "user_prompt": "Perform a task to truncate table slice, ensuring that you are performing standard truncation, targeting partition slice 3, for the 'audit_logs_2026' table."
+}

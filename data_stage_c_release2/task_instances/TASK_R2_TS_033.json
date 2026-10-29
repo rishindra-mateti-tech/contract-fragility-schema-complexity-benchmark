@@ -1,0 +1,284 @@
+{
+  "available_tools": [
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Store a key-value pair in a distributed cache partition.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Store a key-value pair in a distributed cache partition.",
+        "properties": {
+          "key": {
+            "description": "Unique key identifier",
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "overwrite": {
+            "description": "Whether to overwrite existing entry",
+            "type": "boolean"
+          },
+          "ttl_seconds": {
+            "description": "Time to live in seconds",
+            "maximum": 86400,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "value": {
+            "description": "Serialized value payload",
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "title": "synth_create_key_value",
+        "type": "object"
+      },
+      "tool_name": "synth_create_key_value"
+    },
+    {
+      "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Deliver a JSON notification payload to an external subscriber webhook.",
+        "properties": {
+          "endpoint": {
+            "additionalProperties": false,
+            "description": "Destination HTTP configuration",
+            "properties": {
+              "signing_secret": {
+                "description": "HMAC signature secret",
+                "minLength": 8,
+                "type": "string"
+              },
+              "timeout_ms": {
+                "maximum": 10000,
+                "minimum": 100,
+                "type": "integer"
+              },
+              "url": {
+                "description": "HTTPS webhook URL",
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "url",
+              "signing_secret"
+            ],
+            "type": "object"
+          },
+          "event_type": {
+            "description": "Domain event classification",
+            "minLength": 3,
+            "type": "string"
+          },
+          "max_retries": {
+            "description": "Retry limit on 5xx failures",
+            "maximum": 5,
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "event_type",
+          "endpoint"
+        ],
+        "title": "synth_publish_webhook_event",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_webhook_event"
+    },
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "increment_by": {
+            "description": "Positive integer increment",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "metric_name": {
+            "description": "Metric identifier",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "metric_name"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    },
+    {
+      "description": "Publish observations into predefined histogram bucket thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Publish observations into predefined histogram bucket thresholds.",
+        "properties": {
+          "bucket_boundaries": {
+            "description": "Ascending bucket threshold values",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 2,
+            "type": "array"
+          },
+          "histogram_name": {
+            "description": "Histogram metric name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "sample_count": {
+            "description": "Number of observations",
+            "minimum": 1,
+            "type": "integer"
+          },
+          "unit": {
+            "description": "Measurement unit",
+            "enum": [
+              "milliseconds",
+              "seconds",
+              "bytes",
+              "count"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "histogram_name",
+          "unit",
+          "bucket_boundaries"
+        ],
+        "title": "synth_publish_metric_histogram",
+        "type": "object"
+      },
+      "tool_name": "synth_publish_metric_histogram"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_033",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "endpoint": {
+      "signing_secret": "whsec_abcdef123456",
+      "timeout_ms": 3000,
+      "url": "https://api.partner.com/hooks"
+    },
+    "event_type": "payment.succeeded",
+    "max_retries": 3
+  },
+  "expected_latent_intent": {
+    "action": "synth_publish_webhook_event",
+    "constraints": {
+      "required": [
+        "endpoint",
+        "event_type"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "699b9f5229bb7f889352967135e875d381c7dd827f520271ea30fe8d155577c5",
+    "intent_id": "INTENT_R2_TS_033",
+    "metadata": {},
+    "slots": {
+      "endpoint": {
+        "data_type": "object",
+        "description": "Destination HTTP configuration",
+        "is_required": true,
+        "name": "endpoint",
+        "value": {
+          "signing_secret": "whsec_abcdef123456",
+          "timeout_ms": 3000,
+          "url": "https://api.partner.com/hooks"
+        }
+      },
+      "event_type": {
+        "data_type": "string",
+        "description": "Domain event classification",
+        "is_required": true,
+        "name": "event_type",
+        "value": "payment.succeeded"
+      },
+      "max_retries": {
+        "data_type": "integer",
+        "description": "Retry limit on 5xx failures",
+        "is_required": false,
+        "name": "max_retries",
+        "value": 3
+      }
+    },
+    "target_entity": "BASE_SYNTH_033"
+  },
+  "expected_tool_name": "synth_publish_webhook_event",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_033_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "endpoint": "endpoint",
+        "event_type": "event_type",
+        "max_retries": "max_retries"
+      },
+      "intent_to_arg_path": {
+        "endpoint": "endpoint",
+        "event_type": "event_type",
+        "max_retries": "max_retries"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_033",
+  "prompt_seed": 4083550196,
+  "prompt_sha256": "bd93accd5660b2994cbe47bae6f4ee4ae1e4889030a86a98faa6238f47eeb44f",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "04e549300e1c1b42b8dd2843947533c405e664a1a02af0d2cadb0dd47f1443f5",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_033",
+  "task_sha256": "a47c1c5eeabdd65cfa163c00018e7e4996fc5651e53275e3dbd83ace473c1471",
+  "user_prompt": "We need to publish webhook event for operations batch 033. Please configure: at endpoint '{'signing_secret': 'whsec_abcdef123456', 'timeout_ms': 3000, 'url': 'https://api.partner.com/hooks'}', categorized as event 'payment.succeeded', allowing up to 3 retries."
+}

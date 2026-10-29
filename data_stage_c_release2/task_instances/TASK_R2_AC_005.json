@@ -1,0 +1,110 @@
+{
+  "available_tools": [
+    {
+      "description": "Modify the signaling status of an active voice call session.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Modify the signaling status of an active voice call session.",
+        "properties": {
+          "call_id": {
+            "description": "Unique call session identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "record_audio": {
+            "description": "Toggle media recording on bridge",
+            "type": "boolean"
+          },
+          "status_code": {
+            "description": "SIP/VoIP status code",
+            "maximum": 600,
+            "minimum": 100,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "call_id",
+          "status_code"
+        ],
+        "title": "synth_update_call_status",
+        "type": "object"
+      },
+      "tool_name": "synth_update_call_status"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_005",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "call_id": "call_9941a",
+    "record_audio": true,
+    "status_code": 200
+  },
+  "expected_latent_intent": {
+    "action": "synth_update_call_status",
+    "constraints": {
+      "required": [
+        "call_id",
+        "status_code"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "caf5c3272e0956e27d04109dc13363fab611c5b7fcb825794f34c4fc6310f2a4",
+    "intent_id": "INTENT_R2_PG_005",
+    "metadata": {},
+    "slots": {
+      "call_id": {
+        "data_type": "string",
+        "description": "Unique call session identifier",
+        "is_required": true,
+        "name": "call_id",
+        "value": "call_9941a"
+      },
+      "record_audio": {
+        "data_type": "boolean",
+        "description": "Toggle media recording on bridge",
+        "is_required": false,
+        "name": "record_audio",
+        "value": true
+      },
+      "status_code": {
+        "data_type": "integer",
+        "description": "SIP/VoIP status code",
+        "is_required": true,
+        "name": "status_code",
+        "value": 200
+      }
+    },
+    "target_entity": "BASE_SYNTH_005"
+  },
+  "expected_tool_name": "synth_update_call_status",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_005_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "call_id": "call_id",
+        "record_audio": "record_audio",
+        "status_code": "status_code"
+      },
+      "intent_to_arg_path": {
+        "call_id": "call_id",
+        "record_audio": "record_audio",
+        "status_code": "status_code"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_005",
+  "prompt_seed": 1476679866,
+  "prompt_sha256": "847295b765c67c1858860bd71f76eea6f5f35b40d43461540d47ff4232a52be2",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "f7336cb5eceb32ffeb9788a7a6289648bcd2b04f2a3b0a181e07c74a0e566158",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_005",
+  "task_sha256": "aded0649002a969005efc65bbca0f9b08f62be9b0f2b3946fc7a427e7d9c7f7b",
+  "user_prompt": "Perform a task to update call session status, ensuring that you are for active call session 'call_9941a', disabling audio recording, setting terminal status code 200."
+}

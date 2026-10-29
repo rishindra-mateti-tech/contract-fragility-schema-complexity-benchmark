@@ -1,0 +1,139 @@
+{
+  "available_tools": [
+    {
+      "description": "Schedule an aggregated email digest for a recipient list.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Schedule an aggregated email digest for a recipient list.",
+        "properties": {
+          "digest_frequency": {
+            "description": "Aggregation cadence",
+            "enum": [
+              "daily",
+              "weekly",
+              "monthly"
+            ],
+            "type": "string"
+          },
+          "recipients": {
+            "description": "Recipient email addresses",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "template_slug": {
+            "description": "Email layout template ID",
+            "minLength": 1,
+            "type": "string"
+          },
+          "track_opens": {
+            "description": "Embed tracking pixel",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "template_slug",
+          "recipients",
+          "digest_frequency"
+        ],
+        "title": "synth_enqueue_email_digest",
+        "type": "object"
+      },
+      "tool_name": "synth_enqueue_email_digest"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_016",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "digest_frequency": "weekly",
+    "recipients": [
+      "alice@example.com",
+      "bob@example.com"
+    ],
+    "template_slug": "weekly_developer_digest",
+    "track_opens": false
+  },
+  "expected_latent_intent": {
+    "action": "synth_enqueue_email_digest",
+    "constraints": {
+      "required": [
+        "digest_frequency",
+        "recipients",
+        "template_slug"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "8d68ed156a54e7d0063d514ed9d9064c469ae8fd5ddb69dd1b87923f01974534",
+    "intent_id": "INTENT_R2_PG_016",
+    "metadata": {},
+    "slots": {
+      "digest_frequency": {
+        "data_type": "string",
+        "description": "Aggregation cadence",
+        "is_required": true,
+        "name": "digest_frequency",
+        "value": "weekly"
+      },
+      "recipients": {
+        "data_type": "array[string]",
+        "description": "Recipient email addresses",
+        "is_required": true,
+        "name": "recipients",
+        "value": [
+          "alice@example.com",
+          "bob@example.com"
+        ]
+      },
+      "template_slug": {
+        "data_type": "string",
+        "description": "Email layout template ID",
+        "is_required": true,
+        "name": "template_slug",
+        "value": "weekly_developer_digest"
+      },
+      "track_opens": {
+        "data_type": "boolean",
+        "description": "Embed tracking pixel",
+        "is_required": false,
+        "name": "track_opens",
+        "value": false
+      }
+    },
+    "target_entity": "BASE_SYNTH_016"
+  },
+  "expected_tool_name": "synth_enqueue_email_digest",
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_BASE_SYNTH_016_CANONICAL_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "digest_frequency": "digest_frequency",
+        "recipients": "recipients",
+        "template_slug": "template_slug",
+        "track_opens": "track_opens"
+      },
+      "intent_to_arg_path": {
+        "digest_frequency": "digest_frequency",
+        "recipients": "recipients",
+        "template_slug": "template_slug",
+        "track_opens": "track_opens"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_016",
+  "prompt_seed": 2889416528,
+  "prompt_sha256": "7c0151a2cb60d8b209150ed453e349c5e4d1d5f5cb2b4ec30aa933fee7356a79",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "06a74fefd18fed5bc5cb7840ccc9b61a3b4542862aa3d899e569ee2cce680228",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_016",
+  "task_sha256": "3285ccf79cbe1ac3376e7c76c62397f11ff6cef13a4b19173a80522c250aba55",
+  "user_prompt": "Please enqueue email digest. Specifically, configure this by setting digest frequency to 'weekly', setting recipients to '['alice@example.com', 'bob@example.com']', setting template slug to 'weekly_developer_digest', disabling track opens."
+}

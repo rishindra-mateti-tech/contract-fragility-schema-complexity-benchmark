@@ -1,0 +1,305 @@
+{
+  "available_tools": [
+    {
+      "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Trigger asynchronous bulk export of metrics data within time bounds.",
+        "properties": {
+          "dataset_name": {
+            "description": "Target metrics catalog",
+            "minLength": 2,
+            "type": "string"
+          },
+          "format_spec": {
+            "additionalProperties": false,
+            "description": "Export serialization format",
+            "properties": {
+              "compress": {
+                "type": "boolean"
+              },
+              "format_type": {
+                "enum": [
+                  "csv",
+                  "parquet",
+                  "jsonl"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "format_type"
+            ],
+            "type": "object"
+          },
+          "query_window": {
+            "additionalProperties": false,
+            "description": "Temporal boundaries",
+            "properties": {
+              "end_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              },
+              "interval_seconds": {
+                "maximum": 3600,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "start_epoch": {
+                "minimum": 1600000000,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "start_epoch",
+              "end_epoch"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "dataset_name",
+          "query_window",
+          "format_spec"
+        ],
+        "title": "synth_export_timeseries_dataset",
+        "type": "object"
+      },
+      "tool_name": "synth_export_timeseries_dataset"
+    },
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    },
+    {
+      "description": "Report service agent health heartbeat with unix epoch timestamp.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Report service agent health heartbeat with unix epoch timestamp.",
+        "properties": {
+          "epoch_seconds": {
+            "description": "Unix timestamp in seconds",
+            "minimum": 1600000000,
+            "type": "integer"
+          },
+          "is_healthy": {
+            "description": "Self-reported health state",
+            "type": "boolean"
+          },
+          "service_name": {
+            "description": "Service instance name",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "service_name",
+          "epoch_seconds",
+          "is_healthy"
+        ],
+        "title": "synth_record_heartbeat_timestamp",
+        "type": "object"
+      },
+      "tool_name": "synth_record_heartbeat_timestamp"
+    },
+    {
+      "description": "Run statistical outlier detection on a series with specified sensitivity.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Run statistical outlier detection on a series with specified sensitivity.",
+        "properties": {
+          "detector_id": {
+            "description": "Anomaly detection model name",
+            "minLength": 3,
+            "type": "string"
+          },
+          "emit_alert": {
+            "description": "Trigger alert pipeline if anomaly detected",
+            "type": "boolean"
+          },
+          "sensitivity": {
+            "description": "Standard deviation threshold tier",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "paranoid"
+            ],
+            "type": "string"
+          },
+          "training_windows": {
+            "description": "Historical comparative day offsets",
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "detector_id",
+          "sensitivity",
+          "training_windows"
+        ],
+        "title": "synth_evaluate_anomaly_detector",
+        "type": "object"
+      },
+      "tool_name": "synth_evaluate_anomaly_detector"
+    },
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_019",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "detector_id": "traffic_spike_detector",
+    "emit_alert": true,
+    "sensitivity": "high",
+    "training_windows": [
+      1,
+      7,
+      14
+    ]
+  },
+  "expected_latent_intent": {
+    "action": "synth_evaluate_anomaly_detector",
+    "constraints": {
+      "required": [
+        "detector_id",
+        "sensitivity",
+        "training_windows"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "d43881b6766aee24e0fb059033d01d44c5591f08e3f5b64754856cbe33074c08",
+    "intent_id": "INTENT_R2_TS_059",
+    "metadata": {},
+    "slots": {
+      "detector_id": {
+        "data_type": "string",
+        "description": "Anomaly detection model name",
+        "is_required": true,
+        "name": "detector_id",
+        "value": "traffic_spike_detector"
+      },
+      "emit_alert": {
+        "data_type": "boolean",
+        "description": "Trigger alert pipeline if anomaly detected",
+        "is_required": false,
+        "name": "emit_alert",
+        "value": true
+      },
+      "sensitivity": {
+        "data_type": "string",
+        "description": "Standard deviation threshold tier",
+        "is_required": true,
+        "name": "sensitivity",
+        "value": "high"
+      },
+      "training_windows": {
+        "data_type": "array[integer]",
+        "description": "Historical comparative day offsets",
+        "is_required": true,
+        "name": "training_windows",
+        "value": [
+          1,
+          7,
+          14
+        ]
+      }
+    },
+    "target_entity": "BASE_SYNTH_019"
+  },
+  "expected_tool_name": "synth_evaluate_anomaly_detector",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_019_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "detector_id": "detector_id",
+        "emit_alert": "emit_alert",
+        "sensitivity": "sensitivity",
+        "training_windows": "training_windows"
+      },
+      "intent_to_arg_path": {
+        "detector_id": "detector_id",
+        "emit_alert": "emit_alert",
+        "sensitivity": "sensitivity",
+        "training_windows": "training_windows"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_059",
+  "prompt_seed": 4198934580,
+  "prompt_sha256": "b0f8115a3e1bf26e3c5bf72d35c19925abc591f4d61b8e9526ebd3b5c61169ab",
+  "prompt_template_id": "TS_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "c9e4cf7dfc8b3ec2632355076220da9bfc5198e0bb959d8dc5a8faeea9bbd507",
+  "target_position": 3,
+  "task_id": "TASK_R2_TS_059",
+  "task_sha256": "f362bef1406c86a31f2b780bdd647f6326115a153c758642a7e56b3577be35af",
+  "user_prompt": "We need to evaluate anomaly detector for operations batch 059. Please configure: setting detector id to 'traffic_spike_detector', enabling emit alert, setting sensitivity to 'high', setting training windows to '[1, 7, 14]'."
+}

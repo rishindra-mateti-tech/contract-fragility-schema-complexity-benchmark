@@ -1,0 +1,138 @@
+{
+  "available_tools": [
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format_param": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags_param": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key_param": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years_param": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "compression_format_param",
+          "partition_key_param"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_014",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "compression_format_param": "zstd",
+    "metadata_tags_param": [
+      "financial",
+      "audited"
+    ],
+    "partition_key_param": "part_2025_q4",
+    "retention_years_param": 7
+  },
+  "expected_latent_intent": {
+    "action": "synth_archive_data_partition",
+    "constraints": {
+      "required": [
+        "compression_format",
+        "partition_key"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "2290b235e7a8d468899c4feb4bb458be6e100e1a0a41edb5bc7ee54aa2790f37",
+    "intent_id": "INTENT_R2_PG_014",
+    "metadata": {},
+    "slots": {
+      "compression_format": {
+        "data_type": "string",
+        "description": "Compression algorithm",
+        "is_required": true,
+        "name": "compression_format",
+        "value": "zstd"
+      },
+      "metadata_tags": {
+        "data_type": "array[string]",
+        "description": "Classification tags",
+        "is_required": false,
+        "name": "metadata_tags",
+        "value": [
+          "financial",
+          "audited"
+        ]
+      },
+      "partition_key": {
+        "data_type": "string",
+        "description": "Partition identifier",
+        "is_required": true,
+        "name": "partition_key",
+        "value": "part_2025_q4"
+      },
+      "retention_years": {
+        "data_type": "integer",
+        "description": "Archival compliance retention period",
+        "is_required": false,
+        "name": "retention_years",
+        "value": 7
+      }
+    },
+    "target_entity": "BASE_SYNTH_014"
+  },
+  "expected_tool_name": "synth_archive_data_partition",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_014_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "compression_format_param": "compression_format",
+        "metadata_tags_param": "metadata_tags",
+        "partition_key_param": "partition_key",
+        "retention_years_param": "retention_years"
+      },
+      "intent_to_arg_path": {
+        "compression_format": "compression_format_param",
+        "metadata_tags": "metadata_tags_param",
+        "partition_key": "partition_key_param",
+        "retention_years": "retention_years_param"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_014",
+  "prompt_seed": 1487388475,
+  "prompt_sha256": "5eb7d0d9d4766d0b0379f0cdc2f0a29f60c8f1e1789390190678a310f4a68db6",
+  "prompt_template_id": "AC_FRAME_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "02f6fa7eb4e87287a2049ba8de545d6eb4d3f30665b4a867f8d3ead7fc8ade36",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_089",
+  "task_sha256": "5cc9f743f9352e24f2c49a6def0163eed38803e8da4aa9b49877924bc7d88f54",
+  "user_prompt": "Kindly archive data partition. The operational requirements are: setting compression format to 'zstd', setting metadata tags to '['financial', 'audited']', setting partition key to 'part_2025_q4', setting retention years to '7'."
+}

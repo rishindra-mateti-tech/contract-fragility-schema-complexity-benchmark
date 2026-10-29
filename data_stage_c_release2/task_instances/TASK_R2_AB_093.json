@@ -1,0 +1,155 @@
+{
+  "available_tools": [
+    {
+      "description": "Provision a read replica node with host connection and replication settings.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Provision a read replica node with host connection and replication settings.",
+        "properties": {
+          "cluster_id": {
+            "description": "Primary database cluster ID",
+            "minLength": 3,
+            "type": "string"
+          },
+          "enable_ssl": {
+            "description": "Require TLS encryption on replication stream",
+            "type": "boolean"
+          },
+          "replica_config": {
+            "additionalProperties": false,
+            "description": "Replica node configuration",
+            "properties": {
+              "node_name": {
+                "description": "Replica hostname/label",
+                "minLength": 1,
+                "type": "string"
+              },
+              "port": {
+                "description": "Port number",
+                "maximum": 65535,
+                "minimum": 1024,
+                "type": "integer"
+              },
+              "read_only": {
+                "description": "Enforce read-only transactions",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "node_name",
+              "port"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "cluster_id",
+          "replica_config"
+        ],
+        "title": "synth_configure_database_replica",
+        "type": "object"
+      },
+      "tool_name": "synth_configure_database_replica"
+    },
+    {
+      "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Re-encrypt and replace cryptographic secret key with specified algorithm.",
+        "properties": {
+          "affected_services": {
+            "description": "Downstream services requiring key reload",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "algorithm": {
+            "description": "Cryptographic cipher",
+            "enum": [
+              "AES-256-GCM",
+              "ChaCha20-Poly1305",
+              "RSA-4096"
+            ],
+            "type": "string"
+          },
+          "grace_period_hours": {
+            "description": "Overlap period where old key remains valid",
+            "maximum": 168,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "secret_slug": {
+            "description": "Secret vault key identifier",
+            "minLength": 2,
+            "type": "string"
+          }
+        },
+        "required": [
+          "secret_slug",
+          "algorithm"
+        ],
+        "title": "synth_rotate_secret_key",
+        "type": "object"
+      },
+      "tool_name": "synth_rotate_secret_key"
+    },
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_013",
+  "category": "ABSTENTION",
+  "expected_arguments": null,
+  "expected_latent_intent": null,
+  "expected_tool_name": null,
+  "mutation_family": "CANONICAL",
+  "mutation_id": "MUT_NONE_ABSTENTION",
+  "oracle_config": {
+    "abstention_pattern": "MISSING_MANDATORY_PARAMETERS",
+    "is_abstention": true,
+    "mapping_spec": null
+  },
+  "paired_group_id": "PAIR_GROUP_AB_093",
+  "prompt_seed": 4085613660,
+  "prompt_sha256": "cab06152cb4dbc0bcfb7a46415858e2b76123747adbeed2da4164597fd070b1f",
+  "prompt_template_id": "AB_MISSING_MANDATORY_PARAMETERS_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "20a86f527cab7e99c16d7034b7223a5a065534df8277c0f63739549c5942570c",
+  "target_position": null,
+  "task_id": "TASK_R2_AB_093",
+  "task_sha256": "1e42c31fca267efdf228e2d5670df9d3cd4ad7a3b56f6854a54c21ada443e08c",
+  "user_prompt": "Please batch index records for batch run 093 immediately without waiting for specific payload details."
+}

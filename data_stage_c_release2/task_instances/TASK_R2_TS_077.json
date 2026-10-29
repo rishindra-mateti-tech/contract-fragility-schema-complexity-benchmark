@@ -1,0 +1,309 @@
+{
+  "available_tools": [
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "description": "Apply subnet network security group filtering and packet inspection rules.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Apply subnet network security group filtering and packet inspection rules.",
+        "properties": {
+          "boundary_id": {
+            "description": "VPC or subnet identifier",
+            "minLength": 3,
+            "type": "string"
+          },
+          "ingress_policy": {
+            "additionalProperties": false,
+            "description": "Inbound packet rules",
+            "properties": {
+              "allowed_cidr": {
+                "minLength": 7,
+                "type": "string"
+              },
+              "ports": {
+                "items": {
+                  "type": "integer"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "allowed_cidr",
+              "ports"
+            ],
+            "type": "object"
+          },
+          "inspection_tier": {
+            "description": "Firewall filtering depth",
+            "enum": [
+              "stateless",
+              "stateful_inspection",
+              "deep_packet_dpi"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "boundary_id",
+          "ingress_policy",
+          "inspection_tier"
+        ],
+        "title": "synth_enforce_security_boundary",
+        "type": "object"
+      },
+      "tool_name": "synth_enforce_security_boundary"
+    },
+    {
+      "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Compute infrastructure compliance scorecard against defined thresholds.",
+        "properties": {
+          "compliance_rules": {
+            "additionalProperties": false,
+            "description": "Evaluated framework rules",
+            "properties": {
+              "framework": {
+                "enum": [
+                  "SOC2",
+                  "HIPAA",
+                  "PCI_DSS",
+                  "ISO_27001"
+                ],
+                "type": "string"
+              },
+              "strict_mode": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "framework"
+            ],
+            "type": "object"
+          },
+          "target_system": {
+            "description": "Evaluated subsystem",
+            "minLength": 2,
+            "type": "string"
+          },
+          "thresholds": {
+            "additionalProperties": false,
+            "description": "Passing score limits",
+            "properties": {
+              "min_passing_score": {
+                "maximum": 100,
+                "minimum": 50,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "min_passing_score"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "target_system",
+          "compliance_rules",
+          "thresholds"
+        ],
+        "title": "synth_generate_audit_scorecard",
+        "type": "object"
+      },
+      "tool_name": "synth_generate_audit_scorecard"
+    },
+    {
+      "description": "Generate a client API key with environment assignment and rate limits.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Generate a client API key with environment assignment and rate limits.",
+        "properties": {
+          "client_name": {
+            "description": "Descriptive client application name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "ip_allowlist": {
+            "description": "Allowed CIDR IP ranges",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "rate_limit_rpm": {
+            "description": "Maximum allowed requests per minute",
+            "maximum": 60000,
+            "minimum": 60,
+            "type": "integer"
+          },
+          "target_environment": {
+            "description": "Target tier",
+            "enum": [
+              "development",
+              "staging",
+              "production"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_name",
+          "target_environment"
+        ],
+        "title": "synth_provision_api_credential",
+        "type": "object"
+      },
+      "tool_name": "synth_provision_api_credential"
+    },
+    {
+      "description": "Purge entries matching a specific key pattern from the cache.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Purge entries matching a specific key pattern from the cache.",
+        "properties": {
+          "cascade_eviction": {
+            "description": "Evict child keys recursively",
+            "type": "boolean"
+          },
+          "key_pattern": {
+            "description": "Glob or prefix pattern",
+            "minLength": 1,
+            "type": "string"
+          },
+          "max_evictions": {
+            "description": "Eviction batch cap",
+            "maximum": 1000,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "key_pattern"
+        ],
+        "title": "synth_delete_cache_entry",
+        "type": "object"
+      },
+      "tool_name": "synth_delete_cache_entry"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_037",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "boundary_id": "vpc_secure_prod",
+    "ingress_policy": {
+      "allowed_cidr": "10.0.0.0/16",
+      "ports": [
+        443,
+        8443
+      ]
+    },
+    "inspection_tier": "stateful_inspection"
+  },
+  "expected_latent_intent": {
+    "action": "synth_enforce_security_boundary",
+    "constraints": {
+      "required": [
+        "boundary_id",
+        "ingress_policy",
+        "inspection_tier"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "809893ecf5c7bf39b3b8c313c174f7b40eb2f94cec6f786f55dec6ab6e44fef0",
+    "intent_id": "INTENT_R2_TS_077",
+    "metadata": {},
+    "slots": {
+      "boundary_id": {
+        "data_type": "string",
+        "description": "VPC or subnet identifier",
+        "is_required": true,
+        "name": "boundary_id",
+        "value": "vpc_secure_prod"
+      },
+      "ingress_policy": {
+        "data_type": "object",
+        "description": "Inbound packet rules",
+        "is_required": true,
+        "name": "ingress_policy",
+        "value": {
+          "allowed_cidr": "10.0.0.0/16",
+          "ports": [
+            443,
+            8443
+          ]
+        }
+      },
+      "inspection_tier": {
+        "data_type": "string",
+        "description": "Firewall filtering depth",
+        "is_required": true,
+        "name": "inspection_tier",
+        "value": "stateful_inspection"
+      }
+    },
+    "target_entity": "BASE_SYNTH_037"
+  },
+  "expected_tool_name": "synth_enforce_security_boundary",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_037_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "boundary_id": "boundary_id",
+        "ingress_policy": "ingress_policy",
+        "inspection_tier": "inspection_tier"
+      },
+      "intent_to_arg_path": {
+        "boundary_id": "boundary_id",
+        "ingress_policy": "ingress_policy",
+        "inspection_tier": "inspection_tier"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_077",
+  "prompt_seed": 382343570,
+  "prompt_sha256": "f8a217d461fa6c74e8393d39c2b13851ad5b7e379a36e14bcfb938ce9fed366a",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "1b55a134751017143aab414218d2e4c8093dc0a8bca15d5f2d9e1004b76b3534",
+  "target_position": 1,
+  "task_id": "TASK_R2_TS_077",
+  "task_sha256": "395aa063bc574d686fcd0f9b262564193142759509c7f2ac39a7d1800394f9d0",
+  "user_prompt": "Dispatch an automated request to enforce security boundary (reference ref_077). Required configuration: setting boundary id to 'vpc_secure_prod', setting ingress policy to '{'allowed_cidr': '10.0.0.0/16', 'ports': [443, 8443]}', setting inspection tier to 'stateful_inspection'."
+}

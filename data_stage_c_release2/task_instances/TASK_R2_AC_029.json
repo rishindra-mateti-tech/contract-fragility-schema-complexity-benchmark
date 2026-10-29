@@ -1,0 +1,125 @@
+{
+  "available_tools": [
+    {
+      "description": "Send an SMS text message to a designated phone destination.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "priority": {
+                "description": "Queue priority from 1 to 5",
+                "maximum": 5,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "recipient_number": {
+                "description": "E.164 phone number",
+                "maxLength": 16,
+                "minLength": 8,
+                "type": "string"
+              }
+            },
+            "required": [
+              "recipient_number"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "message_body",
+          "payload_parameters"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_sms_message"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_004",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "message_body": "Your verification code is 492011",
+    "payload_parameters": {
+      "priority": 1,
+      "recipient_number": "+14693636353"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_dispatch_sms_message",
+    "constraints": {
+      "required": [
+        "message_body",
+        "recipient_number"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "1c6fc16c58a736bcd2ffd3f011731985a761a384bbee43a757e73d264c512ee0",
+    "intent_id": "INTENT_R2_PG_004",
+    "metadata": {},
+    "slots": {
+      "message_body": {
+        "data_type": "string",
+        "description": "SMS text body",
+        "is_required": true,
+        "name": "message_body",
+        "value": "Your verification code is 492011"
+      },
+      "priority": {
+        "data_type": "integer",
+        "description": "Queue priority from 1 to 5",
+        "is_required": false,
+        "name": "priority",
+        "value": 1
+      },
+      "recipient_number": {
+        "data_type": "string",
+        "description": "E.164 phone number",
+        "is_required": true,
+        "name": "recipient_number",
+        "value": "+14693636353"
+      }
+    },
+    "target_entity": "BASE_SYNTH_004"
+  },
+  "expected_tool_name": "synth_dispatch_sms_message",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_004_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "message_body": "message_body",
+        "payload_parameters.priority": "priority",
+        "payload_parameters.recipient_number": "recipient_number"
+      },
+      "intent_to_arg_path": {
+        "message_body": "message_body",
+        "priority": "payload_parameters.priority",
+        "recipient_number": "payload_parameters.recipient_number"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_004",
+  "prompt_seed": 637611695,
+  "prompt_sha256": "bf0d15f4d9a6127daf26f7e9afda0d5e03e80c374f36dc799d9a918ff3293048",
+  "prompt_template_id": "AC_FRAME_03",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "ecc98dce0867133666ae461b6b50df8e1c8612db751e10ba1d49a1015e317dc8",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_029",
+  "task_sha256": "52055b7cc86560d945b14e45f73126cd94b701fa8578ab44c77218d3c810f3d2",
+  "user_prompt": "Kindly dispatch sms message. The operational requirements are: with message text 'Your verification code is 492011', with 1 priority, to destination number '+14693636353'."
+}

@@ -1,0 +1,275 @@
+{
+  "available_tools": [
+    {
+      "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Resume a suspended workflow from an approval checkpoint or breakpoint.",
+        "properties": {
+          "execution_id": {
+            "description": "Suspended workflow execution ID",
+            "minLength": 4,
+            "type": "string"
+          },
+          "override_variables": {
+            "description": "Variable assignments as key=val",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "resume_point": {
+            "description": "Resume target",
+            "enum": [
+              "checkpoint_start",
+              "next_step",
+              "replay_failed_step"
+            ],
+            "type": "string"
+          },
+          "skip_validation": {
+            "description": "Bypass intermediate state assertions",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "execution_id",
+          "resume_point"
+        ],
+        "title": "synth_resume_paused_execution",
+        "type": "object"
+      },
+      "tool_name": "synth_resume_paused_execution"
+    },
+    {
+      "description": "Reset API invocation consumption counter for a specific tenant.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Reset API invocation consumption counter for a specific tenant.",
+        "properties": {
+          "grace_period_minutes": {
+            "description": "Exemption duration",
+            "maximum": 1440,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "quota_bucket": {
+            "description": "Rate limit bucket key",
+            "minLength": 1,
+            "type": "string"
+          },
+          "tenant_id": {
+            "description": "Account tenant identifier",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "tenant_id",
+          "quota_bucket"
+        ],
+        "title": "synth_reset_quota_usage",
+        "type": "object"
+      },
+      "tool_name": "synth_reset_quota_usage"
+    },
+    {
+      "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Create a point-in-time volume snapshot with retention and tag metadata.",
+        "properties": {
+          "retention": {
+            "additionalProperties": false,
+            "description": "Snapshot expiration parameters",
+            "properties": {
+              "days": {
+                "maximum": 365,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "lock_deletion": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "days"
+            ],
+            "type": "object"
+          },
+          "snapshot_metadata": {
+            "additionalProperties": false,
+            "description": "Descriptive snapshot labels",
+            "properties": {
+              "creator": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "environment": {
+                "enum": [
+                  "prod",
+                  "stage",
+                  "dev"
+                ],
+                "type": "string"
+              }
+            },
+            "required": [
+              "creator",
+              "environment"
+            ],
+            "type": "object"
+          },
+          "volume_id": {
+            "description": "Target block storage volume",
+            "minLength": 3,
+            "type": "string"
+          }
+        },
+        "required": [
+          "volume_id",
+          "snapshot_metadata",
+          "retention"
+        ],
+        "title": "synth_register_storage_snapshot",
+        "type": "object"
+      },
+      "tool_name": "synth_register_storage_snapshot"
+    },
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    },
+    {
+      "description": "Send an SMS text message to a designated phone destination.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Send an SMS text message to a designated phone destination.",
+        "properties": {
+          "message_body": {
+            "description": "SMS text body",
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "priority": {
+            "description": "Queue priority from 1 to 5",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "recipient_number": {
+            "description": "E.164 phone number",
+            "maxLength": 16,
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_number",
+          "message_body"
+        ],
+        "title": "synth_dispatch_sms_message",
+        "type": "object"
+      },
+      "tool_name": "synth_dispatch_sms_message"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_026",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "execution_id": "exec_44102",
+    "resume_point": "checkpoint_start"
+  },
+  "expected_latent_intent": {
+    "action": "synth_resume_paused_execution",
+    "constraints": {
+      "required": [
+        "execution_id",
+        "resume_point"
+      ]
+    },
+    "domain": "workflow_orchestration",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "07d579a248ee407eef97a185a5b33804851d615b2f7a2e623445edff0ac8ba33",
+    "intent_id": "INTENT_R2_TS_026",
+    "metadata": {},
+    "slots": {
+      "execution_id": {
+        "data_type": "string",
+        "description": "Suspended workflow execution ID",
+        "is_required": true,
+        "name": "execution_id",
+        "value": "exec_44102"
+      },
+      "resume_point": {
+        "data_type": "string",
+        "description": "Resume target",
+        "is_required": true,
+        "name": "resume_point",
+        "value": "checkpoint_start"
+      }
+    },
+    "target_entity": "BASE_SYNTH_026"
+  },
+  "expected_tool_name": "synth_resume_paused_execution",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_026_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "execution_id": "execution_id",
+        "override_variables": "override_variables",
+        "resume_point": "resume_point",
+        "skip_validation": "skip_validation"
+      },
+      "intent_to_arg_path": {
+        "execution_id": "execution_id",
+        "override_variables": "override_variables",
+        "resume_point": "resume_point",
+        "skip_validation": "skip_validation"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_026",
+  "prompt_seed": 912912418,
+  "prompt_sha256": "0363a8438349799f988c61a21af6b6eacc9a6ff7af09d1a6040bf3ee43ec54bf",
+  "prompt_template_id": "TS_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "7fc025a6187c5aa01cc77c48b8c7d757f5feab271a722d206f1057dab458275e",
+  "target_position": 0,
+  "task_id": "TASK_R2_TS_026",
+  "task_sha256": "92a234473408aeb35a524bc56dc875c6c3625ec6af2c90eb26ac53235723a1bf",
+  "user_prompt": "Dispatch an automated request to resume paused execution (reference ref_026). Required configuration: setting execution id to 'exec_44102', setting resume point to 'checkpoint_start'."
+}

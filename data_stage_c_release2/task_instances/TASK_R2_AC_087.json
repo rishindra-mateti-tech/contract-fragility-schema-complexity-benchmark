@@ -1,0 +1,110 @@
+{
+  "available_tools": [
+    {
+      "description": "Impose an administrative lock on a compromised user account.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Impose an administrative lock on a compromised user account.",
+        "properties": {
+          "account_identifier": {
+            "description": "Target user identifier",
+            "minLength": 4,
+            "type": "string"
+          },
+          "lock_hours_param": {
+            "description": "Lock duration in hours",
+            "maximum": 720,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "require_password_reset_param": {
+            "description": "Enforce password reset on unlock",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "lock_hours_param",
+          "account_identifier"
+        ],
+        "title": "synth_lock_user_account",
+        "type": "object"
+      },
+      "tool_name": "synth_lock_user_account"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_012",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "account_identifier": "usr_9918",
+    "lock_hours_param": 24,
+    "require_password_reset_param": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_lock_user_account",
+    "constraints": {
+      "required": [
+        "lock_hours",
+        "user_id"
+      ]
+    },
+    "domain": "access_governance",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "a7240a1c956b15e62e94ed5ddf50cab0599efb1993497e5d01064171dbaa5709",
+    "intent_id": "INTENT_R2_PG_012",
+    "metadata": {},
+    "slots": {
+      "lock_hours": {
+        "data_type": "integer",
+        "description": "Lock duration in hours",
+        "is_required": true,
+        "name": "lock_hours",
+        "value": 24
+      },
+      "require_password_reset": {
+        "data_type": "boolean",
+        "description": "Enforce password reset on unlock",
+        "is_required": false,
+        "name": "require_password_reset",
+        "value": true
+      },
+      "user_id": {
+        "data_type": "string",
+        "description": "Target user identifier",
+        "is_required": true,
+        "name": "user_id",
+        "value": "usr_9918"
+      }
+    },
+    "target_entity": "BASE_SYNTH_012"
+  },
+  "expected_tool_name": "synth_lock_user_account",
+  "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+  "mutation_id": "MUT_BASE_SYNTH_012_AMBIGUOUS_IDENTIFIERS_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "account_identifier": "user_id",
+        "lock_hours_param": "lock_hours",
+        "require_password_reset_param": "require_password_reset"
+      },
+      "intent_to_arg_path": {
+        "lock_hours": "lock_hours_param",
+        "require_password_reset": "require_password_reset_param",
+        "user_id": "account_identifier"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_012",
+  "prompt_seed": 791978752,
+  "prompt_sha256": "66706b5d02a8375d6853537f3440150281885ba0d39f5400a857f77a5d0f124d",
+  "prompt_template_id": "AC_FRAME_00",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "5bc8e5fb21737f75dc49bee38e915497537ab64d9ef53e7fbdc93297bc4d8308",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_087",
+  "task_sha256": "c9cc32ce9554fa21bab4e57bf9abda87183b218fed3127980e7778e615f386a4",
+  "user_prompt": "Please lock user account. Specifically, configure this by holding the lock for 24 hours, enabling require password reset, for user account 'usr_9918'."
+}

@@ -1,0 +1,118 @@
+{
+  "available_tools": [
+    {
+      "description": "Tear down an established conference audio bridge.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Tear down an established conference audio bridge.",
+        "properties": {
+          "archive_recording": {
+            "description": "Persist audio capture to cold storage",
+            "type": "boolean"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "bridge_id": {
+                "description": "Conference bridge identifier",
+                "minLength": 4,
+                "type": "string"
+              },
+              "termination_reason": {
+                "description": "Audit rationale for bridge shutdown",
+                "type": "string"
+              }
+            },
+            "required": [
+              "bridge_id"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_terminate_voice_bridge",
+        "type": "object"
+      },
+      "tool_name": "synth_terminate_voice_bridge"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_006",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "archive_recording": true,
+    "payload_parameters": {
+      "bridge_id": "bridge_7710",
+      "termination_reason": "Host ended call"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_terminate_voice_bridge",
+    "constraints": {
+      "required": [
+        "bridge_id"
+      ]
+    },
+    "domain": "communications",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "0718f95db63d7924ce0050f0cb164b81aaa8af711e20b6312153e8ba4ee69236",
+    "intent_id": "INTENT_R2_PG_006",
+    "metadata": {},
+    "slots": {
+      "archive_recording": {
+        "data_type": "boolean",
+        "description": "Persist audio capture to cold storage",
+        "is_required": false,
+        "name": "archive_recording",
+        "value": true
+      },
+      "bridge_id": {
+        "data_type": "string",
+        "description": "Conference bridge identifier",
+        "is_required": true,
+        "name": "bridge_id",
+        "value": "bridge_7710"
+      },
+      "termination_reason": {
+        "data_type": "string",
+        "description": "Audit rationale for bridge shutdown",
+        "is_required": false,
+        "name": "termination_reason",
+        "value": "Host ended call"
+      }
+    },
+    "target_entity": "BASE_SYNTH_006"
+  },
+  "expected_tool_name": "synth_terminate_voice_bridge",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_006_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "archive_recording": "archive_recording",
+        "payload_parameters.bridge_id": "bridge_id",
+        "payload_parameters.termination_reason": "termination_reason"
+      },
+      "intent_to_arg_path": {
+        "archive_recording": "archive_recording",
+        "bridge_id": "payload_parameters.bridge_id",
+        "termination_reason": "payload_parameters.termination_reason"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_006",
+  "prompt_seed": 3515960794,
+  "prompt_sha256": "f27ef3e1c7287f96353f62c31c8036306f1b7c1b774a9f900942377e9f1303cc",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "fd39fd86ee9b97a30f02d107da2d53e4015bf848ff70869c36e20569db5b250a",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_031",
+  "task_sha256": "4f00d39dd8c96c0f97fad0b4809b09bb5881acc45bd3fe86678ed6286d0bee1e",
+  "user_prompt": "Perform a task to terminate voice bridge, ensuring that you are enabling archive recording, setting bridge id to 'bridge_7710', setting termination reason to 'Host ended call'."
+}

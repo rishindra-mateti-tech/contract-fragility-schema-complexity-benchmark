@@ -1,0 +1,289 @@
+{
+  "available_tools": [
+    {
+      "description": "Move a data partition to cold archival storage with compression.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Move a data partition to cold archival storage with compression.",
+        "properties": {
+          "compression_format": {
+            "description": "Compression algorithm",
+            "enum": [
+              "gzip",
+              "zstd",
+              "snappy"
+            ],
+            "type": "string"
+          },
+          "metadata_tags": {
+            "description": "Classification tags",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "partition_key": {
+            "description": "Partition identifier",
+            "minLength": 2,
+            "type": "string"
+          },
+          "retention_years": {
+            "description": "Archival compliance retention period",
+            "maximum": 10,
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "partition_key",
+          "compression_format"
+        ],
+        "title": "synth_archive_data_partition",
+        "type": "object"
+      },
+      "tool_name": "synth_archive_data_partition"
+    },
+    {
+      "description": "Register a recurring automated task schedule with target queue.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Register a recurring automated task schedule with target queue.",
+        "properties": {
+          "alert_emails": {
+            "description": "Failure notification recipients",
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "cron_expression": {
+            "description": "Standard 5-part cron syntax",
+            "minLength": 9,
+            "type": "string"
+          },
+          "job_name": {
+            "description": "Unique cron job name",
+            "minLength": 2,
+            "type": "string"
+          },
+          "target_queue": {
+            "description": "Target dispatch queue",
+            "enum": [
+              "default",
+              "high_priority",
+              "batch_overnight"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "job_name",
+          "cron_expression",
+          "target_queue"
+        ],
+        "title": "synth_schedule_cron_job",
+        "type": "object"
+      },
+      "tool_name": "synth_schedule_cron_job"
+    },
+    {
+      "description": "Submit a collection of document IDs for search indexing.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Submit a collection of document IDs for search indexing.",
+        "properties": {
+          "collection_name": {
+            "description": "Search index name",
+            "minLength": 1,
+            "type": "string"
+          },
+          "index_mode": {
+            "description": "Indexing commitment mode",
+            "enum": [
+              "synchronous",
+              "asynchronous",
+              "lazy"
+            ],
+            "type": "string"
+          },
+          "record_ids": {
+            "description": "List of record identifiers",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array"
+          },
+          "refresh_view": {
+            "description": "Force immediate index view refresh",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "collection_name",
+          "record_ids",
+          "index_mode"
+        ],
+        "title": "synth_batch_index_records",
+        "type": "object"
+      },
+      "tool_name": "synth_batch_index_records"
+    },
+    {
+      "description": "Prolong an active authenticated session lease by a given duration.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Prolong an active authenticated session lease by a given duration.",
+        "properties": {
+          "extension_minutes": {
+            "description": "Extension duration",
+            "maximum": 480,
+            "minimum": 5,
+            "type": "integer"
+          },
+          "session_id": {
+            "description": "Active session cookie ID",
+            "minLength": 8,
+            "type": "string"
+          },
+          "touch_activity": {
+            "description": "Update last active timestamp",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "session_id",
+          "extension_minutes"
+        ],
+        "title": "synth_extend_session_lease",
+        "type": "object"
+      },
+      "tool_name": "synth_extend_session_lease"
+    },
+    {
+      "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Invalidate an issued OAuth2 or JWT access token immediately.",
+        "properties": {
+          "notify_subject": {
+            "description": "Send notification email to token owner",
+            "type": "boolean"
+          },
+          "reason": {
+            "description": "Security revocation rationale",
+            "type": "string"
+          },
+          "token_id": {
+            "description": "Token unique identifier (jti)",
+            "minLength": 8,
+            "type": "string"
+          }
+        },
+        "required": [
+          "token_id"
+        ],
+        "title": "synth_revoke_access_token",
+        "type": "object"
+      },
+      "tool_name": "synth_revoke_access_token"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_013",
+  "category": "TOOL_SELECTION",
+  "expected_arguments": {
+    "collection_name": "knowledge_docs",
+    "index_mode": "asynchronous",
+    "record_ids": [
+      "doc_1",
+      "doc_2"
+    ],
+    "refresh_view": true
+  },
+  "expected_latent_intent": {
+    "action": "synth_batch_index_records",
+    "constraints": {
+      "required": [
+        "collection_name",
+        "index_mode",
+        "record_ids"
+      ]
+    },
+    "domain": "data_management",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "3f9713e9f04504debb95fe6a1adc5e194251422030e845c3be1c6f2a4f13f407",
+    "intent_id": "INTENT_R2_TS_053",
+    "metadata": {},
+    "slots": {
+      "collection_name": {
+        "data_type": "string",
+        "description": "Search index name",
+        "is_required": true,
+        "name": "collection_name",
+        "value": "knowledge_docs"
+      },
+      "index_mode": {
+        "data_type": "string",
+        "description": "Indexing commitment mode",
+        "is_required": true,
+        "name": "index_mode",
+        "value": "asynchronous"
+      },
+      "record_ids": {
+        "data_type": "array[string]",
+        "description": "List of record identifiers",
+        "is_required": true,
+        "name": "record_ids",
+        "value": [
+          "doc_1",
+          "doc_2"
+        ]
+      },
+      "refresh_view": {
+        "data_type": "boolean",
+        "description": "Force immediate index view refresh",
+        "is_required": false,
+        "name": "refresh_view",
+        "value": true
+      }
+    },
+    "target_entity": "BASE_SYNTH_013"
+  },
+  "expected_tool_name": "synth_batch_index_records",
+  "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+  "mutation_id": "MUT_BASE_SYNTH_013_DISTRACTOR_SET_COMPLEXITY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "collection_name": "collection_name",
+        "index_mode": "index_mode",
+        "record_ids": "record_ids",
+        "refresh_view": "refresh_view"
+      },
+      "intent_to_arg_path": {
+        "collection_name": "collection_name",
+        "index_mode": "index_mode",
+        "record_ids": "record_ids",
+        "refresh_view": "refresh_view"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_TS_053",
+  "prompt_seed": 3255194593,
+  "prompt_sha256": "6ccaadcdb59babf6bdcaca14228c1ca44455497e6cb98e216c1a25725cfc5f05",
+  "prompt_template_id": "TS_FRAME_01",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a41093550f22b7d2562a24f279ab4118009f6059b1687d8ccfdb777323527c98",
+  "target_position": 2,
+  "task_id": "TASK_R2_TS_053",
+  "task_sha256": "e420dfaa286dcf43475458b933123f837920659066bac874ce3c383bebbc5230",
+  "user_prompt": "A user requested to batch index records under dispatch tag #053. Apply the following specifications: setting collection name to 'knowledge_docs', using asynchronous indexing, setting record ids to '['doc_1', 'doc_2']', enabling refresh view."
+}

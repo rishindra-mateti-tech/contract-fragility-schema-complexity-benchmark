@@ -1,0 +1,155 @@
+{
+  "available_tools": [
+    {
+      "description": "Execute a timeseries aggregation query over specified dimensions.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Execute a timeseries aggregation query over specified dimensions.",
+        "properties": {
+          "aggregation": {
+            "description": "Statistical aggregator",
+            "enum": [
+              "avg",
+              "sum",
+              "min",
+              "max",
+              "p95",
+              "p99"
+            ],
+            "type": "string"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 3 parameters.",
+            "properties": {
+              "filter_dimensions": {
+                "description": "Key=value tag filters",
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "metric_series": {
+                "description": "Metric timeseries identifier",
+                "minLength": 1,
+                "type": "string"
+              },
+              "window_seconds": {
+                "description": "Aggregation window width",
+                "maximum": 86400,
+                "minimum": 60,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "metric_series",
+              "window_seconds"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "aggregation",
+          "payload_parameters"
+        ],
+        "title": "synth_query_metric_aggregate",
+        "type": "object"
+      },
+      "tool_name": "synth_query_metric_aggregate"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_018",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "aggregation": "p99",
+    "payload_parameters": {
+      "filter_dimensions": [
+        "region=us-east",
+        "env=prod"
+      ],
+      "metric_series": "api_latency_ms",
+      "window_seconds": 300
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_query_metric_aggregate",
+    "constraints": {
+      "required": [
+        "aggregation",
+        "metric_series",
+        "window_seconds"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "75fe4f72bd1168f3d2798888d2845f8f1e5481bb38e6f43d5b89fb679e63484c",
+    "intent_id": "INTENT_R2_PG_018",
+    "metadata": {},
+    "slots": {
+      "aggregation": {
+        "data_type": "string",
+        "description": "Statistical aggregator",
+        "is_required": true,
+        "name": "aggregation",
+        "value": "p99"
+      },
+      "filter_dimensions": {
+        "data_type": "array[string]",
+        "description": "Key=value tag filters",
+        "is_required": false,
+        "name": "filter_dimensions",
+        "value": [
+          "region=us-east",
+          "env=prod"
+        ]
+      },
+      "metric_series": {
+        "data_type": "string",
+        "description": "Metric timeseries identifier",
+        "is_required": true,
+        "name": "metric_series",
+        "value": "api_latency_ms"
+      },
+      "window_seconds": {
+        "data_type": "integer",
+        "description": "Aggregation window width",
+        "is_required": true,
+        "name": "window_seconds",
+        "value": 300
+      }
+    },
+    "target_entity": "BASE_SYNTH_018"
+  },
+  "expected_tool_name": "synth_query_metric_aggregate",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_018_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "aggregation": "aggregation",
+        "payload_parameters.filter_dimensions": "filter_dimensions",
+        "payload_parameters.metric_series": "metric_series",
+        "payload_parameters.window_seconds": "window_seconds"
+      },
+      "intent_to_arg_path": {
+        "aggregation": "aggregation",
+        "filter_dimensions": "payload_parameters.filter_dimensions",
+        "metric_series": "payload_parameters.metric_series",
+        "window_seconds": "payload_parameters.window_seconds"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_018",
+  "prompt_seed": 2690576102,
+  "prompt_sha256": "48fe728e8e4b457e7206d545fa9fe99062c9bb21128692a109ee91f6135cecf4",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "0dc7c256329d9b7059b6b845e58d0cc39dfbf8dd6fbd811db49f4c7263463f4b",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_043",
+  "task_sha256": "c013cda93fdf6b637449a4fd2faed656c3d6fe9d4353ecea51bf5d8ab6224864",
+  "user_prompt": "Perform a task to query metric aggregate, ensuring that you are setting aggregation to 'p99', setting filter dimensions to '['region=us-east', 'env=prod']', in metric series 'api_latency_ms', setting window seconds to '300'."
+}

@@ -1,0 +1,119 @@
+{
+  "available_tools": [
+    {
+      "description": "Add a delta value to a Prometheus-style counter metric.",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false,
+        "description": "Add a delta value to a Prometheus-style counter metric.",
+        "properties": {
+          "flush_immediately": {
+            "description": "Flush local buffer to aggregator",
+            "type": "boolean"
+          },
+          "payload_parameters": {
+            "additionalProperties": false,
+            "description": "Structured container encapsulating 2 parameters.",
+            "properties": {
+              "increment_by": {
+                "description": "Positive integer increment",
+                "minimum": 1,
+                "type": "integer"
+              },
+              "metric_name": {
+                "description": "Metric identifier",
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "metric_name"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "payload_parameters"
+        ],
+        "title": "synth_increment_counter_metric",
+        "type": "object"
+      },
+      "tool_name": "synth_increment_counter_metric"
+    }
+  ],
+  "base_contract_id": "BASE_SYNTH_007",
+  "category": "ARGUMENT_CONSTRUCTION",
+  "expected_arguments": {
+    "flush_immediately": true,
+    "payload_parameters": {
+      "increment_by": 5,
+      "metric_name": "http_requests_total"
+    }
+  },
+  "expected_latent_intent": {
+    "action": "synth_increment_counter_metric",
+    "constraints": {
+      "required": [
+        "metric_name"
+      ]
+    },
+    "domain": "analytics_metrics",
+    "epistemic_provenance": "SYNTHETIC_LATENT_INTENT_REPRESENTATION",
+    "intent_hash": "6bf52ff762dab14a29e5e42d4cc34db804f796bf72412cb3b12d4315d96443fa",
+    "intent_id": "INTENT_R2_PG_007",
+    "metadata": {},
+    "slots": {
+      "flush_immediately": {
+        "data_type": "boolean",
+        "description": "Flush local buffer to aggregator",
+        "is_required": false,
+        "name": "flush_immediately",
+        "value": true
+      },
+      "increment_by": {
+        "data_type": "integer",
+        "description": "Positive integer increment",
+        "is_required": false,
+        "name": "increment_by",
+        "value": 5
+      },
+      "metric_name": {
+        "data_type": "string",
+        "description": "Metric identifier",
+        "is_required": true,
+        "name": "metric_name",
+        "value": "http_requests_total"
+      }
+    },
+    "target_entity": "BASE_SYNTH_007"
+  },
+  "expected_tool_name": "synth_increment_counter_metric",
+  "mutation_family": "NESTED_HIERARCHY",
+  "mutation_id": "MUT_BASE_SYNTH_007_NESTED_HIERARCHY_default",
+  "oracle_config": {
+    "is_abstention": false,
+    "mapping_spec": {
+      "arg_to_intent_slot": {
+        "flush_immediately": "flush_immediately",
+        "payload_parameters.increment_by": "increment_by",
+        "payload_parameters.metric_name": "metric_name"
+      },
+      "intent_to_arg_path": {
+        "flush_immediately": "flush_immediately",
+        "increment_by": "payload_parameters.increment_by",
+        "metric_name": "payload_parameters.metric_name"
+      }
+    }
+  },
+  "paired_group_id": "PAIR_GROUP_007",
+  "prompt_seed": 4236097502,
+  "prompt_sha256": "2808169c7353092195842527c7c47cb05ff74c3a314d75744bc730928a0c2d70",
+  "prompt_template_id": "AC_FRAME_02",
+  "provenance_statement": "SYNTHETIC_STAGE_C_RELEASE2_REMEDIATED_INSTANCE",
+  "release_marker": "RELEASE_2_PENDING_HUMAN_VALIDATION",
+  "schema_sha256": "a01eeb078f01cdf391fdb0cb3019429c94b5c59831087beb95e0c18bc55e728d",
+  "target_position": 0,
+  "task_id": "TASK_R2_AC_032",
+  "task_sha256": "05a0ba1c3870535692817830997bd55bd6ba9c172cba7c6c282975ae2256eaa9",
+  "user_prompt": "Perform a task to increment counter metric, ensuring that you are using standard buffer flushing, incrementing the counter by 5, for metric 'http_requests_total'."
+}
