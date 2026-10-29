@@ -1,0 +1,24 @@
+{
+  "audit_version": "2.0.0",
+  "balance_invariants_passed": true,
+  "benchmark_release": "RELEASE_2",
+  "category_distribution": {
+    "ABSTENTION": 100,
+    "ARGUMENT_CONSTRUCTION": 100,
+    "TOOL_SELECTION": 100
+  },
+  "mutation_family_distribution": {
+    "AMBIGUOUS_IDENTIFIERS": 25,
+    "CANONICAL": 125,
+    "DISTRACTOR_SET_COMPLEXITY": 100,
+    "NESTED_HIERARCHY": 25,
+    "OPTIONALITY_BLOAT": 25
+  },
+  "paired_groups_count": 225,
+  "stratum_distribution": {
+    "MEDIUM_ARRAYS_ENUMS": 132,
+    "NESTED_OBJECTS_SURFACES": 48,
+    "SIMPLE_FLAT": 120
+  },
+  "total_tasks": 300
+}

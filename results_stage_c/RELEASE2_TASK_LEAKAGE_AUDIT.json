@@ -1,0 +1,2414 @@
+{
+  "audit_version": "2.0.0",
+  "benchmark_release": "RELEASE_2",
+  "dimension_counts": {},
+  "status_distribution": {
+    "AMBIGUOUS": 0,
+    "CLEAR": 300,
+    "INVALID": 0,
+    "REQUIRES_HUMAN_REVIEW": 0
+  },
+  "task_summaries": {
+    "TASK_R2_AB_001": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_001"
+    },
+    "TASK_R2_AB_002": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_002"
+    },
+    "TASK_R2_AB_003": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_003"
+    },
+    "TASK_R2_AB_004": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_004"
+    },
+    "TASK_R2_AB_005": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_005"
+    },
+    "TASK_R2_AB_006": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_006"
+    },
+    "TASK_R2_AB_007": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_007"
+    },
+    "TASK_R2_AB_008": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_008"
+    },
+    "TASK_R2_AB_009": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_009"
+    },
+    "TASK_R2_AB_010": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_010"
+    },
+    "TASK_R2_AB_011": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_011"
+    },
+    "TASK_R2_AB_012": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_012"
+    },
+    "TASK_R2_AB_013": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_013"
+    },
+    "TASK_R2_AB_014": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_014"
+    },
+    "TASK_R2_AB_015": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_015"
+    },
+    "TASK_R2_AB_016": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_016"
+    },
+    "TASK_R2_AB_017": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_017"
+    },
+    "TASK_R2_AB_018": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_018"
+    },
+    "TASK_R2_AB_019": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_019"
+    },
+    "TASK_R2_AB_020": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_020"
+    },
+    "TASK_R2_AB_021": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_021"
+    },
+    "TASK_R2_AB_022": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_022"
+    },
+    "TASK_R2_AB_023": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_023"
+    },
+    "TASK_R2_AB_024": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_024"
+    },
+    "TASK_R2_AB_025": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_025"
+    },
+    "TASK_R2_AB_026": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_026"
+    },
+    "TASK_R2_AB_027": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_027"
+    },
+    "TASK_R2_AB_028": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_028"
+    },
+    "TASK_R2_AB_029": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_029"
+    },
+    "TASK_R2_AB_030": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_030"
+    },
+    "TASK_R2_AB_031": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_031"
+    },
+    "TASK_R2_AB_032": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_032"
+    },
+    "TASK_R2_AB_033": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_033"
+    },
+    "TASK_R2_AB_034": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_034"
+    },
+    "TASK_R2_AB_035": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_035"
+    },
+    "TASK_R2_AB_036": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_036"
+    },
+    "TASK_R2_AB_037": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_037"
+    },
+    "TASK_R2_AB_038": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_038"
+    },
+    "TASK_R2_AB_039": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_039"
+    },
+    "TASK_R2_AB_040": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_040"
+    },
+    "TASK_R2_AB_041": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_041"
+    },
+    "TASK_R2_AB_042": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_042"
+    },
+    "TASK_R2_AB_043": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_043"
+    },
+    "TASK_R2_AB_044": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_044"
+    },
+    "TASK_R2_AB_045": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_045"
+    },
+    "TASK_R2_AB_046": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_046"
+    },
+    "TASK_R2_AB_047": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_047"
+    },
+    "TASK_R2_AB_048": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_048"
+    },
+    "TASK_R2_AB_049": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_049"
+    },
+    "TASK_R2_AB_050": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_050"
+    },
+    "TASK_R2_AB_051": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_051"
+    },
+    "TASK_R2_AB_052": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_052"
+    },
+    "TASK_R2_AB_053": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_053"
+    },
+    "TASK_R2_AB_054": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_054"
+    },
+    "TASK_R2_AB_055": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_055"
+    },
+    "TASK_R2_AB_056": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_056"
+    },
+    "TASK_R2_AB_057": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_057"
+    },
+    "TASK_R2_AB_058": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_058"
+    },
+    "TASK_R2_AB_059": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_059"
+    },
+    "TASK_R2_AB_060": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_060"
+    },
+    "TASK_R2_AB_061": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_061"
+    },
+    "TASK_R2_AB_062": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_062"
+    },
+    "TASK_R2_AB_063": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_063"
+    },
+    "TASK_R2_AB_064": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_064"
+    },
+    "TASK_R2_AB_065": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_065"
+    },
+    "TASK_R2_AB_066": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_066"
+    },
+    "TASK_R2_AB_067": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_067"
+    },
+    "TASK_R2_AB_068": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_068"
+    },
+    "TASK_R2_AB_069": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_069"
+    },
+    "TASK_R2_AB_070": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_070"
+    },
+    "TASK_R2_AB_071": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_071"
+    },
+    "TASK_R2_AB_072": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_072"
+    },
+    "TASK_R2_AB_073": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_073"
+    },
+    "TASK_R2_AB_074": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_074"
+    },
+    "TASK_R2_AB_075": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_075"
+    },
+    "TASK_R2_AB_076": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_076"
+    },
+    "TASK_R2_AB_077": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_077"
+    },
+    "TASK_R2_AB_078": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_078"
+    },
+    "TASK_R2_AB_079": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_079"
+    },
+    "TASK_R2_AB_080": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_080"
+    },
+    "TASK_R2_AB_081": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_081"
+    },
+    "TASK_R2_AB_082": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_082"
+    },
+    "TASK_R2_AB_083": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_083"
+    },
+    "TASK_R2_AB_084": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_084"
+    },
+    "TASK_R2_AB_085": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_085"
+    },
+    "TASK_R2_AB_086": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_086"
+    },
+    "TASK_R2_AB_087": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_087"
+    },
+    "TASK_R2_AB_088": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_088"
+    },
+    "TASK_R2_AB_089": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_089"
+    },
+    "TASK_R2_AB_090": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_090"
+    },
+    "TASK_R2_AB_091": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_091"
+    },
+    "TASK_R2_AB_092": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_092"
+    },
+    "TASK_R2_AB_093": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_093"
+    },
+    "TASK_R2_AB_094": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_094"
+    },
+    "TASK_R2_AB_095": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_095"
+    },
+    "TASK_R2_AB_096": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_096"
+    },
+    "TASK_R2_AB_097": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_097"
+    },
+    "TASK_R2_AB_098": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_098"
+    },
+    "TASK_R2_AB_099": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_099"
+    },
+    "TASK_R2_AB_100": {
+      "category": "ABSTENTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AB_100"
+    },
+    "TASK_R2_AC_001": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_001"
+    },
+    "TASK_R2_AC_002": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_002"
+    },
+    "TASK_R2_AC_003": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_003"
+    },
+    "TASK_R2_AC_004": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_004"
+    },
+    "TASK_R2_AC_005": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_005"
+    },
+    "TASK_R2_AC_006": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_006"
+    },
+    "TASK_R2_AC_007": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_007"
+    },
+    "TASK_R2_AC_008": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_008"
+    },
+    "TASK_R2_AC_009": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_009"
+    },
+    "TASK_R2_AC_010": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_010"
+    },
+    "TASK_R2_AC_011": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_011"
+    },
+    "TASK_R2_AC_012": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_012"
+    },
+    "TASK_R2_AC_013": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_013"
+    },
+    "TASK_R2_AC_014": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_014"
+    },
+    "TASK_R2_AC_015": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_015"
+    },
+    "TASK_R2_AC_016": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_016"
+    },
+    "TASK_R2_AC_017": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_017"
+    },
+    "TASK_R2_AC_018": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_018"
+    },
+    "TASK_R2_AC_019": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_019"
+    },
+    "TASK_R2_AC_020": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_020"
+    },
+    "TASK_R2_AC_021": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_021"
+    },
+    "TASK_R2_AC_022": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_022"
+    },
+    "TASK_R2_AC_023": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_023"
+    },
+    "TASK_R2_AC_024": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_024"
+    },
+    "TASK_R2_AC_025": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "CANONICAL",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_025"
+    },
+    "TASK_R2_AC_026": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_026"
+    },
+    "TASK_R2_AC_027": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_027"
+    },
+    "TASK_R2_AC_028": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_028"
+    },
+    "TASK_R2_AC_029": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_029"
+    },
+    "TASK_R2_AC_030": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_030"
+    },
+    "TASK_R2_AC_031": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_031"
+    },
+    "TASK_R2_AC_032": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_032"
+    },
+    "TASK_R2_AC_033": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_033"
+    },
+    "TASK_R2_AC_034": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_034"
+    },
+    "TASK_R2_AC_035": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_035"
+    },
+    "TASK_R2_AC_036": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_036"
+    },
+    "TASK_R2_AC_037": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_037"
+    },
+    "TASK_R2_AC_038": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_038"
+    },
+    "TASK_R2_AC_039": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_039"
+    },
+    "TASK_R2_AC_040": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_040"
+    },
+    "TASK_R2_AC_041": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_041"
+    },
+    "TASK_R2_AC_042": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_042"
+    },
+    "TASK_R2_AC_043": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_043"
+    },
+    "TASK_R2_AC_044": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_044"
+    },
+    "TASK_R2_AC_045": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_045"
+    },
+    "TASK_R2_AC_046": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_046"
+    },
+    "TASK_R2_AC_047": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_047"
+    },
+    "TASK_R2_AC_048": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_048"
+    },
+    "TASK_R2_AC_049": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_049"
+    },
+    "TASK_R2_AC_050": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "NESTED_HIERARCHY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_050"
+    },
+    "TASK_R2_AC_051": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_051"
+    },
+    "TASK_R2_AC_052": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_052"
+    },
+    "TASK_R2_AC_053": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_053"
+    },
+    "TASK_R2_AC_054": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_054"
+    },
+    "TASK_R2_AC_055": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_055"
+    },
+    "TASK_R2_AC_056": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_056"
+    },
+    "TASK_R2_AC_057": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_057"
+    },
+    "TASK_R2_AC_058": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_058"
+    },
+    "TASK_R2_AC_059": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_059"
+    },
+    "TASK_R2_AC_060": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_060"
+    },
+    "TASK_R2_AC_061": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_061"
+    },
+    "TASK_R2_AC_062": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_062"
+    },
+    "TASK_R2_AC_063": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_063"
+    },
+    "TASK_R2_AC_064": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_064"
+    },
+    "TASK_R2_AC_065": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_065"
+    },
+    "TASK_R2_AC_066": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_066"
+    },
+    "TASK_R2_AC_067": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_067"
+    },
+    "TASK_R2_AC_068": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_068"
+    },
+    "TASK_R2_AC_069": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_069"
+    },
+    "TASK_R2_AC_070": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_070"
+    },
+    "TASK_R2_AC_071": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_071"
+    },
+    "TASK_R2_AC_072": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_072"
+    },
+    "TASK_R2_AC_073": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_073"
+    },
+    "TASK_R2_AC_074": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_074"
+    },
+    "TASK_R2_AC_075": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "OPTIONALITY_BLOAT",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_075"
+    },
+    "TASK_R2_AC_076": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_076"
+    },
+    "TASK_R2_AC_077": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_077"
+    },
+    "TASK_R2_AC_078": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_078"
+    },
+    "TASK_R2_AC_079": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_079"
+    },
+    "TASK_R2_AC_080": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_080"
+    },
+    "TASK_R2_AC_081": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_081"
+    },
+    "TASK_R2_AC_082": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_082"
+    },
+    "TASK_R2_AC_083": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_083"
+    },
+    "TASK_R2_AC_084": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_084"
+    },
+    "TASK_R2_AC_085": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_085"
+    },
+    "TASK_R2_AC_086": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_086"
+    },
+    "TASK_R2_AC_087": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_087"
+    },
+    "TASK_R2_AC_088": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_088"
+    },
+    "TASK_R2_AC_089": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_089"
+    },
+    "TASK_R2_AC_090": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_090"
+    },
+    "TASK_R2_AC_091": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_091"
+    },
+    "TASK_R2_AC_092": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_092"
+    },
+    "TASK_R2_AC_093": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_093"
+    },
+    "TASK_R2_AC_094": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_094"
+    },
+    "TASK_R2_AC_095": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_095"
+    },
+    "TASK_R2_AC_096": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_096"
+    },
+    "TASK_R2_AC_097": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_097"
+    },
+    "TASK_R2_AC_098": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_098"
+    },
+    "TASK_R2_AC_099": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_099"
+    },
+    "TASK_R2_AC_100": {
+      "category": "ARGUMENT_CONSTRUCTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "AMBIGUOUS_IDENTIFIERS",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_AC_100"
+    },
+    "TASK_R2_TS_001": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_001"
+    },
+    "TASK_R2_TS_002": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_002"
+    },
+    "TASK_R2_TS_003": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_003"
+    },
+    "TASK_R2_TS_004": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_004"
+    },
+    "TASK_R2_TS_005": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_005"
+    },
+    "TASK_R2_TS_006": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_006"
+    },
+    "TASK_R2_TS_007": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_007"
+    },
+    "TASK_R2_TS_008": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_008"
+    },
+    "TASK_R2_TS_009": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_009"
+    },
+    "TASK_R2_TS_010": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_010"
+    },
+    "TASK_R2_TS_011": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_011"
+    },
+    "TASK_R2_TS_012": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_012"
+    },
+    "TASK_R2_TS_013": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_013"
+    },
+    "TASK_R2_TS_014": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_014"
+    },
+    "TASK_R2_TS_015": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_015"
+    },
+    "TASK_R2_TS_016": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_016"
+    },
+    "TASK_R2_TS_017": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_017"
+    },
+    "TASK_R2_TS_018": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_018"
+    },
+    "TASK_R2_TS_019": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_019"
+    },
+    "TASK_R2_TS_020": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_020"
+    },
+    "TASK_R2_TS_021": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_021"
+    },
+    "TASK_R2_TS_022": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_022"
+    },
+    "TASK_R2_TS_023": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_023"
+    },
+    "TASK_R2_TS_024": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_024"
+    },
+    "TASK_R2_TS_025": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_025"
+    },
+    "TASK_R2_TS_026": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_026"
+    },
+    "TASK_R2_TS_027": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_027"
+    },
+    "TASK_R2_TS_028": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_028"
+    },
+    "TASK_R2_TS_029": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_029"
+    },
+    "TASK_R2_TS_030": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_030"
+    },
+    "TASK_R2_TS_031": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_031"
+    },
+    "TASK_R2_TS_032": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_032"
+    },
+    "TASK_R2_TS_033": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_033"
+    },
+    "TASK_R2_TS_034": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_034"
+    },
+    "TASK_R2_TS_035": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_035"
+    },
+    "TASK_R2_TS_036": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_036"
+    },
+    "TASK_R2_TS_037": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_037"
+    },
+    "TASK_R2_TS_038": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_038"
+    },
+    "TASK_R2_TS_039": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_039"
+    },
+    "TASK_R2_TS_040": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_040"
+    },
+    "TASK_R2_TS_041": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_041"
+    },
+    "TASK_R2_TS_042": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_042"
+    },
+    "TASK_R2_TS_043": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_043"
+    },
+    "TASK_R2_TS_044": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_044"
+    },
+    "TASK_R2_TS_045": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_045"
+    },
+    "TASK_R2_TS_046": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_046"
+    },
+    "TASK_R2_TS_047": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_047"
+    },
+    "TASK_R2_TS_048": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_048"
+    },
+    "TASK_R2_TS_049": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_049"
+    },
+    "TASK_R2_TS_050": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_050"
+    },
+    "TASK_R2_TS_051": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_051"
+    },
+    "TASK_R2_TS_052": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_052"
+    },
+    "TASK_R2_TS_053": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_053"
+    },
+    "TASK_R2_TS_054": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_054"
+    },
+    "TASK_R2_TS_055": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_055"
+    },
+    "TASK_R2_TS_056": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_056"
+    },
+    "TASK_R2_TS_057": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_057"
+    },
+    "TASK_R2_TS_058": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_058"
+    },
+    "TASK_R2_TS_059": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_059"
+    },
+    "TASK_R2_TS_060": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_060"
+    },
+    "TASK_R2_TS_061": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_061"
+    },
+    "TASK_R2_TS_062": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_062"
+    },
+    "TASK_R2_TS_063": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_063"
+    },
+    "TASK_R2_TS_064": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_064"
+    },
+    "TASK_R2_TS_065": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_065"
+    },
+    "TASK_R2_TS_066": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_066"
+    },
+    "TASK_R2_TS_067": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_067"
+    },
+    "TASK_R2_TS_068": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_068"
+    },
+    "TASK_R2_TS_069": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_069"
+    },
+    "TASK_R2_TS_070": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_070"
+    },
+    "TASK_R2_TS_071": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_071"
+    },
+    "TASK_R2_TS_072": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_072"
+    },
+    "TASK_R2_TS_073": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_073"
+    },
+    "TASK_R2_TS_074": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_074"
+    },
+    "TASK_R2_TS_075": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_075"
+    },
+    "TASK_R2_TS_076": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_076"
+    },
+    "TASK_R2_TS_077": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_077"
+    },
+    "TASK_R2_TS_078": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_078"
+    },
+    "TASK_R2_TS_079": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_079"
+    },
+    "TASK_R2_TS_080": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_080"
+    },
+    "TASK_R2_TS_081": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_081"
+    },
+    "TASK_R2_TS_082": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_082"
+    },
+    "TASK_R2_TS_083": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_083"
+    },
+    "TASK_R2_TS_084": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_084"
+    },
+    "TASK_R2_TS_085": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_085"
+    },
+    "TASK_R2_TS_086": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_086"
+    },
+    "TASK_R2_TS_087": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_087"
+    },
+    "TASK_R2_TS_088": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_088"
+    },
+    "TASK_R2_TS_089": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_089"
+    },
+    "TASK_R2_TS_090": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_090"
+    },
+    "TASK_R2_TS_091": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_091"
+    },
+    "TASK_R2_TS_092": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_092"
+    },
+    "TASK_R2_TS_093": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_093"
+    },
+    "TASK_R2_TS_094": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_094"
+    },
+    "TASK_R2_TS_095": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_095"
+    },
+    "TASK_R2_TS_096": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_096"
+    },
+    "TASK_R2_TS_097": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_097"
+    },
+    "TASK_R2_TS_098": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_098"
+    },
+    "TASK_R2_TS_099": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_099"
+    },
+    "TASK_R2_TS_100": {
+      "category": "TOOL_SELECTION",
+      "findings": [],
+      "findings_count": 0,
+      "mutation_family": "DISTRACTOR_SET_COMPLEXITY",
+      "overall_status": "CLEAR",
+      "task_id": "TASK_R2_TS_100"
+    }
+  },
+  "total_tasks_audited": 300
+}
