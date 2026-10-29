@@ -1,0 +1,56 @@
+{
+  "adjudicated_release1_defects_addressed": [
+    "TOOL_NAME_EXACT_LEAK_IN_PROMPT",
+    "DUPLICATE_PROMPTS_WITHIN_CELL",
+    "FIELD_NAME_EXACT_LEAK",
+    "ABSTENTION_DISTRACTOR_AMBIGUITY"
+  ],
+  "audit_rules_recalibrated": [
+    "INTENT_CONFLICT_REPLACED_WITH_PAIRED_GROUP_DESIGN",
+    "SYNTHETIC_WRAPPER_KEYS_TRAVERSED_IN_NESTED_SCHEMAS",
+    "COMMON_DOMAIN_VOCABULARY_ALLOWLISTED"
+  ],
+  "benchmark_release": "RELEASE_2",
+  "date_utc": "2026-10-29",
+  "empirical_results_state": "NO_EMPIRICAL_RESULTS_PRESENT",
+  "human_review_state": "NO_INDEPENDENT_HUMAN_REVIEW_RESULTS_PRESENT",
+  "operational_state": "MODEL_EXECUTION_BLOCKED_PENDING_RELEASE2_INDEPENDENT_HUMAN_VALIDATION",
+  "paired_group_design": {
+    "description": "Formal tracking of intentional semantic request reuse across controlled schema mutations using stable paired_group_id identifiers.",
+    "max_intra_cell_prompt_duplicates": 0,
+    "pairing_invariant": "Tasks sharing a paired_group_id must share the identical underlying LatentIntent while varying schema mutation family or category."
+  },
+  "preregistration_version": "2.0.0",
+  "release_gates_total": 11,
+  "required_quality_thresholds": {
+    "inter_rater_agreement_threshold_kappa": 0.7,
+    "max_positional_skew": 0.15,
+    "minimum_independent_reviewers": 2,
+    "minimum_tasks_compiled": 300,
+    "target_blind_sample_size": 90,
+    "unadjudicated_ambiguity_count_permitted": 0,
+    "unresolved_invalid_tasks_permitted": 0
+  },
+  "target_construct": "Ability to map a natural-language request to an appropriate structured tool invocation under controlled schema-surface transformations without reliance on prompt-leaked identifiers or superficial shortcuts.",
+  "task_category_invariants": {
+    "ABSTENTION": {
+      "candidate_tools_count_min": 3,
+      "candidate_tools_match_intent": false,
+      "explicit_abstention_hints_permitted": false,
+      "target_tool_presence": null
+    },
+    "ARGUMENT_CONSTRUCTION": {
+      "all_non_inferable_gold_values_in_prompt": true,
+      "available_tools_count": 1,
+      "tool_name_in_user_prompt_permitted": false,
+      "verbatim_snake_case_keys_in_prompt_permitted": false
+    },
+    "TOOL_SELECTION": {
+      "candidate_tools_count_min": 3,
+      "candidate_tools_count_max": 9,
+      "distractor_semantic_collisions_permitted": false,
+      "target_position_balanced": true,
+      "target_tool_in_user_prompt_permitted": false
+    }
+  }
+}
